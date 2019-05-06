@@ -1,0 +1,1332 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>NETN-ETR_v2.0.3</name>
+        <type>FOM</type>
+        <version>2.0.3</version>
+        <modificationDate>2019-02-26</modificationDate>
+        <securityClassification>Unclassified</securityClassification>
+        <purpose>Entity Task and Report (ETR)</purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>Module for sending and reporting task at entity level i.e. vehicle or aggregate level. </description>
+        <useLimitation></useLimitation>
+        <useHistory>v1.0.0 - First version of the module. It is development of the old NETN-LBML FOM module.</useHistory>
+        <useHistory>v1.0.1 - Fixed typos.</useHistory>
+        <useHistory>v2.0.1 - Modified version as described in "LLBML-ChangeProposal-v0.8.docx"</useHistory>
+        <useHistory>v2.0.2 - Modified version as described in "LLBML-ChangeProposal-v0.9.docx"</useHistory>
+        <useHistory>v2.0.3 - modified version as described in "LLBML-ChangeProposal-v0.10.docx"</useHistory>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>Henk Henderson</pocName>
+            <pocOrg>TNO</pocOrg>
+            <pocEmail>henk.henderson@tno.nl</pocEmail>
+        </poc>
+        <other></other>
+    </modelIdentification>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>ETR_Root</name>
+                <sharing>Neither</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>Root interaction class for the Entitiy Tasking and Reporting (ETR) interaction classes.</semantics>
+                <interactionClass>
+                    <name>ETR_Task</name>
+                    <sharing>Neither</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A base interaction class for more specialized task interaction classes.</semantics>
+                    <parameter>
+                        <name>TaskId</name>
+                        <dataType>TransactionId</dataType>
+                        <semantics>Identifies the task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Taskee</name>
+                        <dataType>UuidArrayOfHLAbyte16</dataType>
+                        <semantics>The entity that has to execute the task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Tasker</name>
+                        <dataType>Callsign</dataType>
+                        <semantics>Identifies the commander of the task. 
+When empty, the commander is not defined.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>StartWhen</name>
+                        <dataType>Datetime18</dataType>
+                        <semantics>Time when the task execution has to start. Use the value 00000000000000.000 to indicate that the time is undefined.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Why</name>
+                        <dataType>HLAunicodeString</dataType>
+                        <semantics>For what reason has this task to be executed. 
+When empty, the reason is not defined.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>TaskMode</name>
+                        <dataType>TaskModeEnum8</dataType>
+                        <semantics>Determines the task mode.</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>Move</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to move in the specified direction for the given duration.</semantics>
+                        <parameter>
+                            <name>Direction</name>
+                            <dataType>AngleRadianFloat32</dataType>
+                            <semantics>Determines the azimuth direction, in radians.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Duration</name>
+                            <dataType>TimeSecInt32</dataType>
+                            <semantics>The duration of the move (seconds)</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>MoveToLocation</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to move to the specified location.</semantics>
+                        <parameter>
+                            <name>Destination</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>The location to move to.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>MoveType</name>
+                            <dataType>MoveTypeEnum32</dataType>
+                            <semantics>Indicates if roads have to be followed.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Waypoints</name>
+                            <dataType>WorldLocationStructLengthlessArray</dataType>
+                            <semantics>Optional route to the destination.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>MoveToEntity</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to move to another entity.</semantics>
+                        <parameter>
+                            <name>Entity</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>The entity to move to.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>MoveType</name>
+                            <dataType>MoveTypeEnum32</dataType>
+                            <semantics>Indicates if roads have to be followed.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Waypoints</name>
+                            <dataType>WorldLocationStructLengthlessArray</dataType>
+                            <semantics>Optional route to the destination.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>MoveIntoFormation</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an aggregate entity to move into the given formation with the given heading.</semantics>
+                        <parameter>
+                            <name>Formation</name>
+                            <dataType>FormationEnum32</dataType>
+                            <semantics>The category of positional arrangement the aggregate.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Location</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>The location (x, y and z) to move to.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Heading</name>
+                            <dataType>AngleRadianFloat32</dataType>
+                            <semantics>The heading of the formation in radians.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>FollowEntity</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to follow another entity.</semantics>
+                        <parameter>
+                            <name>Entity</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>The entity to follow.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Behind</name>
+                            <dataType>MeterFloat32</dataType>
+                            <semantics>The distance in meters behind the entity to follow.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Right</name>
+                            <dataType>MeterFloat32</dataType>
+                            <semantics>The distance in meters to the right of the entity to follow.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Above</name>
+                            <dataType>MeterFloat32</dataType>
+                            <semantics>The distance in meters above the entity to follow.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Duration</name>
+                            <dataType>TimeSecInt32</dataType>
+                            <semantics>The duration of the folow action (seconds).</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>TurnToHeading</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to turn to the specified heading.</semantics>
+                        <parameter>
+                            <name>Heading</name>
+                            <dataType>AngleRadianFloat32</dataType>
+                            <semantics>Determines the heading, in radians, an entity has to turn to.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>TurnToOrientation</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Tasks an entity to turn to a specified orientation, including pitch and roll.</semantics>
+                            <parameter>
+                                <name>Pitch</name>
+                                <dataType>AngleRadianFloat32</dataType>
+                                <semantics>Defines the angle ot the pitch.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Roll</name>
+                                <dataType>AngleRadianFloat32</dataType>
+                                <semantics>Defines the angle ot the roll.</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>Mount</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Task the entity to mount in the specified entity. The taskee entiity should be within a certain distance tolerance of the entiity to mount into. this tolerance must be specified in the federation agreements. Mount includes: embark (vessel), board (plane), and so on.</semantics>
+                        <parameter>
+                            <name>EntiityId</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>Id of the entiy in which the taskee entity is mounted.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>Dismount</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Task the entity to dismount from the entity where it is in.</semantics>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>FireAtLocation</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to fire at a location.</semantics>
+                        <parameter>
+                            <name>TargetLocation</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>The location to fire at.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Duration</name>
+                            <dataType>TimeSecInt32</dataType>
+                            <semantics>The duration of the fire (seconds).</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>FireAtLocationWM</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Tasks an entity to fire at a location with the specified weapon and munition.</semantics>
+                            <parameter>
+                                <name>WeaponTypeToUse</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics>Preferd weapon type.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>MunitionTypeToUse</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics>Prefered muntion type.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>QuantityFired</name>
+                                <dataType>Integer16</dataType>
+                                <semantics>Number of rounds to fire</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>RateOfFire</name>
+                                <dataType>Float32</dataType>
+                                <semantics>Number of rounds per second.</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>FireAtEntity</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to fire at another specified entity.</semantics>
+                        <parameter>
+                            <name>Target</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>The entity to fire at.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>FireAtEntityWM</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Tasks an entity to fire at a specified entity with the specified weapon and munition.</semantics>
+                            <parameter>
+                                <name>WeaponTypeToUse</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics>Preferd weapon type.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>MunitionTypeToUse</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics>Prefered munition type.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>QuantityFired</name>
+                                <dataType>Integer16</dataType>
+                                <semantics>Number of rounds.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>RateOfFire</name>
+                                <dataType>Float32</dataType>
+                                <semantics>Number of rounds per second.</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>SetOrderedSpeed</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Set/Change the ordered speed. Usually sent in ConcurrentMode to adjust the current move task.</semantics>
+                        <parameter>
+                            <name>Speed</name>
+                            <dataType>VelocityMeterPerSecondFloat32</dataType>
+                            <semantics>Determines the ordered speed to set for an entity, in m/s.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>SetOrderedAltitude</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Set/Change the ordered altitude for a flying entity. Usually sent in ConurrentMode to adjust the current move task.</semantics>
+                        <parameter>
+                            <name>Altitude</name>
+                            <dataType>Float64</dataType>
+                            <semantics>Defines the altitude.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>AltitudeType</name>
+                            <dataType>AltitudeTypeEnum8</dataType>
+                            <semantics>Above the ground or sea.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>Wait</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to wait a defined duration.</semantics>
+                        <parameter>
+                            <name>Duration</name>
+                            <dataType>TimeSecInt32</dataType>
+                            <semantics>Specifies the wait time (seconds).</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>SetRulesOfEngagement</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Change the rules of engagment for an entity.</semantics>
+                        <parameter>
+                            <name>RulesOfEngagement</name>
+                            <dataType>RulesOfEngagementEnum8</dataType>
+                            <semantics>Determines the rules of engagment for a entity.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>EstablishCheckPoint</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>The task defines a location where a checkpoint shall be established and then operated. 
+ 
+If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
+The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location where the checkpoint should be established to make the task possible. 
+ 
+A checkpoint instance (NETN-SE FOM) shall be created and registerd when the entity reaches the location for the checkpoint. The attribute CheckPoint.Deactivated (from RPR_v2) shall show the status of the checkpoint. 
+ 
+The modelling federate decides when the checkpoint shall be activated, it may be direct at the creation or when the attribute PercentComplete has reached a threshold level. 
+ 
+The modelling federate may register a NETN_CulturalFeature instance to model the checkpoint. 
+Set the attribute CheckPoint.ReferencedObjectIdentifier to the NETN_CulturalFeature instance. 
+The attribute NETN_CulturalFeature.Status shall be ActiveStatusEnum8.Active when the checkpoint is operated. 
+ 
+The duraction defines when the checkpoint is deactivated unless another entity from the modelling federate Operates the checkpoint.
+ 
+The federation agreements shall specify how the ownership of the dynamic attribute at the checkpoint shall be managed when the checkpoint is deactivated. One of the following cases shall be managed in the federation: 
+ 
+1. Dynamic attributes of the checkpoint are released with the HLA Ownership Management services unconditionalAttributeOwnershipDivestiture at deactivation. 
+ 
+2. Only one federate may establish and operate a specific checkpoint. 
+ 
+3. Use NETN TMR Pattern, the federate modelling the entity that shall operate the checkpoint requests the ownership from the current owner of the dynamic attributes.</semantics>
+                        <parameter>
+                            <name>Name</name>
+                            <dataType>HLAunicodeString</dataType>
+                            <semantics>Name of the Check Point.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Location</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>The coordinated for the Check Point.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>UniqueId</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>May be generated by the current system if not defined. 
+(The current system creates a object instance of the object class NETN-SE CheckPoint)</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Duration</name>
+                            <dataType>TimeSecInt32</dataType>
+                            <semantics>The duration of the action (seconds)</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>OperateCheckPoint</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>The task activates a deactivated check point. 
+ 
+If the Taskee entity is not at the checkpoint location, it has to move to that location with a seperate move task. 
+The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location of the checkpoint to make the task possible. 
+ 
+The attribute CheckPoint.Deactivated (from RPR_v2) shall show the status at the checkpoint.
+
+If a NETN_CulturalFeature is accociated with the checkpoint the status shall be displayed for the NETN_CulturalFeature instance.
+
+See semantics for the interaction EstablishCheckPoint how ownership of the dynamics attribute at the checkpoint instance shall be managed.</semantics>
+                        <parameter>
+                            <name>UniqueId</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>Identifier for the CheckPoint</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Duration</name>
+                            <dataType>TimeSecInt32</dataType>
+                            <semantics>The duration of the action  (seconds)</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>StopAtSideOfRoad</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to stop at the side of the road. This task is only relevant for an entity that is moving along a road to a destination. The executing move task is canceled and a new move is defined to a position at the side of the road (the simulator has to calculate this location).</semantics>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>RemoveCheckPoint</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>This task removes the checkpoint that is generated in the EstablishCheckpoint task. 
+ 
+If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
+The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location of the checkpoint to make the task possible.
+
+A checkpoint instance (NETN-SE FOM) shall be removed from the Federation Execution when the entity reaches the location for the checkpoint. 
+ 
+If a NETN_CulturalFeature instance is assigned to the checkpoint is shall be deleted.</semantics>
+                        <parameter>
+                            <name>UniqueId</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>Identifier for the CheckPoint</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CreateObstacle</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to create an obstacle with the given geometry. 
+The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the geometry of the obstacle to make the task possible. 
+The corresponding Environment Object instance  in the RPR-FOM should be created.</semantics>
+                        <parameter>
+                            <name>ObstacleType</name>
+                            <dataType>EntityTypeStruct</dataType>
+                            <semantics>The type of the obstacle defined by the entity type of the obstacle (SISO REF-010-2018 Land Culture Features) .</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>GeometryType</name>
+                            <dataType>GeometryEnum32</dataType>
+                            <semantics>The type of the geometry which can be Point, Polygon or Area</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Geometry</name>
+                            <dataType>WorldLocationStructLengthlessArray</dataType>
+                            <semantics>A set of points defining the point, polygon or area of the Obstacle.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>UniqueId</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>A unique UUID of the Obstacle.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>CreateMinefield</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Tasks an entity to create a minefield within the specified geometry. The taskee should publish the minefield as a RPR-FOM object when finished. This interaction should not be confused with the MinefieldObjectTransaction interaction of the RPR-FOM, which asks a federate directly to “magic create” a minefield. Warning: The RPR-FOM contains several ways of representing a minefield, and the taskee may decide which representation to use. It is recommended to agree on this in advance, through the use of a Federation Agreement. 
+Allowed values for attributes of the parent (CreateObstacle): 
+- ObstacleType = (5.1.0.5.10.*.* or 5.1.0.5.11.*.* or 5.1.0.5.12.*.*) 
+- GeometryType = Area</semantics>
+                            <parameter>
+                                <name>TypeOfMines</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics>Type of mines used defined by the EntityTypeStruct see  section 15.5, UID 418, SISO-REF-010-2018.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>MineCount_MineDensity</name>
+                                <dataType>MineCountVariantStruct</dataType>
+                                <semantics>Can contain either the count of mines, or the density</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>ClearObstacle</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Task an entity to clear the obstacle or minefield with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the geometry of the obstacle to make the task possible.</semantics>
+                        <parameter>
+                            <name>UniqueId</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>A unique UUID of the Obstacle.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>AddPassage</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to lay/build a passage between the two given points. The passage can for example be a passage through an obstacle or a bridge over a river. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible. 
+The corresponding Environment Object instance in the RPR-FOM should be created.</semantics>
+                        <parameter>
+                            <name>Point1</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>The line between point1 and point2 defines the geometry of the passage.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Point2</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>The line between point1 and point2 defines the geometry of the passage.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>UniqueId</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>A unique UUID of the passage.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>RemovePassage</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an entity to remove the pasasage with the given ID. The taskee entiity should be within a certain distance tolerance (specified in the federation aggrement) of one of the points of the passage to make the task possible.</semantics>
+                        <parameter>
+                            <name>UniqueId</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>A unique UUID of the passage.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>Patrol</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Defines a patrol, covering the path from the current location to the  start point of the patrol route, and the patrol route itself. The patrol route will be followed from start to end. The entity behaviour at the end point depends on the patrol type.</semantics>
+                        <parameter>
+                            <name>PatrolRoute</name>
+                            <dataType>WorldLocationStructLengthlessArray</dataType>
+                            <semantics>Describes the route to patrol.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>PatrolType</name>
+                            <dataType>PatrolTypeEnum32</dataType>
+                            <semantics>Defines how the patrol shall be excuted. The total move from the start point to start point (for patroltype is circle and reverse) is defined as one cycle (see also PatrolRepeating).</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>MoveType</name>
+                            <dataType>PatrolMoveTypeEnum32</dataType>
+                            <semantics>Defines how the entity shall move during the patrol route.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>PatrolRepeating</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Task an entity to repeat a patrol task for the given duration. For this task the patrol type other is not allowed. 
+ 
+When the duration time has elapsed then the last cycle of the patrol will be completed before the task ends. 
+ 
+If the time of a cycle takes longer then the interval time then the cylce starts directly (without delay). If the time of a cylce takes less then the interval time then the entiy waits in the first point for the remaining time before the next cycle is started.</semantics>
+                            <parameter>
+                                <name>Duration</name>
+                                <dataType>TimeSecInt32</dataType>
+                                <semantics>The duration of the total patrol task.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>IntervalTime</name>
+                                <dataType>TimeSecInt32</dataType>
+                                <semantics>The interval time between two cycles.</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>ETR_Report</name>
+                    <sharing>Neither</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A base interaction class for more specialized report interaction classes.</semantics>
+                    <parameter>
+                        <name>ReportId</name>
+                        <dataType>TransactionId</dataType>
+                        <semantics>Identifies the Report</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>When</name>
+                        <dataType>Datetime18</dataType>
+                        <semantics>Date and time when the reported status was valid.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Comments</name>
+                        <dataType>HLAunicodeString</dataType>
+                        <semantics>Any additional comments</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>StatusReport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Status report from an entity about its own (perceived) state. This report is generated with a certain frequency specified in the federation agreements.</semantics>
+                        <parameter>
+                            <name>EntityId</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>The entity that is reported about.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>PositionStatusReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Report about the position, speed, and heading of the entity.</semantics>
+                            <parameter>
+                                <name>Position</name>
+                                <dataType>WorldLocationStruct</dataType>
+                                <semantics>Position of the entity at the specified time.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Heading</name>
+                                <dataType>AngleRadianFloat32</dataType>
+                                <semantics>Heading of the entity.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Speed</name>
+                                <dataType>VelocityMeterPerSecondFloat32</dataType>
+                                <semantics>Speed of the entity.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>DamageStatusReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Damage status report of an entity. The possible damage staets are possible: NoDamage, SlightDamage, ModerateDamage, SignificantDamage, Destroyed.</semantics>
+                            <parameter>
+                                <name>DamageType</name>
+                                <dataType>DamageStatusEnhancedEnum32</dataType>
+                                <semantics>Damage state of the reported entity.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>ResourceStatusReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Report about the remaning amount of a resource.</semantics>
+                            <parameter>
+                                <name>Resource</name>
+                                <dataType>NETN_SupplyStruct</dataType>
+                                <semantics>The type of resource and remaining quantity.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>UnderAttackStatusReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Report that the entity is under attack.</semantics>
+                            <parameter>
+                                <name>FromDirection</name>
+                                <dataType>AngleRadianFloat32</dataType>
+                                <semantics>FromDirection (Direction from which the entity is attacked, between 0..2π or -1 when not specified.)</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Severeness</name>
+                                <dataType>AttackTypeEnum32</dataType>
+                                <semantics>Severeness of the attack upon the reporting entity.</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>SpotReport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Spot reports are reports used by all entities to transmit intelligence or information about a spotted enemy, neutral, or unknown entity.</semantics>
+                        <parameter>
+                            <name>Observer</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>Entity that observed the enemy (or neutral/unknown entity) and sends the spot report.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>IdentificationLevel</name>
+                            <dataType>IdentificationLevelEnum8</dataType>
+                            <semantics>The identification level of the entit(y)(ies) spotted.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>SpottedEnities</name>
+                            <dataType>ArrayOfSpottedEntities</dataType>
+                            <semantics>Spotted entities at the time specified in the parameter 'When'.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>SensorReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>The entities that have been observed by a specific sensor. The attributes can be: Detected, Recognized or Identified.</semantics>
+                            <parameter>
+                                <name>SensorType</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics>The type of the sensor that detected the entit(y)(ies).</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>InWeaponRangeReport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>The entities that are in range of a specific weapon.</semantics>
+                        <parameter>
+                            <name>Observer</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>Entity that observed the enemy (or neutral/unknown entity) and sends the report.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>WeaponType</name>
+                            <dataType>EntityTypeStruct</dataType>
+                            <semantics>The type of the weapon.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>EntitiesInWeaponRange</name>
+                            <dataType>ArrayOfUuid</dataType>
+                            <semantics>Array with entities.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>ETR_TaskManagement</name>
+                    <sharing>Neither</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A base interaction class for more specialized task management interaction classes.</semantics>
+                    <parameter>
+                        <name>TaskManagementId</name>
+                        <dataType>TransactionId</dataType>
+                        <semantics>Identifies the management task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Taskee</name>
+                        <dataType>UuidArrayOfHLAbyte16</dataType>
+                        <semantics>The entity that has to execute the task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Tasker</name>
+                        <dataType>Callsign</dataType>
+                        <semantics>Identifies the commander of the task.</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>CancelSpecifiedTasks</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Cancel all specified tasks. Tasks already started are also cancelled.</semantics>
+                        <parameter>
+                            <name>Tasks</name>
+                            <dataType>ArrayOfTaskIds</dataType>
+                            <semantics>Tasks that have to be cancelled.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CancelAllTasks</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Cancel all tasks. Tasks already started are also cancelled.</semantics>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>TaskStatusReport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>A report about the status of a task given to an entity. The status of the task defined by the TaskId can be: Accepted, Refused, Cancelled, Executing, Completed or Error.</semantics>
+                        <parameter>
+                            <name>TaskId</name>
+                            <dataType>TransactionId</dataType>
+                            <semantics>Identifies the task associated with the task report.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>TaskStatus</name>
+                            <dataType>TaskStatusEnum32</dataType>
+                            <semantics>Indicates the evaluation status of the task.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>When</name>
+                            <dataType>Datetime18</dataType>
+                            <semantics>Creation date and time of the report.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Comments</name>
+                            <dataType>HLAunicodeString</dataType>
+                            <semantics>Any additional comments. For example reason for cancelling, error, etc.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>ETR_SimCon</name>
+                    <sharing>Neither</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A base interaction class for EXCON Task interaction classes.</semantics>
+                    <parameter>
+                        <name>TaskId</name>
+                        <dataType>TransactionId</dataType>
+                        <semantics>Identifies the task</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Taskee</name>
+                        <dataType>UuidArrayOfHLAbyte16</dataType>
+                        <semantics>The entity that has to execute the task</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Tasker</name>
+                        <dataType>Callsign</dataType>
+                        <semantics>Indetifies the commander of the task.</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>MagicMove</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Place the entity to the specified location with a given heading. All given task of the entity are cancelled.</semantics>
+                        <parameter>
+                            <name>Location</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>The new location for the entity</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Heading</name>
+                            <dataType>AngleRadianFloat32</dataType>
+                            <semantics>The entity is set in the position without a move order and without using simulation time (magic placement). 
+The orienation will be set in the given heading.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>MagicResource</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Changes the resource amount of the entity.</semantics>
+                        <parameter>
+                            <name>Resource</name>
+                            <dataType>NETN_SupplyStruct</dataType>
+                            <semantics>Defines the resource type that will get a new quantity value.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>QueryCapabilitiesSupported</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Query which ETR tasks and ETR reports that the entity supports. The taskee shall respond with a CapabilitiesSupported message.</semantics>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CapabilitiesSupported</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Provide the set of ETR tasks and ETR reports that the entity supports. This interaction is in response to a QueryCapabilitiesSupported, using the same Taskee and Tasker.</semantics>
+                        <parameter>
+                            <name>CapabilityNames</name>
+                            <dataType>ArrayOfNames</dataType>
+                            <semantics>Array of task and report names that the entity supports; the names match with the FOM interaction class names.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <simpleDataTypes>
+            <simpleData>
+                <name>TimeSecInt32</name>
+                <representation>HLAinteger32BE</representation>
+                <units>NA</units>
+                <resolution>1</resolution>
+                <accuracy>Perfect</accuracy>
+                <semantics>Specifies a time in seconds.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>TimeMinutesInt32</name>
+                <representation>HLAinteger32BE</representation>
+                <units>NA</units>
+                <resolution>1</resolution>
+                <accuracy>Perfect</accuracy>
+                <semantics>Specifies a time in minutes.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>NumberOfEquipment32</name>
+                <representation>HLAinteger32BE</representation>
+                <units>NA</units>
+                <resolution>1</resolution>
+                <accuracy>Perfect</accuracy>
+                <semantics>The number of something.</semantics>
+            </simpleData>
+        </simpleDataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>RulesOfEngagementEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Rules of engagment for a simulated entity.</semantics>
+                <enumerator>
+                    <name>HoldFire</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>FireAtWill</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>FireWhenFiredUpon</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>TaskStatusEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>The status of a task.</semantics>
+                <enumerator>
+                    <name>Accepted</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Refused</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Cancelled</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Executing</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Completed</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Error</name>
+                    <value>5</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>IdentificationLevelEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The identification level of an object.</semantics>
+                <enumerator>
+                    <name>Lost</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Detected</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Classified</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Identified</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>FullKnowledge</name>
+                    <value>4</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>MoveTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>CrossCountry: move directly to the destination without taking into account the roads. 
+OnlyRoads: stay on the roads to get to the closest point to the destination that is still on a road; if there is no road very near to the start (within around 10 meters) there will be no movement at all. 
+RoadsAndCrossCountry: move to the destination by taking into account the roads; it is allowed to go off the road.</semantics>
+                <enumerator>
+                    <name>CrossCountry</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>OnlyRoads</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>RoadsAndCrossCountry</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>AttackTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>The kind of attack by the enemy.</semantics>
+                <enumerator>
+                    <name>None</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Artillery</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>HeavyArtillery</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>AltitudeTypeEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>AMSL = Above Mean Sea Level 
+AGL = Abve Ground Level</semantics>
+                <enumerator>
+                    <name>AMSL</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>AGL</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>TaskModeEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Execute task in non-concurrent mode or concurrent mode. 
+ 
+In the non-concurrent mode the task is placed on the task list for the entity, which serves as a waiting list. Once the task is at the head of the task list, and the currently executing task completes, it is removed from the task list and started. Using this task mode, tasks are executed one after the other. 
+ 
+In the concurrent mode, the task is executed concurrently with other tasks. As soon as the task is accepted for an entity, it is started. With this task mode, there is no task list involved.</semantics>
+                <enumerator>
+                    <name>NonConcurrentMode</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>ConcurrentMode</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>PerceivedForceIdentifierEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>The percieved affiliation of the detected entity.</semantics>
+                <enumerator>
+                    <name>Unknown</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>AssumedFriend</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friend</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Suspect</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Hostile</name>
+                    <value>5</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>PatrolTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Other - Behaviour is federate application specific (e.g. wait for next command, etc.) 
+Circle - Move to start point of patrol route (federate application deterrmines route) 
+Reverse - Follow the patrol route in reverse order.</semantics>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Circle</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Reverse</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>PatrolMoveTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Defines how the movment shall be done during the execution of the patrol. 
+Other - Federate application specific.</semantics>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Stealth</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Caution</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Open</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>GeometryEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>The type of geometry.</semantics>
+                <enumerator>
+                    <name>Point</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Polygon</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Area</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>MineCountEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Type of mine count.</semantics>
+                <enumerator>
+                    <name>MineNumber</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>MineDensity</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes>
+            <arrayData>
+                <name>Datetime18</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>18</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A designation of a specified chronological point measured using Coordinated Universal Time (UTC) ISO 8601:2000 as a standard of reference, constrained to "zero meridian" i.e. �Zulu� time zone only. This is expressed as a composite field using a compacted ISO notation YYYYMMDDHHMMSS.SSS where YYYY represents a year, MM represents a month in values from 00 to 12, and DD represents a day in values from 00 to 31, HH represents an hour, MM represents a minute, and SS.SSS represents the number of seconds and milliseconds.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfTaskIds</name>
+                <dataType>TransactionId</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Array of Task Ids.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfNames</name>
+                <dataType>HLAASCIIstring</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Array of Names.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>SymbolIdentifierArray15</name>
+                <dataType>HLAASCIIchar</dataType>
+                <cardinality>15</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>MIL 2525C symbol code</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfSpottedEntities</name>
+                <dataType>SpottedEntity</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>The spotted entities at a specific time</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfSpottedEquipment</name>
+                <dataType>SpottedEquipment</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>An array with spotted equipment at the spotted entity.</semantics>
+            </arrayData>
+        </arrayDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>TransactionId</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Unique identifier for a transaction. 
+Used for Tasks, ManagementTasks and Reports. 
+The combination of FederateHandle and a counter gives a unique TransactionId in the Federation Execution even if a federate should resign (for some reason) and then join again.</semantics>
+                <field>
+                    <name>Counter</name>
+                    <dataType>CounterInt32</dataType>
+                    <semantics>This value shall be incremented by 1 for each new TransactionId.</semantics>
+                </field>
+                <field>
+                    <name>FederateHandle</name>
+                    <dataType>HLAhandle</dataType>
+                    <semantics>The handle that the federate get when joining the federation. Required</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>SpottedEntity</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Descripton of the observed entity. 
+The symbol contains information about the spotted entity's relation to the spotter and details about the type and echelon at the spotted entity.</semantics>
+                <field>
+                    <name>SpottedEntity</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <semantics>The unique identifier for the entity</semantics>
+                </field>
+                <field>
+                    <name>Location</name>
+                    <dataType>WorldLocationStruct</dataType>
+                    <semantics>The location where the entity were spotted</semantics>
+                </field>
+                <field>
+                    <name>Orientation</name>
+                    <dataType>OrientationStruct</dataType>
+                    <semantics>The orientation in Psi, Theta, Phi [radians]</semantics>
+                </field>
+                <field>
+                    <name>Speed</name>
+                    <dataType>VelocityMeterPerSecondFloat32</dataType>
+                    <semantics>The speed of the entity (m/s). 
+ 
+Default value: 0 m/s</semantics>
+                </field>
+                <field>
+                    <name>Equipment</name>
+                    <dataType>ArrayOfSpottedEquipment</dataType>
+                    <semantics>Spotted equipment list, type and number. 
+ 
+Default value: Empty array.</semantics>
+                </field>
+                <field>
+                    <name>Activity</name>
+                    <dataType>AggregateMissionEnum16</dataType>
+                    <semantics>The current activity of the entity. (Fromm NETN-Base) 
+Default value: Moving (213)</semantics>
+                </field>
+                <field>
+                    <name>Symbol</name>
+                    <dataType>SymbolIdentifierArray15</dataType>
+                    <semantics>MIL STD 2525C for the entity, the detailed level may vary, the publishing federate decides the level of details in the symbol description. 
+ 
+Default Ground value: SUGP------***** 
+Default Air value: SUAP------***** 
+Default Sea Surface value: SUSP------***** 
+Default Subsurface value: SUUP------*****</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>SpottedEquipment</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Equipment at the spotted entity.</semantics>
+                <field>
+                    <name>Type</name>
+                    <dataType>EntityTypeStruct</dataType>
+                    <semantics>Use entity types from Supply Types, Expendibles or Sensors/Emitters tables  (SISO-REF-010-2010, 4.3), 
+for aggregate entities, also use entity types from platform tables to describe the equipment type.</semantics>
+                </field>
+                <field>
+                    <name>NumberOfEquipment</name>
+                    <dataType>NumberOfEquipment32</dataType>
+                    <semantics>The number of the equipment.</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes>
+            <variantRecordData>
+                <name>MineCountVariantStruct</name>
+                <discriminant>MineCountType</discriminant>
+                <dataType>MineCountEnum32</dataType>
+                <alternative>
+                    <enumerator>MineNumber</enumerator>
+                    <name>MineNumber</name>
+                    <dataType>Integer32</dataType>
+                    <semantics>Number of mines.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>MineDensity</enumerator>
+                    <name>MineDensity</name>
+                    <dataType>PercentFloat32</dataType>
+                    <semantics>Percentage of mines.</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>The number or density of mines.</semantics>
+            </variantRecordData>
+        </variantRecordDataTypes>
+    </dataTypes>
+    <notes/>
+</objectModel>
