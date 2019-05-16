@@ -221,7 +221,7 @@ When empty, the reason is not defined.</semantics>
                         <order>Receive</order>
                         <semantics>Task the entity to mount in the specified entity. The taskee entiity should be within a certain distance tolerance of the entiity to mount into. this tolerance must be specified in the federation agreements. Mount includes: embark (vessel), board (plane), and so on.</semantics>
                         <parameter>
-                            <name>EntiityId</name>
+                            <name>EntityId</name>
                             <dataType>UuidArrayOfHLAbyte16</dataType>
                             <semantics>Id of the entiy in which the taskee entity is mounted.</semantics>
                         </parameter>
@@ -387,7 +387,7 @@ The modelling federate may register a NETN_CulturalFeature instance to model the
 Set the attribute CheckPoint.ReferencedObjectIdentifier to the NETN_CulturalFeature instance. 
 The attribute NETN_CulturalFeature.Status shall be ActiveStatusEnum8.Active when the checkpoint is operated. 
  
-The duraction defines when the checkpoint is deactivated unless another entity from the modelling federate Operates the checkpoint.
+The duraction defines when the checkpoint is deactivated unless another entity from the modelling federate Operates the checkpoint. 
  
 The federation agreements shall specify how the ownership of the dynamic attribute at the checkpoint shall be managed when the checkpoint is deactivated. One of the following cases shall be managed in the federation: 
  
@@ -428,10 +428,10 @@ The federation agreements shall specify how the ownership of the dynamic attribu
 If the Taskee entity is not at the checkpoint location, it has to move to that location with a seperate move task. 
 The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location of the checkpoint to make the task possible. 
  
-The attribute CheckPoint.Deactivated (from RPR_v2) shall show the status at the checkpoint.
-
-If a NETN_CulturalFeature is accociated with the checkpoint the status shall be displayed for the NETN_CulturalFeature instance.
-
+The attribute CheckPoint.Deactivated (from RPR_v2) shall show the status at the checkpoint. 
+ 
+If a NETN_CulturalFeature is accociated with the checkpoint the status shall be displayed for the NETN_CulturalFeature instance. 
+ 
 See semantics for the interaction EstablishCheckPoint how ownership of the dynamics attribute at the checkpoint instance shall be managed.</semantics>
                         <parameter>
                             <name>UniqueId</name>
@@ -459,8 +459,8 @@ See semantics for the interaction EstablishCheckPoint how ownership of the dynam
                         <semantics>This task removes the checkpoint that is generated in the EstablishCheckpoint task. 
  
 If the Taskee entity is not at the specified location, it has to move to that location with a seperate move task. 
-The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location of the checkpoint to make the task possible.
-
+The taskee entiity should be within a certain distance tolerance (specified in the federation agreements) of the location of the checkpoint to make the task possible. 
+ 
 A checkpoint instance (NETN-SE FOM) shall be removed from the Federation Execution when the entity reaches the location for the checkpoint. 
  
 If a NETN_CulturalFeature instance is assigned to the checkpoint is shall be deleted.</semantics>
@@ -723,7 +723,7 @@ If the time of a cycle takes longer then the interval time then the cylce starts
                             <semantics>The identification level of the entit(y)(ies) spotted.</semantics>
                         </parameter>
                         <parameter>
-                            <name>SpottedEnities</name>
+                            <name>SpottedEntities</name>
                             <dataType>ArrayOfSpottedEntities</dataType>
                             <semantics>Spotted entities at the time specified in the parameter 'When'.</semantics>
                         </parameter>

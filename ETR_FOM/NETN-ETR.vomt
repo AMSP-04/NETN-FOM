@@ -43,8 +43,8 @@
    </void>
    <void method="add">
     <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentModule" id="PersistentProjectHelper$PersistentModule1">
-     <string>NETN-ETR_v2.0.3</string>
-     <string>NETN-ETR_v2.0.3.xml</string>
+     <string>NETN-ETR</string>
+     <string>NETN-ETR.xml</string>
      <boolean>false</boolean>
      <boolean>false</boolean>
      <boolean>true</boolean>
@@ -72,10 +72,10 @@
   <object class="java.util.LinkedHashSet">
    <void method="add">
     <object class="se.pitch.vomt2.model.PersistentProjectHelper$PersistentView">
-     <boolean>true</boolean>
+     <boolean>false</boolean>
      <object class="java.lang.Enum" method="valueOf">
       <class>se.pitch.vomt2.model.TableType</class>
-      <string>INTERACTION_CLASS_TABLE</string>
+      <string>IDENTIFICATION_TABLE</string>
      </object>
      <object idref="PersistentProjectHelper$PersistentModule1"/>
      <int>0</int>
@@ -84,9 +84,6 @@
      <int>697</int>
      <object class="java.util.Collections" method="emptySet"/>
      <object class="java.util.LinkedHashSet">
-      <void method="add">
-       <string>HLAinteractionRoot.ETR_Root.ETR_Task</string>
-      </void>
       <void method="add">
        <string>HLAinteractionRoot.ETR_Root.ETR_TaskManagement</string>
       </void>
