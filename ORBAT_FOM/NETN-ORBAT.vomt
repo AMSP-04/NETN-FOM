@@ -124,12 +124,12 @@
       <string>IDENTIFICATION_TABLE</string>
      </object>
      <object idref="PersistentProjectHelper$PersistentModule1"/>
-     <int>14</int>
-     <int>34</int>
+     <int>29</int>
+     <int>17</int>
      <int>1127</int>
      <int>723</int>
-     <object class="java.util.LinkedHashSet"/>
-     <object class="java.util.Collections" method="emptySet"/>
+     <object class="java.util.Collections" id="Collections$EmptySet0" method="emptySet"/>
+     <object idref="Collections$EmptySet0"/>
     </object>
    </void>
   </object>

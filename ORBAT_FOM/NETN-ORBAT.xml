@@ -3,14 +3,15 @@
     <modelIdentification>
         <name>NETN-ORBAT</name>
         <type>FOM</type>
-        <version>0.1.0</version>
-        <modificationDate>2019-05-10</modificationDate>
+        <version>0.1.1</version>
+        <modificationDate>2019-05-17</modificationDate>
         <securityClassification>unclassified</securityClassification>
         <purpose>Produce a ORBAT (MSDL) in a HLA Federation Execution</purpose>
         <applicationDomain>Simulation</applicationDomain>
         <description>MSDL</description>
         <useLimitation></useLimitation>
         <useHistory>v0.1.0 - LO: First Version, extends the old MSDL_v1.1.2</useHistory>
+        <useHistory>v0.1.1 - LO: Moved the object class Federate. Removed interaction classes. Updates semantics.</useHistory>
         <keyword>
             <keywordValue>MSDL</keywordValue>
         </keyword>
@@ -98,7 +99,7 @@
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>DIS Enumeration</semantics>
+                        <semantics>DIS Enumeration, defining the type of the entity, e.g. for the Main Battle Tank type Leopard 2 A5, the value shall be: 1.1.78.1.2.5.0.</semantics>
                     </attribute>
                     <attribute>
                         <name>SymbolIdentifier</name>
@@ -110,7 +111,10 @@
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>msdl:UnitType/SymbolIdentifier, MIL 2525 C symbol code. 
-Required.</semantics>
+Required. 
+The symbol code describes the class, e.g. for ARMOR TRACK, HEAVY as a Leopard 2 shall the symbol code be: S*GPUCATH-*****, the * in second (2:nd) position is to be replaced to specify the affiliation. 
+The affiliation on a unit may change during an federation execution which imply that the 2:nd character will change. 
+Other characters specifies functionallity, e.g. if a submarine is surfaced or bottomed which can be the case during a federation execution.</semantics>
                     </attribute>
                     <attribute>
                         <name>UniqueDesignation</name>
@@ -176,7 +180,8 @@ Required.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Disposition: Geodetic</semantics>
+                        <semantics>Disposition: Geodetic. 
+If altitude is negative, then below sea level (e.g subs).</semantics>
                     </attribute>
                     <attribute>
                         <name>Direction</name>
@@ -253,7 +258,7 @@ Required.</semantics>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>The force that the unit belongs to.</semantics>
+                        <semantics>The value is the UUID value of the Force that the unit belongs to.</semantics>
                     </attribute>
                     <attribute>
                         <name>Federate</name>
@@ -339,7 +344,12 @@ No corresponding tag in the MSDL schema.</semantics>
                 <objectClass>
                     <name>Force</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>A Force</semantics>
+                    <semantics>Units in a ORBAT belongs to a Force. 
+ 
+Forces have relations to each other which is specified in the attribute Relations. 
+The relation between forces is defined by HostilityStatusCodeEnum32, e.g. FR (Friendly),  HO (Hostile). 
+The relation between Force A and Force B does not have to be the same as the relation between B and A. 
+The relation may change during a federation execution.</semantics>
                     <attribute>
                         <name>Relations</name>
                         <dataType>ArrayOfRelations</dataType>
@@ -352,50 +362,47 @@ No corresponding tag in the MSDL schema.</semantics>
                         <semantics>Sequence of relations, force-relation.</semantics>
                     </attribute>
                 </objectClass>
-                <objectClass>
-                    <name>Federate</name>
+            </objectClass>
+            <objectClass>
+                <name>Federate</name>
+                <sharing>PublishSubscribe</sharing>
+                <semantics>A federate</semantics>
+                <attribute>
+                    <name>Units</name>
+                    <dataType>ArrayOfUuid</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>WhenChanged</updateCondition>
+                    <ownership>NoTransfer</ownership>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>A federate</semantics>
-                    <attribute>
-                        <name>Units</name>
-                        <dataType>ArrayOfUuid</dataType>
-                        <updateType>Conditional</updateType>
-                        <updateCondition>WhenChanged</updateCondition>
-                        <ownership>NoTransfer</ownership>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>The units that the federate has responsibility for.</semantics>
-                    </attribute>
-                </objectClass>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The units that the federate has responsibility for.</semantics>
+                </attribute>
+                <attribute>
+                    <name>Name</name>
+                    <dataType>Text255</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>NA</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Federate name, unique</semantics>
+                </attribute>
+                <attribute>
+                    <name>UUID</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>NA</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Unique Identifier, msdl:UnitType/ObjectHandle.</semantics>
+                </attribute>
             </objectClass>
         </objectClass>
     </objects>
-    <interactions>
-        <interactionClass>
-            <name>HLAinteractionRoot</name>
-            <interactionClass>
-                <name>ORBAT</name>
-                <sharing>PublishSubscribe</sharing>
-                <transportation>HLAreliable</transportation>
-                <order>Receive</order>
-                <semantics>The MSDL (xml file)</semantics>
-                <parameter>
-                    <name>Contents</name>
-                    <dataType>HLAASCIIstring</dataType>
-                    <semantics>The complete contents of the ORBAT file in string format.</semantics>
-                </parameter>
-            </interactionClass>
-            <interactionClass>
-                <name>RequestOrbatContents</name>
-                <sharing>PublishSubscribe</sharing>
-                <transportation>HLAreliable</transportation>
-                <order>Receive</order>
-                <semantics>Requests a sending of the interaction ORBAT, which contains the total current ORBAT information as a ASCII string. 
-The federate that publish the interaction HLAintteractionRoot.ORBAT shall respond with a sending of this interactiion.</semantics>
-            </interactionClass>
-        </interactionClass>
-    </interactions>
     <dataTypes>
         <simpleDataTypes>
             <simpleData>
