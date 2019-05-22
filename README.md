@@ -98,7 +98,7 @@ It is recommended that NETN federations that require models of varying levels of
 
 The purpose of SIM-C2 interoperability is to automate the process of interaction between C2 systems and simulations. The NETN SIM-C2 concept as described in Chapter Simulation-C2 Interoperability is based on the Coalition Battle Management Language (C-BML) standard. A common design pattern is the use of a C-BML server to connect and exchange C-BML information between C2 systems and simulations. To interact with a NETN federation, a C-BML-HLA Gateway is used to transfer C-BML data between C-BML Server and the NETN federation. The NETN federation uses a C-BML FOM module as data exchange model within the federation. For a further break-down of the C-BML information, the NETN FAFD provides a Low-Level BML (LBML) FOM module. The LBML FOM module was originally developed in ANNC CP-27 (Anglo Netherlands Norwegian Cooperation Programme 27) by FFI and TNO, and is further refined in MSG-106.
 
-<img src="./images/netn-simc2.png" width="75%"/>
+<img src="./images/netn-simc2.png" width="50%"/>
 
 NETN Federations in Simulation Solutions that include C2 systems are recommended to make use of the NETN FAFD SIM-C2 design to automate Simulation-C2 interaction for orders and reports. A C-BML-HLA Gateway should be procured/implemented.
 
@@ -110,7 +110,7 @@ The NETN FAFD includes a design pattern for allowing a federate to provide or re
 
 NETN Federation designs requiring inter-federate service negotiation before the simulation of the delivery of a service are advised to use the NETN FAFD Service Consumer-Provider Pattern.
 
-<img src="./images/netn-scp.png" width="75%"/>
+<img src="./images/netn-scp.png" width="50%"/>
 
 
 ### Logistics
