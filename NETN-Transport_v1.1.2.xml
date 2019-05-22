@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>NETN-Transport</name>
+        <type>FOM</type>
+        <version>1.1</version>
+        <modificationDate>2013-10-24</modificationDate>
+        <securityClassification>unclassified</securityClassification>
+        <purpose></purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>NETN Logistics, Transport Pattern</description>
+        <useLimitation></useLimitation>
+        <useHistory>v1.0.0 - Initial, interaction classes and datatypes from FOM modules in NETN FOM v1</useHistory>
+        <useHistory>v1.0.1 - Updated datatypes DataEDStruct and DataTStruct, switch order on fields.</useHistory>
+        <useHistory>v1.1.0 - Removed Interaction Classes: RejectOfferTransport and CancelTransport.
+Moved fixed record AppointmentStruct to module NETN-SCP-Base</useHistory>
+        <useHistory>v1.1.1 - Update of semantics</useHistory>
+        <useHistory>v1.1.2 - Updated References, Dependency</useHistory>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-SCP-Base_v1.1</identification>
+        </reference>
+        <other></other>
+    </modelIdentification>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>SCP_Service</name>
+                <interactionClass>
+                    <name>SCP_RequestService</name>
+                    <interactionClass>
+                        <name>RequestTransport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>A request for a Transport support. 
+The request to transport, embark or disembark a platform is initiated by a RequestTransport interaction;</semantics>
+                        <parameter>
+                            <name>TransportData</name>
+                            <dataType>TransportStruct</dataType>
+                            <semantics>Data for the transport. Transported units and appointment data</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_OfferService</name>
+                    <interactionClass>
+                        <name>OfferTransport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>An Offer for a Transport support. 
+The OfferTransport interaction shall be sent by the service providing federate in response to a RequestTransport interaction.</semantics>
+                        <parameter>
+                            <name>TransportData</name>
+                            <dataType>TransportStruct</dataType>
+                            <semantics>Data for the transport</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>OfferType</name>
+                            <dataType>OfferTypeEnum32</dataType>
+                            <semantics>Provide high level information about the acceptance of the request (Partial, Full)</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Transporters</name>
+                            <dataType>ArrayOfUuid</dataType>
+                            <semantics>Platform list with transporters</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>TransportEmbarkmentStatus</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The TransportEmbarkmentStatus interaction shall be sent by the service provider federate, to inform the service consumer of the embarkment state, after the SCP_ServiceStarted interaction</semantics>
+                    <parameter>
+                        <name>EmbarkedObjects</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <semantics>Allows to follow the elements managed by the provider</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>TransportUnitIdentifier</name>
+                        <dataType>UuidArrayOfHLAbyte16</dataType>
+                        <semantics>Callsign of transporter</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>TransportDisembarkmentStatus</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The TransportDisembarkmentStatus interaction shall be sent by the service provider federate, to inform the service consumer of the disembarkment state, after the SCP_ServiceStarted interaction</semantics>
+                    <parameter>
+                        <name>DisembarkedObjects</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <semantics>Allows to follow the elements managed by the provider</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>TransportUnitIdentifier</name>
+                        <dataType>UuidArrayOfHLAbyte16</dataType>
+                        <semantics>Callsign of transporter</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>TransportDestroyedEntities</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The TransportDestroyedEntities interaction is used by the service provider federate to give information on managed element to the consumer. This interaction is used only if the provider simulate the destruction of elements managed</semantics>
+                    <parameter>
+                        <name>DestroyedObjects</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <semantics>Allows to follow the elements managed by the provider</semantics>
+                    </parameter>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <simpleDataTypes/>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>TransportTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Type of action, transport, embark or disembark</semantics>
+                <enumerator>
+                    <name>Transport</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Embarkment</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Disembarkment</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes/>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>DataEDStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Defines the entities to transport, where and when for embarkment or disembarment</semantics>
+                <field>
+                    <name>ObjectsToManage</name>
+                    <dataType>ArrayOfUuid</dataType>
+                    <semantics>List with the units to be landing or boarding</semantics>
+                </field>
+                <field>
+                    <name>Appointment</name>
+                    <dataType>AppointmentStruct</dataType>
+                    <semantics>Expected location for the landing or boarding</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>DataTStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Defines the entities to transport, where and when for pickup and dropoff</semantics>
+                <field>
+                    <name>ObjectsToManage</name>
+                    <dataType>ArrayOfUuid</dataType>
+                    <semantics>List with the units to be Transport</semantics>
+                </field>
+                <field>
+                    <name>Appointment</name>
+                    <dataType>AppointmentStruct</dataType>
+                    <semantics>Expected location for the boarding</semantics>
+                </field>
+                <field>
+                    <name>FinalAppointment</name>
+                    <dataType>AppointmentStruct</dataType>
+                    <semantics>Expected location for the landing</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes>
+            <variantRecordData>
+                <name>TransportStruct</name>
+                <discriminant>TransportType</discriminant>
+                <dataType>TransportTypeEnum32</dataType>
+                <alternative>
+                    <enumerator>Transport</enumerator>
+                    <name>DataTransport</name>
+                    <dataType>DataTStruct</dataType>
+                    <semantics>Data for transport</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Embarkment</enumerator>
+                    <name>DataEmbarkment</name>
+                    <dataType>DataEDStruct</dataType>
+                    <semantics>Data for embarkment</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Disembarkment</enumerator>
+                    <name>DataDisembarkment</name>
+                    <dataType>DataEDStruct</dataType>
+                    <semantics>Data for Disembarkment</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>Transport data</semantics>
+            </variantRecordData>
+        </variantRecordDataTypes>
+    </dataTypes>
+    <notes/>
+</objectModel>

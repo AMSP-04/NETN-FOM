@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>NETN-Supply</name>
+        <type>FOM</type>
+        <version>1.1</version>
+        <modificationDate>2013-10-24</modificationDate>
+        <securityClassification>unclassified</securityClassification>
+        <purpose></purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>NETN Logistics, Supply Pattern, Supply Service.
+Replaces RPR Supply logistics</description>
+        <useLimitation></useLimitation>
+        <useHistory>v1.0.0 - Initial, interaction classes and datatypes from FOM modules in NETN FOM v1</useHistory>
+        <useHistory>v1.1.0 - Interaction class RequestSupply: Added parameter Appointment as an optional parameter. 
+Interaction class OfferSupply: Added parameter Appointment as an optional parameter.</useHistory>
+        <useHistory>v1.1.1 - Update of semantics</useHistory>
+        <useHistory>v1.1.2 - Updated References, Dependency</useHistory>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>Lennart Olsson</pocName>
+            <pocOrg>Pitch Technologies</pocOrg>
+            <pocTelephone>+46 13 4705506</pocTelephone>
+            <pocEmail>lennart.olsson@pitch.se</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-SCP-Base_v1.1</identification>
+        </reference>
+        <other></other>
+    </modelIdentification>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>SCP_Service</name>
+                <interactionClass>
+                    <name>SCP_RequestService</name>
+                    <interactionClass>
+                        <name>RequestSupply</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>RequestSupply is used by a consumer to initiate a request for supply from a supply service provider. The amount and type of material is included in the request. In this request the consumer propose whether the loading is done by the provider or by the consumer.</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>NETN_ArrayOfSupplyStruct</dataType>
+                            <semantics>List of type and quantity of supplies requested.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>LoadingDoneByProvider</name>
+                            <dataType>HLAboolean</dataType>
+                            <semantics>Proposes whether the service provider (LoadingDoneByProvider = true) or the service consumer (LoadingDoneByProvider = false) takes care of the (un)loading of the material. Default value is true.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Appointment</name>
+                            <dataType>AppointmentStruct</dataType>
+                            <semantics>Time and location for the exchange of the service. Optional</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_OfferService</name>
+                    <interactionClass>
+                        <name>OfferSupply</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>OfferSupply is used by a supply service provider to indicate which of the requested materials (amount and type) can be offered. In this request the consumer decides whether the loading is done by the provider or by the consumer.</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>NETN_ArrayOfSupplyStruct</dataType>
+                            <semantics>List of type and quantity of supplies offered. May be different from the list of requested supplies. All offered supplies if isOffering = true otherwise Undefined</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>LoadingDoneByProvider</name>
+                            <dataType>HLAboolean</dataType>
+                            <semantics>Determines whether the service provider (LoadingDoneByProvider = true) or the service consumer (LoadingDoneByProvider = false) takes care of the (un)loading of the material.  Default value is true.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Appointment</name>
+                            <dataType>AppointmentStruct</dataType>
+                            <semantics>Time and location for the exchange of the service. Optional</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_ServiceComplete</name>
+                    <interactionClass>
+                        <name>SupplyComplete</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>This interaction is sent by the provider when the supply is delivered to the consumer</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>NETN_ArrayOfSupplyStruct</dataType>
+                            <semantics>The amount of supplies, by type, that were transferred from provider to consumer.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_ReadyToReceiveService</name>
+                    <interactionClass>
+                        <name>ReadyToReceiveSupply</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>This interaction is sent when the consumer is ready to receive the supply. (At same location as the provider)</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>NETN_ArrayOfSupplyStruct</dataType>
+                            <semantics>The amount of supplies, by type, that the consumer is able to accept at the time it declares ReadyToReceive.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <simpleDataTypes/>
+        <enumeratedDataTypes/>
+        <arrayDataTypes/>
+        <fixedRecordDataTypes/>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes/>
+</objectModel>

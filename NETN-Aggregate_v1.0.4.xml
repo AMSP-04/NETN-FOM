@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>NETN-Aggregate</name>
+        <type>FOM</type>
+        <version>1.0</version>
+        <modificationDate>2014-10-16</modificationDate>
+        <securityClassification>unclassified</securityClassification>
+        <purpose></purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>Object class from NETN FOM v1, module: AggDeagg</description>
+        <useLimitation></useLimitation>
+        <useHistory>v1.0.0 - Initial, object class and datatypes from NETN_AggDeagg_v1.0.7_2010 FOM module in NETN FOM v1</useHistory>
+        <useHistory>V1.0.1 - Changed name on basic data types from RPR2 Base</useHistory>
+        <useHistory>v1.0.2 - Moved array data type ArrayOfWorldLocation3 to NETN-Base FOM module</useHistory>
+        <useHistory>v1.0.3 - Updated References, Dependency</useHistory>
+        <useHistory>v1.0.4 - Fixed misspellings in sematics</useHistory>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>Lennart Olsson</pocName>
+            <pocOrg>Pitch Technologies</pocOrg>
+            <pocTelephone>+46 13 4705506</pocTelephone>
+            <pocEmail>lennart.olsson@pitch.se</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-Base_v1.0</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>RPR-Aggregate_v2.0</identification>
+        </reference>
+        <other></other>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>BaseEntity</name>
+                <objectClass>
+                    <name>AggregateEntity</name>
+                    <objectClass>
+                        <name>NETN_Aggregate</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>Aggregate extensions for NETN</semantics>
+                        <attribute>
+                            <name>UnitPersonnel</name>
+                            <dataType>ArrayOfResourceStatus</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>This summarizes the health status of personnel comprising the aggregate.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Callsign</name>
+                            <dataType>HLAunicodeString</dataType>
+                            <updateType>Static</updateType>
+                            <updateCondition>N/A</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The name of the object.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>VisualSignature</name>
+                            <dataType>VisualSignatureStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Describes the unit's susceptibility to electro-optical detection.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>SourceUnit</name>
+                            <dataType>HLAunicodeString</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Aggregate from which this aggregate was spawned.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Mission</name>
+                            <dataType>MissionStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The operational task the aggregate has been ordered to perform.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Mounted</name>
+                            <dataType>QuantityFloat64</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The percentage of aggregate personnel travelling on or in their organic transport.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>UnitSupplies</name>
+                            <dataType>NETN_ArrayOfSupplyStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The type and quantities of supplies available (on hand) to the unit.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>HigherHeadquarters</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>A pointer to the aggregate's superior unit or headquarters. The highest level unit or headquarters on each side will publish its own UniqueID as its HigherHeadquarters value.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>CombatValue</name>
+                            <dataType>CombatValueFloat64</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>A summary value (in percent) of unit effectiveness based on level of training, leadership, moral, personnel and equipment operational status, etc.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>WeaponsControlOrder</name>
+                            <dataType>WeaponControlOrderEnum8</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Describes current Weapon Control Order Free, Tight, or Hold.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>SupportUnit</name>
+                            <dataType>SupportRelationshipStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Identifies unit(s) which support the aggregate logistically, or with a specified combat or combat support relationship, e.g. a Direct Support or General Support Artillery unit.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Activity</name>
+                            <dataType>AggregateMissionEnum16</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The current activity of the aggregate. This may differ from the mission due to casualties, readiness, etc.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Symbol</name>
+                            <dataType>HLAunicodeString</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The APP6A code for the aggregate.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>CaptureStatus</name>
+                            <dataType>CaptureStatusEnum8</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The status of an aggregate with respect to its control or influence over its own activities.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>UnitEquipment</name>
+                            <dataType>ArrayOfResourceStatus</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>This summarizes the health status of the equipment comprising the aggregate.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Echelon</name>
+                            <dataType>EchelonEnum8</dataType>
+                            <updateType>Static</updateType>
+                            <updateCondition>N/A</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The level of command of the aggregate.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>HUMINTSignature</name>
+                            <dataType>HUMINTSignatureStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Describes the unit's susceptibility to human intelligence (HUMINT), i.e. information collected and provided by human sources.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>ElectronicSignature</name>
+                            <dataType>ElectronicSignatureStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Describes the aggregate's susceptibility to electronic detection both as a summary value and by identifying aggregate sensors together with their operational status.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Footprint</name>
+                            <dataType>ArrayOfWorldLocationStruct3</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The region occupied by the aggregate. the region is defined as that bounded by line segments connecting the listed world locations.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>CoverStatus</name>
+                            <dataType>CoverStatusStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Describes the unit's protection from the effects of weapons fire.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>EntityList</name>
+                            <dataType>EntityListVariableLengthStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Provides data on entities comprising the aggregate.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Status</name>
+                            <dataType>ActiveStatusEnum8</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>If an instance shall be taken into account by federates</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>UniqueID</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <updateType>Static</updateType>
+                            <updateCondition>NA</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The unique identifier of the object.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>EmbeddedUnitList</name>
+                            <dataType>ArrayOfUuid</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>The list of objects carried by this aggregate.</semantics>
+                        </attribute>
+                    </objectClass>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <simpleDataTypes>
+            <simpleData>
+                <name>FacingDegreesFloat32</name>
+                <representation>HLAfloat32BE</representation>
+                <units>degrees</units>
+                <resolution>NA</resolution>
+                <accuracy>perfect</accuracy>
+                <semantics></semantics>
+            </simpleData>
+            <simpleData>
+                <name>RangeFloat32</name>
+                <representation>HLAfloat32BE</representation>
+                <units>meters</units>
+                <resolution>NA</resolution>
+                <accuracy>perfect</accuracy>
+                <semantics>Range of sensor</semantics>
+            </simpleData>
+            <simpleData>
+                <name>CombatValueFloat64</name>
+                <representation>HLAfloat64BE</representation>
+                <units>percent</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>Percent of unit effectiveness</semantics>
+            </simpleData>
+            <simpleData>
+                <name>QuantityFloat64</name>
+                <representation>HLAfloat64BE</representation>
+                <units>NA</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>The number of units</semantics>
+            </simpleData>
+            <simpleData>
+                <name>PercentageUint32</name>
+                <representation>RPRunsignedInteger32BE</representation>
+                <units>percent</units>
+                <resolution>1</resolution>
+                <accuracy>perfect</accuracy>
+                <semantics>A simple datatype using units of percent.</semantics>
+            </simpleData>
+        </simpleDataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>WeaponControlOrderEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The enumerations for weapon control</semantics>
+                <enumerator>
+                    <name>WeaponsFree</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>WeaponsHold</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>WeaponsTight</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>CaptureStatusEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The status of a person or unit with respect to their control or influence over their own activities</semantics>
+                <enumerator>
+                    <name>Not-Captured</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Captured</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>AttemptingSurrender</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>EchelonEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The specific value that represents the relative size of the commonly accepted configuration of military formations (from JC3IEDM echelon-size-code)</semantics>
+                <enumerator>
+                    <name>Army</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>ArmyGroup</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Battalion</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>BattalionGroup</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>BattleGroup</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>Brigade</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>BrigadeGroup</name>
+                    <value>7</value>
+                </enumerator>
+                <enumerator>
+                    <name>Company</name>
+                    <value>8</value>
+                </enumerator>
+                <enumerator>
+                    <name>CompanyGroup</name>
+                    <value>9</value>
+                </enumerator>
+                <enumerator>
+                    <name>Corps</name>
+                    <value>10</value>
+                </enumerator>
+                <enumerator>
+                    <name>Division</name>
+                    <value>11</value>
+                </enumerator>
+                <enumerator>
+                    <name>Fleet</name>
+                    <value>12</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flight</name>
+                    <value>13</value>
+                </enumerator>
+                <enumerator>
+                    <name>Platoon</name>
+                    <value>14</value>
+                </enumerator>
+                <enumerator>
+                    <name>Regiment</name>
+                    <value>15</value>
+                </enumerator>
+                <enumerator>
+                    <name>Region</name>
+                    <value>16</value>
+                </enumerator>
+                <enumerator>
+                    <name>Section</name>
+                    <value>17</value>
+                </enumerator>
+                <enumerator>
+                    <name>Squad</name>
+                    <value>18</value>
+                </enumerator>
+                <enumerator>
+                    <name>SquadronAir</name>
+                    <value>19</value>
+                </enumerator>
+                <enumerator>
+                    <name>SquadronMaritime</name>
+                    <value>20</value>
+                </enumerator>
+                <enumerator>
+                    <name>TaskElementNavy</name>
+                    <value>21</value>
+                </enumerator>
+                <enumerator>
+                    <name>TaskForceNavy</name>
+                    <value>22</value>
+                </enumerator>
+                <enumerator>
+                    <name>TaskGroupNavy</name>
+                    <value>23</value>
+                </enumerator>
+                <enumerator>
+                    <name>TaskUnitNavy</name>
+                    <value>24</value>
+                </enumerator>
+                <enumerator>
+                    <name>TeamFireteamCrew</name>
+                    <value>25</value>
+                </enumerator>
+                <enumerator>
+                    <name>Wing</name>
+                    <value>26</value>
+                </enumerator>
+                <enumerator>
+                    <name>NotKnown</name>
+                    <value>27</value>
+                </enumerator>
+                <enumerator>
+                    <name>NotOtherwiseSpecified</name>
+                    <value>28</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>SupportRelationshipEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Enumeration of different support relationships</semantics>
+                <enumerator>
+                    <name>Engineering</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>GeneralSupportArtillery</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Logistics</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>DirectSupportArtillery</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>DirectSupportReinforcingArtillery</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>CoverEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The type of cover utilized by an aggregate</semantics>
+                <enumerator>
+                    <name>StrongPoints</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>FightingPositionsWithOverheadCover</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>CrewServedWeaponsPositions</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>HastyFightingPositions</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>IndividualFightingPositions</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>EntityCategoryEnum32</name>
+                <representation>RPRunsignedInteger32BE</representation>
+                <semantics>Category of entity</semantics>
+                <enumerator>
+                    <name>Invalid</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>EquipmentEntity</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>PersonnelEntity</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>EmitterEntity</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>RadioEntity</name>
+                    <value>4</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>ConcealmentEnum32</name>
+                <representation>RPRunsignedInteger32BE</representation>
+                <semantics>The reason for the objects concealment</semantics>
+                <enumerator>
+                    <name>Invalid</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>InOpen</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>MountedInternally</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>MountedExternally</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>UnderNet</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>UnderGround</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>InsideStructure</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>FightingPositionCovered</name>
+                    <value>7</value>
+                </enumerator>
+                <enumerator>
+                    <name>FightingPositionUncovered</name>
+                    <value>8</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>UpdateTypeEnum32</name>
+                <representation>RPRunsignedInteger32BE</representation>
+                <semantics>Used to create, change, or delete an EntityList.</semantics>
+                <enumerator>
+                    <name>Invalid</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Create</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Update</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Addition</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Delete</name>
+                    <value>4</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>SensorStateEnum32</name>
+                <representation>RPRunsignedInteger32BE</representation>
+                <semantics>The emission states of aggregate sensors</semantics>
+                <enumerator>
+                    <name>OnButNotEmitting</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Off</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>OnAndEmitting</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes>
+            <arrayData>
+                <name>ArrayOfResourceStatus</name>
+                <dataType>ResourceStatusNumberStruct</dataType>
+                <cardinality>[1..2147483647]</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>The array of health states for a named resource.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfEntityStruct</name>
+                <dataType>EntityStruct</dataType>
+                <cardinality>[1..2147483647]</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Data for one or more entities that comprise an entity list.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfSensorStruct</name>
+                <dataType>SensorStruct</dataType>
+                <cardinality>[1..2147483647]</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Array with definitio0ns of sensors, 1+ cardinality</semantics>
+            </arrayData>
+        </arrayDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>VisualSignatureStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics></semantics>
+                <field>
+                    <name>DVOSignaturePercent</name>
+                    <dataType>PercentageUint32</dataType>
+                    <semantics>A summary percentage of an aggregates susceptibility to detection by direct view optics, i.e. the human eye, binoculars, or telescopes. A unit with zero percent signature would be concealed from DVO detection.</semantics>
+                </field>
+                <field>
+                    <name>I2SignaturePercent</name>
+                    <dataType>PercentageUint32</dataType>
+                    <semantics>A summary percentage of an aggregates susceptibility to detection by Image Intensifying sensors. A unit with zero percent signature would be invisible to image intensifiers (I2).</semantics>
+                </field>
+                <field>
+                    <name>ThermalSignaturePercent</name>
+                    <dataType>PercentageUint32</dataType>
+                    <semantics>A summary percentage of an aggregates susceptibility to detection by thermal sensors. A unit with zero percent signature would be invisible to thermal sensors.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>MissionStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>The operational task the aggregate has been ordered to perform, the time the mission was assigned, and the estimated completion time.</semantics>
+                <field>
+                    <name>StartTime</name>
+                    <dataType>TimeSecInt64</dataType>
+                    <semantics>An optional field providing the mission start time</semantics>
+                </field>
+                <field>
+                    <name>EndTime</name>
+                    <dataType>TimeSecInt64</dataType>
+                    <semantics>An optional field providing the mission estimated end time</semantics>
+                </field>
+                <field>
+                    <name>MissionEnum</name>
+                    <dataType>AggregateMissionEnum16</dataType>
+                    <semantics>The mission assigned to the aggregate</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>SupportRelationshipStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Identifies unit(s) which support the aggregate logistically, or with a specified combat or combat support relationship, e.g. a Direct Support or General Support Artillery unit.</semantics>
+                <field>
+                    <name>SupportConsumer</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <semantics>The unique ID of the consumer of the support.</semantics>
+                </field>
+                <field>
+                    <name>SupportProvider</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <semantics>The unique ID of the provider of the support.</semantics>
+                </field>
+                <field>
+                    <name>SupportType</name>
+                    <dataType>SupportRelationshipEnum8</dataType>
+                    <semantics>The type of support provided by the supporting unit.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>HUMINTSignatureStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Describes the unit's susceptibility to human intelligence (HUMINT), i.e. information collected and provided by human sources.</semantics>
+                <field>
+                    <name>HUMINTSignaturePercent</name>
+                    <dataType>PercentageUint32</dataType>
+                    <semantics>A summary percentage of an aggregates susceptibility to detection by human intelligence collectors. Zero percent signature means an aggregate is impervious to HUMINT.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>ElectronicSignatureStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>A summary percentage of an aggregates susceptibility to detection of its electronic emissions. Zero percent means that the aggregate has no electronic emissions.</semantics>
+                <field>
+                    <name>ElectronicSignaturePercent</name>
+                    <dataType>PercentageUint32</dataType>
+                    <semantics>A summary percentage of an aggregates susceptibility to detection of its electronic emissions. Zero percent means that the aggregate has no electronic emissions.</semantics>
+                </field>
+                <field>
+                    <name>SensorArray</name>
+                    <dataType>ArrayOfSensorStruct</dataType>
+                    <semantics>A list of sensors owned by the aggregate together with their respective operational status and range</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CoverStatusStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics></semantics>
+                <field>
+                    <name>CoverStatusPercent</name>
+                    <dataType>PercentageUint32</dataType>
+                    <semantics>The percentage of protection enjoyed by an aggregate. A unit with 100 percent cover would be impervious to the effects of weapons fire</semantics>
+                </field>
+                <field>
+                    <name>CoverTypeEnum</name>
+                    <dataType>CoverEnum8</dataType>
+                    <semantics>An optional field describing the type of cover employed by the aggregate</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>EntityListVariableLengthStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Provides data on one or more entities comprising the aggregate. This includes the initial list of all entities and subsequent updates as entities on the list experience change.</semantics>
+                <field>
+                    <name>UpdateType</name>
+                    <dataType>UpdateTypeEnum32</dataType>
+                    <semantics>Indicates whether this update creates the list or modifies its' values</semantics>
+                </field>
+                <field>
+                    <name>EntityList</name>
+                    <dataType>ArrayOfEntityStruct</dataType>
+                    <semantics>Data about one or more entities comprising the list.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>ResourceStatusNumberStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>The name of a resource and the number of instances of that resource by health status.</semantics>
+                <field>
+                    <name>NumberHealthyOrIntact</name>
+                    <dataType>QuantityFloat64</dataType>
+                    <semantics>The number of healthy or intact resources</semantics>
+                </field>
+                <field>
+                    <name>NumberSlightlyDamaged</name>
+                    <dataType>QuantityFloat64</dataType>
+                    <semantics>The number of slightly damaged resources</semantics>
+                </field>
+                <field>
+                    <name>NumberModeratelyDamaged</name>
+                    <dataType>QuantityFloat64</dataType>
+                    <semantics>The number of moderately damaged resources</semantics>
+                </field>
+                <field>
+                    <name>NumberSignificantlyDamaged</name>
+                    <dataType>QuantityFloat64</dataType>
+                    <semantics>The number of significantly damaged resources</semantics>
+                </field>
+                <field>
+                    <name>NumberDestroyed</name>
+                    <dataType>QuantityFloat64</dataType>
+                    <semantics>The number of destroyed or consumed resources</semantics>
+                </field>
+                <field>
+                    <name>ResourceName</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>The name of the resource</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>EntityStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>An entity represented to the federation as part of the aggregate object which owns it.</semantics>
+                <field>
+                    <name>Callsign</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>The unique identifier of the object.</semantics>
+                </field>
+                <field>
+                    <name>EntityCategory</name>
+                    <dataType>EntityCategoryEnum32</dataType>
+                    <semantics>Indicates whether the entity is equipment, person, emitter, etc.</semantics>
+                </field>
+                <field>
+                    <name>EntityStatus</name>
+                    <dataType>DamageStatusEnhancedEnum32</dataType>
+                    <semantics>The damage state of the entity.</semantics>
+                </field>
+                <field>
+                    <name>IsDistinctObject</name>
+                    <dataType>RPRboolean</dataType>
+                    <semantics>OPTIONAL. A BaseEntity object has been created to represent this entity (true) or not (false). Default is false.</semantics>
+                </field>
+                <field>
+                    <name>IsUnavailable</name>
+                    <dataType>RPRboolean</dataType>
+                    <semantics>OPTIONAL. This entity is in use by another object (true) or not (false). Default is false.</semantics>
+                </field>
+                <field>
+                    <name>Facing</name>
+                    <dataType>FacingDegreesFloat32</dataType>
+                    <semantics>OPTIONAL. Direction is measured in degrees clockwise from orientation of unit. Default is 0.</semantics>
+                </field>
+                <field>
+                    <name>Concealment</name>
+                    <dataType>ConcealmentEnum32</dataType>
+                    <semantics>OPTIONAL. Indicates whether the entity is concealed and, if so, how</semantics>
+                </field>
+                <field>
+                    <name>OffsetLocation</name>
+                    <dataType>RelativePositionStruct</dataType>
+                    <semantics>The entity location given as an offset from the location of the aggregate unit in meters.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>SensorStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Defines a sensor,operational status, damage status, coverage and ID</semantics>
+                <field>
+                    <name>SensorStateEnum</name>
+                    <dataType>SensorStateEnum32</dataType>
+                    <semantics>The operational status of the sensor</semantics>
+                </field>
+                <field>
+                    <name>SensorDamageState</name>
+                    <dataType>DamageStatusEnum32</dataType>
+                    <semantics>The damage status of the sensor</semantics>
+                </field>
+                <field>
+                    <name>SensorCoverage</name>
+                    <dataType>RangeFloat32</dataType>
+                    <semantics>The maximum range of the sensor</semantics>
+                </field>
+                <field>
+                    <name>SensorID</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>A sensor owned by the aggregate</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes/>
+</objectModel>

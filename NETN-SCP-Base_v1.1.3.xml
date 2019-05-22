@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>New Module</name>
+        <type>FOM</type>
+        <version>1.1</version>
+        <modificationDate>2014-05-26</modificationDate>
+        <securityClassification>unclassified</securityClassification>
+        <purpose></purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>Base for NETN Logistics FOM modules:
+Supply, Storage, Repair and Transport</description>
+        <useLimitation></useLimitation>
+        <useHistory>v1.0.0 - Initial, interaction and object classes and datatypes from FOM modules in NETN FOM v1</useHistory>
+        <useHistory>v1.1.0 - Interaction class RejectOffer: Added parameter Reason.
+Interaction class CancelService: added parameter Reason.
+Moved fixed record AppointmentStruct from Transport module to this module.</useHistory>
+        <useHistory>v1.1.1 - Updated semantics</useHistory>
+        <useHistory>v1.1.2 - Updated References, Dependency</useHistory>
+        <useHistory>v1.1.3 - Replaced the datatype in parameter ServiceID to NETN_ServiceIdentifier. 
+The format is the equal to the previous but names on fields is changed (buffer compatible).</useHistory>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>Lennart Olsson</pocName>
+            <pocOrg>Pitch Technologies</pocOrg>
+            <pocTelephone>+46 13705506</pocTelephone>
+            <pocEmail>lennart.olsson@pitch.se</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-Base_v1.0</identification>
+        </reference>
+        <other></other>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass notes="COPY-rpr2base_7">
+                <name>BaseEntity</name>
+                <objectClass notes="COPY-rpr2base_7">
+                    <name>SCP_Facility</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>Logistics Facility dedicated for supplying, storaging, reparing, and other services.</semantics>
+                    <attribute>
+                        <name>DamageState</name>
+                        <dataType>DamageStatusEnum32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Damage State of Facility</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Callsign</name>
+                        <dataType>HLAunicodeString</dataType>
+                        <updateType>Static</updateType>
+                        <updateCondition>N/A</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Name of the Facility</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>IsOperational</name>
+                        <dataType>HLAboolean</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>The operational status of the facility (true = is operational)</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>ForceIdentifier</name>
+                        <dataType>ForceIdentifierEnum8</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Force identifier of owner</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>StorageList</name>
+                        <dataType>NETN_ArrayOfSupplyStruct</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>List of the material contained in the facility</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>PlatformList</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Descripltion of platforms located within the facility</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>UniqueID</name>
+                        <dataType>UuidArrayOfHLAbyte16</dataType>
+                        <updateType>Static</updateType>
+                        <updateCondition>N/A</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>The unique identifier for the facility</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>SCP_Service</name>
+                <sharing>Neither</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>The SCP_Service interaction class is the base class for all NETN Service Consumer-Provider Pattern interactions. It contains the basic required parameters (not optional) that are always sent.</semantics>
+                <parameter>
+                    <name>ServiceID</name>
+                    <dataType>NETN_ServiceIdentifier</dataType>
+                    <semantics>Unique identifier for a service</semantics>
+                </parameter>
+                <parameter>
+                    <name>Consumer</name>
+                    <dataType>Callsign</dataType>
+                    <semantics>Entity that has requested the service</semantics>
+                </parameter>
+                <parameter>
+                    <name>Provider</name>
+                    <dataType>Callsign</dataType>
+                    <semantics>Providing or intended provider entity. If no provider is specified and the request is a common request shall en empty string be used as the Callsign.</semantics>
+                </parameter>
+                <parameter>
+                    <name>ServiceType</name>
+                    <dataType>SCP_ServiceTypeEnum8</dataType>
+                    <semantics>Enumerated value describing the type of service</semantics>
+                </parameter>
+                <interactionClass>
+                    <name>SCP_RequestService</name>
+                    <sharing>Neither</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The request for a service is always initiated by a SCP_RequestService. Subclasses of this interaction for specific types of services may include parameters for detailing the requirements of this request. This may include information when, where and how the service is to be delivered.</semantics>
+                    <parameter>
+                        <name>RequestTimeOut</name>
+                        <dataType>TimeSecInt64</dataType>
+                        <semantics>Wallclock time. The timeout time in seconds after 1 January 1970.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_OfferService</name>
+                    <sharing>Neither</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The SCP_OfferService is usually a response to a SCP_RequestService and contains information with respect to the providing entities ability to deliver the requested service. This ability is expressed as either an offer to provide the service or no offer. Subclasses of this interaction for specific types of offers should contain more detailed description of the offer. This may include information about when, where, how the service can be delivered.</semantics>
+                    <parameter>
+                        <name>IsOffering</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>Defines if the requested service is offered (=true) or not (=false). (Not Optional)</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>RequestTimeOut</name>
+                        <dataType>TimeSecInt64</dataType>
+                        <semantics>Wallclock time. The timeout time in seconds after 1 January 1970.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_AcceptOffer</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The SCP_AcceptOffer is used to accept an offer made by a service providing entity as indicated in a SCP_OfferService interaction. By issuing a SCP_AcceptOffer interaction the service consuming entity enters a contract for service delivery with the service producing entity. 
+ 
+The SCP_AcceptOffer interaction does not define any additional parameters but subclasses may include parameters with additional information.</semantics>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_ServiceStarted</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The SCP_ServiceStarted interaction is issued by a service providing entity to inform about the start of service delivery. The time of service delivery start may be significantly later then receiving a indication from the consumer that the service delivery can start. 
+ 
+The SCP_ServiceStarted interaction does not define any additional parameters.</semantics>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_ServiceComplete</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The SCP_ServiceCompleted interaction is used by a service providing entity to inform the service consuming entity that the service has been delivered. 
+ 
+The SCP_ServiceCompleted interaction does not define any additional parameters.</semantics>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_ServiceReceived</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The NETN_ServiceReceived interaction is used by a service consuming entity to inform the service providing entity that the service has been delivered. 
+ 
+The NETN_ ServiceReceived interaction does not define any additional parameters.</semantics>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_RejectOffer</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The SCP_RejectOffer is used to reject an offer made by a service providing entity as indicated in a SCP_OfferService interaction. By issuing a SCP_RejectOffer interaction the service consuming entity informs the providing entity that the offer has been rejected.</semantics>
+                    <parameter>
+                        <name>Reason</name>
+                        <dataType>HLAASCIIstring</dataType>
+                        <semantics>Allows to inform about the reason of the cancel (free text)</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_CancelService</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The SCP_CancelService interaction is used by either a service consuming entity or a service providing entity to inform about early termination of the service delivery or in some cases termination of the service request before delivery has begun.</semantics>
+                    <parameter>
+                        <name>Reason</name>
+                        <dataType>HLAASCIIstring</dataType>
+                        <semantics>Allows to inform about the reason of the cancel (free text)</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_ReadyToReceiveService</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The SCP_ReadyToReceiveService interaction is issued by a service consuming entity to indicate that the start of service delivery can start. The time of service delivery start may be significantly later then indicating ready for service delivery. 
+ 
+The SCP_ReadyToReceiveService interaction does not define any additional parameters.</semantics>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <simpleDataTypes/>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>SCP_ServiceTypeEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Description of NETN services, extension of RPR2 ServiceTypeEnum8</semantics>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Resupply</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Repair</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Storage</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Transport</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>CombatAdjudication</name>
+                    <value>5</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>OfferTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Type of the offer (With restriction, positive, negative)</semantics>
+                <enumerator>
+                    <name>RequestAcknowledgeWithRestriction</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>RequestAcknowledgePositive</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>RequestAcknowledgeNegative</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes>
+            <arrayData>
+                <name>ServiceDescription</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>A name associated with the service, e.g. name of the service, the issiuing federate or entity (Callsign).</semantics>
+            </arrayData>
+        </arrayDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>AppointmentStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Date ; Time and Location of an appointment. 
+When date and time is set to zero (0), implies no date-time specification</semantics>
+                <field>
+                    <name>DateTime</name>
+                    <dataType>TimeSecInt64</dataType>
+                    <semantics>Date time in second since 1 junuary 1970 for the appointment</semantics>
+                </field>
+                <field>
+                    <name>Location</name>
+                    <dataType>WorldLocationStruct</dataType>
+                    <semantics>Location of the appointment</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>NETN_ServiceIdentifier</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>An ID associated with the service, shall be unique in the federation execution. 
+E.g. generate the federate id as a string and use this in the ServiceDescription.</semantics>
+                <field>
+                    <name>EventCount</name>
+                    <dataType>CounterInt32</dataType>
+                    <semantics>EventCount shall start at one (1) and then incremented by one (1) for a new NETN Service Provider event and service specified in field Service. 
+ 
+In the case where all possible values are exhausted, the numbers may be reused beginning again at one.</semantics>
+                </field>
+                <field>
+                    <name>Service</name>
+                    <dataType>ServiceDescription</dataType>
+                    <semantics>A name associated with the service, e.g. name of the service, the issiuing federate or entity (Callsign).</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes>
+        <note>
+            <label>COPY-rpr2base_7</label>
+            <semantics>Federates shall send the time at which the data is valid in the user defined tag with every attribute values update and interaction.  The time shall be in the first 8 bytes (octets) of the user defined tag, using the DIS timestamp field format (see section 5.2.31 of IEEE 1278.1-1995) converted into hexadecimal ASCII character representation (0-9 and A-F).  The ordering of the characters shall be in accordance with section 5.1.1 of IEEE 1278.1-1995, that is most significant octet first, with the most significant bits first (i.e. the character for bits 4-7 precedes the character for bits 0-3). 
+ 
+All federates shall transmit this field, even if they do not use it themselves, so that other federates can use its value to compensate for network transport delays.</semantics>
+        </note>
+    </notes>
+</objectModel>

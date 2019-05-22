@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>HCBML</name>
+        <type>FOM</type>
+        <version>1.1.1</version>
+        <modificationDate>2014-07-22</modificationDate>
+        <securityClassification>Unclassified</securityClassification>
+        <purpose>C-BML module</purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>C-BML standard implementation. This module allows exchange between C2 system and Simulation system.
+HCBML : High level CBML</description>
+        <useLimitation></useLimitation>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>Jose RUIZ</pocName>
+            <pocOrg>DGA/DS/CATOD/DSF/CMI</pocOrg>
+            <pocTelephone>+33 1 79 86 41 12</pocTelephone>
+            <pocEmail>jose.ruiz@dga.defense.gouv.fr</pocEmail>
+        </poc>
+        <reference>
+            <type>HLA Evolved Editor Tool</type>
+            <identification>Pitch Visual OMT 1516 v2.2.0</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>Base module for NETN FOM v2 modules : NETN-Base_v1.0.2</identification>
+        </reference>
+        <other></other>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>MessageBML</name>
+                <sharing>Subscribe</sharing>
+                <semantics>Global object which describes a BML element</semantics>
+                <attribute>
+                    <name>OpsHeader</name>
+                    <dataType>OperationalHeaderStruct</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAbestEffort</transportation>
+                    <order>Receive</order>
+                    <semantics>Military header information about BML distribution</semantics>
+                </attribute>
+                <attribute>
+                    <name>BMLContent</name>
+                    <dataType>BMLContentDescription</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAbestEffort</transportation>
+                    <order>Receive</order>
+                    <semantics>Contains the entire CBML message. 
+CBML message is describe in XML format compliante with CBML 2.2.C shema</semantics>
+                </attribute>
+                <objectClass>
+                    <name>OrderBML</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>Object which describe a BML Order</semantics>
+                    <attribute>
+                        <name>MetaData</name>
+                        <dataType>ArrayOfMetaDataOrder</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Meta data which describe information contains in the Order</semantics>
+                    </attribute>
+                </objectClass>
+                <objectClass>
+                    <name>RequestBML</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>Object which describe a BML Request</semantics>
+                    <attribute>
+                        <name>MetaData</name>
+                        <dataType>ArrayOfMetaDataRequest</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Meta data which describe information contains in the Request</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>Ack</name>
+                <sharing>PublishSubscribe</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>Acknowledgment for CBML message 
+Confirm reception and ability to process a BML message</semantics>
+                <parameter>
+                    <name>Id</name>
+                    <dataType>BmlId</dataType>
+                    <semantics>Identifier of the acknowledgment</semantics>
+                </parameter>
+                <parameter>
+                    <name>IdRef</name>
+                    <dataType>BmlId</dataType>
+                    <semantics>Reference Element identifier for this acknowledgment. 
+Could be reference a task of an Order or a Request</semantics>
+                </parameter>
+                <parameter>
+                    <name>Who</name>
+                    <dataType>Callsign</dataType>
+                    <semantics>Sender of the acknowledgment</semantics>
+                </parameter>
+                <parameter>
+                    <name>Type</name>
+                    <dataType>AcknowledgmentStatusEnum</dataType>
+                    <semantics>Type of acknowledgment</semantics>
+                </parameter>
+                <parameter>
+                    <name>Reason</name>
+                    <dataType>CommentDescription</dataType>
+                    <semantics>Inform about the reason which not allows to process or execute a mission</semantics>
+                </parameter>
+            </interactionClass>
+            <interactionClass>
+                <name>Report</name>
+                <sharing>Subscribe</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>Global interaction which describe a BML Report</semantics>
+                <parameter>
+                    <name>Id</name>
+                    <dataType>BmlId</dataType>
+                    <semantics>Identifier of the report</semantics>
+                </parameter>
+                <parameter>
+                    <name>When</name>
+                    <dataType>Datetime18</dataType>
+                    <semantics>Time of the report</semantics>
+                </parameter>
+                <interactionClass>
+                    <name>TaskReport</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Report about progress of a BML Task Order</semantics>
+                    <parameter>
+                        <name>IdTask</name>
+                        <dataType>BmlId</dataType>
+                        <semantics>Identifier of the Task associated to the Report</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>IdOrder</name>
+                        <dataType>BmlId</dataType>
+                        <semantics>Identifier of the Order (optional)</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Status</name>
+                        <dataType>StatusReportEnum32BE</dataType>
+                        <semantics>Progress status of the Task</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Comments</name>
+                        <dataType>CommentDescription</dataType>
+                        <semantics>Additionnal information about Task progress</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>StatusReport</name>
+                    <sharing>Subscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Global interaction which describe a BML Status Report</semantics>
+                    <parameter>
+                        <name>IdTask</name>
+                        <dataType>BmlId</dataType>
+                        <semantics>Identifier of the Task associated to the report (optional)</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>IdOrder</name>
+                        <dataType>BmlId</dataType>
+                        <semantics>Identifier of the Order (optional)</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Who</name>
+                        <dataType>Callsign</dataType>
+                        <semantics>Sender of the Report</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>SituationReport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Status Report about perceived view (BFT &amp; Red Situation)</semantics>
+                        <parameter>
+                            <name>Observer</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>Entity who observe the situation 
+Could be the same of the sender</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Hostility</name>
+                            <dataType>HostilityStatusEnum32BE</dataType>
+                            <semantics>Hostility for the target</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Status</name>
+                            <dataType>OperationalStatusEnum32BE</dataType>
+                            <semantics>Operational status of the target</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>TargetDesignation</name>
+                            <dataType>TargetDescription</dataType>
+                            <semantics>Target track name</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>TargetRealIdentity</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>Target real identity (optional)</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>ObservePosition</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>Target position</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>ObserveTime</name>
+                            <dataType>Datetime18</dataType>
+                            <semantics>Time of observation</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>LogReport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Logistic Report</semantics>
+                        <parameter>
+                            <name>Consumable</name>
+                            <dataType>ConsumableTypeStruct</dataType>
+                            <semantics>A set of Consumable-Material-Type-Category-Name</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Quantity</name>
+                            <dataType>QuantityFloat32</dataType>
+                            <semantics>Available quantity (metric system shall be used)</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <switches>
+        <autoProvide isEnabled="false"/>
+        <conveyRegionDesignatorSets isEnabled="false"/>
+        <conveyProducingFederate isEnabled="false"/>
+        <attributeScopeAdvisory isEnabled="false"/>
+        <attributeRelevanceAdvisory isEnabled="false"/>
+        <objectClassRelevanceAdvisory isEnabled="false"/>
+        <interactionRelevanceAdvisory isEnabled="false"/>
+        <serviceReporting isEnabled="false"/>
+        <exceptionReporting isEnabled="false"/>
+        <delaySubscriptionEvaluation isEnabled="false"/>
+        <automaticResignAction resignAction="CancelThenDeleteThenDivest"/>
+    </switches>
+    <dataTypes>
+        <simpleDataTypes/>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>SendActionEnum32BE</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Represent the type of action for a BML message receiver</semantics>
+                <enumerator>
+                    <name>ForAction</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>ForInfo</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>StatusReportEnum32BE</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>The specific value that represents the perceived appraisal of the progress of a specific ACTION-TASK. 
+JC3IEDM_ActionTaskStatusProgressCodeXmlType</semantics>
+                <enumerator>
+                    <name>ABO</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>AIRBRN</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>CANCLD</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>COM</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>DELAY</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>DPLMMW</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>DWNTMW</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>IPR</name>
+                    <value>7</value>
+                </enumerator>
+                <enumerator>
+                    <name>NOOPER</name>
+                    <value>8</value>
+                </enumerator>
+                <enumerator>
+                    <name>NKN</name>
+                    <value>9</value>
+                </enumerator>
+                <enumerator>
+                    <name>NOS</name>
+                    <value>10</value>
+                </enumerator>
+                <enumerator>
+                    <name>NST</name>
+                    <value>11</value>
+                </enumerator>
+                <enumerator>
+                    <name>OFFTSK</name>
+                    <value>12</value>
+                </enumerator>
+                <enumerator>
+                    <name>PAU</name>
+                    <value>13</value>
+                </enumerator>
+                <enumerator>
+                    <name>PLAN</name>
+                    <value>14</value>
+                </enumerator>
+                <enumerator>
+                    <name>RECMMW</name>
+                    <value>15</value>
+                </enumerator>
+                <enumerator>
+                    <name>RETASK</name>
+                    <value>16</value>
+                </enumerator>
+                <enumerator>
+                    <name>SCRMBL</name>
+                    <value>17</value>
+                </enumerator>
+                <enumerator>
+                    <name>TASKED</name>
+                    <value>18</value>
+                </enumerator>
+                <enumerator>
+                    <name>TRNMMW</name>
+                    <value>19</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>OperationalStatusEnum32BE</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>The specific value that represents the operational status of a specific ORGANISATION. 
+JC3IEDM_OrganisationStatusOperationalStatusCodeXmlType</semantics>
+                <enumerator>
+                    <name>MOPS</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>NKN</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>NOP</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>OPR</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>SOPS</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>TNOPS</name>
+                    <value>5</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>HostilityStatusEnum32BE</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>The specific value that represents the perceived hostility status of a specific OBJECT-ITEM. 
+JC3IEDM_ObjectItemHostilityStatusCodeXmlType</semantics>
+                <enumerator>
+                    <name>AFR</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>AHO</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>AIV</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>ANT</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>FAKER</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>FR</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>HO</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>IV</name>
+                    <value>7</value>
+                </enumerator>
+                <enumerator>
+                    <name>JOKER</name>
+                    <value>8</value>
+                </enumerator>
+                <enumerator>
+                    <name>NEUTRL</name>
+                    <value>9</value>
+                </enumerator>
+                <enumerator>
+                    <name>PENDNG</name>
+                    <value>10</value>
+                </enumerator>
+                <enumerator>
+                    <name>SUSPCT</name>
+                    <value>11</value>
+                </enumerator>
+                <enumerator>
+                    <name>UNK</name>
+                    <value>12</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>PriorityEnum32BE</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Represent the associate priority of a BML message</semantics>
+                <enumerator>
+                    <name>Z</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>O</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>P</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>R</name>
+                    <value>4</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>AcknowledgmentStatusEnum</name>
+                <representation>HLAoctet</representation>
+                <semantics>Represente the different status of an acknowledgment</semantics>
+                <enumerator>
+                    <name>Received</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Acknowledged_Ok</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Acknowledged_Nok</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>ConsumableTypeEnum</name>
+                <representation>HLAoctet</representation>
+                <semantics>Represent the different type of logistic consumable</semantics>
+                <enumerator>
+                    <name>Fuel</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Ammo</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Food</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes>
+            <arrayData>
+                <name>ArrayOfMetaDataOrder</name>
+                <dataType>MetaDataOrderStruct</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Order Meta data list</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfMetaDataRequest</name>
+                <dataType>MetaDataOrderStruct</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Request Meta data list</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayofReceiver</name>
+                <dataType>ReceiverStruct</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Receiver list for a BML message</semantics>
+            </arrayData>
+            <arrayData>
+                <name>Datetime18</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>18</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A designation of a specified chronological point measured using Coordinated Universal Time (UTC) ISO 8601:2000 as a standard of reference, constrained to "zero meridian" i.e. �Zulu� time zone only. This is expressed as a composite field using a compacted ISO notation YYYYMMDDHHMMSS.SSS where YYYY represents a year, MM represents a month in values from 00 to 12, and DD represents a day in values from 00 to 31, HH represents an hour, MM represents a minute, and SS.SSS represents the number of seconds and milliseconds.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>MessageDescription</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Represents the identification of a BML message</semantics>
+            </arrayData>
+            <arrayData>
+                <name>BMLContentDescription</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Contains the entire CBML message. 
+CBML message is described in XML format compliante with CBML 2.2.C shema</semantics>
+            </arrayData>
+            <arrayData>
+                <name>CommentDescription</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Comment for a BML message</semantics>
+            </arrayData>
+            <arrayData>
+                <name>TargetDescription</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Represents the Track name of an observed Entity</semantics>
+            </arrayData>
+            <arrayData>
+                <name>BmlData</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>BML message data</semantics>
+            </arrayData>
+        </arrayDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>MetaDataOrderStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Meta data for an Order</semantics>
+                <field>
+                    <name>Id</name>
+                    <dataType>BmlData</dataType>
+                    <semantics>BML message order id 
+Information extract from Xml data message</semantics>
+                </field>
+                <field>
+                    <name>IdTask</name>
+                    <dataType>BmlData</dataType>
+                    <semantics>BML message task id 
+Information extract from Xml data message</semantics>
+                </field>
+                <field>
+                    <name>Who</name>
+                    <dataType>BmlData</dataType>
+                    <semantics>BML message taskee 
+Information extract from Xml data message</semantics>
+                </field>
+                <field>
+                    <name>What</name>
+                    <dataType>BmlData</dataType>
+                    <semantics>BML message mission 
+Information extract from Xml data message</semantics>
+                </field>
+                <field>
+                    <name>GeographicInterest</name>
+                    <dataType>WGS84Location</dataType>
+                    <semantics>BML message mission zone (Baricentre) 
+Information extract from Xml data message</semantics>
+                </field>
+                <field>
+                    <name>Status</name>
+                    <dataType>StatusReportEnum32BE</dataType>
+                    <semantics>Actual state of the BML Task 
+State is update with the progress of the Order</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>OperationalHeaderStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Meta data for distributed BML message</semantics>
+                <field>
+                    <name>Sender</name>
+                    <dataType>BmlData</dataType>
+                    <semantics>BML message sender 
+Information extract from Xml data message</semantics>
+                </field>
+                <field>
+                    <name>Receivers</name>
+                    <dataType>ArrayofReceiver</dataType>
+                    <semantics>List of Receivers for the BML message 
+Information extract from Xml data message</semantics>
+                </field>
+                <field>
+                    <name>SendTime</name>
+                    <dataType>Datetime18</dataType>
+                    <semantics>Sending date of the BML message</semantics>
+                </field>
+                <field>
+                    <name>Priority</name>
+                    <dataType>PriorityEnum32BE</dataType>
+                    <semantics>BML message priority 
+Information extract from Xml data message</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>ReceiverStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Receiver desription</semantics>
+                <field>
+                    <name>Name</name>
+                    <dataType>BmlData</dataType>
+                    <semantics>BML message receiver 
+Information extract from Xml data message</semantics>
+                </field>
+                <field>
+                    <name>SendAction</name>
+                    <dataType>SendActionEnum32BE</dataType>
+                    <semantics>BML message action for the receiver 
+Information extract from Xml data message</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>BmlId</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Represent Identifier of a BML message</semantics>
+                <field>
+                    <name>Counter</name>
+                    <dataType>CounterInt32</dataType>
+                    <semantics>EventCount shall start at one (1) and then incremented by one (1) for a new BML message. 
+ 
+In the case where all possible values are exhausted, the numbers may be reused beginning again at one.</semantics>
+                </field>
+                <field>
+                    <name>MessageId</name>
+                    <dataType>MessageDescription</dataType>
+                    <semantics>Identifier of BML message. 
+This identifier corresponds to xml id information of Request and Order</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>WGS84Location</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Represents a location in WGS84</semantics>
+                <field>
+                    <name>latitude</name>
+                    <dataType>Float32</dataType>
+                    <semantics>Latitude representation in degree</semantics>
+                </field>
+                <field>
+                    <name>longitude</name>
+                    <dataType>Float32</dataType>
+                    <semantics>Longitude representation in degree</semantics>
+                </field>
+                <field>
+                    <name>altitude</name>
+                    <dataType>MeterFloat32</dataType>
+                    <semantics>Altitude representation in meter</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>ConsumableTypeStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Consumable Description</semantics>
+                <field>
+                    <name>ConsumableType</name>
+                    <dataType>ConsumableTypeEnum</dataType>
+                    <semantics>Consumable type.</semantics>
+                </field>
+                <field>
+                    <name>SubCategory</name>
+                    <dataType>EntityTypeStruct</dataType>
+                    <semantics>Consumable Enumere</semantics>
+                </field>
+                <field>
+                    <name>SubCategoryDesription</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>OPTIONAL- Consumable name.</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes/>
+</objectModel>
