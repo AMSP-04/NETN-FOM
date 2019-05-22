@@ -10,15 +10,15 @@ AMSP-04 NETN Ed A is currently being updated to Ed B by NATO Research Task Group
 * New module NETN-AIS for representation of AIS tracks in simulation.
 
 ## Schedule
-Q1 2019 Drafting NETN-ETR Module
-Q2 2019 Pre-release NETN-ETR Module
-Q3 2019 Drafting NETN-ORBAT Module, NETN-LOG module & NETN-METOC Module
-Q4 2019 Pre-release of NETN-ORBAT Module, NETN-LOG Module & NETN-METOC Module
-Q1 2020 Drafting of NETN-AIS Module
-Q2 2020 Pre-release of NETN-AIS Module
-Q3 2020 Drafting of AMSP-04 Ed b
-Q4 2020 NMSG MS3 approval of final draft of AMSP-04 Ed B. Submit AMSP-04 to NSO for publication and update of STANREC 4800 to cover the updated standard.
-2021 Expect AMSP-04 Ed B officially published.
+- Q1 2019 Drafting NETN-ETR Module
+- Q2 2019 Pre-release NETN-ETR Module
+- Q3 2019 Drafting NETN-ORBAT Module, NETN-LOG module & NETN-METOC Module
+- Q4 2019 Pre-release of NETN-ORBAT Module, NETN-LOG Module & NETN-METOC Module
+- Q1 2020 Drafting of NETN-AIS Module
+- Q2 2020 Pre-release of NETN-AIS Module
+- Q3 2020 Drafting of AMSP-04 Ed b
+- Q4 2020 NMSG MS3 approval of final draft of AMSP-04 Ed B. Submit AMSP-04 to NSO for publication and update of STANREC 4800 to cover the updated standard.
+- 2021 Expect AMSP-04 Ed B officially published.
 
 _Changes to the schedule is possible_
 
