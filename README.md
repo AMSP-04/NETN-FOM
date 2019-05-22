@@ -1,6 +1,6 @@
-## AMSP-04 NATO Education and Training Network Federation Architecture and Federation Object Model Design (NETN FAFD)
-## Edition A Version 1.0
-## March 2018
+AMSP-04 NATO Education and Training Network Federation Architecture and Federation Object Model Design (NETN FAFD)
+
+Edition A Version 1.0, March 2018
 
 # Executive Summary
 The NATO Education and Training Network (NETN) Federation Architecture and FOM (Federation Object Model) Design (FAFD) document is a reference document intended to provide architecture and design guidance for developing distributed simulation and training systems in the context of Computer Assisted Exercises (CAX). The guidance provided by the FAFD has been developed to support the NETN vision and is applicable to NATO CAX, national CAX and to some extent to distributed modelling and simulation in general.
@@ -17,7 +17,6 @@ Key recommendations include:
 
 # Introduction
 ## Purpose
-1.1. PURPOSE
 The NATO Education and Training Network (NETN) Federation Architecture and FOM Design (FAFD) document is a reference document intended to provide architecture and design guidance for developing distributed simulation and training systems in the context of Computer Assisted Exercises (CAX). The guidance provided by the FAFD has been developed to support the NETN vision and is applicable to NATO CAX, national CAX and to distributed modelling and simulation in general.
 
 > “To deliver to NATO and Partners a persistent, distributed combined joint training capability able to support training from the operational to the tactical level across the full spectrum of operations, through leveraging existing national expertise and capabilities.” - NATO ACT NETN Vision
