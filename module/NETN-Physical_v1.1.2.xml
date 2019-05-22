@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>NETN-Physical</name>
+        <type>FOM</type>
+        <version>v1.1.2</version>
+        <modificationDate>2014-09-25</modificationDate>
+        <securityClassification>unclassified</securityClassification>
+        <purpose></purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>Object class inherit from RPR Physical.
+Object classes and datatypes from NETN FOM v1, module: AggDeagg 
+
+</description>
+        <useLimitation></useLimitation>
+        <useHistory>v1.0.0 - Initial, object classes and datatypes from FOM modules in NETN FOM v1</useHistory>
+        <useHistory>v1.1.0 - Added object class NETN_CulturalFeature</useHistory>
+        <useHistory>v1.1.1 - Updated References, Dependency</useHistory>
+        <useHistory>v1.1.2 - Update of semantics, spell corrections</useHistory>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>Lennart Olsson</pocName>
+            <pocOrg>Pitch Technologies</pocOrg>
+            <pocTelephone>+46 13 4705506</pocTelephone>
+            <pocEmail>lennart.olsson@pitch.se</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-Base_v1.1</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>RPR2-Physical_v2.0</identification>
+        </reference>
+        <other></other>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>BaseEntity</name>
+                <objectClass>
+                    <name>PhysicalEntity</name>
+                    <objectClass>
+                        <name>Platform</name>
+                        <objectClass>
+                            <name>Aircraft</name>
+                            <objectClass>
+                                <name>NETN_Aircraft</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>N/A</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>AmphibiousVehicle</name>
+                            <objectClass>
+                                <name>NETN_AmphibiousVehicle</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>N/A</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>GroundVehicle</name>
+                            <objectClass>
+                                <name>NETN_GroundVehicle</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>MultiDomainPlatform</name>
+                            <objectClass>
+                                <name>NETN_MultiDomainPlatform</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>Spacecraft</name>
+                            <objectClass>
+                                <name>NETN_Spacecraft</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>SubmersibleVessel</name>
+                            <objectClass>
+                                <name>NETN_SubmersibleVehicle</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>SurfaceVessel</name>
+                            <objectClass>
+                                <name>NETN_SurfaceVessel</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                    </objectClass>
+                    <objectClass>
+                        <name>Lifeform</name>
+                        <objectClass>
+                            <name>NonHuman</name>
+                            <objectClass>
+                                <name>NETN_NonHuman</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>Human</name>
+                            <objectClass>
+                                <name>NETN_Human</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                    </objectClass>
+                    <objectClass>
+                        <name>CulturalFeature</name>
+                        <objectClass>
+                            <name>NETN_CulturalFeature</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <semantics>Extensions for NETN</semantics>
+                            <attribute>
+                                <name>UniqueID</name>
+                                <dataType>UuidArrayOfHLAbyte16</dataType>
+                                <updateType>Static</updateType>
+                                <updateCondition>NA</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>Callsign</name>
+                                <dataType>HLAunicodeString</dataType>
+                                <updateType>Static</updateType>
+                                <updateCondition>NA</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Name of the object.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>Status</name>
+                                <dataType>ActiveStatusEnum8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>If an instance shall be taken into account by federates.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>Activity</name>
+                                <dataType>AggregateMissionEnum16</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>The activity of the object.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>EmbeddedUnitList</name>
+                                <dataType>ArrayOfUuid</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>List of unique IDs of on-board elements</semantics>
+                            </attribute>
+                        </objectClass>
+                    </objectClass>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <simpleDataTypes/>
+        <enumeratedDataTypes/>
+        <arrayDataTypes/>
+        <fixedRecordDataTypes/>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes/>
+</objectModel>

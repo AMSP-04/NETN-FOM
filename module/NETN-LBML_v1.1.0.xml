@@ -1,0 +1,966 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>LBML</name>
+        <type>FOM</type>
+        <version>1.0</version>
+        <modificationDate>2014-09-24</modificationDate>
+        <securityClassification>Unclassified</securityClassification>
+        <releaseRestriction></releaseRestriction>
+        <purpose>Low level BML</purpose>
+        <applicationDomain></applicationDomain>
+        <description>Low level BML orders/tasks and reports.</description>
+        <useLimitation></useLimitation>
+        <useHistory>v.1.1.0 - Renamed (from 1.0.0d6)</useHistory>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>Roger Jansen</pocName>
+            <pocOrg></pocOrg>
+            <pocTelephone></pocTelephone>
+            <pocEmail></pocEmail>
+        </poc>
+        <reference>
+            <type>HLA Evolved Conversion Tool</type>
+            <identification>Pitch Visual OMT v2.2.3</identification>
+        </reference>
+        <other></other>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>LBMLMessage</name>
+                <sharing>Neither</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>Root class of low level BML interactions</semantics>
+                <interactionClass>
+                    <name>LBMLTask</name>
+                    <sharing>Subscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>An interaction for ordering a unit to execute a task.</semantics>
+                    <parameter>
+                        <name>Task</name>
+                        <dataType>TaskId</dataType>
+                        <semantics>Identifies the task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Taskee</name>
+                        <dataType>UuidArrayOfHLAbyte16</dataType>
+                        <semantics>The unit that has to execute the task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Tasker</name>
+                        <dataType>Callsign</dataType>
+                        <semantics>Identifies the commander of the task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>StartWhen</name>
+                        <dataType>Datetime18</dataType>
+                        <semantics>Time when the task execution has to start.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>EndWhen</name>
+                        <dataType>Datetime18</dataType>
+                        <semantics>Time when the task execution has to end. 00000000000000.000 means no end time.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Why</name>
+                        <dataType>HLAunicodeString</dataType>
+                        <semantics>For what reason has this task to be executed.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>TaskType</name>
+                        <dataType>TaskTypeEnum8</dataType>
+                        <semantics>Determines how this new task is related to the current task.</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>Move</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to move in the specified direction. The unit will keep on moving until the specified end time or when ordered otherwise.</semantics>
+                        <parameter>
+                            <name>Direction</name>
+                            <dataType>AngleRadianFloat32</dataType>
+                            <semantics>Determines the azimuth direction, in radians.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>MoveToLocation</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to move to the specified destination.</semantics>
+                        <parameter>
+                            <name>Destination</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>The location to move to.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>MoveType</name>
+                            <dataType>MoveTypeEnum32</dataType>
+                            <semantics>Indicates if roads have to be followed.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Waypoints</name>
+                            <dataType>WorldLocationStructLengthlessArray</dataType>
+                            <semantics>Optional route to the destination.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>MoveToUnit</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to move to another unit.</semantics>
+                        <parameter>
+                            <name>Unit</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>The unit to move to.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>MoveType</name>
+                            <dataType>MoveTypeEnum32</dataType>
+                            <semantics>Indicates if roads have to be followed.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Waypoints</name>
+                            <dataType>WorldLocationStructLengthlessArray</dataType>
+                            <semantics>Optional route to the destination.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>MoveIntoFormation</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks an aggregate unit to move into the given formation with the given heading.</semantics>
+                        <parameter>
+                            <name>Formation</name>
+                            <dataType>FormationEnum32</dataType>
+                            <semantics>The category of positional arrangement of the entities within the aggregate.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Distance</name>
+                            <dataType>MeterFloat32</dataType>
+                            <semantics>Distance between the individual vehicles in the formation.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Location</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>The location (x, y and z) to move to.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Heading</name>
+                            <dataType>AngleRadianFloat32</dataType>
+                            <semantics>The heading of the formation in radians.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>FollowRoute</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to follow the specified route.</semantics>
+                        <parameter>
+                            <name>MoveType</name>
+                            <dataType>MoveTypeEnum32</dataType>
+                            <semantics></semantics>
+                        </parameter>
+                        <parameter>
+                            <name>ControlMeasure</name>
+                            <dataType>EntityIdentifierStruct</dataType>
+                            <semantics>Follow a control measure referenced by an entity identifier struct. This would typically be an envionmental object which contains one (waypoint) or many points (route), but could also be another entity.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>FollowUnit</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to follow another unit.</semantics>
+                        <parameter>
+                            <name>Unit</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>The unit to follow.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Behind</name>
+                            <dataType>MeterFloat32</dataType>
+                            <semantics>The distance in meters behind the unit to follow.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Right</name>
+                            <dataType>MeterFloat32</dataType>
+                            <semantics>The distance in meters to the right of the unit to follow.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Above</name>
+                            <dataType>MeterFloat32</dataType>
+                            <semantics>The distance in meters above the unit to follow.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>TurnToHeading</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to turn to the specified heading.</semantics>
+                        <parameter>
+                            <name>Heading</name>
+                            <dataType>AngleRadianFloat32</dataType>
+                            <semantics>Determines the heading, in radians, a unit has to turn to.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>TurnToOrientation</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                            <parameter>
+                                <name>Pitch</name>
+                                <dataType>AngleRadianFloat32</dataType>
+                                <semantics></semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Roll</name>
+                                <dataType>AngleRadianFloat32</dataType>
+                                <semantics></semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>VehicleMount</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to mount the specified vehicle.</semantics>
+                        <parameter>
+                            <name>VehicleToMount</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>The vehicle to mount.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>VehicleDismount</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to dismount.</semantics>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>FireAtLocation</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to fire at a location.</semantics>
+                        <parameter>
+                            <name>TargetLocation</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>The location to fire at.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>FireIndirectWM</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Tasks a unit to fire at a location with the specified weapon and munition.</semantics>
+                            <parameter>
+                                <name>WeaponTypeToUse</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics></semantics>
+                            </parameter>
+                            <parameter>
+                                <name>MunitionTypeToUse</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics></semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>FireAtUnit</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to fire at another specified unit.</semantics>
+                        <parameter>
+                            <name>Target</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>The unit to fire at.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>FireDirectWM</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                            <parameter>
+                                <name>WeaponTypeToUse</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics>The weapon type to use.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>MunitionTypeToUse</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics>The munition type that should be used by the select weapon type.</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>Wait</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a unit to wait until the specified end time. Wait indefinitely if no end time is specified.</semantics>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>ChangeOrderedSpeed</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Change the ordered speed. Usually sent with TaskType InterruptCurrentTask to adjust the current move task.</semantics>
+                        <parameter>
+                            <name>Speed</name>
+                            <dataType>VelocityMeterPerSecondFloat32</dataType>
+                            <semantics>Determines the ordered speed to set for a unit, in m/s.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>ChangeOrderedAltitude</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Change the ordered altitude. Usually sent with TaskType InterruptCurrentTask to adjust the current move task.</semantics>
+                        <parameter>
+                            <name>Altitude</name>
+                            <dataType>Float64</dataType>
+                            <semantics></semantics>
+                        </parameter>
+                        <parameter>
+                            <name>AltitudeType</name>
+                            <dataType>AltitudeTypeEnum8</dataType>
+                            <semantics></semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>SetRulesOfEngagement</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Change the rules of engagment for a unit.</semantics>
+                        <parameter>
+                            <name>RulesOfEngagement</name>
+                            <dataType>RulesOfEngagementEnum8</dataType>
+                            <semantics>Determines the rules of engagment for a unit.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>LBMLTaskManagement</name>
+                    <sharing>Subscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Task management interactions. For now only used to cancel tasks. Can be extended to reschedule tasks, etc.</semantics>
+                    <parameter>
+                        <name>Taskee</name>
+                        <dataType>UuidArrayOfHLAbyte16</dataType>
+                        <semantics>The unit that has to execute the task.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Tasker</name>
+                        <dataType>Callsign</dataType>
+                        <semantics>Identifies the commander of the task.</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>CancelAllTasks</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Cancel all tasks. Tasks already started have to be aborted immediately.</semantics>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CancelSpecifiedTasks</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Cancel all specified tasks. Tasks already started have to be aborted immediately.</semantics>
+                        <parameter>
+                            <name>Tasks</name>
+                            <dataType>ArrayOfTaskIds</dataType>
+                            <semantics>Tasks that have to be cancelled.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>LBMLReport</name>
+                    <sharing>Subscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>An interaction for sending reports from a simulation framework (e.g. VR-Forces) to a BML agent framework.</semantics>
+                    <parameter>
+                        <name>When</name>
+                        <dataType>Datetime18</dataType>
+                        <semantics>Date and time when the reported status was valid.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Comments</name>
+                        <dataType>HLAunicodeString</dataType>
+                        <semantics>Any additional comments</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>StatusReport</name>
+                        <sharing>Subscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Status report from a friendly unit about its own (perceived) state. The C2 agent shall base its low level BML tasks on this perceived truth data of blue units instead of RPR ground truth data, although for blue units perceived and ground truth data might be the same (but not necessarily).</semantics>
+                        <parameter>
+                            <name>Unit</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>The unit that is reported about.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>TaskStatusReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>A report about the status of a task the unit was ordered to execute.</semantics>
+                            <parameter>
+                                <name>Task</name>
+                                <dataType>TaskId</dataType>
+                                <semantics>Identifies the task associated with the task report.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>TaskStatus</name>
+                                <dataType>TaskStatusEnum32</dataType>
+                                <semantics>Indicates the evaluation status of the task.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>PositionStatusReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Report about the position, speed, and heading of the unit.</semantics>
+                            <parameter>
+                                <name>Position</name>
+                                <dataType>WorldLocationStruct</dataType>
+                                <semantics>Position of the unit at the specified time.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Heading</name>
+                                <dataType>AngleRadianFloat32</dataType>
+                                <semantics>Heading of the unit.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Speed</name>
+                                <dataType>VelocityMeterPerSecondFloat32</dataType>
+                                <semantics>Speed of the unit.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>DamageStatusReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Represents a report from an unit that has been damaged or destroyed.</semantics>
+                            <parameter>
+                                <name>DamageType</name>
+                                <dataType>DamageStatusEnhancedEnum32</dataType>
+                                <semantics>Damage state of the reported unit.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>FuelStatusReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Report about the amount of fuel the unit has left. FuelType is a string since it is still experimental.</semantics>
+                            <parameter>
+                                <name>FuelType</name>
+                                <dataType>HLAunicodeString</dataType>
+                                <semantics>The type of fuel</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>FuelPercentage</name>
+                                <dataType>PercentFloat32</dataType>
+                                <semantics>The amount of fuel the unit has not yet used, in percentages.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>AmmunitionStatusReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Report about the amount of ammunition the unit has left.</semantics>
+                            <parameter>
+                                <name>AmmunitionType</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics>The type of ammunition.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>AmmunitionPercentage</name>
+                                <dataType>PercentFloat32</dataType>
+                                <semantics>The amount of ammunition the entity has not yet used in percentages.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>UnderAttackStatusReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Report that the unit is under attack.</semantics>
+                            <parameter>
+                                <name>FromDirection</name>
+                                <dataType>AngleRadianFloat32</dataType>
+                                <semantics>Direction from which the unit is attacked.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Severeness</name>
+                                <dataType>AttackTypeEnum32</dataType>
+                                <semantics>Severeness of the attack upon the reporting unit.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>ActivityStatusReport</name>
+                            <sharing>Subscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Base class for an activity report (absolute truth).</semantics>
+                            <parameter>
+                                <name>EntitiesInvolved</name>
+                                <dataType>ArrayOfUuid</dataType>
+                                <semantics>Reference to entities involved in a particular activity.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>TimeLeftToCompletion</name>
+                                <dataType>Float64</dataType>
+                                <semantics>Amount of time (if known) to completion of activity. 0 if unknown.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Activity</name>
+                                <dataType>HLAunicodeString</dataType>
+                                <semantics>A application specific description of the task since different CGF's / simulators are capable of executing different task types which may not fall neatly into those defined in the AggregateMissionEnum16.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>ActivityType</name>
+                                <dataType>AggregateMissionEnum16</dataType>
+                                <semantics>Provide a universally understood summary of the activity using the aggregate mission enum (for compatability)</semantics>
+                            </parameter>
+                            <interactionClass>
+                                <name>CurrentActivityStatusReport</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics></semantics>
+                                <parameter>
+                                    <name>ElapsedTaskTime</name>
+                                    <dataType>Float64</dataType>
+                                    <semantics>Time entity has been performing task.</semantics>
+                                </parameter>
+                                <parameter>
+                                    <name>TaskExecutionStatus</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <semantics>Includes more specific information about the current task state (application specific) or sub-states within the task.</semantics>
+                                </parameter>
+                            </interactionClass>
+                            <interactionClass>
+                                <name>NextActivityStatusReport</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics></semantics>
+                                <parameter>
+                                    <name>StartCondition</name>
+                                    <dataType>TaskStartConditionEnum8</dataType>
+                                    <semantics></semantics>
+                                </parameter>
+                                <parameter>
+                                    <name>TimeToStart</name>
+                                    <dataType>Float64</dataType>
+                                    <semantics></semantics>
+                                </parameter>
+                            </interactionClass>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>SpotReport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Spot reports are one-time reports used by all units to transmit intelligence or information about a spotted enemy, neutral, or unknown unit. The C2 agent shall base its low level BML tasks on this perceived truth data on non friendly / unknown units instead of RPR ground truth data. UnitType, EquipmentType, and Activity are strings since they are still experimental.</semantics>
+                        <parameter>
+                            <name>Observer</name>
+                            <dataType>UuidArrayOfHLAbyte16</dataType>
+                            <semantics>Unit that observed the enemy (or neutral/unknown unit) and sends the spot report.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>IdentificationLevel</name>
+                            <dataType>IdentificationLevelEnum8</dataType>
+                            <semantics>The identification level of the unit(s) spotted.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>ForceIdentifier</name>
+                            <dataType>PerceivedForceIdentifierEnum32</dataType>
+                            <semantics>Force Id of the spotted unit(s) as assumed by the observer.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Position</name>
+                            <dataType>WorldLocationStruct</dataType>
+                            <semantics>Position of the spotted unit at the specified time.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>NumberOfUnits</name>
+                            <dataType>Integer32</dataType>
+                            <semantics>Number of spotted units.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>UnitType</name>
+                            <dataType>EntityTypeStruct</dataType>
+                            <semantics>Description of the units spotted. Subfields can be 0 if unknown, depending on the identification level.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>NumberOfEquipments</name>
+                            <dataType>Integer32</dataType>
+                            <semantics>Number of spotted enemy equipments.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>EquipmentType</name>
+                            <dataType>EntityTypeStruct</dataType>
+                            <semantics>Description of the equipments spotted. Subfields can be 0 if unknown, depending on the identification level.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>ActivitySpotReport</name>
+                            <sharing>Subscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>The information here is based on perception information which is determined from situation awareness, intel or potentially instinct.</semantics>
+                            <parameter>
+                                <name>EntitiesInvolved</name>
+                                <dataType>ArrayOfUuid</dataType>
+                                <semantics>Entities involved in the perceived activity.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>TimeLeftToCompletion</name>
+                                <dataType>Float64</dataType>
+                                <semantics></semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Activity</name>
+                                <dataType>HLAunicodeString</dataType>
+                                <semantics>Description of the activity of the enemy spotted.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>ActivityType</name>
+                                <dataType>AggregateMissionEnum16</dataType>
+                                <semantics>Perceived activities are engaged in.</semantics>
+                            </parameter>
+                            <interactionClass>
+                                <name>CurrentActivitySpotReport</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics></semantics>
+                                <parameter>
+                                    <name>ElapsedTaskTime</name>
+                                    <dataType>Float64</dataType>
+                                    <semantics>Perceived time the task started if known. 0 if unknown.</semantics>
+                                </parameter>
+                                <parameter>
+                                    <name>TaskExecutionStatus</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <semantics>Perceived exeuction status.</semantics>
+                                </parameter>
+                            </interactionClass>
+                            <interactionClass>
+                                <name>NextActivitySpotReport</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics></semantics>
+                                <parameter>
+                                    <name>StartCondition</name>
+                                    <dataType>TaskStartConditionEnum8</dataType>
+                                    <semantics></semantics>
+                                </parameter>
+                                <parameter>
+                                    <name>TimeToStart</name>
+                                    <dataType>Float64</dataType>
+                                    <semantics></semantics>
+                                </parameter>
+                            </interactionClass>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>InSensorReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                            <parameter>
+                                <name>SensorType</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics></semantics>
+                            </parameter>
+                            <parameter>
+                                <name>SensedEntities</name>
+                                <dataType>ArrayOfUuid</dataType>
+                                <semantics></semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>InWeaponRangeReport</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                            <parameter>
+                                <name>WeaponType</name>
+                                <dataType>EntityTypeStruct</dataType>
+                                <semantics></semantics>
+                            </parameter>
+                            <parameter>
+                                <name>EntitiesInWeaponRange</name>
+                                <dataType>ArrayOfUuid</dataType>
+                                <semantics></semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <basicDataRepresentations/>
+        <simpleDataTypes>
+            <simpleData>
+                <name>Counter</name>
+                <representation>HLAinteger32BE</representation>
+                <units>NA</units>
+                <resolution>1</resolution>
+                <accuracy>perfect</accuracy>
+                <semantics>Counter</semantics>
+            </simpleData>
+        </simpleDataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>RulesOfEngagementEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Rules of engagment for a simulated unit.</semantics>
+                <enumerator>
+                    <name>HoldFire</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>FireAtWill</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>FireWhenFiredUpon</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>TaskStatusEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>The status of a task.</semantics>
+                <enumerator>
+                    <name>Accepted</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Refused</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Aborted</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Completed</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>IdentificationLevelEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The identification level of an object.</semantics>
+                <enumerator>
+                    <name>Lost</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Detected</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Classified</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Identified</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>FullKnowledge</name>
+                    <value>4</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>MoveTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>CrossCountry: move directly to the destination without taking into account the roads. 
+OnlyRoads: stay on the roads to get to the closest point to the destination that is still on a road; if there is no road very near to the start (within around 10 meters) there will be no movement at all. 
+RoadsAndCrossCountry: move to the destination by taking into account the roads; it is allowed to go off the road.</semantics>
+                <enumerator>
+                    <name>CrossCountry</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>OnlyRoads</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>RoadsAndCrossCountry</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>AttackTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>The kind of attack by the enemy.</semantics>
+                <enumerator>
+                    <name>None</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Artillery</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>HeavyArtillery</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>AltitudeTypeEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>AMSL = Above Mean Sea Level 
+AGL = Abve Ground Level</semantics>
+                <enumerator>
+                    <name>AMSL</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>AGL</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>TaskStartConditionEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics></semantics>
+                <enumerator>
+                    <name>OnCompletionOfPrevious</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>AtTime</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>TaskTypeEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>CancelAllOtherTasks: this new task replaces all other tasks. The current task has to be aborted as soon as possible and the new task can be executed at the start time. 
+AddToTaskList: this new task will be executed after all other tasks with a smaller start time have been completed. 
+InterruptCurrentTask: this new task interrupts the current task or is an adjustment of the current task.</semantics>
+                <enumerator>
+                    <name>CancelAllOtherTasks</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>AddToTaskList</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>InterruptCurrentTask</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>PerceivedForceIdentifierEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics></semantics>
+                <enumerator>
+                    <name>Unknown</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>AssumedFriend</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friend</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Suspect</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Hostile</name>
+                    <value>5</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes>
+            <arrayData>
+                <name>Datetime18</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>18</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>A designation of a specified chronological point measured using Coordinated Universal Time (UTC) ISO 8601:2000 as a standard of reference, constrained to "zero meridian" i.e. �Zulu� time zone only. This is expressed as a composite field using a compacted ISO notation YYYYMMDDHHMMSS.SSS where YYYY represents a year, MM represents a month in values from 00 to 12, and DD represents a day in values from 00 to 31, HH represents an hour, MM represents a minute, and SS.SSS represents the number of seconds and milliseconds.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfTaskIds</name>
+                <dataType>TaskId</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Array of Task Ids.</semantics>
+            </arrayData>
+        </arrayDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>TaskId</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Unique identifier for this order.</semantics>
+                <field>
+                    <name>TaskCounter</name>
+                    <dataType>Counter</dataType>
+                    <semantics>This value shall be incremented by 1 for each sent task.</semantics>
+                </field>
+                <field>
+                    <name>FederateHandle</name>
+                    <dataType>HLAhandle</dataType>
+                    <semantics>The handle that the federate get when joining the federation.</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes/>
+</objectModel>

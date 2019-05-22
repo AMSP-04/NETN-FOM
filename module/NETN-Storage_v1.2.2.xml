@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>NETN-Storage</name>
+        <type>FOM</type>
+        <version>1.2</version>
+        <modificationDate>2013-10-24</modificationDate>
+        <securityClassification>unclassified</securityClassification>
+        <purpose></purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>NETN Logistics, Supply Pattern, Storage Service</description>
+        <useLimitation></useLimitation>
+        <useHistory>v1.0.0 - Initial, Interaction classes from NETN FOM v1, NETN_Logistics_v1.1.2 </useHistory>
+        <useHistory>v1.1.0 - Removed interaction StorageStarted. 
+Interaction class RequestStorage: Added parameter Appointment as an optional parameter. 
+Interaction class OfferStorage: Added parameter Appointment as an optional parameter.</useHistory>
+        <useHistory>v1.2.0 - Added two intaractions, StorageComplete and ReadyToReceiveStorage</useHistory>
+        <useHistory>v1.2.1 - Updated semantics</useHistory>
+        <useHistory>v1.2.2 - Updated References, Dependency</useHistory>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>Lennart Olsson</pocName>
+            <pocOrg>Pitch Technologies</pocOrg>
+            <pocTelephone>+46 13 4705506</pocTelephone>
+            <pocEmail>lennart.olsson@pitch.se</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-SCP-Base_v1.1</identification>
+        </reference>
+        <other></other>
+    </modelIdentification>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>SCP_Service</name>
+                <interactionClass>
+                    <name>SCP_RequestService</name>
+                    <interactionClass>
+                        <name>RequestStorage</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>RequestStorage is used by a consumer to initiate a request for storage of supplies. The amount and type of material is included in the request.</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>NETN_ArrayOfSupplyStruct</dataType>
+                            <semantics>Specifies the supply (type and quantity)</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>LoadingDoneByProvider</name>
+                            <dataType>HLAboolean</dataType>
+                            <semantics>Proposes whether the service provider (LoadingDoneByProvider = true) or the service consumer (LoadingDoneByProvider = false) takes care of the (un)loading of the material. Default value is true.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Appointment</name>
+                            <dataType>AppointmentStruct</dataType>
+                            <semantics>The time and location for the exchange of the service. Optional</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_OfferService</name>
+                    <interactionClass>
+                        <name>OfferStorage</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>OfferStorage is used by a storage service provider to indicate which (amount and type) of the requested material can be stored.</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>NETN_ArrayOfSupplyStruct</dataType>
+                            <semantics>Specifies the supply (type and quantity)</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>LoadingDoneByProvider</name>
+                            <dataType>HLAboolean</dataType>
+                            <semantics>Determines whether the service provider (LoadingDoneByProvider = true) or the service consumer (LoadingDoneByProvider = false) takes care of the (un)loading of the material.  Default value is true.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Appointment</name>
+                            <dataType>AppointmentStruct</dataType>
+                            <semantics>The time and location for the exchange of the service. Optional</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_ServiceComplete</name>
+                    <interactionClass>
+                        <name>StorageComplete</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>This interaction is sent by the provider when the supply is delivered to the provider</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>NETN_ArrayOfSupplyStruct</dataType>
+                            <semantics>This interaction is sent by the provider when all supply is received by the provider</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>SCP_ReadyToReceiveService</name>
+                    <interactionClass>
+                        <name>ReadyToReceiveStorage</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>This interaction is sent when the consumer is ready to deliver the supply (receive storage). 
+(At same location as the provider)</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>NETN_ArrayOfSupplyStruct</dataType>
+                            <semantics>This interaction is sent when the consumer is ready to transfer the supply. (At same location as the provider)</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <simpleDataTypes/>
+        <enumeratedDataTypes/>
+        <arrayDataTypes/>
+        <fixedRecordDataTypes/>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes/>
+</objectModel>

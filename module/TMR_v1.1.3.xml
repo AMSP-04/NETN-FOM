@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>Transfer of Modelling Responsibility FOM Module</name>
+        <type>FOM</type>
+        <version>1.1</version>
+        <modificationDate>2014-09-26</modificationDate>
+        <securityClassification>Unclassified</securityClassification>
+        <purpose>Protocol for Transfer of Modelling Responsilbility</purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>Transfer of Modelling Responsibility FOM Module</description>
+        <useLimitation>NA</useLimitation>
+        <useHistory>v1.0.1
+- XML Schema Reference Changed </useHistory>
+        <useHistory>v1.0.2 - Spelling correction at enumerations</useHistory>
+        <useHistory>v1.0.3 - Adding AttributeValues</useHistory>
+        <useHistory>v1.0.3r3 - Adding reason</useHistory>
+        <useHistory>v1.0.3r4 - Added parameter Respondent at interaction TMR_OfferTransferModellingResponsibility and enumeration value NoofferReasonEnum32.OwnershipStateNotApplicableWithRequest</useHistory>
+        <useHistory>v1.0.3r5 - Added enumeration value NoofferReasonEnum32.EntityNotKnown</useHistory>
+        <useHistory>V1.0.3r6 - Change definition of data type TransactionId, a counter and the federate handle</useHistory>
+        <useHistory>v1.1.0r1 - Added interactions TMR_CancelRequest and TMR_Status</useHistory>
+        <useHistory>v1.1.0 - Removed "r1" from module name</useHistory>
+        <useHistory>v1.1.1 - Update of Dependecy table</useHistory>
+        <useHistory>v1.1.2 - Rename of enumeration values (AttributeSetTooRestricted, AttributeSetTooExtensive).</useHistory>
+        <useHistory>v1.1.3 - Rename of enumeration value (FederateTooBusy).</useHistory>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>Lennart Olsson</pocName>
+            <pocOrg>Pitch Technologies</pocOrg>
+            <pocTelephone>+46 13 470 55 06</pocTelephone>
+            <pocEmail>lennart.olsson@pitch.se</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Secondary author</pocType>
+            <pocName>Bjorn Lofstrand</pocName>
+            <pocOrg>Pitch Technologies</pocOrg>
+            <pocTelephone>+46 13 470 55 07</pocTelephone>
+            <pocEmail>bjorn.lofstrand@pitch.se</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-Base</identification>
+        </reference>
+        <other>NA</other>
+    </modelIdentification>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>TMR</name>
+                <sharing>Neither</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>Base class for Transfer of Modelling Responsibility interactions.</semantics>
+                <parameter>
+                    <name>TransactionID</name>
+                    <dataType>TransactionId</dataType>
+                    <semantics>Identifier for this transaction. Required</semantics>
+                </parameter>
+                <parameter>
+                    <name>RequestFederate</name>
+                    <dataType>FederateName</dataType>
+                    <semantics>Federate name, Required</semantics>
+                </parameter>
+                <parameter>
+                    <name>ResponseFederate</name>
+                    <dataType>FederateName</dataType>
+                    <semantics>Federate name. Not necessary if TransferType is AquireWithoutNegotiation</semantics>
+                </parameter>
+                <interactionClass>
+                    <name>TMR_OfferTransferModellingResponsibility</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Offer Transfer of Modelling Responsibility</semantics>
+                    <parameter>
+                        <name>isOffering</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>Is offering (=true) Transfer of Modelling Responsibility or not (=false). Required</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Respondent</name>
+                        <dataType>FederateName</dataType>
+                        <semantics>The name of the sending federate of the TMR_OfferTransferModellingResponsibility. The requesting or responding federate. 
+Required.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Reason</name>
+                        <dataType>NoofferReasonEnum32</dataType>
+                        <semantics>Describes the reason why the offer is negative. Optional</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>TMR_InitiateTransferModellingResponsibility</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Interaction for initiating Transfer of Modelling Responsibility between federates.</semantics>
+                    <parameter>
+                        <name>Initiating</name>
+                        <dataType>HLAunicodeString</dataType>
+                        <semantics>Id of the initiating federate/role. Required</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>TransferType</name>
+                        <dataType>TransferTypeEnum32</dataType>
+                        <semantics>Required</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Instances</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <semantics>Array of Unique Instance IDs. Required</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Attributes</name>
+                        <dataType>ArrayOfAttributes</dataType>
+                        <semantics>Array with Attribute names. Required</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>CapabilityType</name>
+                        <dataType>CapabilityTypeEnum32</dataType>
+                        <semantics>Specify the type of capability that shall be transfered between federates. A guidance for the acquiring federate. Optional</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>InstanceAttributeValues</name>
+                        <dataType>ArrayOfInstanceAttributeValues</dataType>
+                        <semantics>The value that the new owner of the attributes may use. Optional</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>TMR_RequestTransferModellingResponsibility</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Request Transfer of Modelling Responsibility</semantics>
+                    <parameter>
+                        <name>TransferType</name>
+                        <dataType>TransferTypeEnum32</dataType>
+                        <semantics>Required</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Instances</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <semantics>Array of unique instance ids. Required</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Attributes</name>
+                        <dataType>ArrayOfAttributes</dataType>
+                        <semantics>Array of attributes. Required</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>CapabilityType</name>
+                        <dataType>CapabilityTypeEnum32</dataType>
+                        <semantics>Specifies the capability type that the transfer of the modelling responsibility is about.  A guidance for the acquiring federate. Optional</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>InstanceAttributeValues</name>
+                        <dataType>ArrayOfInstanceAttributeValues</dataType>
+                        <semantics>Attribute values that the new owner of the instance attribute may use. Optional</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>TMR_CancelRequest</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Shall be sent by the requesting federate to inform the respons fedrate that the transfer is canceled</semantics>
+                    <parameter>
+                        <name>Reason</name>
+                        <dataType>CancellationReasonEnum32</dataType>
+                        <semantics>The reason for the cancellation</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>TMR_TransferResult</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Sent by the requesting federate to inform the status of an terminated transfer, completed or not completed</semantics>
+                    <parameter>
+                        <name>TransferOk</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>True if the transfer is completed, else false</semantics>
+                    </parameter>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <tags>
+        <updateReflectTag>
+            <dataType>NA</dataType>
+            <semantics>NA</semantics>
+        </updateReflectTag>
+        <sendReceiveTag>
+            <dataType>NA</dataType>
+            <semantics>NA</semantics>
+        </sendReceiveTag>
+        <deleteRemoveTag>
+            <dataType>NA</dataType>
+            <semantics>NA</semantics>
+        </deleteRemoveTag>
+        <divestitureRequestTag>
+            <dataType>TransactionId</dataType>
+            <semantics>NA</semantics>
+        </divestitureRequestTag>
+        <divestitureCompletionTag>
+            <dataType>NA</dataType>
+            <semantics>NA</semantics>
+        </divestitureCompletionTag>
+        <acquisitionRequestTag>
+            <dataType>TransactionId</dataType>
+            <semantics>NA</semantics>
+        </acquisitionRequestTag>
+        <requestUpdateTag>
+            <dataType>NA</dataType>
+            <semantics>NA</semantics>
+        </requestUpdateTag>
+    </tags>
+    <dataTypes>
+        <simpleDataTypes>
+            <simpleData>
+                <name>Counter</name>
+                <representation>HLAinteger32BE</representation>
+                <units>NA</units>
+                <resolution>1</resolution>
+                <accuracy>perfect</accuracy>
+                <semantics>Counter</semantics>
+            </simpleData>
+        </simpleDataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>TransferTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Transfer type</semantics>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Acquire</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Divest</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>AcquireWithoutNegotiating</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>CapabilityTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>TotalTransfer indicates that all instance attributes shall be involved in the ownership transfer</semantics>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>TotalTransfer</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Movement</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Damage</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>ResourceConsumption</name>
+                    <value>4</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>NoofferReasonEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Describes the reason why not accepting a TMR request</semantics>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>CapabilityDoesNotMatch</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>AttributeSetTooRestricted</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>AttributeSetTooExtensive</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>FederateTooBusy</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>AttributeSetNotCompatibleWithPublication</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>OwnershipStateNotApplicableWithRequest</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>EntityNotKnown</name>
+                    <value>7</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>CancellationReasonEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Describes the reason for the cancellation</semantics>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>TimeOut</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes>
+            <arrayData>
+                <name>ArrayOfAttributes</name>
+                <dataType>HLAunicodeString</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Array of attribute names.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>FederateName</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>HLA Federate Name</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfBytes</name>
+                <dataType>Octet</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>An array of bytes, used as the raw value of attributes and parameters</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfAttributeValues</name>
+                <dataType>AttributeValueStruct</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>An array with name-value pairs</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfInstanceAttributeValues</name>
+                <dataType>InstanceAttributeValuesStruct</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Array with instances and its attribute values as an array with name-value pairs</semantics>
+            </arrayData>
+        </arrayDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>TransactionId</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Unique identifier for this transaction.</semantics>
+                <field>
+                    <name>TransactionCounter</name>
+                    <dataType>Counter</dataType>
+                    <semantics>This value shall be incremented by 1 for each sent transaction. Required</semantics>
+                </field>
+                <field>
+                    <name>FederateHandle</name>
+                    <dataType>HLAhandle</dataType>
+                    <semantics>The handle that the federate get when joining the federation. Required</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>AttributeValueStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>The name-value pair for attributes</semantics>
+                <field>
+                    <name>AttributeName</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>Name of the attribute</semantics>
+                </field>
+                <field>
+                    <name>Value</name>
+                    <dataType>ArrayOfBytes</dataType>
+                    <semantics>The value as a byte array</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>InstanceAttributeValuesStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Instance and name-value pairs for instance attributes</semantics>
+                <field>
+                    <name>Instance</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <semantics>The UUID for the instance</semantics>
+                </field>
+                <field>
+                    <name>AttributeValues</name>
+                    <dataType>ArrayOfAttributeValues</dataType>
+                    <semantics>Array with attribute name-value pairs</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes/>
+</objectModel>
