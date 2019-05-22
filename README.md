@@ -1,3 +1,3 @@
 # NETN FOM
 
-This repository contains the NETN FOM modules. Each FOM module is maintained in its own subdirectory.
+This will eventually contain all NETN FOM Modules for NETN FOM v3.0 (AMSP-04 Ed B).
