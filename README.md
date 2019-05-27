@@ -24,3 +24,24 @@ _Changes to the schedule is possible_
 
 ## Involvement
 Please contact your national NATO Modelling and Simulation Group representative for more information how to join MSG-163 or provide your commets directly through GitHub.
+
+## FOM Module Dependencies
+
+<img src="images/dependencies.svg"/>
+
+<!--
+# Vis-js.com
+
+digraph G {
+
+	"RPR-Base" -> "RPR-Foundation";
+	"NETN-BASE" -> "RPR-Foundation"
+	"NETN-LOG" -> "RPR-Base"
+	"NETN-LOG" -> "NETN-BASE"
+	"RPR-Physical" -> "RPR-Base"
+		"RPR-Aggregate" -> "RPR-Base"
+	"NETN-PHYS" -> "RPR-Physical"
+	"NETN-AGG" -> "RPR-Aggregate"
+	"NETN-METOC" -> "NETN-BASE"
+}
+-->
