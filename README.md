@@ -32,6 +32,7 @@ Please contact your national NATO Modelling and Simulation Group representative 
 <!--
 # Vis-js.com
 
+
 digraph G {
 
 	"RPR-Base" -> "RPR-Foundation";
@@ -43,5 +44,11 @@ digraph G {
 	"NETN-PHYS" -> "RPR-Physical"
 	"NETN-AGG" -> "RPR-Aggregate"
 	"NETN-METOC" -> "NETN-BASE"
+	"NETN-MRM" -> "NETN-TMR"
+	"NETN-TMR" -> "NETN-BASE"
+	"NETN-CBRN" -> "NETN-PHYS"
+	"NETN-ETR" -> "NETN-BASE"
+
 }
+
 -->
