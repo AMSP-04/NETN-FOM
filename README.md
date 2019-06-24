@@ -1,6 +1,6 @@
-# AMSP-04 NETN FAFD Ed B
+# AMSP-04 Ed B v1.0 NETN FAFD 
 
-AMSP-04 NETN Ed A is currently being updated to Ed B by NATO Research Task Group MSG-163.
+AMSP-04 NETN Ed A v1.0 is currently being updated to AMSP-04 NETN Ed B v1.0 by NATO Research Task Group MSG-163.
 
 ## Proposed Changes
 * Merging of Logistics and SCP FOM Modules
@@ -79,8 +79,9 @@ Version numbering of the NETN-FOM and associated documentation is based on the f
 
 |Version|Description|
 |---|---|
-|v1.0|Initial release of NETN FOM as included in AMSP-04 Ed A v1.0. |
-|v2.0|New modules NETN-METOC, NETN-LOG (replaces NETN-SCP-BASE, NETN-Supply, NETN-Storage, NETN-Repair, NETN-Transport), NETN-ORG, NETN-ETR (replaces NETN-LLBML), NETN-AIS. Updates of all other modules.|
+|v1.0|Initial release of NETN FOM as developed by MSG-068 |
+|v2.0|Update release of NETN FOM included in AMSP-04 Ed A v1.0. New modules NETN-SCP-BASE, NETN-Supply, NETN-Storage, NETN-Repair, NETN-Transport, NETN-CBRN|
+|v3.0|Update release of NETN FOM included in AMSP-04 Ed B v1.0. New modules NETN-METOC, NETN-LOG (replaces NETN-SCP-BASE, NETN-Supply, NETN-Storage, NETN-Repair, NETN-Transport), NETN-ORG, NETN-ETR (replaces NETN-LLBML), NETN-AIS. Updates of all other modules.|
 
 [Changelog](changelog.md)
 
