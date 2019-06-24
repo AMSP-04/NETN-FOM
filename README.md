@@ -3,11 +3,12 @@
 AMSP-04 NETN Ed A v1.0 is currently being updated to AMSP-04 NETN Ed B v1.0 by NATO Research Task Group MSG-163.
 
 ## Proposed Changes
-* Merging of Logistics and SCP FOM Modules
-* Renaming and updating LLBML (to ETR) for Entity Tasking and Reporting.
-* New module NETN-ORG for representation of Task Organizations, Holdings, Org. relationships and initial allocation of modelling responsibilities.
-* New module NETN-METOC (in collaboration with MSG-156) for representation of Weather and weather effects.
-* New module NETN-AIS for representation of AIS tracks in simulation.
+* Merge NETN-SCP-Base, NETN-Repair, NETN-Transport, NETN-Supply and NETN-Storage
+* Rename and update NETN-LLBML
+* Add module NETN-ORG for representation of Task Organizations, Holdings, Org. relationships and initial allocation of modelling responsibilities
+* Add module NETN-METOC (in collaboration with MSG-156) for representation of Weather and weather effects
+* Add module NETN-AIS for representation of AIS tracks in simulation
+* Update all other modules
 
 ## Schedule
 - Q1 2019 Drafting NETN-ETR Module
