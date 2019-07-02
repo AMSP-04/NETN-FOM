@@ -1,38 +1,31 @@
-# AMSP-04 Ed B v1.0 NETN FAFD 
+# NETN FOM
+ 
+ ## Concepts
 
-AMSP-04 NETN Ed A v1.0 is currently being updated to AMSP-04 NETN Ed B v1.0 by NATO Research Task Group MSG-163.
+A **Federation** is a union of essentially independent applications (**Federates**) interoperating using the common infrastructure services accessed through well-defined standard interfaces and governed by common agreements on modelling responsibilities and information exchange. 
 
-## Proposed Changes
-* Merge NETN-SCP-Base, NETN-Repair, NETN-Transport, NETN-Supply and NETN-Storage
-* Rename and update NETN-LLBML
-* Add module NETN-ORG for representation of Task Organizations, Holdings, Org. relationships and initial allocation of modelling responsibilities
-* Add module NETN-METOC (in collaboration with MSG-156) for representation of Weather and weather effects
-* Add module NETN-AIS for representation of AIS tracks in simulation
-* Update all other modules
+**NATO STANAG 4603** mandates the use of IEEE 1516 standards on High-Level Architecture (**HLA**) for federates and federations. 
 
-## Schedule
-- Q1 2019 Drafting NETN-ETR Module
-- Q2 2019 Pre-release NETN-ETR Module
-- Q3 2019 Drafting NETN-ORG Module, NETN-LOG module & NETN-METOC Module
-- Q4 2019 Pre-release of NETN-ORBAT Module, NETN-LOG Module & NETN-METOC Module
-- Q1 2020 Drafting of NETN-AIS Module
-- Q2 2020 Pre-release of NETN-AIS Module
-- Q3 2020 Drafting of AMSP-04 Ed b
-- Q4 2020 NMSG MS3 approval of final draft of AMSP-04 Ed B. Submit AMSP-04 to NSO for publication and update of STANREC 4800 to cover the updated standard.
-- 2021 Expect AMSP-04 Ed B officially published.
+The HLA standard specifies how to document information exchange using a Federation Object Model (**FOM**). Different domains may have different FOMs but can use the same underlying simulation infrastructure standard. 
 
-_Changes to the schedule is possible_
+HLA services are provided by a Run-Time Infrastructure (**RTI**). On the network the RTI acts as a distributed operating system providing the standard HLA interfaces to the federates. Internally the RTI uses distributed algorithms and network protocols to implement all HLA services. 
 
-## Involvement
-Please contact your national NATO Modelling and Simulation Group representative for more information how to join MSG-163 or provide your commets directly through GitHub.
+**Federation architecture** is the style of design and method of integration to create coherent distributed simulation systems based on federates and a common service-oriented infrastructure. 
 
-## FOM Module Dependencies
+**Federation design** is detailed specification of a federation that meet requirements for a specific simulation solution used to support simulation based events such as a Computer Assisted eXercises (CAX).
+
+The **NETN Federation Architecture** mandates the use of HLA (in accordance with STANAG 4603) and the use of the NETN FOM. 
+
+## NETN FOM Modules
+
+The NETN FOM is defined as the complete set of NETN FOM Modules plus all modules they depend on (e.g. RPR-FOM modules). The modules have inter-dependencies and are designed to maximize re-use and interoperability. All NETN FOM modules are provided as HLA IEEE 1516-2010 OMT Data Interchange Format XML files.
+ 
+
 
 <img src="images/dependencies.png"/>
 
 <!--
 # Vis-js.com
-
 
 digraph G {
 
@@ -42,18 +35,32 @@ digraph G {
 	"NETN-LOG" -> "NETN-BASE"
 	"RPR-Physical" -> "RPR-Base"
 		"RPR-Aggregate" -> "RPR-Base"
-	"NETN-PHYS" -> "RPR-Physical"
+	"NETN-Physical" -> "RPR-Physical"
 	"NETN-AGG" -> "RPR-Aggregate"
 	"NETN-METOC" -> "NETN-BASE"
 	"NETN-MRM" -> "NETN-TMR"
 	"NETN-TMR" -> "NETN-BASE"
-	"NETN-CBRN" -> "NETN-PHYS"
+	"NETN-CBRN" -> "NETN-Physical"
 	"NETN-ETR" -> "NETN-BASE"
-
 }
-
 -->
 
+Figure: The NETN FOM
+
+
+|NETN FOM Module|Dependency|Description|
+|---|---|---|
+|NETN-Base|RPR-FOM Base|NETN common concepts and datatypes.|
+|NETN-Physical||Physical platform and entities state.|
+|NETN-Aggregate||Simulated Unit state.|
+|NETN-ORG||Representation of task organization relationships and status.|
+|NETN-LOG||Modelling of Logistics Services across federates.|
+|NETN-ETR||Tasking of simulation entities and simulation task reporting.|
+|NETN-CBRN||Representation of CBRN triggers, release and events.|
+|NETN-METOC||Representation of weather and effects of weather.|
+|NETN-AIS||Representation of simulated ship AIS data.|
+|NETN-MRM||Multi-Resolution modelling including aggregation and disaggregation patterns.|
+|NETN-TMR||Coordinated transfer of modelling responsibilities between federates.|
 
 ## License
 
@@ -85,6 +92,11 @@ Version numbering of the NETN-FOM and associated documentation is based on the f
 |v3.0|Update release of NETN FOM included in AMSP-04 Ed B v1.0. New modules NETN-METOC, NETN-LOG (replaces NETN-SCP-BASE, NETN-Supply, NETN-Storage, NETN-Repair, NETN-Transport), NETN-ORG, NETN-ETR (replaces NETN-LLBML), NETN-AIS. Updates of all other modules.|
 
 [Changelog](changelog.md)
+
+
+## History
+
+[History](history.md)
 
 ## Documentation
 

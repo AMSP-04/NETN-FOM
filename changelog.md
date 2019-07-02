@@ -9,15 +9,16 @@ New Modules
 * NETN-LOG - merges NETN-SCP-Base, NETN-Repair, NETN-Transport, NETN-Supply, NETN-Storage
 * NETN-AIS
 
+Updated Modules
+* NETN-BASE
+* ...
+
 Removed Modules
 * NETN-SCP-Base - included in NETN-LOG
 * NETN-Repair - included in NETN-LOG
 * NETN-Transport - included in NETN-LOG
 * NETN-Supply - included in NETN-LOG
 * NETN-Storage - included in NETN-LOG
-
-Updated Modules
-* ...
 
 ### Changes in v 2.0 
 Version 2.0 of the NETN-FOM is included in AMSP-04 Ed A v1.0 and is based on updates made by MSG-106 and MSG-134.
@@ -52,7 +53,3 @@ New Modules
 * NETN Service Consumer‐Provider FOM Module v1.0
 * NETN Logistics FOM Module v1.0
 * NETN Aggregate FOM Module v1.0
-
-
-
-
