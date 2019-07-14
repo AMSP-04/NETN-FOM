@@ -42,6 +42,8 @@ digraph G {
 		"RPR-Aggregate" -> "RPR-Base"
 	"NETN-Physical" -> "RPR-Physical"
 	"NETN-AGG" -> "RPR-Aggregate"
+	"NETN-Physical" -> "NETN-BASE"
+	"NETN-AGG" -> "NETN-BASE"
 	"NETN-METOC" -> "NETN-BASE"
 	"NETN-MRM" -> "NETN-TMR"
 	"NETN-TMR" -> "NETN-BASE"
