@@ -1,24 +1,28 @@
-## Changelog
+## Changelog NETN-FOM
 
-### Changes in v 3.0 (TBD)
+### Changes in v 3.0
 Version 3.0 of the NETN-FOM is included in AMSP-04 Ed B v1.0 and is based on updates made by MSG-163.
 
-New Modules
-* NETN-METOC
-* NETN-ORG
-* NETN-LOG - merges NETN-SCP-Base, NETN-Repair, NETN-Transport, NETN-Supply, NETN-Storage
-* NETN-AIS
+#### NETN-FOM#14 Add NETN FOM Module for representing MSDL information
+* Added FOM Module NETN-ORG for representation of Organization
 
-Updated Modules
-* NETN-BASE
-* ...
+#### NETN-FOM#17 Add NETN FOM Module for METOC
+* Added NETN-METOC FOM Module
 
-Removed Modules
-* NETN-SCP-Base - included in NETN-LOG
-* NETN-Repair - included in NETN-LOG
-* NETN-Transport - included in NETN-LOG
-* NETN-Supply - included in NETN-LOG
-* NETN-Storage - included in NETN-LOG
+#### NETN-FOM#21 Merge Logistics FOM Modules
+* Added NETN-LOG FOM Module
+* Merged NETN-SCP-Base, NETN-Repair, NETN-Transport, NETN-Supply, NETN-Storage into NETN-LOG
+* Removed NETN-SCP-Base - included in NETN-LOG
+* Removed NETN-Repair - included in NETN-LOG
+* Removed NETN-Transport - included in NETN-LOG
+* Removed NETN-Supply - included in NETN-LOG
+* Removed NETN-Storage - included in NETN-LOG
+
+#### NETN-FOM#22 Rename LBML Module
+* LBML module renamed to NETN-ETR (Entity Tasking and Reporting)
+
+
+
 
 ### Changes in v 2.0 
 Version 2.0 of the NETN-FOM is included in AMSP-04 Ed A v1.0 and is based on updates made by MSG-106 and MSG-134.
