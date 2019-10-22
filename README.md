@@ -65,7 +65,7 @@ Figure: The NETN FOM
 ## License
 
 Copyright (C) 2019 NATO/OTAN.
-This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENSE.md). 
+This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENCE.md). 
 
 The work includes all the NETN FOM Modules and related [documentation](NETN-FOM.md).
 
