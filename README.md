@@ -1,4 +1,12 @@
-# NETN FOM v3.0
+# NETN FOM
+
+The NETN FOM is an identified set of HLA Evolved FOM Modules. The NETN FOM modules are recommended for use when implementing NATO AMSP-04 NETN FAFD compliant distributed simulation. These NETN FOM include reference to other standard FOM modules as well as NETN modules developed by NATO Modelling and Simulation Group (NMSG) Modelling and Simulation Standards Subgroup (MS3).
+
+The modules have inter-dependencies and have been designed to maximize re-use and interoperability with legacy systems using existing standards, and those having requirements for new patterns of simulation interoperability. The NETN FOM is the complete set of NETN modules and all other modules they depend on (e.g. SISO RPR-FOM modules).
+
+The modular concept allows federates to load only those modules necessary for the federation instance. In addition, the modules can be extended with more detailed representation by creating new modules and sub-classing or using information from other modules.
+
+NETN Federations may extend the reference FOM with additional FOM Modules when appropriate. These FOM modules can be used in combination and extended to support NETN federation design. A specific federation may choose to include additional FOM modules, extend the NETN modules and/or select to use only a subset of the provided modules depending on the needs and requirements of the federation. The basic FOM Module rules as defined in HLA Evolved shall be applied. When extending the FOM with additional modules, the naming of classes, datatypes and other identifiers must be de-conflicted.
 
 ## Background
 In 2006, NATO Allied Command Transformation (ACT) requested NATO Modelling
@@ -12,26 +20,57 @@ In late 2014, the NMSG technical activity **MSG-134 NATO Distributed Simulation 
 
 In early 2018, the NMSG technical activity **MSG-163 Evolving NATO Standards for Federated Simulation** started as a follow-on to MSG-134. In late 2020 the group will provide a draft updated AMSP-04 Ed B NETN FAFD document including **NETN-FOM v3.0** that incudes both new modules and several updates based on NATO and national experiences using the NETN-FOM.
 
-## Concepts
 
-A **Federation** is a union of essentially independent applications (**Federates**) interoperating using the common infrastructure services accessed through well-defined standard interfaces and governed by common agreements on modelling responsibilities and information exchange. 
+## NETN FOM Versions
 
-**NATO STANAG 4603** mandates the use of IEEE 1516 standards on High-Level Architecture (**HLA**) for federates and federations. 
+### NETN FOM v1.0
+The first version of the NETN FOM developed by MSG-068 was not published as a NATO standard and has been deprecated.
 
-The HLA standard specifies how to document information exchange using a Federation Object Model (**FOM**). Different domains may have different FOMs but can use the same underlying simulation infrastructure standard. 
+## NETN FOM v2.0 (CURRENT)
+The current version of the NETN FOM was published as AMSP-04 in March 2018 and is covered by STANREC 4800. 
+The released version of the v 2.0 are available in the master branch of module repositories in https://github.com/AMSP-04 and include the following modules:
 
-HLA services are provided by a Run-Time Infrastructure (**RTI**). On the network the RTI acts as a distributed operating system providing the standard HLA interfaces to the federates. Internally the RTI uses distributed algorithms and network protocols to implement all HLA services. 
+* NETN-BASE
+* NETN-Physical
+* NETN-Aggregate
+* NETN-TMR
+* NETN-MRM
+* NETN-CBRN
+* NETN-LOG (SCB Base, Supply, Transport, Repair, Storage)
+* NETN-LBML
+* NETN-HCBML
 
-**Federation architecture** is the style of design and method of integration to create coherent distributed simulation systems based on federates and a common service-oriented infrastructure. 
+<img src="./images/netn-fom.png" width="75%"/>
 
-**Federation design** is detailed specification of a federation that meet requirements for a specific simulation solution used to support simulation based events such as a Computer Assisted eXercises (CAX).
+[Full AMSP-04 documentation](https://nso.nato.int/nso/nsdd/APdetails.html?APNo=2268&LA=EN)
 
-The **NETN Federation Architecture** mandates the use of HLA (in accordance with STANAG 4603) and the use of the NETN FOM. 
+[Download NETN FOM v2.0 Modules](https://github.com/AMSP-04/NETN-FOM/tree/master/modules)
 
-## NETN FOM Modules
+## NETN FOM v3.0 (IN DEVELOPMENT)
+The next version of the NETN FOM is currently under development.
+Intermediate releases of the NETN Modules in v 3.0 are available in the develop branch of FOM module repositories in https://github.com/AMSP-04 and include the following modules:
 
-The NETN FOM is defined as the complete set of NETN FOM Modules plus all modules they depend on (e.g. RPR-FOM modules). The modules have inter-dependencies and are designed to maximize re-use and interoperability. All NETN FOM modules are provided as HLA IEEE 1516-2010 OMT Data Interchange Format XML files.
- 
+* NETN-BASE
+* NETN-Physical
+* NETN-Aggregate
+* NETN-TMR
+* NETN-MRM
+* NETN-CBRN
+* NETN-LOG
+* NETN-ETR
+* NETN-ORG
+* NETN-METOC
+
+
+## Use of NETN FOM modules
+
+A NETN federation design may extend NETN FOM modules (as new modules), include other FOM modules, and/or select to use only a subset of the NETN modules, all depending on the needs and requirements of the federation. 
+
+The basic FOM Module rules as defined in HLA Evolved shall be applied. When extending the FOM with additional modules, the naming of classes, datatypes and other identifiers must be de-conflicted.
+
+Registered objects and interactions are always discovered/received at the most specific subscribed class level. Extending a FOM Module with additional subclasses provides the possibility to add extra attributes/parameters at the more specific class level. Exchange of information using this more specific level can take place between federates publishing and subscribing to this level. However, to become compatible with and receive information from federates only publishing on the more general level, the receiving federate must subscribe to both class levels. Subscribers of the more general class will receive information from publishers of the more specific class level.
+
+Example: A national extension to the NETN FOM Modules subclasses existing NETN object classes and defines additional attributes. National models aware of this extension can publish and subscribe to the more specific level defined in the national FOM module extensions. Other existing federates not aware of the extension can still discover the object and receive updates but only on the level they subscribe to. In order for the national federates to discover and receive information from other federates they need to subscribe to the NETN class level as well as the national extension level. Note that the discovered object and attribute updates will be on the NETN level.
 
 ## License
 
