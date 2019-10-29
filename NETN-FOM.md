@@ -1,73 +1,66 @@
 # NETN FOM
 
-Copyright (C) 2019 NATO/OTAN.
-This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENSE.md).
+The NETN FOM is an identified set of HLA Evolved FOM Modules. The NETN FOM modules are recommended for use when implementing NATO AMSP-04 NETN FAFD compliant distributed simulation. These NETN FOM include reference to other standard FOM modules as well as NETN modules developed by NATO Modelling and Simulation Group (NMSG) Modelling and Simulation Standards Subgroup (MS3).
 
-## Introduction
+The modules have inter-dependencies and have been designed to maximize re-use and interoperability with legacy systems using existing standards, and those having requirements for new patterns of simulation interoperability. The NETN FOM is the complete set of NETN modules and all other modules they depend on (e.g. SISO RPR-FOM modules).
 
-A **Federation** is a union of essentially independent applications (**Federates**) interoperating using the common infrastructure services accessed through well-defined standard interfaces and governed by common agreements on modelling responsibilities and information exchange. 
+The modular concept allows federates to load only those modules necessary for the federation instance. In addition, the modules can be extended with more detailed representation by creating new modules and sub-classing or using information from other modules.
 
-**NATO STANAG 4603** mandates the use of IEEE 1516 standards on High-Level Architecture (**HLA**) for federates and federations.  
+NETN Federations may extend the reference FOM with additional FOM Modules when appropriate. These FOM modules can be used in combination and extended to support NETN federation design. A specific federation may choose to include additional FOM modules, extend the NETN modules and/or select to use only a subset of the provided modules depending on the needs and requirements of the federation. The basic FOM Module rules as defined in HLA Evolved shall be applied. When extending the FOM with additional modules, the naming of classes, datatypes and other identifiers must be de-conflicted.
 
-HLA services are provided by a Run-Time Infrastructure (**RTI**). On the network the RTI acts as a distributed operating system providing the standard HLA interfaces to the federates. Internally the RTI uses distributed algorithms and network protocols to implement all HLA services. 
+## Background
+In 2006, NATO Allied Command Transformation (ACT) requested NATO Modelling
+and Simulation Group (NMSG) to explore the concepts of a NATO Education and Training Network capability. An exploratory team (ET-025) was set up to analyze the requirement and it proposed a technical activity to develop the NETN concepts. 
 
-**Federation architecture** is the style of design and method of integration to create coherent distributed simulation systems based on federates and a common service-oriented infrastructure. 
+In 2007, the NMSG technical activity **MSG-068 NETN** was started. The group was led by NATO Joint Warfare Center (JWC) and with participants from NATO HQ-SACT, NATO Joint Forces Training Center (JFTC), NATO Consultancy, Command and Control Agency (NC3A) and 13 Nations (Australia, Bulgaria, France, Germany, Hungary, Netherlands, Romania, Slovenia, Spain, Sweden, Turkey, UK, USA). MSG-068 assessed the distributed simulation and learning capabilities that could contribute to the development of an NETN capability and drafted standards to better enable reuse and sharing of national Modelling and Simulation systems. The capabilities were demonstrated at I/ITSEC 2010 and the group ended its work in 2011. A NETN Federation Architecture and FOM Design specification (NETN FAFD) was produced which included the **NETN-FOM v1.0** published in February 2012. 
 
-**Federation design** is detailed specification of a federation that meet requirements for a specific simulation solution used to support simulation based events such as a Computer Assisted eXercises (CAX).
+In early 2012, the NMSG technical activity **MSG-106 SPHINX** was started as a follow-on to MSG-068 but with a slightly larger scope. The technical subgroup of MSG-106 continued to work on the NETN FAFD specification and delivered a draft NETN-FOM v2.0 which included several new FOM modules and other improvements. The updated FOM was also included in the draft Allied Modelling and Simulation Publication (AMSP-04) NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD).
 
-### Purpose
+In late 2014, the NMSG technical activity **MSG-134 NATO Distributed Simulation Architecture & Design, Compliance Testing and Certification** was started as a follow-on for continued maintenance of the NETN FAFD and to continue work on establishing the NATO HLA certification process identified in STANAG 4603. The group did not add any new modules to the NETN-FOM but it assisted NMSG in updating the draft AMSP-04 to a final version inclduing an official **NETN-FOM v2.0** release. The group ended its work in late 2017 and the AMSP-04 was later promulgted and published by NATO in March 2018 and is covered by NATO STANREC 4800.
 
-The HLA standard specifies how to document information exchange using a Federation Object Model (**FOM**). Different domains may have different FOMs but can use the same underlying simulation infrastructure standard.
-
-The NETN FOM is defined as the complete set of NETN FOM Modules plus all modules they depend on (e.g. RPR-FOM modules). The modules have inter-dependencies and are designed to maximize re-use and interoperability. All NETN FOM modules are provided as HLA IEEE 1516-2010 OMT Data Interchange Format XML files.
-
-The **NETN Federation Architecture** mandates the use of HLA (in accordance with STANAG 4603) and the use of the NETN FOM. 
-
-### Scope
+In early 2018, the NMSG technical activity **MSG-163 Evolving NATO Standards for Federated Simulation** started as a follow-on to MSG-134. In late 2020 the group will provide a draft updated AMSP-04 Ed B NETN FAFD document including **NETN-FOM v3.0** that incudes both new modules and several updates based on NATO and national experiences using the NETN-FOM.
 
 
+## NETN FOM Versions
 
-<img src="images/dependencies.png"/>
+### NETN FOM v1.0
+The first version of the NETN FOM developed by MSG-068 was not published as a NATO standard and has been deprecated.
 
-<!--
-# Viz-js.com
+## NETN FOM v2.0 (CURRENT)
+The current version of the NETN FOM was published as AMSP-04 in March 2018 and is covered by STANREC 4800. 
+The released version of the v 2.0 are available in the master branch of module repositories in https://github.com/AMSP-04 and include the following modules:
 
-digraph G {
+* NETN-BASE
+* NETN-Physical
+* NETN-Aggregate
+* NETN-TMR
+* NETN-MRM
+* NETN-CBRN
+* NETN-LOG (SCB Base, Supply, Transport, Repair, Storage)
+* NETN-LBML
+* NETN-HCBML
 
-	"RPR-Base" -> "RPR-Foundation";
-	"NETN-BASE" -> "RPR-Foundation"
-	"NETN-LOG" -> "RPR-Base"
-	"NETN-LOG" -> "NETN-BASE"
-	"RPR-Physical" -> "RPR-Base"
-		"RPR-Aggregate" -> "RPR-Base"
-	"NETN-Physical" -> "RPR-Physical"
-	"NETN-AGG" -> "RPR-Aggregate"
-	"NETN-Physical" -> "NETN-BASE"
-	"NETN-AGG" -> "NETN-BASE"
-	"NETN-METOC" -> "NETN-BASE"
-	"NETN-MRM" -> "NETN-TMR"
-	"NETN-TMR" -> "NETN-BASE"
-	"NETN-CBRN" -> "NETN-Physical"
-	"NETN-ETR" -> "NETN-BASE"
-}
--->
+<img src="./images/netn-fom.png" width="75%"/>
 
-Figure: The NETN FOM
+[Full AMSP-04 documentation](https://nso.nato.int/nso/nsdd/APdetails.html?APNo=2268&LA=EN)
 
+[Download NETN FOM v2.0 Modules](https://github.com/AMSP-04/NETN-FOM/tree/master/modules)
 
-|NETN FOM Module|Dependency|Description|
-|---|---|---|
-|NETN-Base|RPR-FOM Base|NETN common concepts and datatypes.|
-|NETN-Physical||Physical platform and entities state.|
-|NETN-Aggregate||Simulated Unit state.|
-|NETN-ORG||Representation of task organization relationships and status.|
-|NETN-LOG||Modelling of Logistics Services across federates.|
-|NETN-ETR||Tasking of simulation entities and simulation task reporting.|
-|NETN-CBRN||Representation of CBRN triggers, release and events.|
-|NETN-METOC||Representation of weather and effects of weather.|
-|NETN-AIS||Representation of simulated ship AIS data.|
-|NETN-MRM||Multi-Resolution modelling including aggregation and disaggregation patterns.|
-|NETN-TMR||Coordinated transfer of modelling responsibilities between federates.|
+## NETN FOM v3.0 (IN DEVELOPMENT)
+The next version of the NETN FOM is currently under development.
+Intermediate releases of the NETN Modules in v 3.0 are available in the develop branch of FOM module repositories in https://github.com/AMSP-04 and include the following modules:
+
+* NETN-BASE
+* NETN-Physical
+* NETN-Aggregate
+* NETN-TMR
+* NETN-MRM
+* NETN-CBRN
+* NETN-LOG
+* NETN-ETR
+* NETN-ORG
+* NETN-METOC
+
 
 ## Use of NETN FOM modules
 
