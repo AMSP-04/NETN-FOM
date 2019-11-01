@@ -50,16 +50,16 @@ The released version of the v 2.0 are available in the master branch of module r
 The next version of the NETN FOM is currently under development.
 Intermediate releases of the NETN Modules in v 3.0 are available in the develop branch of FOM module repositories in https://github.com/AMSP-04 and include the following modules:
 
-* NETN-BASE
-* NETN-Physical
-* NETN-Aggregate
-* NETN-TMR
-* NETN-MRM
-* NETN-CBRN
-* NETN-LOG
-* NETN-ETR
-* NETN-ORG
-* NETN-METOC
+* NETN-BASE (Updated)
+* NETN-Physical (Updated)
+* NETN-Aggregate (Updated)
+* NETN-TMR (Updated)
+* NETN-MRM (Updated)
+* NETN-CBRN (Updated)
+* NETN-LOG (Merges SCB Base, Supply, Transport, Repair, Storage)
+* NETN-ETR (Replaces NETN-LBML)
+* NETN-ORG (New)
+* NETN-METOC (New)
 
 
 
