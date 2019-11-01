@@ -31,7 +31,7 @@ The current version of the NETN FOM was published as AMSP-04 in March 2018 and i
 The released version of the v 2.0 are available in the master branch of module repositories in https://github.com/AMSP-04 and include the following modules:
 
 * NETN-BASE
-* NETN-Physical
+* [NETN-Physical](https://github.com/AMSP-04/NETN-Physical/tree/v1.1.2)
 * [NETN-Aggregate](https://github.com/AMSP-04/NETN-Aggregate/tree/v1.0.4)
 * NETN-TMR
 * NETN-MRM
