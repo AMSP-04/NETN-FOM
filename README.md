@@ -32,7 +32,7 @@ The released version of the v 2.0 are available in the master branch of module r
 
 * NETN-BASE
 * NETN-Physical
-* NETN-Aggregate
+* [NETN-Aggregate](https://github.com/AMSP-04/NETN-Aggregate/tree/v1.0.4)
 * NETN-TMR
 * NETN-MRM
 * NETN-CBRN
