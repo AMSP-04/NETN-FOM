@@ -33,11 +33,11 @@ The released version of the v 2.0 are available in the master branch of module r
 * NETN-BASE
 * [NETN-Physical](https://github.com/AMSP-04/NETN-Physical/tree/v1.1.2)
 * [NETN-Aggregate](https://github.com/AMSP-04/NETN-Aggregate/tree/v1.0.4)
-* NETN-TMR
-* NETN-MRM
-* NETN-CBRN
+* [NETN-TMR](https://github.com/AMSP-04/NETN-TMR/releases/tag/v1.1.3)
+* [NETN-MRM](https://github.com/AMSP-04/NETN-MRM/releases/tag/v1.1.1)
+* [NETN-CBRN](https://github.com/AMSP-04/NETN-CBRN/tree/v1.1.9)
 * NETN-LOG (SCB Base, Supply, Transport, Repair, Storage)
-* NETN-LBML
+* [NETN-LBML](https://github.com/AMSP-04/NETN-LBML/tree/v1.1.0)
 * NETN-HCBML
 
 <img src="./images/netn-fom.png" width="75%"/>
