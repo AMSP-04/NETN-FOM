@@ -25,15 +25,16 @@ The next version of the NETN FOM is currently under development.
 Intermediate releases of the NETN Modules in v 3.0 are available in the develop branch of FOM module repositories in https://github.com/AMSP-04 and include the following modules:
 
 * NETN-BASE
-* NETN-Physical
 * NETN-Aggregate
+* NETN-Physical
+* NETN-CBRN
+* NETN-METOC
+* NETN-LOG
 * NETN-TMR
 * NETN-MRM
-* NETN-CBRN
-* NETN-LOG
+* NETN-AIS
 * NETN-ETR
 * NETN-ORG
-* NETN-METOC
 
 <img src="./images/NETN FOM v3.0 Draft.png"/>
 
