@@ -59,7 +59,7 @@ Intermediate releases of the NETN Modules in v 3.0 are available in the develop 
 * NETN-ORG
 * NETN-METOC
 
-<img src="./images/NETN FOM v3.0 draft.png" width="75%"/>
+<img src="./images/NETN FOM v3.0 Draft.png" width="75%"/>
 
 ## Use of NETN FOM modules
 
