@@ -20,30 +20,6 @@ In late 2014, the NMSG technical activity **MSG-134 NATO Distributed Simulation 
 
 In early 2018, the NMSG technical activity **MSG-163 Evolving NATO Standards for Federated Simulation** started as a follow-on to MSG-134. In late 2020 the group will provide a draft updated AMSP-04 Ed B NETN FAFD document including **NETN-FOM v3.0** that incudes both new modules and several updates based on NATO and national experiences using the NETN-FOM.
 
-
-## NETN FOM Versions
-
-### NETN FOM v1.0
-The first version of the NETN FOM developed by MSG-068 was not published as a NATO standard and has been deprecated.
-
-## NETN FOM v2.0 (CURRENT)
-The current version of the NETN FOM was published as AMSP-04 in March 2018 and is covered by STANREC 4800. 
-The released version of the v 2.0 are available in the master branch of module repositories in https://github.com/AMSP-04 and include the following modules:
-
-* NETN-BASE
-* NETN-Physical
-* NETN-Aggregate
-* NETN-TMR
-* NETN-MRM
-* NETN-CBRN
-* NETN-LOG (SCB Base, Supply, Transport, Repair, Storage)
-* NETN-LBML
-* NETN-HCBML
-
-[Full AMSP-04 documentation](https://nso.nato.int/nso/nsdd/APdetails.html?APNo=2268&LA=EN)
-
-[Download NETN FOM v2.0 Modules](https://github.com/AMSP-04/NETN-FOM/tree/master/modules)
-
 ## NETN FOM v3.0 (IN DEVELOPMENT)
 The next version of the NETN FOM is currently under development.
 Intermediate releases of the NETN Modules in v 3.0 are available in the develop branch of FOM module repositories in https://github.com/AMSP-04 and include the following modules:
