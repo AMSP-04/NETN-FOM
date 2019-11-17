@@ -3,11 +3,19 @@
 ### Changes in v 3.0
 Version 3.0 of the NETN-FOM is included in AMSP-04 Ed B v1.0 and is based on updates made by MSG-163.
 
+
+
 #### NETN-FOM#14 Add NETN FOM Module for representing MSDL information
 * Added FOM Module NETN-ORG for representation of Organization
 
+#### NETN-FOM#15 add NETN FOM Module to extend RPR SE
+* Added representation of CheckPoint to NETN-Physical FOM Module. No NETN-SE Module added.
+
 #### NETN-FOM#17 Add NETN FOM Module for METOC
 * Added NETN-METOC FOM Module
+
+#### NETN-FOM#20 dd support for AIS information #20
+* Added FOM Module NETN-AIS for representation of Vessel Traffic Information and Data
 
 #### NETN-FOM#21 Merge Logistics FOM Modules
 * Added NETN-LOG FOM Module

@@ -20,9 +20,11 @@ In late 2014, the NMSG technical activity **MSG-134 NATO Distributed Simulation 
 
 In early 2018, the NMSG technical activity **MSG-163 Evolving NATO Standards for Federated Simulation** started as a follow-on to MSG-134. In late 2020 the group will provide a draft updated AMSP-04 Ed B NETN FAFD document including **NETN-FOM v3.0** that incudes both new modules and several updates based on NATO and national experiences using the NETN-FOM.
 
-## NETN FOM v3.0 (IN DEVELOPMENT)
+## NETN FOM v3.0
 The next version of the NETN FOM is currently under development.
 Intermediate releases of the NETN Modules in v 3.0 are available in the develop branch of FOM module repositories in https://github.com/AMSP-04 and include the following modules:
+
+<img src="./images/NETN FOM v3.0 Draft.png"/>
 
 * NETN-BASE
 * NETN-Aggregate
@@ -36,8 +38,6 @@ Intermediate releases of the NETN Modules in v 3.0 are available in the develop 
 * NETN-ETR
 * NETN-ORG
 
-<img src="./images/NETN FOM v3.0 Draft.png"/>
-
 ## Use of NETN FOM modules
 
 A NETN federation design may extend NETN FOM modules (as new modules), include other FOM modules, and/or select to use only a subset of the NETN modules, all depending on the needs and requirements of the federation. 
@@ -48,14 +48,14 @@ Registered objects and interactions are always discovered/received at the most s
 
 Example: A national extension to the NETN FOM Modules subclasses existing NETN object classes and defines additional attributes. National models aware of this extension can publish and subscribe to the more specific level defined in the national FOM module extensions. Other existing federates not aware of the extension can still discover the object and receive updates but only on the level they subscribe to. In order for the national federates to discover and receive information from other federates they need to subscribe to the NETN class level as well as the national extension level. Note that the discovered object and attribute updates will be on the NETN level.
 
-## License
+## Licence
 
 Copyright (C) 2019 NATO/OTAN.
 This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENCE.md). 
 
 The work includes all the NETN FOM Modules and related [documentation](NETN-FOM.md).
 
-Above license gives you the right to use and redistribute the NETN FOM (XML files<> and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN FOM by reference and including neccessary scaffolding classes. You are NOT allowed to modify the NETN FOM or its documentation without prior permission by the NATO Modelling and Simulation Group. 
+Above licence gives you the right to use and redistribute the NETN FOM (XML files<> and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN FOM by reference and including neccessary scaffolding classes. You are NOT allowed to modify the NETN FOM or its documentation without prior permission by the NATO Modelling and Simulation Group. 
 
 ## Versions, updates and extentions
 
