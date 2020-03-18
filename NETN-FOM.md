@@ -37,6 +37,9 @@ Intermediate releases of the NETN Modules in v 3.0 are available in the develop 
 * NETN-AIS
 * NETN-ETR
 * NETN-ORG
+* NETN-SE
+* NETN-AIS
+* NETN-COM
 
 ## Use of NETN FOM modules
 
