@@ -41,4 +41,7 @@ Version numbering of the NETN-FOM and associated documentation is based on the f
 
 ## Documentation
 
+[Naming Conventions](NamingConventions.md)
+
 [Full Documentation](NETN-FOM.md)
+
