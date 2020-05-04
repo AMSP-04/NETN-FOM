@@ -19,13 +19,13 @@ The NETN FOM provides standard interfaces for the representation of simulated en
 |Module|Dependency|Description|
 |---|---|---|
 |NETN-BASE| | |
-|NETN-Aggregate| | |
 |NETN-Physical| RPR-Physical, NETN-BASE|The NETN-Physical FOM Module provides a standard interface for the representation of Physical Entities in a federated distributed simulation. All RPR-FOM `PhysicalEntity` object classes have been extended with additional attributes to support NETN based federation. It includes a unique identifier that provides better support for initialization, NETN-TMR and other advanced design patterns requiring unique pre-defined identifiers for simulated entities. NETN federations still allow pure RPR-FOM based federates in the federation but with limited ability to interoperate in some NETN design aspects. |
 |NETN-CBRN| | |
 |NETN-METOC| | |
 |NETN-LOG| | |
 |NETN-TMR| | |
-|NETN-MRM| | |
+|NETN-Aggregate| | |
+|NETN-MRM| NETN-BASE | The purpose of NETN-MRM is to support federations with entities represented at multiple levels of resolution and where the level of resolution can change dynamically during a simulation. It supports patterns for aggregation and disaggregation of units, and division and merging of unit resources. |
 |NETN-AIS| | |
 |NETN-ETR| | |
 |NETN-ORG| | |
