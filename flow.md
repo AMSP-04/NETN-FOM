@@ -2,8 +2,8 @@
 
 ## Repositories
 | Type | Description |
-| ---| ---| ---| 
-| NETN FOM  | Main Repository for the entire FOM including all related FOM Modules.|
+| ---| ---|
+| NETN-FOM  | Main Repository for the entire FOM including all related FOM Modules.|
 | NETN-* | Repository for a specific FOM Module.|
 
 ## Branches
@@ -12,9 +12,9 @@
 | ---| ---|
 | Master Branch |The latest officially released version. |
 | Develop Branch |The lastest development version with reviewed changes. |
-| Release Branches |Created to prepare for new official release. |
-| Maintenance Branches |Opened to maintain specific baseline or older version version. |
-| Edit Branches |Openend to develop proposed updates and closed after pull-request review and approval.|
+| Maintenance Branches |Opened to maintain specific baseline or older version. |
+| Release Branches |Temporary, used to prepare for a release.|
+| Edit Branches |Temporary, used to develop proposed updates and closed after pull-request review and approval.|
 
 ## Making changes
 All changes should be initiated by creating a GitHub Issue. Issues may also be created for the purpose of discussing possible future changes without suggesting a concrete plan of action.
@@ -49,6 +49,7 @@ If discussions of a PR raises questions that have not been addressed in a GitHub
 3. Create a tag at the commit intended as the release candidate. Name it <version-name>-rcN, where N is the sequential number of the RC for this version, starting at 1.
 4. Optional: Make a release.
 5. Perform review activities.
+
 If changes are necessary before a full release:
 
 * Continue from step 2, making any necessary changes
