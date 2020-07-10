@@ -33,8 +33,6 @@ Version numbering of the NETN-FOM and associated documentation is based on the f
 * Update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-When working with 
-
 |Version|Description|
 |---|---|
 |v1.0|Initial release of NETN FOM as developed by MSG-068 |
@@ -49,6 +47,8 @@ When working with
 
 
 ## Documentation
+
+[Work Flow](flow.md)
 
 [Naming Conventions](NamingConventions.md)
 
