@@ -18,18 +18,19 @@ The NETN FOM provides standard interfaces for the representation of simulated en
 
 |Module|Dependency|Description|
 |---|---|---|
-|NETN-BASE| RPR-Base | The NETN-BASE FOM Module provides common definitions of datatypes and extends the RPR-BASE FOM Module.|
-|NETN-Physical| RPR-Physical, NETN-BASE|The NETN-Physical FOM Module provides a standard interface for the representation of Physical Entities in a federated distributed simulation. All RPR-FOM `PhysicalEntity` object classes have been extended with additional attributes to support NETN based federation. It includes a unique identifier that provides better support for initialization, NETN-TMR and other advanced design patterns requiring unique pre-defined identifiers for simulated entities. NETN federations still allow pure RPR-FOM based federates in the federation but with limited ability to interoperate in some NETN design aspects. |
-|NETN-CBRN| NETN-BASE| NETN-CBRN provides a common standard interface for the representation of CBRN release, detection, effects, and protective measures in a federated distributed simulation. E.g the exposure effect on individual humans in a CBRN contaminated Hazard area where the human is represented in one simulation and the effect is modelled in another federate simulation.|
-|NETN-METOC| NETN-BASE| The purpose of the NETN METOC module is to provide a standard way to exchange data related to weather conditions and primary effects of weather on terrain, on water surfaces, in the atmosphere and subsurface water conditions. The main objective is to provide a reference model that represents a core common subset of METOC related aspects and to allow extension of the module to incorporate additional detail if required. Therefore, the NETN METOC module shall be viewed as a reference FOM module where extensions are not only allowed but encouraged to fully meet federation specific requirements. However, any extension should also be considered as candidates for improving the NETN METOC module or candidates for new standard NETN modules. |
-|NETN-LOG| NETN-BASE| |
-|NETN-TMR| NETN-BASE| |
-|NETN-MRM| NETN-BASE | The purpose of NETN-MRM is to support federations with entities represented at multiple levels of resolution and where the level of resolution can change dynamically during a simulation. It supports patterns for aggregation and disaggregation of units, and division and merging of unit resources. |
-|NETN-AIS|NETN-BASE | |
-|NETN-ETR|NETN-BASE | |
-|NETN-ORG|NETN-BASE | |
-|NETN-SE| NETN-BASE| |
-|NETN-COM| NETN-BASE| |
+|NETN-BASE| RPR-Base | Common definitions of datatypes and extends the RPR-BASE FOM Module.|
+|NETN-Physical| NETN-BASE, RPR-Physical|Representation of Physical Entities in a federated distributed simulation. |
+|NETN-MRM| NETN-BASE, RPR-Aggregate | Aggregate level entity simulation, aggregation and disaggregation of units. Division and merging of unit resources. |
+|NETN-COM| NETN-BASE, RPR-Communication| Representation of Communication Networks and the status och communication links.|
+|NETN-METOC| NETN-BASE| Representation of weather conditions and primary effects of weather on terrain, on water surfaces, in the atmosphere and subsurface water conditions. |
+|NETN-CBRN| NETN-Physical| Representation of CBRN release, detection, effects, and protective measures in a federated distributed simulation.|
+|NETN-LOG| NETN-BASE| Negotiation, delivery, and acceptance of logistics services between federates modelling different entities involved in the service transaction. |
+|NETN-TMR| NETN-BASE| Negotiated and coordinated transfer of attribute modelling responsibility between federates. |
+|NETN-SE| NETN-BASE, RPR-SE| Representation of persistent abstact geographical objects that can be (re-)used and referenced for specifying locations, paths, etc. The module also include the representation of facilities with a function or capability to perform activities. |
+|NETN-ETR|NETN-BASE | Interface for sending simulation tasks to entities represented in a federated distributed simulation.|
+|NETN-ORG|NETN-BASE | Representation of the state of units including command structure and relationship between organizations. |
+|NETN-AIS|NETN-BASE, RPR-Communication| Represent vessel traffic in a simulation using AIS messages.|
+
 
 ## Using the NETN FOM
 
