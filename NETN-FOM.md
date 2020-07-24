@@ -21,7 +21,7 @@ The NETN FOM provides standard interfaces for the representation of simulated en
 |NETN-BASE| v2.0 |RPR-Base | Common definitions of datatypes and extends the RPR-BASE FOM Module.|
 |NETN-Physical| v2.0 |NETN-BASE, RPR-Physical|Representation of Physical Entities in a federated distributed simulation. |
 |NETN-MRM| v2.0 |NETN-BASE, RPR-Aggregate | Aggregate level entity simulation, aggregation and disaggregation of units. Division and merging of unit resources. |
-|NETN-COM| v1.0 |NETN-BASE, RPR-Communication| Representation of Communication Networks and the status och communication links.|
+|NETN-COM| v1.0 |NETN-BASE, RPR-Communication| Representation of Communication Networks and the status of communication links.|
 |NETN-METOC| v1.0 |NETN-BASE| Representation of weather conditions and primary effects of weather on terrain, on water surfaces, in the atmosphere and subsurface water conditions. |
 |NETN-CBRN| v1.2 |NETN-Physical| Representation of CBRN release, detection, effects, and protective measures in a federated distributed simulation.|
 |NETN-LOG| v2.0 |NETN-BASE| Negotiation, delivery, and acceptance of logistics services between federates modelling different entities involved in the service transaction. |
