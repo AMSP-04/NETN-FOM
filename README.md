@@ -33,13 +33,11 @@ Version numbering of the NETN-FOM and associated documentation is based on the f
 * Update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-When working with 
-
 |Version|Description|
 |---|---|
-|v1.0|Initial release of NETN FOM as developed by MSG-068 |
-|v2.0|Update release of NETN FOM included in AMSP-04 Ed A v1.0. New modules NETN-SCP-BASE, NETN-Supply, NETN-Storage, NETN-Repair, NETN-Transport, NETN-CBRN|
-|v3.0|Update release of NETN FOM included in AMSP-04 Ed B v1.0. New modules NETN-METOC, NETN-LOG (replaces NETN-SCP-BASE, NETN-Supply, NETN-Storage, NETN-Repair, NETN-Transport), NETN-ORG, NETN-ETR (replaces NETN-LLBML), NETN-AIS, NETN-AIS, NETN-COM, NETN-SE. Updates of all other modules.|
+|v1.0|Initial release of NETN-FOM as developed by MSG-068 |
+|v2.0|Release of NETN-FOM included in AMSP-04 Ed A|
+|v3.0|Release of NETN-FOM included in AMSP-04 Ed B|
 
 [Changelog](changelog.md)
 
@@ -47,10 +45,11 @@ When working with
 * The master branch of each NETN FOM Module repository contains the official public releases of the module.
 * The develop branch of each NETN FOM Module repository contains the intermediate baseline releases of the module and the lasest build/merge of other feature branches/forks used by members of the maintenance team to update the module.
 
-
-## Documentation
+[Work Flow](flow.md)
 
 [Naming Conventions](NamingConventions.md)
+
+## Documentation
 
 [Full Documentation](NETN-FOM.md)
 
