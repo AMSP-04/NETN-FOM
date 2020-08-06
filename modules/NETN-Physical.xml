@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>NETN-Physical</name>
+        <type>FOM</type>
+        <version>v2.0.0 (Baseline MAR 2020)</version>
+        <modificationDate>2020-03-21</modificationDate>
+        <securityClassification>Not Classified</securityClassification>
+        <purpose></purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>Defines object classes for physical entities, inherit from PRR_v2.</description>
+        <useLimitation></useLimitation>
+        <useHistory>Object classes and datatypes derived from deprecated NETN-FOM v 1.0 module AggDeagg.</useHistory>
+        <useHistory>v1.2.0 - First official release as part of NETN-FOM v2.0</useHistory>
+        <useHistory>v2.0.0 - Updated by MSG-163 for NETN-FOM v3.0</useHistory>
+        <poc>
+            <pocType>Release authority</pocType>
+            <pocName>NATO Modelling and Simulation Group</pocName>
+            <pocOrg>NATO Science and Technology Organization</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-134 NATO Distributed Simulation Architecture &amp; Design, Compliance Testing and Certification</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-106 Enhanced CAX Architecture, Desing and Methodology</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Lennart Olsson</pocName>
+            <pocOrg>Pitch Technologies, Sweden</pocOrg>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>RPR-Physical</identification>
+        </reference>
+        <other></other>
+        <glyph type="png" height="48" width="48" alt="">iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABcSAAAXEgFnn9JSAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAAF10lEQVRoBe2YTUxcVRTHH6WlgLThm5aPmMbapFK1xo+FJtQFRENsIquGSDfucUPSxMQVia40rmBjXEvSlYkLdo0LXKCLRovGlE0TCI1IrCABgZnr/3ffO8OdYYZ5M23jZk7yf/fcc88959xzzr1DiKIa1TJQy0AtA7UM1DJQy8D/l4G6J+T6hOxgq5w9J52swHgcYac+UGAPeCpE8JVQmoMWs1c0OUWFxXaXkBE8mXlGeEk4KSAjeyDkNY0eCD/DiBqEwqwSz4HQIbwpQKeEX4XfBNbLVU8q6chK/KzU7woYToPPU5i/UmDrs2SP+cyZIGPVEJnIJBu/1vhyMj/iQHLLGCMVmRJ2hAWhRQirwPq2QDWRswebxexKXD3Zwd+XCZxQdg6E01JAz3TgywE7+4nerEboyEEskHg53df6FO0Pky0Ec8R4shYOZBjiwOV846cslTNSzABBkMkB4a1EgWwRVBrisFzM34WfhNMCMoigyXqX8LaAH2LcFYpSNQewzLwni+2JVV6USolenyix6VXJOZzFx0Eg8x3P9DWFnCAFY0bI+LzwSKjEDtXiwH8J3cIfAhUh87Qhwf4tfCNAzcKPnsu/8ImossGCr2xXOm27Q6V8FJUXFZbwhy69+obwgvCvYDLrYcYQmubNC/Xs7vwivVXB7LEvjM32Ia+KLDuD2v2PEAb5JHja6MUkMvPFAQzJUvWDGf1SJgh4TyB7xyHtweyt/0r2IPMVz8p801w+ezabZOvdxJ4FzpRAISt5ODc+1ij+xRY0LLQKPAr4NLnYxyM75KjMpM1qtXrjSajms2zkaRQti6/I2qbwp8CzZ3Kxj008nW3CawLPJ7apaFkfVnbpFiXW6UnefN5uK225fVKtiMKAuV8QfpEf20rHVcCCtD8R6E9+9p8mWcLW5YTXDuIg9kvsBeHHggxl8MitfPTlpPC84A/Q0NAQtba2Rru7u9HmJl11SHV1dZFzLjKdra2taGdnJzL5oaYiq6+P2tvbo/39/ejRI+6uJxLGr/R3wqcCT+yxh9B6HoWH+kIrHMQpAD92dXW5M2fOeB55X19fjjedzs5O19TUlJP39PR4nnXTaWtrc+iZ/dCOyTQuC88JEIdIRdZWH0gbB/QgfZmRU0rpcf369UxHR4fnVY2cvFDH9JXpnM7Zs2dz/OjoaOby5ct+3tjYaHKqwF+g+P9eMAqTa7K8MVT4QSsYIHinYH22RkZG3NLSktve3nYPHz5009PTXt7b2+t0EM8PDQ25e/fuObWYW15eduPj415O9VpaWjx/6dIlt7i46O1sbGy4mZkZLz9//rwf5ZPEcRDm7wiQJTeeFfnyykADAs8lJScr7sKFC97wnTt31OKHtLa2Zg7dxYsXPT8/P3+oIG5hYcHLaSUCx97t27fzdHSX3PDwsF8LWssO8In2QEcOYAHHy4e/psjDath6pDJ7/uAA27J48mQkh57XYf14+nT8WJnOqVP8bCil2Wx04kTs0uxkMuQntqN743nT8ZP4UxhnsJTPWtCc9K5ARvzfKt3d3T47N2/edKurqz57tNHs7KyXcwlpEfbcuHHDrayseJ319XU3OTnp5efOnXNcXnTI9v37973O3t6em5uby+kkfsMWGpMMOlKBWJz/NaWPJMYod4BDZJKLmB0cHMzeunUrOzY2hpOsMp5R9j2vu+LHq1evep1r167lydGXHS9rbm7OTk1NZScmJvwcH6qWXWT+c4F//o8Ul71EV2g9j6wKCOcEnxl7/uxJNDlzW7PRqhXqGG86QZ97+1RPwXvedDXyI/O6AKV+RlG2nmP8WHgg2IXyr83AwIAjUAtI63nOeZHQsdercJ05vyf9/f2O1lLfh/u3tP6tcEWASgYfZjtWPfwSPKWFWgR+iZsFHEGFe5GXk9le2x/uMZ4WWhNIGkTw8U3308o+BGR3orKdj6+N75KZN/OFGTN54Ug10uoW7q12TvXDilVrp7avloFaBmoZeIoZ+A+U9ZsK/RfPcAAAAABJRU5ErkJggg==</glyph>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>BaseEntity</name>
+                <objectClass>
+                    <name>PhysicalEntity</name>
+                    <objectClass>
+                        <name>Platform</name>
+                        <objectClass>
+                            <name>Aircraft</name>
+                            <objectClass>
+                                <name>NETN_Aircraft</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>N/A</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Route</name>
+                                    <dataType>PathVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Path. 
+ 
+Optional.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Destination</name>
+                                    <dataType>PointVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Point. 
+ 
+Optional.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>AmphibiousVehicle</name>
+                            <objectClass>
+                                <name>NETN_AmphibiousVehicle</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>N/A</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Route</name>
+                                    <dataType>PathVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Path. 
+ 
+Optional.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Destination</name>
+                                    <dataType>PointVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Point. 
+ 
+Optional.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>GroundVehicle</name>
+                            <objectClass>
+                                <name>NETN_GroundVehicle</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Route</name>
+                                    <dataType>PathVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Path. 
+ 
+Optional.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Destination</name>
+                                    <dataType>PointVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Point. 
+ 
+Optional.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>MultiDomainPlatform</name>
+                            <objectClass>
+                                <name>NETN_MultiDomainPlatform</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Route</name>
+                                    <dataType>PathVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>when Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Path. 
+ 
+Optional.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Destination</name>
+                                    <dataType>PointVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Point. 
+ 
+Optional.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>Spacecraft</name>
+                            <objectClass>
+                                <name>NETN_Spacecraft</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Route</name>
+                                    <dataType>PathVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Chenged</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Path. 
+ 
+Optional.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Destination</name>
+                                    <dataType>PointVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Point. 
+ 
+Optional.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>SubmersibleVessel</name>
+                            <objectClass>
+                                <name>NETN_SubmersibleVehicle</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Route</name>
+                                    <dataType>PathVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Path. 
+ 
+Optional.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Destination</name>
+                                    <dataType>PointVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Point. 
+ 
+Optional.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>SurfaceVessel</name>
+                            <objectClass>
+                                <name>NETN_SurfaceVessel</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>EmbeddedUnitList</name>
+                                    <dataType>ArrayOfUuid</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>List of unique IDs of on-board elements</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Route</name>
+                                    <dataType>PathVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Path. 
+ 
+Optional.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Destination</name>
+                                    <dataType>PointVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Point. 
+ 
+Optional.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                    </objectClass>
+                    <objectClass>
+                        <name>Lifeform</name>
+                        <objectClass>
+                            <name>NonHuman</name>
+                            <objectClass>
+                                <name>NETN_NonHuman</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Route</name>
+                                    <dataType>PathVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Path. 
+ 
+Optional.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Destination</name>
+                                    <dataType>PointVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Point. 
+ 
+Optional.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>Human</name>
+                            <objectClass>
+                                <name>NETN_Human</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>Extensions for NETN</semantics>
+                                <attribute>
+                                    <name>UniqueID</name>
+                                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Callsign</name>
+                                    <dataType>HLAunicodeString</dataType>
+                                    <updateType>Static</updateType>
+                                    <updateCondition>NA</updateCondition>
+                                    <ownership>NoTransfer</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The name of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Status</name>
+                                    <dataType>ActiveStatusEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>If an instance shall be taken into account by federates</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Activity</name>
+                                    <dataType>AggregateMissionEnum16</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>The activity of the object.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Route</name>
+                                    <dataType>PathVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Path. 
+ 
+Optional.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>Destination</name>
+                                    <dataType>PointVariantStruct</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>When Changed</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAreliable</transportation>
+                                    <order>Receive</order>
+                                    <semantics>A reference to a registered NETN_GeoObject.Point. 
+ 
+Optional.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                    </objectClass>
+                    <objectClass>
+                        <name>CulturalFeature</name>
+                        <objectClass>
+                            <name>NETN_CulturalFeature</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <semantics>Extensions for NETN</semantics>
+                            <attribute>
+                                <name>UniqueID</name>
+                                <dataType>UuidArrayOfHLAbyte16</dataType>
+                                <updateType>Static</updateType>
+                                <updateCondition>NA</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>Callsign</name>
+                                <dataType>HLAunicodeString</dataType>
+                                <updateType>Static</updateType>
+                                <updateCondition>NA</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Name of the object.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>Status</name>
+                                <dataType>ActiveStatusEnum8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>If an instance shall be taken into account by federates.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>Activity</name>
+                                <dataType>AggregateMissionEnum16</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>The activity of the object.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>EmbeddedUnitList</name>
+                                <dataType>ArrayOfUuid</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>List of unique IDs of on-board elements</semantics>
+                            </attribute>
+                        </objectClass>
+                    </objectClass>
+                    <objectClass>
+                        <name>Munition</name>
+                        <objectClass>
+                            <name>NETN_Munition</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <semantics>Extension for NETN</semantics>
+                            <attribute>
+                                <name>UniqueID</name>
+                                <dataType>UuidArrayOfHLAbyte16</dataType>
+                                <updateType>Static</updateType>
+                                <updateCondition>NA</updateCondition>
+                                <ownership>NoTransfer</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>Status</name>
+                                <dataType>ActiveStatusEnum8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>WhenChanged</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics>If an instance shall be taken into account by federates</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>Route</name>
+                                <dataType>PathVariantStruct</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>When Changed</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics>A reference to a registered NETN_GeoObject.Path. 
+ 
+Optional.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>Destination</name>
+                                <dataType>PointVariantStruct</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>When Changed</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics>A reference to a registered NETN_GeoObject.Point. 
+ 
+Optional.</semantics>
+                            </attribute>
+                        </objectClass>
+                    </objectClass>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <simpleDataTypes/>
+        <enumeratedDataTypes/>
+        <arrayDataTypes/>
+        <fixedRecordDataTypes/>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes/>
+</objectModel>

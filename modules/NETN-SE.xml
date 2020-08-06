@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification>
+        <name>NETN-SE</name>
+        <type>FOM</type>
+        <version>1.0.0 (Baseline MAR 2020)</version>
+        <modificationDate>2020-03-18</modificationDate>
+        <securityClassification>Not Classified</securityClassification>
+        <purpose>Define synthetic environment objects in a HLA Federation Execution.</purpose>
+        <applicationDomain>Simulation, Training</applicationDomain>
+        <description>New definitions of Geo Objects, does not depend on RPR_v2 SE-FOM.
+
+A NETN_Facility object class to define facilities for different services.</description>
+        <useLimitation></useLimitation>
+        <useHistory>v1.0.0 - First version.</useHistory>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Release authority</pocType>
+            <pocName>NATO Modelling and Simulation Group</pocName>
+            <pocOrg>NATO Science and Technology Organization</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Lennart Olsson</pocName>
+            <pocOrg>Pitch Technologies, Sweden</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Tom van den Berg</pocName>
+            <pocOrg>TNO, the Netherlands</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>Björn Löfstrand</pocName>
+            <pocOrg>Pitch Technologies, Sweden</pocOrg>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>RPR-SE</identification>
+        </reference>
+        <other>
+Copyright © 2019 by NATO/OTAN. All rights reserved.
+This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
+
+Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
+        <glyph type="" alt=""></glyph>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>NETN_Facility</name>
+                <sharing>PublishSubscribe</sharing>
+                <semantics>Base class for NETN Syntetical Environment object classes. 
+ 
+Optional, default empty string.</semantics>
+                <attribute>
+                    <name>UniqueId</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>NA</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The unique identifier of the object. 
+Required value. 
+If not assigned by the ORBAT specification or similar, shall a value be assigned, either randomized or generated from the Marking or EntityIdentifier attribute value. 
+ 
+Required.</semantics>
+                </attribute>
+                <attribute>
+                    <name>Name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>NA</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Name of the object. 
+ 
+Optional.</semantics>
+                </attribute>
+                <attribute>
+                    <name>Status</name>
+                    <dataType>ActiveStatusEnum8</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>When Changed</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Specifies if the geo-object is active or not. 
+ 
+Optional.</semantics>
+                </attribute>
+                <attribute>
+                    <name>DamageState</name>
+                    <dataType>DamageStatusEnum32</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>When Changed</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The damage state on the GeoObject. 
+ 
+Optional.</semantics>
+                </attribute>
+                <attribute>
+                    <name>PercentComplete</name>
+                    <dataType>PercentFloat32</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>When Changed</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Describes the level of completness. [0-100]. 
+ 
+Optional.</semantics>
+                </attribute>
+                <attribute>
+                    <name>ObjectId</name>
+                    <dataType>EntityIdentifierStruct</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>Initial</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Indentifies the Site and Application of the federate that is publishing the GeoObject. 
+EventNumber can be zero (0) or increasing starting from one (1). 
+ 
+Optional.</semantics>
+                </attribute>
+                <attribute>
+                    <name>ForceId</name>
+                    <dataType>ForceIdentifierEnum8</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>When Changed</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The force that controls the GeoObject. 
+ 
+Optional.</semantics>
+                </attribute>
+                <attribute>
+                    <name>ObjectType</name>
+                    <dataType>EnvironmentObjectTypeStruct</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>Initial</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Record specifying the domain, the kind and the specific identification of the environment object. 
+ 
+Optional.</semantics>
+                </attribute>
+                <attribute>
+                    <name>LocationReference</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>Initial</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A reference to a Geo object or NETN sub class of a RPR BaseEntity leaf node.</semantics>
+                </attribute>
+                <attribute>
+                    <name>Comment</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>When Changed</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A free textt that may be display in a map or not. 
+ 
+Optional, default empty string.</semantics>
+                </attribute>
+                <objectClass>
+                    <name>CheckPoint</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>A point where aggregate and physical entities shall stop and wait a specified time. 
+The modelling federate shall register a NETN_GeoObject.Point instance to model the CheckPoint when establish a new CheckPoint. Set the attribute LocationReferenced to the Point instance . 
+ 
+The attribute Status shall be ActiveStatusEnum8.Active when the CheckPoint is operated. 
+ 
+The modelling federate of an active CheckPoint shall send a NETN-ETR Wait interaction wiith the time to wait and with a reference to the entity that will pass the CheckPoint. 
+ 
+The modelling federate of the CheckPoint decides if the entity will pass the CheckPoint or not, e.g. can the distance between the CheckPoint and the entity be the triggering cause.</semantics>
+                    <attribute>
+                        <name>DelayTime</name>
+                        <dataType>TimeSecondInteger32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>When Changed</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>The time that an entity shall wait, the total wait time can be greater when it is a queue. 
+ 
+This is a nominal value, federates can use this for modifing delay time for different types if entities, e.g add or subtract a value or multiply with a type depending factor.</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
+            <objectClass>
+                <name>NETN_GeoObject</name>
+                <sharing>Neither</sharing>
+                <semantics>Base class for geographical objects.</semantics>
+                <attribute>
+                    <name>UniqueId</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>Initial</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Unique id. 
+ 
+Required.</semantics>
+                </attribute>
+                <attribute>
+                    <name>Name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>Initial</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Name of the geo object. 
+ 
+Optional.</semantics>
+                </attribute>
+                <objectClass>
+                    <name>Point</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>A geografical point.</semantics>
+                    <attribute>
+                        <name>Location</name>
+                        <dataType>WorldLocationStruct</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>When Changed</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>The location. 
+ 
+Required.</semantics>
+                    </attribute>
+                </objectClass>
+                <objectClass>
+                    <name>Path</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>A path with a least two points, describing e.g. a sea-lane or ground route.</semantics>
+                    <attribute>
+                        <name>Points</name>
+                        <dataType>GeocentricPath</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>When Changed</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>A polygonal chain with at least 2 points describing the path. 
+ 
+Required.</semantics>
+                    </attribute>
+                </objectClass>
+                <objectClass>
+                    <name>Area</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>An closed area defined by at least three points in a ploygon.</semantics>
+                    <attribute>
+                        <name>Base</name>
+                        <dataType>AreaVariantStruct</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>When Changed</updateCondition>
+                        <ownership>NoTransfer</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Defines the area, either as a polygon or a circle.</semantics>
+                    </attribute>
+                    <objectClass>
+                        <name>Volume</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>A volume defined by a closed bottom area and an elevation.</semantics>
+                        <attribute>
+                            <name>Height</name>
+                            <dataType>MeterFloat32</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>When Changed</updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>The height of the volume. 
+The lower elevation is defined by the polygon (list with geocentric points).</semantics>
+                        </attribute>
+                    </objectClass>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <dataTypes>
+        <simpleDataTypes/>
+        <enumeratedDataTypes/>
+        <arrayDataTypes/>
+        <fixedRecordDataTypes/>
+        <variantRecordDataTypes/>
+    </dataTypes>
+    <notes/>
+</objectModel>

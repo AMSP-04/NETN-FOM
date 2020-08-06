@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification notes="netn-metoc_2">
+        <name>NETN METOC</name>
+        <type>FOM</type>
+        <version>1.0</version>
+        <modificationDate>2020-02-29</modificationDate>
+        <securityClassification>Not Classified</securityClassification>
+        <purpose>The purpose of the NETN METOC module is to provide a standard way to exchange data related to weather conditions and primary effects of weather on terrain, on water surfaces, in the atmosphere and subsurface water conditions. The main objective is to provide a reference model that represents a core common subset of METOC related aspects and to allow extension of the module to incorporate additional detail if required. Therefore, the NETN METOC module shall be viewed as a reference FOM module where extensions are not only allowed but encouraged to fully meet federation specific requirements. However, any extension should also be considered as candidates for improving the NETN METOC module or candidates for new standard NETN modules.         </purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>
+NATO Education and Training Network (NETN) Meteorological and Oceanographic (METOC) Module. 
+        
+This module is a specification of how to represent METOC related data to be shared among participants in a federated distributed simulation. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN METOC FOM module is available as a XML file for use in HLA based federations.
+        </description>
+        <useLimitation> Current weather conditions impact simulations such as platforms and sensors on the ground, on the sea, under water and in the air. In a federated distributed simulation a correlated representation of these condistions is key to meet interoperability and model requirements. Different simulations require different fidelity of weather conditions with respect to data resolution and accuracy.  The NETN METOC focus on representation of weather conditions related surfaces and layers. The main difference is that a surface condition does not have a volume and only represents the conditions directly related to the surface of a piece of terrain or water. The layer conditions represent a volume of water or air and is specified with hight/depth from surface and layer thickness. Both concepts are also geographically positioned by reference to other concepts shared in the federation such as position of objects, areal objects or reference to terrain features such as roads etc.  Based on these concepts different levels of fidelity in representing weather conditions can be achieved. Global conditions can be expressed as well as highly detailed conditions e.g. surrounding a specific aircraft.  The aspects and attributes of wather conditions included in the scope of the NETN METOC module is based on input from several sources and are designed to cover the most common levels of representation required by a large set of exising simulators.  Atmospheric Layer Conditions cover the following aspects: Temperature, Winds, Precipitation, Haze, Humidity, Barometric Pressure, Visibility Range and Clouds.  Water Layer Conditions cover the following aspects: Temperature, Salinity and Currents.  Land Surface Conditions cover the following aspects: Temperature, Winds, Precipitation, Haze, Humidity, Barometric Pressure, Visibility Range, Snow Condition, Moisture and Ice Condition  Water Surface Conditions cover the following aspects: Temperature, Winds, Precipitation, Haze, Humidity, Barometric Pressure, Visibility Range, Sea State, Salinity, Tide, Ice Conditions, Currents, Waves and Swell. </useLimitation>
+        <useHistory>v1.0 - Initial version developed by MSG-163</useHistory>
+        <useHistory></useHistory>
+        <poc>
+            <pocType>Release authority</pocType>
+            <pocName>NATO Modelling and Simulation Group</pocName>
+            <pocOrg>NATO Science and Technology Organization</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Contributor</pocType>
+            <pocName>MSG-156 Dynamic Terrain</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
+        </reference>
+        <other>
+Copyright © 2020 by NATO/OTAN. All rights reserved.
+This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
+
+Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
+        <glyph type="png" height="48" width="48" alt="">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</glyph>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>METOC_EnvironmentCondition</name>
+                <sharing>Neither</sharing>
+                <semantics>Superclass for Environment Conditions and Layers. The conditions can be global in which case no RegionReference is provided or regional in which case a reference to a GeometryFeature published in the federation is required.</semantics>
+                <attribute>
+                    <name>UniqueId</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Required: Unique identifier for the environment condition object.</semantics>
+                </attribute>
+                <attribute>
+                    <name>ServiceReference</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Required: Identifies the METOC service which produced the environment condition information.</semantics>
+                </attribute>
+                <attribute>
+                    <name>GeoReference</name>
+                    <dataType>EnvironmentConditionLocationVariant</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>NA</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional: If not provided the environment condition is considered global.</semantics>
+                </attribute>
+                <objectClass>
+                    <name>WeatherCondition</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>Information about the general weather condition can be represented using WeatherCondition objects. 
+Common data such as Temperature, Wind and Precipitaion is represented but also details regarding Barometric Pressure and Humidity. 
+Information about Visual Range and Haze conditions can also be represented. 
+All attributes of WeatherCondition objects are optional.</semantics>
+                    <attribute>
+                        <name>Temperature</name>
+                        <dataType>TemperatureDegreeCelsiusFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>on change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Temperature in the region/location specified by the EnvironmentCondition. 
+If EnvironmentConditions with overlapping regions/locations exist the average temperature should be used.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Wind</name>
+                        <dataType>WindStruct</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On Change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Wind speed and direction in the region/location specified by the EnvironmentCondition. 
+If EnvironmentConditions with overlapping regions/locations exist the average wind speed and direction should be used.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Precipitation</name>
+                        <dataType>PrecipitationStruct</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On Change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Default precipitation is No Precipitation. 
+Current precipitation type (No Precipitation, Rain, Snow or Hail) and intensity in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist the average intensity should be used. 
+Conflicting precipitation types are resolved according to the following precedence: Snow, Hail, Rain, No Precipitation. 
+E.g. If there is one overlapping Environment Condition with Snow the result is always Snow.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Haze</name>
+                        <dataType>HazeStruct</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>on change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Default is No Haze. 
+Current Haze type and density in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist having the same Haze type the average density should be used. 
+Multipe overlapping EnvironmentConditions with different Haze type can exist.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Humidity</name>
+                        <dataType>PercentFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On Change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Default is 75% (Normal value) 
+Humidity in percent in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist the average humidity should be used.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>BarometricPressure</name>
+                        <dataType>AtmosphericPressureFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On Change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Barometric pressure measured in milibar or hectopascal (1 mbar = 1hPa) in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist the average barometric pressure should be used.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>VisibilityRange</name>
+                        <dataType>MeterFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On Change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: The distance at which an object or light can be clearly discerned in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist the minimum distance should be used.</semantics>
+                    </attribute>
+                    <objectClass>
+                        <name>LandSurfaceCondition</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>The environment conditions related to land surface can be represented using LandSurfaceCondition objects. 
+Besides the common attributes such as Temperature, Wind and Precipitaion etc. additional detail regarding snow, moisture, and ice conditions of the land surface can be represented. 
+All attributes of LandSurfaceCondition objects are optional.</semantics>
+                        <attribute>
+                            <name>Snow</name>
+                            <dataType>SnowStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Current snow depth and desity in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist the average snow depth and density should be used. Default is no snow.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Moisture</name>
+                            <dataType>SurfaceMoistureEnum16</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional: Surface moisture in the region/location specified by the Environment Condition. If EnvironmentConditions with overlapping regions/locations exist, moisture is calculated as the highest enumerated value making the resulting value the one with most moisture. Default is 0 (Dry).</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>IceCondition</name>
+                            <dataType>RoadIceConditionEnum16</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional: Surface ice condition in the region/location specified by the Environment Condition. If EnvironmentConditions with overlapping regions/locations exist, surface ice condition is calculated as the highest enumerated value making the resulting value the one with the moste severe ice condition. Default is no ice.</semantics>
+                        </attribute>
+                    </objectClass>
+                    <objectClass>
+                        <name>WaterSurfaceCondition</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>Condition of sea surface in the specified region.</semantics>
+                        <attribute>
+                            <name>SeaState</name>
+                            <dataType>SeaStateEnum16</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Default is 0 (Calm_glassy).</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Salinity</name>
+                            <dataType>PercentFloat32</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional: Salinity of sea water. Salinity is a crucial property of the seas and is widely measured. Among the variouse ways to characterize the average salinity are 35 ppt (parts per thousand), 35 psu (practical salinity units). Default value is 35.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Tide</name>
+                            <dataType>MeterFloat32</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. The height relative to the MSL. Default is 0.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Ice</name>
+                            <dataType>IceStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Ice condition on surface. Default is no ice.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Current</name>
+                            <dataType>CurrentStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Default is no current. N/A if Ice</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Wave</name>
+                            <dataType>WaveStruct</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition></updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Default is no waves. N/A if Ice.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Swell</name>
+                            <dataType>WaveStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Default is no Swell. N/A if Ice</semantics>
+                        </attribute>
+                    </objectClass>
+                    <objectClass>
+                        <name>AtmosphericLayerCondition</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>If overlapping Atmospheric Conditions exist the following merging rules apply: 
+Humidity, AirTemperature and BarometricPressure are calculated as the average of the overlapping conditions. 
+Visibility is calculated as the minimum visibility distance of the overlapping conditions.</semantics>
+                        <attribute>
+                            <name>Layer</name>
+                            <dataType>LayerStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional: Layer base represents the bottom of the atmospheric layer and layer base + thinckness represents the top of the layer. Default is from surface and the entire body of atmosphere in the EnvironmentCondition area.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Cloud</name>
+                            <dataType>CloudStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>on change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional: Data about Clouds existing in the Atmospheric layer. Default is no clouds.</semantics>
+                        </attribute>
+                    </objectClass>
+                </objectClass>
+                <objectClass>
+                    <name>WaterLayerCondition</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>Environment condition of subsurface water layers.</semantics>
+                    <attribute>
+                        <name>Temperature</name>
+                        <dataType>TemperatureDegreeCelsiusFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>on change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Temperature in the region/location specified by the EnvironmentCondition. 
+If EnvironmentConditions with overlapping regions/locations exist the average temperature should be used.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Layer</name>
+                        <dataType>LayerStruct</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>on change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Defines a body of water based on environment condition location, depth and layer thickness. Default is from surface and the entire body of water in the EnvironmentCondition area.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Current</name>
+                        <dataType>CurrentStruct</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>on change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Option: Describes current in the water layer. Default is no current.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Salinity</name>
+                        <dataType>SalinityFloat32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>on change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Salinity of sea water. Salinity is a crucial property of the seas and is widely measured. Among the variouse ways to characterize the average salinity are 35 ppt (parts per thousand), 35 psu (practical salinity units). Default value is 35.</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
+            <objectClass>
+                <name>METOC_Service</name>
+                <sharing>PublishSubscribe</sharing>
+                <semantics>All systems providing Environment Condition information as either object instances of METOC_EnvironmentCondition subclasses or as response to METOC_Request interactions must register a METOC_Service object instance.</semantics>
+                <attribute>
+                    <name>UniqueId</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Unique identifier for EnvironmentCondition object instances. Generated or pre-defined in scenario data.</semantics>
+                </attribute>
+                <attribute>
+                    <name>Name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics></semantics>
+                </attribute>
+                <attribute>
+                    <name>Description</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics></semantics>
+                </attribute>
+                <attribute>
+                    <name>ModelType</name>
+                    <dataType>WeatherModelTypeEnum</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Simulated, Real (Historical), Live (Current) or Standard model.</semantics>
+                </attribute>
+                <attribute>
+                    <name>Active</name>
+                    <dataType>HLAboolean</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>on change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics></semantics>
+                </attribute>
+                <attribute>
+                    <name>Domains</name>
+                    <dataType>DomainList</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition></updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics></semantics>
+                </attribute>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>METOC_Service</name>
+                <sharing>Neither</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics></semantics>
+                <parameter>
+                    <name>ModelId</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <semantics>Unique identifier of the model used for providing METOC information. Multiple Models may exist.</semantics>
+                </parameter>
+                <parameter>
+                    <name>RequestId</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <semantics>Unique identifier of the request. Will be referenced in the resulting METOC_Response interaction, in case of a single request, or otherwise in the resulting METOC_EnvironmentCondition instance.</semantics>
+                </parameter>
+                <interactionClass>
+                    <name>METOC_Request</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics></semantics>
+                    <parameter>
+                        <name>SingleRequest</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>Required: Indicate if this is a one-time request with a single interaction response or if the weather service will create an HLA object to represent continuous updates of the request.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>GeoReference</name>
+                        <dataType>EnvironmentConditionLocationVariant</dataType>
+                        <semantics></semantics>
+                    </parameter>
+                    <parameter>
+                        <name>RequestType</name>
+                        <dataType>EnvironmentConditionTypeEnum</dataType>
+                        <semantics>Expected type of response by weather service.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>Layer</name>
+                        <dataType>LayerStruct</dataType>
+                        <semantics></semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>METOC_Response</name>
+                    <sharing>Neither</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional: Indicate corresponding EnvironmentObject created as a response to a METOC_Request with parameter SingleRequest set to false and where the weather service creates and METOC_EnvironmentalCondition object to represent continueous updates.</semantics>
+                    <parameter>
+                        <name>EnvironmentObjectIdentifier</name>
+                        <dataType>UuidArrayOfHLAbyte16</dataType>
+                        <semantics></semantics>
+                    </parameter>
+                    <parameter>
+                        <name>GeoReference</name>
+                        <dataType>EnvironmentConditionLocationVariant</dataType>
+                        <semantics></semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>WeatherCondition</name>
+                        <sharing>Neither</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics></semantics>
+                        <parameter>
+                            <name>Temperature</name>
+                            <dataType>TemperatureDegreeCelsiusFloat32</dataType>
+                            <semantics>Optional. 
+Temperature in the region/location specified by the EnvironmentCondition. 
+If EnvironmentConditions with overlapping regions/locations exist the average temperature should be used.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Wind</name>
+                            <dataType>WindStruct</dataType>
+                            <semantics>Optional. 
+Wind speed and direction in the region/location specified by the EnvironmentCondition. 
+If EnvironmentConditions with overlapping regions/locations exist the average wind speed and direction should be used.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Precipitation</name>
+                            <dataType>PrecipitationStruct</dataType>
+                            <semantics>Optional. Default precipitation is No Precipitation. 
+Current precipitation type (No Precipitation, Rain, Snow or Hail) and intensity in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist the average intensity should be used. 
+Conflicting precipitation types are resolved according to the following precedence: Snow, Hail, Rain, No Precipitation. 
+E.g. If there is one overlapping Environment Condition with Snow the result is always Snow.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Haze</name>
+                            <dataType>HazeStruct</dataType>
+                            <semantics>Optional. Default is No Haze. 
+Current Haze type and density in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist having the same Haze type the average density should be used. 
+Multipe overlapping EnvironmentConditions with different Haze type can exist.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Humidity</name>
+                            <dataType>PercentFloat32</dataType>
+                            <semantics>Optional. Default is 75% (Normal value) 
+Humidity in percent in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist the average humidity should be used.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>BarometricPressure</name>
+                            <dataType>AtmosphericPressureFloat32</dataType>
+                            <semantics>Optional. 
+Barometric pressure measured in milibar or hectopascal (1 mbar = 1hPa) in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist the average barometric pressure should be used.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>VisibilityRange</name>
+                            <dataType>MeterFloat32</dataType>
+                            <semantics>Optional. 
+The distance at which an object or light can be clearly discerned in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist the minimum distance should be used.</semantics>
+                        </parameter>
+                        <interactionClass>
+                            <name>LandSurfaceCondition</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                            <parameter>
+                                <name>Snow</name>
+                                <dataType>SnowStruct</dataType>
+                                <semantics>Optional. 
+Current snow depth and desity in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist the average snow depth and density should be used.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Moisture</name>
+                                <dataType>SurfaceMoistureEnum16</dataType>
+                                <semantics>Optional. 
+Surface moisture in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist, moisture is calculated as the highest enumerated value making the resulting value the one with most moisture.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>IceCondition</name>
+                                <dataType>RoadIceConditionEnum16</dataType>
+                                <semantics>Optional. 
+Surface ice condition in the region/location specified by the Environment Condition. 
+If EnvironmentConditions with overlapping regions/locations exist, surface ice condition is calculated as the highest enumerated value making the resulting value the one with the moste severe ice condition.</semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>AtmosphericLayerCondition</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                            <parameter>
+                                <name>Layer</name>
+                                <dataType>LayerStruct</dataType>
+                                <semantics>Layer base represents the bottom of the atmospheric layer and layer base + thinckness represents the top of the layer.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Cloud</name>
+                                <dataType>CloudStruct</dataType>
+                                <semantics></semantics>
+                            </parameter>
+                        </interactionClass>
+                        <interactionClass>
+                            <name>WaterSurfaceCondition</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics></semantics>
+                            <parameter>
+                                <name>SeaState</name>
+                                <dataType>SeaStateEnum16</dataType>
+                                <semantics>Required</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Salinity</name>
+                                <dataType>PercentFloat32</dataType>
+                                <semantics>Optional.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Tide</name>
+                                <dataType>MeterFloat32</dataType>
+                                <semantics>Optional. The height relative to the MSL.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Ice</name>
+                                <dataType>IceStruct</dataType>
+                                <semantics>Optional.</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Current</name>
+                                <dataType>CurrentStruct</dataType>
+                                <semantics>Optional. N/A if Ice</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Wave</name>
+                                <dataType>WaveStruct</dataType>
+                                <semantics>Optional. N/A if Ice</semantics>
+                            </parameter>
+                            <parameter>
+                                <name>Swell</name>
+                                <dataType>WaveStruct</dataType>
+                                <semantics>Optional. N/A if Ice</semantics>
+                            </parameter>
+                        </interactionClass>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>WaterLayerCondition</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics></semantics>
+                        <parameter>
+                            <name>Temperature</name>
+                            <dataType>TemperatureDegreeCelsiusFloat32</dataType>
+                            <semantics>Optional. 
+Temperature in the region/location specified by the EnvironmentCondition. 
+If EnvironmentConditions with overlapping regions/locations exist the average temperature should be used.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Layer</name>
+                            <dataType>LayerStruct</dataType>
+                            <semantics></semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Current</name>
+                            <dataType>CurrentStruct</dataType>
+                            <semantics></semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Salinity</name>
+                            <dataType>SalinityFloat32</dataType>
+                            <semantics>Salinity of sea water.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <simpleDataTypes>
+            <simpleData>
+                <name>PrecipitationIntensityFloat32</name>
+                <representation>HLAfloat32BE</representation>
+                <units>mm/hour</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>Light rain — when the precipitation rate is &lt; 2.5 mm (0.098 in) per hour. Moderate rain — when the precipitation rate is between 2.5 mm (0.098 in) - 7.6 mm (0.30 in) or 10 mm (0.39 in) per hour. Heavy rain — when the precipitation rate is &gt; 7.6 mm (0.30 in) per hour, or between 10 mm (0.39 in) and 50 mm (2.0 in) per hour. Violent rain — when the precipitation rate is &gt; 50 mm (2.0 in) per hour.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>AtmosphericPressureFloat32</name>
+                <representation>HLAfloat32BE</representation>
+                <units>hPa</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>Pressure mesured in Milibar or Hecto Pascal. 1 mbar = 1 hPa</semantics>
+            </simpleData>
+            <simpleData>
+                <name>SalinityFloat32</name>
+                <representation>HLAfloat32BE</representation>
+                <units>PSU</units>
+                <resolution>NA</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>Practical Salinity Unit (PSU) measured in g/kg.</semantics>
+            </simpleData>
+        </simpleDataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>PrecipitationTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Type of precipitation. Default is NoPrecipitation.</semantics>
+                <enumerator>
+                    <name>Rain</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Snow</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Hail</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>NoPrecipitation</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>FreezingRain</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>CloudTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Classification of different types of clouds.</semantics>
+                <enumerator>
+                    <name>NoCloud</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Altocumulus</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>Altostratus</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>Cirrocumulus</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Cirrostratus</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Cirrus</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Cumulonimbus</name>
+                    <value>12</value>
+                </enumerator>
+                <enumerator>
+                    <name>Cumulus</name>
+                    <value>9</value>
+                </enumerator>
+                <enumerator>
+                    <name>Nimbostratus</name>
+                    <value>8</value>
+                </enumerator>
+                <enumerator>
+                    <name>Stratocumulus</name>
+                    <value>7</value>
+                </enumerator>
+                <enumerator>
+                    <name>Stratus</name>
+                    <value>10</value>
+                </enumerator>
+                <enumerator>
+                    <name>Unknown</name>
+                    <value>13</value>
+                </enumerator>
+                <enumerator>
+                    <name>CumulusCongestus</name>
+                    <value>11</value>
+                </enumerator>
+                <enumerator>
+                    <name>InvalidCloudClassification</name>
+                    <value>0</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>RoadIceConditionEnum16</name>
+                <representation>HLAinteger16BE</representation>
+                <semantics>Ice condition for roads.</semantics>
+                <enumerator>
+                    <name>None</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Patches</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>BlackIce</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Slush</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>SheetIce</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>ExtremeSheetIce</name>
+                    <value>5</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>SurfaceMoistureEnum16</name>
+                <representation>HLAinteger16BE</representation>
+                <semantics>Road surface wetness ot soil moisture</semantics>
+                <enumerator>
+                    <name>Dry</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Wet</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flooded</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>HeavilyFlooded</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>SeaStateEnum16</name>
+                <representation>HLAinteger16BE</representation>
+                <semantics>Sate of the sea measured in Douglas Sea Scale.</semantics>
+                <enumerator>
+                    <name>Calm_glassy</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Calm_rippled</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Smooth_wavelets</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Slight</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Moderate</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Rough</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>Very_Rough</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>High</name>
+                    <value>7</value>
+                </enumerator>
+                <enumerator>
+                    <name>Very_High</name>
+                    <value>8</value>
+                </enumerator>
+                <enumerator>
+                    <name>Phenomenal</name>
+                    <value>9</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>HazeTypeEnum</name>
+                <representation>HLAinteger16BE</representation>
+                <semantics>TBD</semantics>
+                <enumerator>
+                    <name>None</name>
+                    <value>0</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>IceTypeEnum</name>
+                <representation>HLAinteger16BE</representation>
+                <semantics>Type of Ice.</semantics>
+                <enumerator>
+                    <name>None</name>
+                    <value>0</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>StandardAtmosphereModelEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Describes the type of standard atmosphere model</semantics>
+                <enumerator>
+                    <name>ISA</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>SubArcticWinter</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>SubArcticSummer</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>MidLatitudeWinter</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>MidLatitudeSummer</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>Tropical</name>
+                    <value>6</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>WeatherModelTypeEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics></semantics>
+                <enumerator>
+                    <name>None</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Simulated</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Real_Historical</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Live</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Standard_Model</name>
+                    <value>4</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>EnvironmentConditionTypeEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics></semantics>
+                <enumerator>
+                    <name>LandSurface</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>WaterSurface</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>AtmosphericLayer</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>WaterLayer</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>GeoReferenceTypeEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Enumerated set of different ways to reference location of Environment Conditions.</semantics>
+                <enumerator>
+                    <name>None</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Rect</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Circle</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Polygon</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Point</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Path</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>NETNGeoObjectReference</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>GeographyMarkupLanguageFeatureReference</name>
+                    <value>7</value>
+                </enumerator>
+                <enumerator>
+                    <name>RPREntityIdentifier</name>
+                    <value>8</value>
+                </enumerator>
+                <enumerator>
+                    <name>NETNEntityUuid</name>
+                    <value>9</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes>
+            <arrayData>
+                <name>GMLidentifier</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>GML Feature ID.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>DomainList</name>
+                <dataType>HLAunicodeString</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>TBD</semantics>
+            </arrayData>
+        </arrayDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>WaveStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Water surface wave conditions and direction.</semantics>
+                <field>
+                    <name>Length</name>
+                    <dataType>MeterFloat32</dataType>
+                    <semantics>Distance from a particular phase on a wave to the same phase on an adjacent wave.</semantics>
+                </field>
+                <field>
+                    <name>Height</name>
+                    <dataType>MeterFloat32</dataType>
+                    <semantics>Average vertical distance between trough and crest produced by the wave.</semantics>
+                </field>
+                <field>
+                    <name>Period</name>
+                    <dataType>TimeSecondInteger32</dataType>
+                    <semantics>Wave period is the distance between two waves passing through a stationary point, measured in seconds.</semantics>
+                </field>
+                <field>
+                    <name>Direction</name>
+                    <dataType>DirectionDegreesFloat32</dataType>
+                    <semantics>The value of this parameter shall be applied as the direction in which the wave propagates. Degrees 0-360. True North.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CurrentStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Water current direction and speed.</semantics>
+                <field>
+                    <name>Direction</name>
+                    <dataType>DirectionDegreesFloat32</dataType>
+                    <semantics>Direction of current.</semantics>
+                </field>
+                <field>
+                    <name>Speed</name>
+                    <dataType>SpeedMeterPerSecondFloat32</dataType>
+                    <semantics>Speed of current.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>IceStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Ice type, thickness and coverage on water surface.</semantics>
+                <field>
+                    <name>Type</name>
+                    <dataType>IceTypeEnum</dataType>
+                    <semantics>Type of ice on water surface.</semantics>
+                </field>
+                <field>
+                    <name>Thickness</name>
+                    <dataType>MeterFloat32</dataType>
+                    <semantics>Thickness of ice on water surface.</semantics>
+                </field>
+                <field>
+                    <name>Coverage</name>
+                    <dataType>PercentFloat32</dataType>
+                    <semantics>Ice coverage on water surface.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CloudStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Description of cloud layer type, coverage and density.</semantics>
+                <field>
+                    <name>Type</name>
+                    <dataType>CloudTypeEnum32</dataType>
+                    <semantics>Type of cloud</semantics>
+                </field>
+                <field>
+                    <name>Coverage</name>
+                    <dataType>PercentFloat32</dataType>
+                    <semantics>Cloud coverage as percent.</semantics>
+                </field>
+                <field>
+                    <name>Density</name>
+                    <dataType>ConcentrationKgPerMeterCubedFloat32</dataType>
+                    <semantics>kg/m3</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>LayerStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Environment condition base altitude (low) expressed as meters above mean sea level and thickness expressed in meters.</semantics>
+                <field>
+                    <name>Base</name>
+                    <dataType>MeterFloat32</dataType>
+                    <semantics>0=MSL</semantics>
+                </field>
+                <field>
+                    <name>Thickness</name>
+                    <dataType>MeterFloat32</dataType>
+                    <semantics>Positive value</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>WindStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Wind direction and speeds.</semantics>
+                <field>
+                    <name>Direction</name>
+                    <dataType>DirectionDegreesFloat32</dataType>
+                    <semantics>Required: Direction in degrees clockwise from due north.</semantics>
+                </field>
+                <field>
+                    <name>HorizontalSpeed</name>
+                    <dataType>SpeedMeterPerSecondFloat32</dataType>
+                    <semantics>Required: Wind speed (m/s) in the specified WindDirection.</semantics>
+                </field>
+                <field>
+                    <name>VerticalSpeed</name>
+                    <dataType>SpeedMeterPerSecondFloat32</dataType>
+                    <semantics>Optional: Wind speed in m/s. Negative number is  a downdraft. Default is 0.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>PrecipitationStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Type and intensity of precipitation.</semantics>
+                <field>
+                    <name>Type</name>
+                    <dataType>PrecipitationTypeEnum32</dataType>
+                    <semantics>Required: No Precipitation, Rain, Snow or Hail</semantics>
+                </field>
+                <field>
+                    <name>Intensity</name>
+                    <dataType>PrecipitationIntensityFloat32</dataType>
+                    <semantics>Optional: Amount in mm/per hour. Default is 0 mm/hour.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>SnowStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Depth and density of snow cover.</semantics>
+                <field>
+                    <name>Depth</name>
+                    <dataType>MeterFloat32</dataType>
+                    <semantics>Snow depth on terrain.</semantics>
+                </field>
+                <field>
+                    <name>Density</name>
+                    <dataType>ConcentrationKgPerMeterCubedFloat32</dataType>
+                    <semantics>kg/m3</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>HazeStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Type and density of haze material.</semantics>
+                <field>
+                    <name>Type</name>
+                    <dataType>HazeTypeEnum</dataType>
+                    <semantics>Type of Haze.</semantics>
+                </field>
+                <field>
+                    <name>Density</name>
+                    <dataType>ConcentrationKgPerMeterCubedFloat32</dataType>
+                    <semantics>Concentration/Density measured as Kg per m3.</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes>
+            <variantRecordData>
+                <name>EnvironmentConditionLocationVariant</name>
+                <discriminant>GeoReferenceType</discriminant>
+                <dataType>GeoReferenceTypeEnum</dataType>
+                <alternative>
+                    <enumerator>Point</enumerator>
+                    <name>Location</name>
+                    <dataType>GeodeticLocation</dataType>
+                    <semantics>A location on the surface of the eath defined by lat, lon WGS84.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Rect</enumerator>
+                    <name>Quadrangle</name>
+                    <dataType>GeodeticQuadrangle</dataType>
+                    <semantics>A latitude-longitude quadrangle is a region bounded by two meridians and two parallels.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Polygon</enumerator>
+                    <name>SphericalPolygon</name>
+                    <dataType>GeodeticPolygon</dataType>
+                    <semantics>A polygon on the surface of the earth defined by a number of great-circle arcs represented as lat, lon Locations. WGS84.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>NETNGeoObjectReference</enumerator>
+                    <name>NETNGeoObjectReference</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <semantics>Reference to an object instance of leaf node subclass of NETN GeoObject defined in NETN-SE FOM Module.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>GeographyMarkupLanguageFeatureReference</enumerator>
+                    <name>GMLFeatureReference</name>
+                    <dataType>GMLidentifier</dataType>
+                    <semantics>Reference to a GML feature by its GML Identifier.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>RPREntityIdentifier</enumerator>
+                    <name>RPREntityReference</name>
+                    <dataType>EntityIdentifierStruct</dataType>
+                    <semantics>Reference to an instance of a leaf node subclass of RPR-FOM BaseEntity by its EntityIdentifier. E.g. an Aircraft, SurfaceVessel etc.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>NETNEntityUuid</enumerator>
+                    <name>NETNEntityReference</name>
+                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <semantics>Reference to an object instance of NETN leaf node subclass of RPR Base Entity. E.g. NETN Aircraft or NETN Aggregate subclass of corresponding RPR classes. Reference is made to UniqueId of the object instance.</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>Location of Environment condition can be expressed as a Location on the earth surface, or as an area expressed as a Quadrangle or SphericalPolygon, or as a reference to some other object/data. Objects that can be referenced are RPR entities, NETN entities, NETN-SE GeoObjects and GML Features.</semantics>
+            </variantRecordData>
+        </variantRecordDataTypes>
+    </dataTypes>
+    <notes>
+        <note>
+            <label>netn-metoc_2</label>
+            <semantics>Environment conditions are represented as object instances in the federation. Each instance is related to one of the following: Global condition (no GeoReference), condition related to specific object instance (RPR BaseEntity or Environment Object), explicitly defined geographical areas (Polygon or Circle) or a reference to WFS/GML identifier. 
+ 
+Environment Condition Objects are either surface based (land or water) or a layer (above terrain or below water surface). 
+ 
+Environment Condition Objects include either Weather attributes or Sub Surface (Water) attributes. 
+ 
+Environment Condition Objects are created by any federate to express need for environmental information. Ownership of environmental object attributes are divested to Weather Service federate(s) with the modelling responsibility of correlated environment conditions.</semantics>
+        </note>
+        <note>
+            <label>netn-metoc_3</label>
+            <semantics>If overlapping Environment Conditions exists the following merging rules applies: 
+Humidity, AirTemperature and BarometricPressure are calculated as the average of the overlapping conditions. 
+Visibility is calculated as the minimum visibility distance of the overlapping conditions.</semantics>
+        </note>
+    </notes>
+</objectModel>
