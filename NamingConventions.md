@@ -22,27 +22,31 @@ Examples:
 
 ## Datatype names
 
-A datatype name follows the same convention as a class name, with the addition below.
+A datatype name follows the same convention as for a class name, with the additions below.
 
-Since the NETN FOM modules include many legacy datatypes (that will not be changed) and since the modules are built on existing datatypes from the SISO RPR-FOM, the following applies to **new** datatypes:
+Since the NETN FOM modules include many legacy datatypes (that will not be changed) and since the modules are built on existing datatypes  from the SISO RPR-FOM, exceptions to the naming convention may exist:
 
-- A datatype name should end with the word `Type`.
+### Simple Datatype
 
-- An enumeration datatype name should end with the word `EnumType`.
-- Enumeration values shall be in capital letters; use of underscores in the value is allowed.
-- If the underlying data representation is relevant for the datatype, then the data representation and the number of bits may be reflected in the datatype name.
+The name of a simple datatype should end with the underlying  representation and size. If relevant the unit of the datatype can be included in the name. Examples: `AltitudeMeterFloat64` which includes Meter as the unit and `MassConcentrationFloat32` which excludes the unit kg/m3.
 
-By adding the word `Type` in the datatype name, an attribute or parameter name may use the same name as the datatype, without the word `Type`. This corresponds to some extent with current coding practices.
+### Enumerated Datatype
 
-Examples of a legacy datatype name:
+An enumeration datatype name should end with the word `Enum` + size of the datatype, for example `AggregateMissionEnum16`. Enumeration values should be in capital letters; the use of underscores in the value is allowed.
 
-- `AltitudeMeterFloat64` (NETN-BASE)
+### Array Datatype
 
-Example of new datatype names:
+If the name of an array datatype is an obvious sequence of data, for example a name, string, list, path or polygon, then no additional indication is  required. All other array datatypes should include the term `ArrayOf` +  the element datatype name, for example `ArrayOfWorldLocationStruct`. Some special array datatypes, such as `UUID`, do not follow this convention.
 
-- `MIDType` (NETN-BASE)
-- `DesignatedAreaCodeType` (NETN-AIS)
-- `NavigationStatusEnumType` (NETN-AIS)
+If an indication of the array cardinality is relevant, then the array datatype should end with the absolute or maximum size of the array. For example  `SymbolIdentifer15` or `Text255`.
+
+### Fixed Record Datatype
+
+Fixed record datatypes should end with the word `Struct`.
+
+### Variant Record Datatype
+
+Variant record datatypes should end with the word `VariantStruct`.
 
 ## Attribute and parameter names
 
