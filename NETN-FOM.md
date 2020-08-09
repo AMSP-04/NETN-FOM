@@ -57,6 +57,16 @@ Example: A national extension to the NETN FOM Modules subclasses existing NETN o
 
 ### Initialization of Simulation
 
+The NETN-FOM allows the initialization of a distributed simulation using on a scenario data format defined in the NETN-ORG module. The NETN-ORG XML Schema defines a format that extends the SISO-STD-007-2008 Military Scenario Definition Language (MSDL) and valid MSDL files are also valid using the NETN-ORG schema. Additional elements and initial allocation of modelling responsibilities have been added to the original MSDL schema. 
+
+The scenario information can either be loaded directly by simulation applications or a dedicated federate application publishes the NETN-ORG scenario data in the federation as HLA objects. The NETN-ORG FOM module defines the `Unit` and `EquipmentItem` object classes that can be used in the federation to publish scenario data.
+
+Example federation designs include:
+
+1. A single federate in the federation reads one or more scenario data files, publishes all the data, and potentially updating/deleting data during execution;
+2. Multiple federates in the federation reads one scenario data file each and publish all data included in the respective file. Preparation of scenario files must ensure that they are disjunct and do not contain overlapping information.
+3. Allocation of modelling responsibilities based on FederateName in the scenario file can be interpreted differently depending on federation agreements. 
+
 ### Communication Modelling
 
 In the NETN-FOM there are a number of different modules related to modelling and simulation of communications. 
