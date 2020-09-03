@@ -189,7 +189,7 @@ The NETN-COM can also be used to represent disruption effects on communication n
 
 ### Transfer of Modelling Responsibility
 
-In advanced distributed simulation, the modelling and simulation responsibilities may change during the execution of the federation. The NETN FAFD provides a recommended design pattern for dynamic transfer of modelling responsibilities (TMR). The NETN-TMR FOM module defines a general-purpose pattern that supports multiple federation designs to handle situations where the dynamic change of modelling responsibility is required or requested. NETN-TMR works at the attribute level and can include all or a subset of attributes for a simulated entity.
+In an advanced distributed simulation, the modelling and simulation responsibilities may change during the execution of the federation. The NETN FAFD provides a recommended design pattern for dynamic transfer of modelling responsibilities (TMR). The NETN-TMR FOM module defines a general-purpose pattern that supports multiple federation designs to handle situations where the dynamic change of modelling responsibility is required or requested. NETN-TMR works at the attribute level and can include all or a subset of attributes for a simulated entity.
 
 NETN-TMR is recommended to support the following situations:
 * Transfer of modelling responsibility from a high fidelity federate to a low fidelity federate or vice versa.
