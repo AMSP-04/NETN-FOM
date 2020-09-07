@@ -53,7 +53,7 @@ The NETN-FOM provides standard interfaces for the representation of simulated en
 |NETN-SE| v2.0 |NETN-BASE, RPR-SE| Representation of persistent abstract geographical objects that can be (re-)used and referenced for specifying locations, paths, etc. The module also includes the representation of facilities with a function or capability to perform activities. |
 |NETN-ETR|v2.0 |NETN-BASE | Interface for sending simulation tasks to entities represented in a federated distributed simulation.|
 |NETN-ORG|v1.0 |NETN-BASE | Representation of the state of units including command structure and relationship between organizations. |
-|NETN-AIS|v1.0 |NETN-BASE, RPR-Communication| Represent vessel traffic in a simulation using AIS messages.|
+|NETN-AIS|v1.0 |NETN-BASE, NETN-ETR, NETN-ORG RPR-Communication| Represent vessel traffic in a simulation using AIS messages.|
 
 ### History
 In 2006, NATO Allied Command Transformation (ACT) requested NATO Modelling and Simulation Group (NMSG) to explore the concepts of a NATO Education and Training Network capability. An exploratory team (ET-025) analyzed the requirement, and it proposed a technical activity to develop NETN concepts. 
