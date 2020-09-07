@@ -4,7 +4,7 @@
         <name>NETN-ORG</name>
         <type>FOM</type>
         <version>1.0</version>
-        <modificationDate>2020-09-04</modificationDate>
+        <modificationDate>2020-09-07</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>Produce a Organisation definition (MSDL style) in a HLA Federation Execution</purpose>
         <applicationDomain>Simulation</applicationDomain>
@@ -81,7 +81,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>UUID</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>WhenChanged</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -136,7 +136,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>SymbolIdentifier</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>When changed</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -147,7 +147,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>UnitSymbolAmplificationStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -202,22 +202,11 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>ArrayOfCommunicationNetworks</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>When Changed</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Optional. Set of Communication Networks that the unit monitors and uses to communicate during a mission.</semantics>
-                    </attribute>
-                    <attribute>
-                        <name>IsSimulationEntity</name>
-                        <dataType>HLAboolean</dataType>
-                        <updateType>Static</updateType>
-                        <updateCondition>NA</updateCondition>
-                        <ownership>NoTransfer</ownership>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Optional. Indicates if the Unit has an initial allocation of modelling responsibility and is represented as a ground-truth aggregate entity during federation execution. Default is False.</semantics>
                     </attribute>
                 </objectClass>
                 <objectClass>
@@ -284,7 +273,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>SymbolIdentifier</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>When changed</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -295,7 +284,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>EquipmentSymbolAmplificationStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -317,7 +306,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>ArrayOfCommunicationNetworks</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>When updated</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -356,7 +345,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
                         <ownership>NoTransfer</ownership>
-                        <sharing>Neither</sharing>
+                        <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Required. Reference to the force, unit or equipment item owning or hosting the installation.</semantics>
@@ -367,7 +356,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
                         <ownership>NoTransfer</ownership>
-                        <sharing>Neither</sharing>
+                        <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.</semantics>
@@ -377,7 +366,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>SymbolIdentifier</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -388,7 +377,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>InstallationSymbolAmplificationStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -426,7 +415,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>ArrayOfRelations</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>When changed</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -453,7 +442,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>ArrayOfUuid</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On Change</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -464,7 +453,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>ArrayOfUuid</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On Change</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -475,7 +464,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>ArrayOfUuid</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
