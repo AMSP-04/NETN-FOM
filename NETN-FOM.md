@@ -13,20 +13,20 @@ Adam Brook, Allan Gillis, Amy Grom, André Geiger, Andrew Poulter, Andy Bowers, 
 
 Efficient and effective use of NATO and national Modelling & Simulation (M&S) capabilities, to support training, requires standards for connecting and integrating M&S components across the training system enterprise.
 
-The NATO Education and Training Network Federation Architecture and FOM Federation Object Model Design (NETN FAFD) document including the NETN-FOM provide architecture and design guidance for developing distributed simulation and training systems, including support for Computer Assisted Exercises (CAX). The standard applies to NATO CAX, national CAX and distributed modelling and simulation in general.
+The NATO Education and Training Network Federation Architecture and FOM Federation Object Model Design (NETN FAFD) document including the NETN-FOM provide architecture and design guidance for developing distributed simulation for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX).
 
-The NETN-FOM focuses on technical interoperability issues in distributed simulation and provides architecture and design patterns and proposed solutions. However, it is not a complete guide on how to design a distributed simulation system. It includes architecture and design guidelines on network infrastructure, simulation infrastructure, simulation data exchange models and how to create a robust, scalable, interoperable and high performing federation of distributed simulation to support CAX. 
+The NETN-FOM focuses on technical interoperability issues in distributed simulation and provides architecture and design patterns and proposed solutions. However, it is not a complete guide on how to design a distributed simulation system. It includes architecture and design guidelines on network infrastructure, simulation infrastructure, simulation data exchange models and how to create a robust, scalable, interoperable and high performing federation of distributed simulations. 
 
 
 ## Introduction
 
 ### Purpose
 
-The NATO Education and Training Network Federation Architecture and FOM Federation Object Model Design (NETN FAFD) document provide architecture and design guidance for developing distributed simulation and training systems, including support for Computer Assisted Exercises (CAX). The guidance has been developed to support the NETN vision and applies to NATO CAX, national CAX and distributed modelling and simulation in general.
+The NATO Education and Training Network Federation Architecture and FOM Federation Object Model Design (NETN FAFD) document provide architecture and design guidance for developing distributed simulation for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX). The guidance has been developed to support the NETN vision:
 
 > “To deliver to NATO and Partners a persistent, distributed combined joint training capability able to support training from the operational to the tactical level across the full spectrum of operations, through leveraging existing national expertise and capabilities.” - NATO ACT NETN Vision
 
-The NETN FAFD focuses mainly on technical interoperability issues in distributed simulation. It is not a complete guide on how to design a distributed simulation to support CAX but provide key architecture and design patterns and proposed solutions.
+The NETN FAFD focuses mainly on technical interoperability issues in distributed simulation. It is not a complete guide on how to design a distributed simulation but provide key architecture and design patterns and proposed solutions.
 
 As a reference document, the NETN FAFD does not replace design and agreements documents authored to support each particular instance of federation development and use.
 
@@ -74,7 +74,7 @@ In early 2018, the NMSG technical activity **MSG-163 Evolving NATO Standards for
   *	New FOM Module NETN-METOC for the representation of Weather
   * New FOM Module NETN-AIS for the representation of Vessel Traffic Information and Data
   * New FOM Module NETN-LOG that Merge and remove Logistics FOM Modules NETN-SCP-Base, NETN-Repair, NETN-Transport, NETN-Supply, and NETN-Storage
-  * Renamed LBML module to NETN-ETR (Entity Tasking and Reporting)
+  * Renamed LBML module to NETN-ETR (Entity Tasking and Reporting) and restructured entire module, including an update of the documentation.
   * Major update of NETN-MRM to simplify aggregation, disaggregation, divide and merge of units.
   * Exclude FOM Module NETN-HCBML for high-level C-BML Sim-C2 interactions (in anticipation of SISO C2SIM standard).
 * Changes in v 2.0
@@ -113,7 +113,7 @@ While this document is sufficiently complete to be stand-alone, it cannot fully 
 
 In the context of distributed simulation, a Federation is a union of independent applications (Federate) interoperating using standard infrastructure services accessed through well-defined standard interfaces and governed by common agreements on modelling responsibilities and information exchange. A High-Level Architecture (HLA) Evolved Federation is a federation using the HLA standard (IEEE 1516-2010) to specify available infrastructure services and APIs for accessing them. The HLA standard also specifies how to document information exchange using a Federation Object Model (FOM). Different domains may have different FOMs but can use the same underlying simulation infrastructure standard. A NETN Federation is an HLA Evolved Federation that follows the NETN Federation Architecture and Design described in this chapter.
 
-Federation Architecture is the style of design and method of integration using Simulation Components and common Simulation Infrastructure to create coherent distributed Simulation Systems. A specific Federation Design meets the requirements of Simulation Solutions to support Simulation-Based Events such as Computer Assisted eXercises (CAX).
+Federation Architecture is the style of design and method of integration using Simulation Components and common Simulation Infrastructure to create coherent distributed Simulation Systems. A specific Federation Design meets the requirements of Simulation Solutions to support Simulation-Based Events.
 
 The purpose of having a standard Federation Architecture is to harmonize design by providing design rules, design guidelines and best practices. Use of common design patterns and standards for interoperability and reuse, lower the cost of development and integration.
 
@@ -125,7 +125,7 @@ A NETN Federation relies on the existence of a network infrastructure providing 
 
 ### Simulation Infrastructure
 
-NATO STANAG 4603 mandates the use of IEEE 1516-2010 standards on High-Level Architecture (HLA Evolved) for new M&S systems. The use of HLA in NETN federations is a fundamental design rule which impacts most parts of the NETN FAFD. A NETN federation includes a Run-Time Infrastructure (RTI) implementing the HLA services. On the network, the RTI acts as a distributed operating system, providing a standard interface (API) to the federated systems. Internally the RTI uses distributed algorithms and network protocols to implement all HLA services. The NETN FAFD makes no recommendations concerning specific RTI implementations but requires complete and certified HLA RTI implementation.
+NATO STANAG 4603 mandates the use of IEEE 1516-2010 standards on High-Level Architecture (HLA Evolved) for new M&S systems. The use of HLA in NETN federations is a fundamental design rule which impacts most parts of the NETN FAFD. A NETN federation includes a Run-Time Infrastructure (RTI) implementing the HLA services. The RTI provides a standard interface (API) to the federated systems. The NETN FAFD makes no recommendations concerning specific RTI implementations but requires complete and certified HLA RTI implementation.
 
 In many NETN federations, there is a need to mix different simulation infrastructure implementations and to support other distributed simulation standards, a.k.a. a multi-architecture simulation environment. The NETN FAFD allows non-HLA (e.g. DIS) or legacy HLA (e.g. HLA 1.3) federates to participate in federations using appropriate bridging or adaptor technologies. Any bridging required to integrate federates to HLA, or the selected RTI shall be the responsibility of the integrating federate. In some cases, multiple NETN based federations may exist, and information between them exchanged using bridges.
 
@@ -159,7 +159,7 @@ In a NETN federation, the responsibility of modelling and simulation is allocate
 
 The NETN-FOM allows the initialization of a distributed simulation using a scenario data format defined in the NETN-ORG module. The NETN-ORG XML Schema defines a format that extends the SISO-STD-007-2008 Military Scenario Definition Language (MSDL), and valid MSDL files are also valid using the NETN-ORG schema. The original MSDL schema is extended with additional elements for the initial allocation of modelling responsibilities. 
 
-The scenario information can be loaded directly by simulation applications, or a dedicated federate application publishes the NETN-ORG scenario data in the federation as HLA objects. The NETN-ORG FOM module defines the `Unit`, `EquipmentItem`, and `Installation` object classes that can be used in the federation to publish scenario data.
+The scenario information can be loaded directly by simulation applications, or one or more dedicated federate applications publishes disjoint parts of NETN-ORG scenario data in the federation as HLA objects. The NETN-ORG FOM module defines the `Unit`, `EquipmentItem`, and `Installation` object classes that can be used in the federation to publish scenario data.
 
 Example federation designs include:
 
