@@ -762,19 +762,6 @@ The source must represent an AIS station (vessel, SAR aircraft, etc).</semantics
             </interactionClass>
         </interactionClass>
     </interactions>
-    <switches>
-        <autoProvide isEnabled="false"/>
-        <conveyRegionDesignatorSets isEnabled="false"/>
-        <conveyProducingFederate isEnabled="false"/>
-        <attributeScopeAdvisory isEnabled="false"/>
-        <attributeRelevanceAdvisory isEnabled="false"/>
-        <objectClassRelevanceAdvisory isEnabled="false"/>
-        <interactionRelevanceAdvisory isEnabled="false"/>
-        <serviceReporting isEnabled="false"/>
-        <exceptionReporting isEnabled="false"/>
-        <delaySubscriptionEvaluation isEnabled="false"/>
-        <automaticResignAction resignAction="CancelThenDeleteThenDivest"/>
-    </switches>
     <dataTypes>
         <simpleDataTypes>
             <simpleData>
