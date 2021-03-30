@@ -4,7 +4,7 @@
         <name>NETN-Physical</name>
         <type>FOM</type>
         <version>v2.0</version>
-        <modificationDate>2020-09-02</modificationDate>
+        <modificationDate>2021-03-26</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose></purpose>
         <applicationDomain>Training</applicationDomain>
@@ -1002,7 +1002,7 @@ An inactive instance may have its instance attributes updated by a federate but 
                                     <semantics>Optional. The current destination of movement.</semantics>
                                 </attribute>
                                 <attribute>
-                                    <name>SymbolI</name>
+                                    <name>SymbolId</name>
                                     <dataType>SymbolIdentifier</dataType>
                                     <updateType>Conditional</updateType>
                                     <updateCondition>On Change</updateCondition>
