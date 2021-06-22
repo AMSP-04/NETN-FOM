@@ -47,6 +47,32 @@ This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 Int
 Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
         <glyph type="png" height="48" width="48" alt="">iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAh2kABAAAAAEAAABaAAAAAAAAAFoAAAABAAAAWgAAAAEAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAMKADAAQAAAABAAAAMAAAAADSdeMzAAAACXBIWXMAAA3XAAAN1wFCKJt4AAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAAEf0lEQVRoBe2Y26tVZRTFj2llqYEPPRTiOYqoiUL9BUkqXhBEwguCPfTWg1BRKhKpgT5EBP0DgTcUUQgjFfwHelBEywtdvAQ9FQWRmeal8dt7DM86uNWzz1577XXECWPN7zrnmPO7nO/svr4n8sgMjHnkiA4GPNXB3OFM7Sr54RDoZEyRfLHcic3K5j5jT2ul33E5bZWRGKmjbEv0VeFv4QUbG2tda/W02X0kfdf4wm3jrGurkuFpYnhL+Ff4SyCQ1wSk1kEkgP0iCun3hfUun5BGssWatRp9s3WWiBPkLwk5uCfdtk4aSXuzVoNvssoKnBcIYGWB1+tu+1V6ktuzWoVhvSsm+5tFAfJHTIXA0vel+z51X9pd7Z1KJgdE4YZAALMEhL6szksqXxPonycgtTjQCSAHd1uD2mDmqSbbG1QmgOM0ShJcs9aDbw7jYvmG2M/Cc+ZRJFd8Spzy2DUeFxuuVqdCEH1OIIA37b4VqbQt8NhfpJ/3+Kyiq9WobIuNcgf5r+2WgIoZd3NDZc/vUY05O90ZW652XyVj/XL1nwCZuXbLFoIopIqgbbyADAi3BebNEZDYbNa6/I2zHFwOZ7vyliYQwFFPzJZsy06WtJ1J7OWbwlKB5zJvHdreFsg4pB4mbC/eSROE3wXsrBYOCrGtYnckWWIFcnAh3Ckuy8aIDnS7KwDxO8IHAnv3W+GQQDY5Cw86vOoaIgTMavGHbbkwX9gi8AQnSZyP0iX7vl+WeSZDYmYJXl6WjVwEs20vvkowP2giq7VXTZD/xF0sPdlk/7YD5rByyIcCNr+iIik9AJwhiwQcXRbifLjbRlPuk8wlOd8L2F7hUSSjFMnBxdl3Ak5W2XIZTmJjmW3/JJ22UlYi2c8yf2PyBJYMumlEChshelBlErTVluLb1fZVDE/V1OsCxl+xmZwJVztS8TNNVriBuOlm2GL6XG1PheQeTYP8Tk/nScAKYLwMYCvPDK5SfHE9IyMOIMu3UEYweAFrFclp+cEnfyOQnIlmrfBNhgtNjSIZ4W5GPm+qvl3S/Ff1opA+d5WmSNpvwm7hVeEzgX9+eLqwEsP+A5fsb9IkMtFLfCz/SDg1a/62ukUSKQf3B+FZ4YTAahFIFQIvVnmBnc2UviSEm5tbq2wrlhHCObitR3e3das5HLAbAnioZJmIHPJXBJ4KCH2cjSqQJLL6PwpwWSIgDzzQEIucUYFJvNORBNasVfONT34gg8t5IStQ5HqPTSbweyYTjrmHwa3Oiru7pvAZovxQBqeN9haurg5GNkUt/wgMnuPeLKerlar4niWvcOIZ328GWY1GNQN3qcbAHR50X6Rur1KFw3Y5hds+Ow/ne/v7DQ+4Kj3Rg7KErvZEhQOXCVcpQSw0kwTXqJ51J/+oI9wA7MM6AC4IlwoB8KwfIu+qRsfhIa31rPDIg+t70CO7A8JFgSivCH+4fEe6TsJW4k00WRhwebZ04+FERH8K6NGAcN3NCkwXeHdQzs99KtZSSC4rwRVKecghVn30CVnPNTX62D8OjP8Hd4MU0tKn8O0AAAAASUVORK5CYII=</glyph>
     </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>BaseEntity</name>
+                <sharing>Subscribe</sharing>
+                <semantics></semantics>
+                <attribute>
+                    <name>UniqueId</name>
+                    <dataType>UUID</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>NA</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
+                </attribute>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+        </interactionClass>
+    </interactions>
     <dataTypes>
         <simpleDataTypes>
             <simpleData>
@@ -1773,24 +1799,11 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 <semantics>Unique identifier for a transaction. Encoded according to RFC 4122, section 4.1.2 using 16 bytes. Also referred to as Variant 1 or RFC 4122/DCE 1.1 UUIDs.</semantics>
             </arrayData>
             <arrayData>
-                <name>UuidArrayOfHLAbyte16</name>
-                <dataType>HLAbyte</dataType>
-                <cardinality>16</cardinality>
-                <encoding>HLAfixedArray</encoding>
-                <semantics>Deprecated. 
- 
-UUIDs are exchanged as a byte array and are encoded according to RFC 
- 
-4122, section 4.1.2 using 16 bytes. Also referred to as Variant 1 or RFC 4122/DCE 1.1 UUIDs. 
- 
-For example, 00112233-4455-8877-6699-aabbccddeeff is encoded as the bytes 00 11 22 33 44 55 88 77 66 99 aa bb cc dd ee ff.</semantics>
-            </arrayData>
-            <arrayData>
                 <name>ArrayOfUuid</name>
-                <dataType>UuidArrayOfHLAbyte16</dataType>
+                <dataType>UUID</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
-                <semantics>Deprecated. Array of Unique Identifiers expressed as UUIDs.</semantics>
+                <semantics>Array of Unique Identifiers expressed as UUIDs.</semantics>
             </arrayData>
             <arrayData>
                 <name>NETN_ArrayOfSupplyStruct</name>
@@ -1988,7 +2001,7 @@ The array can be empty (size=0).</semantics>
                 <alternative>
                     <enumerator>UuidReference</enumerator>
                     <name>UUID</name>
-                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <dataType>UUID</dataType>
                     <semantics>A UUID that referes to a NETN_GeoObject.Path that is registred iin the federation execution.</semantics>
                 </alternative>
                 <encoding>HLAvariantRecord</encoding>
@@ -2007,7 +2020,7 @@ The array can be empty (size=0).</semantics>
                 <alternative>
                     <enumerator>UuidReference</enumerator>
                     <name>UUID</name>
-                    <dataType>UuidArrayOfHLAbyte16</dataType>
+                    <dataType>UUID</dataType>
                     <semantics>A UUID that refers to a NETN_GeoObject.Point.</semantics>
                 </alternative>
                 <encoding>HLAvariantRecord</encoding>
