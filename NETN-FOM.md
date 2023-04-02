@@ -1,4 +1,4 @@
-The NATO Education and Training Network (NETN) Federation Object Model (FOM).
+The NATO Federation Object Model for Distributed Synthetic Training (NATO FOM).
 
 Copyright (C) 2020 NATO/OTAN.
 This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENCE.md).
@@ -13,28 +13,28 @@ Adam Brook, Allan Gillis, Amy Grom, André Geiger, Andrew Poulter, Andy Bowers, 
 
 Efficient and effective use of NATO and national Modelling & Simulation (M&S) capabilities, to support training, requires standards for connecting and integrating M&S components across the training system enterprise.
 
-The NATO Education and Training Network Federation Architecture and FOM Federation Object Model Design (NETN FAFD) document including the NETN-FOM provide architecture and design guidance for developing distributed simulation for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX).
+The NATO Federation Object Model for Distributed Synthetic Training (NATO FOM) provides architecture and design guidance for developing distributed simulations for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX).
 
-The NETN-FOM focuses on technical interoperability issues in distributed simulation and provides architecture and design patterns and proposed solutions. However, it is not a complete guide on how to design a distributed simulation system. It includes architecture and design guidelines on network infrastructure, simulation infrastructure, simulation data exchange models and how to create a robust, scalable, interoperable and high performing federation of distributed simulations. 
+The NATO FOM focuses on technical interoperability issues in distributed simulation and provides architecture and design patterns and proposed solutions. However, it is not a complete guide on how to design a distributed simulation system. It includes architecture and design guidelines on network infrastructure, simulation infrastructure, simulation data exchange models and how to create a robust, scalable, interoperable and high-performing federation of distributed simulations. 
 
 
 ## Introduction
 
 ### Purpose
 
-The NATO Education and Training Network Federation Architecture and FOM Federation Object Model Design (NETN FAFD) document provide architecture and design guidance for developing distributed simulation for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX). The guidance has been developed to support the NETN vision:
+The NATO Federation Object Model for Distributed Synthetic Training (NATO FOM) provides architecture and design guidance for developing distributed simulations for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX). The guidance has been developed to:
 
-> “To deliver to NATO and Partners a persistent, distributed combined joint training capability able to support training from the operational to the tactical level across the full spectrum of operations, through leveraging existing national expertise and capabilities.” - NATO ACT NETN Vision
+> “deliver to NATO and Partners a persistent, distributed combined joint training capability able to support training from the operational to the tactical level across the full spectrum of operations, through leveraging existing national expertise and capabilities.” - NATO ACT NETN Vision
 
-The NETN FAFD focuses mainly on technical interoperability issues in distributed simulation. It is not a complete guide on how to design a distributed simulation but provide key architecture and design patterns and proposed solutions.
+The NATO FOM focuses mainly on technical interoperability issues in distributed simulation. It is not a complete guide on how to design a distributed simulation but provides key architecture and design patterns and proposed solutions.
 
-As a reference document, the NETN FAFD does not replace design and agreements documents authored to support each particular instance of federation development and use.
+As a reference document, the NATO FOM does not replace design and agreements documents authored to support each particular instance of federation development and use.
 
-The NETN-FOM is an identified set of HLA Evolved FOM Modules. The NETN FOM modules are recommended for use when implementing NATO AMSP-04 NETN FAFD compliant distributed simulation. 
+The NATO FOM is an identified set of HLA Evolved FOM Modules. Each FOM Module is pre-fixed NETN (NATO Education and Training Network) which is the historical name used for Distributed Synthetic Training. The FOM modules are recommended for use when implementing NATO AMSP-04 compliant distributed simulation. 
 
-The modules have inter-dependencies, and their design maximizes re-use of- and interoperability with legacy systems. The NETN-FOM is the complete set of NETN modules and all other modules on which they depend.
+The modules have inter-dependencies, and their design maximizes re-use of- and interoperability with legacy systems. The NATO FOM is the complete set of NETN modules and all other modules on which they depend.
 
-The NETN-FOM provides standard interfaces for the representation of simulated entities, events, and other models of real-world objects, processes and phenomenon. It also provides standard interfaces and patterns for simulation interplay between systems in a federated distributed simulation to allow multi-resolution modelling, transfer of modelling responsibilities, tasking and simulation control.
+The NATO FOM provides standard interfaces for the representation of simulated entities, events, and other models of real-world objects, processes and phenomena. It also provides standard interfaces and patterns for simulation interplay between systems in a federated distributed simulation to allow multi-resolution modelling, transfer of modelling responsibilities, tasking and simulation control.
 
 ### Scope
 
