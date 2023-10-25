@@ -1,4 +1,4 @@
-The NATO Federation Object Model for Distributed Synthetic Training (NATO FOM).
+The NATO Education and Training Network Federation Object Model (NETN FOM).
 
 Copyright (C) 2020 NATO/OTAN.
 This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENCE.md).
@@ -13,28 +13,28 @@ Adam Brook, Allan Gillis, Amy Grom, André Geiger, Andrew Poulter, Andy Bowers, 
 
 Efficient and effective use of NATO and national Modelling & Simulation (M&S) capabilities, to support training, requires standards for connecting and integrating M&S components across the training system enterprise.
 
-The NATO Federation Object Model for Distributed Synthetic Training (NATO FOM) provides architecture and design guidance for developing distributed simulations for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX).
+The NATO Federation Object Model for Distributed Synthetic Training (NETN FOM) provides architecture and design guidance for developing distributed simulations for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX).
 
-The NATO FOM focuses on technical interoperability issues in distributed simulation and provides architecture and design patterns and proposed solutions. However, it is not a complete guide on how to design a distributed simulation system. It includes architecture and design guidelines on network infrastructure, simulation infrastructure, simulation data exchange models and how to create a robust, scalable, interoperable and high-performing federation of distributed simulations. 
+The NETN FOM focuses on technical interoperability issues in distributed simulation and provides architecture and design patterns and proposed solutions. However, it is not a complete guide on how to design a distributed simulation system. It includes architecture and design guidelines on network infrastructure, simulation infrastructure, simulation data exchange models and how to create a robust, scalable, interoperable and high-performing federation of distributed simulations. 
 
 
 ## Introduction
 
 ### Purpose
 
-The NATO Federation Object Model for Distributed Synthetic Training (NATO FOM) provides architecture and design guidance for developing distributed simulations for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX). The guidance has been developed to:
+The NATO Federation Object Model for Distributed Synthetic Training (NETN FOM) provides architecture and design guidance for developing distributed simulations for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX). The guidance has been developed to:
 
 > “deliver to NATO and Partners a persistent, distributed combined joint training capability able to support training from the operational to the tactical level across the full spectrum of operations, through leveraging existing national expertise and capabilities.” - NATO ACT NETN Vision
 
-The NATO FOM focuses mainly on technical interoperability issues in distributed simulation. It is not a complete guide on how to design a distributed simulation but provides key architecture and design patterns and proposed solutions.
+The NETN FOM focuses mainly on technical interoperability issues in distributed simulation. It is not a complete guide on how to design a distributed simulation but provides key architecture and design patterns and proposed solutions.
 
-As a reference document, the NATO FOM does not replace design and agreements documents authored to support each particular instance of federation development and use.
+As a reference document, the NETN FOM does not replace design and agreements documents authored to support each particular instance of federation development and use.
 
-The NATO FOM is an identified set of HLA Evolved FOM Modules. Each FOM Module is pre-fixed NETN (NATO Education and Training Network) which is the historical name used for Distributed Synthetic Training. The FOM modules are recommended for use when implementing NATO AMSP-04 compliant distributed simulation. 
+The NETN FOM is an identified set of HLA Evolved FOM Modules. Each FOM Module is pre-fixed NETN (NATO Education and Training Network) which is the historical name used for Distributed Synthetic Training. The FOM modules are recommended for use when implementing NATO AMSP-04 compliant distributed simulation. 
 
-The modules have inter-dependencies, and their design maximizes re-use of- and interoperability with legacy systems. The NATO FOM is the complete set of NETN modules and all other modules on which they depend.
+The modules have inter-dependencies, and their design maximizes re-use of- and interoperability with legacy systems. The NETN FOM is the complete set of NETN modules and all other modules on which they depend.
 
-The NATO FOM provides standard interfaces for the representation of simulated entities, events, and other models of real-world objects, processes and phenomena. It also provides standard interfaces and patterns for simulation interplay between systems in a federated distributed simulation to allow multi-resolution modelling, transfer of modelling responsibilities, tasking and simulation control.
+The NETN FOM provides standard interfaces for the representation of simulated entities, events, and other models of real-world objects, processes and phenomena. It also provides standard interfaces and patterns for simulation interplay between systems in a federated distributed simulation to allow multi-resolution modelling, transfer of modelling responsibilities, tasking and simulation control.
 
 ### Scope
 
@@ -60,13 +60,13 @@ The NATO FOM provides standard interfaces for the representation of simulated en
 ### History
 In 2006, NATO Allied Command Transformation (ACT) requested NATO Modelling and Simulation Group (NMSG) to explore the concepts of a NATO Education and Training Network capability. An exploratory team (ET-025) analyzed the requirement, and it proposed a technical activity to develop NETN concepts. 
 
-In 2007, the NMSG technical activity **MSG-068 NETN** started led by NATO Joint Warfare Center (JWC) and with participants from NATO HQ-SACT, NATO Joint Forces Training Center (JFTC), NATO Consultancy, Command and Control Agency (NC3A) and 13 Nations (Australia, Bulgaria, France, Germany, Hungary, Netherlands, Romania, Slovenia, Spain, Sweden, Turkey, UK, USA). MSG-068 assessed the distributed simulation and learning capabilities that could contribute to the development of a NETN capability and drafted standards to enable better re-use and sharing of national Modelling and Simulation systems. The capabilities were demonstrated at I/ITSEC 2010, and the group ended its work in 2011. A NETN Federation Architecture and FOM Design specification (NETN FAFD) was produced which included the **NETN-FOM v1.0** published in February 2012. 
+In 2007, the NMSG technical activity **MSG-068 NETN** started led by NATO Joint Warfare Center (JWC) and with participants from NATO HQ-SACT, NATO Joint Forces Training Center (JFTC), NATO Consultancy, Command and Control Agency (NC3A) and 13 Nations (Australia, Bulgaria, France, Germany, Hungary, Netherlands, Romania, Slovenia, Spain, Sweden, Turkey, UK, USA). MSG-068 assessed the distributed simulation and learning capabilities that could contribute to the development of a NETN capability and drafted standards to enable better re-use and sharing of national Modelling and Simulation systems. The capabilities were demonstrated at I/ITSEC 2010, and the group ended its work in 2011. A NETN Federation Architecture and FOM Design specification (NETN FAFD) was produced which included the **NETN FOM v1.0** published in February 2012. 
 
-In early 2012, the NMSG technical activity **MSG-106 SPHINX**  started as a follow-on to MSG-068 but with a slightly broader scope. The technical subgroup of MSG-106 continued to work on the NETN FAFD specification and delivered a draft NETN-FOM v2.0 which included several new FOM modules and other improvements. The updated NETN-FOM was included in the draft Allied Modelling and Simulation Publication (AMSP-04) NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD).
+In early 2012, the NMSG technical activity **MSG-106 SPHINX**  started as a follow-on to MSG-068 but with a slightly broader scope. The technical subgroup of MSG-106 continued to work on the NETN FAFD specification and delivered a draft NETN FOM v2.0 which included several new FOM modules and other improvements. The updated NETN FOM was included in the draft Allied Modelling and Simulation Publication (AMSP-04) NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD).
 
-In late 2014, the NMSG technical activity **MSG-134 NATO Distributed Simulation Architecture & Design, Compliance Testing and Certification** started as a follow-on to MSG-106 to continue maintenance of the NETN FAFD and to work on establishing the NATO HLA certification process as identified in NATO STANAG 4603. The group did not add any new modules to the NETN-FOM, but it assisted in updating the draft AMSP-04 to a final version including an official **NETN-FOM v2.0** release. The group ended its work in late 2017, and the AMSP-04 was later promulgated and published by NATO in March 2018 and is covered by NATO STANREC 4800.
+In late 2014, the NMSG technical activity **MSG-134 NATO Distributed Simulation Architecture & Design, Compliance Testing and Certification** started as a follow-on to MSG-106 to continue maintenance of the NETN FAFD and to work on establishing the NATO HLA certification process as identified in NATO STANAG 4603. The group did not add any new modules to the NETN FOM, but it assisted in updating the draft AMSP-04 to a final version including an official **NETN FOM v2.0** release. The group ended its work in late 2017, and the AMSP-04 was later promulgated and published by NATO in March 2018 and is covered by NATO STANREC 4800.
 
-In early 2018, the NMSG technical activity **MSG-163 Evolving NATO Standards for Federated Simulation** started as a follow-on to MSG-134. In late 2020 the group delivered a draft updated AMSP-04 Ed B NETN FAFD document including **NETN-FOM v3.0** with new modules and several updates based on NATO and national experiences using the NETN-FOM.
+In early 2018, the NMSG technical activity **MSG-163 Evolving NATO Standards for Federated Simulation** started as a follow-on to MSG-134. In late 2020 the group delivered a draft updated AMSP-04 Ed B NETN FAFD document including **NETN FOM v3.0** with new modules and several updates based on NATO and national experiences using the NETN FOM.
 
 ### Summary of changes
 
@@ -159,7 +159,7 @@ Example: A national extension to the NETN FOM Modules subclasses existing NETN o
 
 In a NETN federation, the responsibility of modelling and simulation is allocated to participating federates. Optimally, each federate is selected to participate in the federation because it has intrinsic capabilities to represent certain aspects of entities, events and other phenomena in the simulated environment necessary to accomplish the purpose for which the federation exists. The federation design and development process allocate, describes, and documents the roles and responsibilities of all federates. The responsibility of modelling certain aspects can only be assigned to a federate with a capability that meets specified requirements. Agreements on how to define the initial and dynamic transfer of modelling responsibilities are important for all NETN federation design.
 
-The NETN-FOM allows the initialization of a distributed simulation using a scenario data format defined in the NETN-ORG module. The NETN-ORG XML Schema defines a format that extends the SISO-STD-007-2008 Military Scenario Definition Language (MSDL), and valid MSDL files are also valid using the NETN-ORG schema. The original MSDL schema is extended with additional elements for the initial allocation of modelling responsibilities. 
+The NETN FOM allows the initialization of a distributed simulation using a scenario data format defined in the NETN-ORG module. The NETN-ORG XML Schema defines a format that extends the SISO-STD-007-2008 Military Scenario Definition Language (MSDL), and valid MSDL files are also valid using the NETN-ORG schema. The original MSDL schema is extended with additional elements for the initial allocation of modelling responsibilities. 
 
 The scenario information can be loaded directly by simulation applications, or one or more dedicated federate applications publishes disjoint parts of NETN-ORG scenario data in the federation as HLA objects. The NETN-ORG FOM module defines the `Unit`, `EquipmentItem`, and `Installation` object classes that can be used in the federation to publish scenario data.
 
@@ -171,7 +171,7 @@ Example federation designs include:
 
 ### Communication Modelling
 
-In the NETN-FOM, there are several different modules related to modelling and simulation of communications. 
+In the NETN FOM, there are several different modules related to modelling and simulation of communications. 
 
 * NETN-COM and its dependency to RPR-Communication for the representation of logical networks and physical networks.
 * NETN-ORG for initialization of communication nodes.

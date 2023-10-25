@@ -10,8 +10,8 @@
         <applicationDomain></applicationDomain>
         <description>The MRM FOM module specifies interaction classes necessary to enable federation multi-resolution modeling.</description>
         <useLimitation>NETN-MRM covers the following cases:  * Aggregation of subunits and/or physical entities * Disaggregation of unit into subunits and/or physical entities * Division of simulated unit into specific parts - resources divided and all entities simulated * Merge of previously divided parts with simulated unit. * Activate and Inactivate aggregate units' representation in the simulation</useLimitation>
-        <useHistory>v1.1.1 - Initial version of NETN-MRM FOM Module released as part of NETN-FOM v2.0.</useHistory>
-        <useHistory>v2.0.0 - Updated version by MSG-163 to be part of NETN-FOM v3.0.</useHistory>
+        <useHistory>v1.1.1 - Initial version of NETN-MRM FOM Module released as part of NETN FOM v2.0.</useHistory>
+        <useHistory>v2.0.0 - Updated version by MSG-163 to be part of NETN FOM v3.0.</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>

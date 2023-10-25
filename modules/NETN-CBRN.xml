@@ -17,7 +17,7 @@ The NATO Education and Training Network CBRN Module (NETN-CBRN) is a specificati
 
 The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. A Federation Object Model (FOM) Module is used to specify how data is represented and exchanged in the federation. The NETN-CBRN FOM module is available as an XML file for use in HLA based federations. </description>
         <useLimitation>The NETN-CBRN FOM module covers:  1.	CBRN Source release modelling 2.	CBRN Detector modelling 3.	CBRN Effects modelling 4.	CBRN Protective measures modelling 5.	Hazard area modelling  Meteorological conditions and CBRN material properties for modelling the dispersion of CBRN material are not explicitly represented in the NETN-CBRN FOM Module. NETN-METOC FOM module can be used to model wether conditions that may impact the dispersion of CBRN materials and cause dynmaic change to hazard areas.</useLimitation>
-        <useHistory>v1.1.9 - Initial version developed by MSG-106. Included in NETN-FOM v2.0 and AMSP-04 Ed A.</useHistory>
+        <useHistory>v1.1.9 - Initial version developed by MSG-106. Included in NETN FOM v2.0 and AMSP-04 Ed A.</useHistory>
         <useHistory>v1.2.0 - Minor update of the NETN-CBRN FOM Module developed by MSG-163 and included in AMSP-04 Ed B.</useHistory>
         <poc>
             <pocType>Release authority</pocType>

@@ -16,7 +16,7 @@ The AIS FOM module defines all of the messages types specified in ITU-R M.1371-5
 
 The NETN-AIS FOM module content is based on ITU-R M.1371-5, Technical characteristics for an automatic identification system using time division multiple access in the VHF maritime mobile frequency band (https://www.itu.int).</description>
         <useLimitation>The NETN-AIS FOM module is simulation oriented and does not focus on the physical message format as defined by ITU-R M.1371-5. However, the FOM is aligned well with ITU-R M.1371-5, enabling relatively easy mapping to/from the message format defined in ITU-R M.1371-5.</useLimitation>
-        <useHistory>v1.0.0 - Developed by MSG-163 for NETN-FOM v3.0</useHistory>
+        <useHistory>v1.0.0 - Developed by MSG-163 for NETN FOM v3.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>

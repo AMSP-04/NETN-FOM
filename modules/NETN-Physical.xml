@@ -10,9 +10,9 @@
         <applicationDomain>Training</applicationDomain>
         <description>Defines object classes for physical entities, inherit from RPR_v2.</description>
         <useLimitation></useLimitation>
-        <useHistory>Object classes and datatypes derived from deprecated NETN-FOM v 1.0 module AggDeagg.</useHistory>
-        <useHistory>v1.2.0 - First official release as part of NETN-FOM v2.0</useHistory>
-        <useHistory>v2.0.0 - Updated by MSG-163 for NETN-FOM v3.0</useHistory>
+        <useHistory>Object classes and datatypes derived from deprecated NETN FOM v 1.0 module AggDeagg.</useHistory>
+        <useHistory>v1.2.0 - First official release as part of NETN FOM v2.0</useHistory>
+        <useHistory>v2.0.0 - Updated by MSG-163 for NETN FOM v3.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
