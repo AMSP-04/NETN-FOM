@@ -3,21 +3,6 @@ The NATO Education and Training Network Federation Object Model (NETN FOM).
 Copyright (C) 2020 NATO/OTAN.
 This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENCE.md).
 
-## Acknowledgements
-
-The following individuals have, in some way, participated in the development of this standard or its earlier versions.
-
-Adam Brook, Allan Gillis, Amy Grom, André Geiger, Andrew Poulter, Andy Bowers, Angel San Jose Martin, Antony Hubervic, Anthony Jones, Bharat Patel, Birol Güvenç, Björn Löfstrand, Brian Gregg, Brian Horn, Cem Kumsal, Ceri Pritchard, Christopher Struselis, Christian Mårtensson, Clive Wood, Craig Pepper, Darren McFarlane, David Desert, Dieter Steinkamp, Duncan E Rogers, Elena Bravo, Elisseos Mavratzotis, Ercan Atalay, Erdal Cayirci, Erich Schmid, Erik Solum, Frank Bertling, Franz Schubert, Fredrik Jonsson, Gareth M. Pugh, Gokay Sursal, Gunnar Öhlund, Gustav Schulz, Göran Bergström, Hannu Outila, Hans Jense, Heliodoro Ruiperez, Henk Hendersen, Herbert Tietje, Horst Behner, Ionel Vlasie, Jacek Sumislawski, Jack Bramhill, James Boulet, Jan Hodicky, Jan van Geest, Jean-Pierre Faye, Jens Kåregren, Jeppe Nyløkke, Jerome Martinet, Jochen Siebeneicher, Johannes Mulder, John Loughhead, Jose Mimbrero, Jose Ruiz, Juan José Ruiz Pérez, Karl-Heinz Neumann, Kjell Magne Fauske, Klaus Greiwe, Konradin Keller, Lars Jansson, Lars Lindberg, Laurent Lesage, Leif Almgren, Lennart Olsson, Lesley Jacobs, Linus Lindholm, Lubomir Chylik, Malcolm Pigott, Magnus Karperyd, Manuel Dogaru, Marco Picollo, Mark Shelford, Martin Adelantado, Martin Eklöf, Martin Jones, Michael Jobson, Michael Mifsud, Miles Patterson, Mimi Nguyen, Morten Ottesen, Nathan Newton, Neil Morris, Neil Smith, Nico de Reus, Nicolas Pitrat, Nils Smedberg, Ola Wall, Oliver Henne, Orlin Nikolov, Osmo Forsten, Patrice Guillou, Patricio Jimenez, Per-Philip Sollin, Petar Savkov Petrov, Peter Lindskog, Peter Meyer zu Drewer, Peter Jackson, Rachid El Abdouni Khayari, Raniero Castrogiovanni, Regis Mauget, Reinhard Herzog, Robert B. Kean, Robert Paledau, Robert Wittman, Roberto Censori, Roger Jansen, Rolf Engsvang, Ron Caprio, Russell Mills, Sam Hall, Sergio Galán, Simon Morris, Stefan Vrieler, Stephane Devaud, Stephen Ballard, Steven Blackstone, Stuart Robin, Søren Larsen, Thomas Orichel, Tobias Kuhn, Tom van den Berg, Torbjörn Hultén, Ulf Björkman, Ulf Jinnestrand, Vladimir Manda, Wim Huiskamp, Xavier Coste, Xavier Cuneo, Yuri Fedulov.
-
-## Executive Summary
-
-Efficient and effective use of NATO and national Modelling & Simulation (M&S) capabilities, to support training, requires standards for connecting and integrating M&S components across the training system enterprise.
-
-The NATO Federation Object Model for Distributed Synthetic Training (NETN FOM) provides architecture and design guidance for developing distributed simulations for Collective Training and Exercises (CTE), decision support, analysis, and other types of applications, including support for Computer Assisted Exercises (CAX).
-
-The NETN FOM focuses on technical interoperability issues in distributed simulation and provides architecture and design patterns and proposed solutions. However, it is not a complete guide on how to design a distributed simulation system. It includes architecture and design guidelines on network infrastructure, simulation infrastructure, simulation data exchange models and how to create a robust, scalable, interoperable and high-performing federation of distributed simulations. 
-
-
 ## Introduction
 
 ### Purpose
