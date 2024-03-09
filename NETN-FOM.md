@@ -85,21 +85,21 @@ The NETN-FOM modules capture different aspects of information that can be exchan
 
 In a federated simulation, each federate is selected to participate in the federation because it has intrinsic capabilities to represent certain aspects of entities, events, and other phenomena in the simulated environment necessary to accomplish the purpose for which the federation exists. 
 
-The federation design and development process allocates, describes, and documents the roles and responsibilities of all federates. Agreements on how to define the initial and any dynamic transfer of modelling responsibilities are important for all NETN federation designs.
+The federation design and development process allocates, describes, and documents the roles and responsibilities of all federates. Agreements on defining the initial and any dynamic transfer of modelling responsibilities are important for all NETN federation designs.
 
 During execution, the modelling responsibilities may change. HLA provides services for managing the transfer of ownership of individual object attributes between federates. 
 
-In the NETN-FOM, the concept of a **primary modelling responsibility** for an entire simulated entity is introduced. Only one federate has the primary modelling responsibility, but the responsibility can be transferred. Primary modelling responsibility is determined by the owner of the NETN-TMR `HLAobjectRoot` attribute `AllocatedFederate`. 
+In the NETN-FOM, the concept of a **primary modelling responsibility** for an entire simulated entity is introduced. Only one federate has the primary modelling responsibility, but the responsibility can be transferred. The owner of the NETN-TMR `HLAobjectRoot` attribute `AllocatedFederate` is also the federate with primary modelling responsibility. 
 
-Transfer of primary modelling responsibility is defined in the NETN-TMR module and is also used in NETN initialization patterns.
+Transfer of primary modelling responsibility is defined in the NETN-TMR module and used in NETN initialization patterns.
 
 ## Initiallization
 
-The NETN-FOM identifies three methods of initialization and allocation of initial modelling responsibility in a NETN federation.
+The NETN-FOM identifies three initialization methods and allocation of initial modelling responsibility in a NETN federation.
 
-1. Entities are allocated and registered by a federate based on a loaded Scenario Data File. The NETN-ORG module provides a proposed scenario data format based on the SISO-STD-007-2008 Military Scenario Definition Language (MSDL).
+1. A federate registers entities based on a loaded Scenario Data File. The NETN-ORG module provides a proposed scenario data format based on the SISO-STD-007-2008 Military Scenario Definition Language (MSDL).
 2. Entities are allocated based on published NETN-ORG data and registered by a federate based on data in the federation.
-3. Entities are registered by a central federate and then reallocated and transferred using NETN-TMR patterns for triggering transfer.
+3. Entities are registered by a central federate and then reallocated and transferred using NETN-TMR patterns to trigger the transfer.
 
 All methods can be combined. However, the recommended pattern uses centrally managed federate (C) that registers objects (O) and updates the O.`AllocatedFederate` attribute with the name of a federate (F) to which the modelling responsibility is allocated.
  
@@ -119,9 +119,9 @@ F->>Federation:Update(O)
 
 ## Entity Control Actions
 
-Several modules in NETN-FOM use NETN-SMC Entity Control Actions which is based on the concept of Primary Modelling Responsibility. A federate with the primary responsibility for an entity (E) shall respond to all NETN-SMC `SMC_EntityControl` actions directed to (E). 
+Several modules in NETN-FOM use NETN-SMC Entity Control Actions, which are based on the concept of Primary Modelling Responsibility. A federate with the primary responsibility for an entity (E) shall respond to all NETN-SMC `SMC_EntityControl` actions directed to (E). 
 
-In NETN-FOM v4 the following Entity Control Actions are included.
+In NETN-FOM v4, the following Entity Control Actions are included.
 
 |Name|Value|Module|
 |---|---|---|
