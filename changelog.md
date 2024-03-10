@@ -1,4 +1,17 @@
-## Changelog NETN FOM
+## Changelog NETN-FOM
+
+### Changes in v 4.0
+Major restructuring using HLA4 FOM modelling principles and techniques, allowing simplified structure and class merging of attributes/parameters from multiple modules.
+
+New FOM Module NETN-SMC for common service management and control interactions used in various other modules.
+
+New FOM Module NETN-DIM for representing disaster objects, events and tasks.
+
+Renaming of NETN-Physical to NETN-ENTITY to represent both platform and aggregate-level simulated entities.
+
+Major simplification of NETN-TMR pattern.
+
+Extension of NETN-ETR to include observation reports based on SISO C2SIM report ontology.
 
 ### Changes in v 3.0
 Version 3.0 of the NETN FOM is included in AMSP-04 Ed B v1.0 and is based on updates made by MSG-163.
