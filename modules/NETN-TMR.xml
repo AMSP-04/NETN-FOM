@@ -10,8 +10,8 @@
         <applicationDomain>Training</applicationDomain>
         <description>Transfer of Modelling Responsibility FOM Module</description>
         <useLimitation>NA</useLimitation>
-        <useHistory>v1.1.3 - Released version part of NETN-FOM v2.0 in AMSP-04 Ed A.</useHistory>
-        <useHistory>v2.0.0 - Released version part of NETN-FOM v3.0 in AMSP-04 Ed B.</useHistory>
+        <useHistory>v1.1.3 - Released version part of NETN FOM v2.0 in AMSP-04 Ed A.</useHistory>
+        <useHistory>v2.0.0 - Released version part of NETN FOM v3.0 in AMSP-04 Ed B.</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>

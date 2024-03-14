@@ -10,9 +10,9 @@
         <applicationDomain>Training</applicationDomain>
         <description>Defines object classes for physical entities, inherit from RPR_v2.</description>
         <useLimitation></useLimitation>
-        <useHistory>Object classes and datatypes derived from deprecated NETN-FOM v 1.0 module AggDeagg.</useHistory>
-        <useHistory>v1.2.0 - First official release as part of NETN-FOM v2.0</useHistory>
-        <useHistory>v2.0.0 - Updated by MSG-163 for NETN-FOM v3.0</useHistory>
+        <useHistory>Object classes and datatypes derived from deprecated NETN FOM v 1.0 module AggDeagg.</useHistory>
+        <useHistory>v1.2.0 - First official release as part of NETN FOM v2.0</useHistory>
+        <useHistory>v2.0.0 - Updated by MSG-163 for NETN FOM v3.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -59,1100 +59,204 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 <name>BaseEntity</name>
                 <objectClass>
                     <name>PhysicalEntity</name>
+                    <sharing>Subscribe</sharing>
+                    <semantics>Extensions for NETN</semantics>
+                    <attribute>
+                        <name>Status</name>
+                        <dataType>ActiveStatusEnum8</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
+An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Activity</name>
+                        <dataType>AggregateMissionEnum16</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>SymbolId</name>
+                        <dataType>SymbolIdentifier</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On Change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAbestEffort</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. A symbol identifier represented as a string.</semantics>
+                    </attribute>
                     <objectClass>
-                        <name>Platform</name>
-                        <objectClass>
-                            <name>Aircraft</name>
-                            <objectClass>
-                                <name>NETN_Aircraft</name>
-                                <sharing>PublishSubscribe</sharing>
-                                <semantics>Extension of RPR-FOM Aircraft object class.</semantics>
-                                <attribute>
-                                    <name>UniqueId</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>NA</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Status</name>
-                                    <dataType>ActiveStatusEnum8</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SourceUnit</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>NA</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 00000000-0000-0000-0000-000000000000 (UUID with all zeros) representing no source unit.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>EmbeddedUnitList</name>
-                                    <dataType>ArrayOfUuid</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to platforms or lifeforms embarked on this platform. If not published, transport of embedded units is not supported. Entities are referenced by UUID. E.g. when soldiers are transported in a NETN Physical entity, then references (UUIDs) to these soldier instances are added to the EmbeddedUnitList for the entity. When a soldier disembarks from the transporter, the reference (UUID) to that soldier is removed from the EmbeddedUnitList. The default value is an empty list.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Callsign</name>
-                                    <dataType>HLAunicodeString</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>N/A</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Activity</name>
-                                    <dataType>AggregateMissionEnum16</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Route</name>
-                                    <dataType>PathVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current path of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Destination</name>
-                                    <dataType>PointVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current destination of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SymbolId</name>
-                                    <dataType>SymbolIdentifier</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On Change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                                </attribute>
-                            </objectClass>
-                        </objectClass>
-                        <objectClass>
-                            <name>AmphibiousVehicle</name>
-                            <objectClass>
-                                <name>NETN_AmphibiousVehicle</name>
-                                <sharing>PublishSubscribe</sharing>
-                                <semantics>Extensions for NETN</semantics>
-                                <attribute>
-                                    <name>UniqueId</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>NA</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Status</name>
-                                    <dataType>ActiveStatusEnum8</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SourceUnit</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>NA</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 00000000-0000-0000-0000-000000000000 (UUID with all zeros) representing no source unit.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>EmbeddedUnitList</name>
-                                    <dataType>ArrayOfUuid</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to platforms or lifeforms embarked on this platform. If not published, transport of embedded units is not supported. Entities are referenced by UUID. E.g. when soldiers are transported in a NETN Physical entity, then references (UUIDs) to these soldier instances are added to the EmbeddedUnitList for the entity. When a soldier disembarks from the transporter, the reference (UUID) to that soldier is removed from the EmbeddedUnitList. The default value is an empty list.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Callsign</name>
-                                    <dataType>HLAunicodeString</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>N/A</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Activity</name>
-                                    <dataType>AggregateMissionEnum16</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Route</name>
-                                    <dataType>PathVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current path of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Destination</name>
-                                    <dataType>PointVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current destination of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SymbolId</name>
-                                    <dataType>SymbolIdentifier</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On Change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                                </attribute>
-                            </objectClass>
-                        </objectClass>
-                        <objectClass>
-                            <name>GroundVehicle</name>
-                            <objectClass>
-                                <name>NETN_GroundVehicle</name>
-                                <sharing>PublishSubscribe</sharing>
-                                <semantics>Extensions for NETN</semantics>
-                                <attribute>
-                                    <name>UniqueId</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>NA</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Status</name>
-                                    <dataType>ActiveStatusEnum8</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SourceUnit</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>NA</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 00000000-0000-0000-0000-000000000000 (UUID with all zeros) representing no source unit.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>EmbeddedUnitList</name>
-                                    <dataType>ArrayOfUuid</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to platforms or lifeforms embarked on this platform. If not published, transport of embedded units is not supported. Entities are referenced by UUID. E.g. when soldiers are transported in a NETN Physical entity, then references (UUIDs) to these soldier instances are added to the EmbeddedUnitList for the entity. When a soldier disembarks from the transporter, the reference (UUID) to that soldier is removed from the EmbeddedUnitList. The default value is an empty list.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Callsign</name>
-                                    <dataType>HLAunicodeString</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>N/A</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Activity</name>
-                                    <dataType>AggregateMissionEnum16</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Route</name>
-                                    <dataType>PathVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current path of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Destination</name>
-                                    <dataType>PointVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current destination of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SymbolId</name>
-                                    <dataType>SymbolIdentifier</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On Change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                                </attribute>
-                            </objectClass>
-                        </objectClass>
-                        <objectClass>
-                            <name>MultiDomainPlatform</name>
-                            <objectClass>
-                                <name>NETN_MultiDomainPlatform</name>
-                                <sharing>PublishSubscribe</sharing>
-                                <semantics>Extensions for NETN</semantics>
-                                <attribute>
-                                    <name>UniqueId</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>NA</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Status</name>
-                                    <dataType>ActiveStatusEnum8</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SourceUnit</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>NA</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 00000000-0000-0000-0000-000000000000 (UUID with all zeros) representing no source unit.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>EmbeddedUnitList</name>
-                                    <dataType>ArrayOfUuid</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to platforms or lifeforms embarked on this platform. If not published, transport of embedded units is not supported. Entities are referenced by UUID. E.g. when soldiers are transported in a NETN Physical entity, then references (UUIDs) to these soldier instances are added to the EmbeddedUnitList for the entity. When a soldier disembarks from the transporter, the reference (UUID) to that soldier is removed from the EmbeddedUnitList. The default value is an empty list.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Callsign</name>
-                                    <dataType>HLAunicodeString</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>N/A</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Activity</name>
-                                    <dataType>AggregateMissionEnum16</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Route</name>
-                                    <dataType>PathVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current path of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Destination</name>
-                                    <dataType>PointVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current destination of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SymbolId</name>
-                                    <dataType>SymbolIdentifier</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On Change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                                </attribute>
-                            </objectClass>
-                        </objectClass>
-                        <objectClass>
-                            <name>Spacecraft</name>
-                            <objectClass>
-                                <name>NETN_Spacecraft</name>
-                                <sharing>PublishSubscribe</sharing>
-                                <semantics>Extensions for NETN</semantics>
-                                <attribute>
-                                    <name>UniqueId</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>NA</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Status</name>
-                                    <dataType>ActiveStatusEnum8</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SourceUnit</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>NA</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 00000000-0000-0000-0000-000000000000 (UUID with all zeros) representing no source unit.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>EmbeddedUnitList</name>
-                                    <dataType>ArrayOfUuid</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to platforms or lifeforms embarked on this platform. If not published, transport of embedded units is not supported. Entities are referenced by UUID. E.g. when soldiers are transported in a NETN Physical entity, then references (UUIDs) to these soldier instances are added to the EmbeddedUnitList for the entity. When a soldier disembarks from the transporter, the reference (UUID) to that soldier is removed from the EmbeddedUnitList. The default value is an empty list.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Callsign</name>
-                                    <dataType>HLAunicodeString</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>N/A</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Activity</name>
-                                    <dataType>AggregateMissionEnum16</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Route</name>
-                                    <dataType>PathVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current path of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Destination</name>
-                                    <dataType>PointVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current destination of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SymbolId</name>
-                                    <dataType>SymbolIdentifier</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On Change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                                </attribute>
-                            </objectClass>
-                        </objectClass>
-                        <objectClass>
-                            <name>SubmersibleVessel</name>
-                            <objectClass>
-                                <name>NETN_SubmersibleVessel</name>
-                                <sharing>PublishSubscribe</sharing>
-                                <semantics>Extensions for NETN</semantics>
-                                <attribute>
-                                    <name>UniqueId</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>NA</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Status</name>
-                                    <dataType>ActiveStatusEnum8</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SourceUnit</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>NA</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 00000000-0000-0000-0000-000000000000 (UUID with all zeros) representing no source unit.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>EmbeddedUnitList</name>
-                                    <dataType>ArrayOfUuid</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to platforms or lifeforms embarked on this platform. If not published, transport of embedded units is not supported. Entities are referenced by UUID. E.g. when soldiers are transported in a NETN Physical entity, then references (UUIDs) to these soldier instances are added to the EmbeddedUnitList for the entity. When a soldier disembarks from the transporter, the reference (UUID) to that soldier is removed from the EmbeddedUnitList. The default value is an empty list.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Callsign</name>
-                                    <dataType>HLAunicodeString</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>N/A</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Activity</name>
-                                    <dataType>AggregateMissionEnum16</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Route</name>
-                                    <dataType>PathVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current path of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Destination</name>
-                                    <dataType>PointVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current destination of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SymbolId</name>
-                                    <dataType>SymbolIdentifier</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On Change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                                </attribute>
-                            </objectClass>
-                        </objectClass>
-                        <objectClass>
-                            <name>SurfaceVessel</name>
-                            <objectClass>
-                                <name>NETN_SurfaceVessel</name>
-                                <sharing>PublishSubscribe</sharing>
-                                <semantics>Extensions for NETN</semantics>
-                                <attribute>
-                                    <name>UniqueId</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>NA</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Status</name>
-                                    <dataType>ActiveStatusEnum8</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SourceUnit</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>NA</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 0000000000000000 representing no source unit.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>EmbeddedUnitList</name>
-                                    <dataType>ArrayOfUuid</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to platforms or lifeforms embarked on this platform. If not published, transport of embedded units is not supported. Entities are referenced by UUID. E.g. when soldiers are transported in a NETN Physical entity, then references (UUIDs) to these soldier instances are added to the EmbeddedUnitList for the entity. When a soldier disembarks from the transporter, the reference (UUID) to that soldier is removed from the EmbeddedUnitList. The default value is an empty list.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Callsign</name>
-                                    <dataType>HLAunicodeString</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>N/A</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Activity</name>
-                                    <dataType>AggregateMissionEnum16</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Route</name>
-                                    <dataType>PathVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current path of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Destination</name>
-                                    <dataType>PointVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current destination of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SymbolId</name>
-                                    <dataType>SymbolIdentifier</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On Change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                                </attribute>
-                            </objectClass>
-                        </objectClass>
-                    </objectClass>
-                    <objectClass>
-                        <name>Lifeform</name>
-                        <objectClass>
-                            <name>Human</name>
-                            <objectClass>
-                                <name>NETN_Human</name>
-                                <sharing>PublishSubscribe</sharing>
-                                <semantics>Extensions for NETN</semantics>
-                                <attribute>
-                                    <name>UniqueId</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>NA</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Status</name>
-                                    <dataType>ActiveStatusEnum8</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SourceUnit</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>NA</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 0000000000000000 representing no source unit.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Callsign</name>
-                                    <dataType>HLAunicodeString</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>N/A</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Activity</name>
-                                    <dataType>AggregateMissionEnum16</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Route</name>
-                                    <dataType>PathVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current path of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Destination</name>
-                                    <dataType>PointVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current destination of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SymbolId</name>
-                                    <dataType>SymbolIdentifier</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On Change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                                </attribute>
-                            </objectClass>
-                        </objectClass>
-                        <objectClass>
-                            <name>NonHuman</name>
-                            <objectClass>
-                                <name>NETN_NonHuman</name>
-                                <sharing>PublishSubscribe</sharing>
-                                <semantics>Extensions for NETN</semantics>
-                                <attribute>
-                                    <name>UniqueId</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>NA</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Status</name>
-                                    <dataType>ActiveStatusEnum8</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SourceUnit</name>
-                                    <dataType>UuidArrayOfHLAbyte16</dataType>
-                                    <updateType>NA</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 00000000-0000-0000-0000-000000000000 (UUID with all zeros) representing no source unit.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Callsign</name>
-                                    <dataType>HLAunicodeString</dataType>
-                                    <updateType>Static</updateType>
-                                    <updateCondition>N/A</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Activity</name>
-                                    <dataType>AggregateMissionEnum16</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Route</name>
-                                    <dataType>PathVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current path of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>Destination</name>
-                                    <dataType>PointVariantStruct</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>When Changed</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. The current destination of movement.</semantics>
-                                </attribute>
-                                <attribute>
-                                    <name>SymbolId</name>
-                                    <dataType>SymbolIdentifier</dataType>
-                                    <updateType>Conditional</updateType>
-                                    <updateCondition>On Change</updateCondition>
-                                    <ownership>DivestAcquire</ownership>
-                                    <sharing>PublishSubscribe</sharing>
-                                    <transportation>HLAbestEffort</transportation>
-                                    <order>Receive</order>
-                                    <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                                </attribute>
-                            </objectClass>
-                        </objectClass>
+                        <name>Munition</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>Extension for NETN</semantics>
+                        <attribute>
+                            <name>Route</name>
+                            <dataType>PathVariantStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>When Changed</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. The current path of movement.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Destination</name>
+                            <dataType>PointVariantStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>When Changed</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. The current destination of movement.</semantics>
+                        </attribute>
                     </objectClass>
                     <objectClass>
                         <name>CulturalFeature</name>
-                        <objectClass>
-                            <name>NETN_CulturalFeature</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>Engineering and natural effects such as craters, bridges, vehicle tracks, etc.</semantics>
+                        <attribute>
+                            <name>EmbeddedUnitList</name>
+                            <dataType>ArrayOfUuid</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
-                            <semantics>Extensions for NETN</semantics>
-                            <attribute>
-                                <name>UniqueId</name>
-                                <dataType>UuidArrayOfHLAbyte16</dataType>
-                                <updateType>Static</updateType>
-                                <updateCondition>NA</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                            </attribute>
-                            <attribute>
-                                <name>Status</name>
-                                <dataType>ActiveStatusEnum8</dataType>
-                                <updateType>Conditional</updateType>
-                                <updateCondition>On change</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                            </attribute>
-                            <attribute>
-                                <name>EmbeddedUnitList</name>
-                                <dataType>ArrayOfUuid</dataType>
-                                <updateType>Conditional</updateType>
-                                <updateCondition>On change</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Optional. Reference to platforms or lifeforms embarked on this entity. If not published, embarkment/disembarkment of embedded units not supported. Entities are referenced by UUID. E.g. when soldiers are inside in an NETN_CulturalFeature entity, then references (UUIDs) to these soldier instances are added to the EmbeddedUnitList for the entity. When a soldier leaves he NETN_CulturalFeature the reference (UUID) to that soldier is removed from the EmbeddedUnitList. The default value is an empty list.</semantics>
-                            </attribute>
-                            <attribute>
-                                <name>Callsign</name>
-                                <dataType>HLAunicodeString</dataType>
-                                <updateType>Static</updateType>
-                                <updateCondition>N/A</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
-                            </attribute>
-                            <attribute>
-                                <name>Activity</name>
-                                <dataType>AggregateMissionEnum16</dataType>
-                                <updateType>Conditional</updateType>
-                                <updateCondition>On change</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Optional. The current activity of the platform. The value is based on the Joint Consultation, Command and Control Information Exchange Data Model (JC3IEDM) action-event-category-code. The JC3IEDM is a fully documented standard [NATO STANAG 5525] for an information exchange data model for the sharing of C2 information. The default value is 0 (Other activity).</semantics>
-                            </attribute>
-                            <attribute>
-                                <name>SymbolId</name>
-                                <dataType>SymbolIdentifier</dataType>
-                                <updateType>Conditional</updateType>
-                                <updateCondition>On Change</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                            </attribute>
-                        </objectClass>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Reference to platforms or lifeforms embarked on this entity. If not published, embarkment/disembarkment of embedded units not supported. Entities are referenced by UUID. E.g. when soldiers are inside in an NETN_CulturalFeature entity, then references (UUIDs) to these soldier instances are added to the EmbeddedUnitList for the entity. When a soldier leaves he NETN_CulturalFeature the reference (UUID) to that soldier is removed from the EmbeddedUnitList. The default value is an empty list.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Callsign</name>
+                            <dataType>HLAunicodeString</dataType>
+                            <updateType>Static</updateType>
+                            <updateCondition>N/A</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
+                        </attribute>
                     </objectClass>
                     <objectClass>
-                        <name>Munition</name>
-                        <objectClass>
-                            <name>NETN_Munition</name>
+                        <name>Lifeform</name>
+                        <sharing>Subscribe</sharing>
+                        <semantics>Extensions for NETN</semantics>
+                        <attribute>
+                            <name>SourceUnit</name>
+                            <dataType>UUID</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
-                            <semantics>Extension for NETN</semantics>
-                            <attribute>
-                                <name>UniqueId</name>
-                                <dataType>UuidArrayOfHLAbyte16</dataType>
-                                <updateType>Static</updateType>
-                                <updateCondition>NA</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is either generated or defined as part of scenario initialization, e.g. using NETN-ORG MSDL data for defining specific platforms as equipment assigned to units.</semantics>
-                            </attribute>
-                            <attribute>
-                                <name>Status</name>
-                                <dataType>ActiveStatusEnum8</dataType>
-                                <updateType>Conditional</updateType>
-                                <updateCondition>On change</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Required. Indicate if this platform currently is being simulated or not. E.g. platforms mounted or embarked on transports can be set to inactive. During an inactive state, the attribute values may not reflect an accurate, current value. Therefore, any subscribing federate can ignore inactive units. All attributes must be updated to represent the current status of the instance before setting the state to Active. 
-An inactive instance may have its instance attributes updated by a federate but reflected updates shall be ignored by receiving federates. All attributes must be updated to represent the current status of the instance before status is set to active.</semantics>
-                            </attribute>
-                            <attribute>
-                                <name>Route</name>
-                                <dataType>PathVariantStruct</dataType>
-                                <updateType>Conditional</updateType>
-                                <updateCondition>When Changed</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Optional. The current path of movement.</semantics>
-                            </attribute>
-                            <attribute>
-                                <name>Destination</name>
-                                <dataType>PointVariantStruct</dataType>
-                                <updateType>Conditional</updateType>
-                                <updateCondition>When Changed</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Optional. The current destination of movement.</semantics>
-                            </attribute>
-                            <attribute>
-                                <name>SymbolId</name>
-                                <dataType>SymbolIdentifier</dataType>
-                                <updateType>Conditional</updateType>
-                                <updateCondition>On Change</updateCondition>
-                                <ownership>DivestAcquire</ownership>
-                                <sharing>PublishSubscribe</sharing>
-                                <transportation>HLAbestEffort</transportation>
-                                <order>Receive</order>
-                                <semantics>Optional. A symbol identifier represented as a string.</semantics>
-                            </attribute>
-                        </objectClass>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 0000000000000000 representing no source unit.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Callsign</name>
+                            <dataType>HLAunicodeString</dataType>
+                            <updateType>Static</updateType>
+                            <updateCondition>N/A</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Route</name>
+                            <dataType>PathVariantStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>When Changed</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. The current path of movement.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Destination</name>
+                            <dataType>PointVariantStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>When Changed</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. The current destination of movement.</semantics>
+                        </attribute>
+                    </objectClass>
+                    <objectClass>
+                        <name>Platform</name>
+                        <sharing>Subscribe</sharing>
+                        <semantics>Extensions for NETN</semantics>
+                        <attribute>
+                            <name>SourceUnit</name>
+                            <dataType>UUID</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Reference to an active NETN_Aggregate instance from which this physical entity was divided. If not published, merging is not supported. The default value is 00000000-0000-0000-0000-000000000000 (UUID with all zeros) representing no source unit.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>EmbeddedUnitList</name>
+                            <dataType>ArrayOfUuid</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Reference to platforms or lifeforms embarked on this platform. If not published, transport of embedded units is not supported. Entities are referenced by UUID. E.g. when soldiers are transported in a NETN Physical entity, then references (UUIDs) to these soldier instances are added to the EmbeddedUnitList for the entity. When a soldier disembarks from the transporter, the reference (UUID) to that soldier is removed from the EmbeddedUnitList. The default value is an empty list.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Callsign</name>
+                            <dataType>HLAunicodeString</dataType>
+                            <updateType>Static</updateType>
+                            <updateCondition>N/A</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Required. A callsign used to address the platform. Callsigns should be unique in the context in which they are used but not required to be globally unique.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Route</name>
+                            <dataType>PathVariantStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>When Changed</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. The current path of movement.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Destination</name>
+                            <dataType>PointVariantStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>When Changed</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAbestEffort</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. The current destination of movement.</semantics>
+                        </attribute>
                     </objectClass>
                 </objectClass>
             </objectClass>

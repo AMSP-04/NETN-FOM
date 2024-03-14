@@ -12,7 +12,7 @@
         
 This module is a specification of how to represent Communication Networks in a federated distributed simulation. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN COM FOM module is available as a XML file for use in HLA based federations.</description>
         <useLimitation></useLimitation>
-        <useHistory>1.0.0 - Initial version developed by MSG-164 and MSG-163 for NETN-FOM v3.0</useHistory>
+        <useHistory>1.0.0 - Initial version developed by MSG-164 and MSG-163 for NETN FOM v3.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
