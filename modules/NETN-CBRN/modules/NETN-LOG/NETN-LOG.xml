@@ -1,0 +1,1112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification notes="Overview Logistics_Service_Pattern">
+        <name>NETN-LOG</name>
+        <type>FOM</type>
+        <version>2.1</version>
+        <modificationDate>2023-03-25</modificationDate>
+        <securityClassification>Not Classified</securityClassification>
+        <releaseRestriction></releaseRestriction>
+        <purpose>The NATO Education and Training Network (NETN) Logistics (LOG) Module provides a common standard interface for negotiation, delivery and acceptance of logistics services where service providers and consumers are represented in different systems in a federated distributed simulation.</purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>Military logistics is the discipline of planning and carrying out the movement and maintenance of military forces including storage, distribution, maintenance and transportation of materiel.
+
+The NATO Education and Training Network Logistics Module (NETN-LOG) is a specification of how to model logistics services in a federated distributed simulation. 
+The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and is primarily intended to support interoperability in a federated simulation (federation) based on HLA. A Federation Object Model (FOM) Module is used to specify how data is represented and exchanged in the federation. The NETN-LOG FOM module is available as an XML file for use in HLA-based federations.</description>
+        <useLimitation>The NETN Logistics module covers the following services:    
+* Supply Service   
+* Transport Service  
+* Repair service     
+        
+Examples of use:    
+* Refuelling of aircraft at an airbase or in the air   
+* Transport of supplies between facilities   
+* Repair of damaged platforms in a facility or by unit  
+* Transport of units, platforms, and humans by train, ship, or aircraft   
+* Embarkment and disembarkment of units on platforms</useLimitation>
+        <useHistory notes="netn-log_3">v1.1 - Initial version developed by MSG-068 for NETN-FOM v1.0. </useHistory>
+        <useHistory notes="netn-log_1">v2.0 - Re-merged version of NETN-LOG FOM Module updated by MSG-163 for NETN-FOM v3.0. Includes NETN-SCP, NETN-Supply, NETN-Storage, NETN-Repair and NETN-Transport.</useHistory>
+        <useHistory notes="netn-log_2">v2.1 - Updated version developed by MSG-191. Release included in NATO-FOM v4.0</useHistory>
+        <poc>
+            <pocType>Release authority</pocType>
+            <pocName>NATO Modelling and Simulation Group</pocName>
+            <pocOrg>NATO Science and Technology Organization</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-068 NATO Education and Training Network</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-191 NATO Standards for Federated Simulation and Services for Integration, Verification and Certification</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
+        </reference>
+        <other>
+Copyright © 2020 by NATO/OTAN. All rights reserved.
+This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
+
+Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
+        <glyph type="png" height="48" width="48" alt="">iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABcSAAAXEgFnn9JSAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAAFj0lEQVRoBe2XS6ydUxSAD603QbT1aJtWU48ETQgRJUQnNfAYkhiIRySMRGogqbj3igSJAQZMlEoNRFommIjee1XQxKMlTUuikd54F/GoKlXf95+9rn3+u49zbi+9R5yVfP9ee/37sfbaa+//nEajL/0I9CPQj0A/AlOIwEFT6Hsguh7MJPKflK6C21WjaVi+fu2DebAE/kj1XvUX9/6S3MnnMLuQPfB7KkPfS33vTB69JhF9c//s5JyLmJFIpmahsVdFp3fBOTA7Obme8gOYBUeCqdWTckjy6mRKHXYx9yebOzSabL8lW9eFnWMr81zteoAuGobzC2i7BXR+KOtnao0ke8cF6KQdPCuldCvZaLrfEs7PZ4TNUHfegfVnNL2bsIBwWMdsWBffL4Izsxf/1CLiQpnL2B+Czg9m88Ti9KFlARraRdj+5uEVcB+MwE74HtaCkVJi8mZt8s9wzns/Ij+QDWMw9VNRb1lAZc0ex6JfDCvgRfgCjEawO9PfQz8DlHCiWev+Gf1Oocv74DwDEKLDSpQuZD3Y7hdoHA7etzfBKtgKfjTC4W/QX4a74XLQ4VshFrYN/TxQYidNq3ZEJKO9pbsckR/UkMTF6bjELlu+C+FflRpRifLn1OB5yjlQkksxxiI+Q7ferbiIcMjIh0MDXQ7wMO02wCu2XwM6vg5Wgh+Oe0DbqxDihEbkUDgsGS+i/Ahs69m4Go6BhXAaONYFcAksh6VgNGMXDE47553Pj5UZUucobEen99WNsphKLqaETrkTZ6UXkaupOl7cjLYHbL8LXNAYfAnfwk/gufG3i20eA+VEKOW8766HjYm3s1L9LXgDXodhaJFw8jiscZVd29Ki0VhA/Rp4AEZgB3hmwkGdLOFnX7sH7yp4LdXvpQyJnXHc0hglW3XYTAu3zIMX8iCKHVbDheBEL4HRLQ2kzUW4mMB6jotwt9wp2w9BiPMrptgw+N6di7Hy0g9YgNoqLuZUeBxikEgR64EDOkinyEd7y9gF9QEIyc+FuzAMtnH8vP8E3VXbYS6Y9x5K8Vo9AewQB9bJxfZOmO8W1RZxUUrumHX72+8TeAQUfTAYtnW+Sctd9PCwtYukk/rOckIECrb6OPaT2LEYYyk2JQLhApRJ7YCdjPzx4MTiROEs6njEHbiT6JxjjoGXgGI/0VGjrWyA7ZW2n1FPfavJvCoVnY5JdKIbh+0XETVf7eMVdxmcD4OgeJWOwkPgDXYlfA62d94pySp660TpoIZz9dJJIyXqKXNd5o0fmx/A31R1qQfIoCnah8E5S4fYecezJDphqyKhM6WIOFg4bWcnyXfLfp+CYkqGnIvil3lLMnjDmUbO65iTkfDBecX6vshJB3JQXyg6az2iqx6gVvI1T//u+WU0p9+BJ8BLYTa4oDvBO/9ZUBxPOkksrnIyNTZo4rza50AlT/LUYAoZqe9S3UXEAJY/gp/yR8Gv8+kQC0atZBbPNRDpuBl9WfWmGYCkFgsDpOikAQmf9CMCuRp9IcyHp8A2jaeTcgvlEeD1tj3ZtlLq0G1gavgjqi5OPDMR7xajLAF/jCk61UnyNs/QWOdy9MkAhZyEMmZlLWxSycQo29kPWl2cKPIwohZt6nXtJVu0r5exiHm8uB3ugBVgGm6DfCzP1sdQLWAnZURL2yho82es4uHTaQeISVCL8ncLLHaoGUvjv0AbA+qCQlaiaKvuZRXv7xthHVgfAqWe503rv/s0UM5r4BTT+lfQL8/hxqS7M5XcwNN8soGH1Z/K5rVSikjzzYF5xvzLmO5NiG+A+vJ4qSv+nFgEX8EOUIyEt8B0i34aXH9YekHol/m/G6oIa8jFDvni8nfTpZdSeUbupIuIenwDpsvZdvPmProjvZAd7Xzt2/sR6EfgfxGBPwEFd8BYbgXmlwAAAABJRU5ErkJggg==</glyph>
+    </modelIdentification>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>LOG_Interaction</name>
+                <sharing>Neither</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>Base class for all NETN Logistics Pattern Service Transactions.</semantics>
+                <parameter>
+                    <name>EventId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Required: Unique identifier for the requested service related to the event.</semantics>
+                </parameter>
+                <interactionClass>
+                    <name>RequestService</name>
+                    <sharing>Neither</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>A consumer federate initiates service negotiation using `RequestService`. A unique `EventId` and a reference to a `ConsumerEntity` are required parameters. A reference to a specific `ProviderEntity` and a system wall-clock time for when offers are expected `RequestTimeOut` are optional. 
+Requests for specific types of services are defined as subclasses to `RequestService` and include parameters for detailing the requirements of the request. This may include information on when, where and how the service should be delivered.</semantics>
+                    <parameter>
+                        <name>ConsumerEntity</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Unique identifier for a simulated entity that is the intended receiver of service</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>ProviderEntity</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Optional: Unique identifier of a simulated entity intended to perform the service. If not provided, the entity performing the service is considered unknown.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>RequestTimeOut</name>
+                        <dataType>ScenarioTime</dataType>
+                        <semantics>Optional: Wallclock time. The timeout time is in seconds after 1 January 1970.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>StartAppointment</name>
+                        <dataType>AppointmentStruct</dataType>
+                        <semantics>Optional: The time and location of the start of the service delivery.</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>RequestRepair</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Sent by the consumer when a repair is needed. Specifies entity and type of repair</semantics>
+                        <parameter>
+                            <name>RepairData</name>
+                            <dataType>ArrayOfRepairStruct</dataType>
+                            <semantics>Required: List of all requested repairs.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>RequestSupply</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>The consumer sends a `RequestSupply` interaction to request supplies. The amount and type of supplies are specified in the required `SuppliesData` parameter. The required `TransferDirection` parameter indicates whether supplies are transferred from the Consumer to the Provider or from the Provider to the Consumer.</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>SupplyStructArray</dataType>
+                            <semantics>Required: List of type and quantity of supplies requested.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>TransferDirection</name>
+                            <dataType>TransferDirectionEnum32</dataType>
+                            <semantics>Required: Indicates if the transfer of supplies is from Consumer to Provider or from Provider to Consumer.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>RequestTransport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>A request for a Transport service. 
+Use a RequestTransport interaction to initiate a transport, embarkment or disembarkment of a platform.</semantics>
+                        <parameter>
+                            <name>TransportData</name>
+                            <dataType>ArrayOfUuid</dataType>
+                            <semantics>Required: Entities to be transported.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>EndAppointment</name>
+                            <dataType>AppointmentStruct</dataType>
+                            <semantics>Optional: Location and time for disembarkment.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>OfferService</name>
+                    <sharing>Neither</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>The OfferService is a response to a RequestService. Subclasses of this interaction for specific types of offers contain a more detailed description of the offer. This information may include when, where, and how the service can be delivered.</semantics>
+                    <parameter>
+                        <name>OfferId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Unique offer identifier.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>ProviderEntity</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Unique identifier of a simulated entity intended to perform the service. If not provided, the entity performing the service is considered unknown.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>OfferType</name>
+                        <dataType>OfferTypeEnum32</dataType>
+                        <semantics>Optional: Specifies if the offer is Negative (no Offer), Positive (Complete as requested) or Modified (not the same as requested).</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>OfferTimeOut</name>
+                        <dataType>ScenarioTime</dataType>
+                        <semantics>Optional: The system wallclock time (in seconds after 1 January 1970) when the offer stops being valid. If not provided, the offer valid until otherwise specified.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>StartAppointment</name>
+                        <dataType>AppointmentStruct</dataType>
+                        <semantics>Optional: Time and location of the start of service delivery.</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>OfferRepair</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Is sent by a federate simulating the service-providing entity in response to a RequestRepair interaction.</semantics>
+                        <parameter>
+                            <name>RepairData</name>
+                            <dataType>ArrayOfRepairStruct</dataType>
+                            <semantics>Required: List of the type of repairs offered. May be different from the list of requested repairs. List of all offered repairs if `isOffering` = true otherwise Undefined</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>OfferSupply</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Used by a supply service provider to indicate which of the requested materiel (amount and type) can be offered. In this request, the consumer decides whether the loading is done by the provider or by the consumer.</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>SupplyStructArray</dataType>
+                            <semantics>Required: List of type and quantity of supplies offered. May be different from the list of requested supplies. All offered supplies if `isOffering` = true otherwise Undefined</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>OfferTransport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>An Offer for Transport support. The OfferTransport interaction shall be sent by the service-providing federate in response to a RequestTransport interaction.</semantics>
+                        <parameter>
+                            <name>TransportData</name>
+                            <dataType>ArrayOfUuid</dataType>
+                            <semantics>Required: Entities to be transported.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>EndAppointment</name>
+                            <dataType>AppointmentStruct</dataType>
+                            <semantics>Optional: Location and time for disembarkment.</semantics>
+                        </parameter>
+                        <parameter>
+                            <name>Transporters</name>
+                            <dataType>ArrayOfUuid</dataType>
+                            <semantics>Optional: Platform list with transporters</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>AcceptOffer</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Use the AcceptOffer interaction to accept an offer received in an OfferService interaction.</semantics>
+                    <parameter>
+                        <name>OfferId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Unique offer identifier.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>ServiceStarted</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Issued by a service provider to inform about the start of service delivery. The time of service delivery start may be significantly later than receiving an indication from the consumer that the service delivery can start.</semantics>
+                </interactionClass>
+                <interactionClass>
+                    <name>ServiceComplete</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Used by a service-providing entity to inform the service-consuming entity that the service has been delivered.</semantics>
+                    <interactionClass>
+                        <name>SupplyComplete</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>This interaction is sent by the provider when the supply is delivered to the consumer</semantics>
+                        <parameter>
+                            <name>SuppliesData</name>
+                            <dataType>SupplyStructArray</dataType>
+                            <semantics>Required: The number of supplies, by type, that were transferred from provider to consumer.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>RepairComplete</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>This interaction is sent by the provider when the repair service is delivered to the consumer</semantics>
+                        <parameter>
+                            <name>RepairData</name>
+                            <dataType>ArrayOfRepairStruct</dataType>
+                            <semantics>Required: List of the type of repairs done. May be different from the list of requested repairs.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>ServiceReceived</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Used by a service-consuming entity to inform the service-providing entity that the service has been delivered.</semantics>
+                </interactionClass>
+                <interactionClass>
+                    <name>RejectOffer</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Used to reject an offer made by a service-providing entity as indicated in an OfferService interaction. By issuing a RejectOffer interaction the service-consuming entity informs the providing entity that the offer has been rejected.</semantics>
+                    <parameter>
+                        <name>Reason</name>
+                        <dataType>HLAASCIIstring</dataType>
+                        <semantics>Optional: Allows informing about the reason for the cancellation.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>CancelOffer</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Used by the provider to cancel an already made offer before it has been accepted. Used if the OfferTimeOut has passed.</semantics>
+                    <parameter>
+                        <name>OfferId</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Reference to the cancelled offer.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>CancelRequest</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Used by either a service-consuming entity or a service-providing entity to inform about early termination of the service delivery or in some cases termination of the service request before delivery has begun.</semantics>
+                    <parameter>
+                        <name>Reason</name>
+                        <dataType>HLAASCIIstring</dataType>
+                        <semantics>Allows informing about the reason for the cancellation.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>ReadyToReceiveService</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Issued by a service consumer to indicate that service delivery can start. The time of service delivery may be significantly later than indicating ready for service delivery.</semantics>
+                </interactionClass>
+                <interactionClass>
+                    <name>TransportDestroyedEntities</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Used by a service provider to update information on the state of entities under transport.</semantics>
+                    <parameter>
+                        <name>DestroyedObjects</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <semantics>Required: Identifies the objects that have been destroyed during transport.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>TransportDisembarkmentStatus</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Is sent by the service provider federate, to inform the service consumer of the disembarkment state, after the ServiceStarted interaction</semantics>
+                    <parameter>
+                        <name>DisembarkedObjects</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <semantics>Required: References to disembarked entities. Updated during disembarkment.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>TransportUnitIdentifier</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: UUID of the entity performing the transport.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>TransportEmbarkmentStatus</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Is sent by the service provider federate, to inform the service consumer of the embarkment state, after the ServiceStarted interaction</semantics>
+                    <parameter>
+                        <name>EmbarkedObjects</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <semantics>Required: List of entities currently embarked. Updated during embarkment.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>TransportUnitIdentifier</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Refers to the entity providing the transport.</semantics>
+                    </parameter>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>OfferTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Type of the offer (With restriction, positive, negative)</semantics>
+                <enumerator>
+                    <name>RequestAcknowledgeWithRestriction</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>RequestAcknowledgePositive</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>RequestAcknowledgeNegative</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>TransferDirectionEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Indicates the direction of flow of material or supplies during service delivery.</semantics>
+                <enumerator>
+                    <name>FromConsumer</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>FromProvider</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>RepairTypeEnum16</name>
+                <representation>RPRunsignedInteger16BE</representation>
+                <semantics>System repaired</semantics>
+                <enumerator>
+                    <name>NoRepairsPerformed</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>AllRequestedRepairsPerformed</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>MotorOrEngine</name>
+                    <value>10</value>
+                </enumerator>
+                <enumerator>
+                    <name>Starter</name>
+                    <value>20</value>
+                </enumerator>
+                <enumerator>
+                    <name>Alternator</name>
+                    <value>30</value>
+                </enumerator>
+                <enumerator>
+                    <name>Generator</name>
+                    <value>40</value>
+                </enumerator>
+                <enumerator>
+                    <name>Battery</name>
+                    <value>50</value>
+                </enumerator>
+                <enumerator>
+                    <name>EngineCoolantLeak</name>
+                    <value>60</value>
+                </enumerator>
+                <enumerator>
+                    <name>FuelFilter</name>
+                    <value>70</value>
+                </enumerator>
+                <enumerator>
+                    <name>TransmissionOilLeak</name>
+                    <value>80</value>
+                </enumerator>
+                <enumerator>
+                    <name>EngineOilLeak</name>
+                    <value>90</value>
+                </enumerator>
+                <enumerator>
+                    <name>Pumps</name>
+                    <value>100</value>
+                </enumerator>
+                <enumerator>
+                    <name>Filters</name>
+                    <value>110</value>
+                </enumerator>
+                <enumerator>
+                    <name>Transmission</name>
+                    <value>120</value>
+                </enumerator>
+                <enumerator>
+                    <name>Brakes</name>
+                    <value>130</value>
+                </enumerator>
+                <enumerator>
+                    <name>SuspensionSystem</name>
+                    <value>140</value>
+                </enumerator>
+                <enumerator>
+                    <name>OilFilter</name>
+                    <value>150</value>
+                </enumerator>
+                <enumerator>
+                    <name>Hull</name>
+                    <value>1000</value>
+                </enumerator>
+                <enumerator>
+                    <name>Airframe</name>
+                    <value>1010</value>
+                </enumerator>
+                <enumerator>
+                    <name>TruckBody</name>
+                    <value>1020</value>
+                </enumerator>
+                <enumerator>
+                    <name>TankBody</name>
+                    <value>1030</value>
+                </enumerator>
+                <enumerator>
+                    <name>TrailerBody</name>
+                    <value>1040</value>
+                </enumerator>
+                <enumerator>
+                    <name>Turret</name>
+                    <value>1050</value>
+                </enumerator>
+                <enumerator>
+                    <name>Propeller</name>
+                    <value>1500</value>
+                </enumerator>
+                <enumerator>
+                    <name>EnvironmentalFilters</name>
+                    <value>1520</value>
+                </enumerator>
+                <enumerator>
+                    <name>Wheels</name>
+                    <value>1540</value>
+                </enumerator>
+                <enumerator>
+                    <name>Tire</name>
+                    <value>1550</value>
+                </enumerator>
+                <enumerator>
+                    <name>Track</name>
+                    <value>1560</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunElevationDrive</name>
+                    <value>2000</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunStabilizationSystem</name>
+                    <value>2010</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunnersPrimarySight_GPS_</name>
+                    <value>2020</value>
+                </enumerator>
+                <enumerator>
+                    <name>CommandersExtensionToTheGPS</name>
+                    <value>2030</value>
+                </enumerator>
+                <enumerator>
+                    <name>LoadingMechanism</name>
+                    <value>2040</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunnersAuxiliarySight</name>
+                    <value>2050</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunnersControlPanel</name>
+                    <value>2060</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunnersControlAssemblyHandle_Handles</name>
+                    <value>2070</value>
+                </enumerator>
+                <enumerator>
+                    <name>CommandersControlHandles_Assembly</name>
+                    <value>2090</value>
+                </enumerator>
+                <enumerator>
+                    <name>CommandersWeaponStation</name>
+                    <value>2100</value>
+                </enumerator>
+                <enumerator>
+                    <name>CommandersIndependentThermalViewer_CITV_</name>
+                    <value>2110</value>
+                </enumerator>
+                <enumerator>
+                    <name>GeneralWeapons</name>
+                    <value>2120</value>
+                </enumerator>
+                <enumerator>
+                    <name>FuelTransferPump</name>
+                    <value>4000</value>
+                </enumerator>
+                <enumerator>
+                    <name>FuelLines</name>
+                    <value>4010</value>
+                </enumerator>
+                <enumerator>
+                    <name>Gauges</name>
+                    <value>4020</value>
+                </enumerator>
+                <enumerator>
+                    <name>GeneralFuelSystem</name>
+                    <value>4030</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicWarfareSystems</name>
+                    <value>4500</value>
+                </enumerator>
+                <enumerator>
+                    <name>DetectionSystems</name>
+                    <value>4600</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicWarfareRadioFrequency</name>
+                    <value>4610</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicWarfareMicrowave</name>
+                    <value>4620</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicWarfareInfrared</name>
+                    <value>4630</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicWarfareLaser</name>
+                    <value>4640</value>
+                </enumerator>
+                <enumerator>
+                    <name>RangeFinders</name>
+                    <value>4700</value>
+                </enumerator>
+                <enumerator>
+                    <name>Range-OnlyRadar</name>
+                    <value>4710</value>
+                </enumerator>
+                <enumerator>
+                    <name>LaserRangeFinder</name>
+                    <value>4720</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicSystems</name>
+                    <value>4800</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicSystemsRadioFrequency</name>
+                    <value>4810</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicSystemsMicrowave</name>
+                    <value>4820</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicSystemsInfrared</name>
+                    <value>4830</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicSystemsLaser</name>
+                    <value>4840</value>
+                </enumerator>
+                <enumerator>
+                    <name>Radios</name>
+                    <value>5000</value>
+                </enumerator>
+                <enumerator>
+                    <name>CommunicationSystems</name>
+                    <value>5010</value>
+                </enumerator>
+                <enumerator>
+                    <name>Intercoms</name>
+                    <value>5100</value>
+                </enumerator>
+                <enumerator>
+                    <name>Encoders</name>
+                    <value>5200</value>
+                </enumerator>
+                <enumerator>
+                    <name>EncryptionDevices</name>
+                    <value>5250</value>
+                </enumerator>
+                <enumerator>
+                    <name>Decoders</name>
+                    <value>5300</value>
+                </enumerator>
+                <enumerator>
+                    <name>DecryptionDevices</name>
+                    <value>5350</value>
+                </enumerator>
+                <enumerator>
+                    <name>Computers</name>
+                    <value>5500</value>
+                </enumerator>
+                <enumerator>
+                    <name>NavigationAndControlSystems</name>
+                    <value>6000</value>
+                </enumerator>
+                <enumerator>
+                    <name>FireControlSystems</name>
+                    <value>6500</value>
+                </enumerator>
+                <enumerator>
+                    <name>AirSupply</name>
+                    <value>8000</value>
+                </enumerator>
+                <enumerator>
+                    <name>LifeSupportFilters</name>
+                    <value>8010</value>
+                </enumerator>
+                <enumerator>
+                    <name>LifeSupportWaterSupply</name>
+                    <value>8020</value>
+                </enumerator>
+                <enumerator>
+                    <name>RefrigerationSystem</name>
+                    <value>8030</value>
+                </enumerator>
+                <enumerator>
+                    <name>ChemicalBiologicalAndRadiologicalProtection</name>
+                    <value>8040</value>
+                </enumerator>
+                <enumerator>
+                    <name>WaterWashDownSystems</name>
+                    <value>8050</value>
+                </enumerator>
+                <enumerator>
+                    <name>DecontaminationSystems</name>
+                    <value>8060</value>
+                </enumerator>
+                <enumerator>
+                    <name>HydraulicSystemWaterSupply</name>
+                    <value>9000</value>
+                </enumerator>
+                <enumerator>
+                    <name>CoolingSystem</name>
+                    <value>9010</value>
+                </enumerator>
+                <enumerator>
+                    <name>Winches</name>
+                    <value>9020</value>
+                </enumerator>
+                <enumerator>
+                    <name>Catapults</name>
+                    <value>9030</value>
+                </enumerator>
+                <enumerator>
+                    <name>Cranes</name>
+                    <value>9040</value>
+                </enumerator>
+                <enumerator>
+                    <name>Launchers</name>
+                    <value>9050</value>
+                </enumerator>
+                <enumerator>
+                    <name>LifeBoats</name>
+                    <value>10000</value>
+                </enumerator>
+                <enumerator>
+                    <name>LandingCraft</name>
+                    <value>10010</value>
+                </enumerator>
+                <enumerator>
+                    <name>EjectionSeats</name>
+                    <value>10020</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes>
+            <arrayData>
+                <name>ArrayOfRepairStruct</name>
+                <dataType>RepairStruct</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>List of repair descriptions (equipment and type of repairs).</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfRepairTypeEnum</name>
+                <dataType>RepairTypeEnum16</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>List of repair types</semantics>
+            </arrayData>
+        </arrayDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>RepairStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Repairs associated with a specific materiel</semantics>
+                <field>
+                    <name>MaterielId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>UUID for the materiel.</semantics>
+                </field>
+                <field>
+                    <name>Repairs</name>
+                    <dataType>ArrayOfRepairTypeEnum</dataType>
+                    <semantics>List of the types of repair associated with the materiel.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>AppointmentStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Date ; Time and Location of an appointment. 
+When date and time is set to zero (0), implies no date-time specification</semantics>
+                <field>
+                    <name>DateTime</name>
+                    <dataType>ScenarioTime</dataType>
+                    <semantics>Date time in second since 1 junuary 1970 for the appointment</semantics>
+                </field>
+                <field>
+                    <name>Location</name>
+                    <dataType>LocationStruct</dataType>
+                    <semantics>Location of the appointment</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+    </dataTypes>
+    <notes>
+        <note>
+            <label>netn-log_1</label>
+            <semantics>* FOM Modules NETN-SCP-BASE v1.1.3, NETN-Supply v1.1.2, NETN-Storage v1.2.2, NETN-Repair v1.2.1 and NETN-Transport v1.1.2 merged into new module NETN-LOG 
+* Prefix dropped from all interaction classes except interaction class LOG_Service 
+* Added note for `modelIdentification` to provide additional description of FOM module 
+* Added glyph 
+* Updated `releaseRestriction`, `purpose`, `description` and `useLimitation` 
+* Changed `securityClassification` from `Unclassified` to `Not Classified` 
+ 
+* Removed object class `SCP_Facility` 
+* Removed interaction class `RequestStorage` 
+* Removed interaction class `OfferStorage` 
+* Removed interaction class `StorageComplete` 
+* Removed interaction class `ReadyToReceiveStorage` 
+* Removed interaction class `ReadyToReceiveRepair` 
+* Removed interaction class `ReadyToReceiveSupply` 
+ 
+* Removed parameter `LOG_Service.Consumer` 
+* Removed parameter `LOG_Service.Provider` 
+* Removed parameter `RequestSupply.LoadingDoneByProvider` 
+* Removed parameter `OfferSupply.LoadingDoneByProvider` 
+* Removed parameter `LOG_Service.ServiceType` 
+* Removed parameter `OfferTransport.OfferType` 
+* Removed parameter `OfferService.IsOffering` 
+* Removed parameter `RequestRepair.Appointment` 
+* Removed parameter `RequestSupply.Appointment` 
+* Removed parameter `OfferRepair.Appointment` 
+* Removed parameter `OfferSupply.Appointment` 
+ 
+* Removed datatype `TransportStruct` 
+* Removed datatype `DataTStruct` 
+* Removed datatype `DataEDStruct` 
+* Removed datatype `TransportTypeEnum32` 
+* Removed datatype `ServiceIdentifier` 
+* Removed datatype `LOG_ServiceTypeEnum8` 
+* Removed datatype `ServiceDescription` 
+* Removed datatype `NETN_RepairTypeEnum16` 
+ 
+* Added interaction class `LOG_Interaction.CancelOffer` 
+* Renamed interaction class `CancelService` to `CancelRequest` 
+* Renamed interaction class `LOG_Service` to `LOG_Interaction` 
+ 
+* Added parameter `RequestService.ConsumerEntity` 
+* Added parameter `RequestService.ProviderEntity` 
+* Added parameter `OfferService.OfferId` 
+* Added parameter `AcceptOffer.OfferId` 
+* Added parameter `OfferService.ProviderEntity` 
+* Added parameter `OfferService.OfferType` 
+* Added parameter `RequestService.StartAppointment` 
+* Added parameter `RequestTransport.EndAppointment` 
+* Added parameter `OfferService.StartAppointment` 
+* Added parameter `OfferTransport.EndAppointment` 
+* Added parameter `RequestSupply.TransferDirection` 
+ 
+* Renamed parameter `LOG_Service.TransactionId` to `LOG_Interaction.RequestId` 
+* Renamed parameter `OfferService.RequestTimeOut` to `OfferService.OfferTimeOut` 
+* Changed parameter datatype for `LOG_Service.ServiceID` to `TransactionId` 
+* Changed parameter datatype for `RequestTransport.TransportData` to `ArrayOfUuid`. 
+* Changed parameter datatype for `OfferTransport.TransportData` to `ArrayOfUuid`. 
+ 
+* Renamed datatype `NETN_ServiceIdentifier` to `ServiceIdentifier` 
+* Renamed datatype field `RepairStruct.MaterialID` to `RepairStruct.MaterielId` 
+* Changed datatype for `ArrayOfRepairTypeEnum` from `NETN_RepairTypeEnum16` to `RepairTypeEnum16`</semantics>
+        </note>
+        <note>
+            <label>netn-log_2</label>
+            <semantics>* Changed parameter `ServicID`of interaction-class `LOG_Service` to `EventId` 
+* Replaced all `WorldLocationStruct` with `LocationStruct`
+* Replaced all `ArrayOfWorldLocationStruct` with `LocationStructArray`
+* Changed datatype `TransactionId` to `UUID` 
+* Replaced all use of Array datatype `NETN_ArrayOfSupplyStruct` with `SupplyStructArray` 
+* Added datatype `RepairTypeEnum16` for RPR-FOM v2 and RPR-FOM v3 compatibility</semantics>
+        </note>
+        <note>
+            <label>netn-log_3</label>
+            <semantics>In NETN-FOM v 2.0 this module was replaced with several FOM modules to represent different services. A Base FOM Module was used to represent the basic Service-Consumer Provider (SCP) pattern. 
+ 
+These modules were initially developed by MSG-106 and prepared for release by MSG-134. 
+ 
+Modules in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) were: 
+* NETN-SCP-BASE v1.1.3 
+* NETN-Supply v1.1.2 
+* NETN-Storage v1.2.2 
+* NETN-Repair v 1.2.1 
+* NETN-Transport v1.1.2</semantics>
+        </note>
+        <note>
+            <label>Overview</label>
+            <semantics>## Overview 
+ 
+Materiel is classified as: 
+* Consumable Supplies 
+* Ammunition 
+* Medical materiel 
+* Spare parts 
+* Fuel 
+* Water 
+* Food 
+* Non-consumable Entities 
+* Platforms 
+* Humans 
+* Units 
+* Equipment 
+ 
+The unit of consumable supplies includes the number of items, cubic meters for liquid bulk goods, and kilograms for solid bulk goods. The type of packaging, e.g. fuel in canisters or water in bottles, is not included. The SISO-REF-010 standard enumerates available kinds of supplies, and additional supply types can be defined and documented in federation-specific agreements.</semantics>
+        </note>
+        <note>
+            <label>Logistics_Service_Pattern</label>
+            <semantics>## Logistics Service Pattern 
+ 
+All NETN-LOG services use a standard Logistics Service Pattern that includes negotiation, delivery, and acceptance of logistics services. Federates participating in the logistics service events are either Service Consumers or Service Providers. 
+ 
+The pattern defines sequences of service events between federates as subclasses of the `LOG_Interaction` interaction class. Although the interaction pattern for different types of services may vary slightly, the basic principles and interaction sequences are the same. 
+ 
+ 
+The interactions defined for the Logistics Service Pattern are extended by subclassing to provide more information for specific logistics services. 
+ 
+ 
+```mermaid 
+sequenceDiagram 
+autonumber 
+Consumer-&gt;&gt;Provider: RequestService 
+Provider-&gt;&gt;Consumer: OfferService 
+Consumer-&gt;&gt;Provider: AcceptOffer 
+Consumer-&gt;&gt;Provider: ReadyToReceiveService 
+Provider-&gt;&gt;Consumer: ServiceStarted 
+Provider-&gt;&gt;Consumer: ServiceCompleted 
+Consumer-&gt;&gt;Provider: ServiceReceived 
+``` 
+ 
+ 
+The logistics service pattern consists of three phases: 
+ 
+**Service Negotiation** 
+ 
+1. A consumer federate initiates service negotiation by sending a `RequestService` interaction. A unique `EventId` and a reference to a `ConsumerEntity` are required parameters. A reference to a specific `ProviderEntity` and a system wall-clock time for when offers are expected `RequestTimeOut` are optional. 
+ 
+Requests for specific types of services are defined as subclasses to `RequestService` and include parameters for detailing the requirements of the request. These requests may consist of information about when, where and how the service should be delivered. 
+ 
+If the time, specified in the `RequestTimeOut` parameter, pass, without an offer being received, the consumer shall cancel the service using a`CancelRequest` interaction. An `EventId` parameter is required and indicates which service to cancel. After the cancellation, the logistics service pattern ends. 
+ 
+2. Offers are sent by potential providers using an `OfferService` interaction with a required parameter `EventId` referencing the requested service and a unique `OfferId`. Using the optional parameter `OfferType`, the provider indicates if the offer matches the request, if the offer is modified, or if the provider is not able to make an offer. Optional parameters for `ProvidingEntity` and `OfferTimeOut` can be provided. 
+ 
+The provider can cancel an offer using a `CancelOffer` interaction until the offer is accepted. The required parameters are the `EventId` and `OfferId`. 
+ 
+5. The consumer accepts an offer using an `AcceptOffer` interaction or rejects an offer from a provider using `RejectOffer`. 
+ 
+Both consumer and provider can cancel the service before service delivery has started using `CancelRequest` with `EventId` and an optional `Reason` parameter. If cancelled, the logistics pattern will also terminate. 
+ 
+**Service Delivery** 
+ 
+4.  The consumer sends a `ReadyToReceiveService` interaction with an `EventId` parameter to indicate readiness to start receiving the service. I.e., all necessary preparations are in place to allow the `ConsumingEntity` to get the service. 
+ 
+5. The provider sends a `ServiceStarted` interaction with the `EventId` parameter to indicate that the delivery of the requested service has started. All preparations and a `ReadyToReceiveService` notification from the consumer must be complete beginning the service delivery. 
+ 
+Both consumer and provider can cancel the service during service delivery using `CancelRequest` with `RequestId` and an optional `Reason` parameter. Cancellation during delivery will cause the logistics pattern to continue with Service Acceptance immediately even if not all of the agreed service is delivered. 
+ 
+**Service Acceptance** 
+ 
+6. On service completion or cancellation, the provider sends a `ServiceComplete` interaction with any additional parameters specifying the completeness of the delivery, e.g. if only part of a service was delivered. 
+ 
+7. On acceptance of service delivery, the consumer sends a `ServiceReceived` interaction. 
+ 
+### Transfer of Supplies 
+ 
+Federates can have the capability to provide or store supplies. These offered services can involve the transfer of materiel between a `ConsumerEntity` and `ProviderEntity` modelled in two different federates. The transfer of supplies can differ in terms of the flow of materiel between consumer and provider. 
+ 
+The supply service is based on the general Logistics Services Pattern but with some adaptations. 
+ 
+ 
+```mermaid 
+sequenceDiagram 
+autonumber 
+Consumer-&gt;&gt;Provider: RequestSupply 
+Provider-&gt;&gt;Consumer: OfferSupply 
+Consumer-&gt;&gt;Provider: AcceptOffer 
+Consumer-&gt;&gt;Provider: ReadyToReceiveService 
+Provider-&gt;&gt;Consumer: ServiceStarted 
+Provider-&gt;&gt;Consumer: SupplyComplete 
+Consumer-&gt;&gt;Provider: ServiceReceived 
+``` 
+ 
+ 
+1. The consumer sends a `RequestSupply` interaction to request supplies, including the amount and type of supplies as a `SuppliesData` parameter. An optional parameter `StartAppointment` specifies when and where to start the service delivery. The `TransferDirection` parameter indicates if the transfer of supplies flows from consumer to provider or from provider to consumer. 
+ 
+2. An `OfferSupply` interaction is used by potential providers to offer supplies. The `SuppliesData` parameter specifies the amount and type of supplies included in the offer. The provider can also specify an alternate `StartAppointment` in the offer. 
+ 
+3. The consumer accepts an offer using `AcceptOffer` or rejects an offer from a provider using `RejectOffer`. 
+ 
+4. The `ReadyToReceiveService` interaction is used by a consumer to indicate that supply delivery can start. 
+ 
+5. The `ServiceStarted` interaction is sent by the provider to notify that the transfer of supplies has started. 
+If a `CancelRequest` occurs during the delivery of supply services, the actual amounts transferred can be less than agreed. 
+ 
+6. The provider sends a `SupplyComplete` interaction when the transfer of supplies is completed or after cancellation. The actual amount of supplies transferred is provided as `SuppliesData` and should, in the typical case, be the same amounts as agreed in the offer. 
+ 
+7. The consumer sends a `ServiceReceived` interaction as a response to a `SupplyComplete` from the provider. 
+ 
+### Repair 
+ 
+Simulation of repair of non-consumable materiel is possible. E.g. tow-trucks move damaged platforms to a maintenance facility for repair, or a unit capable of providing repair services can move to the location of a damaged platform to deliver repair services. 
+ 
+```mermaid 
+sequenceDiagram 
+autonumber 
+Consumer-&gt;&gt;Provider: RequestRepair 
+Provider-&gt;&gt;Consumer: OfferRepair 
+Consumer-&gt;&gt;Provider: AcceptOffer 
+Consumer-&gt;&gt;Provider: ReadyToReceiveService 
+Provider-&gt;&gt;Consumer: ServiceStarted 
+Provider-&gt;&gt;Consumer: RepairComplete 
+Consumer-&gt;&gt;Provider: ServiceReceived 
+``` 
+ 
+ 
+1. The consumer sends a `RequestRepair` interaction to request repair service, including the materiel to be repaired and the type of repair as the `RepairData` parameter. An optional parameter `StartAppointment` specifies when and where to start the service delivery. 
+ 
+2. Potential providers of repair services send `OfferRepair` interactions. The `RepairData` parameter specifies the materiel and the type of repair included in the offer. The provider can also specify an alternate `StartAppointment` in the offer. 
+ 
+3. The consumer accepts an offer using `AcceptOffer` or rejects an offer from a provider using `RejectOffer`. 
+ 
+4. The `ReadyToReceiveService` interaction is used by a consumer to indicate that repairs can start. 
+ 
+5. The `ServiceStarted` interaction is sent by the provider to notify that the repair has begun. 
+If a `CancelRequest` occurs during the delivery of repair services, the completed repairs can be different from what was agreed. 
+ 
+6. On completion or cancellation, the service provider sends a `RepairComplete` interaction. The completed repairs are provided as `RepairData` and should, in the typical case, be the same as agreed in the offer. 
+ 
+7. The consumer sends a `ServiceReceived` interaction as a response to a `RepairComplete` from the provider. 
+ 
+### Transport 
+ 
+A logistics transport service is useful when there is a need to move non-consumable entities such as platforms, units, humans or other battlefield objects using means of transportation simulated in another federated system. 
+ 
+The transport service consists of the following phases in which the change of control over the entities differs: 
+ 
+* Embarkment is the process of mounting, loading and storing entities in, e.g. a truck or an aggregate unit. Embarkment transfers control over the entities from the service consumer to the transport service provider. 
+ 
+* Transport is the process of the transport moving entities from the point of departure to their destination. The provider of the transport service has control over the entities during transport. If required, the change of control over the entities can include a Transfer of Modelling Responsibility (NETN TMR). 
+ 
+* Disembarkment is the process of dismounting or unloading entities. Control over materiel is transferred from the transport service provider back to the service consumer. 
+ 
+ 
+ 
+```mermaid 
+sequenceDiagram 
+autonumber 
+Consumer-&gt;&gt;Provider: RequestTransport 
+Provider-&gt;&gt;Consumer: OfferTransport 
+Consumer-&gt;&gt;Provider: AcceptOffer 
+Consumer-&gt;&gt;Provider: ReadyToReceiveService 
+Provider-&gt;&gt;Consumer: ServiceStarted 
+ 
+loop Embarkment 
+Provider-&gt;&gt;Consumer: TransportEmbarkmentStatus 
+end 
+ 
+loop Transport 
+Provider-&gt;&gt;Consumer: TransportDestroyedEntities 
+end 
+ 
+loop Disembarkment 
+Provider-&gt;&gt;Consumer: TransportDisembarkmentStatus 
+end 
+ 
+Provider-&gt;&gt;Consumer: ServiceComplete 
+Consumer-&gt;&gt;Provider: ServiceReceived 
+``` 
+ 
+Negotiation, delivery, and acceptance of transport service are part of the Logistics Service Pattern: 
+ 
+1. To request a transport, the consumer sends a `RequestTransport` interaction that includes `TransportData` information specifying the entities to transport. The `StartAppointment` provides information on when and where the embarkment will start. If the `EndAppointment` is provided, the service includes the transport between the specified Start and End locations and subsequent disembarkment of specified entities. 
+ 
+2. An `OfferTransport` message is used by potential service providers to make an offer for transport. The offer includes information regarding which of the requested entities are part of the transportation and when it will take place. The offered `TransportData` information can potentially differ from the requested `TransportData`. The offer also includes `Transporters` - a list of entities that will conduct the transport. 
+ 
+3. The consumer accepts an offer using `AcceptOffer` or rejects an offer from a provider using `RejectOffer`. 
+ 
+4. If a `StartAppointment` exists, all entities to be transported must be at the agreed embarkment location before sending a `ReadyToReceiveService` message. If no `StartAppointment` exists, the consumer can send a `ReadyToReceiveService` immediately. 
+ 
+5. The delivery of the transport service starts when the provider sends a `ServiceStarted` message. 
+ 
+6. During embarkment, the Provider informs the service consumer about the progress using `TransportEmbarkmentStatus` interactions identifying which entities are embarked on which transport. 
+ 
+7. During transport, the provider can inform the consumer about entities lost or destroyed using the `TransportDestroyedEntities` interaction. The `Status` attribute of embarked entities is `Inactive` during transport. 
+ 
+8. During disembarkment, the provider sends `TransportDisembarkmentStatus` interactions to inform the consumer which entities have disembarked from which transport. The location of disembarked entities should be the location of `EndAppointment` and `Status` is set to `Active`. 
+ 
+9. The provider sends a `ServiceComplete` interaction after transport is complete and after any disembarkment of entities. 
+ 
+10. The consumer sends a `ServiceReceived` as a response to the `ServiceComplete` interaction. 
+ 
+If either consumer or provider sends a `CancelRequest`, before `ReadyToReceiveService` and `ServiceStarted`, then the transport service delivery will not start, and all involved entities remain in their current state. 
+ 
+Sending a `CancelRequest` interaction during delivery of the service, but before starting to disembark, results in all entities already embarked or partially embarked remaining on the transport. Initiate a new transport service to continue embarking, or to perform transport and disembarkment with the already embarked entities. 
+ 
+Sending a `CancelRequest` during delivery of the service, after starting to disembark, all entities not already disembarked or partially disembarked remain on the transport. It is possible to initiate a new transport service with only an `EndAppointment` and list of the remaining entities to disembark. 
+ 
+#### Bridgehead 
+ 
+If an `Aggregate` entity is too large for transport, e.g. size of a unit requires multiple transporting entities, then the service consumer may require that the unit is divided before requesting transport, e.g. using the NETN-MRM FOM Module divide pattern. A divided entity can be transported and re-merged with an `Aggregate` entity that represents a bridgehead on the disembarkment location. 
+ 
+#### Initial Transport State 
+ 
+A scenario can start with some entities already embarked on transports. The attribute `EmbeddedUnitList` of transporting entities identifies which units are already embarked by referencing their UniqueId (UUID). Scenario initialization includes publishing embarked units, and their `Status` attribute set to `Inactive`.</semantics>
+        </note>
+    </notes>
+</objectModel>

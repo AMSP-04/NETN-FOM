@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?purpose description="Derivative work based on MilitaryScenario_1.0.0 XML Schema. Reprinted with permission from SISO Inc."?>
+<?version number="1.1" date="August 7, 2020"?>
+<!-- 	 
+	This XML Schema is a derivative work and is "Reprinted with permission from SISO Inc."  
+
+	The Schema is based on MilitaryScenario_1.0.0 XML Schema - Copyright (c) 2018 by the Simulation Interoperability Standards Organization, Inc
+	SISO grants a general, royalty-free license to copy, distribute, display, and make derivative works from the MilitaryScenario_1.0.0 XML Schema, 
+	for all purposes, provided that any use of the material contains the following attribution: "Reprinted with permission from SISO Inc." 
+
+	This derivative work is maintained by NATO NMSG MS3 for use in AMSP-04.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:jc3iedm="urn:int:nato:standard:mip:jc3iedm:3.1:oo:2.0" 
+	xmlns:modelID="http://www.sisostds.org/schemas/modelID" 
+	xmlns:msdl="urn:nato:nmsg:ms3:netn:org:1" 
+	targetNamespace="urn:nato:nmsg:ms3:netn:org:1" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified" 
+	version="1.0.0">
+	<xs:include schemaLocation="NETN-ORG-ComplexTypes.xsd"/>
+	<xs:element name="MilitaryScenario" type="msdl:MilitaryScenarioType">
+		<xs:annotation>
+			<xs:documentation>The Military Scenario for the exercise.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>
