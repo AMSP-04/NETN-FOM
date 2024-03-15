@@ -2,285 +2,184 @@
 # NETN-TMR
 |Version| Date| Dependencies|
 |---|---|---|
-|2.1|2023-03-18|NETN-BASE|
+|3.0|2024-03-10|NETN-BASE, NETN-ORG, NETN-SMC|
 
-The NETN-TMR FOM module provides a standard interface and protocol for conducting negotiated and coordinated transfer of attribute modelling responsibility between federates. It extends the HLA Ownership Management services by providing the means to  
-1. Negotiate the transfer of ownership.  
-2. Initiate ownership transfer using a Trigger federate.  A transfer of modelling responsibility is performed during runtime, to dynamically change the responsibility to update specific attributes, to a more suitable federate.  
-For example:  
-- Transfer from a Live to a Virtual or Constructive simulation 
-- Transfer between Virtual and Constructive simulations 
-- Transfer between hi- and low-fidelity models 
-- Transfer to allow backup, maintenance or load-balancing 
-- Transfer of certain attributes to functional models such as movement, and damage assessment.
+The NATO Education and Training Network Transfer of Modelling Responsibilities (NETN-TMR) module provides a standard interface and pattern for transferring modelling responsibility between federates. It extends the HLA Ownership Management services by providing the means to trigger modelling responsibility transfer and publish the assigned modelling responsibilities of object instances.
+        
+For example:
+            
+* Transfer modelling responsibility between virtual and constructive simulation systems.  
+* Transfer modelling responsibility between high- and low-fidelity models.
+* Transfer modelling responsibility to allow backup, maintenance or load-balancing.
 
-In a federated distributed simulation, the participating systems (federates) collectively model the synthetic environment. Allocation of modelling responsibilities depends on individual federate capabilities, federation design agreements, and initial scenario conditions. The responsibility of updating an attribute for a specific simulated entity is allocated to at most one federate. However, during execution, the modelling responsibility and ownership may change. 
+In a federated distributed simulation, the participating systems (federates) provide services that model the synthetic environment. Allocation of modelling responsibilities depends on individual federate capabilities, federation design agreements, and initial scenario conditions. The primary responsibility for modelling a simulated entity is allocated to, at most, one federate. However, during execution, the modelling responsibility and ownership of individual attributes may change.
 
-IEEE 1516 High Level Architecture (HLA) provides essential services for the divestiture and acquisition of attribute ownership. A negotiated and coordinated transfer of modelling responsibilities requires agreements between federates before the transfer of attribute ownership. 
-
-The NATO Education and Training Network Transfer of Modelling Responsibilities (NETN-TMR) FOM Module is a specification of how to perform a negotiated and coordinated transfer of attribute modelling responsibility between federates in a distributed simulation. 
-
-The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and is primarily intended to support interoperability in a federated simulation (federation) based on HLA. A Federation Object Model (FOM) Module specifies how data is represented and exchanged in the federation. The NETN-TMR FOM module is available as an XML file for use in HLA-based federations.
-
-NETN-TMR covers the following cases:  
-
-* A negotiated acquisition where a federate requests to receive the modelling responsibility  
-* Negotiated divestiture where a federate requests another federate to take modelling responsibility 
-* Acquisition without negotiation where a federate receives the modelling responsibility  
-* Cancellation of transfer
+NETN-TMR covers the following cases:            
+* Initialization with assigned modelling responsibilities for objects. 
+* Explicit request to acquire modelling responsibility.
+* Triggering modelling responsibility transfer by updating the allocation of responsibility attribute.
 
 ## Overview 
  
-NETN-TMR uses a combination of HLA interactions and HLA Ownership Management services to negotiate and perform a coordinated transfer of attribute ownership. The pattern includes an optional triggering interaction to initiate a transfer, and interactions for requesting, offering, cancelling and sending results of a completed transfer. 
  
-* A federate initiating a TMR is called a **Trigger Federate** 
-* The federate requesting a TMR is called the **Request Federate** 
-* The federate responding to a request for TMR is called the **Response Federate** 
+NETN-TMR extends the HLA concept of object instance attribute ownership by associating primary modelling responsibility to objects in the federation. Only one federate has the primary modelling responsibility, but the responsibility can be transferred. Primary responsibility does not require ownership (HLA ownership) of all attributes of an object. 
  
- 
-### Basic Pattern 
- 
-``` mermaid 
- 
-sequenceDiagram 
-autonumber
- 
-Trigger ->> Request:InitiateTransfer 
-Request ->> Response:RequestTransfer 
-Response->>Request:OfferTransfer 
-note left of Response: HLA Ownership Transfer 
-Request->>Trigger:TransferResults 
-``` 
- 
-1. An `InitiateTransfer` interaction is sent by a **Trigger Federate** to initiate a TMR request. Parameters include information on the participating federates, which object instances and what attributes to include in the transfer.  The **Trigger Federate** generates a unique `EventId` used in all subsequent TMR interactions related to the event. This step is optional. 
-2. A `RequestTransfer` interaction is sent by the requesting federate to the responding federate. If the request is the result of an `InitiateTransfer` interaction, the parameters are copied and used in the `RequestTransfer` interaction, including the `EventId`. If the request is not triggered, the **Request Federate** generates a unique `EventId` used in all subsequent TMR interactions related to the event. Three types of transfer can be requested `Acquire`, `Divest` or `AcquireWithoutNegotiating`. 
-3. As a reply to a `RequestTransfer`, a **Response Federate** sends an `OfferTransfer` interaction. This interaction indicates if a transfer can be achieved or not. If the transfer can be achieved HLA ownership services are immediately used to complete the transfer of the negotiated attributes. 
- 
-* Before divesting instance attributes, the federate updates the attributes (HLA service Update Attribute Values) 
-* After the acquisition of instance attributes, the attributes shall be updated (HLA service Update Attribute Values). 
-* The EventID is encoded and used as the User Supplied Tag in the HLA Ownership services. 
- 
-Note: When the transfer type is `Divesting`, the delivery order of the interaction `OfferTransfer` and the HLA ownership callback service `requestAttributeOwnershipRelease` at the receiving federate is not determined. Due to this, receiving a `requestAttributeOwnershipRelease` callback should be treated in the same way as receiving an `OfferTransfer` with a positive offer. The user-supplied tag in the callback contains the `EventId` which identifies a specific transfer process. 
- 
-4. A `TransferResult` interaction is sent by the **Request Federate** to indicate the successful or unsuccessful completion of the transfer. 
- 
-A `CancelRequest` interaction can be sent by the **Request Federate** to cancel a request at any point before HLA ownership transfer is completed. 
- 
- 
-### HLA Ownership Management Services 
- 
-The HLA Ownership Management services used in TMR (callbacks marked with †) are: 
- 
-* Attribute Ownership Acquisition (when negotiation) 
-* Attribute Ownership Acquisition If Available (without negotiation) 
-* Attribute Ownership Divesture If Wanted 
-* Cancel Attribute Ownership Acquisition 
-* Request Attribute Ownership Release † 
-* Attribute Ownership Acquisition Notification † 
-* Confirm Attribute Ownership Acquisition Cancellation † 
-* Attribute OwnershipUnavailable †
+The federate with a primary responsibility shall respond to all NETN-SMC `SMC_EntityControl` actions directed to the entity. This also implies that the same federate normally publishes the `BaseEntity` attribute `SupportedActions`.
 
-## Use Cases 
- 
-### Negotiated Acquisition 
- 
-The requesting federate initiates the transfer to acquire instance attributes. The transfer completes successfully. 
- 
-``` mermaid 
- 
-sequenceDiagram 
-autonumber
- 
-Request ->> Response:RequestTransfer(TransferType=Acquire) 
-Response->>Request:OfferTransfer 
- 
-Request->> RTI:attributeOwnershipAcquisition 
-RTI->>Response:requestAttributeOwnershipRelease 
-Response->>RTI:updateAttributeValues 
-RTI->>Request:reflectAttributeValues 
-Response->>RTI:attributeOwnershipDivestitureIfWanted 
-RTI->>Request:attributeOwnershipAcquisitionNotification 
- 
-``` 
- 
-1. The **Request Federate** sends a `RequestTransfer` interaction to the **Response Federate**. Set the `TransferType` parameter to `Acquire` to indicate that attribute ownership is requested to change from the **Response Federate** to the **Request Federate**. Included in the request are references to all instances and associated attributes involved in the transfer. 
-2. The **Response Federate** replies to the request by sending an `OfferTransfer` interaction. If the `IsOffering` parameter is True, the **Response Federate** is offering to release ownership of the attributes. 
-3. The **Request Federate** starts the attribute ownership transfer using HLA Ownership Services by calling the RTI service `attributeOwnershipAcquisition`. 
-4. The **Response Federate** receives a `requestAttributeOwnershipRelease` callback from the RTI. 
-5. Before releasing attribute ownership, the **Response Federate** sends a final `updateAttributeValues` for all attributes involved in the transfer. 
-6. The attribute update is reflected in the **Request Federate** by the RTI using the `reflectAttributeValues` callback. 
-7. The **Response Federate** divests its ownership of the attributes by calling the RTI service `attributeOwnershipDivestitureIfWanted`. 
-8. The RTI informs the **Request Federate** and the **Response federate** of the changed ownership using the `attributeOwnershipAcquisitionNotiication` callback. 
- 
- 
-### Negotiated Divestiture 
-The requesting federate initiates the transfer for divesting instance attributes. 
- 
-``` mermaid 
- 
-sequenceDiagram 
-autonumber
- 
-Request ->> Response:RequestTransfer(TransferType=Divest) 
-Response->>Request:OfferTransfer 
- 
-Response->> RTI:attributeOwnershipAcquisition 
-RTI->>Request:requestAttributeOwnershipRelease 
-Request->>RTI:updateAttributeValues 
-RTI->>Response:reflectAttributeValues 
-Request->>RTI:attributeOwnershipDivestitureIfWanted 
-RTI->>Response:attributeOwnershipAcquisitionNotification 
- 
-``` 
- 
-1. The **Request Federate** sends a `RequestTransfer` interaction to the **Response Federate**. Set the `TransferType` parameter to `Divest` to indicate that attribute ownership transfers from the **Request Federate** to the **Response Federate**. Included in the request are references to all instances and associated attributes involved in the transfer. 
-2. The **Response Federate** replies to the request by sending an `OfferTransfer` interaction. If the `IsOffering` parameter is True, the **Response Federate** is offering to acquire ownership of the attributes. 
-3. The **Response Federate** starts the attribute ownership transfer using HLA Ownership Services by calling the RTI service `attributeOwnershipAcquisition`. 
-4. The **Request Federate** receives a `requestAttributeOwnershipRelease` callback from the RTI. 
-5. Before releasing attribute ownership, the **Request Federate** sends a final `updateAttributeValues` for all attributes involved in the transfer. 
-6. The attribute update is reflected in the **Response Federate** by the RTI using the `reflectAttributeValues` callback. 
-7. The **Request Federate** divest its ownership of the attributes by calling the RTI service `attributeOwnershipDivestitureIfWanted`. 
-8. The RTI informs the **Response Federate** (and the Request federate) of the changed ownership using the `attributeOwnershipAcquisitionNotiication` callback. 
- 
-In the above example, the HLA callback `requestAttributeOwnershipRelease`, with a `TransferId` as UserSuppliedTag, may be delivered to the **Request Federate** before the `OfferTransfer` is received. In such circumstances, the `requestAttributeOwnershipRelease` is considered a positive offer and the **Request Federate** shall ignore any `OfferTransfer` received later for the same `EventId`. 
- 
- 
-### Acquisition without Negotiation 
- 
-``` mermaid 
- 
-sequenceDiagram 
-autonumber
- 
-Trigger ->> Request:InitiateTransfer(TransferType=AcquireWithoutNegotiation) 
-Request->>RTI:attributeOwnershipAcquisitionIfAvailable 
-RTI->>Request:attributeOwnershipAcquisitionNotification 
-Request->>Trigger:TransferResults 
-``` 
- 
- 
-1. An `InitiateTransfer` with `TransferType` set to `AcquireWithoutNegotiation` is sent from a **Trigger Federate** to the **Request Federate**. 
-2. The **Request Federate** uses the HLA Ownership Management Service `attributeOwnershipAcquisitionIfAvailable` to request ownership of attributes without negotiation of its release. 
-3. The HLA Ownership Management Service `attributeOwnershipAcquisitionNotification` informs the **Request Federate** of ownership transfer completion. 
-4. The **Request Federate** informs the **Trigger Federate** of the result of the transfer by sending a `TransferResults` interaction. 
- 
- 
-### Cancellation of Transfer
+## Modelling Responsibility
 
-#### A. Cancel Acquisition Request 
- 
-``` mermaid 
- 
-sequenceDiagram 
-autonumber
- 
-Request ->> Response:RequestTransfer(TransferType=Acquire) 
-Response->>Request:OfferTransfer 
-Request ->> Response:CancelRequest 
-``` 
- 
-1. The **Request Federate** initiates an acquisition transfer with a `RequestTransfer` interaction. 
-2. The **Response Federate** provides a positive offer by sending an `OfferTransfer` interaction. 
-3. The **Request Federate** sends a `CancelRequest` interaction to cancel the request either after or before receiving the positive offer. The **Request Federate** does not send an `attributeOwnershipAcquisition`. 
- 
-#### B. Cancel Divestiture Request 
- 
-``` mermaid 
- 
-sequenceDiagram 
-autonumber
- 
-Request ->> Response:RequestTransfer(TransferType=Divest) 
-Response->>Request:OfferTransfer 
-Response->>RTI:attributeOwnershipAcquisition 
-RTI->>Request: requestAttributeOwnershipRelease 
-Request ->> Response:CancelRequest 
-Response->>RTI:cancelAttributeOwnershipAcquisition 
-RTI->>Response:confirmAttributeOwnershipCancellation 
- 
-``` 
- 
-1. The **Request Federate** initiates a divestiture transfer with a `RequestTransfer` interaction. 
-5. The **Response Federate** provides a positive offer by sending an `OfferTransfer` interaction. 
-6. The **Response Federate** immediately sends an `attributeOwnershipAcquisition`. 
-7. The **Request Federate** will receive the `OfferTransfer` interaction and `requestAttributeOwnershipRelease` callback in an undetermined order. 
-8. The **Request Federate** sends a `CancelRequest` interaction to cancel the request. The cancel is sent any time after making the request but before responding to the `requestAttributeOwnershipRelease` callback. 
-9. The **Response Federate** calls `cancelAttributeOwnershipAcquisition` to abort the ongoing HLA attribute ownership transfer. 
-10. On HLA attribute ownership transfer cancellation, the **Response Federate** receives a `confirmAttributeOwnershipCancellation` callback.
+The NETN-TMR modules extend the `HLAobjectRoot` object class with the attribute `AllocatedFederate`. 
 
+```mermaid
+classDiagram 
+direction LR
+
+HLAobjectRoot : AllocatedFederate
+HLAobjectRoot : UniqueId(NETN-BASE)
+```
+ 
+The owner (HLA ownership) of the `AllocatedFederate` attribute is the federate with primary modelling responsibility for the object. An update of this attribute triggers the referenced federate to initiate a transfer to acquire primary modelling responsibility. 
+
+Sending an `AcquireModellingResponsibility` interaction triggers the referenced federate to initiate a transfer. If successful, the acquiring federate owns (HLA ownership) the `AllocatedFederate` attribute and updates its value to the federate name. 
+
+
+```mermaid
+classDiagram 
+direction LR
+
+HLAinteractionRoot <|-- SMC_FederateControl
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_FederateControl <|-- AcquireModellingResponsibility
+SMC_FederateControl : Federate(NETN-SMC)
+AcquireModellingResponsibility : Entity
+```
+
+Transfer of primary modelling responsibility is impossible if no owner of the `AllocatedFederate` attribute exists. 
+ 
+## Attribute triggered Transfer
+ 
+An update of the `AllocatedFederate` attribute triggers the referenced federate to acquire the primary modelling responsibility. E.g. during scenario initialization, a federate may register all objects and then update the `AllocatedFederate` attributes to trigger a change in modelling responsibility. 
+ 
+ 
+``` mermaid 
+ 
+sequenceDiagram 
+autonumber
+Federation->>Federate 1:Update entity.AllocatedFederate = federate 1 
+Federate 1->>Federation:Attribute Ownership Acquisition(entity.attributes) 
+Federation->>Federate 2:Request Attribute Ownership Release(entity.attributes) 
+Federate 2->>Federation:Attribute Ownership Divestiture If Wanted(entity.attributes) or <br> Attribute Ownership Release Denied(entity.attributes) 
+Federation->>Federate 1:Attribute Ownership Acquisition Notification(entity.attributes) or <br> Attribute Ownership Unavailable(entity.attributes) 
+ 
+Federate 1-->>Federation:Attribute Ownership Acquisition(entity.AllocatedFederate) 
+``` 
+ 
+1. The `AllocatedFederate` attribute update triggers the referenced federate (Federate 1) to start the acquisition of primary modelling responsibility. 
+2. Use the HLA service `Attribute Ownership Acquisition` to request ownership of relevant attributes. 
+3. The federate currently owning a requested attribute (Federate 2) receives a `Request Attribute Ownership Release` callback. 
+4. Release the attribute using the `Attribute Ownership Divestiture If Wanted` HLA service, or if unable to release, use the `HLA Attribute Ownership Release Denied`. 
+5. The HLA callback `Attribute Ownership Acquisition Notification` indicates a successful attribute ownership transfer, and the `Attribute Ownership Unavailable` callback indicates an unsuccessful transfer. 
+6. Acquire the ownership of the `AllocatedFederate` attribute to complete the transfer of modelling responsibility. 
+ 
+ 
+## Request Transfer
+ 
+Sending an `AcquireModellingResponsibility` requests the referenced federate to start acquiring modelling responsibility. 
+
+ 
+``` mermaid 
+ 
+sequenceDiagram 
+autonumber
+ 
+Federation ->>Federate 1:AcquireModellingResponsibility(requestId, entity, federate 1) 
+Federate 1->>Federation:HLA Attribute Ownership Acquisition(entity.attributes) 
+Federation->>Federate 2:HLA Request Attribute Ownership Release(entity.attributes) 
+Federate 2->>Federation:HLA Ownership Release(entity.attributes) 
+Federate 2->>Federation:HLA Attribute Ownership Divestiture If Wanted(entity.attributes) 
+Federation->>Federate 1:HLA Attribute Ownership Acquisition Notification(entity.attributes) 
+Federate 1->>Federation:Update entity.FederateApplication 
+Federate 1->>Federation:SMC_Response(requestId, TRUE) 
+ 
+``` 
+ 
+1. Send an `AcquireModellingResponsibility` interaction with references to the entity and the acquiring federate (Federate 1). 
+2. If required, use the HLA service `Attribute Ownership Acquisition` to request ownership of relevant attributes for the referenced entities. 
+3. The federate currently owning a requested attribute (Federate 2) receives a `Request Attribute Ownership Release` callback. 
+4.  Release the attribute using the `Attribute Ownership Divestiture If Wanted` HLA service. 
+5. The HLA callback `Attribute Ownership Acquisition Notification` indicates a successful attribute ownership transfer. 
+6. After a successful transfer, update the `FederateApplication` attribute of the transferred entities to reference the new federate application that received the modelling responsibility. 
+7. Send an `SMC_Response` interaction indicating the successful completion of the entity action. 
+ 
+## Unsuccessful Transfer 
+ 
+If an ownership release of a required attribute is denied, the transfer is cancelled, and the acquiring federate shall update the `AllocatedFederate` attribute to represent the federate with primary modelling responsibility. 
+ 
+``` mermaid 
+sequenceDiagram
+autonumber
+
+participant Federation 
+participant Federate 1 
+participant Federate 2 
+ 
+Federate 1->>Federation:HLA Attribute Ownership Acquisition(entity.attributes) 
+Federation->>Federate 2:HLA Request Attribute Ownership Release(entity.attributes) 
+Federate 2->>Federation:HLA Attribute Ownership Release Denied(entity.attributes) 
+Federation->>Federate 1:HLA Attribute Ownership Unavailable(entity.attributes) 
+Federate 1->>Federation:Update(entity.AllocatedFederate) 
+Federate 1->>Federation:SMC_Response(False) 
+ 
+ 
+``` 
+ 
+ 
+1. Use the HLA service `Attribute Ownership Acquisition` to request ownership of relevant attributes for the referenced entities. 
+3. The federate currently owning a requested attribute (Federate 2) receives a `Request Attribute Ownership Release` callback. 
+4. Deny the attribute release using the `Attribute Ownership Release Denied` HLA service. 
+5. The HLA callback `Attribute Ownership Release Denied` indicates an unsuccessful attribute ownership transfer. 
+6. Cancel the transfer and update the `AllocatedFederate` attribute. 
+7. Send an `SMC_Response` interaction indicating the unsuccessful completion of the entity action.
+
+
+## Object Classes
+
+```mermaid
+classDiagram 
+direction LR
+
+HLAobjectRoot : AllocatedFederate
+HLAobjectRoot : UniqueId(NETN-BASE)
+```
+
+### HLAobjectRoot
+
+
+
+|Attribute|Datatype|Semantics|
+|---|---|---|
+|AllocatedFederate|FederateName|Optional. Reference to the federate application with the assigned primary responsibility for modelling the object behaviour.|
+|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
 
 ## Interaction Classes
 
-Note that inherited and dependency parameters are not included in the description of interaction classes.
-
 ```mermaid
-graph RL
-TMR_Interaction-->HLAinteractionRoot
-InitiateTransfer-->TMR_Interaction
-RequestTransfer-->TMR_Interaction
-OfferTransfer-->TMR_Interaction
-CancelRequest-->TMR_Interaction
-TransferResult-->TMR_Interaction
+classDiagram 
+direction LR
+HLAinteractionRoot <|-- SMC_FederateControl
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_FederateControl <|-- AcquireModellingResponsibility
+SMC_FederateControl : Federate(NETN-SMC)
+AcquireModellingResponsibility : Entity
 ```
 
-### TMR_Interaction
+### AcquireModellingResponsibility
 
-The `TMR_Interaction` interaction class is the base for all Transfer of Modelling Responsibility interactions. It provides a single parameter used in all TMR interactions to uniquely identify TMR transactions between participating federates.
-
-|Parameter|Datatype|Semantics|
-|---|---|---|
-|EventId|UUID|Required. The `EventId` is a unique reference to a specific execution of a TMR pattern. It consists of two values, a Counter and a Federate Handle. The value of this parameter is also encoded and used as the User Supplied Tag in the HLA Ownership services to allow a correlation between the TMR interactions and HLA Ownership services. The `EventId` is generated by a trigger federate or, if no trigger federate is used, directly by the requesting federate. The value of this parameter should match all related TMR pattern interactions belonging to the same Transfer of Modelling Responsibilities event.|
-
-### InitiateTransfer
-
-An `InitiateTransfer` interaction is sent by a **Trigger Federate** to initiate a TMR request. Parameters include information on the participating federates, which object instances and what attributes are included in the transfer.  The **Trigger Federate** shall generate a unique `EventId` to be used in all subsequent TMR interactions related to the event.
+Trigger the specified federate to initiate a transfer of modelling responsibility for the specified entity.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|RequestFederate|FederateName|Required. A name specifying the federate requesting the transfer.|
-|ResponseFederate|FederateName|Required unless TransferType is AquireWithoutNegotiation: A Federate Name specifying the federate that is the responding federate.|
-|Instances|ArrayOfUuid|Required. References (UUID) to NETN Platform, Lifeform or Aggregate instances included in the transfer.|
-|Attributes|AttributeNamesType|Required. The common set of attributes for all referenced instances to be included in the transfer. Reference to attributes is by attribute name.|
-|TransferType|TransferEnumType|Required. An enumerated value that indicates the direction of the transfer of the ownership and whether there shall be any negotiation: `Acquire` = Requesting Federate acquires instance attribute ownership from the Responding Federate (current owner), `Divest` = Requesting Federate (current owner) releases instance attribute ownership to Responding Federate and `AcquireWithoutNegotiating` = Requesting Federate acquires unowned instance attributes.|
-
-### RequestTransfer
-
-A `RequestTransfer` interaction is sent by the requesting federate to the responding federate. If the request is the result of an `InitiateTransfer` interaction, the parameters from that interaction shall be copied and used in the request including `EventId`. If the request is not triggered the **Request Federate** shall generate a unique `EventId` to be used in all subsequent TMR interactions related to the event.
-
-|Parameter|Datatype|Semantics|
-|---|---|---|
-|ResponseFederate|FederateName|Required unless TransferType is AquireWithoutNegotiation: A Federate Name specifying the federate that is the responding federate.|
-|Instances|ArrayOfUuid|Required. References (UUID) to NETN Platform, Lifeform or Aggregate instances  included in the transfer.|
-|Attributes|AttributeNamesType|Required. The common set of attributes for all referenced instances to be included in the transfer. Reference to attributes is by attribute name.|
-|TransferType|TransferEnumType|Required. An enumerated value that indicates the direction of the transfer of the ownership and whether there shall be any negotiation: `Acquire` = Requesting Federate acquires instance attribute ownership from the Responding Federate (current owner), `Divest` = Requesting Federate (current owner) releases instance attribute ownership to Responding Federate and `AcquireWithoutNegotiating` = Requesting Federate acquires unowned instance attributes.|
-
-### OfferTransfer
-
-An `OfferTransfer` interaction is sent by a **Response Federate** as a reply to a `RequestTransfer` to indicate if a transfer can be accomplished or not. 
- 
-**Special Case**: 
-When the transfer type is Divesting, the delivery order of the interaction `OfferTransfer` and the HLA ownership callback service `requestAttributeOwnershipRelease` at the receiving federate is not determined. Due to this, receiving a `requestAttributeOwnershipRelease` callback should be treated in the same way as receiving an `OfferTransfer` with a positive offer. The user-supplied tag in the callback contains the `EventId` which identifies a specific transfer process.
-
-|Parameter|Datatype|Semantics|
-|---|---|---|
-|IsOffering|HLAboolean|Required. True if and only if for all instances all attributes in the request are offered. False if for any instance any attribute in the request is not offered.|
-|Reason|NoOfferReasonEnumType|Optional. An enumerated value that shall specify the reason for a negative offer.|
-
-### CancelRequest
-
-A `CancelRequest` interaction can be sent by the **Request Federate** to cancel a request.
-
-|Parameter|Datatype|Semantics|
-|---|---|---|
-|Reason|CancellationReasonEnum32|Optional. An enumerated value that describes the reason for the cancellation: `Other` = When a Requesting Federate for some reason except time out decides not to complete a transfer. `TimeOut` = When a model's time limit for receiving a TMR offer has passed.|
-
-### TransferResult
-
-A `TransferResult` interaction is sent by the **Request Federate** to indicate the successful or unsuccessful completion of the transfer.
-
-|Parameter|Datatype|Semantics|
-|---|---|---|
-|IsCompleted|HLAboolean|Required. A Boolean value indicating the result of the transfer. TRUE = Transfer Completed Successfully.|
+|Entity|UUID|Required: Reference to the object which is to be transferred.|
 
 ## Datatypes
 
@@ -289,18 +188,10 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 ### Overview
 |Name|Semantics|
 |---|---|
-|AttributeNamesType|Array of attribute names.|
-|NoOfferReasonEnumType|Describes the reason why not accepting a TMR request|
-|TransferEnumType|Transfer type|
+|FederateControlActionEnum|Enumeration of Federate Control Actions. The datatype is expected to be extended in specific modules defining additional actions.|
         
 ### Enumerated Datatypes
 |Name|Representation|Semantics|
 |---|---|---|
-|NoOfferReasonEnumType|HLAinteger32BE|Describes the reason why not accepting a TMR request|
-|TransferEnumType|HLAinteger32BE|Transfer type|
-        
-### Array Datatypes
-|Name|Element Datatype|Semantics|
-|---|---|---|
-|AttributeNamesType|HLAunicodeString|Array of attribute names.|
+|FederateControlActionEnum|HLAinteger32BE|Enumeration of Federate Control Actions. The datatype is expected to be extended in specific modules defining additional actions.|
     

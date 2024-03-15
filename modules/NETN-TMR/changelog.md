@@ -1,6 +1,6 @@
 ## Changelog NETN-TMR
 
-### v1.1 - Released version part of NETN-FOM v2.0 in AMSP-04 Ed A.
+### v1.1 - Released version part of NETN FOM v2.0 in AMSP-04 Ed A.
 
 v1.0.1 XML Schema Reference Changed 
 v1.0.2 - Spelling correction at enumerations 
@@ -16,7 +16,7 @@ v1.1.2 - Rename of enumeration values (AttributeSetTooRestricted, AttributeSetTo
 v1.1.3 - Rename of enumeration value (FederateTooBusy).
 
 
-### v2.0 - Released version part of NETN-FOM v3.0 in AMSP-04 Ed B.
+### v2.0 - Released version part of NETN FOM v3.0 in AMSP-04 Ed B.
 
 * Added `modelIdentification` `useLimitation` to reflect Scope of FOM Module 
 * Added `modelIdentification` `glyph` 
@@ -59,7 +59,17 @@ v1.1.3 - Rename of enumeration value (FederateTooBusy).
 * Removed FixedRecordDatatype `AttributeValueStruct`
 
 
-### v2.1 - Released version part of NATO-FOM v4.0 in AMSP-04 Ed C.
+### v3.0 - Released version part of NETN FOM v4.0 in AMSP-04 Ed C.
 
-* Changed datatype `TransactionId` to `UUID`
+* Removed All Interaction Classes 
+* Removed All Datatypes 
+ 
+* Added Dependency on `NETN-ETR` 
+* Added Dependency on `NETN-ORG` 
+ 
+* Added Object Class `TMR_FederateApplication` 
+* Added Interaction Class `RequestTransfer` 
+ 
+* Added `HLAobjectRoot` attribute `FederateApplication` 
+* Added `HLAinteractionRoot` parameter `FederateApplication`
 
