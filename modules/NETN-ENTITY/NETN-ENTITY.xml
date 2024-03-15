@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification>
+    <modelIdentification notes="netn-entity_overview">
         <name>NETN-ENTITY</name>
         <type>FOM</type>
         <version>v3.0</version>
-        <modificationDate>2023-10-28</modificationDate>
+        <modificationDate>2024-03-09</modificationDate>
         <securityClassification>Not Classified</securityClassification>
-        <purpose>The NETN-ENTITY FOM Module provides a standard interface for representing simulation entities in a federated distributed simulation. The module extends the RPR-FOM standard SISO-STD-001-2015 with additional attributes for simulated physical and aggregated entities.</purpose>
+        <purpose></purpose>
         <applicationDomain></applicationDomain>
-        <description>The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA.</description>
+        <description>The NETN-ENTITY FOM Module provides a standard interface for representing simulation entities in a federated distributed simulation. The module extends the RPR-FOM standard SISO-STD-001-2015 with additional attributes for simulated physical and aggregated entities.</description>
         <useLimitation>For backward compatibility, published objects should include all required RPR-FOM attributes.</useLimitation>
         <useHistory>v1.2 - First version developed by MSG-134 for NETN FOM v2.0. Object classes and datatypes derived from deprecated NETN FOM v 1.0 module AggDeagg.</useHistory>
-        <useHistory notes="netn-physical_1">v2.0 - Updated version developed by MSG-163 for NETN FOM v3.0 renamed NETN-Physical</useHistory>
-        <useHistory notes="netn-physical_2">v3.0 - Updated version developed by MSG-191 for NETN FOM v4.0 renamed NETN-ENTITY</useHistory>
+        <useHistory notes="netn-physical_changelog_1">v2.0 - Updated version developed by MSG-163 for NETN FOM v3.0 renamed NETN-Physical</useHistory>
+        <useHistory notes="netn-physical_changelog_2">v3.0 - Updated version developed by MSG-191 for NETN FOM v4.0 renamed NETN-ENTITY</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -47,6 +47,22 @@
             <type>Dependency</type>
             <identification>NETN-BASE</identification>
         </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>RPR-Base</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>RPR-Physical</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>RPR-Aggregate</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>MIM</identification>
+        </reference>
         <other>
 Copyright © 2023 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
@@ -70,7 +86,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Optional: The callsign is a unique-designator. The default is using the RPR-FOM `PhysicalEntity` attribute `Marking` or the `AggregateEntity` attribute `AggregateMarking`. Max length 21 characters.</semantics>
+                    <semantics>Optional: The callsign is a unique-designator. Use the RPR-FOM `PhysicalEntity` attribute `Marking` or the `AggregateEntity` attribute `AggregateMarking` as default value. Max length 21 characters.</semantics>
                 </attribute>
                 <attribute>
                     <name>Symbol</name>
@@ -81,7 +97,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Optional. A symbol identifier and additional amplification. If not provided, derive the default value from the `BaseEntity` attribute `EntityType` and `PhysicalEntity` or `AggregateEntity` attribute `ForceIdentifier`.</semantics>
+                    <semantics>Optional. A symbol identifier and additional amplification. Derive default value based on `EntityType`.</semantics>
                 </attribute>
                 <attribute>
                     <name>HostEntity</name>
@@ -92,40 +108,51 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Optional. Reference to the simulation entity this platform is mounted on or embedded in. The default is no host entity (all zeros UUID).</semantics>
+                    <semantics>Optional. Reference to the simulation entity this platform is mounted on or embedded in. Default is all zeros.</semantics>
                 </attribute>
                 <attribute>
-                    <name>Protection</name>
+                    <name>ProtectionLevel</name>
                     <dataType>PercentFloat32</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
                     <ownership>DivestAcquire</ownership>
-                    <sharing>Publish</sharing>
+                    <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Optional. The protection describes the entity's cover status from the effects of weapons fire. The default is 0% - fully affected by weapon fire.</semantics>
+                    <semantics>Optional. An entity's additional level of protection against the effects of weapons fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire.</semantics>
                 </attribute>
                 <attribute>
                     <name>Signatures</name>
-                    <dataType>ArrayOfSignatures</dataType>
+                    <dataType>ArrayOfSignature</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Optional: A set of signatures to characterize this entity's susceptibility to detection.</semantics>
+                    <semantics>Optional: A set of signatures to characterize this entity's susceptibility to detection. Default is No Signatures = Empty.</semantics>
                 </attribute>
                 <attribute>
                     <name>Sensors</name>
-                    <dataType>ArrayOfSensors</dataType>
+                    <dataType>ArrayOfSensor</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Optional: A set of sensors associated with the entity.</semantics>
+                    <semantics>Optional: A set of sensors associated with the entity. Default is No sensors = Empty.</semantics>
+                </attribute>
+                <attribute>
+                    <name>CaptureStatus</name>
+                    <dataType>CaptureStatusEnum8</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional: The status of an entity's level of control or influence over its activities. The Default is 0 = Other.</semantics>
                 </attribute>
                 <objectClass>
                     <name>AggregateEntity</name>
@@ -140,7 +167,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional. Use the echelon symbol-modifier to specify the size of the AggregateEntity (level of command).</semantics>
+                        <semantics>Optional. Use the echelon symbol-modifier to specify the size of the AggregateEntity (level of command). Derive default value based on `EntityType`.</semantics>
                     </attribute>
                     <attribute>
                         <name>CombatValue</name>
@@ -151,7 +178,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional. A summary value of the effectiveness (the level of training, leadership, morale, personnel and equipment operational status). The default value is 100%.</semantics>
+                        <semantics>Optional. A summary value of the effectiveness (the level of training, leadership, morale, personnel and equipment operational status). Default is 100%.</semantics>
                     </attribute>
                     <attribute>
                         <name>WeaponsControlOrder</name>
@@ -162,14 +189,500 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional. Describes current Weapon Control Order as Free, Tight, or Hold. The default is 0 - Other.</semantics>
+                        <semantics>Optional. Describes current Weapon Control Order as Free, Tight, or Hold. Default is 0 = Other.</semantics>
                     </attribute>
+                </objectClass>
+                <objectClass>
+                    <name>PhysicalEntity</name>
+                    <sharing>Subscribe</sharing>
+                    <semantics>A base class of all discrete platform scenario domain participants.</semantics>
+                    <objectClass>
+                        <name>Platform</name>
+                        <sharing>Subscribe</sharing>
+                        <semantics>A physical object under the control of armed forces upon which sensor, communication, or weapon systems may be mounted.</semantics>
+                        <objectClass>
+                            <name>Aircraft</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <semantics>A platform entity that operates mainly in the air, such as aircraft, balloons, etc. This includes the entities when they are on the ground.</semantics>
+                            <attribute>
+                                <name>AntiCollisionLightsDayNight</name>
+                                <dataType>AppearanceAntiCollisionDayNightEnum8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Describes the day/night status of the Anti-Collision lights. Default Day=0.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>AntiCollisionLightsFlashing</name>
+                                <dataType>AntiCollisionLightFlashingEnum8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Anti collision light flashing state. Default Steady=0.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>FormationLightsLuminance</name>
+                                <dataType>UnsignedInteger8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Formation lights luminance level. Default = 0.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>NavigationLightsFlashing</name>
+                                <dataType>NavigationLightFlashingEnum8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Navigation lights flashing state. Default Steady=0.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>NVGMode</name>
+                                <dataType>AppearanceNVGModeEnum8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Describes whether air platform lighting is in covert or overt mode. Default Overt_Lighting = 0.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>TaxiwayLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entity's taxiway lights are on or not. Default False=0.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>HDULightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On Change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional. Whether the HDU Lights are on or not. Hose Drogue Unit (HDU) Lights are used during air-to-air refueling. Default False = 0.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>IndicatedAirspeed</name>
+                                <dataType>VelocityMeterPerSecondFloat32</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: The indicated air speed of the aircraft. Default 2.6 m/s</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>TrueAirspeed</name>
+                                <dataType>VelocityMeterPerSecondFloat32</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: The true air speed of the aircraft. Default = 2.6 m/s</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>MachNumber</name>
+                                <dataType>MachNumber</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: The speed of the aircraft measured in Mach number. Default = 0.1</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>WeightOnWheels</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Describes whether the air platform has weight on its main landing gear. Default True = 1.</semantics>
+                            </attribute>
+                            <objectClass>
+                                <name>TankerAircraft</name>
+                                <sharing>PublishSubscribe</sharing>
+                                <semantics>A tanker aircraft.</semantics>
+                                <attribute>
+                                    <name>RefuelingStation1LightsOn</name>
+                                    <dataType>RPRboolean</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Whether the refueling station lights are on or not. Default Off = False.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation1LightsColor</name>
+                                    <dataType>RefuelingStationLightColorEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Color of the refueling station lights. Default Red = 0.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation1LightsFlashing</name>
+                                    <dataType>RPRboolean</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Whether the refueling station lights are flashing. Default Steady = False.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation1DayNight</name>
+                                    <dataType>RefuelingStationLightDayNightEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Describes the day/night status of the refueling station lights. Default Day = 0.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation2LightsOn</name>
+                                    <dataType>RPRboolean</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Whether the refueling station lights are on or not. Default Off = False.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation2LightsColor</name>
+                                    <dataType>RefuelingStationLightColorEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Color of the refueling station lights. Default Red = 0.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation2LightsFlashing</name>
+                                    <dataType>RPRboolean</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Whether the refueling station lights are flashing. Default Steady = False.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation2DayNight</name>
+                                    <dataType>RefuelingStationLightDayNightEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Describes the day/night status of the refueling station lights. Default Day = 0.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation3LightsOn</name>
+                                    <dataType>RPRboolean</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Whether the refueling station lights are on or not. Default Off = False.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation3LightsColor</name>
+                                    <dataType>RefuelingStationLightColorEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Color of the refueling station lights. Default Red = 0.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation3LightsFlashing</name>
+                                    <dataType>RPRboolean</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Whether the refueling station lights are flashing. Default Steady = False.</semantics>
+                                </attribute>
+                                <attribute>
+                                    <name>RefuelingStation3DayNight</name>
+                                    <dataType>RefuelingStationLightDayNightEnum8</dataType>
+                                    <updateType>Conditional</updateType>
+                                    <updateCondition>On change</updateCondition>
+                                    <ownership>DivestAcquire</ownership>
+                                    <sharing>PublishSubscribe</sharing>
+                                    <transportation>HLAbestEffort</transportation>
+                                    <order>Receive</order>
+                                    <semantics>Optional: Describes the day/night status of the refueling station lights. Default Day = 0.</semantics>
+                                </attribute>
+                            </objectClass>
+                        </objectClass>
+                        <objectClass>
+                            <name>GroundVehicle</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <semantics>A platform entity that operates wholly on the surface of the earth.</semantics>
+                            <attribute>
+                                <name>EmergencyLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entity's emergency lights are on or not. A value of true, indicating that the lights are on, means that the lights begin flashing in accordance with the duty cylce of the model. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>LeftIndicatorLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entity's left front and left rear indicator lights are on or not.  A value of true, indicating that the lights are on, means that the lights begin flashing in accordance with the duty cylce of the model. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>RightIndicatorLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entity's right front and right rear indicator lights are on or not. Default Off = False.</semantics>
+                            </attribute>
+                        </objectClass>
+                        <objectClass>
+                            <name>SurfaceVessel</name>
+                            <sharing>PublishSubscribe</sharing>
+                            <semantics>A platform entity that operates wholly on the surface of the sea.</semantics>
+                            <attribute>
+                                <name>AnchorLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys anchor lights are on or not. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>WarningLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys warning/safety lights are on or not. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>DistressBeaconOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys distress beacon is on or not. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>FlightDeckLights</name>
+                                <dataType>SurfaceVesselLightIntensityInteger8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Indicates the intensity level of the Flight Deck Lights. A value of 0 means the light is off, while a value of 100 means the light is on at full power. Default = 0.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>UpperDeckFloodLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys upper deck flood lights are on or not. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>UpperDeckLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys upper deck lights are on or not. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>HorizonBarLights</name>
+                                <dataType>SurfaceVesselLightIntensityInteger8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Indicates the intensity level of the Horizon Bar Lights. A value of 0 means the light is off, while a value of 100 means the light is on at full power. Default = 0.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>GlidePathIndicatorBeam</name>
+                                <dataType>SurfaceVesselLightIntensityInteger8</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Indicates the intensity level of the GlidePathIndicatorBeam. A value of 0 means the light is off, while a value of 100 means the light is on at full power. Default = 0.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>WaveOffLightOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys wave off light is on or not. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>NotUnderCommandLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys Not Under Command lights are on or not. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>RAMLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys Restricted Ability To Manuever (RAM) lights are on or not. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>FishingWithLinesLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys fishing lights with lines are on or not. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>FishingWithNetsLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys fishing lights with nets are on or not. Default Off = False.</semantics>
+                            </attribute>
+                            <attribute>
+                                <name>MineHuntingLightsOn</name>
+                                <dataType>RPRboolean</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAbestEffort</transportation>
+                                <order>Receive</order>
+                                <semantics>Optional: Whether the entitys mine hunting lights are on or not. Default Off = False.</semantics>
+                            </attribute>
+                        </objectClass>
+                    </objectClass>
                 </objectClass>
             </objectClass>
         </objectClass>
     </objects>
     <dataTypes>
         <simpleDataTypes>
+            <simpleData>
+                <name>MachNumber</name>
+                <representation>HLAfloat32BE</representation>
+                <units>Mach number</units>
+                <resolution>NA</resolution>
+                <accuracy>perfect</accuracy>
+                <semantics>Speed/velocity measured in Mach number.</semantics>
+            </simpleData>
+            <simpleData>
+                <name>SurfaceVesselLightIntensityInteger8</name>
+                <representation>RPRunsignedInteger8BE</representation>
+                <units>NA</units>
+                <resolution>1</resolution>
+                <accuracy>perfect</accuracy>
+                <semantics>Integer in the range from 0-100 to indicate light intensity.</semantics>
+            </simpleData>
             <simpleData>
                 <name>RangeFloat32</name>
                 <representation>HLAfloat32BE</representation>
@@ -223,6 +736,27 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 </enumerator>
             </enumeratedData>
             <enumeratedData>
+                <name>CaptureStatusEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The status of a simulated entity concerning their control or influence over their activities.</semantics>
+                <enumerator>
+                    <name>Not-Captured</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Captured</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>AttemptingSurrender</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
                 <name>SignatureTypeEnum8</name>
                 <representation>HLAinteger32BE</representation>
                 <semantics>Different types of signatures.</semantics>
@@ -247,17 +781,131 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <value>5</value>
                 </enumerator>
             </enumeratedData>
+            <enumeratedData>
+                <name>AntiCollisionLightFlashingEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The type of the anti-collision light flashing.</semantics>
+                <enumerator>
+                    <name>Steady</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flash1</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flash2</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flash3</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flash4</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flash5</name>
+                    <value>5</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>NavigationLightFlashingEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The type of the navigation light flashing.</semantics>
+                <enumerator>
+                    <name>Steady</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flash1</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flash2</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flash3</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flash4</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Flash5</name>
+                    <value>5</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>AppearanceAntiCollisionDayNightEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Appearance-Anti-Collision Day/Night.</semantics>
+                <enumerator>
+                    <name>Day</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Night</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>AppearanceNVGModeEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Appearance-NVG Mode.</semantics>
+                <enumerator>
+                    <name>Overt_Lighting</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Covert_Lighting_Night_Vision_Goggles</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>RefuelingStationLightColorEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>The color of the refueling station light.</semantics>
+                <enumerator>
+                    <name>Red</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Amber</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Green</name>
+                    <value>2</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>RefuelingStationLightDayNightEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Refueling Station Day/Night.</semantics>
+                <enumerator>
+                    <name>Day</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Night</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
         </enumeratedDataTypes>
         <arrayDataTypes>
             <arrayData>
-                <name>ArrayOfSensors</name>
-                <dataType>SensorStateStruct</dataType>
+                <name>ArrayOfSensor</name>
+                <dataType>SensorStruct</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
                 <semantics>Array with definitions of sensors.</semantics>
             </arrayData>
             <arrayData>
-                <name>ArrayOfSignatures</name>
+                <name>ArrayOfSignature</name>
                 <dataType>SignatureVariant</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
@@ -266,52 +914,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
         </arrayDataTypes>
         <fixedRecordDataTypes>
             <fixedRecordData>
-                <name>VisualSignatureStruct</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Specifies the visual structure</semantics>
-                <field>
-                    <name>DVOSignaturePercent</name>
-                    <dataType>PercentFloat32</dataType>
-                    <semantics>A summary percentage of entity susceptibility to detection by direct view optics, i.e. the human eye, binoculars, or telescopes. An entity with zero percent signature would be concealed from DVO detection.</semantics>
-                </field>
-                <field>
-                    <name>I2SignaturePercent</name>
-                    <dataType>PercentFloat32</dataType>
-                    <semantics>A summary percentage of entity susceptibility to detection by Image Intensifying sensors. An entity with zero percent signature would be invisible to image intensifiers (I2).</semantics>
-                </field>
-                <field>
-                    <name>ThermalSignaturePercent</name>
-                    <dataType>PercentFloat32</dataType>
-                    <semantics>A summary percentage of entity susceptibility to detection by thermal sensors. An entity  with zero percent signature would be invisible to thermal sensors.</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
-                <name>HUMINTSignatureStruct</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>Describes the entity's susceptibility to human intelligence (HUMINT), i.e. information collected and provided by human sources.</semantics>
-                <field>
-                    <name>HUMINTSignaturePercent</name>
-                    <dataType>PercentFloat32</dataType>
-                    <semantics>A summary percentage of an aggregates susceptibility to detection by human intelligence collectors. Zero percent signature means an aggregate is impervious to HUMINT.</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
-                <name>ElectronicSignatureStruct</name>
-                <encoding>HLAfixedRecord</encoding>
-                <semantics>An entity's susceptibility to detection of its electronic emissions.</semantics>
-                <field>
-                    <name>ElectronicSignaturePercent</name>
-                    <dataType>PercentFloat32</dataType>
-                    <semantics>A summary percentage of an aggregates susceptibility to detection of its electronic emissions. Zero percent means that the aggregate has no electronic emissions.</semantics>
-                </field>
-                <field>
-                    <name>SensorArray</name>
-                    <dataType>ArrayOfSensors</dataType>
-                    <semantics>A list of sensors owned by the aggregate together with their respective operational status and range</semantics>
-                </field>
-            </fixedRecordData>
-            <fixedRecordData>
-                <name>SensorStateStruct</name>
+                <name>SensorStruct</name>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Defines a sensor's operational status, damage status, and coverage.</semantics>
                 <field>
@@ -340,7 +943,6 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <semantics>The maximum range of the sensor</semantics>
                 </field>
             </fixedRecordData>
-
         </fixedRecordDataTypes>
         <variantRecordDataTypes>
             <variantRecordData>
@@ -384,7 +986,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
     </dataTypes>
     <notes>
         <note>
-            <label>netn-physical_1</label>
+            <label>netn-physical_changelog_1</label>
             <semantics>* Added attribute `SourceUnit` to all NETN-Physical platform and lifeform object classes. 
 * Added attribute `Route` to all NETN-Physical platform, munition and lifeform object classes. 
 * Added attribute `Destination` to all NETN-Physical platform, munition and lifeform object classes. 
@@ -403,7 +1005,7 @@ NETN-MRM FOM Module v1.2.0 was developed by MSG-106 and MSG-134 and released as 
 * Changed from Reliable to BestEffort on some attributes to get a common transport type</semantics>
         </note>
         <note>
-            <label>netn-physical_2</label>
+            <label>netn-physical_changelog_2</label>
             <semantics>* Renamed module NETN-ENTITY 
  
 * Removed `NETN_Aircraft` object class 
@@ -525,10 +1127,10 @@ NETN-MRM FOM Module v1.2.0 was developed by MSG-106 and MSG-134 and released as 
 * Added `AggregateEntity` attribute `Echelon` 
 * Added `BaseEntity` attribute `Signatures` 
 * Added `AggregateEntity` attribute `CombatValue` 
-* Added `BaseEntity` attribute `Protection` 
+* Added `BaseEntity` attribute `Cover` 
 * Added `AggregateEntity` attribute `WeaponsControlOrder` 
  
-
+ 
 * Added datatype `RangeFloat32` 
 * Added datatype `WeaponControlOrderEnum8` 
 * Added datatype `SensorStateEnum32` 
@@ -538,7 +1140,24 @@ NETN-MRM FOM Module v1.2.0 was developed by MSG-106 and MSG-134 and released as 
 * Added datatype `ElectronicSignatureStruct` 
 * Added datatype `SensorStateStruct` 
  
+* Removed datatype `VisualSignatureStruct` 
+* Removed datatype `HUMINTSignatureStruct` 
+* Removed datatype `ElectronicSignatureStruct` 
+ 
+ 
 * Changed datatype of FixedRecord SensorStruct field SensorID to UUID</semantics>
+        </note>
+        <note>
+            <label>netn-entity_overview</label>
+            <semantics>## Overview
+
+The NETN-ENTITY module extends the RPR-FOM `BaseEntity` object class with optional attributes available for all physical and aggregate entity objects. In addition, the RPR-FOM `AggregateEntity` object class is extended with additional attributes.
+
+The module extends the RPR-FOM Platform, Aircraft, and SurfaceVessel with light-related attributes.
+
+A TankerAircraft object class extends the Aircraft object class as a new subclass.
+
+            </semantics>
         </note>
     </notes>
 </objectModel>

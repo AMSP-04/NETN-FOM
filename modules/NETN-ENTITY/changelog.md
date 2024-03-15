@@ -147,10 +147,10 @@ NETN-MRM FOM Module v1.2.0 was developed by MSG-106 and MSG-134 and released as 
 * Added `AggregateEntity` attribute `Echelon` 
 * Added `BaseEntity` attribute `Signatures` 
 * Added `AggregateEntity` attribute `CombatValue` 
-* Added `BaseEntity` attribute `Protection` 
+* Added `BaseEntity` attribute `Cover` 
 * Added `AggregateEntity` attribute `WeaponsControlOrder` 
  
-
+ 
 * Added datatype `RangeFloat32` 
 * Added datatype `WeaponControlOrderEnum8` 
 * Added datatype `SensorStateEnum32` 
@@ -159,6 +159,11 @@ NETN-MRM FOM Module v1.2.0 was developed by MSG-106 and MSG-134 and released as 
 * Added datatype `HUMINTSignatureStruct` 
 * Added datatype `ElectronicSignatureStruct` 
 * Added datatype `SensorStateStruct` 
+ 
+* Removed datatype `VisualSignatureStruct` 
+* Removed datatype `HUMINTSignatureStruct` 
+* Removed datatype `ElectronicSignatureStruct` 
+ 
  
 * Changed datatype of FixedRecord SensorStruct field SensorID to UUID
 
