@@ -3,17 +3,15 @@
 
 |Version| Date| Dependencies|
 |---|---|---|
-|2.0|2023-04-13|NETN-BASE|
+|2.0|2024-03-10|NETN-BASE|
 
 > [Full Documentation](NETN-METOC.md)
 
-The purpose of the NATO Education and Training Network (NETN) Meteorological and Oceanographic (METOC) Module is to provide a standard way to exchange data related to weather conditions and the primary effects of weather on terrain and water surfaces in the atmosphere and subsurface water conditions. The main objective is to provide a reference model that represents a common core subset of METOC-related aspects and to allow the extension of the module to incorporate additional detail if required. Therefore, the NETN-METOC module is a reference FOM module where extensions are allowed and encouraged to meet federation-specific requirements fully.
+The purpose of the NATO Education and Training Network Meteorological and Oceanographic Module (NETN-METOC) is to provide a standard way to exchange data related to environmental conditions, including weather and the primary effects of weather on terrain and water surfaces in the atmosphere and subsurface water conditions.
 
-This module specifies how to represent METOC-related data in a federated distributed simulation. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA.
+NETN-METOC provides a reference model that represents a common core subset of METOC-related aspects and allows the module's extension to incorporate additional detail if required.
 
-Current weather conditions impact simulations such as platforms and sensors on the ground, sea, underwater and in the air. A correlated representation of these conditions is key to meeting interoperability and model requirements in a federated distributed simulation. Different simulations require different fidelity of weather conditions concerning data resolution and accuracy. The NETN-METOC focus on representing weather conditions for related surfaces and layers. The main difference is that a surface condition does not have a volume and only represents the conditions directly related to the surface of a piece of terrain or water. The layer conditions represent a volume of water or air with height/depth from surface and layer thickness. Environmental conditions have explicit locations or positions related to other simulated entities and objects in the synthetic environment.
 
-NETN-METOC covers the most common levels of representation required by a large set of existing simulators.
 
 ## License
 
@@ -38,8 +36,8 @@ Version numbering of this FOM Module and associated documentation is based on th
 
 |Version|
 |---|
-|v1.0 - Initial version developed by MSG-163. Release included in NETN-FOM v3.0|
-|v2.0 - Updates developed by MSG-191 and included in NETN-FOM v4.0|
+|v1.0 - Initial version developed by MSG-163. Release included in NETN FOM v3.0|
+|v2.0 - Updates developed by MSG-191 and included in NETN FOM v4.0|
 
 > [Changelog](changelog.md)
 

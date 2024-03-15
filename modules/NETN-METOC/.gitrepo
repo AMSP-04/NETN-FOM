@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:AMSP-04/NETN-METOC.git
 	branch = develop
-	commit = 1b9c30a5f7e0efd1b28297780c79346330d287ae
-	parent = 916b06a0df012781a0c0e07071df1583f9d6088b
+	commit = c249a27c702c8748a240d2eba8bb15579b042308
+	parent = 9d21893000610d0d98e03d6f77843935cc6166f5
 	method = merge
 	cmdver = 0.4.6
