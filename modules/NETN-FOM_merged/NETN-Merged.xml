@@ -7565,6 +7565,14 @@ This attribute represents the 7 digits value of the IMO number. The value shall 
                 <accuracy>perfect</accuracy>
                 <semantics>Velocity/Speed measured in decimeter per second.</semantics>
             </simpleData>
+            <simpleData>
+                <name>EpochTime</name>
+                <representation>HLAinteger64BE</representation>
+                <units>seconds</units>
+                <resolution>1</resolution>
+                <accuracy>NA</accuracy>
+                <semantics>Scenario time is seconds since Epoch, where Epoch, e.g. is January 1, 1970, 00:00:00 UTC or otherwise defined in federation agreements.</semantics>
+            </simpleData>
         </simpleDataTypes>
         <enumeratedDataTypes>
             <enumeratedData>
@@ -28206,6 +28214,22 @@ More user-supplied information may be included, starting from the 9th character,
                 <cardinality>Dynamic</cardinality>
                 <encoding>RPRlengthlessArray</encoding>
                 <semantics>Specifies detailed information for a collection of grid data representations</semantics>
+            </arrayData>
+            <arrayData>
+                <name>UUID</name>
+                <dataType>HLAbyte</dataType>
+                <cardinality>16</cardinality>
+                <encoding>HLAfixedArray</encoding>
+                <semantics>RFC 4122, section 4.1.2 using 16 bytes. Also referred to as Variant 1 or RFC 4122/DCE 1.1 UUIDs.
+
+For example, 00112233-4455-8877-6699-aabbccddeeff is encoded as the bytes 00 11 22 33 44 55 88 77 66 99 aa bb cc dd ee ff.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>FederateName</name>
+                <dataType>HLAunicodeChar</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>The name of a federate participating in an HLA federation. The value of this attribute corresponds to the `HLAfederateName` attribute of the MIM object class `HLAfederate`.</semantics>
             </arrayData>
         </arrayDataTypes>
         <fixedRecordDataTypes>
