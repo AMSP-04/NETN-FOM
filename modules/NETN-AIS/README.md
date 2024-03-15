@@ -3,25 +3,20 @@
 
 |Version| Date| Dependencies|
 |---|---|---|
-|1.1|2023-03-25|NETN-BASE, RPR-Communication, NETN-ORG, NETN-ETR|
+|2.0|2024-03-10|NETN-BASE, RPR-Communication, NETN-ETR, NETN-ORG, NETN-SMC|
 
 > [Full Documentation](NETN-AIS.md)
 
-The purpose of the NATO Education and Training Network (NETN) Automatic Identification System (AIS) Module is to:  
+The purpose of the NATO Education and Training Network Automatic Identification System Module (NETN-AIS) is to:     
+        
+* represent vessel traffic in a simulation using AIS messages to, for example, communicate position status reports of vessels.   
+* enable the exchange of AIS messages between HLA Federate Applications in real-time and non-real-time platform-level simulation.   
+* allow HLA Federate Applications to use regular HLA interaction classes and parameters to represent vessel information and leave any translations to physical message formats to dedicated gateways.
 
-* represent vessel traffic in a simulation using AIS messages to for example communicate position status reports of vessels  
-* enable the exchange of AIS messages between HLA Federate Applications in both a real-time and non-real-time platform-level simulation  
-* allow HLA Federate Applications to use regular HLA interaction classes and parameters to represent vessel information, and leave the translation to the physical message format in ITU-R M.1371-5 to for example dedicated gateways.   
 
-The NETN-AIS FOM module defines most of the AIS message types, whose content can be interpreted by applications without extensive knowledge of the ITU-R M.1371-5 standard and the message format defined by that standard. 
+AIS is a worldwide automated tracking system used for sharing vessel identification and location information by propagating messages between nearby vessels and Vessel Traffic Services stations.
 
-The Automatic Identification System (AIS) is a worldwide automated tracking system used on vessels and by Vessel Traffic Services (VTS) for identifying and locating vessels by electronically exchanging messages with other nearby vessels and VTS stations. 27 message types are defined in ITU-R M.1371-5 Annex 8 (see https://www.itu.int). The most commonly used message types are the Position Report Class A (Message types 1,2, and 3) and the Static and Voyage Related Data (Message type 5). And a commonly used live protocol to exchange AIS messages is NMEA-0183. This is an electrical and data specification for communication between marine electronics (see https://www.nmea.org).
-
-The NETN-AIS FOM module defines all of the messages types specified in ITU-R M.1371-5 Annex 8, except for rarely used message types or message types that are more related to traffic analysis in an AIS network (i.e. 15, 16, 20, 22, 23, 25 and 26). The FOM class structure is closely aligned with the message type specification in ITU-R M.1371-5 Annex 8, enabling easy translation to/from NMEA 0183. The message types are modelled as interaction classes and most of the class parameters are optional. The root class `AisMessage` is integrated with the RPR-FOM by subclassing `RadioSignal`, using the concept of `HostRadioIndex` to refer to the `RadioTransmitter` object instance on board the vessel.
-
-The NETN-AIS FOM module content is based on ITU-R M.1371-5, Technical characteristics for an automatic identification system using time division multiple access in the VHF maritime mobile frequency band (https://www.itu.int).
-
-The NETN-AIS FOM module is simulation oriented and does not focus on the physical message format as defined by ITU-R M.1371-5. However, the FOM is aligned well with ITU-R M.1371-5, enabling relatively easy mapping to/from the message format defined in ITU-R M.1371-5.
+The NETN-AIS module is a simulation-oriented representation of AIS messages. It does not focus on the physical message format defined by the AIS standard ITU-R M.1371-5. However, the module is aligned with this standard to enable easy mapping to and from live message formats.
 
 ## License
 
@@ -46,8 +41,8 @@ Version numbering of this FOM Module and associated documentation is based on th
 
 |Version|
 |---|
-|v1.0 - Developed by MSG-163 for NETN-FOM v3.0|
-|v1.1 - Developed by MSG-191 for NATO-FOM v4.0|
+|v1.0 - Developed by MSG-163 for NETN FOM v3.0|
+|v2.0 - Developed by MSG-191 for NETN FOM v4.0|
 
 > [Changelog](changelog.md)
 

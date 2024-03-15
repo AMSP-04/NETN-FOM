@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:AMSP-04/NETN-AIS.git
 	branch = develop
-	commit = d5210a1a9002837b86a7a55436c6240da671634e
-	parent = 9e623a2fbc55ea253d535ba5a8ae6b85be55f6a9
+	commit = 3e922823932cceeb9b4a49a11b2221b454271d92
+	parent = 7f85272280182411506374bda1cc4325338720dd
 	method = merge
 	cmdver = 0.4.6
