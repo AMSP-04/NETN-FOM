@@ -3,7 +3,7 @@
 ## Repositories
 | Type | Description |
 | ---| ---|
-| NETN-FOM  | Main Repository for the entire FOM including all related FOM Modules.|
+| NETN FOM  | Main Repository for the entire FOM including all related FOM Modules.|
 | NETN-* | Repository for a specific FOM Module.|
 
 ## Branches

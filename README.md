@@ -1,14 +1,19 @@
 # NETN FOM
 NATO Education and Training Network (NETN) Federation Object Model (FOM)
 
-## Introduction
+ 
+## Executive Summary
 
-The NETN FOM is an identified set of HLA FOM Modules. The modules are recommended for use when implementing NATO AMSP-04 NETN FAFD compliant distributed simulation. 
 
-The modules have inter-dependencies and have been designed to maximize re-use and interoperability with legacy systems using existing standards, and those having requirements for new patterns of simulation interoperability. The NETN FOM is the complete set of NETN modules and all other modules they depend on, e.g. the SISO RPR-FOM.
+Efficient and effective use of NATO and national Modelling & Simulation (M&S) capabilities, to support training, requires standards for connecting and integrating M&S components across the training system enterprise.
 
-### Purpose
-The NETN FOM provides a standard interfaces for the representation of simulated entities, events, and other models of real-world objects, processes and phenomenon. It also provide standard interfaces and patterns for simulation interplay between systems in a federated distributed simulation to allow multi-resolution modelling, transfer of modelling responsibilities, tasking and simulation control.
+The NATO Education and Training Network Federation Object Model (NETN-FOM) document provides a common information exchange data model for developing interoperable distributed simulation systems.
+
+The NETN-FOM focuses on technical interoperability issues in distributed simulation and provides patterns for scenario initialization, transfer of modelling responsibilities, simulation entity tasking and patterns for managing dynamic change of model resolution.
+
+The AMSP-04 document provides a summary of all NETN-FOM modules, key design patterns and main concepts. Full on-line documentation and all related data models and files are provided through http://www.github.org/AMSP-04
+
+
 
 ## Licence
 
@@ -23,9 +28,9 @@ Above licence gives you the right to use and redistribute the NETN FOM (XML file
 
 All updates and versioning of this work is coordinated by the NATO Modelling and Simulation Coordination Office (MSCO), managed by the NATO Modelling and Simulation Group (NMSG) and performed as NATO Science and Technology Organization (STO) technical activities in support of the NMSG Modelling and Simulation Standards Subgroup (MS3).
 
-Feedback on the use of this work, suggestions for improvements and identified issues are welcome and can be provided using GitHub issue tracking. To engage in the development and update of NETN-FOM, please contact your national NMSG representative.
+Feedback on the use of this work, suggestions for improvements and identified issues are welcome and can be provided using GitHub issue tracking. To engage in the development and update of NETN FOM, please contact your national NMSG representative.
 
-Version numbering of the NETN-FOM and associated documentation is based on the following principles:
+Version numbering of the NETN FOM and associated documentation is based on the following principles:
 
 * New official version number is assigned and in effect only when a new release is made in the Master branch.
 * Updates in the Develop branch will not change the version number.
@@ -35,9 +40,10 @@ Version numbering of the NETN-FOM and associated documentation is based on the f
 
 |Version|Description|
 |---|---|
-|v1.0|Initial release of NETN-FOM as developed by MSG-068 |
-|v2.0|Release of NETN-FOM included in AMSP-04 Ed A|
-|v3.0|Release of NETN-FOM included in AMSP-04 Ed B|
+|v1.0|Initial release of NETN FOM as developed by MSG-068 |
+|v2.0|Release of NETN FOM included in AMSP-04 Ed A|
+|v3.0|Release of NETN FOM included in AMSP-04 Ed B|
+|v4.0|Release of NETN FOM included in AMSP-04 Ed C|
 
 [Changelog](changelog.md)
 
