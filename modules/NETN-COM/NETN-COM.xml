@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification>
+    <modelIdentification notes="netn-com_overview">
         <name>NETN-COM</name>
         <type>FOM</type>
-        <version>1.1</version>
-        <modificationDate>2023-03-07</modificationDate>
+        <version>2.0</version>
+        <modificationDate>2024-03-10</modificationDate>
         <securityClassification>Not classified</securityClassification>
-        <purpose>Simulation, Training</purpose>
+        <purpose>The purpose of the NATO Education and Training Network Communication Network Module (NETN-COM) is to provide a standard way to exchange data related to the status of connections in a communication network and links in a physical network.</purpose>
         <applicationDomain></applicationDomain>
-        <description>NATO Education and Training Network (NETN) Communication Network (COM) Module. 
-        
-This module is a specification of how to represent Communication Networks in a federated distributed simulation. The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and primarily intended to support interoperability in a federated simulation (federation) based on HLA. An HLA OMT based Federation Object Model (FOM) is used to specify types of data and how it is encoded on the network. The NETN COM FOM module is available as a XML file for use in HLA based federations.</description>
+        <description>The communication networks can be modelled using radios, ethernet, satellite communication or laser-based links, transmitting from point to point or routing through the network. </description>
         <useLimitation></useLimitation>
-        <useHistory>1.0.0 - Initial version developed by MSG-164 and MSG-163 for NETN-FOM v3.0</useHistory>
-        <useHistory>1.1.0 - Version developed by MSG-191 for NATO FOM v4.0</useHistory>
+        <useHistory>1.0 - Initial version developed by MSG-164 and MSG-163 for NETN FOM v3.0</useHistory>
+        <useHistory notes="netn-com_changelog">2.0 - Version developed by MSG-191 for NETN FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -42,6 +40,14 @@ This module is a specification of how to represent Communication Networks in a f
             <type>Dependency</type>
             <identification>NETN-BASE</identification>
         </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-ETR</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-ORG</identification>
+        </reference>
         <other>
 Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
@@ -59,18 +65,18 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <objectClass>
                     <name>CommunicationNetwork</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>The CommunicationNetwork class specifies details about the type of and service used by a logical communication network. This corresponds to the CommunicationNet-Elements of MSDL Units and Equipments. 
-Instances of this object class should be considered as optional. No federate should rely on this data to work with communication networks.</semantics>
+                    <semantics>The `CommunicationNetwork` class specifies details about the type of service used by a logical communication network. This corresponds to the CommunicationNet-Elements of MSDL Units and Equipments. 
+Instances of this object class should be considered optional. No federate should rely on this data to work with communication networks.</semantics>
                     <attribute>
-                        <name>UniqueName</name>
-                        <dataType>Text64</dataType>
+                        <name>Name</name>
+                        <dataType>HLAunicodeString</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
                         <ownership>NoTransfer</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Required. Unique communication network name. Unique in the context of communication networks.</semantics>
+                        <semantics>Required. Communication network name. Unique in the context of communication networks.</semantics>
                     </attribute>
                     <attribute>
                         <name>NetworkType</name>
@@ -98,11 +104,41 @@ Instances of this object class should be considered as optional. No federate sho
                 <objectClass>
                     <name>CommunicationNode</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>A CommunicationNode is the representation of the interface of a simulated entity to logical communication networks. The location of the CommunicationNode is derived from the referenced entity or specified explicitly (if the referenced entity is not registered in the federation). 
+                    <semantics>A `CommunicationNode` is the representation of the interface of a simulated entity to logical communication networks. The location of the `CommunicationNode` is derived from the referenced entity or specified explicitly (if the referenced entity is not registered in the federation). 
  
-Connections to communication networks are established only if connectivity exists based on the status of available network devices and the simulation of links. Each potential connection is described in terms of requested connections  (the equivalent to the information provided by MSDL).</semantics>
+Each potential connection is described in terms of requested connections (the equivalent to the information provided by MSDL). `Connection` objects represent the availability of a connection and its receivers. It is up to a communication simulation to create `Connection` objects for the requested connections based on the network devices of the `CommunicationNode`, the physical network and the link quality between network devices. Depending on the federation design and agreements, the explicit representation of the physical layer objects, `PhysicalNetwork` and `LinkStates`, is optional. 
+ 
+A requested connection is used to describe the characteristics of a possible connection to a communication network. For the types of connections where data is intended to be transmitted, a connection identifier can be provided that can be used to create a `Connection` object instance. 
+ 
+Unless a network device is explicitly specified, all suitable devices associated with the communication network of the requested connection shall be used. 
+ 
+Depending on the type of the requested connection the use of the associated network device parameters differs: 
+ 
+* **Broadcast Transceiver**: A combination of Broadcast Transmitter and Receiver 
+* **Broadcast Transmitter**: 
+* If TX is specified for a network device, connections are established to all receiving entities reachable depending on the physical network description (ranges, max hops, etc.). Data is sent to all (directly linked) receivers simultaneously. 
+* A Connection instance should be created. 
+* The DestinationEntityArray is ignored. 
+* **Broadcast Receiver**: 
+* If RX is specified for a network device, the connections listen to all incoming messages. 
+* The DestinationEntityArray is ignored. 
+* **Peer-To-Peer**: 
+* If TX is specified for a network device connections are established to all reachable specified destination entities. 
+* If RX is specified for a network device, the connections listen to all incoming messages which are sent to the entity. 
+* It is assumed that the communication is bidirectional and should use the same route in both directions. The connection must be defined at the receiver as well. 
+* If DestinationEntityArray is empty messages will be sent to all reachable participants of the communication network. It is strongly recommended to define a limited set of destinations wherever possible. 
+* It is assumed that messages are transmitted sequentially to all receivers defined as a destination. (Be aware: this does not include intercepting devices) 
+* Any max. hop count / TTL parameter of the physical network is ignored. 
+* **Unidirectional**: Like Peer-To-Peer but no connection back to the source with the same route is expected. 
+* **Multicast**: 
+* The connection logic is similar to unidirectional connections. 
+* Data is sent to all receivers simultaneously. 
+* The DestinationEntityArray is ignored. 
+* **Intercepting connections**: 
+* These are special connections not related to specific destination entities but intercept all types of connections that are reachable by the corresponding device. In the case of broadcasts, this corresponds to a broadcast receiver, otherwise, this means the connection is routed through the corresponding device. 
+* The DestinationEntityArray is ignored.</semantics>
                     <attribute>
-                        <name>EntityId</name>
+                        <name>HostEntity</name>
                         <dataType>UUID</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
@@ -110,24 +146,19 @@ Connections to communication networks are established only if connectivity exist
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Required. Reference by UUID to an object instance of one of the following classes: 
- 
-* NETN-MRM Aggregate Entity 
-* NETN-Physical extensions of RPR Physical Entities. 
- 
-If the referenced entity exists in the federation, the location of the node is derived from the location of the entity. 
+                        <semantics>Optional. Reference to a simulation entity. If the referenced entity exists in the federation, the location of the node is derived from the location of the entity. 
 If the referenced entity does not exist in the federation, the location of the node is defined by the Location attribute.</semantics>
                     </attribute>
                     <attribute>
                         <name>Location</name>
-                        <dataType>WorldLocationStruct</dataType>
+                        <dataType>LocationStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>OnChange</updateCondition>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional. Specifies the location of the CommunicationNode in case the entity referenced by EntityId is not registered in the federation. If the entity referenced by EntityId exists in the federation, the location of the communication node is derived from that entity and the value of the Location attribute shall be ignored.</semantics>
+                        <semantics>Optional. Specifies the location of the `CommunicationNode` in case the entity referenced by `HostEntity` is not registered in the federation. If the referenced entity exists in the federation, the location of the communication node is derived from that entity and the value of the Location attribute shall be ignored.</semantics>
                     </attribute>
                     <attribute>
                         <name>RequestedConnections</name>
@@ -149,41 +180,30 @@ If the referenced entity does not exist in the federation, the location of the n
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Required. Available network devices defining the association of a communication network (connection layer) with a physical network (link layer). Each network device can be associated with several communication networks but only to one physical network. Each network device also describes the transmitter and receiver capabilities.</semantics>
-                    </attribute>
-                    <attribute>
-                        <name>IncomingConnections</name>
-                        <dataType>IncomingConnectionArray</dataType>
-                        <updateType>Conditional</updateType>
-                        <updateCondition>OnChange</updateCondition>
-                        <ownership>DivestAcquire</ownership>
-                        <sharing>PublishSubscribe</sharing>
-                        <transportation>HLAreliable</transportation>
-                        <order>Receive</order>
-                        <semantics>Optional. Description of all incoming connections to the receiving entity.</semantics>
+                        <semantics>Required. Available network devices define the association of a communication network (connection layer) with a physical network (link layer). Each network device can be associated with several communication networks but only one physical network. Each network device also describes the transmitter and receiver capabilities.</semantics>
                     </attribute>
                 </objectClass>
                 <objectClass>
                     <name>Connection</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>Description of an outgoing connection from a sender to a set of receivers.</semantics>
+                    <semantics>A connection object describes the communication capability of each entity to all other entities for a communication network. The `Connection` object is created for each requested connection if there is at least one reachable receiver. The federation agreement defines which system is responsible for creating and maintaining the connection instance. The connection describes the connectivity but not the routes through a physical network defined by links between nodes.</semantics>
                     <attribute>
-                        <name>CommunicationNetworkName</name>
-                        <dataType>Text64</dataType>
+                        <name>CommunicationNetwork</name>
+                        <dataType>UUID</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Required. A reference to the communication network this connection belongs to.</semantics>
                     </attribute>
                     <attribute>
-                        <name>SenderEntityId</name>
+                        <name>SenderEntity</name>
                         <dataType>UUID</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -194,7 +214,7 @@ If the referenced entity does not exist in the federation, the location of the n
                         <dataType>ConnectionReceiverArray</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>OnChange</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -204,13 +224,13 @@ If the referenced entity does not exist in the federation, the location of the n
                 <objectClass>
                     <name>PhysicalNetwork</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>This object class represents type-specific parameters/constraints for a physical network. Physical networks are simulated by LinkState objects and do not require that an instance of PhysicalNetwork exist in the federation.</semantics>
+                    <semantics>The `PhysicalNetwork` object class represents type-specific parameters/constraints for a physical network. Physical networks are simulated by `LinkState` objects and do not require that an instance of PhysicalNetwork exist in the federation.</semantics>
                     <attribute>
-                        <name>UniqueName</name>
-                        <dataType>Text64</dataType>
+                        <name>Name</name>
+                        <dataType>HLAunicodeString</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -221,7 +241,7 @@ If the referenced entity does not exist in the federation, the location of the n
                         <dataType>PhysicalNetworkDescriptionVariant</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -231,24 +251,32 @@ If the referenced entity does not exist in the federation, the location of the n
                 <objectClass>
                     <name>LinkStates</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>Representation of the state of links in a physical network.</semantics>
+                    <semantics>A `LinkStates` object describes the presence and quality of a set of direct links between nodes on a physical level. Links are defined between a transmitting and receiving device. 
+ 
+Bidirectional links assume identical link quality in both directions. Otherwise, two unidirectional links should be described. 
+ 
+Each `LinkStates` instance is associated with one physical network. To support load balancing in link quality simulation, multiple `LinkStates` instances can be associated with the same physical network as long as they do not contain duplicated link-state information. 
+ 
+A link should not be contained in more than one `LinkStates` object. If a link is not contained in any instance, it is not present, and it means it could not be established. 
+ 
+The `LinkStates` provides information that can be used to calculate connections.</semantics>
                     <attribute>
-                        <name>PhysicalNetworkName</name>
-                        <dataType>Text64</dataType>
+                        <name>PhysicalNetwork</name>
+                        <dataType>UUID</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Required. Reference to physical network by its unique name.</semantics>
+                        <semantics>Required. Reference to a physical network.</semantics>
                     </attribute>
                     <attribute>
                         <name>Links</name>
                         <dataType>LinkStatusArray</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>OnChange</updateCondition>
-                        <ownership>NoTransfer</ownership>
+                        <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
@@ -260,48 +288,153 @@ If the referenced entity does not exist in the federation, the location of the n
                     <sharing>PublishSubscribe</sharing>
                     <semantics>The `DisruptionEffect` object class is used to represent the disruption of connections between communication nodes in an affected area. Communication models can subscribe to disruption-effect objects and use the information to simulate the effect of disruption on communication nodes, connections and link states.</semantics>
                     <attribute>
-                        <name>AffectedNetworks</name>
-                        <dataType>ArrayOfText64</dataType>
+                        <name>Networks</name>
+                        <dataType>ArrayOfUuid</dataType>
                         <updateType>NA</updateType>
                         <updateCondition>NA</updateCondition>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional. Names of all affected communication networks. If not provided all networks in the specified area are affected.</semantics>
+                        <semantics>Optional. Reference to all affected physical and communication networks. If not provided all networks in the specified area are affected.</semantics>
                     </attribute>
                     <attribute>
-                        <name>AffectedArea</name>
-                        <dataType>GeodeticQuadrangle</dataType>
+                        <name>Area</name>
+                        <dataType>LocationStructArray</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional. Area affected by disruption. If not provided the default is a global disruption and all connections are affected.</semantics>
+                        <semantics>Optional. The area affected by the disruption. If not provided the default is a global disruption and all connections are affected.</semantics>
                     </attribute>
                     <attribute>
                         <name>Effect</name>
-                        <dataType>PercentFloat64</dataType>
+                        <dataType>PercentFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Required. Level of disruption in percent. 100% equals No connectivity and 0% no disruption effect. The level of disruption can vary over time.</semantics>
+                        <semantics>Required. Level of disruption. 100% equals No connectivity and 0% no disruption effect. The level of disruption can vary over time.</semantics>
                     </attribute>
                 </objectClass>
             </objectClass>
+            <objectClass>
+                <name>ORG_Root</name>
+                <objectClass>
+                    <name>OrganizationElement</name>
+                    <objectClass>
+                        <name>Unit</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>A unit represents an element at a specified level in the organization. An organizational unit can contain subunits and can belong to a superior unit. A unit consists of equipment, personnel and supplies; these holdings can belong directly to the unit or indirectly as a holding of a subunit.</semantics>
+                        <attribute>
+                            <name>CommunicationNetworks</name>
+                            <dataType>ArrayOfCommunicationNetworks</dataType>
+                            <updateType>Static</updateType>
+                            <updateCondition>NA</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional: A list of communication networks available for the unit.</semantics>
+                        </attribute>
+                    </objectClass>
+                    <objectClass>
+                        <name>Equipment</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>An equipment represents individual physical items defined specifically and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensors object.</semantics>
+                        <attribute>
+                            <name>CommunicationNetworks</name>
+                            <dataType>ArrayOfCommunicationNetworks</dataType>
+                            <updateType>Static</updateType>
+                            <updateCondition>NA</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional: A list of communication networks available for the unit.</semantics>
+                        </attribute>
+                    </objectClass>
+                </objectClass>
+            </objectClass>
+            <objectClass>
+                <name>BaseEntity</name>
+                <sharing>Subscribe</sharing>
+                <semantics>A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.</semantics>
+                <attribute>
+                    <name>IncommingConnections</name>
+                    <dataType>IncommingConnectionArray</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. All incoming communication connections to the receiving simulated entity. Any messages sent on a CommunicationNetwork with a Connection of sufficient quality should be received by this entity and processed if the entity is the intended recipient.</semantics>
+                </attribute>
+            </objectClass>
         </objectClass>
     </objects>
-    <dimensions/>
-    <synchronizations/>
-    <transportations/>
-    <updateRates/>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>SMC_EntityControl</name>
+                <interactionClass>
+                    <name>Task</name>
+                    <sharing>Neither</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Requests a simulated entity to perform some task based on a task description. If accepted, the federate application modelling the behaviour will execute the task per task parameters and scheduling. A request task is acknowledged using a `TaskStatusUpdate` response interaction. Resending a `RequestTask` with the same `TaskId` as a previously sent interaction is equivalent to cancelling and sending a new task.</semantics>
+                    <parameter>
+                        <name>CommunicationNetworks</name>
+                        <dataType>CommunicationNetworkArray</dataType>
+                        <semantics>Optional. Reference to communication networks (NETN-COM) used to transfer tasking messages. If not provided, the task transmission should not be modelled and federates should receive and act on the task messages directly.</semantics>
+                    </parameter>
+                    <interactionClass>
+                        <name>DisruptCommunication</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasking of an entity to introduce a communication network disruption.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>DisruptCommunicationTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>SetTransmitterStatus</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasking of an entity to switch on/off all of its transmitters.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>SetTransmitterStatusTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+            </interactionClass>
+            <interactionClass>
+                <name>ETR_Report</name>
+                <sharing>Neither</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>A base interaction class for more specialized report interaction classes. The inherited parameter `Time is required.`</semantics>
+                <parameter>
+                    <name>CommunicationNetworks</name>
+                    <dataType>CommunicationNetworkArray</dataType>
+                    <semantics>Optional. Reference to communication networks (NETN-COM) used to transfer report messages. If not provided, the report transmission should not be modelled and federates should receive and act on the task messages directly.</semantics>
+                </parameter>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
     <dataTypes>
-        <basicDataRepresentations/>
         <simpleDataTypes>
             <simpleData>
                 <name>BitsPerSecond</name>
@@ -345,7 +478,7 @@ If the referenced entity does not exist in the federation, the location of the n
             <enumeratedData>
                 <name>CommunicationNetworkTypeEnum</name>
                 <representation>HLAoctet</representation>
-                <semantics>The type of a communication network.</semantics>
+                <semantics>The type of communication network.</semantics>
                 <enumerator>
                     <name>OTHER</name>
                     <value>0</value>
@@ -382,53 +515,53 @@ MCI: Multilateral Interoperability Programme (MIP) Common Interface Service
 MHS: Message Handling Service 
 TDL: Tactical Data Link 
 VIDSVC: Video Service 
-VOCSVC:Voice Service 
+VOCSVC: Voice Service 
 NOS: Not Otherwise Specified</semantics>
                 <enumerator>
                     <name>DATTRF</name>
-                    <value notes="netn-com_3">0</value>
+                    <value>0</value>
                 </enumerator>
                 <enumerator>
                     <name>FAX</name>
-                    <value notes="netn-com_4">1</value>
+                    <value>1</value>
                 </enumerator>
                 <enumerator>
                     <name>IIF</name>
-                    <value notes="netn-com_5">2</value>
+                    <value>2</value>
                 </enumerator>
                 <enumerator>
                     <name>IMAGE</name>
-                    <value notes="netn-com_6">3</value>
+                    <value>3</value>
                 </enumerator>
                 <enumerator>
                     <name>MCI</name>
-                    <value notes="netn-com_7">4</value>
+                    <value>4</value>
                 </enumerator>
                 <enumerator>
                     <name>MHS</name>
-                    <value notes="netn-com_8">5</value>
+                    <value>5</value>
                 </enumerator>
                 <enumerator>
                     <name>TDL</name>
-                    <value notes="netn-com_9">6</value>
+                    <value>6</value>
                 </enumerator>
                 <enumerator>
                     <name>VIDSVC</name>
-                    <value notes="netn-com_10">7</value>
+                    <value>7</value>
                 </enumerator>
                 <enumerator>
                     <name>VOCSVC</name>
-                    <value notes="netn-com_11">8</value>
+                    <value>8</value>
                 </enumerator>
                 <enumerator>
                     <name>NOS</name>
-                    <value notes="netn-com_12">9</value>
+                    <value>9</value>
                 </enumerator>
             </enumeratedData>
             <enumeratedData>
                 <name>ConnectionTypeEnum</name>
                 <representation>HLAoctet</representation>
-                <semantics>The type of a connection.</semantics>
+                <semantics>The type of connection.</semantics>
                 <enumerator>
                     <name>BroadcastTransceiver</name>
                     <value>0</value>
@@ -458,6 +591,19 @@ NOS: Not Otherwise Specified</semantics>
                     <value>6</value>
                 </enumerator>
             </enumeratedData>
+            <enumeratedData>
+                <name>EntityControlActionEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
+                <enumerator>
+                    <name>DisruptCommunication</name>
+                    <value>200</value>
+                </enumerator>
+                <enumerator>
+                    <name>SetTransmitterStatus</name>
+                    <value>201</value>
+                </enumerator>
+            </enumeratedData>
         </enumeratedDataTypes>
         <arrayDataTypes>
             <arrayData>
@@ -472,7 +618,7 @@ NOS: Not Otherwise Specified</semantics>
                 <dataType>NetworkDeviceStruct</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
-                <semantics>A set of nework devices.</semantics>
+                <semantics>A set of network devices.</semantics>
             </arrayData>
             <arrayData>
                 <name>RequestedConnectionArray</name>
@@ -483,7 +629,7 @@ NOS: Not Otherwise Specified</semantics>
             </arrayData>
             <arrayData>
                 <name>CommunicationNetworkArray</name>
-                <dataType>Text64</dataType>
+                <dataType>ArrayOfUuid</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
                 <semantics>References to a set of communication networks.</semantics>
@@ -496,31 +642,58 @@ NOS: Not Otherwise Specified</semantics>
                 <semantics>Connection characteristics for a number of receivers.</semantics>
             </arrayData>
             <arrayData>
-                <name>IncomingConnectionArray</name>
+                <name>IncommingConnectionArray</name>
                 <dataType>IncomingConnectionStruct</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
                 <semantics>A set of incoming connections.</semantics>
             </arrayData>
+            <arrayData>
+                <name>ArrayOfCommunicationNetworks</name>
+                <dataType>UUID</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>References to communication networks.</semantics>
+            </arrayData>
         </arrayDataTypes>
         <fixedRecordDataTypes>
             <fixedRecordData>
+                <name>DisruptCommunicationTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for DisruptCommuncation</semantics>
+                <field>
+                    <name>Network</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Reference to the affected network. If not provided all networks are affected.</semantics>
+                </field>
+                <field>
+                    <name>Area</name>
+                    <dataType>LocationStructArray</dataType>
+                    <semantics>Area affected by disruption.</semantics>
+                </field>
+                <field>
+                    <name>DisruptionEnabled</name>
+                    <dataType>HLAboolean</dataType>
+                    <semantics>Disruption enabled or disabled. Default is True = Enabled.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
                 <name>LinkStatusStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Status of a physcial network link.</semantics>
+                <semantics>Status of a physical network link.</semantics>
                 <field>
-                    <name>TransmitterDeviceId</name>
+                    <name>TransmitterDevice</name>
                     <dataType>UUID</dataType>
                     <semantics>Reference to Transmitting network device.</semantics>
                 </field>
                 <field>
-                    <name>ReceiverDeviceId</name>
+                    <name>ReceiverDevice</name>
                     <dataType>UUID</dataType>
                     <semantics>Reference to Receiving network device.</semantics>
                 </field>
                 <field>
                     <name>Latency</name>
-                    <dataType>TimeMillisecondUnsignedInteger32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>Delay in data delivery.</semantics>
                 </field>
                 <field>
@@ -530,7 +703,7 @@ NOS: Not Otherwise Specified</semantics>
                 </field>
                 <field>
                     <name>Reliability</name>
-                    <dataType>PercentFloat64</dataType>
+                    <dataType>PercentFloat32</dataType>
                     <semantics>Reliability of connection in terms of availability. 100% = always available and no connection loss.</semantics>
                 </field>
                 <field>
@@ -550,17 +723,17 @@ NOS: Not Otherwise Specified</semantics>
                 </field>
                 <field>
                     <name>NetworkDeviceModel</name>
-                    <dataType>Text64</dataType>
-                    <semantics>Optional name of the model of network device (e.g. a radio model name).</semantics>
-                </field>
-                <field notes="netn-com_1">
-                    <name>CommunicationNetworks</name>
-                    <dataType>CommunicationNetworkArray</dataType>
-                    <semantics>Reference to all communication networks this device is used for.</semantics>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>Optional name of the model of network device (e.g. a radio model name). Max length 64 characters.</semantics>
                 </field>
                 <field>
-                    <name>PhysicalNetworkName</name>
-                    <dataType>Text64</dataType>
+                    <name>CommunicationNetworks</name>
+                    <dataType>CommunicationNetworkArray</dataType>
+                    <semantics>Reference to all communication networks this device is used for. In case of no network and the device is an intercepter, it will intercept all transmissions to all networks of the physical network.</semantics>
+                </field>
+                <field>
+                    <name>PhysicalNetwork</name>
+                    <dataType>UUID</dataType>
                     <semantics>Reference to physical network this device is connected to.</semantics>
                 </field>
                 <field>
@@ -595,7 +768,7 @@ NOS: Not Otherwise Specified</semantics>
                 </field>
                 <field>
                     <name>Latency</name>
-                    <dataType>TimeMillisecondUnsignedInteger32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>Delay in data delivery.</semantics>
                 </field>
                 <field>
@@ -605,7 +778,7 @@ NOS: Not Otherwise Specified</semantics>
                 </field>
                 <field>
                     <name>Reliability</name>
-                    <dataType>PercentFloat64</dataType>
+                    <dataType>PercentFloat32</dataType>
                     <semantics>Reliability of connection in terms of availability. 100% = always available and no connection loss.</semantics>
                 </field>
             </fixedRecordData>
@@ -614,8 +787,8 @@ NOS: Not Otherwise Specified</semantics>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Characterisation of a requested connection.</semantics>
                 <field>
-                    <name>CommunicationNetworkName</name>
-                    <dataType>Text64</dataType>
+                    <name>CommunicationNetwork</name>
+                    <dataType>UUID</dataType>
                     <semantics>Reference to the communication network which the requested connection should belong to.</semantics>
                 </field>
                 <field>
@@ -628,15 +801,15 @@ NOS: Not Otherwise Specified</semantics>
                     <dataType>UUID</dataType>
                     <semantics>Requested Id for the connection. If no Id is requested the value of this field should be all zeros.</semantics>
                 </field>
-                <field notes="netn-com_14">
-                    <name>DestinationEntityIds</name>
+                <field>
+                    <name>DestinationEntities</name>
                     <dataType>ArrayOfUuid</dataType>
-                    <semantics>List of entities intended as destinations for this requested connection. Leave empty in case of broadcasting or multicasting.</semantics>
+                    <semantics>List of entities intended as destinations for this requested connection. Leave empty in case of broadcasting or multicasting. If multiple receivers are specified it is assumed that messages will be sent sequentially to all recipients. Leave empty in broadcast / multicast cases.</semantics>
                 </field>
-                <field notes="netn-com_15">
-                    <name>NetworkDeviceId</name>
+                <field>
+                    <name>NetworkDevice</name>
                     <dataType>UUID</dataType>
-                    <semantics>Reference to the Network Device for the requested connection. If no specific network device is requested the value of this field should be all zeros.</semantics>
+                    <semantics>Reference to the Network Device for the requested connection. If no specific network device is requested the value of this field should be all zeros. Specifies which device of the Node should be used for the connection. The device must be bound to the communication network.  If not set a suitable device is selected automaticly.</semantics>
                 </field>
             </fixedRecordData>
             <fixedRecordData>
@@ -644,23 +817,23 @@ NOS: Not Otherwise Specified</semantics>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Characteristics of a connection to a receiver.</semantics>
                 <field>
-                    <name>ReceiverEntityId</name>
+                    <name>ReceiverEntity</name>
                     <dataType>UUID</dataType>
                     <semantics>Reference to a simulated entity receiving data through the connection.</semantics>
                 </field>
                 <field>
                     <name>Latency</name>
-                    <dataType>TimeMillisecondUnsignedInteger32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>Latency in reaching the receiving entity.</semantics>
                 </field>
                 <field>
                     <name>Bandwidth</name>
                     <dataType>BitsPerSecond</dataType>
-                    <semantics>The bandwith of the connection to the receiving entity,</semantics>
+                    <semantics>The bandwidth of the connection to the receiving entity,</semantics>
                 </field>
                 <field>
                     <name>Reliability</name>
-                    <dataType>PercentFloat64</dataType>
+                    <dataType>PercentFloat32</dataType>
                     <semantics>The reliability of the connection to the receiving entity.</semantics>
                 </field>
                 <field>
@@ -684,18 +857,18 @@ NOS: Not Otherwise Specified</semantics>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>Characteristics of a specific incoming connection.</semantics>
                 <field>
-                    <name>CommunicationNetworkName</name>
-                    <dataType>Text64</dataType>
+                    <name>CommunicationNetwork</name>
+                    <dataType>UUID</dataType>
                     <semantics>Reference to the communication network associated with the incoming connection.</semantics>
                 </field>
                 <field>
-                    <name>SenderEntityId</name>
+                    <name>SendingEntity</name>
                     <dataType>UUID</dataType>
-                    <semantics>Reference by UUID to the simulated entity sending on the connection.</semantics>
+                    <semantics>Reference by UUID to the simulated entity at the sending end of the connection.</semantics>
                 </field>
                 <field>
                     <name>Latency</name>
-                    <dataType>TimeMillisecondUnsignedInteger32</dataType>
+                    <dataType>TimeMillisecondInt64</dataType>
                     <semantics>Delay in data delivery.</semantics>
                 </field>
                 <field>
@@ -705,7 +878,7 @@ NOS: Not Otherwise Specified</semantics>
                 </field>
                 <field>
                     <name>Reliability</name>
-                    <dataType>PercentFloat64</dataType>
+                    <dataType>PercentFloat32</dataType>
                     <semantics>Reliability of connection in terms of availability. 100% = always available and no connection loss.</semantics>
                 </field>
                 <field>
@@ -724,8 +897,37 @@ NOS: Not Otherwise Specified</semantics>
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>(Empty) Characteristics of an undefined physical network.</semantics>
             </fixedRecordData>
+            <fixedRecordData>
+                <name>SetTransmitterStatusTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task specific data for SetTransmitterStatus.</semantics>
+                <field>
+                    <name>Status</name>
+                    <dataType>TransmitterOperationalStatusEnum8</dataType>
+                    <semantics>Status on the transmitter.</semantics>
+                </field>
+            </fixedRecordData>
         </fixedRecordDataTypes>
         <variantRecordDataTypes>
+            <variantRecordData>
+                <name>TaskDefinitionVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>EntityControlActionEnum</dataType>
+                <alternative>
+                    <enumerator>DisruptCommunication</enumerator>
+                    <name>DisruptCommunication</name>
+                    <dataType>DisruptCommunicationTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>SetTransmitterStatus</enumerator>
+                    <name>SetTransmitterStatus</name>
+                    <dataType>SetTransmitterStatusTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <encoding>HLAextendableVariantRecord</encoding>
+                <semantics>Variant record for task definition data.</semantics>
+            </variantRecordData>
             <variantRecordData>
                 <name>NetworkDeviceTransmitterCharacteristicsVariant</name>
                 <discriminant>Type</discriminant>
@@ -793,62 +995,250 @@ NOS: Not Otherwise Specified</semantics>
                     <semantics>Characteristics of a generic physical network.</semantics>
                 </alternative>
                 <encoding>HLAvariantRecord</encoding>
-                <semantics>Characteristics of physical networks depending on their type.</semantics>
+                <semantics>Characteristics of physical networks depend on their type.</semantics>
+            </variantRecordData>
+            <variantRecordData>
+                <name>TaskProgressVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>EntityControlActionEnum</dataType>
+                <alternative>
+                    <enumerator>DisruptCommunication</enumerator>
+                    <name>COM_ElapsedTime</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics>Progress parameters.</semantics>
+                </alternative>
+                <encoding>HLAextendableVariantRecord</encoding>
+                <semantics>Variant record for task progress data.</semantics>
             </variantRecordData>
         </variantRecordDataTypes>
     </dataTypes>
     <notes>
         <note>
-            <label>netn-com_1</label>
-            <semantics>In case no network name is given and the device is an intercepter it will intercept all transmissions to all networks of the physical network.</semantics>
+            <label>netn-com_changelog</label>
+            <semantics>* Replaced all `WorldLocationStruct` with `LocationStruct` 
+* Replaced all use of datatype `PercentFloat64` with `PercentFloat32` 
+* Replaced all `ArrayOfWorldLocationStruct` with `LocationStructArray` 
+* Moved attribute `UniqueId` of object class `METOC_Root` to object class `HLAobjectRoot` defined in `NETN-BASE` FOM module 
+* Renamed field `Bandwith`in Fixed Record `ConnectionReceiverStruct`to `Bandwidth` 
+* Added interaction class `DisruptCommunication` 
+* Change datatype `CommunicationNetworkArray` element to `UUID` 
+* Added `Task` parameter `CommunicationNetworks` 
+* Added datatype `EntityControlActionEnum` 
+* Added datatype `TaskDefinitionVariantRecord` 
+* Renamed Connection attribute CommunicationNetworkName to CommunicationNetwork 
+* Changed datatype of Connection attribute CommunicationNetwork to UUID 
+* Renamed Connection attribute SenderEntityId to SenderEntity 
+* Renamed CommunicationNode attribute EntityId to HostEntity 
+* Renamed DisruptionEffect attribute AffectedNetworks to Networks 
+* Renamed DisruptionEffect attribute AffectedArea to Area 
+* Changed datatype of DisruptionEffect attribute Networks to ArrayOfUuid 
+* Changed datatype of DisruptionEffect attribute Area to LocationStructArray 
+* Added `Unit` attribute `CommunicationNetworks` 
+* Added `Equipment` attribute `CommunicationNetworks`</semantics>
         </note>
         <note>
-            <label>netn-com_3</label>
-            <semantics>Data transfer</semantics>
-        </note>
-        <note>
-            <label>netn-com_4</label>
-            <semantics>Facsimile</semantics>
-        </note>
-        <note>
-            <label>netn-com_5</label>
-            <semantics>Identify Friend or Foe</semantics>
-        </note>
-        <note>
-            <label>netn-com_6</label>
-            <semantics>Image</semantics>
-        </note>
-        <note>
-            <label>netn-com_7</label>
-            <semantics>Multilateral Interoperability Programme (MIP) Common Interface Service</semantics>
-        </note>
-        <note>
-            <label>netn-com_8</label>
-            <semantics>Message Handling Service</semantics>
-        </note>
-        <note>
-            <label>netn-com_9</label>
-            <semantics>Tactical Data Link</semantics>
-        </note>
-        <note>
-            <label>netn-com_10</label>
-            <semantics>Video Service</semantics>
-        </note>
-        <note>
-            <label>netn-com_11</label>
-            <semantics>Voice Service</semantics>
-        </note>
-        <note>
-            <label>netn-com_12</label>
-            <semantics>Not Otherwise Specified</semantics>
-        </note>
-        <note>
-            <label>netn-com_14</label>
-            <semantics>Defines the destination units of the communication in case of peer-to-peer connections. If multiple receivers are specified it is assumed that messages will be sent sequentially to all recipients. Leave empty in broadcast / multicast cases.</semantics>
-        </note>
-        <note>
-            <label>netn-com_15</label>
-            <semantics>Specifies which device of the Node should be used for the connection. The device must be bound to the communication network.  If not set a suitable device is selected automaticly.</semantics>
+            <label>netn-com_overview</label>
+            <semantics>## Overview 
+ 
+The NETN-COM module distinguishes between three layers of networks. 
+* **Application Layer** - This is the topmost layer corresponding to OSI layers 5-7. It is represented in the NETN-COM object model by the `CommunicationNetwork` object and the `IncommingConnections` attribute, which extends the RPR-FOM `BaseEntity` object class. The NETN-COM also defines extensions to the NETN-ETR `Task` and `ETR_Report` interaction classes to associate communication networks with these messages. Receivers use the  `IncommingConnections` attribute to determine whether the message can be delivered. 
+* **Connection Layer** - This layer corresponds to OSI layers 3-4 and describes the connections associated with communication networks. `CommunicationNode` objects are associated with simulated entities and connected to form an information-sharing space. 
+* **Link Layer** - This layer corresponds to OSI layers 1-2 and defines the link quality parameters between nodes to form a physical network. 
+ 
+ 
+By separating the representation of the application, connection, and physical link layers, different simulations can model the system on different levels, e.g. radio signal propagation simulations for the link layer and an ad hoc network routing simulation for the connection layer. 
+ 
+The model does not require all levels and networks to be represented in the federation. Which objects are needed depends on the federation design and allocation of modelling responsibilities. 
+ 
+ 
+## Application Layer 
+ 
+A `CommunicationNetwork` is a logical network grouping simulated entities, independent of any physical network implementation. When messages are sent through a network, all entities belonging to it are potential receivers of the message. 
+ 
+To determine whether a message is received, each simulated entity can use data related to its `IncommingConnections`. This attribute describes all connections for all communication networks associated with the simulated entity. Each connection specifies the `SenderEntity` and quality parameters, e.g., latency and bandwidth, that allow the receiver to calculate block, drop and degradation effects. 
+ 
+The `IncommingConnections` attribute can be published by other simulations that model communication at the connection- and physical level. 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+ 
+ 
+BaseEntity *-- "0..*" Incomming Connection 
+BaseEntity:IncommingConnection 
+ 
+Incomming Connection:CommunicationNetwork 
+Incomming Connection:SenderEntity 
+Incomming Connection --&gt; "1" CommunicationNetwork : CommunicationNetwork 
+Incomming Connection:Latency 
+Incomming Connection:Bandwith 
+Incomming Connection:Reliability 
+Incomming Connection:HopCount 
+Incomming Connection --&gt; BaseEntity:SenderEntity 
+ 
+ 
+CommunicationNetwork:Name 
+CommunicationNetwork:ServiceType 
+CommunicationNetwork:NetworkType 
+ 
+ 
+BaseEntity:UniqueId(NETN-BASE) 
+CommunicationNetwork:UniqueId(NETN-BASE) 
+``` 
+ 
+ 
+The NETN-COM module currently supports sending messages with associated `CommunicationNetwork` information using NETN-ETR `Task` and `ETR_Report` interactions. 
+ 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+HLAinteractionRoot &lt;|-- SMC_EntityControl 
+SMC_EntityControl &lt;|-- Task 
+HLAinteractionRoot &lt;|-- ETR_Report 
+ 
+ 
+Task:CommunicationNetworks 
+SMC_EntityControl:Entity(NETN-SMC) 
+Task:TaskId(NETN-ETR) 
+ETR_Report:CommunicationNetworks 
+ETR_Report:ReportId(NETN-ETR) 
+ETR_Report:ReportingEntity(NETN-ETR) 
+ETR_Report:ReportingEntity(NETN-ETR) 
+ETR_Report:TimeStamp(NETN-ETR) 
+``` 
+ 
+ 
+ 
+## Connection Layer 
+ 
+The `CommunicationNode` represents a node in a logical communication network. Each node publishes `RequestedConnections` to describe all desired connectivity between nodes in the network. Each node is also associated with a simulated entity and available network devices. 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+CommunicationNode:HostEntity 
+CommunicationNode:Location 
+CommunicationNode:RequestedConnections 
+CommunicationNode: UniqueId(NETN-BASE) 
+ 
+ 
+CommunicationNode --&gt; "1" BaseEntity : HostEntity 
+ 
+ 
+ 
+ 
+BaseEntity:UniqueId 
+ 
+NetworkDevice:Id 
+ 
+CommunicationNode:NetworkDevices 
+CommunicationNode *--&gt; "0..*" NetworkDevice:NetworkDevice 
+ 
+ 
+ 
+RequestedConnection:CommunicationNetwork 
+RequestedConnection:RequestedConnectionType 
+RequestedConnection:ConnectionId 
+RequestedConnection:DestinationEntities 
+RequestedConnection:NetworkDevice 
+RequestedConnection --&gt; "1" NetworkDevice : NetworkDevice 
+RequestedConnection --&gt; "1" BaseEntity : DestinationEntities 
+RequestedConnection --* "1..*" CommunicationNode 
+ 
+``` 
+ 
+A `Connection` may be established based on the `RequestedConnection` and available devices. Each `Connection` can be modelled as an individual object with details of the connection quality for each potential receiver. 
+ 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+ 
+ 
+Connection: CommunicationNetwork 
+Connection: SenderEntity 
+Connection: Receivers 
+Connection: UniqueId(NETN-BASE) 
+ 
+CommunicationNetwork:Name 
+CommunicationNetwork:ServiceType 
+CommunicationNetwork:NetworkType 
+CommunicationNetwork:UniqueId(NETN-BASE) 
+ 
+ 
+Connection --&gt; "1" CommunicationNetwork : CommunicationNetwork 
+Connection --&gt; "1" BaseEntity : SenderEntity 
+Connection --* "1..*" Receiver 
+ 
+Receiver:ReceiverEntity 
+Receiver:Latency 
+Receiver:Bandwith 
+Receiver:Reliability 
+Receiver:HopCount 
+Receiver --&gt; "1" BaseEntity:ReceiverEntity 
+ 
+BaseEntity:UniqueId 
+ 
+``` 
+ 
+ 
+ 
+## Physical Layer 
+ 
+The physical layer models the `PhysicalNetwork` that implements the `LinkStates` between Network Devices. This is required to establish the connectivity needed to create a `Connection` between `CommunicationNode`. 
+ 
+ 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+ 
+ 
+PhysicalNetwork:Name 
+PhysicalNetwork:Description 
+PhysicalNetwork: UniqueId(NETN-BASE) 
+ 
+ 
+LinkStates: PhysicalNetwork 
+LinkStates: Links 
+LinkStates: UniqueId(NETN-BASE) 
+ 
+ 
+ 
+LinkStates --&gt; "1" PhysicalNetwork : PhysicalNetwork 
+LinkStates --&gt; "1" LinkStatus : Link 
+ 
+ 
+LinkStatus:TransmitterDevice 
+LinkStatus:ReceiverDevice 
+LinkStatus:Bandwith 
+LinkStatus:Latency 
+LinkStatus:Reliability 
+LinkStatus:isBidirectional 
+LinkStatus *-- "1" NetworkDevice:TransmitterDevice 
+LinkStatus *--&gt; "1" NetworkDevice:ReceiverDevice 
+CommunicationNode *--&gt; "0..*" NetworkDevice:NetworkDevice 
+ 
+NetworkDevice:Id 
+ 
+CommunicationNode:NetworkDevices 
+CommunicationNode: UniqueId(NETN-BASE) 
+ 
+``` 
+ 
+A Network Device is a technical device, e.g., radio or ethernet, connecting a `CommunicationNode` to a physical network. The `LinkStates` provide all link status data related to a `PhysicalNetwork`. The link describes the relationship between a transmitting and a receiving network device. Network devices are not modelled as objects in NETN-COM. 
+ 
+## Additional Object Classes 
+ 
+In addition to representing the three layers of networks, the NETN-COM defines an object for representing areas of communication disruption. The object is intended to affect the quality of incoming connections of simulated entities. 
+ 
+The NETN-COM also provide attribute extensions for the NETN-ORG classes Unit and Equipment.</semantics>
         </note>
     </notes>
 </objectModel>
