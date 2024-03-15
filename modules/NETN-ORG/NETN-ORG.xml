@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification notes="netn-org_2">
+    <modelIdentification notes="netn-org_overview">
         <name>NETN-ORG</name>
         <type>FOM</type>
         <version>2.0</version>
-        <modificationDate>2023-10-28</modificationDate>
+        <modificationDate>2024-03-07</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <purpose>The NATO Education and Training Organization (NETN-ORG) module provides a standard way to represent organizations in the simulation scenario and their relationships and structure. The relationships include unit command structure, relationships between organizations, unit equipment, and installations.</purpose>
         <applicationDomain></applicationDomain>
-        <description>Simulation of elements of an organization requires knowledge of the intra-organizational relationship, e.g. superior, subordinate, and iter-organizational relationships with other organizations, e.g. friendly or hostile. The NETN-ORG supports initialization and organizations' dynamic change of this information.
-
-The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA. In addition to the FOM Module, a file-based data storage and interchange format is defined based on SISO-STD-007-2008 Military Scenario Definition Language (MSDL). The NETN-ORG XML schema defines elements to capture units, equipment items, relationships, and initial modelling responsibilities.</description>
-        <useLimitation>Use the NETN-ORG information to: * initialize simulated entities * perform disaggregation, aggregation, divide and merge actions using NETN-MRM * change organizational relationships * capture simulated unit and equipment state as snapshots</useLimitation>
+        <description>Simulating organizational elements requires knowledge of intra-organizational relationships, e.g., superior, subordinate, and inter-organizational relationships with other organizations, e.g., friendly or hostile. The NETN-ORG supports initialization and organizations' dynamic change of this information.</description>
+        <useLimitation>Use the NETN-ORG information to: 
+* initialize simulated entities 
+* perform disaggregation, aggregation, divide and merge actions using NETN-MRM 
+* change organizational relationships 
+* capture simulated unit and equipment state as snapshots</useLimitation>
         <useHistory>v1.0 - Initial version developed by MSG-163. Release included in NETN FOM v3.0</useHistory>
-        <useHistory notes="netn-org_1">v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0</useHistory>
+        <useHistory notes="netn-org_changelog_1">v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -30,6 +32,12 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
             <pocType>Primary author</pocType>
             <pocName>MSG-191 NATO Standards for Federated Simulation and Services for Integration, Verification and Certification</pocName>
             <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-223 Evolving M&amp;S applications and services for compliance with NATO standards for federated simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
         </poc>
         <reference>
             <type>Standard</type>
@@ -67,7 +75,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 </attribute>
                 <objectClass>
                     <name>OrganizationElement</name>
-                    <sharing>Neither</sharing>
+                    <sharing>Subscribe</sharing>
                     <semantics>An object class for all NETN-ORG organizational elements</semantics>
                     <attribute>
                         <name>Organization</name>
@@ -79,6 +87,17 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
                         <semantics>Required: A reference to the organization the element is affiliated with.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>SuperiorUnit</name>
+                        <dataType>UUID</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation.  The default value is all zeros (no aggregate unit).</semantics>
                     </attribute>
                     <attribute>
                         <name>EntityType</name>
@@ -100,7 +119,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Required. Initial symbol identifier and amplification data for this element. May contain wildcard characters * for undefined fields.</semantics>
+                        <semantics>Required. Initial symbol identifier and amplification data for this element. In NETN-ORG the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.</semantics>
                     </attribute>
                     <attribute>
                         <name>Location</name>
@@ -127,34 +146,12 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <objectClass>
                         <name>Equipment</name>
                         <sharing>PublishSubscribe</sharing>
-                        <semantics>An equipment represents individual physical items defined specifically and apart from any holdings defined for the `HoldingUnit`. Equipment includes platforms, munition and sensors object.</semantics>
-                        <attribute>
-                            <name>HoldingUnit</name>
-                            <dataType>UUID</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>on change</updateCondition>
-                            <ownership>DivestAcquire</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional: A reference to the unit to which this equipment belongs. The default is that the equipment does not belong to a specific unit.</semantics>
-                        </attribute>
+                        <semantics>An equipment represents individual physical items defined specifically and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensors object.</semantics>
                     </objectClass>
                     <objectClass>
                         <name>Unit</name>
                         <sharing>PublishSubscribe</sharing>
                         <semantics>A unit represents an element at a specified level in the organization. An organizational unit can contain subunits and can belong to a superior unit. A unit consists of equipment, personnel and supplies; these holdings can belong directly to the unit or indirectly as a holding of a subunit.</semantics>
-                        <attribute>
-                            <name>AggregateUnit</name>
-                            <dataType>UUID</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>On change</updateCondition>
-                            <ownership>DivestAcquire</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional: A reference to another unit (aggregate) within the organization for which this unit is a subunit.  The default value is all zeros (no aggregate unit).</semantics>
-                        </attribute>
                         <attribute>
                             <name>HigherHeadquarters</name>
                             <dataType>UUID</dataType>
@@ -197,7 +194,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Optional. A set of holdings defined for this unit in addition to holdings defined for all subunits and any specific `Equipment` objects with this unit as `HoldingUnit . The default is an empty list.`</semantics>
+                            <semantics>Optional. A set of holdings defined for this unit in addition to holdings defined for all subunits and any specific `Equipment` objects with this unit as `HostUnit . The default is an empty list.`</semantics>
                         </attribute>
                         <attribute>
                             <name>Formation</name>
@@ -215,17 +212,6 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <name>Installation</name>
                         <sharing>PublishSubscribe</sharing>
                         <semantics>Installations are facilities, e.g. harbours, airfields, or engineering objects, e.g. minefields.</semantics>
-                        <attribute>
-                            <name>UnitInCommand</name>
-                            <dataType>UUID</dataType>
-                            <updateType>Conditional</updateType>
-                            <updateCondition>On change</updateCondition>
-                            <ownership>DivestAcquire</ownership>
-                            <sharing>PublishSubscribe</sharing>
-                            <transportation>HLAreliable</transportation>
-                            <order>Receive</order>
-                            <semantics>Optional: A reference to a unit in charge of this installation. The default is that no specific unit is in charge of the installation.</semantics>
-                        </attribute>
                     </objectClass>
                 </objectClass>
                 <objectClass>
@@ -233,8 +219,8 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <sharing>PublishSubscribe</sharing>
                     <semantics>An organization have relationships with other organizations. Units belonging to different organizations have the same relationship as the organizations they belong to. However, the relationships between organizations can be asymmetrical, e.g. Side A can be hostile to B while B is neutral to A. Furthermore, the relation may change during a federation execution.</semantics>
                     <attribute>
-                        <name>Hostility</name>
-                        <dataType>ArrayOfRelations</dataType>
+                        <name>Relationships</name>
+                        <dataType>ArrayOfRelationship</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>When changed</updateCondition>
                         <ownership>DivestAcquire</ownership>
@@ -283,8 +269,58 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <semantics>Optional: The organization in the scenario this entity belongs to.</semantics>
                 </attribute>
             </objectClass>
+            <objectClass>
+                <name>SMC_Service</name>
+                <objectClass>
+                    <name>EntitySimulation</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>A service providing modelling responsibility for aggregate and/or physical entities.</semantics>
+                    <attribute>
+                        <name>AggregateEntityAllocation</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. The organization Unit elements for which the federate has the responsibility of modelling corresponding Aggregate Entities.  The default is an empty list.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>PhysicalEntityAllocation</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. The the organization Equipment or Installation elements for which the federate has the responsibility of simulating a Physical Entity.  The default is an empty list.</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
         </objectClass>
     </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>SMC_EntityControl</name>
+                <interactionClass>
+                    <name>ChangeSuperiorUnit</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Request a change in the organizational structure. The federate with the primary responsibility of the referenced entity (OrganizationElement) should if possible update the `SuperiorUnit` relationship.</semantics>
+                    <parameter>
+                        <name>SuperiorUnit</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Reference to a Unit for which the referenced entity (OrganizationElement) is requested to relate to as a subunit/equipment.</semantics>
+                    </parameter>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
     <dataTypes>
         <enumeratedDataTypes>
             <enumeratedData>
@@ -450,10 +486,19 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <value>42</value>
                 </enumerator>
             </enumeratedData>
+            <enumeratedData>
+                <name>EntityControlActionEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
+                <enumerator>
+                    <name>ChangeSuperiorUnit</name>
+                    <value>800</value>
+                </enumerator>
+            </enumeratedData>
         </enumeratedDataTypes>
         <arrayDataTypes>
             <arrayData>
-                <name>ArrayOfRelations</name>
+                <name>ArrayOfRelationship</name>
                 <dataType>Relation</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
@@ -473,9 +518,9 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <encoding>HLAfixedRecord</encoding>
                 <semantics>The specific value that represents the perceived hostility status.</semantics>
                 <field>
-                    <name>Affiliate</name>
+                    <name>RelatedOrganization</name>
                     <dataType>UUID</dataType>
-                    <semantics>The force that the current force has a relation to</semantics>
+                    <semantics>The related organization.</semantics>
                 </field>
                 <field>
                     <name>Relationship</name>
@@ -576,9 +621,9 @@ Use 0.0.0.0.0.0.0 when not defined.</semantics>
     </dataTypes>
     <notes>
         <note>
-            <label>netn-org_1</label>
+            <label>netn-org_changelog_1</label>
             <semantics>* Replaced `ORG_Root` attribute `UniqueId` with NETN-BASE `HLAobjectRoot` attribute `UniqueId` 
-
+ 
 * Added `ORG_Root` attribute `Name` 
  
 * Added object class `OrganizationElement` 
@@ -592,7 +637,7 @@ Use 0.0.0.0.0.0.0 when not defined.</semantics>
 * Replaced `Unit` attribute `EmbarkedIn` with `OrganizationElement` attribute `HostUnit` 
 * Replaced `Unit` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol` 
 * Renamed `Unit` attribute `SuperiorUnit` to `AggregateUnit` 
-
+ 
 * Added `Unit` attribute `HigherHeadquarters` 
  
 * Renamed object class `EquipmentItem` to `Equipment` 
@@ -613,56 +658,137 @@ Use 0.0.0.0.0.0.0 when not defined.</semantics>
 * Replaced `Installation` attribute `Location` with `OrganizationElement` attribute `Location` 
 * Replaced `Installation` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol` 
  
-* Renamed `Force` attribute `Relations` to `Hostility`
+* Renamed `Force` attribute `Relations` to `Relationships` 
 * Replaced `Force` attribute `Name` with `ORG_Root` attribute `Name` 
-
+ 
 * Renamed object class `Force` to `Organization` 
-
+ 
 * Added `Organization` attribute `ForceIdentifier` 
 * Added `Organization` attribute `CountryCode` 
-
  
-* Added `BaseEntity` attribute `Organization`
-* Removed object class `FederateApplication`
-
+ 
+* Added `BaseEntity` attribute `Organization` 
+* Removed object class `FederateApplication` 
+ 
 * Added datatype `ForceIdentifierEnum` 
  
 * Removed datatype `Text1` 
-* Removed datatype `Text2`
-* Removed datatype `Text3`
-* Removed datatype `Text5`
+* Removed datatype `Text2` 
+* Removed datatype `Text3` 
+* Removed datatype `Text5` 
 * Removed datatype `Text8` 
-* Removed datatype `Text9`
-* Removed datatype `Text15`
+* Removed datatype `Text9` 
+* Removed datatype `Text15` 
 * Removed datatype `Text20` 
-* Removed datatype `Text21`
-* Removed datatype `Text24`
-* Removed datatype `Text255`
-* Removed datatype `EquipmentSymbolAmplificationStruct`
-* Removed datatype `UnitSymbolAmplificationStruct`
-* Removed datatype `InstallationSymbolAmplificationStruct`
+* Removed datatype `Text21` 
+* Removed datatype `Text24` 
+* Removed datatype `Text255` 
+* Removed datatype `EquipmentSymbolAmplificationStruct` 
+* Removed datatype `UnitSymbolAmplificationStruct` 
+* Removed datatype `InstallationSymbolAmplificationStruct` 
 * Removed datatype `FormationInt32` 
 * Removed datatype `FormationPositionStruct` 
-* Removed datatype `HostilityStatusCodeEnum32`
+* Removed datatype `HostilityStatusCodeEnum32` 
 * Removed datatype `ModelResolutionTypeEnum32` 
 * Removed datatype `NatoStockNumberArray13` 
 * Removed datatype `ArrayOfCommunicationNetworks` 
 * Removed datatype `CommunicationNetworkStruct` 
 * Removed datatype `CommunicationServiceTypeEnum32` 
-* Removed datatype `DispositionStruct` 
-</semantics>
+* Removed datatype `DispositionStruct`</semantics>
         </note>
         <note>
-            <label>netn-org_2</label>
+            <label>netn-org_overview</label>
             <semantics>## Overview 
  
 Use the NETN-ORG FOM module to represent organizations and their internal structure, relationships, associated units, equipment, and installations. 
  
-Dynamic organizational changes may include new and or rearranged unit structure or changes in the relationships with other organizations. 
+Dynamic organizational changes may include new or rearranged unit structures or changes in the relationships with other organizations. 
  
 In a simulation, not all units, equipment and installations have a corresponding simulation entity in the federation. Which elements to represent as simulated entities are determined by the current modelling responsibility described in NETN-TMR and dynamic changes in the level of aggregation described in NETN-MRM. 
  
-The NETN-ORG organization elements are the basis for the initialization of simulated entities, e.g. `PhysicalEntitiy` or `AggregateEntity` objects. Therefore, updates of NETN-ORG objects should be considered a re-initialization of any associate simulation entity. E.g. updating the `Unit` attribute `Holdings` should be reflected in an `AggregateEntity` representing the unit.</semantics>
+The NETN-ORG organization elements are the basis for initializing simulated entities, e.g., `PhysicalEntitiy` or `AggregateEntity` objects. Therefore, updates of NETN-ORG objects should be considered a re-initialization of any associated simulation entity. For example, updating the `Unit` attribute `Holdings` could be reflected in an `AggregateEntity`.
+ 
+## Organization 
+ 
+In NETN-ORG, an `Organization` is a representation used to: 
+1. group elements of the organization 
+2. define relationships between different organizations 
+ 
+All `BaseEntity` objects are associated with a specific `Organization`.The required RPR-FOM attribute `ForceIdentifier` can be derived from the referenced organization and the corresponding `Organization` attribute `ForceIdentifier`. 
+ 
+ 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+HLAobjectRoot &lt;|-- ORG_Root 
+HLAobjectRoot &lt;|-- BaseEntity 
+ 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+ORG_Root &lt;|-- OrganizationElement 
+ORG_Root &lt;|-- Organization 
+ORG_Root : Name 
+OrganizationElement &lt;|-- Equipment 
+OrganizationElement &lt;|-- Unit 
+OrganizationElement &lt;|-- Installation 
+OrganizationElement : EntityType 
+OrganizationElement : HostUnit 
+OrganizationElement : Location 
+OrganizationElement : Organization 
+OrganizationElement : SuperiorUnit 
+OrganizationElement : Symbol 
+Unit : Echelon 
+Unit : Formation 
+Unit : HigherHeadquarters 
+Unit : Holdings 
+Unit : IsHq 
+Organization : CountryCode 
+Organization : ForceIdentifier 
+Organization : Relationships 
+BaseEntity : Organization 
+``` 
+ 
+Each `Organization` is defined by a structure of `OrganizationElement` objects. Each `OrganizationElement` object is related to its `Organization` and its `SuperiorUnit`, if any. There are three (3) subtypes of `OrganizationElement`: 
+ 
+1. `Unit` represents an element at a specified level in the organization. An organizational unit can contain subunits and can belong to a superior unit. A unit consists of equipment, personnel and supplies; these holdings can belong directly to the unit or indirectly as a holding of a subunit. 
+2. `Equipment` represents individual physical items explicitly defined and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensor objects. 
+3. `Installation` are facilities, e.g. harbours, airfields, or engineering objects, e.g. minefields.
+
+To request a change of `SuperiorUnit`, use the NETN-SMC entity control action `ChangeSuperiorUnit`.
+
+
+
+```mermaid
+classDiagram 
+direction LR
+HLAinteractionRoot &lt;|-- SMC_EntityControl
+
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_EntityControl &lt;|-- ChangeSuperiorUnit
+SMC_EntityControl : Entity(NETN-SMC)
+ChangeSuperiorUnit : SuperiorUnit
+
+```
+
+ 
+## Allocation to Federates 
+ 
+The NETN-ORG can also provide the initial allocation of responsibility to a federate for what `Equipment` is represented as a `PhysicalEntity` and what `Unit` is represented as an `AggregateEntity`. The NETN-SMC object class `SMC_Service` is subclassed with the `EntitySimulation` class, which can publish the allocation of initial modelling responsibility for each instance.
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+ 
+HLAobjectRoot &lt;|-- SMC_Service 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+ 
+SMC_Service &lt;|-- EntitySimulation 
+SMC_Service : Federate(NETN-SMC) 
+EntitySimulation : AggregateEntityAllocation 
+EntitySimulation : PhysicalEntityAllocation 
+```</semantics>
         </note>
     </notes>
 </objectModel>

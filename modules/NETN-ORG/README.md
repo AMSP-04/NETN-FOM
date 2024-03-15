@@ -3,17 +3,19 @@
 
 |Version| Date| Dependencies|
 |---|---|---|
-|2.0|2023-10-28|NETN-BASE|
+|2.0|2024-03-07|NETN-BASE|
 
 > [Full Documentation](NETN-ORG.md)
 
 The NATO Education and Training Organization (NETN-ORG) module provides a standard way to represent organizations in the simulation scenario and their relationships and structure. The relationships include unit command structure, relationships between organizations, unit equipment, and installations.
 
-Simulation of elements of an organization requires knowledge of the intra-organizational relationship, e.g. superior, subordinate, and iter-organizational relationships with other organizations, e.g. friendly or hostile. The NETN-ORG supports initialization and organizations' dynamic change of this information.
+Simulating organizational elements requires knowledge of intra-organizational relationships, e.g., superior, subordinate, and inter-organizational relationships with other organizations, e.g., friendly or hostile. The NETN-ORG supports initialization and organizations' dynamic change of this information.
 
-The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA. In addition to the FOM Module, a file-based data storage and interchange format is defined based on SISO-STD-007-2008 Military Scenario Definition Language (MSDL). The NETN-ORG XML schema defines elements to capture units, equipment items, relationships, and initial modelling responsibilities.
-
-Use the NETN-ORG information to: * initialize simulated entities * perform disaggregation, aggregation, divide and merge actions using NETN-MRM * change organizational relationships * capture simulated unit and equipment state as snapshots
+Use the NETN-ORG information to: 
+* initialize simulated entities 
+* perform disaggregation, aggregation, divide and merge actions using NETN-MRM 
+* change organizational relationships 
+* capture simulated unit and equipment state as snapshots
 
 ## License
 
