@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification>
+    <modelIdentification notes="netn-dim_overview">
         <name>NETN-DIM</name>
         <type>FOM</type>
         <version>1.0</version>
-        <modificationDate>2023-04-18</modificationDate>
+        <modificationDate>2024-03-05</modificationDate>
         <securityClassification>Unclassified</securityClassification>
-        <purpose>The NATO Education and Training Network (NETN) Disaster Module (DIM) provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.</purpose>
+        <purpose>The NATO Education and Training Network Disaster Module (NETN-DIM) provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.</purpose>
         <applicationDomain></applicationDomain>
-        <description>Hazards such as wildfire, flooding, earthquakes and landslides cause different effects in a synthetic environment and to the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effect of hazards are important aspects of simulations where hazards are part of the scenario.
-        
-In a federated distributed simulation, the NATO Education and Training Network Disaster Module (NETN-DIM) specifies how to model hazards and control activities to mitigate their effects. 
-The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA.</description>
+        <description>Hazards such as wildfires, flooding, earthquakes, and landslides have different effects in a synthetic environment and on the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effects of hazards are important aspects of simulations where hazards are part of the scenario.</description>
         <useLimitation></useLimitation>
         <useHistory>v0.9 - Initial version developed by MSG-147 and used in LOE3 experiment.</useHistory>
-        <useHistory>v1.0 - Updated version developed by MSG-191. Release included in NATO-FOM 4.0</useHistory>
+        <useHistory notes="netn-dim_changelog">v1.0 - Updated version developed by MSG-191. Release included in NETN FOM 4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -40,6 +37,10 @@ The specification is based on IEEE 1516 High Level Architecture (HLA) Object Mod
         <reference>
             <type>Dependency</type>
             <identification>NETN-ETR</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
         </reference>
         <other>
 Copyright © 2020 by NATO/OTAN. All rights reserved.
@@ -185,11 +186,33 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <name>Levee</name>
                             <sharing>PublishSubscribe</sharing>
                             <semantics>A levee is a wall/separator that protects an area from flooding.</semantics>
+                            <attribute>
+                                <name>Height</name>
+                                <dataType>MeterFloat32</dataType>
+                                <updateType>Static</updateType>
+                                <updateCondition>N/A</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics>Required: Max height over Mean-Sea Level that this levee protects against flooding.</semantics>
+                            </attribute>
                         </objectClass>
                         <objectClass>
                             <name>Firebreak</name>
                             <sharing>PublishSubscribe</sharing>
                             <semantics>A firebreak is a corridor without any burning things. The firebreak should separate the burning part from the not burning part.</semantics>
+                            <attribute>
+                                <name>Width</name>
+                                <dataType>MeterFloat32</dataType>
+                                <updateType>Conditional</updateType>
+                                <updateCondition>On change</updateCondition>
+                                <ownership>DivestAcquire</ownership>
+                                <sharing>PublishSubscribe</sharing>
+                                <transportation>HLAreliable</transportation>
+                                <order>Receive</order>
+                                <semantics>Required: Width of the firebreak.</semantics>
+                            </attribute>
                         </objectClass>
                     </objectClass>
                 </objectClass>
@@ -199,69 +222,6 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
     <interactions>
         <interactionClass>
             <name>HLAinteractionRoot</name>
-            <interactionClass>
-                <name>ETR_Task</name>
-                <interactionClass>
-                    <name>PumpFlooding</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Task an entity to start pumping water out of an area.</semantics>
-                    <parameter>
-                        <name>TaskParameters</name>
-                        <dataType>PumpFloodingTaskStruct</dataType>
-                        <semantics>Required: Task parameters.</semantics>
-                    </parameter>
-                </interactionClass>
-                <interactionClass>
-                    <name>ExtinguishWildfire</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Task an entity to extinguish a wildfire.</semantics>
-                    <parameter>
-                        <name>TaskParameters</name>
-                        <dataType>ExtinguishWildfireTaskStruct</dataType>
-                        <semantics>Required: Task parameters.</semantics>
-                    </parameter>
-                </interactionClass>
-                <interactionClass>
-                    <name>Evacuate</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>A request for evacuation</semantics>
-                    <parameter>
-                        <name>TaskParameters</name>
-                        <dataType>EvacuateTaskStruct</dataType>
-                        <semantics>Required: Task parameters.</semantics>
-                    </parameter>
-                </interactionClass>
-                <interactionClass>
-                    <name>CreateFireBreak</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Use the `CreateFireBreak` task to request an entity to build a firebreak.</semantics>
-                    <parameter>
-                        <name>TaskParameters</name>
-                        <dataType>CreateFireBreakTaskStruct</dataType>
-                        <semantics>Required: Task parameters.</semantics>
-                    </parameter>
-                </interactionClass>
-                <interactionClass>
-                    <name>CreateLevee</name>
-                    <sharing>PublishSubscribe</sharing>
-                    <transportation>HLAreliable</transportation>
-                    <order>Receive</order>
-                    <semantics>Use the `CreateLevee` task to request an entity to construct a levee.</semantics>
-                    <parameter>
-                        <name>TaskParameters</name>
-                        <dataType>CreateLeveeTaskStruct</dataType>
-                        <semantics>Required: Task parameters.</semantics>
-                    </parameter>
-                </interactionClass>
-            </interactionClass>
             <interactionClass>
                 <name>ETR_Report</name>
                 <interactionClass>
@@ -280,6 +240,72 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>HazardTypeEnum</dataType>
                         <semantics>Required: The type of hazard observed.</semantics>
                     </parameter>
+                </interactionClass>
+            </interactionClass>
+            <interactionClass>
+                <name>SMC_EntityControl</name>
+                <interactionClass>
+                    <name>Task</name>
+                    <interactionClass>
+                        <name>Evacuate</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>A request for evacuation</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>EvacuateTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>PumpFlooding</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Task an entity to start pumping water out of an area.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>PumpFloodingTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>ExtinguishWildfire</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Task an entity to extinguish a wildfire.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>ExtinguishWildfireTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CreateFireBreak</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Use the `CreateFireBreak` task to request an entity to build a firebreak.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>CreateFireBreakTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CreateLevee</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Use the `CreateLevee` task to request an entity to construct a levee.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>CreateLeveeTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
                 </interactionClass>
             </interactionClass>
         </interactionClass>
@@ -359,9 +385,9 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 </enumerator>
             </enumeratedData>
             <enumeratedData>
-                <name>TaskTypeEnum</name>
+                <name>EntityControlActionEnum</name>
                 <representation>HLAinteger32BE</representation>
-                <semantics>Task types.</semantics>
+                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
                 <enumerator>
                     <name>PumpFlooding</name>
                     <value>701</value>
@@ -480,7 +506,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             <variantRecordData>
                 <name>TaskDefinitionVariantRecord</name>
                 <discriminant>TaskType</discriminant>
-                <dataType>TaskTypeEnum</dataType>
+                <dataType>EntityControlActionEnum</dataType>
                 <alternative>
                     <enumerator>PumpFlooding</enumerator>
                     <name>PumpFlooding</name>
@@ -517,7 +543,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             <variantRecordData>
                 <name>TaskProgressVariantRecord</name>
                 <discriminant>TaskType</discriminant>
-                <dataType>TaskTypeEnum</dataType>
+                <dataType>EntityControlActionEnum</dataType>
                 <alternative>
                     <enumerator>PumpFlooding, ExtinguishWildfire, CreateFireBreak, CreateLevee</enumerator>
                     <name>DIM_Duration</name>
@@ -535,5 +561,108 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             </variantRecordData>
         </variantRecordDataTypes>
     </dataTypes>
-    <notes/>
+    <notes>
+        <note>
+            <label>netn-dim_changelog</label>
+            <semantics>* Initial version.</semantics>
+        </note>
+        <note>
+            <label>netn-dim_overview</label>
+            <semantics>## Overview 
+ 
+The NETN-DIM introduces the `DIM_HazardRegion` object class to represent areas affected by different types of disasters 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+HLAobjectRoot &lt;|-- DIM_HazardRegion 
+ 
+HLAobjectRoot : CreateTime(NETN-BASE) 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+DIM_HazardRegion &lt;|-- Flooding 
+DIM_HazardRegion &lt;|-- Wildfire 
+DIM_HazardRegion &lt;|-- EarthquakeArea 
+DIM_HazardRegion &lt;|-- Landslide 
+DIM_HazardRegion : Area 
+Flooding : Level 
+Flooding : LevelChange 
+Wildfire : FrontVelocity 
+Wildfire : FrontWidth 
+Wildfire : Temperature 
+EarthquakeArea : Magnitude 
+Landslide : LandslideType 
+Landslide : Thickness 
+ 
+ 
+``` 
+ 
+The module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for mitigation and the prevention of effects caused by `Flooding` and `Wildfire`, respectively. 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+HLAobjectRoot &lt;|-- EnvironmentObject 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+ 
+EnvironmentObject &lt;|-- LinearObject 
+EnvironmentObject : ForceIdentifier(RPR-SE) 
+EnvironmentObject : ObjectIdentifier(RPR-SE) 
+EnvironmentObject : ObjectType(RPR-SE) 
+LinearObject &lt;|-- BreachableLinearObject 
+BreachableLinearObject &lt;|-- Levee 
+BreachableLinearObject &lt;|-- Firebreak 
+BreachableLinearObject : SegmentRecords(RPR-SE) 
+Levee : Height 
+Firebreak : Width 
+ 
+``` 
+ 
+## Tasking and Reporting 
+ 
+The NETN-DIM module extends the NETN-ETR `Task` and `ETR_Report` interaction classes to provide task control actions for several disaster mitigation actions. 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+HLAinteractionRoot &lt;|-- SMC_EntityControl 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+ 
+SMC_EntityControl &lt;|-- Task 
+SMC_EntityControl : Entity(NETN-SMC) 
+Task &lt;|-- Evacuate 
+Task &lt;|-- PumpFlooding 
+Task &lt;|-- ExtinguishWildfire 
+Task &lt;|-- CreateFireBreak 
+Task &lt;|-- CreateLevee 
+Task : TaskId(NETN-ETR) 
+Evacuate : TaskParameters 
+PumpFlooding : TaskParameters 
+ExtinguishWildfire : TaskParameters 
+CreateFireBreak : TaskParameters 
+CreateLevee : TaskParameters 
+``` 
+ 
+A simulated entity observing a hazard uses the NETN-ETR `ETR_Report` subclass `HazardObservation` to send an observation report. 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+HLAinteractionRoot &lt;|-- ETR_Report 
+HLAinteractionRoot : SendTime(NETN-BASE) 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+ETR_Report &lt;|-- HazardObservation 
+ETR_Report : Receiver(NETN-ETR) 
+ETR_Report : ReportId(NETN-ETR) 
+ETR_Report : ReportingEntity(NETN-ETR) 
+ETR_Report : TimeStamp(NETN-ETR) 
+HazardObservation : Area 
+HazardObservation : HazardType 
+ 
+```</semantics>
+        </note>
+    </notes>
 </objectModel>
