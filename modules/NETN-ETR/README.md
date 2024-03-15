@@ -3,25 +3,15 @@
 
 |Version| Date| Dependencies|
 |---|---|---|
-|3.0 |2023-04-07|NETN-BASE|
+|3.0 |2024-03-08|NETN-BASE, NETN-SMC|
 
 > [Full Documentation](NETN-ETR.md)
 
-The NETN-ETR FOM module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation. NETN-ETR contains low-level tasks that can easily be interpreted and executed by simulators that model the behaviour of entities. It also defines a set of reports to provide status information, including the status of task execution.
+The NATO Education and Training Network Entity Tasking and Reports Module (NETN-ETR) provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation. It defines interactions that can be interpreted and executed by simulators that model the behaviour of a tasked entity. The module also defines report interactions sent by simulated entities.
 
-The NATO Education and Training Network (NETN) Entity Tasking and Reports (ETR) Module specifies how to represent simulation task requests provided to participants in a federated distributed simulation and simulator reports sent during the execution of tasks. 
-        
-The specification is based on IEEE 1516 High Level Architecture (HLA) Object Model Template (OMT) and supports interoperability in a federated simulation (federation) based on HLA.
-        
+Based on the SMC_EntityControl pattern, the module defines a core set of tasks for simulated entities. Other NETN-FOM modules define additional tasks. The task definitions provided in NETN reflect the capabilities commonly found in Commercial-off-the-Shelf (COTS) Computer-Generated Forces (CGF) applications but are independent of any specific CGF.
 
-The NETN-ETR module focuses on tasking simulated entities: 
-    
-* It enables the transformation of command and control messages into tasks that a simulator can execute. 
-* It defines a comprehensive set of tasks and reports that simulators can easily interpret and execute.
-* It reflects the capabilities commonly found in COTS Computer Generated Forces (CGF) applications but is independent of a specific CGF, agent framework, or agent modelling paradigm. 
-* It is independent of any specific doctrine or tactics. 
-
-A tasked entity can be either a physical entity (e.g. platform or lifeform) or an aggregate entity. The task definition itself does not specify how a simulation models the execution of the task.
+A tasked entity can be either a physical entity (e.g., platform or lifeform) or an aggregate entity. A task definition does not specify in detail how a simulation models the execution of the task.
 
 ## License
 

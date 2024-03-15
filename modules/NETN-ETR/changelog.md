@@ -46,66 +46,35 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
 
 ### v3.0 - Updated by MSG-191 for NETN FOM v4.0
 
-* Changed dependencies to NETN-Physical
+* Added `BaseEntity` attribute `SupportedTasks` 
+* Added `BaseEntity` attribute `TaskProgress` 
+* Added `BaseEntity` attribute `CurrentTasks` 
+* Added `BaseEntity` attribute `PlannedTasks` 
+* Added `BaseEntity` attribute `PreviousTasks` 
  
-* Added `ETR_Report` parameter `ReportingEntity` 
-* Changed `ETR_Report` parameter `ReportId` datatype to `UUID` 
-* Replaced `ETR_Report` parameter `When` with NETN-BASE `HLAinteractionRoot` parameter `Time` 
-* Moved `ETR_Report` parameter `CommunicationNetworkIds` to NETN-COM `ETR_Report 
-* Replaced `InWeaponRange` parameter `Observer` with `ETR_Report` parameter `ReportingEntity` 
-* Replaced `SpotReport` parameter `Observer` with `ETR_Report` parameter `ReportingEntity` 
-* Added `SpotReport` parameter `SensorType` 
-* Removed `SensorReport` interaction class 
-* Replaced `StatusReport` parameter `EntityId` with `ETR_Report` parameter `ReportingEntity` 
-* Removed `StatusReport` interaction class 
-* Changed `PositionStatusReport` parameter `Position` datatype to `LocationStruct` 
-* Changed `PositionStatusReport` parameter `Heading` datatype to `DirectionDegreesFloat32` 
-* Changed `ResourceStatusReport` parameter `Resource` datatype to `SupplyStruct` 
-* Changed `UnderAttackStatusReport` parameter `FromDirection` datatype to `DirectionDegreesFloat32` 
  
-* Replaced `ETR_SimCon` parameter `TaskId` with NETN-BASE `HLAinteractionRoot` parameter `UniqueId` 
-* Replaced `ETR_SimCon` parameter `Taskee` with `ETR_Report` parameter `SimulatedEntity` 
-* Removed `ETR_SimCon` parameter `Tasker` 
-* Removed `CapabilitiesSupported` interaction class 
+* Added object Class `ETR_DelegatedTask` 
+ 
+* Removed interaction class `ETR_Root` 
+* Removed interaction class `ETR_SimCon` 
+* Removed interaction class `ETR_TaskManagement` 
+* Moved interaction class `ETR_Task` as subclass of `SMC_EntityControl` and renamed to `Task` 
+* Moved interaction class `ETR_Report` as subclass of `HLAinteractionRoot` 
+ 
+* Merged `CancelAllTasks` and `CancelSpecifiedTasks` to `RequestCancelTask` 
+* Moved and renamed interaction class `TaskStatusReport` as `ETR_Report` subclass `TaskStatusUpdate` 
+* Moved all `ETR_Task` subclasses to `Task` subclasses 
+* Replaced all task interaction parameters with `TaskParameters` with different datatypes for each task type. 
+ 
 * Removed `QueryCapabilitiesSupported` interaction class 
+* Removed `CapabilitiesSupported` interaction class 
+ 
+* Moved and renamed `MagicResource` interaction class to NETN-LOG `RequestTask` subclass `SetResourceStatus` 
+* Moved `MagicMove` interaction class as `RequestTask` subclass 
 * Changed `MagicMove` parameter `Heading` datatype to `DirectionDegreesFloat32` 
 * Changed `MagicMove` parameter `Location` datatype to `LocationStruct` 
 * Removed `MagicMove` parameter `LocationUuid` 
-* Changed `MagicResource` parameter `Resource` datatype to `SupplyStruct` 
-* Renamed `MagicResource` interaction class to `UpdateResource` 
-* Added `RequestCurrentSensorDetections` interaction class 
  
-* Renamed `ETR_Task` interaction class to `RequestTask` 
-* Renamed `ETR_TaskManagement` interaction class to `ETR_Task` 
-* Moved  (old) `ETR_Task` as a sub-class of  (new) `ETR_Task` 
- 
-* Renamed (old) `ETR_TaskManagement` parameter `Taskee` to new `ETR_Task` parameter `TaskedEntity` 
-* Removed (old) `ETR_TaskManagement` parameter `CommunicationNetworkIds` 
-* Removed (old) `ETR_TaskManagement` parameter `Tasker` 
-* Replaced (old) `ETR_TaskManagement` parameter `TaskManagementId` with NETN-BASE `HLAinteractionRoot` parameter `UniqueId` 
- 
-* Changed (old) `ETR_Task` parameter `TaskId` datatype to `UUID` 
-* Changed (old) `ETR_Task` parameter `StartWhen` datatype to `ScenarioTime` 
-* Renamed (old) `ETR_Task` parameter `Why` to `Annotation` 
-* Moved (old) `ETR_Task` parameter `CommunicationNetworkIds` to NETN-COM `ETR_Report 
-* Replaced (old) `ETR_Task` parameter `Taskee` with (new) `ETR_Task` parameter `TaskedEntity` 
- 
-* Added `RequestTask` parameter `MainTask` 
-* Added `RequestTask` parameter `PreviousTask` 
-* Added `RequestTask` parameter `NextTask` 
- 
-* Merged `CancelAllTasks` and `CancelSpecifiedTasks` into `RequestCancelTask` 
-* Changed `CancelTask` parameter `Tasks` datatype to `ArrayOfUuid` 
- 
-* Changed `TaskStatusReport` parameter `TaskId` datatype to `UUID` 
-* Renamed `TaskStatusReport` parameter `TaskId` to `Task` 
-* Replaced `TaskStatusReport` parameter `When` with NETN-BASE `HLAinteractionRoot` parameter `Time` 
- 
-* Added `RequestTaskStatus` interaction class 
-* Added `RequestTaskDelegation` interaction class 
- 
-* Moved `SetRulesOfEngagement` interaction class as sub-class of `ETR_SimCon` 
-* Replaced all task interaction parameters with `TaskParameters` with different datatypes for each task type. 
 * Moved `AddPassage` interaction class to NETN-SE `CreateBreach` 
 * Moved `ClearObstacle` interaction class to NETN-SE `ClearEngineering` 
 * Moved `CreateObstacle` interaction class to NETN-SE `CreateObstacle` 
@@ -121,39 +90,68 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
 * Merged `FireAtLocation` and `FireAtLocationWM` interaction classes to `IndirectFire` 
 * Renamed `Move` interaction class to `MoveInDirection` 
 * Added `MoveByRoute` interaction class 
+* Added `OperateObservationPost` interaction class 
 * Renamed `OperateCheckPoint` interaction class to `OperateCheckpoint` 
 * Removed `MoveToEntity` interaction class 
 * Renamed `SetOrderedAltitude` interaction class to `ChangeAltitude` 
 * Renamed `SetOrderedSpeed` interaction class to `ChangeSpeed` 
 * Renamed `TurnToHeading` interaction class to `ChangeHeading` 
  
-* Added objectClass `DelegatedTask` 
-* Added `BaseEntity` attribute `Activity` 
-* Added `BaseEntity` attribute `SupportedTasks` 
-* Added `BaseEntity` attribute `TaskProgress` 
-* Added `BaseEntity` attribute `CurrentTasks` 
-* Added `BaseEntity` attribute `PlannedTasks` 
-* Added `BaseEntity` attribute `PreviousTasks`
-* Added `BaseEntity` attribute `Route`
-* Added `BaseEntity` attribute `Destination`
-
+* Added `RequestTaskStatus` interaction class 
+* Added `RequestTaskDelegation` interaction class 
+* Added `RequestReport` interaction class 
+* Added `Response` interaction class 
+ 
+* Added `ETR_Report` parameter `ReportingEntity` 
+* Changed `ETR_Report` parameter `ReportId` datatype to `UUID` 
+* Replaced `ETR_Report` parameter `When` with NETN-BASE `HLAinteractionRoot` parameter `Time` 
+* Moved `ETR_Report` parameter `CommunicationNetworkIds` to NETN-COM `ETR_Report 
+* Replaced `InWeaponRange` parameter `Observer` with `ETR_Report` parameter `ReportingEntity` 
+* Replaced `SpotReport` parameter `Observer` with `ETR_Report` parameter `ReportingEntity` 
+* Added `SpotReport` parameter `SensorType` 
+* Renamed `SensorReport` interaction class to `ETR_SensorEvent` and move as subclass to `HLAinteractionClass` 
+* Replaced `StatusReport` parameter `EntityId` with `ETR_Report` parameter `ReportingEntity` 
+* Added `EntitySensorUpdate` interaction class 
+* Removed `StatusReport` interaction class 
+ 
+* Changed `PositionStatusReport` parameter `Position` datatype to `LocationStruct` 
+* Changed `PositionStatusReport` parameter `Heading` datatype to `DirectionDegreesFloat32` 
+* Changed `ResourceStatusReport` parameter `Resource` datatype to `SupplyStruct` 
+* Changed `UnderAttackStatusReport` parameter `FromDirection` datatype to `DirectionDegreesFloat32` 
+ 
+ 
+* Changed `TaskStatusReport` parameter `TaskId` datatype to `UUID` 
+* Renamed `TaskStatusReport` parameter `TaskId` to `Task` 
+* Replaced `TaskStatusReport` parameter `When` with NETN-BASE `HLAinteractionRoot` parameter `Time` 
+ 
  
 * Removed datatype `MineCountEnum32` 
-* Added datatype `TaskTypeEnum` 
 * Removed datatype `Datetime18` 
 * Removed datatype `ArrayOfTaskIds` 
 * Removed datatype `ArrayOfNames` 
+* Removed datatype `MineCountVariantStruct` 
+ 
+* Added datatype `EntityControlActionEnum` 
+* Added datatype `CaptureStatusEnum` 
+ 
 * Added datatype `ArrayOfTaskTypes` 
 * Added datatype `ArrayOfTaskDefinitions` 
 * Added datatype `ArrayOfTaskProgress` 
 * Added datatype `ArrayOfWaypoints` 
+ 
 * Added struct datatypes for each task type with task parameters 
 * Added struct datatypes for task progress (various) 
+ 
 * Added datatype `RoundStruct` 
 * Added datatype `TaskDefinition` 
 * Added datatype `TaskProgress` 
 * Added datatype `Waypoint` 
-* Removed datatype `MineCountVariantStruct` 
+ 
 * Added datatype `TaskDefinitionVariantRecord` 
-* Added datatype `TaskProgressVariantRecord`
+* Added datatype `TaskProgressVariantRecord` 
+ 
+* Changed datatype `SpottedEntity` field `Orientation` to `Heading` 
+ 
+* Renamed `Mount` interaction class to `Attach` 
+* Renamed `Dismount` interaction class to `Detach`
 
