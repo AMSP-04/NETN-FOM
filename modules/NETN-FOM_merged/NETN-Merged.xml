@@ -32233,7 +32233,7 @@ Note that usage of this datatype for the PhyscialEntity object class attribute A
                     <dataType>EstablishObservationPostTaskStruct</dataType>
                     <semantics>Task parameters.</semantics>
                 </alternative>
-                <encoding>HLAextendableVariantRecord</encoding>
+                <encoding>HLAvariantRecord</encoding>
                 <semantics>Variant record for task definition data.</semantics>
             </variantRecordData>
             <variantRecordData>
@@ -32306,7 +32306,7 @@ Note that usage of this datatype for the PhyscialEntity object class attribute A
                     <dataType>ElapsedTimeProgress</dataType>
                     <semantics>Keeps track of elapesed time.</semantics>
                 </alternative>
-                <encoding>HLAextendableVariantRecord</encoding>
+                <encoding>HLAvariantRecord</encoding>
                 <semantics>Variant record for task progress data.</semantics>
             </variantRecordData>
             <variantRecordData>
