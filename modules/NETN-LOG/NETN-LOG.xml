@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification notes="netn-log_overview">
+        <name>NETN-LOG</name>
+        <type>FOM</type>
+        <version>3.0</version>
+        <modificationDate>2024-03-10</modificationDate>
+        <securityClassification>Not Classified</securityClassification>
+        <releaseRestriction></releaseRestriction>
+        <purpose>The NATO Education and Training Network Logistics Module (NETN-LOG) provides a standard interface for representing supplies, equipment and personnel when modelled as part of an aggregated entity. The module also includes support for logistics tasks in a federated distributed simulation.</purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>Military logistics is the discipline of planning and carrying out the movement and maintenance of military forces, including storage, distribution, maintenance and transportation of supplies, equipment and personnel.</description>
+        <useLimitation>The NETN Logistics module covers the following tasks:    
+* Resupply, e.g. refuelling aircraft at an airbase or in the air
+* Repair, e.g. repair of damaged platforms in a facility
+* Transport, e.g. transporting supplies from a specific pick-up point to an off-loading destination</useLimitation>
+        <useHistory notes="netn-log_changelog_1">v1.1 - Initial version developed by MSG-068 for NETN FOM v1.0. </useHistory>
+        <useHistory notes="netn-log_changelog_2">v2.0 - Re-merged version of NETN-LOG FOM Module updated by MSG-163 for NETN FOM v3.0. Includes NETN-SCP, NETN-Supply, NETN-Storage, NETN-Repair and NETN-Transport.</useHistory>
+        <useHistory notes="netn-log_changelog_3">v3.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0</useHistory>
+        <poc>
+            <pocType>Release authority</pocType>
+            <pocName>NATO Modelling and Simulation Group</pocName>
+            <pocOrg>NATO Science and Technology Organization</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-068 NATO Education and Training Network</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-191 NATO Standards for Federated Simulation and Services for Integration, Verification and Certification</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
+        </reference>
+        <other>
+Copyright © 2020 by NATO/OTAN. All rights reserved.
+This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
+
+Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
+        <glyph type="png" height="48" width="48" alt="">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</glyph>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>BaseEntity</name>
+                <objectClass>
+                    <name>AggregateEntity</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>A group of one or more separate objects that operate together as part of an organization. These objects may be discrete, may be other aggregate objects, or may be a mixture of both.</semantics>
+                    <attribute>
+                        <name>Supplies</name>
+                        <dataType>ArrayOfSupplyStatus</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Required. The type and total quantities of supply holdings modelled by this entity.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Equipment</name>
+                        <dataType>ArrayOfResourceStatus</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Required. The total amount and status of equipment holdings represented by this entity.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Personnel</name>
+                        <dataType>ArrayOfResourceStatus</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Required. The total amount and status of all personnel holdings modelled by this entity.</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>SMC_EntityControl</name>
+                <interactionClass>
+                    <name>Task</name>
+                    <interactionClass>
+                        <name>Transport</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a simulated entity (transporter entity) to transport another simulated entity (transported entity). Successful completion of the task means that (1) the transport and transported entity moves towards a specified pick-up point, (2) the transported entity mounts the transport, (3) the transport moves according to route and at the final waypoint (4) the transported entity dismounts the transport.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>TransportTaskStruct</dataType>
+                            <semantics>Required: Task parameters</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>Repair</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a simulated entity to perform repair activity on another simulated entity (receiving). Successful completion of the task means that the damage state of the receiving entity is improved.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>RepairTaskStruct</dataType>
+                            <semantics>Required: Task parameters</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>Resupply</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Tasks a simulated entity to resupply another simulated entity (receiving). Successful task completion means that supplies are reduced from the tasked entity and increased at the receiving entity.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>ResupplyTaskStruct</dataType>
+                            <semantics>Required: Task parameters</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+                <interactionClass>
+                    <name>SetPersonnelStatus</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Instruct federate with the primary responsibility of the specified simulated entity to update the model concerning its Personnel. Only applicable to AggregateEntity.</semantics>
+                    <parameter>
+                        <name>PersonnelStatus</name>
+                        <dataType>ResourceStatusStruct</dataType>
+                        <semantics>Required: Status of a specific type of personnel.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>SetSuppliesStatus</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Instruct federate with the primary responsibility of the specified simulated entity to update the model concerning its Supplies. Only applicable to AggregateEntity.</semantics>
+                    <parameter>
+                        <name>SupplyStatus</name>
+                        <dataType>SupplyStatusStruct</dataType>
+                        <semantics>Required: New quantity of a specific supply.</semantics>
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>SetEquipmentStatus</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Instruct federate with the primary responsibility of the specified simulated entity to update the model concerning its Equipment. Only applicable to AggregateEntity.</semantics>
+                    <parameter>
+                        <name>EquipmentStatus</name>
+                        <dataType>ResourceStatusStruct</dataType>
+                        <semantics>Required: Status of a specific type of equipment.</semantics>
+
+                    </parameter>
+                </interactionClass>
+                <interactionClass>
+                    <name>Reset</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Request a reset of aspects of an entity's state to its last initialized value.</semantics>
+                    <parameter>
+                        <name>ResetEquipment</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>Optional: Indicate if equipment state of the entity should be reset to last initialized value. Default is False.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>ResetPersonnel</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>Optional: Indicate if personnel state of the entity should be reset to last initialized value. Default is False.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>ResetSupplies</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>Optional: Indicate if supplies state of the entity should be reset to last initialized value. Default is False.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>ResetDamage</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>Optional: Indicate if damage state of the entity should be reset to last initialized value. Default is False.</semantics>
+                    </parameter>
+                    <parameter>
+                        <name>ResetSpatial</name>
+                        <dataType>HLAboolean</dataType>
+                        <semantics>Optional: Indicate if spatial state of the entity should be reset to last initialized value. Default is False.</semantics>
+                    </parameter>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>RepairTypeEnum16</name>
+                <representation>RPRunsignedInteger16BE</representation>
+                <semantics>System repaired</semantics>
+                <enumerator>
+                    <name>NoRepairsPerformed</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>AllRequestedRepairsPerformed</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>MotorOrEngine</name>
+                    <value>10</value>
+                </enumerator>
+                <enumerator>
+                    <name>Starter</name>
+                    <value>20</value>
+                </enumerator>
+                <enumerator>
+                    <name>Alternator</name>
+                    <value>30</value>
+                </enumerator>
+                <enumerator>
+                    <name>Generator</name>
+                    <value>40</value>
+                </enumerator>
+                <enumerator>
+                    <name>Battery</name>
+                    <value>50</value>
+                </enumerator>
+                <enumerator>
+                    <name>EngineCoolantLeak</name>
+                    <value>60</value>
+                </enumerator>
+                <enumerator>
+                    <name>FuelFilter</name>
+                    <value>70</value>
+                </enumerator>
+                <enumerator>
+                    <name>TransmissionOilLeak</name>
+                    <value>80</value>
+                </enumerator>
+                <enumerator>
+                    <name>EngineOilLeak</name>
+                    <value>90</value>
+                </enumerator>
+                <enumerator>
+                    <name>Pumps</name>
+                    <value>100</value>
+                </enumerator>
+                <enumerator>
+                    <name>Filters</name>
+                    <value>110</value>
+                </enumerator>
+                <enumerator>
+                    <name>Transmission</name>
+                    <value>120</value>
+                </enumerator>
+                <enumerator>
+                    <name>Brakes</name>
+                    <value>130</value>
+                </enumerator>
+                <enumerator>
+                    <name>SuspensionSystem</name>
+                    <value>140</value>
+                </enumerator>
+                <enumerator>
+                    <name>OilFilter</name>
+                    <value>150</value>
+                </enumerator>
+                <enumerator>
+                    <name>Hull</name>
+                    <value>1000</value>
+                </enumerator>
+                <enumerator>
+                    <name>Airframe</name>
+                    <value>1010</value>
+                </enumerator>
+                <enumerator>
+                    <name>TruckBody</name>
+                    <value>1020</value>
+                </enumerator>
+                <enumerator>
+                    <name>TankBody</name>
+                    <value>1030</value>
+                </enumerator>
+                <enumerator>
+                    <name>TrailerBody</name>
+                    <value>1040</value>
+                </enumerator>
+                <enumerator>
+                    <name>Turret</name>
+                    <value>1050</value>
+                </enumerator>
+                <enumerator>
+                    <name>Propeller</name>
+                    <value>1500</value>
+                </enumerator>
+                <enumerator>
+                    <name>EnvironmentalFilters</name>
+                    <value>1520</value>
+                </enumerator>
+                <enumerator>
+                    <name>Wheels</name>
+                    <value>1540</value>
+                </enumerator>
+                <enumerator>
+                    <name>Tire</name>
+                    <value>1550</value>
+                </enumerator>
+                <enumerator>
+                    <name>Track</name>
+                    <value>1560</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunElevationDrive</name>
+                    <value>2000</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunStabilizationSystem</name>
+                    <value>2010</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunnersPrimarySight_GPS_</name>
+                    <value>2020</value>
+                </enumerator>
+                <enumerator>
+                    <name>CommandersExtensionToTheGPS</name>
+                    <value>2030</value>
+                </enumerator>
+                <enumerator>
+                    <name>LoadingMechanism</name>
+                    <value>2040</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunnersAuxiliarySight</name>
+                    <value>2050</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunnersControlPanel</name>
+                    <value>2060</value>
+                </enumerator>
+                <enumerator>
+                    <name>GunnersControlAssemblyHandle_Handles</name>
+                    <value>2070</value>
+                </enumerator>
+                <enumerator>
+                    <name>CommandersControlHandles_Assembly</name>
+                    <value>2090</value>
+                </enumerator>
+                <enumerator>
+                    <name>CommandersWeaponStation</name>
+                    <value>2100</value>
+                </enumerator>
+                <enumerator>
+                    <name>CommandersIndependentThermalViewer_CITV_</name>
+                    <value>2110</value>
+                </enumerator>
+                <enumerator>
+                    <name>GeneralWeapons</name>
+                    <value>2120</value>
+                </enumerator>
+                <enumerator>
+                    <name>FuelTransferPump</name>
+                    <value>4000</value>
+                </enumerator>
+                <enumerator>
+                    <name>FuelLines</name>
+                    <value>4010</value>
+                </enumerator>
+                <enumerator>
+                    <name>Gauges</name>
+                    <value>4020</value>
+                </enumerator>
+                <enumerator>
+                    <name>GeneralFuelSystem</name>
+                    <value>4030</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicWarfareSystems</name>
+                    <value>4500</value>
+                </enumerator>
+                <enumerator>
+                    <name>DetectionSystems</name>
+                    <value>4600</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicWarfareRadioFrequency</name>
+                    <value>4610</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicWarfareMicrowave</name>
+                    <value>4620</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicWarfareInfrared</name>
+                    <value>4630</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicWarfareLaser</name>
+                    <value>4640</value>
+                </enumerator>
+                <enumerator>
+                    <name>RangeFinders</name>
+                    <value>4700</value>
+                </enumerator>
+                <enumerator>
+                    <name>Range-OnlyRadar</name>
+                    <value>4710</value>
+                </enumerator>
+                <enumerator>
+                    <name>LaserRangeFinder</name>
+                    <value>4720</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicSystems</name>
+                    <value>4800</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicSystemsRadioFrequency</name>
+                    <value>4810</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicSystemsMicrowave</name>
+                    <value>4820</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicSystemsInfrared</name>
+                    <value>4830</value>
+                </enumerator>
+                <enumerator>
+                    <name>ElectronicSystemsLaser</name>
+                    <value>4840</value>
+                </enumerator>
+                <enumerator>
+                    <name>Radios</name>
+                    <value>5000</value>
+                </enumerator>
+                <enumerator>
+                    <name>CommunicationSystems</name>
+                    <value>5010</value>
+                </enumerator>
+                <enumerator>
+                    <name>Intercoms</name>
+                    <value>5100</value>
+                </enumerator>
+                <enumerator>
+                    <name>Encoders</name>
+                    <value>5200</value>
+                </enumerator>
+                <enumerator>
+                    <name>EncryptionDevices</name>
+                    <value>5250</value>
+                </enumerator>
+                <enumerator>
+                    <name>Decoders</name>
+                    <value>5300</value>
+                </enumerator>
+                <enumerator>
+                    <name>DecryptionDevices</name>
+                    <value>5350</value>
+                </enumerator>
+                <enumerator>
+                    <name>Computers</name>
+                    <value>5500</value>
+                </enumerator>
+                <enumerator>
+                    <name>NavigationAndControlSystems</name>
+                    <value>6000</value>
+                </enumerator>
+                <enumerator>
+                    <name>FireControlSystems</name>
+                    <value>6500</value>
+                </enumerator>
+                <enumerator>
+                    <name>AirSupply</name>
+                    <value>8000</value>
+                </enumerator>
+                <enumerator>
+                    <name>LifeSupportFilters</name>
+                    <value>8010</value>
+                </enumerator>
+                <enumerator>
+                    <name>LifeSupportWaterSupply</name>
+                    <value>8020</value>
+                </enumerator>
+                <enumerator>
+                    <name>RefrigerationSystem</name>
+                    <value>8030</value>
+                </enumerator>
+                <enumerator>
+                    <name>ChemicalBiologicalAndRadiologicalProtection</name>
+                    <value>8040</value>
+                </enumerator>
+                <enumerator>
+                    <name>WaterWashDownSystems</name>
+                    <value>8050</value>
+                </enumerator>
+                <enumerator>
+                    <name>DecontaminationSystems</name>
+                    <value>8060</value>
+                </enumerator>
+                <enumerator>
+                    <name>HydraulicSystemWaterSupply</name>
+                    <value>9000</value>
+                </enumerator>
+                <enumerator>
+                    <name>CoolingSystem</name>
+                    <value>9010</value>
+                </enumerator>
+                <enumerator>
+                    <name>Winches</name>
+                    <value>9020</value>
+                </enumerator>
+                <enumerator>
+                    <name>Catapults</name>
+                    <value>9030</value>
+                </enumerator>
+                <enumerator>
+                    <name>Cranes</name>
+                    <value>9040</value>
+                </enumerator>
+                <enumerator>
+                    <name>Launchers</name>
+                    <value>9050</value>
+                </enumerator>
+                <enumerator>
+                    <name>LifeBoats</name>
+                    <value>10000</value>
+                </enumerator>
+                <enumerator>
+                    <name>LandingCraft</name>
+                    <value>10010</value>
+                </enumerator>
+                <enumerator>
+                    <name>EjectionSeats</name>
+                    <value>10020</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>EntityControlActionEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
+                <enumerator>
+                    <name>Resupply</name>
+                    <value>601</value>
+                </enumerator>
+                <enumerator>
+                    <name>Repair</name>
+                    <value>602</value>
+                </enumerator>
+                <enumerator>
+                    <name>Transport</name>
+                    <value>603</value>
+                </enumerator>
+                <enumerator>
+                    <name>Reset</name>
+                    <value>604</value>
+                </enumerator>
+                <enumerator>
+                    <name>SetSupplies</name>
+                    <value>605</value>
+                </enumerator>
+                <enumerator>
+                    <name>SetPersonnelStatus</name>
+                    <value>606</value>
+                </enumerator>
+                <enumerator>
+                    <name>SetEquipmentStatus</name>
+                    <value>607</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes/>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>AppointmentStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Date and Time and Location of an appointment.</semantics>
+                <field>
+                    <name>DateTime</name>
+                    <dataType>EpochTime</dataType>
+                    <semantics>Date time in second since Epoch for the appointment. When time is set to zero (0), it implies as soon as possible.</semantics>
+                </field>
+                <field>
+                    <name>Location</name>
+                    <dataType>GeodeticPoint</dataType>
+                    <semantics>Location of the appointment</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>RepairTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data for Repair task. If receiving entity is a physical entity, the `ResourceType`, and `QuantityToRepair` fields are ignored.</semantics>
+                <field>
+                    <name>ReceivingEntity</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Reference to the entity receiving the repairs.</semantics>
+                </field>
+                <field>
+                    <name>ResourceType</name>
+                    <dataType>EntityTypeStruct</dataType>
+                    <semantics>The type of resource to repair.</semantics>
+                </field>
+                <field>
+                    <name>DamageState</name>
+                    <dataType>DamageStatusEnhancedEnum32</dataType>
+                    <semantics>The level of damage to repair.</semantics>
+                </field>
+                <field>
+                    <name>QuatityToRepair</name>
+                    <dataType>QuantityInt32</dataType>
+                    <semantics>The number of resources of the specified type and damage state to repair.</semantics>
+                </field>
+                <field>
+                    <name>RepairType</name>
+                    <dataType>RepairTypeEnum16</dataType>
+                    <semantics>The type of repair to perform. (Default 1).</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>ResupplyTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data for Resupply task.</semantics>
+                <field>
+                    <name>ReceivingEntity</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Reference to the entity to receive supplies.</semantics>
+                </field>
+                <field>
+                    <name>Supplies</name>
+                    <dataType>ArrayOfSupplyStatus</dataType>
+                    <semantics>Type and quantity of supplies to be transferred.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>TransportTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task-specific data for Transport task.</semantics>
+                <field>
+                    <name>TransportedEntities</name>
+                    <dataType>ArrayOfUuid</dataType>
+                    <semantics>The entities to transport.</semantics>
+                </field>
+                <field>
+                    <name>PickUp</name>
+                    <dataType>AppointmentStruct</dataType>
+                    <semantics>The time and location of the pickup of the entity.</semantics>
+                </field>
+                <field>
+                    <name>Route</name>
+                    <dataType>ArrayOfWaypoints</dataType>
+                    <semantics>Transportation route.</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes>
+            <variantRecordData>
+                <name>TaskDefinitionVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>EntityControlActionEnum</dataType>
+                <alternative>
+                    <enumerator>Resupply</enumerator>
+                    <name>Resupply</name>
+                    <dataType>ResupplyTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Repair</enumerator>
+                    <name>Repair</name>
+                    <dataType>RepairTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Transport</enumerator>
+                    <name>Transport</name>
+                    <dataType>TransportTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <encoding>HLAextendableVariantRecord</encoding>
+                <semantics>Variant record for task definition data.</semantics>
+            </variantRecordData>
+            <variantRecordData>
+                <name>TaskProgressVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>EntityControlActionEnum</dataType>
+                <alternative>
+                    <enumerator>Resupply, Repair</enumerator>
+                    <name>LOG_ElapsedTime</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics>Keeps track of elapsed time.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>Transport</enumerator>
+                    <name>LOG_Transport</name>
+                    <dataType>MoveTaskProgress</dataType>
+                    <semantics>Keeps track of movement task.</semantics>
+                </alternative>
+                <encoding>HLAextendableVariantRecord</encoding>
+                <semantics>Variant record for task progress data.</semantics>
+            </variantRecordData>
+        </variantRecordDataTypes>
+    </dataTypes>
+    <notes>
+        <note>
+            <label>netn-log_changelog_2</label>
+            <semantics>* FOM Modules NETN-SCP-BASE v1.1.3, NETN-Supply v1.1.2, NETN-Storage v1.2.2, NETN-Repair v1.2.1 and NETN-Transport v1.1.2 merged into new module NETN-LOG 
+* Prefix dropped from all interaction classes except interaction class LOG_Service 
+* Added note for `modelIdentification` to provide additional description of FOM module 
+* Added glyph 
+* Updated `releaseRestriction`, `purpose`, `description` and `useLimitation` 
+* Changed `securityClassification` from `Unclassified` to `Not Classified` 
+ 
+* Removed object class `SCP_Facility` 
+* Removed interaction class `RequestStorage` 
+* Removed interaction class `OfferStorage` 
+* Removed interaction class `StorageComplete` 
+* Removed interaction class `ReadyToReceiveStorage` 
+* Removed interaction class `ReadyToReceiveRepair` 
+* Removed interaction class `ReadyToReceiveSupply` 
+ 
+* Removed parameter `LOG_Service.Consumer` 
+* Removed parameter `LOG_Service.Provider` 
+* Removed parameter `RequestSupply.LoadingDoneByProvider` 
+* Removed parameter `OfferSupply.LoadingDoneByProvider` 
+* Removed parameter `LOG_Service.ServiceType` 
+* Removed parameter `OfferTransport.OfferType` 
+* Removed parameter `OfferService.IsOffering` 
+* Removed parameter `RequestRepair.Appointment` 
+* Removed parameter `RequestSupply.Appointment` 
+* Removed parameter `OfferRepair.Appointment` 
+* Removed parameter `OfferSupply.Appointment` 
+ 
+* Removed datatype `TransportStruct` 
+* Removed datatype `DataTStruct` 
+* Removed datatype `DataEDStruct` 
+* Removed datatype `TransportTypeEnum32` 
+* Removed datatype `ServiceIdentifier` 
+* Removed datatype `LOG_ServiceTypeEnum8` 
+* Removed datatype `ServiceDescription` 
+* Removed datatype `NETN_RepairTypeEnum16` 
+ 
+* Added interaction class `LOG_Interaction.CancelOffer` 
+* Renamed interaction class `CancelService` to `CancelRequest` 
+* Renamed interaction class `LOG_Service` to `LOG_Interaction` 
+ 
+* Added parameter `RequestService.ConsumerEntity` 
+* Added parameter `RequestService.ProviderEntity` 
+* Added parameter `OfferService.OfferId` 
+* Added parameter `AcceptOffer.OfferId` 
+* Added parameter `OfferService.ProviderEntity` 
+* Added parameter `OfferService.OfferType` 
+* Added parameter `RequestService.StartAppointment` 
+* Added parameter `RequestTransport.EndAppointment` 
+* Added parameter `OfferService.StartAppointment` 
+* Added parameter `OfferTransport.EndAppointment` 
+* Added parameter `RequestSupply.TransferDirection` 
+ 
+* Renamed parameter `LOG_Service.TransactionId` to `LOG_Interaction.RequestId` 
+* Renamed parameter `OfferService.RequestTimeOut` to `OfferService.OfferTimeOut` 
+* Changed parameter datatype for `LOG_Service.ServiceID` to `TransactionId` 
+* Changed parameter datatype for `RequestTransport.TransportData` to `ArrayOfUuid`. 
+* Changed parameter datatype for `OfferTransport.TransportData` to `ArrayOfUuid`. 
+ 
+* Renamed datatype `NETN_ServiceIdentifier` to `ServiceIdentifier` 
+* Renamed datatype field `RepairStruct.MaterialID` to `RepairStruct.MaterielId` 
+* Changed datatype for `ArrayOfRepairTypeEnum` from `NETN_RepairTypeEnum16` to `RepairTypeEnum16`</semantics>
+        </note>
+        <note>
+            <label>netn-log_changelog_3</label>
+            <semantics>* MAJOR UPDATE TO USE NETN-ETR Patterns 
+* Add dependency on NETN-ETR 
+* Replaced all interaction classes 
+* Removed datatype `OfferTypeEnum32` 
+* Removed datatype `TransferDirectionEnum32` 
+* Removed datatype `RepairStruct` 
+* Removed datatype `ArrayOfRepairStruct` 
+* Removed datatype `ArrayOfRepairTypeEnumStruct` 
+ 
+* Updated datatype `AppointmentStruct` 
+ 
+* Extended`AggregateEntity` object class 
+* Added `AggregateEntity` attribute `Supplies` 
+* Added `AggregateEntity` attribute `Equipment` 
+* Added `AggregateEntity` attribute `Personnel` 
+ 
+* Extended NETN-ETR `RequestTask` 
+* Added `RequestTask` interaction subclass `Resupply` 
+* Added `RequestTask` interaction subclass `Repair` 
+* Added `RequestTask` interaction subclass `Transport` 
+ 
+
+* Added `SMC_EntityControl` interaction subclass `SetEquipmentStatus` 
+* Added `SMC_EntityControl` interaction subclass `SetPersonnelStatus` 
+* Added `SMC_EntityControl` interaction subclass `SetSuppliesStatus` 
+ 
+* Added datatype `RepairTaskStruct` 
+* Added datatype `ResupplyTaskStruct` 
+* Added datatype `TransportTaskStruct` 
+* Added datatype `RepairTypeEnum16` 
+* Added enumerators to datatype `EntityControlActionEnum` 
+* Added alternatives to NETN-ETR datatype `TaskDefinitionVariantRecord` 
+* Added alternatives to NETN-ETR datatype `TaskProgressVariantRecord`</semantics>
+        </note>
+        <note>
+            <label>netn-log_changelog_1</label>
+            <semantics>In NETN FOM v 2.0 this module was replaced with several FOM modules to represent different services. A Base FOM Module was used to represent the basic Service-Consumer Provider (SCP) pattern. 
+ 
+These modules were initially developed by MSG-106 and prepared for release by MSG-134. 
+ 
+Modules in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) were: 
+* NETN-SCP-BASE v1.1.3 
+* NETN-Supply v1.1.2 
+* NETN-Storage v1.2.2 
+* NETN-Repair v 1.2.1 
+* NETN-Transport v1.1.2</semantics>
+        </note>
+        <note>
+            <label>netn-log_overview</label>
+            <semantics>## Overview 
+ 
+The NETN-LOG modules extend the RPR-FOM `AggregateEntity` object class with attributes for `Supplies`, `Equipment` and `Personnel`. 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+HLAobjectRoot &lt;|-- BaseEntity 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+BaseEntity &lt;|-- AggregateEntity 
+BaseEntity : EntityIdentifier(RPR-Base) 
+BaseEntity : EntityType(RPR-Base) 
+BaseEntity : Spatial(RPR-Base) 
+AggregateEntity : Equipment 
+AggregateEntity : Personnel 
+AggregateEntity : Supplies 
+AggregateEntity : AggregateState(RPR-Aggregate) 
+AggregateEntity : Dimensions(RPR-Aggregate) 
+``` 
+ 
+These optional attributes allow the sharing of ground-truth aggregated data related to the status of equipment, personnel, and supplies. 
+ 
+The NETN-LOG modules also extend the NETN-SMC module to provide a set of `SMC_EntityControl` Actions. 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+HLAinteractionRoot &lt;|-- SMC_EntityControl 
+HLAinteractionRoot : UniqueId(NETN-BASE) 
+SMC_EntityControl &lt;|-- Task 
+SMC_EntityControl &lt;|-- SetPersonnelStatus 
+SMC_EntityControl &lt;|-- SetSuppliesStatus 
+SMC_EntityControl &lt;|-- SetEquipmentStatus 
+SMC_EntityControl &lt;|-- Reset 
+SMC_EntityControl : Entity(NETN-SMC) 
+Task &lt;|-- Transport 
+Task &lt;|-- Repair 
+Task &lt;|-- Resupply 
+Task : TaskId(NETN-ETR) 
+Transport : TaskParameters 
+Repair : TaskParameters 
+Resupply : TaskParameters 
+SetPersonnelStatus : PersonnelStatus 
+SetSuppliesStatus : SupplyStatus 
+SetEquipmentStatus : EquipmentStatus 
+Reset : ResetDamage 
+Reset : ResetEquipment 
+Reset : ResetPersonnel 
+Reset : ResetSpatial 
+Reset : ResetSupplies 
+``` 
+ 
+4.	Three control actions extend the NETN-ETR `Task` interaction and associated pattern to provide `Transport`, `Repair`, and `Resupply` tasks. 
+ 
+Use the `SetPersonnelStatus`, `SetEquipmentStatus`, and `SetSuppliesStatus` to request an immediate change in the `Personnel`, `Equipment`, or `Supplies` attributes of a simulated `AggregateEntity`. 
+ 
+Use the `Reset` control interaction to request an immediate revert of state to the last initialized value for the indicated aspects. The last initialized value is defined as the first value published by the current federate after applying one of the methods of initialization. 
+ 
+ 
+### Transfer of Supplies 
+ 
+Use the `Resupply` interaction to transfer supplies from one simulated entity (supplier) to another (receiver). The `Resupply` interaction uses the NETN-ETR tasking pattern, and the NETN-LOG modules extend task datatypes to include resupply task definitions. 
+ 
+The transfer process is modelled by reducing the supplies of the supplier entity and attempting to set the increased supplies of the receiver entity using the `SetSuppliesStatus` entity control action. If both entities are modelled in the same federate, the `SetSuppliesStatus` is not required, and the supplies status can be changed directly. 
+
+ 
+ 
+```mermaid 
+sequenceDiagram 
+autonumber
+Tasking Federate-&gt;&gt;Supplier Entity Federate: Reupply(SupplierEntity, ReceiverEntity) 
+Supplier Entity Federate-&gt;&gt;Tasking Federate: ETR_TaskStatus(Started) 
+Supplier Entity Federate-&gt;&gt;Receiver Entity Federate: SetSuppliesStatus(ReceiverEntity) 
+Supplier Entity Federate-&gt;&gt;Tasking Federate: ETR_TaskStatus(Complete) 
+ 
+``` 
+ 
+``` 
+ 
+
+1. A Tasking Federate sends a `Resupply` task with references to the supplier and receiver entities. 
+ 
+2. The Supplier Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transfer. 
+ 
+3. During the transfer, update the state of the supplier entity continuously or once after the transfer. Use the `SetSuppliesStatus` interaction to request an update of supplies for the receiver entity. 
+ 
+4. On completion, the Supplier Entity Federate sends an `ETR_TaskStatus` interaction to indicate task success or failure. 
+ 
+The Supplies attribute of both the supplier and receiver `AggregateEntity` can be updated during the resupply task, and a final update must be provided when the resupply is completed. 
+ 
+### Repair Task 
+ 
+Use the Repair interaction to initiate a task for an entity to repair (Repairing Entity) another entity (Receiver Entity). 
+ 
+Use the `SetEquipmentStatus` or the `SetPersonnelStatus` entity control interaction to model the repair process by attempting to set the receiver entity's resources status. If both entities are modelled in the same federate, the `SetEquipmentStatus` and the `SetPersonnelStatus` are not required, and the status can be changed directly. 
+
+ 
+ 
+```mermaid 
+sequenceDiagram 
+autonumber
+Tasking Federate-&gt;&gt;Repairing Entity Federate: Repair(RepairingEntity, ReceiverEntity) 
+Repairing Entity Federate-&gt;&gt;Tasking Federate: ETR_TaskStatus(Started) 
+Repairing Entity Federate-&gt;&gt;Receiver Federate: SetResourceStatus(UpdateState) 
+Repairing Entity Federate-&gt;&gt;Tasking Federate: ETR_TaskStatus(Completed) 
+``` 
+ 
+ 
+1. A Tasking Federate sends a `Repair` task referencing the repairing and receiver entities. 
+ 
+2. The Repairing Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transfer. 
+ 
+3. During the repair, either use the `SetEquipmentStatus` or `SetPersonnelStatus` interaction to request an update of a specific type of resource modelled for the receiver entity. 
+ 
+4. On completion, the Repairing Entity Federate sends an `ETR_TaskStatus` interaction to indicate task success or failure. 
+ 
+The `Equipment` or the `Personnel` attributes of the repaired `AggregateEntity` can be updated during the repair task, and a final update must be provided when the repair is completed. 
+
+ 
+### Transport Task 
+
+Use the `Transport` task to instruct a simulated entity (Transport Entity) to transport other simulated entities (Transported Entity) from a pick-up location to a destination. The transport task combines the `Attach`, `MoveByRoute`, and `Detach` tasks defined in the NETN-ETR module. 
+ 
+The transport task consists of the following phases: 
+
+ 
+1. Move to the pick-up location 
+2. Embark/Mount/Load simulated entities by attaching them to the Transport Entity. 
+3. Move according to a specified route to the destination. 
+4. Disembark/Dismount/Unload simulated entities by detaching them from the Transport Entity. 
+ 
+ 
+```mermaid 
+sequenceDiagram 
+autonumber
+Tasking Federate-&gt;&gt;Transport Entity Federate: RequestTransport(TransportEntity, TransportedEntities) 
+Transport Entity Federate-&gt;&gt;Tasking Federate: ETR_TaskStatus(Started) 
+Note over Transport Entity Federate:Move to Pick-up location 
+Transport Entity Federate-&gt;&gt;Transported Entity Federate: Attach(TransportedEntity, TransportEntity) 
+Transported Entity Federate-&gt;&gt;Transport Entity Federate: ETR_TaskStatus(Started) 
+Transported Entity Federate-&gt;&gt;Transport Entity Federate: ETR_TaskStatus(Completed) 
+Note over Transport Entity Federate:Move by Route 
+Transport Entity Federate-&gt;&gt;Transported Entity Federate: Detach(TransportedEntity, TransportEntity) 
+Transported Entity Federate-&gt;&gt;Transport Entity Federate: ETR_TaskStatus(Started) 
+Transported Entity Federate-&gt;&gt;Transport Entity Federate: ETR_TaskStatus(Completed) 
+ 
+Transport Entity Federate-&gt;&gt;Tasking Federate: ETR_TaskStatus(Completed) 
+``` 
+ 
+ 
+1. A Tasking Federate sends a `Transport` task referencing the transport and transported entities. Also, provide a route for the transport and an optional appointment to describe the location and time for pick-up. 
+ 
+2. The Transport Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transport task. 
+ 
+3. At the pick-up location, the Transport Entity Federate initiates a NETN-ETR `Mount` task for the transported entity to embark/mount on the transport. 
+ 
+4. The Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the embarkation/mounting process. 
+ 
+5. When the embarkation/mounting is complete, the Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate successful completion. Then, the transport entity conducts its movement according to the transport route. 
+ 
+6. When at the final destination of the transport route, the Transport Entity Federate initiates a NETN-ETR `Dismount` task for the transported entity to disembark/dismount on the transport. 
+ 
+ 
+7. The Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the disembarkation/dismounting process. 
+ 
+8. When the disembarkation/dismounting is complete, the Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate successful completion. 
+ 
+9. Finally, the Transport Entity Federate sends an `ETR_TaskStatus` to indicate whether the transport task has succeeded or failed. 
+ 
+ 
+
+ 
+The transport task is rejected if the transport entity is unable to transport all specified simulated entities. An AggregatedEntity representation of a transported entity may require a NETN-MRM Disaggregate or Divide action to fit on the transport. 
+ 
+A scenario can start with some entities already embarked on transport. Use the NETN-ENTITY `BaseEntity` attribute `HostEntity` to identify a potential transporting entity.</semantics>
+        </note>
+    </notes>
+</objectModel>

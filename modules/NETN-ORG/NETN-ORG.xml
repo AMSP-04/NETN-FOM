@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification notes="netn-org_overview">
+        <name>NETN-ORG</name>
+        <type>FOM</type>
+        <version>2.0</version>
+        <modificationDate>2024-03-07</modificationDate>
+        <securityClassification>Not Classified</securityClassification>
+        <purpose>The NATO Education and Training Organization (NETN-ORG) module provides a standard way to represent organizations in the simulation scenario and their relationships and structure. The relationships include unit command structure, relationships between organizations, unit equipment, and installations.</purpose>
+        <applicationDomain></applicationDomain>
+        <description>Simulating organizational elements requires knowledge of intra-organizational relationships, e.g., superior, subordinate, and inter-organizational relationships with other organizations, e.g., friendly or hostile. The NETN-ORG supports initialization and organizations' dynamic change of this information.</description>
+        <useLimitation>Use the NETN-ORG information to: 
+* initialize simulated entities 
+* perform disaggregation, aggregation, divide and merge actions using NETN-MRM 
+* change organizational relationships 
+* capture simulated unit and equipment state as snapshots</useLimitation>
+        <useHistory>v1.0 - Initial version developed by MSG-163. Release included in NETN FOM v3.0</useHistory>
+        <useHistory notes="netn-org_changelog_1">v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0</useHistory>
+        <poc>
+            <pocType>Release authority</pocType>
+            <pocName>NATO Modelling and Simulation Group</pocName>
+            <pocOrg>NATO Science and Technology Organization</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-191 NATO Standards for Federated Simulation and Services for Integration, Verification and Certification</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-223 Evolving M&amp;S applications and services for compliance with NATO standards for federated simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <reference>
+            <type>Standard</type>
+            <identification>Military Scenario Definition Language (MSDL), SISO-STD-007-2008
+</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
+        </reference>
+        <other>
+Copyright © 2020 by NATO/OTAN. All rights reserved.
+This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
+
+Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
+        <glyph type="png" height="48" width="48" alt="">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</glyph>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>ORG_Root</name>
+                <sharing>Neither</sharing>
+                <semantics>The object class for all NETN-ORG object classes</semantics>
+                <attribute>
+                    <name>Name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>Static</updateType>
+                    <updateCondition>NA</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Required. A unique name.</semantics>
+                </attribute>
+                <objectClass>
+                    <name>OrganizationElement</name>
+                    <sharing>Subscribe</sharing>
+                    <semantics>An object class for all NETN-ORG organizational elements</semantics>
+                    <attribute>
+                        <name>Organization</name>
+                        <dataType>UUID</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Required: A reference to the organization the element is affiliated with.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>SuperiorUnit</name>
+                        <dataType>UUID</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation.  The default value is all zeros (no aggregate unit).</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>EntityType</name>
+                        <dataType>EntityTypeStruct</dataType>
+                        <updateType>Static</updateType>
+                        <updateCondition>NA</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Symbol</name>
+                        <dataType>SymbolStruct</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Required. Initial symbol identifier and amplification data for this element. In NETN-ORG the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>Location</name>
+                        <dataType>GeodeticPoint</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>HostUnit</name>
+                        <dataType>UUID</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. A reference to a unit or equipment controlling the movement or operating an installation. E.g. a unit embarked on a transport, or a helicopter on a ship. The default value is all zeros, indicating that the unit is not embarked in or mounted on any other unit or equipment. Not applicable to `Installation`.</semantics>
+                    </attribute>
+                    <objectClass>
+                        <name>Equipment</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>An equipment represents individual physical items defined specifically and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensors object.</semantics>
+                    </objectClass>
+                    <objectClass>
+                        <name>Unit</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>A unit represents an element at a specified level in the organization. An organizational unit can contain subunits and can belong to a superior unit. A unit consists of equipment, personnel and supplies; these holdings can belong directly to the unit or indirectly as a holding of a subunit.</semantics>
+                        <attribute>
+                            <name>HigherHeadquarters</name>
+                            <dataType>UUID</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. A reference to a unit representing the superior headquarters. The default value is all zeros (no higher headquarters).</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Echelon</name>
+                            <dataType>EchelonEnum32</dataType>
+                            <updateType>Static</updateType>
+                            <updateCondition>NA</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Symbol modifier identifying the command level. Default NONE.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>IsHq</name>
+                            <dataType>HLAboolean</dataType>
+                            <updateType>Static</updateType>
+                            <updateCondition>NA</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Indicate whether the unit has a command function, e.g. if it is an HQ or not. The default is FALSE, no HQ.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Holdings</name>
+                            <dataType>ArrayOfHoldings</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>When changed</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. A set of holdings defined for this unit in addition to holdings defined for all subunits and any specific `Equipment` objects with this unit as `HostUnit . The default is an empty list.`</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>Formation</name>
+                            <dataType>FormationStruct</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>When changed</updateCondition>
+                            <ownership>DivestAcquire</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. Formation of this unit.</semantics>
+                        </attribute>
+                    </objectClass>
+                    <objectClass>
+                        <name>Installation</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>Installations are facilities, e.g. harbours, airfields, or engineering objects, e.g. minefields.</semantics>
+                    </objectClass>
+                </objectClass>
+                <objectClass>
+                    <name>Organization</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>An organization have relationships with other organizations. Units belonging to different organizations have the same relationship as the organizations they belong to. However, the relationships between organizations can be asymmetrical, e.g. Side A can be hostile to B while B is neutral to A. Furthermore, the relation may change during a federation execution.</semantics>
+                    <attribute>
+                        <name>Relationships</name>
+                        <dataType>ArrayOfRelationship</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>When changed</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. The relations with other organizations. The federation agreements specify default relationship.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>ForceIdentifier</name>
+                        <dataType>ForceIdentifierEnum</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Required: A force identifier indicate a special relationship with an organization in the scenario designated as the default perspective of the scenario. The force identifier applies to all simulated entities representing an organizational element belonging to the organization and is a required attribute for all `PhysicalEntity` and `AggregateEntity` objects in the federation.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>CountryCode</name>
+                        <dataType>Integer32</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional: Numerical country code based on ISO 3166-1 numeric. The numeric codes 900 to 999 can be user-assigned in the federation agreement.</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
+            <objectClass>
+                <name>BaseEntity</name>
+                <sharing>Subscribe</sharing>
+                <semantics>A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.</semantics>
+                <attribute>
+                    <name>Organization</name>
+                    <dataType>UUID</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>DivestAcquire</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional: The organization in the scenario this entity belongs to.</semantics>
+                </attribute>
+            </objectClass>
+            <objectClass>
+                <name>SMC_Service</name>
+                <objectClass>
+                    <name>EntitySimulation</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <semantics>A service providing modelling responsibility for aggregate and/or physical entities.</semantics>
+                    <attribute>
+                        <name>AggregateEntityAllocation</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. The organization Unit elements for which the federate has the responsibility of modelling corresponding Aggregate Entities.  The default is an empty list.</semantics>
+                    </attribute>
+                    <attribute>
+                        <name>PhysicalEntityAllocation</name>
+                        <dataType>ArrayOfUuid</dataType>
+                        <updateType>Conditional</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. The the organization Equipment or Installation elements for which the federate has the responsibility of simulating a Physical Entity.  The default is an empty list.</semantics>
+                    </attribute>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>SMC_EntityControl</name>
+                <interactionClass>
+                    <name>ChangeSuperiorUnit</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Request a change in the organizational structure. The federate with the primary responsibility of the referenced entity (OrganizationElement) should if possible update the `SuperiorUnit` relationship.</semantics>
+                    <parameter>
+                        <name>SuperiorUnit</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Reference to a Unit for which the referenced entity (OrganizationElement) is requested to relate to as a subunit/equipment.</semantics>
+                    </parameter>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>FormationLocationTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Enumerated choice for the method to correlate formation to location as the centre of mass or lead element.</semantics>
+                <enumerator>
+                    <name>LEAD_ELEMENT</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>CENTER_OF_MASS</name>
+                    <value>1</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>FormationTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Enumerated choice for the type of formation being Ground, Air, Surface or Subsurface.</semantics>
+                <enumerator>
+                    <name>GROUND</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>AIR</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>SURFACE</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>SUBSURFACE</name>
+                    <value>3</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>GroundFormationTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Specifies the formations for ground units.</semantics>
+                <enumerator>
+                    <name>COLUMN</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>STAGGERED_COLUMN</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>ECHELON_LEFT</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>ECHELON_RIGHT</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>LINE</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>WEDGE</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>VEE</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>ASSAULT_VEE</name>
+                    <value>7</value>
+                </enumerator>
+                <enumerator>
+                    <name>FSE_COLUMN</name>
+                    <value>8</value>
+                </enumerator>
+                <enumerator>
+                    <name>STACK</name>
+                    <value>9</value>
+                </enumerator>
+                <enumerator>
+                    <name>NONE</name>
+                    <value>10</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>AirFormationTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Air formation</semantics>
+                <enumerator>
+                    <name>NOT_SPECIFIED</name>
+                    <value>0</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>SurfaceFormationTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Surface formation</semantics>
+                <enumerator>
+                    <name>NOT_SPECIFIED</name>
+                    <value>0</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>SubsurfaceFormationTypeEnum32</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Subsurface formation</semantics>
+                <enumerator>
+                    <name>NOT_SPECIFIED</name>
+                    <value>0</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>ForceIdentifierEnum</name>
+                <representation>RPRunsignedInteger8BE</representation>
+                <semantics>RPR-FOM Force Identifier enumeration.</semantics>
+                <enumerator>
+                    <name>Friendly_11</name>
+                    <value>31</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_11</name>
+                    <value>32</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_11</name>
+                    <value>33</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_12</name>
+                    <value>34</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_12</name>
+                    <value>35</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_12</name>
+                    <value>36</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_13</name>
+                    <value>37</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_13</name>
+                    <value>38</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_13</name>
+                    <value>39</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_13</name>
+                    <value>40</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_13</name>
+                    <value>41</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_13</name>
+                    <value>42</value>
+                </enumerator>
+            </enumeratedData>
+            <enumeratedData>
+                <name>EntityControlActionEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
+                <enumerator>
+                    <name>ChangeSuperiorUnit</name>
+                    <value>800</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <arrayDataTypes>
+            <arrayData>
+                <name>ArrayOfRelationship</name>
+                <dataType>Relation</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Sequence of relations.</semantics>
+            </arrayData>
+            <arrayData>
+                <name>ArrayOfHoldings</name>
+                <dataType>Holding</dataType>
+                <cardinality>Dynamic</cardinality>
+                <encoding>HLAvariableArray</encoding>
+                <semantics>Sequence of holdings.</semantics>
+            </arrayData>
+        </arrayDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>Relation</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>The specific value that represents the perceived hostility status.</semantics>
+                <field>
+                    <name>RelatedOrganization</name>
+                    <dataType>UUID</dataType>
+                    <semantics>The related organization.</semantics>
+                </field>
+                <field>
+                    <name>Relationship</name>
+                    <dataType>HostilityStatusCodeEnum32</dataType>
+                    <semantics>The level of the relation</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>Holding</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Static and dynamic data about the holding. The `EntityType` determines if the holding is a platform, munition, lifeform, supplies etc.</semantics>
+                <field>
+                    <name>Name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>A short name used for this holding.</semantics>
+                </field>
+                <field>
+                    <name>RequiredOnHandQuantity</name>
+                    <dataType>QuantityFloat64</dataType>
+                    <semantics>The minimum required amount of the specified type of entites.</semantics>
+                </field>
+                <field>
+                    <name>OnHandQuantity</name>
+                    <dataType>QuantityFloat64</dataType>
+                    <semantics>The actual amount of the specified type of entites.</semantics>
+                </field>
+                <field>
+                    <name>OperationalCount</name>
+                    <dataType>QuantityFloat64</dataType>
+                    <semantics>The amount of the specified type of entites available for operations</semantics>
+                </field>
+                <field>
+                    <name>EntityType</name>
+                    <dataType>EntityTypeStruct</dataType>
+                    <semantics>SISO-REF-010 enumeration. 
+Use 0.0.0.0.0.0.0 when not defined.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>FormationStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>The formation of this unit.</semantics>
+                <field>
+                    <name>FormationLocationType</name>
+                    <dataType>FormationLocationTypeEnum32</dataType>
+                    <semantics>The method used to correlate formation to location as center of mass or lead element.</semantics>
+                </field>
+                <field>
+                    <name>FormationSpacing</name>
+                    <dataType>MeterFloat32</dataType>
+                    <semantics>The default spacing in metres between subordinate elements one echelon below.</semantics>
+                </field>
+                <field>
+                    <name>FormationOrientation</name>
+                    <dataType>DirectionDegreesFloat32</dataType>
+                    <semantics>Orientation in degrees for unit formations and equipment.</semantics>
+                </field>
+                <field>
+                    <name>FormationData</name>
+                    <dataType>FormationDataStruct</dataType>
+                    <semantics>The formation data specific to the specified formation type.</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes>
+            <variantRecordData>
+                <name>FormationDataStruct</name>
+                <discriminant>Domain</discriminant>
+                <dataType>FormationTypeEnum32</dataType>
+                <alternative>
+                    <enumerator>GROUND</enumerator>
+                    <name>Ground</name>
+                    <dataType>GroundFormationTypeEnum32</dataType>
+                    <semantics>Ground formations.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>AIR</enumerator>
+                    <name>Air</name>
+                    <dataType>AirFormationTypeEnum32</dataType>
+                    <semantics>Air formations, currently not specified</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>SURFACE</enumerator>
+                    <name>Surface</name>
+                    <dataType>SurfaceFormationTypeEnum32</dataType>
+                    <semantics>Surface formations, currently not specified.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>SUBSURFACE</enumerator>
+                    <name>Subsurface</name>
+                    <dataType>SubsurfaceFormationTypeEnum32</dataType>
+                    <semantics>Subsurface formations, currently not specified.</semantics>
+                </alternative>
+                <encoding>HLAvariantRecord</encoding>
+                <semantics>Struct for enumerated choice for the type of formation being Ground, Air, Surface or Subsurface.</semantics>
+            </variantRecordData>
+        </variantRecordDataTypes>
+    </dataTypes>
+    <notes>
+        <note>
+            <label>netn-org_changelog_1</label>
+            <semantics>* Replaced `ORG_Root` attribute `UniqueId` with NETN-BASE `HLAobjectRoot` attribute `UniqueId` 
+ 
+* Added `ORG_Root` attribute `Name` 
+ 
+* Added object class `OrganizationElement` 
+ 
+* Replaced `Unit` attribute `Name` with `ORG_Root` attribute `Name` 
+* Replaced `Unit` attribute `Force` with `OrganizationElement` attribute `Organization` 
+* Replaced `Unit` attribute `EntityType` with `OrganizationElement` attribute `EntityType` 
+* Replaced `Unit` attribute `SymbolId` with `OrganizationElement` attribute `Symbol` 
+* Replaced `Unit` attribute `Disposition` with `OrganizationElement` attribute `Location` 
+* Replaced `Unit` attribute `CommunicationNetworks` with NETN-COM `Unit` attribute `CommunicationNetworks` 
+* Replaced `Unit` attribute `EmbarkedIn` with `OrganizationElement` attribute `HostUnit` 
+* Replaced `Unit` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol` 
+* Renamed `Unit` attribute `SuperiorUnit` to `AggregateUnit` 
+ 
+* Added `Unit` attribute `HigherHeadquarters` 
+ 
+* Renamed object class `EquipmentItem` to `Equipment` 
+* Replaced `EquipmentItem` attribute `Name` with `ORG_Root` attribute `Name` 
+* Replaced `EquipmentItem` attribute `EntityType` with `OrganizationElement` attribute `EntityType` 
+* Removed `EquipmentItem` attribute `NatoStockNumber` 
+* Replaced `EquipmentItem` attribute `SymbolId` with `OrganizationElement` attribute `Symbol` 
+* Replaced `EquipmentItem` attribute `Disposition` with `OrganizationElement` attribute `Location` 
+* Replaced `EquipmentItem` attribute `CommunicationNetworks` with NETN-COM `Equipment` attribute `CommunicationNetworks` 
+* Removed `EquipmentItem` attribute `Resolution` 
+* Replaced `EquipmentItem` attribute `MountedOn` with `OrganizationElement` attribute `HostUnit` 
+* Replaced `EquipmentItem` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol` 
+ 
+* Replaced `Installation` attribute `Name` with `ORG_Root` attribute `Name` 
+* Renamed `Installation` attribute `Owner` to `UnitInCommand` 
+* Replaced `Installation` attribute `EntityType` with `OrganizationElement` attribute `EntityType` 
+* Replaced `Installation` attribute `SymbolId` with `OrganizationElement` attribute `Symbol` 
+* Replaced `Installation` attribute `Location` with `OrganizationElement` attribute `Location` 
+* Replaced `Installation` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol` 
+ 
+* Renamed `Force` attribute `Relations` to `Relationships` 
+* Replaced `Force` attribute `Name` with `ORG_Root` attribute `Name` 
+ 
+* Renamed object class `Force` to `Organization` 
+ 
+* Added `Organization` attribute `ForceIdentifier` 
+* Added `Organization` attribute `CountryCode` 
+ 
+ 
+* Added `BaseEntity` attribute `Organization` 
+* Removed object class `FederateApplication` 
+ 
+* Added datatype `ForceIdentifierEnum` 
+ 
+* Removed datatype `Text1` 
+* Removed datatype `Text2` 
+* Removed datatype `Text3` 
+* Removed datatype `Text5` 
+* Removed datatype `Text8` 
+* Removed datatype `Text9` 
+* Removed datatype `Text15` 
+* Removed datatype `Text20` 
+* Removed datatype `Text21` 
+* Removed datatype `Text24` 
+* Removed datatype `Text255` 
+* Removed datatype `EquipmentSymbolAmplificationStruct` 
+* Removed datatype `UnitSymbolAmplificationStruct` 
+* Removed datatype `InstallationSymbolAmplificationStruct` 
+* Removed datatype `FormationInt32` 
+* Removed datatype `FormationPositionStruct` 
+* Removed datatype `HostilityStatusCodeEnum32` 
+* Removed datatype `ModelResolutionTypeEnum32` 
+* Removed datatype `NatoStockNumberArray13` 
+* Removed datatype `ArrayOfCommunicationNetworks` 
+* Removed datatype `CommunicationNetworkStruct` 
+* Removed datatype `CommunicationServiceTypeEnum32` 
+* Removed datatype `DispositionStruct`</semantics>
+        </note>
+        <note>
+            <label>netn-org_overview</label>
+            <semantics>## Overview 
+ 
+Use the NETN-ORG FOM module to represent organizations and their internal structure, relationships, associated units, equipment, and installations. 
+ 
+Dynamic organizational changes may include new or rearranged unit structures or changes in the relationships with other organizations. 
+ 
+In a simulation, not all units, equipment and installations have a corresponding simulation entity in the federation. Which elements to represent as simulated entities are determined by the current modelling responsibility described in NETN-TMR and dynamic changes in the level of aggregation described in NETN-MRM. 
+ 
+The NETN-ORG organization elements are the basis for initializing simulated entities, e.g., `PhysicalEntitiy` or `AggregateEntity` objects. Therefore, updates of NETN-ORG objects should be considered a re-initialization of any associated simulation entity. For example, updating the `Unit` attribute `Holdings` could be reflected in an `AggregateEntity`.
+ 
+## Organization 
+ 
+In NETN-ORG, an `Organization` is a representation used to: 
+1. group elements of the organization 
+2. define relationships between different organizations 
+ 
+All `BaseEntity` objects are associated with a specific `Organization`.The required RPR-FOM attribute `ForceIdentifier` can be derived from the referenced organization and the corresponding `Organization` attribute `ForceIdentifier`. 
+ 
+ 
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+HLAobjectRoot &lt;|-- ORG_Root 
+HLAobjectRoot &lt;|-- BaseEntity 
+ 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+ORG_Root &lt;|-- OrganizationElement 
+ORG_Root &lt;|-- Organization 
+ORG_Root : Name 
+OrganizationElement &lt;|-- Equipment 
+OrganizationElement &lt;|-- Unit 
+OrganizationElement &lt;|-- Installation 
+OrganizationElement : EntityType 
+OrganizationElement : HostUnit 
+OrganizationElement : Location 
+OrganizationElement : Organization 
+OrganizationElement : SuperiorUnit 
+OrganizationElement : Symbol 
+Unit : Echelon 
+Unit : Formation 
+Unit : HigherHeadquarters 
+Unit : Holdings 
+Unit : IsHq 
+Organization : CountryCode 
+Organization : ForceIdentifier 
+Organization : Relationships 
+BaseEntity : Organization 
+``` 
+ 
+Each `Organization` is defined by a structure of `OrganizationElement` objects. Each `OrganizationElement` object is related to its `Organization` and its `SuperiorUnit`, if any. There are three (3) subtypes of `OrganizationElement`: 
+ 
+1. `Unit` represents an element at a specified level in the organization. An organizational unit can contain subunits and can belong to a superior unit. A unit consists of equipment, personnel and supplies; these holdings can belong directly to the unit or indirectly as a holding of a subunit. 
+2. `Equipment` represents individual physical items explicitly defined and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensor objects. 
+3. `Installation` are facilities, e.g. harbours, airfields, or engineering objects, e.g. minefields.
+
+To request a change of `SuperiorUnit`, use the NETN-SMC entity control action `ChangeSuperiorUnit`.
+
+
+
+```mermaid
+classDiagram 
+direction LR
+HLAinteractionRoot &lt;|-- SMC_EntityControl
+
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_EntityControl &lt;|-- ChangeSuperiorUnit
+SMC_EntityControl : Entity(NETN-SMC)
+ChangeSuperiorUnit : SuperiorUnit
+
+```
+
+ 
+## Allocation to Federates 
+ 
+The NETN-ORG can also provide the initial allocation of responsibility to a federate for what `Equipment` is represented as a `PhysicalEntity` and what `Unit` is represented as an `AggregateEntity`. The NETN-SMC object class `SMC_Service` is subclassed with the `EntitySimulation` class, which can publish the allocation of initial modelling responsibility for each instance.
+ 
+```mermaid 
+classDiagram 
+direction LR 
+ 
+ 
+HLAobjectRoot &lt;|-- SMC_Service 
+HLAobjectRoot : UniqueId(NETN-BASE) 
+ 
+SMC_Service &lt;|-- EntitySimulation 
+SMC_Service : Federate(NETN-SMC) 
+EntitySimulation : AggregateEntityAllocation 
+EntitySimulation : PhysicalEntityAllocation 
+```</semantics>
+        </note>
+    </notes>
+</objectModel>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?purpose description="Schema for AIS extensions to NETN-ORG MSDL files." ?>
+<?version number="1.0" date="August 7, 2020"?>
+<!-- 	
+-->
+<xs:schema xmlns:ais="urn:nato:nmsg:ms3:netn:ais:1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:nato:nmsg:ms3:netn:ais:1" version="1.0">
+	<xs:simpleType name="EntityType">
+		<xs:annotation>
+			<xs:documentation>SISO EntityType value</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="TransmitterStatusType">
+		<xs:annotation>
+			<xs:documentation>Enumeration values for the transmitter status.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OFF"/>
+			<xs:enumeration value="ON_BUT_NOT_TRANSMITTING"/>
+			<xs:enumeration value="ON_AND_TRANSMITTING"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AisEquipmentItemType">
+		<xs:annotation>
+			<xs:documentation>Specifies AIS station equipment attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MMSI" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Maritime Mobile Service Identity (MMSI) of the AIS station.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="radioSystemType" type="ais:EntityType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The type of transmitter.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="transmitterStatus" type="ais:TransmitterStatusType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The initial status of the transmitter of the AIS station.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VesselType">
+		<xs:annotation>
+			<xs:documentation>Additional equipment attributes for AIS vessel.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ais:AisEquipmentItemType">
+				<xs:sequence>
+					<xs:element name="IMO" type="xs:integer" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>The International Maritime Organization (IMO) number is a unique identifier for vessels.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SARaircraftType">
+		<xs:annotation>
+			<xs:documentation>Additional equipment attributes for AIS SAR aircraft.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ais:AisEquipmentItemType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BaseStationType">
+		<xs:annotation>
+			<xs:documentation>Additional equipment attributes for AIS base station.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ais:AisEquipmentItemType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ATONType">
+		<xs:annotation>
+			<xs:documentation>Additional equipment attributes for AIS aid to navigation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ais:AisEquipmentItemType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="AisEquipmentItem">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="vessel" type="ais:VesselType"/>
+				<xs:element name="sarAircraft" type="ais:SARaircraftType"/>
+				<xs:element name="baseStation" type="ais:BaseStationType"/>
+				<xs:element name="aton" type="ais:ATONType"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

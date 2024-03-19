@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2017 rel. 3 sp1 (x64) (http://www.altova.com) by Curtis Blais (Naval Postgraduate School) -->
+<!-- created with XMLSpy v2006 U (http://www.altova.com) by Tram Chase (SimVentions) -->
+<?copyright statement="Copyright (c) 2018 by the Simulation Interoperability Standards Organization, Inc.
+P.O. Box 781238
+Orlando, FL 32878-1238, USA
+All rights reserved.
+SISO hereby grants a general, royalty-free license to copy, distribute, display, and make derivative works from this material, for all purposes, provided that any use of the material contains the following attribution: "Reprinted with permission from SISO Inc." Should a reader require additional information, contact the SISO Inc. Board of Directors.
+SISO Inc. Board of Directors
+P.O. Box 781238
+Orlando, FL 32878-1238, USA"?>
+<!--Schema for BOM DIF
+
+Version 0.12 - Sep 8, 2005 
+Version 2006 - March 25, 2005 
+Version 2006a - April 2, 2007   // Reflects and complies to the approved standard SISO-STD-003-2006 submitted March 31, 2006
+-->
+<xs:schema xmlns="http://www.sisostds.org/schemas/modelID" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.sisostds.org/schemas/modelID" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="String">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attributeGroup ref="commonAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="IdentifierType">
+		<xs:simpleContent>
+			<xs:extension base="xs:NCName">
+				<xs:attributeGroup ref="commonAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="NonEmptyString">
+		<xs:simpleContent>
+			<xs:extension base="nonEmptyString">
+				<xs:attributeGroup ref="commonAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="OMTypeEnumerations">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FOM"/>
+			<xs:enumeration value="SOM"/>
+			<xs:enumeration value="BOM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OMTypeUnion">
+		<xs:union memberTypes="OMTypeEnumerations nonEmptyString"/>
+		<!--this allows enumerations to be used plus any user defined content -->
+	</xs:simpleType>
+	<xs:simpleType name="glyphTypeEnumerations">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BITMAP"/>
+			<xs:enumeration value="JPG"/>
+			<xs:enumeration value="GIF"/>
+			<xs:enumeration value="PNG"/>
+			<xs:enumeration value="TIFF"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="glyphTypeUnion">
+		<xs:union memberTypes="glyphTypeEnumerations xs:string"/>
+		<!--this allows enumerations to be used plus any user defined content -->
+	</xs:simpleType>
+	<xs:complexType name="glyphType" mixed="true">
+		<xs:simpleContent>
+			<xs:extension base="xs:base64Binary">
+				<xs:attributeGroup ref="commonAttributes"/>
+				<xs:attribute name="type" type="glyphTypeUnion" use="required"/>
+				<xs:attribute name="height" type="xs:short"/>
+				<xs:attribute name="width" type="xs:short"/>
+				<xs:attribute name="alt" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="pocType">
+		<xs:sequence>
+			<xs:element name="pocType" type="pocTypeType">
+				<xs:annotation>
+					<xs:documentation>specifies the role that the POC has with
+respect to the model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pocName" type="String" minOccurs="0"/>
+			<xs:element name="pocOrg" type="String" minOccurs="0"/>
+			<xs:element name="pocTelephone" type="String" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="pocEmail" type="String" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:attributeGroup name="commonAttributes">
+		<!--this is the common attributes for any element -->
+		<xs:attribute name="notes" type="xs:IDREFS" use="optional"/>
+		<xs:attribute name="idtag" type="xs:ID" use="optional"/>
+		<xs:anyAttribute namespace="##other"/>
+	</xs:attributeGroup>
+	<xs:simpleType name="nonEmptyString">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SecurityClassificationEnumeration">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Unclassified"/>
+			<xs:enumeration value="Confidential"/>
+			<xs:enumeration value="Secret"/>
+			<xs:enumeration value="Top Secret"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SecurityClassificationUnion">
+		<xs:union memberTypes="SecurityClassificationEnumeration nonEmptyString"/>
+	</xs:simpleType>
+	<xs:complexType name="modelType">
+		<xs:simpleContent>
+			<xs:extension base="OMTypeUnion">
+				<xs:attributeGroup ref="commonAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="securityClassificationType">
+		<xs:simpleContent>
+			<xs:extension base="SecurityClassificationUnion">
+				<xs:attributeGroup ref="commonAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="ApplicationDomainEnumerations">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Analysis"/>
+			<xs:enumeration value="Training"/>
+			<xs:enumeration value="Test and Evaluation"/>
+			<xs:enumeration value="Engineering"/>
+			<xs:enumeration value="Acquisition"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ApplicationDomainUnion">
+		<xs:union memberTypes="ApplicationDomainEnumerations xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="applicationDomainType">
+		<xs:simpleContent>
+			<xs:extension base="ApplicationDomainUnion">
+				<xs:attributeGroup ref="commonAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="POCTypeEnumeration">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Primary author"/>
+			<xs:enumeration value="Contributor"/>
+			<xs:enumeration value="Proponent"/>
+			<xs:enumeration value="Sponsor"/>
+			<xs:enumeration value="Release authority"/>
+			<xs:enumeration value="Technical POC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="POCTypeUnion">
+		<xs:union memberTypes="POCTypeEnumeration nonEmptyString"/>
+	</xs:simpleType>
+	<xs:complexType name="pocTypeType">
+		<xs:simpleContent>
+			<xs:extension base="POCTypeUnion">
+				<xs:attributeGroup ref="commonAttributes"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="referenceTypeEnumerations">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Source Material"/>
+			<xs:enumeration value="Conceptual Model"/>
+			<xs:enumeration value="Related BOM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="referenceTypeUnion">
+		<xs:union memberTypes="referenceTypeEnumerations xs:string"/>
+		<!--this allows enumerations to be used plus any user defined content -->
+	</xs:simpleType>
+	<xs:complexType name="referenceType">
+		<xs:sequence>
+			<xs:element name="type">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="referenceTypeUnion">
+							<xs:attributeGroup ref="commonAttributes"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="identification">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:anyURI">
+							<xs:attributeGroup ref="commonAttributes"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="commonAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="keywordType">
+		<xs:sequence>
+			<xs:element name="taxonomy" type="String" minOccurs="0"/>
+			<xs:element name="keywordValue" type="NonEmptyString"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="commonAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="modelIdentificationType">
+		<xs:sequence>
+			<xs:element name="name" type="IdentifierType">
+				<xs:annotation>
+					<xs:documentation>specifies the name assigned to the object model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" type="modelType">
+				<xs:annotation>
+					<xs:documentation>specify the type of model that is represented</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="NonEmptyString">
+				<xs:annotation>
+					<xs:documentation>specifies the version identification assigned to the object model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="modificationDate" nillable="false">
+				<xs:annotation>
+					<xs:documentation>specifies the latest date on which this version of the object model was created or modified. The modification date shall be specified in the format "YYYY-MM-DD"</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:date">
+							<xs:attributeGroup ref="commonAttributes"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="securityClassification" type="securityClassificationType">
+				<xs:annotation>
+					<xs:documentation>specifies the security classification of the
+object model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="releaseRestriction" type="String" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>specifies any restrictions on the release of the object models to specific organizations or individuals</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="purpose" type="String" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>specifies the purpose for which the federate or federation was developed</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="applicationDomain" type="applicationDomainType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>specifies the type or class of application to which the federate or federation applies</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="NonEmptyString"/>
+			<xs:element name="useLimitation" type="String" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>specifies any known applications for which this model has been found not to be appropriate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="useHistory" type="String" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>specifies a description of where this model has been used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="keyword" type="keywordType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>specifies keywords that characterize the model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="poc" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>specify an organization or a
+person who has a particular role with respect to the model</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="pocType">
+							<xs:attributeGroup ref="commonAttributes"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="reference" type="referenceType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>specifies a pointer to additional sources of information</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="other" type="String" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>specifies other data deemed relevant by the author of the object model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="glyph" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>specifies a glyph to visually represent the model</xs:documentation>
+				</xs:annotation>
+				<xs:complexType mixed="true">
+					<xs:simpleContent>
+						<xs:extension base="glyphType"/>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="commonAttributes"/>
+	</xs:complexType>
+</xs:schema>

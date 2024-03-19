@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:AMSP-04/NETN-ENTITY.git
+	branch = develop
+	commit = 52e1fed475a275ccc3ef9319834a8947a3c65ca3
+	parent = 5dff4cf5b7d32f2ed0ff0ca06928ca2f1331b5cd
+	method = merge
+	cmdver = 0.4.6

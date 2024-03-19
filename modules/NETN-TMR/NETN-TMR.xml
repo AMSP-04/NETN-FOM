@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification notes="netn-tmr_overview">
+        <name>NETN-TMR</name>
+        <type>FOM</type>
+        <version>3.0</version>
+        <modificationDate>2024-03-10</modificationDate>
+        <securityClassification>Not Classified</securityClassification>
+        <purpose>The NATO Education and Training Network Transfer of Modelling Responsibilities (NETN-TMR) module provides a standard interface and pattern for transferring modelling responsibility between federates. It extends the HLA Ownership Management services by providing the means to trigger modelling responsibility transfer and publish the assigned modelling responsibilities of object instances.
+        
+For example:
+            
+* Transfer modelling responsibility between virtual and constructive simulation systems.  
+* Transfer modelling responsibility between high- and low-fidelity models.
+* Transfer modelling responsibility to allow backup, maintenance or load-balancing.</purpose>
+        <applicationDomain>Training</applicationDomain>
+        <description>In a federated distributed simulation, the participating systems (federates) provide services that model the synthetic environment. Allocation of modelling responsibilities depends on individual federate capabilities, federation design agreements, and initial scenario conditions. The primary responsibility for modelling a simulated entity is allocated to, at most, one federate. However, during execution, the modelling responsibility and ownership of individual attributes may change.</description>
+        <useLimitation>NETN-TMR covers the following cases:            
+* Initialization with assigned modelling responsibilities for objects. 
+* Explicit request to acquire modelling responsibility.
+* Triggering modelling responsibility transfer by updating the allocation of responsibility attribute.</useLimitation>
+        <useHistory notes="netn-tmr_changelog_1">v1.1 - Released version part of NETN FOM v2.0 in AMSP-04 Ed A.</useHistory>
+        <useHistory notes="netn-tmr_changelog_2">v2.0 - Released version part of NETN FOM v3.0 in AMSP-04 Ed B.</useHistory>
+        <useHistory notes="netn-tmr_changelog_3">v3.0 - Released version part of NETN FOM v4.0 in AMSP-04 Ed C.</useHistory>
+        <poc>
+            <pocType>Release authority</pocType>
+            <pocName>NATO Modelling and Simulation Group</pocName>
+            <pocOrg>NATO Science and Technology Organization</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-106 Enhanced CAX Architecture, Desing and Methodology</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-134 NATO Distributed Simulation Architecture &amp; Design, Compliance Testing and Certification</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-191 NATO Standards for Federated Simulation and Services for Integration, Verification and Certification</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-223 Evolving M&amp;S applications and services for compliance with NATO standards for federated simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-ORG</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-SMC</identification>
+        </reference>
+        <other>
+Copyright © 2023 by NATO/OTAN. All rights reserved.
+This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
+
+Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
+        <glyph type="png" height="48" width="48" alt="">iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAh2kABAAAAAEAAABaAAAAAAAAAEgAAAABAAAASAAAAAEAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAMKADAAQAAAABAAAAMAAAAAAoDQEPAAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAASo0lEQVRoBaWad6xcRZaHb/ft3P1ssAGTc44iGjDJ2ICANWFG5IHFHhOEyCJp+QPQ7h+M0AqtkdCSQeSw2CSB7XGSBgEirhBBLDmDwcbP73UO+31F36e28TIrzZPat26dqlOnzvmdUHUd9Xq9VBRFqSeeeCL25/uSJUsyPm+88cY0v4z0fl96kJ7MSeiO/3t0x8hrcM3B+euiD/IcpNsf33TTTQpavOiii1pz5syJX3rppeLFF19c/+6770pDQ0MRtNasWbOGLr/88noqlcree++9hSuvvLKxfPnyyscff9y99tprO1999VVF+h577JGbN29e7tJLLw30arXaYVxv2223DfS999670Gg0MhdeeGFTnm+//Xbr/fff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</glyph>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <sharing>Neither</sharing>
+            <semantics></semantics>
+            <attribute>
+                <name>AllocatedFederate</name>
+                <dataType>FederateName</dataType>
+                <updateType>Conditional</updateType>
+                <updateCondition>On change</updateCondition>
+                <ownership>DivestAcquire</ownership>
+                <sharing>PublishSubscribe</sharing>
+                <transportation>HLAreliable</transportation>
+                <order>Receive</order>
+                <semantics>Optional. Reference to the federate application with the assigned primary responsibility for modelling the object behaviour.</semantics>
+            </attribute>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>SMC_FederateControl</name>
+                <interactionClass>
+                    <name>AcquireModellingResponsibility</name>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Trigger the specified federate to initiate a transfer of modelling responsibility for the specified entity.</semantics>
+                    <parameter>
+                        <name>Entity</name>
+                        <dataType>UUID</dataType>
+                        <semantics>Required: Reference to the object which is to be transferred.</semantics>
+                    </parameter>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>FederateControlActionEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Enumeration of Federate Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
+                <enumerator>
+                    <name>TransferModellingResponsibility</name>
+                    <value>10</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+    </dataTypes>
+    <notes>
+        <note>
+            <label>netn-tmr_changelog_1</label>
+            <semantics>v1.0.1 XML Schema Reference Changed 
+v1.0.2 - Spelling correction at enumerations 
+v1.0.3 - Adding AttributeValues 
+v1.0.3r3 - Adding reason 
+v1.0.3r4 - Added parameter Respondent at interaction TMR_OfferTransferModellingResponsibility and enumeration value NoofferReasonEnum32.OwnershipStateNotApplicableWithRequest 
+v1.0.3r5 - Added enumeration value NoofferReasonEnum32.EntityNotKnown 
+V1.0.3r6 - Change definition of data type TransactionId, a counter and the federate handle 
+v1.1.0r1 - Added interactions TMR_CancelRequest and TMR_Status 
+v1.1.0 - Removed "r1" from module name 
+v1.1.1 - Update of Dependency table 
+v1.1.2 - Rename of enumeration values (AttributeSetTooRestricted, AttributeSetTooExtensive). 
+v1.1.3 - Rename of enumeration value (FederateTooBusy).</semantics>
+        </note>
+        <note>
+            <label>netn-tmr_changelog_2</label>
+            <semantics>* Added `modelIdentification` `useLimitation` to reflect Scope of FOM Module 
+* Added `modelIdentification` `glyph` 
+* Added parameter `ResponseFederate` to interaction class `TMR_RequestTransferModellingResponsibility` 
+ 
+* Moved parameter `RequestFederate` from interaction class `TMR` to `TMR_InitiateTransferModellingResponsibility` 
+* Moved parameter `ResponseFederate` from interaction class `TMR` to `TMR_InitiateTransferModellingResponsibility` 
+* Moved datatype `FederateName` to NETN-BASE. 
+* Moved datatype `CancellationReasonEnum32` to NETN-BASE. 
+* Moved datatype `TransactionId` to NETN-Base 
+ 
+* Updated `modelIdentification` `securityClassification` from `unclassified` to `Not Classified` 
+* Updated `modelIdentification` `other` to include license information 
+* Updated `modelIdentification` `reference` to only refer to directly dependent FOM Modules 
+* Updated `modelIdentification` `purpose` to reflect Purpose of FOM Module 
+* Updated `modelIdentification` `description` to reflect Introduction of FOM Module 
+* Updated InteractionClass `TMR` to `TMR_Interaction` and renamed parameter `TransactionID` to `EventId` 
+* Updated InteractionClass `TMR_OfferTransferModellingResponsibility` to `OfferTransfer` 
+* Updated InteractionClass `TMR_RequestTransferModellingResponsibility` to `RequestTransfer` 
+* Updated InteractionClass `TMR_CancelRequest` to `CancelRequest` 
+* Updated InteractionClass `TMR_TransferResult` to `TransferResult` and parameter `TransferOk` to `IsCompleted` 
+* Updated InteractionClass `TMR_InitiateTransferModellingResponsibility` to `InitiateTransfer` 
+* Updated EnumerateDatatype name `TransferTypeEnum32` to `TransferEnumType` 
+* Updated EnumerateDatatype name `NoOfferReasonEnum32` to `NoOfferReasonEnumType` 
+* Updated EnumeratedDatatype name `NoofferReasonEnum32` to `NoOfferReasonEnum32` and enumeration `OwnershipStateNotApplicableWithRequest` to `OwnershipStateNotCompatibleWithRequest` 
+* Updated ArrayDatatype name `ArrayOfAttributes` to `AttributeNamesType` 
+* Updated Paramter `isOffering` of InteractionClass `TMR_OfferTransferOfModellingResponsibility` to `IsOffering` 
+ 
+* Removed Parameter `CapabilityType` from InteractionClass `TMR_RequestTransferModellingResponsibility` 
+* Removed Parameter `CapabilityType` from InteractionClass `TMR_InitiateTransferModellingResponsibility` 
+* Removed Parameter `Respondent` from InteractionClass `TMR_OfferTransferModellingResponsibility` 
+* Removed Parameter `Initiating` of interaction class `TMR_InitiateTransferModellingResponsibility` 
+* Removed Parameter `InstanceAttributeValues` from InteractionClass `TMR_RequestTransferModellingResponsibility` 
+* Removed Parameter `InstanceAttributeValues` from InteractionClass `TMR_InitiateTransferModellingResponsibility` 
+* Removed EnumeratedDatatype `CapabilityTypeEnum32` 
+* Removed ArrayDatatype `ArrayOfInstanceAttributeValues` 
+* Removed ArrayDatatype `ArrayOfAttributeValues` 
+* Removed ArrayDatatype `ArrayOfBytes` 
+* Removed FixedRecordDatatype `InstanceAttributeValuesStruct` 
+* Removed FixedRecordDatatype `AttributeValueStruct`</semantics>
+        </note>
+        <note>
+            <label>netn-tmr_changelog_3</label>
+            <semantics>* Removed All Interaction Classes 
+* Removed All Datatypes 
+ 
+* Added Dependency on `NETN-ETR` 
+* Added Dependency on `NETN-ORG` 
+ 
+* Added Object Class `TMR_FederateApplication` 
+* Added Interaction Class `RequestTransfer` 
+ 
+* Added `HLAobjectRoot` attribute `FederateApplication` 
+* Added `HLAinteractionRoot` parameter `FederateApplication`</semantics>
+        </note>
+        <note>
+            <label>netn-tmr_overview</label>
+            <semantics>## Overview 
+ 
+ 
+NETN-TMR extends the HLA concept of object instance attribute ownership by associating primary modelling responsibility to objects in the federation. Only one federate has the primary modelling responsibility, but the responsibility can be transferred. Primary responsibility does not require ownership (HLA ownership) of all attributes of an object. 
+ 
+The federate with a primary responsibility shall respond to all NETN-SMC `SMC_EntityControl` actions directed to the entity. This also implies that the same federate normally publishes the `BaseEntity` attribute `SupportedActions`.
+
+## Modelling Responsibility
+
+The NETN-TMR modules extend the `HLAobjectRoot` object class with the attribute `AllocatedFederate`. 
+
+```mermaid
+classDiagram 
+direction LR
+
+HLAobjectRoot : AllocatedFederate
+HLAobjectRoot : UniqueId(NETN-BASE)
+```
+ 
+The owner (HLA ownership) of the `AllocatedFederate` attribute is the federate with primary modelling responsibility for the object. An update of this attribute triggers the referenced federate to initiate a transfer to acquire primary modelling responsibility. 
+
+Sending an `AcquireModellingResponsibility` interaction triggers the referenced federate to initiate a transfer. If successful, the acquiring federate owns (HLA ownership) the `AllocatedFederate` attribute and updates its value to the federate name. 
+
+
+```mermaid
+classDiagram 
+direction LR
+
+HLAinteractionRoot &lt;|-- SMC_FederateControl
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_FederateControl &lt;|-- AcquireModellingResponsibility
+SMC_FederateControl : Federate(NETN-SMC)
+AcquireModellingResponsibility : Entity
+```
+
+Transfer of primary modelling responsibility is impossible if no owner of the `AllocatedFederate` attribute exists. 
+ 
+## Attribute triggered Transfer
+ 
+An update of the `AllocatedFederate` attribute triggers the referenced federate to acquire the primary modelling responsibility. E.g. during scenario initialization, a federate may register all objects and then update the `AllocatedFederate` attributes to trigger a change in modelling responsibility. 
+ 
+ 
+``` mermaid 
+ 
+sequenceDiagram 
+autonumber
+Federation-&gt;&gt;Federate 1:Update entity.AllocatedFederate = federate 1 
+Federate 1-&gt;&gt;Federation:Attribute Ownership Acquisition(entity.attributes) 
+Federation-&gt;&gt;Federate 2:Request Attribute Ownership Release(entity.attributes) 
+Federate 2-&gt;&gt;Federation:Attribute Ownership Divestiture If Wanted(entity.attributes) or &lt;br&gt; Attribute Ownership Release Denied(entity.attributes) 
+Federation-&gt;&gt;Federate 1:Attribute Ownership Acquisition Notification(entity.attributes) or &lt;br&gt; Attribute Ownership Unavailable(entity.attributes) 
+ 
+Federate 1--&gt;&gt;Federation:Attribute Ownership Acquisition(entity.AllocatedFederate) 
+``` 
+ 
+1. The `AllocatedFederate` attribute update triggers the referenced federate (Federate 1) to start the acquisition of primary modelling responsibility. 
+2. Use the HLA service `Attribute Ownership Acquisition` to request ownership of relevant attributes. 
+3. The federate currently owning a requested attribute (Federate 2) receives a `Request Attribute Ownership Release` callback. 
+4. Release the attribute using the `Attribute Ownership Divestiture If Wanted` HLA service, or if unable to release, use the `HLA Attribute Ownership Release Denied`. 
+5. The HLA callback `Attribute Ownership Acquisition Notification` indicates a successful attribute ownership transfer, and the `Attribute Ownership Unavailable` callback indicates an unsuccessful transfer. 
+6. Acquire the ownership of the `AllocatedFederate` attribute to complete the transfer of modelling responsibility. 
+ 
+ 
+## Request Transfer
+ 
+Sending an `AcquireModellingResponsibility` requests the referenced federate to start acquiring modelling responsibility. 
+
+ 
+``` mermaid 
+ 
+sequenceDiagram 
+autonumber
+ 
+Federation -&gt;&gt;Federate 1:AcquireModellingResponsibility(requestId, entity, federate 1) 
+Federate 1-&gt;&gt;Federation:HLA Attribute Ownership Acquisition(entity.attributes) 
+Federation-&gt;&gt;Federate 2:HLA Request Attribute Ownership Release(entity.attributes) 
+Federate 2-&gt;&gt;Federation:HLA Ownership Release(entity.attributes) 
+Federate 2-&gt;&gt;Federation:HLA Attribute Ownership Divestiture If Wanted(entity.attributes) 
+Federation-&gt;&gt;Federate 1:HLA Attribute Ownership Acquisition Notification(entity.attributes) 
+Federate 1-&gt;&gt;Federation:Update entity.FederateApplication 
+Federate 1-&gt;&gt;Federation:SMC_Response(requestId, TRUE) 
+ 
+``` 
+ 
+1. Send an `AcquireModellingResponsibility` interaction with references to the entity and the acquiring federate (Federate 1). 
+2. If required, use the HLA service `Attribute Ownership Acquisition` to request ownership of relevant attributes for the referenced entities. 
+3. The federate currently owning a requested attribute (Federate 2) receives a `Request Attribute Ownership Release` callback. 
+4.  Release the attribute using the `Attribute Ownership Divestiture If Wanted` HLA service. 
+5. The HLA callback `Attribute Ownership Acquisition Notification` indicates a successful attribute ownership transfer. 
+6. After a successful transfer, update the `FederateApplication` attribute of the transferred entities to reference the new federate application that received the modelling responsibility. 
+7. Send an `SMC_Response` interaction indicating the successful completion of the entity action. 
+ 
+## Unsuccessful Transfer 
+ 
+If an ownership release of a required attribute is denied, the transfer is cancelled, and the acquiring federate shall update the `AllocatedFederate` attribute to represent the federate with primary modelling responsibility. 
+ 
+``` mermaid 
+sequenceDiagram
+autonumber
+
+participant Federation 
+participant Federate 1 
+participant Federate 2 
+ 
+Federate 1-&gt;&gt;Federation:HLA Attribute Ownership Acquisition(entity.attributes) 
+Federation-&gt;&gt;Federate 2:HLA Request Attribute Ownership Release(entity.attributes) 
+Federate 2-&gt;&gt;Federation:HLA Attribute Ownership Release Denied(entity.attributes) 
+Federation-&gt;&gt;Federate 1:HLA Attribute Ownership Unavailable(entity.attributes) 
+Federate 1-&gt;&gt;Federation:Update(entity.AllocatedFederate) 
+Federate 1-&gt;&gt;Federation:SMC_Response(False) 
+ 
+ 
+``` 
+ 
+ 
+1. Use the HLA service `Attribute Ownership Acquisition` to request ownership of relevant attributes for the referenced entities. 
+3. The federate currently owning a requested attribute (Federate 2) receives a `Request Attribute Ownership Release` callback. 
+4. Deny the attribute release using the `Attribute Ownership Release Denied` HLA service. 
+5. The HLA callback `Attribute Ownership Release Denied` indicates an unsuccessful attribute ownership transfer. 
+6. Cancel the transfer and update the `AllocatedFederate` attribute. 
+7. Send an `SMC_Response` interaction indicating the unsuccessful completion of the entity action.</semantics>
+        </note>
+    </notes>
+</objectModel>
