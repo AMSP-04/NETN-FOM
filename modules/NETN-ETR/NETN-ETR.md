@@ -73,17 +73,17 @@ The following tasks are defined in NETN-ETR:
  
 |Task|Description| 
 |---|---| 
-|MagicMove|Instructs the simulation entity to change location to the specified position and heading immediately. An attached entity is detached immediately just before the move task starts.| 
-|MoveByRoute|Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. An attached entity is detached immediately just before the move task starts.| 
-|MoveInDirection|Tasking of an entity to move in a specified direction for a duration. An attached entity is detached immediately just before the move task starts.| 
-|MoveIntoFormation|Tasking a simulated entity to move into the given formation on the given location with the given heading. An attached entity is detached immediately just before the move task starts.| 
-|MoveToLocation|Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. An attached entity is detached immediately just before the move task starts.| 
-|FollowEntity|Tasking of an entity to follow another entity at a specified distance. An attached entity is detached immediately just before the move task starts.| 
-|Patrol|Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. An attached entity is detached immediately just before the move task starts.| 
+|MagicMove|Instructs the simulation entity to change location to the specified position and heading immediately. If attached, the entity is detached immediately just before the move task starts.| 
+|MoveByRoute|Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. If attached, the entity is detached immediately just before the move task starts.| 
+|MoveInDirection|Tasking of an entity to move in a specified direction for a duration. If attached, the entity is detached immediately just before the move task starts.| 
+|MoveIntoFormation|Tasking a simulated entity to move into the given formation on the given location with the given heading. If attached, the entity is detached immediately just before the move task starts.| 
+|MoveToLocation|Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. If attached, the entity is detached immediately just before the move task starts.| 
+|FollowEntity|Tasking of an entity to follow another entity at a specified distance. If attached, the entity is detached immediately just before the move task starts.| 
+|Patrol|Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. If attached, the entity is detached immediately just before the move task starts.| 
 |ChangeHeading|Tasking of an entity to change heading.| 
 |ChangeSpeed|Tasking of an entity to change speed.| 
 |ChangeAltitude|Tasking of an entity to set move to a specified altitude.| 
-|StopAtSideOfRoad|Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). An attached entity is detached immediately just before the move task starts.| 
+|StopAtSideOfRoad|Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). If attached, the entity is detached immediately just before the move task starts.| 
 |Attach|Requesting a simulated entity to attach to (mount) the specified entity.| 
 |Detach|Requesting a simulated entity to detach from a simulated entity.| 
 |DirectFire|Tasking an entity to fire directed at a specified target entity.| 
@@ -541,8 +541,7 @@ Tasking of an entity to observe an area.
 
 ### MoveToLocation
 
-Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. 
-An attached entity is detached immediately just before the move task starts.
+Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. If attached, the entity is detached immediately just before the move task starts.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
@@ -562,7 +561,7 @@ An attached entity is detached immediately just before the move task starts.
 
 ### MoveIntoFormation
 
-Tasking a simulated entity to move into the given formation on the given location with the given heading. An attached entity is detached immediately just before the move task starts.
+Tasking a simulated entity to move into the given formation on the given location with the given heading. If attached, the entity is detached immediately just before the move task starts.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
@@ -582,7 +581,7 @@ Tasking a simulated entity to move into the given formation on the given locatio
 
 ### MoveInDirection
 
-Tasking of an entity to move in a specified direction for a duration. An attached entity is detached immediately just before the move task starts.
+Tasking of an entity to move in a specified direction for a duration. If attached, the entity is detached immediately just before the move task starts.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
@@ -602,7 +601,7 @@ Tasking of an entity to move in a specified direction for a duration. An attache
 
 ### FollowEntity
 
-Tasking of an entity to follow another entity at a specified distance. An attached entity is detached immediately just before the move task starts.
+Tasking of an entity to follow another entity at a specified distance. If attached, the entity is detached immediately just before the move task starts.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
@@ -661,7 +660,7 @@ Requesting a simulated entity to detach from a simulated entity.
 
 ### MoveByRoute
 
-Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. An attached entity is detached immediately just before the move task starts.
+Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. If attached, the entity is detached immediately just before the move task starts.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
@@ -741,7 +740,7 @@ Tasking of an entity to change heading.
 
 ### Patrol
 
-Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. An attached entity is detached immediately just before the move task starts.
+Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. If attached, the entity is detached immediately just before the move task starts.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
@@ -761,7 +760,7 @@ Requesting a simulated entity to perform a patrol task. The tasked entity moves 
 
 ### StopAtSideOfRoad
 
-Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). An attached entity is detached immediately just before the move task starts.
+Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). If attached, the entity is detached immediately just before the move task starts.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
@@ -820,7 +819,7 @@ Requesting a simulated entity to enter the specified facility (cultural feature)
 
 ### MagicMove
 
-Instructs the simulation entity to immediately change location to the specified position and heading. An attached entity is detached immediately just before the move task starts.
+Instructs the simulation entity to immediately change location to the specified position and heading. If attached, the entity is detached immediately just before the move task starts.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|

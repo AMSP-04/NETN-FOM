@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:AMSP-04/NETN-ETR.git
 	branch = develop
-	commit = cc81973be6f18003643898b1a44edec094e480a1
-	parent = 0ac3910d295513fdc504817f442caabc08958d16
+	commit = 300961d399bb84435f6cbba314387ecf1a65105a
+	parent = dea310ff7349cb520a2cef4cb865ae0b2c85ba8b
 	method = merge
 	cmdver = 0.4.6
