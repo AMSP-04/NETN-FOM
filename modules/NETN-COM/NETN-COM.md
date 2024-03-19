@@ -2,7 +2,7 @@
 # NETN-COM
 |Version| Date| Dependencies|
 |---|---|---|
-|2.0|2024-03-10|NETN-BASE, NETN-ETR, NETN-ORG|
+|2.0|2024-03-18|NETN-BASE, NETN-ETR, NETN-ORG|
 
 The purpose of the NATO Education and Training Network Communication Network Module (NETN-COM) is to provide a standard way to exchange data related to the status of connections in a communication network and links in a physical network.
 
@@ -13,7 +13,7 @@ The communication networks can be modelled using radios, ethernet, satellite com
 ## Overview 
  
 The NETN-COM module distinguishes between three layers of networks. 
-* **Application Layer** - This is the topmost layer corresponding to OSI layers 5-7. It is represented in the NETN-COM object model by the `CommunicationNetwork` object and the `IncommingConnections` attribute, which extends the RPR-FOM `BaseEntity` object class. The NETN-COM also defines extensions to the NETN-ETR `Task` and `ETR_Report` interaction classes to associate communication networks with these messages. Receivers use the  `IncommingConnections` attribute to determine whether the message can be delivered. 
+* **Application Layer** - This is the topmost layer corresponding to OSI layers 5-7. It is represented in the NETN-COM object model by the `CommunicationNetwork` object and the `IncomingConnections` attribute, which extends the RPR-FOM `BaseEntity` object class. The NETN-COM also defines extensions to the NETN-ETR `Task` and `ETR_Report` interaction classes to associate communication networks with these messages. Receivers use the  `IncomingConnections` attribute to determine whether the message can be delivered. 
 * **Connection Layer** - This layer corresponds to OSI layers 3-4 and describes the connections associated with communication networks. `CommunicationNode` objects are associated with simulated entities and connected to form an information-sharing space. 
 * **Link Layer** - This layer corresponds to OSI layers 1-2 and defines the link quality parameters between nodes to form a physical network. 
  
@@ -27,9 +27,9 @@ The model does not require all levels and networks to be represented in the fede
  
 A `CommunicationNetwork` is a logical network grouping simulated entities, independent of any physical network implementation. When messages are sent through a network, all entities belonging to it are potential receivers of the message. 
  
-To determine whether a message is received, each simulated entity can use data related to its `IncommingConnections`. This attribute describes all connections for all communication networks associated with the simulated entity. Each connection specifies the `SenderEntity` and quality parameters, e.g., latency and bandwidth, that allow the receiver to calculate block, drop and degradation effects. 
+To determine whether a message is received, each simulated entity can use data related to its `IncomingConnections`. This attribute describes all connections for all communication networks associated with the simulated entity. Each connection specifies the `SenderEntity` and quality parameters, e.g., latency and bandwidth, that allow the receiver to calculate block, drop and degradation effects. 
  
-The `IncommingConnections` attribute can be published by other simulations that model communication at the connection- and physical level. 
+The `IncomingConnections` attribute can be published by other simulations that model communication at the connection- and physical level. 
  
 ```mermaid 
 classDiagram 
@@ -37,17 +37,17 @@ direction LR
  
  
  
-BaseEntity *-- "0..*" Incomming Connection 
-BaseEntity:IncommingConnection 
+BaseEntity *-- "0..*" Incoming Connection 
+BaseEntity:IncomingConnection 
  
-Incomming Connection:CommunicationNetwork 
-Incomming Connection:SenderEntity 
-Incomming Connection --> "1" CommunicationNetwork : CommunicationNetwork 
-Incomming Connection:Latency 
-Incomming Connection:Bandwith 
-Incomming Connection:Reliability 
-Incomming Connection:HopCount 
-Incomming Connection --> BaseEntity:SenderEntity 
+Incoming Connection:CommunicationNetwork 
+Incoming Connection:SenderEntity 
+Incoming Connection --> "1" CommunicationNetwork : CommunicationNetwork 
+Incoming Connection:Latency 
+Incoming Connection:Bandwith 
+Incoming Connection:Reliability 
+Incoming Connection:HopCount 
+Incoming Connection --> BaseEntity:SenderEntity 
  
  
 CommunicationNetwork:Name 
@@ -204,12 +204,12 @@ CommunicationNode: UniqueId(NETN-BASE)
  
 ``` 
  
-A Network Device is a technical device, e.g., radio or ethernet, connecting a `CommunicationNode` to a physical network. The `LinkStates` provide all link status data related to a `PhysicalNetwork`. The link describes the relationship between a transmitting and a receiving network device. Network devices are not modelled as objects in NETN-COM.
-
-## Additional Object Classes
-
-In addition to representing the three layers of networks, the NETN-COM defines an object for representing areas of communication disruption. The object is intended to affect the quality of incoming connections of simulated entities.
-
+A Network Device is a technical device, e.g., radio or ethernet, connecting a `CommunicationNode` to a physical network. The `LinkStates` provide all link status data related to a `PhysicalNetwork`. The link describes the relationship between a transmitting and a receiving network device. Network devices are not modelled as objects in NETN-COM. 
+ 
+## Additional Object Classes 
+ 
+In addition to representing the three layers of networks, the NETN-COM defines an object for representing areas of communication disruption. The object is intended to affect the quality of incoming connections of simulated entities. 
+ 
 The NETN-COM also provide attribute extensions for the NETN-ORG classes Unit and Equipment.
 
 
@@ -256,7 +256,7 @@ OrganizationElement : SuperiorUnit(NETN-ORG)
 OrganizationElement : Symbol(NETN-ORG)
 Unit : CommunicationNetworks
 Equipment : CommunicationNetworks
-BaseEntity : IncommingConnections
+BaseEntity : IncomingConnections
 ```
 
 ### COM_Root
@@ -386,7 +386,7 @@ A unit represents an element at a specified level in the organization. An organi
 
 ### Equipment
 
-An equipment represents individual physical items defined specifically and apart from any holdings defined for the `HoldingUnit`. Equipment includes platforms, munition and sensors object.
+An equipment represents individual physical items defined specifically and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensors object.
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
@@ -404,7 +404,7 @@ A base class of aggregate and discrete scenario domain participants. The BaseEnt
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
-|IncommingConnections|IncommingConnectionArray|Optional. All incoming communication connections to the receiving simulated entity. Any messages sent on a CommunicationNetwork with a Connection of sufficient quality should be received by this entity and processed if the entity is the intended recipient.|
+|IncomingConnections|IncomingConnectionArray|Optional. All incoming communication connections to the receiving simulated entity. Any messages sent on a CommunicationNetwork with a Connection of sufficient quality should be received by this entity and processed if the entity is the intended recipient.|
 |UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
 
 ## Interaction Classes
@@ -482,8 +482,8 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |ConnectionTypeEnum|The type of connection.|
 |DisruptCommunicationTaskStruct|Task specific data for DisruptCommuncation|
 |EntityControlActionEnum|Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.|
+|IncomingConnectionArray|A set of incoming connections.|
 |IncomingConnectionStruct|Characteristics of a specific incoming connection.|
-|IncommingConnectionArray|A set of incoming connections.|
 |LinkStatusArray|The status of physical network links.|
 |LinkStatusStruct|Status of a physical network link.|
 |NetworkDeviceArray|A set of network devices.|
@@ -522,7 +522,7 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 |ArrayOfCommunicationNetworks|UUID|References to communication networks.|
 |CommunicationNetworkArray|ArrayOfUuid|References to a set of communication networks.|
 |ConnectionReceiverArray|ConnectionReceiverStruct|Connection characteristics for a number of receivers.|
-|IncommingConnectionArray|IncomingConnectionStruct|A set of incoming connections.|
+|IncomingConnectionArray|IncomingConnectionStruct|A set of incoming connections.|
 |LinkStatusArray|LinkStatusStruct|The status of physical network links.|
 |NetworkDeviceArray|NetworkDeviceStruct|A set of network devices.|
 |RequestedConnectionArray|RequestedConnection|Characterisation of a set of requested connections.|
