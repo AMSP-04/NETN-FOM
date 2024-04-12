@@ -32180,6 +32180,12 @@ Note that usage of this datatype for the PhyscialEntity object class attribute A
                     <semantics>Task parameters.</semantics>
                 </alternative>
                 <alternative>
+                    <enumerator>MoveByRoute</enumerator>
+                    <name>MoveByRoute</name>
+                    <dataType>MoveByRouteTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
                     <enumerator>Resupply</enumerator>
                     <name>Resupply</name>
                     <dataType>ResupplyTaskStruct</dataType>

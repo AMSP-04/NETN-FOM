@@ -1780,6 +1780,12 @@ for aggregate entities, also use entity types from platform tables to describe t
                     <dataType>MagicMoveTaskStruct</dataType>
                     <semantics>Task parameters.</semantics>
                 </alternative>
+                <alternative>
+                    <enumerator>MoveByRoute</enumerator>
+                    <name>MoveByRoute</name>
+                    <dataType>MoveByRouteTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
                 <encoding>HLAextendableVariantRecord</encoding>
                 <semantics>Variant record for task definition data.</semantics>
             </variantRecordData>

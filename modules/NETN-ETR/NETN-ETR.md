@@ -1155,6 +1155,6 @@ Note that only datatypes defined in this FOM Module are listed below. Please ref
 ### Variant Record Datatypes
 |Name|Discriminant (Datatype)|Alternatives|Semantics|
 |---|---|---|---|
-|TaskDefinitionVariantRecord|TaskType (EntityControlActionEnum)|NoTaskParameters, DirectFire, IndirectFire, FollowEntity, MoveInDirection, MoveIntoFormation, MoveToLocation, Attach, Observe, OperateCheckpoint, Patrol, ChangeAltitude, ChangeSpeed, ChangeHeading, OtherActivity, OperateObservationPost, ChangeRulesOfEngagement, MagicMove|Variant record for task definition data.|
+|TaskDefinitionVariantRecord|TaskType (EntityControlActionEnum)|NoTaskParameters, DirectFire, IndirectFire, FollowEntity, MoveInDirection, MoveIntoFormation, MoveToLocation, Attach, Observe, OperateCheckpoint, Patrol, ChangeAltitude, ChangeSpeed, ChangeHeading, OtherActivity, OperateObservationPost, ChangeRulesOfEngagement, MagicMove, MoveByRoute|Variant record for task definition data.|
 |TaskProgressVariantRecord|TaskType (EntityControlActionEnum)|ElapsedTime, FireTask, MoveOnPath, Patrol|Variant record for task progress data.|
     
