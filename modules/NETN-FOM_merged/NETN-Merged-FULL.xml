@@ -15119,15 +15119,15 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                     <value>39</value>
                 </enumerator>
                 <enumerator>
-                    <name>Friendly_13</name>
+                    <name>Friendly_14</name>
                     <value>40</value>
                 </enumerator>
                 <enumerator>
-                    <name>Opposing_13</name>
+                    <name>Opposing_14</name>
                     <value>41</value>
                 </enumerator>
                 <enumerator>
-                    <name>Neutral_13</name>
+                    <name>Neutral_14</name>
                     <value>42</value>
                 </enumerator>
                 <enumerator>
