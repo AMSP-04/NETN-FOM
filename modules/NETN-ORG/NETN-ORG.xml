@@ -231,7 +231,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     </attribute>
                     <attribute>
                         <name>ForceIdentifier</name>
-                        <dataType>ForceIdentifierEnum</dataType>
+                        <dataType>ForceIdentifierEnum8</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
                         <ownership>DivestAcquire</ownership>
@@ -434,9 +434,9 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 </enumerator>
             </enumeratedData>
             <enumeratedData>
-                <name>ForceIdentifierEnum</name>
-                <representation>RPRunsignedInteger8BE</representation>
-                <semantics>RPR-FOM Force Identifier enumeration.</semantics>
+                <name>ForceIdentifierEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Force ID</semantics>
                 <enumerator>
                     <name>Friendly_11</name>
                     <value>31</value>
@@ -474,15 +474,15 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <value>39</value>
                 </enumerator>
                 <enumerator>
-                    <name>Friendly_13</name>
+                    <name>Friendly_14</name>
                     <value>40</value>
                 </enumerator>
                 <enumerator>
-                    <name>Opposing_13</name>
+                    <name>Opposing_14</name>
                     <value>41</value>
                 </enumerator>
                 <enumerator>
-                    <name>Neutral_13</name>
+                    <name>Neutral_14</name>
                     <value>42</value>
                 </enumerator>
             </enumeratedData>

@@ -537,7 +537,7 @@
                     </attribute>
                     <attribute>
                         <name>ForceIdentifier</name>
-                        <dataType>ForceIdentifierEnum</dataType>
+                        <dataType>ForceIdentifierEnum8</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
                         <ownership>DivestAcquire</ownership>
@@ -12403,9 +12403,9 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                 </enumerator>
             </enumeratedData>
             <enumeratedData>
-                <name>ForceIdentifierEnum</name>
-                <representation>RPRunsignedInteger8BE</representation>
-                <semantics>RPR-FOM Force Identifier enumeration.</semantics>
+                <name>ForceIdentifierEnum8</name>
+                <representation>HLAoctet</representation>
+                <semantics>Force ID</semantics>
                 <enumerator>
                     <name>Friendly_11</name>
                     <value>31</value>
@@ -12443,16 +12443,140 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                     <value>39</value>
                 </enumerator>
                 <enumerator>
-                    <name>Friendly_13</name>
+                    <name>Friendly_14</name>
                     <value>40</value>
                 </enumerator>
                 <enumerator>
-                    <name>Opposing_13</name>
+                    <name>Opposing_14</name>
                     <value>41</value>
                 </enumerator>
                 <enumerator>
-                    <name>Neutral_13</name>
+                    <name>Neutral_14</name>
                     <value>42</value>
+                </enumerator>
+                <enumerator>
+                    <name>Other</name>
+                    <value>0</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly</name>
+                    <value>1</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing</name>
+                    <value>2</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral</name>
+                    <value>3</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_2</name>
+                    <value>4</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_2</name>
+                    <value>5</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_2</name>
+                    <value>6</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_3</name>
+                    <value>7</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_3</name>
+                    <value>8</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_3</name>
+                    <value>9</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_4</name>
+                    <value>10</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_4</name>
+                    <value>11</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_4</name>
+                    <value>12</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_5</name>
+                    <value>13</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_5</name>
+                    <value>14</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_5</name>
+                    <value>15</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_6</name>
+                    <value>16</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_6</name>
+                    <value>17</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_6</name>
+                    <value>18</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_7</name>
+                    <value>19</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_7</name>
+                    <value>20</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_7</name>
+                    <value>21</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_8</name>
+                    <value>22</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_8</name>
+                    <value>23</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_8</name>
+                    <value>24</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_9</name>
+                    <value>25</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_9</name>
+                    <value>26</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_9</name>
+                    <value>27</value>
+                </enumerator>
+                <enumerator>
+                    <name>Friendly_10</name>
+                    <value>28</value>
+                </enumerator>
+                <enumerator>
+                    <name>Opposing_10</name>
+                    <value>29</value>
+                </enumerator>
+                <enumerator>
+                    <name>Neutral_10</name>
+                    <value>30</value>
                 </enumerator>
             </enumeratedData>
             <enumeratedData>
@@ -23917,135 +24041,6 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                 <enumerator>
                     <name>OwnershipReport</name>
                     <value>17</value>
-                </enumerator>
-            </enumeratedData>
-            <enumeratedData>
-                <name>ForceIdentifierEnum8</name>
-                <representation>HLAoctet</representation>
-                <semantics>Force ID</semantics>
-                <enumerator>
-                    <name>Other</name>
-                    <value>0</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friendly</name>
-                    <value>1</value>
-                </enumerator>
-                <enumerator>
-                    <name>Opposing</name>
-                    <value>2</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral</name>
-                    <value>3</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friendly_2</name>
-                    <value>4</value>
-                </enumerator>
-                <enumerator>
-                    <name>Opposing_2</name>
-                    <value>5</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral_2</name>
-                    <value>6</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friendly_3</name>
-                    <value>7</value>
-                </enumerator>
-                <enumerator>
-                    <name>Opposing_3</name>
-                    <value>8</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral_3</name>
-                    <value>9</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friendly_4</name>
-                    <value>10</value>
-                </enumerator>
-                <enumerator>
-                    <name>Opposing_4</name>
-                    <value>11</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral_4</name>
-                    <value>12</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friendly_5</name>
-                    <value>13</value>
-                </enumerator>
-                <enumerator>
-                    <name>Opposing_5</name>
-                    <value>14</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral_5</name>
-                    <value>15</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friendly_6</name>
-                    <value>16</value>
-                </enumerator>
-                <enumerator>
-                    <name>Opposing_6</name>
-                    <value>17</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral_6</name>
-                    <value>18</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friendly_7</name>
-                    <value>19</value>
-                </enumerator>
-                <enumerator>
-                    <name>Opposing_7</name>
-                    <value>20</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral_7</name>
-                    <value>21</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friendly_8</name>
-                    <value>22</value>
-                </enumerator>
-                <enumerator>
-                    <name>Opposing_8</name>
-                    <value>23</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral_8</name>
-                    <value>24</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friendly_9</name>
-                    <value>25</value>
-                </enumerator>
-                <enumerator>
-                    <name>Opposing_9</name>
-                    <value>26</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral_9</name>
-                    <value>27</value>
-                </enumerator>
-                <enumerator>
-                    <name>Friendly_10</name>
-                    <value>28</value>
-                </enumerator>
-                <enumerator>
-                    <name>Opposing_10</name>
-                    <value>29</value>
-                </enumerator>
-                <enumerator>
-                    <name>Neutral_10</name>
-                    <value>30</value>
                 </enumerator>
             </enumeratedData>
             <enumeratedData>
