@@ -36026,7 +36026,7 @@ Note that usage of this datatype for the PhyscialEntity object class attribute A
                     <semantics>Keeps track of movement task.</semantics>
                 </alternative>
                 <alternative>
-                    <enumerator>ClearEngineering, CreateBreach, EstablishCheckpoint, CreateObstacle, LayMinefield</enumerator>
+                    <enumerator>ClearEngineering, CreateBreach, EstablishCheckpoint, CreateObstacle, LayMinefield, EstablishObservationPost</enumerator>
                     <name>ElapsedEngineeringTime</name>
                     <dataType>ElapsedTimeProgress</dataType>
                     <semantics>Keeps track of elapesed time.</semantics>

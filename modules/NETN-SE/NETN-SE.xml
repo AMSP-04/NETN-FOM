@@ -519,7 +519,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 <discriminant>TaskType</discriminant>
                 <dataType>EntityControlActionEnum</dataType>
                 <alternative>
-                    <enumerator>ClearEngineering, CreateBreach, EstablishCheckpoint, CreateObstacle, LayMinefield</enumerator>
+                    <enumerator>ClearEngineering, CreateBreach, EstablishCheckpoint, CreateObstacle, LayMinefield, EstablishObservationPost</enumerator>
                     <name>ElapsedEngineeringTime</name>
                     <dataType>ElapsedTimeProgress</dataType>
                     <semantics>Keeps track of elapesed time.</semantics>
