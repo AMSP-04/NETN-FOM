@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification notes="netn-se_overview">
+        <name>NETN-SE</name>
+        <type>FOM</type>
+        <version>2.0</version>
+        <modificationDate>2024-03-10</modificationDate>
+        <securityClassification>Not Classified</securityClassification>
+        <purpose></purpose>
+        <applicationDomain>Simulation, Training</applicationDomain>
+        <description>The NATO Education and Training Network Synthetic Environment module (NETN-SE) provides a standard way to exchange simulation data for objects in the synthetic environment other than simulated entities such as `Platform` or `AggregateEntity` objects.</description>
+        <useLimitation></useLimitation>
+        <useHistory>v1.0 - Developed by MSG-163 for NETN FOM v3.0</useHistory>
+        <useHistory notes="netn-se_changelog_1">v2.0 - Developed by MSG-191 for NETN FOM v4.0</useHistory>
+        <poc>
+            <pocType>Release authority</pocType>
+            <pocName>NATO Modelling and Simulation Group</pocName>
+            <pocOrg>NATO Science and Technology Organization</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-163 Evolution of NATO Standards for Federated Simulation</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <poc>
+            <pocType>Primary author</pocType>
+            <pocName>MSG-191 NATO Standards for Federated Simulation and Services for Integration, Verification and Certification</pocName>
+            <pocOrg>NATO Modelling and Simulation Group</pocOrg>
+            <pocEmail>msg@cso.nato.int</pocEmail>
+        </poc>
+        <reference>
+            <type>Dependency</type>
+            <identification>RPR-SE</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-ETR</identification>
+        </reference>
+        <reference>
+            <type>Dependency</type>
+            <identification>NETN-BASE</identification>
+        </reference>
+        <other>
+Copyright © 2020 by NATO/OTAN. All rights reserved.
+This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
+
+Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
+        <glyph type="png" height="48" width="48" alt="">iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAKRlWElmTU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgExAAIAAAAgAAAAWodpAAQAAAABAAAAegAAAAAAAABIAAAAAQAAAEgAAAABQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKQAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAMKADAAQAAAABAAAAMAAAAAD4+bixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEE2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIKICAgICAgICAgICAgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiCiAgICAgICAgICAgIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iPgogICAgICAgICA8eG1wTU06SW5zdGFuY2VJRD54bXAuaWlkOjVERkE1NkYwNzZDNTExRTY5OTczQ0JDNEQyNDQ2REEwPC94bXBNTTpJbnN0YW5jZUlEPgogICAgICAgICA8eG1wTU06RGVyaXZlZEZyb20gcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICA8c3RSZWY6aW5zdGFuY2VJRD54bXAuaWlkOkZGNDdBRkZGNzZDMjExRTY5OTczQ0JDNEQyNDQ2REEwPC9zdFJlZjpp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</glyph>
+    </modelIdentification>
+    <objects>
+        <objectClass>
+            <name>HLAobjectRoot</name>
+            <objectClass>
+                <name>EnvironmentObject</name>
+                <sharing>Subscribe</sharing>
+                <semantics>A base class of environment point, linear, or areal object classes.</semantics>
+                <attribute>
+                    <name>Name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. A name of the EnvironmentObject.</semantics>
+                </attribute>
+                <attribute>
+                    <name>Symbol</name>
+                    <dataType>SymbolStruct</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. A symbol identifier.</semantics>
+                </attribute>
+                <attribute>
+                    <name>Status</name>
+                    <dataType>ActiveStatusEnum8</dataType>
+                    <updateType>Conditional</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. Specifies if the EnvironmentObject is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active).</semantics>
+                </attribute>
+                <attribute>
+                    <name>DamageState</name>
+                    <dataType>DamageStatusEnhancedEnum32</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. The damage state of an EnvironmentObject. The default value is 0 (NoDamage).</semantics>
+                </attribute>
+                <attribute>
+                    <name>Comment</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. A descriptive text comment.</semantics>
+                </attribute>
+                <attribute>
+                    <name>HostObject</name>
+                    <dataType>UUID</dataType>
+                    <updateType>NA</updateType>
+                    <updateCondition>On change</updateCondition>
+                    <ownership>NoTransfer</ownership>
+                    <sharing>PublishSubscribe</sharing>
+                    <transportation>HLAreliable</transportation>
+                    <order>Receive</order>
+                    <semantics>Optional. Reference to the host object. Required when using Breach/Burst objects.</semantics>
+                </attribute>
+                <objectClass>
+                    <name>PointObject</name>
+                    <sharing>Subscribe</sharing>
+                    <semantics>A synthetic environment object that is geometrically anchored to the terrain with a single point.</semantics>
+                    <attribute>
+                        <name>Radius</name>
+                        <dataType>MeterFloat64</dataType>
+                        <updateType>NA</updateType>
+                        <updateCondition>On chage</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Optional. The radius of the point object.</semantics>
+                    </attribute>
+                    <objectClass>
+                        <name>Checkpoint</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>A CheckPoint defines a location where simulated entities' ground movement should stop and wait a specified time before continuing their route.</semantics>
+                        <attribute>
+                            <name>DelayTime</name>
+                            <dataType>TimeMillisecondInt64</dataType>
+                            <updateType>NA</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Required. The time that an entity shall wait at the checkpoint before passing. The time is a nominal value; models can use this for modifying delay time for different types of entities, e.g. add or subtract a value or multiply with a factor dependent on the simulation entity type.</semantics>
+                        </attribute>
+                    </objectClass>
+                    <objectClass>
+                        <name>ObservationPost</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>A ObservationPost defines a location where a simulated entity can observe an area.</semantics>
+                        <attribute>
+                            <name>Operator</name>
+                            <dataType>UUID</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Required. Reference to the unit operating this observation post.</semantics>
+                        </attribute>
+                        <attribute>
+                            <name>ObservationArea</name>
+                            <dataType>WorldLocationStructLengthlessArray</dataType>
+                            <updateType>Conditional</updateType>
+                            <updateCondition>On change</updateCondition>
+                            <ownership>NoTransfer</ownership>
+                            <sharing>PublishSubscribe</sharing>
+                            <transportation>HLAreliable</transportation>
+                            <order>Receive</order>
+                            <semantics>Optional. The area to be observed.</semantics>
+                        </attribute>
+                    </objectClass>
+                </objectClass>
+                <objectClass>
+                    <name>LinearObject</name>
+                    <sharing>Subscribe</sharing>
+                    <semantics>A synthetic environment object that has size and an orientation and is geometrically anchored to the terrain with one point.</semantics>
+                    <attribute>
+                        <name>Points</name>
+                        <dataType>LocationStructArray</dataType>
+                        <updateType>NA</updateType>
+                        <updateCondition>On change</updateCondition>
+                        <ownership>DivestAcquire</ownership>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Required. A path with at least 2 locations.</semantics>
+                    </attribute>
+                </objectClass>
+                <objectClass>
+                    <name>ArealObject</name>
+                    <objectClass>
+                        <name>ArealBreach</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>A cleared area within an obstacle allows simulated entities to move through the obstacle.</semantics>
+                    </objectClass>
+                    <objectClass>
+                        <name>MinefieldObject</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>A mine, mine weapon, mine row, mine strip, mine lane, mine marker or minefield, defined as an areal environment object.</semantics>
+                    </objectClass>
+                    <objectClass>
+                        <name>OtherArealObject</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <semantics>Areal objects other than Minefield objects.</semantics>
+                    </objectClass>
+                </objectClass>
+            </objectClass>
+        </objectClass>
+    </objects>
+    <interactions>
+        <interactionClass>
+            <name>HLAinteractionRoot</name>
+            <interactionClass>
+                <name>SMC_EntityControl</name>
+                <interactionClass>
+                    <name>Task</name>
+                    <interactionClass>
+                        <name>CreateBreach</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Requests a simulated entity to create a breach or passage on a breachable engineering object.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>CreateBreachTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>EstablishCheckpoint</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Requests a simulated entity to establish a checkpoint.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>EstablishCheckpointTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>LayMinefield</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Requests a simulated entity to lay a minefield within a specified area and amount of mines.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>LayMinefieldTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>CreateObstacle</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Requests a simulated entity to create an obstacle within the given area. The tasked entity should be within a certain distance (tolerance specified in the federation agreement) of one of the points of the geometry.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>CreateObstacleTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>ClearEngineering</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Requests a simulated entity to clear/remove an engineering object. The clearing activity's duration may depend on the entity's model.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>ClearEngineeringTaskStruct</dataType>
+                            <semantics>Required: Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                    <interactionClass>
+                        <name>EstablishObservationPost</name>
+                        <sharing>PublishSubscribe</sharing>
+                        <transportation>HLAreliable</transportation>
+                        <order>Receive</order>
+                        <semantics>Requests a simulated entity to establish a observation post.</semantics>
+                        <parameter>
+                            <name>TaskParameters</name>
+                            <dataType>EstablishObservationPostTaskStruct</dataType>
+                            <semantics>Required. Task parameters.</semantics>
+                        </parameter>
+                    </interactionClass>
+                </interactionClass>
+            </interactionClass>
+        </interactionClass>
+    </interactions>
+    <dataTypes>
+        <enumeratedDataTypes>
+            <enumeratedData>
+                <name>EntityControlActionEnum</name>
+                <representation>HLAinteger32BE</representation>
+                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
+                <enumerator>
+                    <name>ClearEngineering</name>
+                    <value>401</value>
+                </enumerator>
+                <enumerator>
+                    <name>CreateBreach</name>
+                    <value>402</value>
+                </enumerator>
+                <enumerator>
+                    <name>EstablishCheckpoint</name>
+                    <value>403</value>
+                </enumerator>
+                <enumerator>
+                    <name>LayMinefield</name>
+                    <value>404</value>
+                </enumerator>
+                <enumerator>
+                    <name>CreateObstacle</name>
+                    <value>405</value>
+                </enumerator>
+                <enumerator>
+                    <name>EstablishObservationPost</name>
+                    <value>406</value>
+                </enumerator>
+            </enumeratedData>
+        </enumeratedDataTypes>
+        <fixedRecordDataTypes>
+            <fixedRecordData>
+                <name>EngineeringTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task parameters.</semantics>
+                <field>
+                    <name>EngineeringObjectId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Unique identifier for the engineering object to create. If not specified, the federate application creating the enginnering object can generate the UUID.</semantics>
+                </field>
+                <field>
+                    <name>Name</name>
+                    <dataType>HLAunicodeString</dataType>
+                    <semantics>Name of the engineering object. Not required to be unique.</semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeMillisecondInt64</dataType>
+                    <semantics>Use to explicitly set the time of constructing the engineering object.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>LayMinefieldTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task parameters.</semantics>
+                <field>
+                    <name>EngineeringTask</name>
+                    <dataType>EngineeringTaskStruct</dataType>
+                    <semantics>Common engineering task parameters.</semantics>
+                </field>
+                <field>
+                    <name>MineType</name>
+                    <dataType>EntityTypeStruct</dataType>
+                    <semantics>Type of mines used, defined in SISO-REF-010</semantics>
+                </field>
+                <field>
+                    <name>MineCount</name>
+                    <dataType>Integer32</dataType>
+                    <semantics>Amount of mines to lay in area.</semantics>
+                </field>
+                <field>
+                    <name>Area</name>
+                    <dataType>LocationStructArray</dataType>
+                    <semantics>Area of the minefield.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>ClearEngineeringTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task parameters.</semantics>
+                <field>
+                    <name>EngineeringObjectId</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Unique ID of the object to be cleared.</semantics>
+                </field>
+                <field>
+                    <name>Duration</name>
+                    <dataType>TimeMillisecondInt64</dataType>
+                    <semantics>The time it shall take the tasked entity to clear the object. If unspecified, this is decided by federate accepting the task.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CreateBreachTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task parameters.</semantics>
+                <field>
+                    <name>EngineeringTask</name>
+                    <dataType>EngineeringTaskStruct</dataType>
+                    <semantics>Common engineering task parameters.</semantics>
+                </field>
+                <field>
+                    <name>EngineeringObject</name>
+                    <dataType>UUID</dataType>
+                    <semantics>Reference to the engineering object to breach.</semantics>
+                </field>
+                <field>
+                    <name>Area</name>
+                    <dataType>LocationStructArray</dataType>
+                    <semantics>The breach area.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>EstablishCheckpointTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task parameters.</semantics>
+                <field>
+                    <name>EngineeringTask</name>
+                    <dataType>EngineeringTaskStruct</dataType>
+                    <semantics>Common engineering task parameters.</semantics>
+                </field>
+                <field>
+                    <name>Location</name>
+                    <dataType>LocationStruct</dataType>
+                    <semantics>Location of the checkpoint</semantics>
+                </field>
+                <field>
+                    <name>Radius</name>
+                    <dataType>MeterFloat64</dataType>
+                    <semantics>Radius on the surface affected by the checkpoint. All movement crossing the area will be subject to check if checkpoint is in operation.</semantics>
+                </field>
+                <field>
+                    <name>DelayTime</name>
+                    <dataType>TimeMillisecondInt64</dataType>
+                    <semantics>The delay caused to moving entities when travelling through an operating checkpoint.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>CreateObstacleTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task parameters.</semantics>
+                <field>
+                    <name>EngineeringTask</name>
+                    <dataType>EngineeringTaskStruct</dataType>
+                    <semantics>Common engineering task parameters.</semantics>
+                </field>
+                <field>
+                    <name>Area</name>
+                    <dataType>LocationStructArray</dataType>
+                    <semantics>Area of the obstacle.</semantics>
+                </field>
+            </fixedRecordData>
+            <fixedRecordData>
+                <name>EstablishObservationPostTaskStruct</name>
+                <encoding>HLAfixedRecord</encoding>
+                <semantics>Task parameters.</semantics>
+                <field>
+                    <name>EngineeringTask</name>
+                    <dataType>EngineeringTaskStruct</dataType>
+                    <semantics>Common engineering task parameters.</semantics>
+                </field>
+                <field>
+                    <name>Location</name>
+                    <dataType>LocationStruct</dataType>
+                    <semantics>Location of the ObservationPost.</semantics>
+                </field>
+            </fixedRecordData>
+        </fixedRecordDataTypes>
+        <variantRecordDataTypes>
+            <variantRecordData>
+                <name>TaskDefinitionVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>EntityControlActionEnum</dataType>
+                <alternative>
+                    <enumerator>ClearEngineering</enumerator>
+                    <name>ClearEngineering</name>
+                    <dataType>ClearEngineeringTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>LayMinefield</enumerator>
+                    <name>LayMinefield</name>
+                    <dataType>LayMinefieldTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateBreach</enumerator>
+                    <name>CreateBreach</name>
+                    <dataType>CreateBreachTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>EstablishCheckpoint</enumerator>
+                    <name>EstablishCheckpoint</name>
+                    <dataType>EstablishCheckpointTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>CreateObstacle</enumerator>
+                    <name>CreateObstacle</name>
+                    <dataType>CreateObstacleTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <alternative>
+                    <enumerator>EstablishObservationPost</enumerator>
+                    <name>EstablishObservationPost</name>
+                    <dataType>EstablishObservationPostTaskStruct</dataType>
+                    <semantics>Task parameters.</semantics>
+                </alternative>
+                <encoding>HLAextendableVariantRecord</encoding>
+                <semantics>Variant record for task definition data.</semantics>
+            </variantRecordData>
+            <variantRecordData>
+                <name>TaskProgressVariantRecord</name>
+                <discriminant>TaskType</discriminant>
+                <dataType>EntityControlActionEnum</dataType>
+                <alternative>
+                    <enumerator>ClearEngineering, CreateBreach, EstablishCheckpoint, CreateObstacle, LayMinefield, EstablishObservationPost</enumerator>
+                    <name>ElapsedEngineeringTime</name>
+                    <dataType>ElapsedTimeProgress</dataType>
+                    <semantics>Keeps track of elapesed time.</semantics>
+                </alternative>
+                <encoding>HLAextendableVariantRecord</encoding>
+                <semantics>Variant record for task progress data.</semantics>
+            </variantRecordData>
+        </variantRecordDataTypes>
+    </dataTypes>
+    <notes>
+        <note>
+            <label>netn-se_changelog_1</label>
+            <semantics>* Replaced object class `SE_GeoObject` with `EnvironmentObject` 
+* Replaced object class `Location` with `PointObject` 
+* Replaced object class `Path` with `LinearObject` 
+* Replaced object class `Region` with `ArealObject` 
+* Moved `SE_Facility` attributes `Name`, `SymbolId`, `DamageState`, `Comment` and `Status` moved to `EnvironmentObject` 
+* Removed object class `SE_Facility` 
+* Replaced object class `CheckPoint` with `Checkpoint` as subclass to `PointObject` 
+* Added `PointObject` attribute `Radius` 
+* Added `LinearObject` attribute `Points` 
+* Added `EnvironmentObject` attribute `HostObject` 
+* Added object class `ArealBreach` 
+ 
+ 
+* Added interaction class `CreateBreach` 
+* Added interaction class `EstablishCheckpoint` 
+* Added interaction class `LayMinefield` 
+* Added interaction class `CreateObstacle` 
+* Added interaction class `ClearEngineering` 
+ 
+* Removed datatype `GeoLocationReferenceVariant` 
+* Added datatype `EntityControlActionEnum` 
+* Added datatype `EngineeringTaskStruct` 
+* Added datatype `LayMinefieldTaskStruct` 
+* Added datatype `ClearEngineeringTaskStruct` 
+* Added datatype `CreateBreachTaskStruct` 
+* Added datatype `EstablishCheckpointTaskStruct` 
+* Added datatype `CreateObstacleTaskStruct` 
+* Added datatype `TaskDefinitionVariantStruct` 
+* Added datatype `TaskProgressVariantStruct`</semantics>
+        </note>
+        <note>
+            <label>netn-se_overview</label>
+            <semantics>## Overview 
+ 
+The NETN-SE module extends the RPR-SE module by defining: 
+* Checkpoints 
+* Observation posts 
+* Minefields 
+* Generic Obstacles (OtherArealObject) 
+* Areal Breaches 
+ 
+The NETN-SE module also provides extended NETN-ETR tasks related to engineering activities. 
+ </semantics>
+        </note>
+    </notes>
+</objectModel>
