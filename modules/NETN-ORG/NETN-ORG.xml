@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification notes="netn-org_overview">
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2025 http://standards.ieee.org/downloads/1516/1516.2-2025/IEEE1516-DIF-2025.xsd" xmlns="http://standards.ieee.org/IEEE1516-2025" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification noteReferences="netn-org_overview">
         <name>NETN-ORG</name>
         <type>FOM</type>
         <version>2.0</version>
         <modificationDate>2024-03-07</modificationDate>
         <securityClassification>Not Classified</securityClassification>
+        <copyright/>
         <purpose>The NATO Education and Training Organization (NETN-ORG) module provides a standard way to represent organizations in the simulation scenario and their relationships and structure. The relationships include unit command structure, relationships between organizations, unit equipment, and installations.</purpose>
         <applicationDomain></applicationDomain>
         <description>Simulating organizational elements requires knowledge of intra-organizational relationships, e.g., superior, subordinate, and inter-organizational relationships with other organizations, e.g., friendly or hostile. The NETN-ORG supports initialization and organizations' dynamic change of this information.</description>
@@ -15,7 +16,7 @@
 * change organizational relationships 
 * capture simulated unit and equipment state as snapshots</useLimitation>
         <useHistory>v1.0 - Initial version developed by MSG-163. Release included in NETN FOM v3.0</useHistory>
-        <useHistory notes="netn-org_changelog_1">v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0</useHistory>
+        <useHistory noteReferences="netn-org_changelog_1">v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -53,7 +54,7 @@ Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
-        <glyph type="png" height="48" width="48" alt="">iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAAlwSFlzAAADigAAA4oBp4z1HwAAActpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx4bXA6Q3JlYXRvclRvb2w+d3d3Lmlua3NjYXBlLm9yZzwveG1wOkNyZWF0b3JUb29sPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KGMtVWAAABOBJREFUaAXtmTlvFEEQhdfmDAwEkICQEwIOyQKEZEEA5ECE4D8QO+YvEJCREREiEkByggwEJgAJhAQkpEQgDnGZw+Z9O/PWtcPuTM/sGGPJJb3p6u6q11V9TM/anc4al7GW4odnXFhK5MN+sYZ9Iu0aNGtrBUj9pHBW2CKwEkVuty2o747wUFh12ZBHcFElAdbBhdzXHHn13xVxhuc0LMF/E35UABts5wRL5HJbUrkxyWqwEYMSyFZhIjfZpLJqRjnsCD74fhfMJbWemKyeV7+1tw2t6FVim+hX5TO0v40EIPcWcDl0wJq2ZTzdvrYSqBxopQzWE1ipmU3lbWsFfDBTx23Nro0EUg7uoIBJuqlvj2+Ue8Akv0Igv4NOcA4wvjKx4a6gD9+RZJQV4GsSf4J4nkexOW+j3cHThU4bwAbBB1/a4FoV8a07qdFnBT4TDILzzKNz47oPW3wQc2S1VXgygwiBTAnHhMPCPcEJoNNGHzYO2r5qaiZtnIFFDU0g7G1vJaJ5yyMX9Geu5GUrWyclAfYvKHtr0MesAhIB3utSO3zkIdHGiWc9/U+P5RXs7w21sgSYIQInGIgQl1mt/+nA3UqAFvsVbdxuu1i6j6TRI1/PblgCbSyvA2CwgYP3oihXSBrx6ma1/MkMF8XB71LHJYFD5y1QtC3WvdUI/riwJzd4o/KRQL9t8q7S4qd6OVfXBM6RY5M6WMgS2S08EQhkFDDzYBQOfImFmBDHmNUKT3deVTuOC3nZNIA2EnAMxIQ4xm4lngGWlv1GOd3tzd4kr6UzA7xVSKRMvD2wG2ULwcNva+6NfQLimBzjX7GwvxB+pz4WPOtXaGwgN+VjDvQmwtjmICZiQxzrspK1d5/FzJgNxGVWq35G+6hXey6PVfQrxtbxFiIj9hZ7ljI6es+xhbynKaMNxOZgiUFvloItXID+YRz4Afa+x5baHc91l4skgLEDw/CrwAAWPsIQCC32iXUH7jb2sIXXIRJtUjg8tn2JDTHfOAkQPHvroMBMok8Ilr1S9gs7hE/CKwEfB+CSWTkksFJ8fXKPWND5mGM8EnshkIx9Xaqpc0DYLnwUGNtCTLwYSIrVf5nrXWIOiD91MYCcZADZuu+L9BvCNgHxBTcpfVawHSVJmAM99mGLD2IOgoabMWzL2OYgJmJzHzEzKZ15wUap5WUcJT5D16Wn+toOH8QccLovtZzHmfcr2SE+mJTWTUY/M8Jfn49SkTCzbJkpKhK2hwMaxhF98PVZMSdnzasyjIOYkGkGY/+VSSTx6Y/2tJkQfRDfIA58Ih82SApHZqkng3nwXmNNZRT/6Bv11BCWSMCZpzphF33i7DblKHKm8owNWu5U5//Cbj2B1V6Gpoe4eOBcd1mWl21c2rZYd3tZ2TvEfBrUkXiI8XPdZRmXbSitR44y39hHzGPcA++EnQIXSNWZ4MLD571g4Wr/nFe46KomAw7e9fjgazEnF13VajAGFyqxd2YEHFLxQbYnBISbFGnyb1Z8EHPACXdqHNjNeAnPqXJaYHbpcLvUrtDG6vCFeEt4KtiGPuSUcEZgZoZx4MNK3xUeCEjkOaL6eYEPu+4WURnFvKzSfeF27Kyje9A6PlW2jThxAqlvIw/ijz8HVYcDH+yZYa8ebYi/jYrtWW//0xz9rWut9gc+kMA4Bp3nnwAAAABJRU5ErkJggg==</glyph>
+        <glyph href="data:/image/png;base64,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" alt=""/>
     </modelIdentification>
     <objects>
         <objectClass>
@@ -67,6 +68,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>HLAunicodeString</dataType>
                     <updateType>Static</updateType>
                     <updateCondition>NA</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -82,6 +84,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>UUID</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -93,6 +96,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>UUID</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -104,6 +108,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>EntityTypeStruct</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -115,6 +120,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>SymbolStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -126,6 +132,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>GeodeticPoint</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -137,6 +144,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>UUID</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -157,6 +165,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <dataType>UUID</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>On change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -168,6 +177,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <dataType>EchelonEnum32</dataType>
                             <updateType>Static</updateType>
                             <updateCondition>NA</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -179,6 +189,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <dataType>HLAboolean</dataType>
                             <updateType>Static</updateType>
                             <updateCondition>NA</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -190,6 +201,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <dataType>ArrayOfHoldings</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>When changed</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -201,6 +213,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                             <dataType>FormationStruct</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>When changed</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -223,6 +236,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>ArrayOfRelationship</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>When changed</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -234,6 +248,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>ForceIdentifierEnum8</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -245,6 +260,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>Integer32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -262,6 +278,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>UUID</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -280,6 +297,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>ArrayOfUuid</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -291,6 +309,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>ArrayOfUuid</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -555,7 +574,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <field>
                     <name>EntityType</name>
                     <dataType>EntityTypeStruct</dataType>
-                    <semantics>SISO-REF-010 enumeration. 
+                    <semantics>SISO-REF-010 enumeration.
 Use 0.0.0.0.0.0.0 when not defined.</semantics>
                 </field>
             </fixedRecordData>
@@ -622,137 +641,137 @@ Use 0.0.0.0.0.0.0 when not defined.</semantics>
     <notes>
         <note>
             <label>netn-org_changelog_1</label>
-            <semantics>* Replaced `ORG_Root` attribute `UniqueId` with NETN-BASE `HLAobjectRoot` attribute `UniqueId` 
- 
-* Added `ORG_Root` attribute `Name` 
- 
-* Added object class `OrganizationElement` 
- 
-* Replaced `Unit` attribute `Name` with `ORG_Root` attribute `Name` 
-* Replaced `Unit` attribute `Force` with `OrganizationElement` attribute `Organization` 
-* Replaced `Unit` attribute `EntityType` with `OrganizationElement` attribute `EntityType` 
-* Replaced `Unit` attribute `SymbolId` with `OrganizationElement` attribute `Symbol` 
-* Replaced `Unit` attribute `Disposition` with `OrganizationElement` attribute `Location` 
-* Replaced `Unit` attribute `CommunicationNetworks` with NETN-COM `Unit` attribute `CommunicationNetworks` 
-* Replaced `Unit` attribute `EmbarkedIn` with `OrganizationElement` attribute `HostUnit` 
-* Replaced `Unit` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol` 
-* Renamed `Unit` attribute `SuperiorUnit` to `AggregateUnit` 
- 
-* Added `Unit` attribute `HigherHeadquarters` 
- 
-* Renamed object class `EquipmentItem` to `Equipment` 
-* Replaced `EquipmentItem` attribute `Name` with `ORG_Root` attribute `Name` 
-* Replaced `EquipmentItem` attribute `EntityType` with `OrganizationElement` attribute `EntityType` 
-* Removed `EquipmentItem` attribute `NatoStockNumber` 
-* Replaced `EquipmentItem` attribute `SymbolId` with `OrganizationElement` attribute `Symbol` 
-* Replaced `EquipmentItem` attribute `Disposition` with `OrganizationElement` attribute `Location` 
-* Replaced `EquipmentItem` attribute `CommunicationNetworks` with NETN-COM `Equipment` attribute `CommunicationNetworks` 
-* Removed `EquipmentItem` attribute `Resolution` 
-* Replaced `EquipmentItem` attribute `MountedOn` with `OrganizationElement` attribute `HostUnit` 
-* Replaced `EquipmentItem` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol` 
- 
-* Replaced `Installation` attribute `Name` with `ORG_Root` attribute `Name` 
-* Renamed `Installation` attribute `Owner` to `UnitInCommand` 
-* Replaced `Installation` attribute `EntityType` with `OrganizationElement` attribute `EntityType` 
-* Replaced `Installation` attribute `SymbolId` with `OrganizationElement` attribute `Symbol` 
-* Replaced `Installation` attribute `Location` with `OrganizationElement` attribute `Location` 
-* Replaced `Installation` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol` 
- 
-* Renamed `Force` attribute `Relations` to `Relationships` 
-* Replaced `Force` attribute `Name` with `ORG_Root` attribute `Name` 
- 
-* Renamed object class `Force` to `Organization` 
- 
-* Added `Organization` attribute `ForceIdentifier` 
-* Added `Organization` attribute `CountryCode` 
- 
- 
-* Added `BaseEntity` attribute `Organization` 
-* Removed object class `FederateApplication` 
- 
-* Added datatype `ForceIdentifierEnum` 
- 
-* Removed datatype `Text1` 
-* Removed datatype `Text2` 
-* Removed datatype `Text3` 
-* Removed datatype `Text5` 
-* Removed datatype `Text8` 
-* Removed datatype `Text9` 
-* Removed datatype `Text15` 
-* Removed datatype `Text20` 
-* Removed datatype `Text21` 
-* Removed datatype `Text24` 
-* Removed datatype `Text255` 
-* Removed datatype `EquipmentSymbolAmplificationStruct` 
-* Removed datatype `UnitSymbolAmplificationStruct` 
-* Removed datatype `InstallationSymbolAmplificationStruct` 
-* Removed datatype `FormationInt32` 
-* Removed datatype `FormationPositionStruct` 
-* Removed datatype `HostilityStatusCodeEnum32` 
-* Removed datatype `ModelResolutionTypeEnum32` 
-* Removed datatype `NatoStockNumberArray13` 
-* Removed datatype `ArrayOfCommunicationNetworks` 
-* Removed datatype `CommunicationNetworkStruct` 
-* Removed datatype `CommunicationServiceTypeEnum32` 
+            <semantics>* Replaced `ORG_Root` attribute `UniqueId` with NETN-BASE `HLAobjectRoot` attribute `UniqueId`
+
+* Added `ORG_Root` attribute `Name`
+
+* Added object class `OrganizationElement`
+
+* Replaced `Unit` attribute `Name` with `ORG_Root` attribute `Name`
+* Replaced `Unit` attribute `Force` with `OrganizationElement` attribute `Organization`
+* Replaced `Unit` attribute `EntityType` with `OrganizationElement` attribute `EntityType`
+* Replaced `Unit` attribute `SymbolId` with `OrganizationElement` attribute `Symbol`
+* Replaced `Unit` attribute `Disposition` with `OrganizationElement` attribute `Location`
+* Replaced `Unit` attribute `CommunicationNetworks` with NETN-COM `Unit` attribute `CommunicationNetworks`
+* Replaced `Unit` attribute `EmbarkedIn` with `OrganizationElement` attribute `HostUnit`
+* Replaced `Unit` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol`
+* Renamed `Unit` attribute `SuperiorUnit` to `AggregateUnit`
+
+* Added `Unit` attribute `HigherHeadquarters`
+
+* Renamed object class `EquipmentItem` to `Equipment`
+* Replaced `EquipmentItem` attribute `Name` with `ORG_Root` attribute `Name`
+* Replaced `EquipmentItem` attribute `EntityType` with `OrganizationElement` attribute `EntityType`
+* Removed `EquipmentItem` attribute `NatoStockNumber`
+* Replaced `EquipmentItem` attribute `SymbolId` with `OrganizationElement` attribute `Symbol`
+* Replaced `EquipmentItem` attribute `Disposition` with `OrganizationElement` attribute `Location`
+* Replaced `EquipmentItem` attribute `CommunicationNetworks` with NETN-COM `Equipment` attribute `CommunicationNetworks`
+* Removed `EquipmentItem` attribute `Resolution`
+* Replaced `EquipmentItem` attribute `MountedOn` with `OrganizationElement` attribute `HostUnit`
+* Replaced `EquipmentItem` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol`
+
+* Replaced `Installation` attribute `Name` with `ORG_Root` attribute `Name`
+* Renamed `Installation` attribute `Owner` to `UnitInCommand`
+* Replaced `Installation` attribute `EntityType` with `OrganizationElement` attribute `EntityType`
+* Replaced `Installation` attribute `SymbolId` with `OrganizationElement` attribute `Symbol`
+* Replaced `Installation` attribute `Location` with `OrganizationElement` attribute `Location`
+* Replaced `Installation` attribute `SymbolAmplification` with `OrganizationElement` attribute `Symbol`
+
+* Renamed `Force` attribute `Relations` to `Relationships`
+* Replaced `Force` attribute `Name` with `ORG_Root` attribute `Name`
+
+* Renamed object class `Force` to `Organization`
+
+* Added `Organization` attribute `ForceIdentifier`
+* Added `Organization` attribute `CountryCode`
+
+
+* Added `BaseEntity` attribute `Organization`
+* Removed object class `FederateApplication`
+
+* Added datatype `ForceIdentifierEnum`
+
+* Removed datatype `Text1`
+* Removed datatype `Text2`
+* Removed datatype `Text3`
+* Removed datatype `Text5`
+* Removed datatype `Text8`
+* Removed datatype `Text9`
+* Removed datatype `Text15`
+* Removed datatype `Text20`
+* Removed datatype `Text21`
+* Removed datatype `Text24`
+* Removed datatype `Text255`
+* Removed datatype `EquipmentSymbolAmplificationStruct`
+* Removed datatype `UnitSymbolAmplificationStruct`
+* Removed datatype `InstallationSymbolAmplificationStruct`
+* Removed datatype `FormationInt32`
+* Removed datatype `FormationPositionStruct`
+* Removed datatype `HostilityStatusCodeEnum32`
+* Removed datatype `ModelResolutionTypeEnum32`
+* Removed datatype `NatoStockNumberArray13`
+* Removed datatype `ArrayOfCommunicationNetworks`
+* Removed datatype `CommunicationNetworkStruct`
+* Removed datatype `CommunicationServiceTypeEnum32`
 * Removed datatype `DispositionStruct`</semantics>
         </note>
         <note>
             <label>netn-org_overview</label>
-            <semantics>## Overview 
- 
-Use the NETN-ORG FOM module to represent organizations and their internal structure, relationships, associated units, equipment, and installations. 
- 
-Dynamic organizational changes may include new or rearranged unit structures or changes in the relationships with other organizations. 
- 
-In a simulation, not all units, equipment and installations have a corresponding simulation entity in the federation. Which elements to represent as simulated entities are determined by the current modelling responsibility described in NETN-TMR and dynamic changes in the level of aggregation described in NETN-MRM. 
- 
+            <semantics>## Overview
+
+Use the NETN-ORG FOM module to represent organizations and their internal structure, relationships, associated units, equipment, and installations.
+
+Dynamic organizational changes may include new or rearranged unit structures or changes in the relationships with other organizations.
+
+In a simulation, not all units, equipment and installations have a corresponding simulation entity in the federation. Which elements to represent as simulated entities are determined by the current modelling responsibility described in NETN-TMR and dynamic changes in the level of aggregation described in NETN-MRM.
+
 The NETN-ORG organization elements are the basis for initializing simulated entities, e.g., `PhysicalEntitiy` or `AggregateEntity` objects. Therefore, updates of NETN-ORG objects should be considered a re-initialization of any associated simulation entity. For example, updating the `Unit` attribute `Holdings` could be reflected in an `AggregateEntity`.
- 
-## Organization 
- 
-In NETN-ORG, an `Organization` is a representation used to: 
-1. group elements of the organization 
-2. define relationships between different organizations 
- 
-All `BaseEntity` objects are associated with a specific `Organization`.The required RPR-FOM attribute `ForceIdentifier` can be derived from the referenced organization and the corresponding `Organization` attribute `ForceIdentifier`. 
- 
- 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAobjectRoot &lt;|-- ORG_Root 
-HLAobjectRoot &lt;|-- BaseEntity 
- 
-HLAobjectRoot : UniqueId(NETN-BASE) 
-ORG_Root &lt;|-- OrganizationElement 
-ORG_Root &lt;|-- Organization 
-ORG_Root : Name 
-OrganizationElement &lt;|-- Equipment 
-OrganizationElement &lt;|-- Unit 
-OrganizationElement &lt;|-- Installation 
-OrganizationElement : EntityType 
-OrganizationElement : HostUnit 
-OrganizationElement : Location 
-OrganizationElement : Organization 
-OrganizationElement : SuperiorUnit 
-OrganizationElement : Symbol 
-Unit : Echelon 
-Unit : Formation 
-Unit : HigherHeadquarters 
-Unit : Holdings 
-Unit : IsHq 
-Organization : CountryCode 
-Organization : ForceIdentifier 
-Organization : Relationships 
-BaseEntity : Organization 
-``` 
- 
-Each `Organization` is defined by a structure of `OrganizationElement` objects. Each `OrganizationElement` object is related to its `Organization` and its `SuperiorUnit`, if any. There are three (3) subtypes of `OrganizationElement`: 
- 
-1. `Unit` represents an element at a specified level in the organization. An organizational unit can contain subunits and can belong to a superior unit. A unit consists of equipment, personnel and supplies; these holdings can belong directly to the unit or indirectly as a holding of a subunit. 
-2. `Equipment` represents individual physical items explicitly defined and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensor objects. 
+
+## Organization
+
+In NETN-ORG, an `Organization` is a representation used to:
+1. group elements of the organization
+2. define relationships between different organizations
+
+All `BaseEntity` objects are associated with a specific `Organization`.The required RPR-FOM attribute `ForceIdentifier` can be derived from the referenced organization and the corresponding `Organization` attribute `ForceIdentifier`.
+
+
+
+```mermaid
+classDiagram
+direction LR
+
+HLAobjectRoot &lt;|-- ORG_Root
+HLAobjectRoot &lt;|-- BaseEntity
+
+HLAobjectRoot : UniqueId(NETN-BASE)
+ORG_Root &lt;|-- OrganizationElement
+ORG_Root &lt;|-- Organization
+ORG_Root : Name
+OrganizationElement &lt;|-- Equipment
+OrganizationElement &lt;|-- Unit
+OrganizationElement &lt;|-- Installation
+OrganizationElement : EntityType
+OrganizationElement : HostUnit
+OrganizationElement : Location
+OrganizationElement : Organization
+OrganizationElement : SuperiorUnit
+OrganizationElement : Symbol
+Unit : Echelon
+Unit : Formation
+Unit : HigherHeadquarters
+Unit : Holdings
+Unit : IsHq
+Organization : CountryCode
+Organization : ForceIdentifier
+Organization : Relationships
+BaseEntity : Organization
+```
+
+Each `Organization` is defined by a structure of `OrganizationElement` objects. Each `OrganizationElement` object is related to its `Organization` and its `SuperiorUnit`, if any. There are three (3) subtypes of `OrganizationElement`:
+
+1. `Unit` represents an element at a specified level in the organization. An organizational unit can contain subunits and can belong to a superior unit. A unit consists of equipment, personnel and supplies; these holdings can belong directly to the unit or indirectly as a holding of a subunit.
+2. `Equipment` represents individual physical items explicitly defined and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensor objects.
 3. `Installation` are facilities, e.g. harbours, airfields, or engineering objects, e.g. minefields.
 
 To request a change of `SuperiorUnit`, use the NETN-SMC entity control action `ChangeSuperiorUnit`.
@@ -760,7 +779,7 @@ To request a change of `SuperiorUnit`, use the NETN-SMC entity control action `C
 
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot &lt;|-- SMC_EntityControl
 
@@ -771,23 +790,23 @@ ChangeSuperiorUnit : SuperiorUnit
 
 ```
 
- 
-## Allocation to Federates 
- 
+
+## Allocation to Federates
+
 The NETN-ORG can also provide the initial allocation of responsibility to a federate for what `Equipment` is represented as a `PhysicalEntity` and what `Unit` is represented as an `AggregateEntity`. The NETN-SMC object class `SMC_Service` is subclassed with the `EntitySimulation` class, which can publish the allocation of initial modelling responsibility for each instance.
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
- 
-HLAobjectRoot &lt;|-- SMC_Service 
-HLAobjectRoot : UniqueId(NETN-BASE) 
- 
-SMC_Service &lt;|-- EntitySimulation 
-SMC_Service : Federate(NETN-SMC) 
-EntitySimulation : AggregateEntityAllocation 
-EntitySimulation : PhysicalEntityAllocation 
+
+```mermaid
+classDiagram
+direction LR
+
+
+HLAobjectRoot &lt;|-- SMC_Service
+HLAobjectRoot : UniqueId(NETN-BASE)
+
+SMC_Service &lt;|-- EntitySimulation
+SMC_Service : Federate(NETN-SMC)
+EntitySimulation : AggregateEntityAllocation
+EntitySimulation : PhysicalEntityAllocation
 ```</semantics>
         </note>
     </notes>

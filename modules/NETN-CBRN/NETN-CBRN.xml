@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification notes="netn-cbrn_overview">
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2025 http://standards.ieee.org/downloads/1516/1516.2-2025/IEEE1516-DIF-2025.xsd" xmlns="http://standards.ieee.org/IEEE1516-2025" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification noteReferences="netn-cbrn_overview">
         <name>NETN-CBRN</name>
         <type>FOM</type>
         <version>v2.0</version>
         <modificationDate>2024-03-10</modificationDate>
         <securityClassification>Not Classified</securityClassification>
+        <copyright/>
         <purpose>The NATO Education and Training Network Chemical, Biological, Radiological and Nuclear (NETN-CBRN) provides a standard interface for representing CBRN release, detection, effects, and protective measures in a federated distributed simulation. E.g., the exposure effect on individual humans in a CBRN-contaminated Hazard area where the human is represented in one simulation and the effect is modelled in another federate simulation.</purpose>
         <applicationDomain>Training</applicationDomain>
         <description>CBRN are Chemical, Biological, Radiological and Nuclear materials that can be delivered intentionally as a weapon using conventional bombs, explosive materials and enhanced blast weapons (e.g., dirty bombs) or unintentionally caused by human error or natural or technological reasons, such as spills, accidental releases or leakages. 
 
 The NETN-CBRN module specifies how to model CBRN-related events in a federated distributed simulation.</description>
         <useLimitation></useLimitation>
-        <useHistory notes="netn-cbrn_changelog_1">v1.1 - Initial version developed by MSG-106. Included in NETN FOM v2.0 and AMSP-04 Ed A.</useHistory>
-        <useHistory notes="netn-cbrn_changelog_2">v1.2 - Minor update of the NETN-CBRN FOM Module developed by MSG-163 and included in AMSP-04 Ed B.</useHistory>
-        <useHistory notes="netn-cbrn_changelog_0">v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0</useHistory>
+        <useHistory noteReferences="netn-cbrn_changelog_1">v1.1 - Initial version developed by MSG-106. Included in NETN FOM v2.0 and AMSP-04 Ed A.</useHistory>
+        <useHistory noteReferences="netn-cbrn_changelog_2">v1.2 - Minor update of the NETN-CBRN FOM Module developed by MSG-163 and included in AMSP-04 Ed B.</useHistory>
+        <useHistory noteReferences="netn-cbrn_changelog_0">v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -66,7 +67,7 @@ Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
-        <glyph type="png" height="48" width="48" alt="">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</glyph>
+        <glyph href="data:/image/png;base64,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" alt=""/>
     </modelIdentification>
     <objects>
         <objectClass>
@@ -86,6 +87,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>ArrayOfCBRNExposureStruct</dataType>
                                 <updateType>Conditional</updateType>
                                 <updateCondition>On change</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -97,6 +99,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>ArrayOfTreatmentStruct</dataType>
                                 <updateType>Conditional</updateType>
                                 <updateCondition>On change</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -108,6 +111,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>CBRNDamageEnum8</dataType>
                                 <updateType>Conditional</updateType>
                                 <updateCondition>On change</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -119,6 +123,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>IPETypeEnum8</dataType>
                                 <updateType>Conditional</updateType>
                                 <updateCondition>On change</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -138,6 +143,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>TimeSecondInteger32</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>N/A</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -149,6 +155,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>TimeSecondInteger32</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>N/A</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -160,6 +167,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>ArrayOfAgentConcentrationStruct</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>N/A</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -171,6 +179,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>CBRNAlarmStruct</dataType>
                                 <updateType>Conditional</updateType>
                                 <updateCondition>On change</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -187,6 +196,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>TimeSecondInteger32</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>N/A</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -198,6 +208,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>TimeSecondInteger32</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>N/A</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -209,6 +220,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>ArrayOfAgentTypeEnum</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>N/A</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -220,6 +232,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>ArrayOfCBRNSensorReadingStruct</dataType>
                                 <updateType>Conditional</updateType>
                                 <updateCondition>On change</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -237,6 +250,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                             <dataType>ArrayOfAgentMassStruct</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>On change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -253,6 +267,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                             <dataType>QuantityInt32</dataType>
                             <updateType>Static</updateType>
                             <updateCondition>N/A</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -268,6 +283,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>ArrayOfProtectionEffectivenessStruct</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>N/A</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -284,6 +300,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>TimeSecondInteger32</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>N/A</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -295,6 +312,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <dataType>ArrayOfTreatmentStruct</dataType>
                                 <updateType>Conditional</updateType>
                                 <updateCondition>On change</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -316,6 +334,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>AgentTypeEnum16</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -327,6 +346,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>ArrayOfContourStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -338,6 +358,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>ExposureTypeEnum8</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -349,6 +370,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>HazardTypeEnum8</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -365,6 +387,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>TimeSecondInteger32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
@@ -376,6 +399,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>ATP45HazardAreaTypeEnum8</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>N/A</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
@@ -387,6 +411,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <dataType>AgentClassEnum8</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>N/A</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -1188,193 +1213,193 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
     <notes>
         <note>
             <label>netn-cbrn_overview</label>
-            <semantics>## Overview 
- 
-The NETN-CBRN FOM module covers: 
-1.	CBRN Source release modelling 
-2.	CBRN Detector modelling 
-3.	CBRN Effects modelling 
-4.	CBRN Protective measures modelling 
-5.	Hazard area modelling 
- 
-The NETN-METOC module can model weather conditions that may impact the dispersion of CBRN materials and cause dynamic change to hazard areas. 
- 
-## Contamination 
- 
-The NETN-CBRN module provides modelling of CBRN contamination related to individual simulated `Platform` entities and `CBRN_Hazard` regions. 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAobjectRoot &lt;|-- BaseEntity 
-HLAobjectRoot &lt;|-- DIM_HazardRegion 
-HLAobjectRoot : UniqueId(NETN-BASE) 
-HLAobjectRoot : CreateTime(NETN-BASE) 
-BaseEntity &lt;|-- PhysicalEntity 
-BaseEntity : EntityIdentifier(RPR-BASE) 
-BaseEntity : EntityType(RPR-BASE) 
-BaseEntity : Spatial(RPR-BASE) 
-PhysicalEntity &lt;|-- Platform 
-Platform : Contamination 
-DIM_HazardRegion &lt;|-- CBRN_Hazard 
-DIM_HazardRegion : Area(NETN-DIM) 
-CBRN_Hazard : AgentType 
-CBRN_Hazard : Contours 
-CBRN_Hazard : ExposureType 
-CBRN_Hazard : HazardType 
-PhysicalEntity &lt;|-- Lifeform 
-Lifeform &lt;|-- Human 
-Human : Exposures 
- 
-``` 
- 
-A `CBRN_Release` event triggers the start of a CBRN-related event and indicates parameters used to initiate the modelling of a `CBRN_Hazard`. As contamination spreads in the environment, the `CBRN_Hazard` objects are updated, simulated platforms located in CBRN-affected regions are contaminated, and lifeforms are exposed. 
- 
-```mermaid 
-classDiagram 
-direction LR 
-HLAinteractionRoot &lt;|-- SMC_EntityControl 
-HLAinteractionRoot &lt;|-- CBRN_Release 
-HLAinteractionRoot : SendTime(NETN-BASE) 
-HLAinteractionRoot : UniqueId(NETN-BASE) 
-SMC_EntityControl &lt;|-- SetPlatformContamination 
-SMC_EntityControl : Entity(NETN-SMC) 
-SetPlatformContamination : Contamination 
-SMC_EntityControl &lt;|-- SetCasualtyEffect 
-SetCasualtyEffect : Exposures 
-CBRN_Release : Agent 
-CBRN_Release : Duration 
-CBRN_Release : Location 
-CBRN_Release : Mass 
-CBRN_Release : ReleaseDynamics 
-CBRN_Release : ReleaseSize 
-CBRN_Release : ReleaseVelocity 
-``` 
- 
-The platform contamination and lifeform exposure are usually simulated but can also be set explicitly using NETN-SMC entity control interactions. Use the `SetPlatformContamination` interaction to set the `Platform` contamination level. Use `SetCausaltyEffect` to set `Lifeform` exposure levels. 
- 
-## Protection and Treatment 
-Individual `Lifeform` objects are extended with attributes related to CBRN exposure and treatments. Facilities providing protection and treatment are modelled using `DecontamiationStation` or CollectiveProtection `COLPRO` objects. 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAobjectRoot &lt;|-- BaseEntity 
- 
-HLAobjectRoot : UniqueId(NETN-BASE) 
-BaseEntity &lt;|-- PhysicalEntity 
-BaseEntity : EntityIdentifier(RPR-BASE) 
-BaseEntity : EntityType(RPR-BASE) 
-BaseEntity : Spatial(RPR-BASE) 
-PhysicalEntity &lt;|-- Lifeform 
-Lifeform &lt;|-- Human 
- 
- 
-PhysicalEntity &lt;|-- CulturalFeature 
- 
-Human : IPEType 
-Human : Treatments 
-Human : TriageLevel 
- 
- 
-CulturalFeature &lt;|-- COLPRO 
-CulturalFeature &lt;|-- DecontaminationStation 
-CulturalFeature : Capacity 
-COLPRO : Protection 
-DecontaminationStation : DecontaminationPeriod 
-DecontaminationStation : Treatments 
- 
- 
-``` 
- 
-Two NETN-ETR `Task` subclasses related to protection and treatment are defined in the NETN-CBRN module. Use the `ApplyIPE` task to request a `Lifeform` to apply individual protection equipment. Use the `AdministerTreatment` task to request an entity to initiate the treatment of a set of entities. 
- 
-```mermaid 
-classDiagram 
-direction LR 
-HLAinteractionRoot &lt;|-- SMC_EntityControl 
-HLAinteractionRoot : SendTime(NETN-BASE) 
-HLAinteractionRoot : UniqueId(NETN-BASE) 
-SMC_EntityControl &lt;|-- Task 
- 
-SMC_EntityControl &lt;|-- SetCasualtyEffect 
- 
-SetCasualtyEffect : TriageLevel 
-SMC_EntityControl : Entity(NETN-SMC) 
-Task &lt;|-- ApplyIPE 
-Task &lt;|-- AdministerTreatment 
-Task : TaskId(NETN-ETR) 
-ApplyIPE : TaskParameters 
-AdministerTreatment : TaskParameters 
-``` 
- 
-## Detection and Alarm 
- 
-The NETN-CBRN can represent CBRN sensors and detectors as `Sensor` objects in the federation. These objects define, e.g., the type of `DetectableAgents` and are used to share aspects of the individual equipment to a CBRN simulation that can generate corresponding sensor events. 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAobjectRoot &lt;|-- BaseEntity 
-HLAobjectRoot : UniqueId(NETN-BASE) 
-BaseEntity &lt;|-- PhysicalEntity 
-BaseEntity : EntityIdentifier(RPR-BASE) 
-BaseEntity : EntityType(RPR-BASE) 
-BaseEntity : Spatial(RPR-BASE) 
-PhysicalEntity &lt;|-- Sensor 
-Sensor &lt;|-- CBRN_Detector 
-Sensor &lt;|-- CBRN_Sensor 
-CBRN_Detector : Alarm 
-CBRN_Detector : AveragingTime 
-CBRN_Detector : DetectableAgents 
-CBRN_Detector : ProcessingTime 
-CBRN_Sensor : AveragingTime 
-CBRN_Sensor : DetectableAgents 
-CBRN_Sensor : SensorReadings 
-CBRN_Sensor : UpdateFrequency 
-``` 
- 
-A CBRN federate can generate a `CBRN_DetectorAlarm` event to indicate a detected agent at a specific location. A CBRN federate can also generate a `CBRN_SensorUpdate` event to indicate the concentration of a specific agent. 
- 
- 
-```mermaid 
-classDiagram 
-direction LR 
-HLAinteractionRoot &lt;|-- ETR_SensorEvent 
-HLAinteractionRoot : SendTime(NETN-BASE) 
-HLAinteractionRoot : UniqueId(NETN-BASE) 
- 
-ETR_SensorEvent &lt;|-- CBRN_SensorUpdate 
-ETR_SensorEvent &lt;|-- CBRN_DetectorAlarm 
-ETR_SensorEvent : ProducingEntity(NETN-ETR) 
-CBRN_SensorUpdate : Agent 
-CBRN_SensorUpdate : Concentration 
-CBRN_DetectorAlarm : Agent 
-CBRN_DetectorAlarm : Location 
-``` 
- 
- 
-## Prediction 
- 
+            <semantics>## Overview
+
+The NETN-CBRN FOM module covers:
+1.	CBRN Source release modelling
+2.	CBRN Detector modelling
+3.	CBRN Effects modelling
+4.	CBRN Protective measures modelling
+5.	Hazard area modelling
+
+The NETN-METOC module can model weather conditions that may impact the dispersion of CBRN materials and cause dynamic change to hazard areas.
+
+## Contamination
+
+The NETN-CBRN module provides modelling of CBRN contamination related to individual simulated `Platform` entities and `CBRN_Hazard` regions.
+
+```mermaid
+classDiagram
+direction LR
+
+HLAobjectRoot &lt;|-- BaseEntity
+HLAobjectRoot &lt;|-- DIM_HazardRegion
+HLAobjectRoot : UniqueId(NETN-BASE)
+HLAobjectRoot : CreateTime(NETN-BASE)
+BaseEntity &lt;|-- PhysicalEntity
+BaseEntity : EntityIdentifier(RPR-BASE)
+BaseEntity : EntityType(RPR-BASE)
+BaseEntity : Spatial(RPR-BASE)
+PhysicalEntity &lt;|-- Platform
+Platform : Contamination
+DIM_HazardRegion &lt;|-- CBRN_Hazard
+DIM_HazardRegion : Area(NETN-DIM)
+CBRN_Hazard : AgentType
+CBRN_Hazard : Contours
+CBRN_Hazard : ExposureType
+CBRN_Hazard : HazardType
+PhysicalEntity &lt;|-- Lifeform
+Lifeform &lt;|-- Human
+Human : Exposures
+
+```
+
+A `CBRN_Release` event triggers the start of a CBRN-related event and indicates parameters used to initiate the modelling of a `CBRN_Hazard`. As contamination spreads in the environment, the `CBRN_Hazard` objects are updated, simulated platforms located in CBRN-affected regions are contaminated, and lifeforms are exposed.
+
+```mermaid
+classDiagram
+direction LR
+HLAinteractionRoot &lt;|-- SMC_EntityControl
+HLAinteractionRoot &lt;|-- CBRN_Release
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_EntityControl &lt;|-- SetPlatformContamination
+SMC_EntityControl : Entity(NETN-SMC)
+SetPlatformContamination : Contamination
+SMC_EntityControl &lt;|-- SetCasualtyEffect
+SetCasualtyEffect : Exposures
+CBRN_Release : Agent
+CBRN_Release : Duration
+CBRN_Release : Location
+CBRN_Release : Mass
+CBRN_Release : ReleaseDynamics
+CBRN_Release : ReleaseSize
+CBRN_Release : ReleaseVelocity
+```
+
+The platform contamination and lifeform exposure are usually simulated but can also be set explicitly using NETN-SMC entity control interactions. Use the `SetPlatformContamination` interaction to set the `Platform` contamination level. Use `SetCausaltyEffect` to set `Lifeform` exposure levels.
+
+## Protection and Treatment
+Individual `Lifeform` objects are extended with attributes related to CBRN exposure and treatments. Facilities providing protection and treatment are modelled using `DecontamiationStation` or CollectiveProtection `COLPRO` objects.
+
+```mermaid
+classDiagram
+direction LR
+
+HLAobjectRoot &lt;|-- BaseEntity
+
+HLAobjectRoot : UniqueId(NETN-BASE)
+BaseEntity &lt;|-- PhysicalEntity
+BaseEntity : EntityIdentifier(RPR-BASE)
+BaseEntity : EntityType(RPR-BASE)
+BaseEntity : Spatial(RPR-BASE)
+PhysicalEntity &lt;|-- Lifeform
+Lifeform &lt;|-- Human
+
+
+PhysicalEntity &lt;|-- CulturalFeature
+
+Human : IPEType
+Human : Treatments
+Human : TriageLevel
+
+
+CulturalFeature &lt;|-- COLPRO
+CulturalFeature &lt;|-- DecontaminationStation
+CulturalFeature : Capacity
+COLPRO : Protection
+DecontaminationStation : DecontaminationPeriod
+DecontaminationStation : Treatments
+
+
+```
+
+Two NETN-ETR `Task` subclasses related to protection and treatment are defined in the NETN-CBRN module. Use the `ApplyIPE` task to request a `Lifeform` to apply individual protection equipment. Use the `AdministerTreatment` task to request an entity to initiate the treatment of a set of entities.
+
+```mermaid
+classDiagram
+direction LR
+HLAinteractionRoot &lt;|-- SMC_EntityControl
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_EntityControl &lt;|-- Task
+
+SMC_EntityControl &lt;|-- SetCasualtyEffect
+
+SetCasualtyEffect : TriageLevel
+SMC_EntityControl : Entity(NETN-SMC)
+Task &lt;|-- ApplyIPE
+Task &lt;|-- AdministerTreatment
+Task : TaskId(NETN-ETR)
+ApplyIPE : TaskParameters
+AdministerTreatment : TaskParameters
+```
+
+## Detection and Alarm
+
+The NETN-CBRN can represent CBRN sensors and detectors as `Sensor` objects in the federation. These objects define, e.g., the type of `DetectableAgents` and are used to share aspects of the individual equipment to a CBRN simulation that can generate corresponding sensor events.
+
+```mermaid
+classDiagram
+direction LR
+
+HLAobjectRoot &lt;|-- BaseEntity
+HLAobjectRoot : UniqueId(NETN-BASE)
+BaseEntity &lt;|-- PhysicalEntity
+BaseEntity : EntityIdentifier(RPR-BASE)
+BaseEntity : EntityType(RPR-BASE)
+BaseEntity : Spatial(RPR-BASE)
+PhysicalEntity &lt;|-- Sensor
+Sensor &lt;|-- CBRN_Detector
+Sensor &lt;|-- CBRN_Sensor
+CBRN_Detector : Alarm
+CBRN_Detector : AveragingTime
+CBRN_Detector : DetectableAgents
+CBRN_Detector : ProcessingTime
+CBRN_Sensor : AveragingTime
+CBRN_Sensor : DetectableAgents
+CBRN_Sensor : SensorReadings
+CBRN_Sensor : UpdateFrequency
+```
+
+A CBRN federate can generate a `CBRN_DetectorAlarm` event to indicate a detected agent at a specific location. A CBRN federate can also generate a `CBRN_SensorUpdate` event to indicate the concentration of a specific agent.
+
+
+```mermaid
+classDiagram
+direction LR
+HLAinteractionRoot &lt;|-- ETR_SensorEvent
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+
+ETR_SensorEvent &lt;|-- CBRN_SensorUpdate
+ETR_SensorEvent &lt;|-- CBRN_DetectorAlarm
+ETR_SensorEvent : ProducingEntity(NETN-ETR)
+CBRN_SensorUpdate : Agent
+CBRN_SensorUpdate : Concentration
+CBRN_DetectorAlarm : Agent
+CBRN_DetectorAlarm : Location
+```
+
+
+## Prediction
+
 The NETN-CBRN module also supports the `CBRN_Hazard_Prediction` object class to predict CBRN hazard regions. A prediction model can publish instances of this object to indicate a potential CBRN hazard.
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAobjectRoot &lt;|-- DIM_HazardRegion 
-HLAobjectRoot : UniqueId(NETN-BASE) 
-HLAobjectRoot : CreateTime(NETN-BASE) 
- 
-DIM_HazardRegion &lt;|-- CBRN_Hazard_Prediction 
-DIM_HazardRegion : Area(NETN-DIM) 
- 
-CBRN_Hazard_Prediction : ATP45HazardAreaType 
-CBRN_Hazard_Prediction : AgentClass 
-CBRN_Hazard_Prediction : Duration 
+
+```mermaid
+classDiagram
+direction LR
+
+HLAobjectRoot &lt;|-- DIM_HazardRegion
+HLAobjectRoot : UniqueId(NETN-BASE)
+HLAobjectRoot : CreateTime(NETN-BASE)
+
+DIM_HazardRegion &lt;|-- CBRN_Hazard_Prediction
+DIM_HazardRegion : Area(NETN-DIM)
+
+CBRN_Hazard_Prediction : ATP45HazardAreaType
+CBRN_Hazard_Prediction : AgentClass
+CBRN_Hazard_Prediction : Duration
 ```</semantics>
         </note>
         <note>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification notes="netn-ais_overview">
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2025 http://standards.ieee.org/downloads/1516/1516.2-2025/IEEE1516-DIF-2025.xsd" xmlns="http://standards.ieee.org/IEEE1516-2025" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification noteReferences="netn-ais_overview">
         <name>NETN-AIS</name>
         <type>FOM</type>
         <version>2.0</version>
         <modificationDate>2024-03-10</modificationDate>
         <securityClassification>Not Classified</securityClassification>
+        <copyright/>
         <purpose>The purpose of the NATO Education and Training Network Automatic Identification System Module (NETN-AIS) is to:     
         
 * represent vessel traffic in a simulation using AIS messages to, for example, communicate position status reports of vessels.   
@@ -16,7 +17,7 @@
         <description>AIS is a worldwide automated tracking system used for sharing vessel identification and location information by propagating messages between nearby vessels and Vessel Traffic Services stations.</description>
         <useLimitation>The NETN-AIS module is a simulation-oriented representation of AIS messages. It does not focus on the physical message format defined by the AIS standard ITU-R M.1371-5. However, the module is aligned with this standard to enable easy mapping to and from live message formats.</useLimitation>
         <useHistory>v1.0 - Developed by MSG-163 for NETN FOM v3.0</useHistory>
-        <useHistory notes="netn-ais_changelog_1">v2.0 - Developed by MSG-191 for NETN FOM v4.0</useHistory>
+        <useHistory noteReferences="netn-ais_changelog_1">v2.0 - Developed by MSG-191 for NETN FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -65,7 +66,7 @@ Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
-        <glyph type="png" height="48" width="48" alt="">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</glyph>
+        <glyph href="data:/image/png;base64,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" alt=""/>
     </modelIdentification>
     <objects>
         <objectClass>
@@ -85,6 +86,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                 <dataType>MMSIInteger32</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>Init</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -96,6 +98,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                 <dataType>HLAunicodeString</dataType>
                                 <updateType>NA</updateType>
                                 <updateCondition>NA</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -107,6 +110,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                 <dataType>TransmitterOperationalStatusEnum8</dataType>
                                 <updateType>Conditional</updateType>
                                 <updateCondition>When the tansmitter status updated</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -118,6 +122,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                 <dataType>EntityTypeStruct</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>Init</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -133,6 +138,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>IMOInteger32</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>Init</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -144,6 +150,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>ShipTypeEnum8</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -155,6 +162,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>LengthMeterFloat32</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -166,6 +174,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>LengthMeterFloat32</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -177,6 +186,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>LengthMeterFloat32</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -188,6 +198,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>LengthMeterFloat32</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -199,6 +210,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>DraughtMeterFloat32</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -225,6 +237,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>AidTypeEnum8</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -236,6 +249,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>LengthMeterFloat32</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -247,6 +261,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>LengthMeterFloat32</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -258,6 +273,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>LengthMeterFloat32</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -269,6 +285,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                     <dataType>LengthMeterFloat32</dataType>
                                     <updateType>Static</updateType>
                                     <updateCondition>NA</updateCondition>
+                                    <valueRequired>false</valueRequired>
                                     <ownership>DivestAcquire</ownership>
                                     <sharing>PublishSubscribe</sharing>
                                     <transportation>HLAreliable</transportation>
@@ -365,8 +382,8 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 1: Position Report Class A. 
- 
+                                <semantics>Message Type 1: Position Report Class A.
+
 Message type for a scheduled position report; Class A shipborne mobile equipment. This message transmits information pertaining to a ships navigation: Longitude and latitude, time, heading, speed, ships navigation status (under power, at anchor...). This message is transmitted every 2 to 10 seconds while underway, and every 3 minutes while at anchor.</semantics>
                             </interactionClass>
                             <interactionClass>
@@ -374,8 +391,8 @@ Message type for a scheduled position report; Class A shipborne mobile equipment
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 2: Position Report Class A. 
- 
+                                <semantics>Message Type 2: Position Report Class A.
+
 Message type for an assigned scheduled position report; Class A shipborne mobile equipment. This message transmits information pertaining to a ships navigation: Longitude and latitude, time, heading, speed, ships navigation status (under power, at anchor...). This message is transmitted every 2 to 10 seconds while underway, and every 3 minutes while at anchor.</semantics>
                             </interactionClass>
                             <interactionClass>
@@ -383,8 +400,8 @@ Message type for an assigned scheduled position report; Class A shipborne mobile
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 3: Position Report Class A. 
- 
+                                <semantics>Message Type 3: Position Report Class A.
+
 Message type for a special position report, response to interrogation; Class A shipborne mobile equipment. This message transmits information pertaining to a ships navigation: Longitude and latitude, time, heading, speed, ships navigation status (under power, at anchor...). This message is transmitted every 2 to 10 seconds while underway, and every 3 minutes while at anchor.</semantics>
                             </interactionClass>
                         </interactionClass>
@@ -409,8 +426,8 @@ Message type for a special position report, response to interrogation; Class A s
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 4: Base Station Report. 
- 
+                                <semantics>Message Type 4: Base Station Report.
+
 This message is to be used by fixed-location base stations to periodically report a position and time reference.</semantics>
                             </interactionClass>
                             <interactionClass>
@@ -418,8 +435,8 @@ This message is to be used by fixed-location base stations to periodically repor
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 11: UTC/Date Response. 
- 
+                                <semantics>Message Type 11: UTC/Date Response.
+
 Identical to Message Type 4, with the semantics of a response to inquiry. This message type is only transmitted from a mobile station as a result of a UTC request message (Message Type 10).</semantics>
                             </interactionClass>
                         </interactionClass>
@@ -469,8 +486,8 @@ Identical to Message Type 4, with the semantics of a response to inquiry. This m
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 5: Static and Voyage-Related Data. 
- 
+                                <semantics>Message Type 5: Static and Voyage-Related Data.
+
 This message type is transmitted every 6 minutes and should only be used by Class A shipborne and SAR aircraft AIS stations when reporting static or voyage-related data.</semantics>
                                 <parameter>
                                     <name>IMO</name>
@@ -480,7 +497,7 @@ This message type is transmitted every 6 minutes and should only be used by Clas
                                 <parameter>
                                     <name>ETAtime</name>
                                     <dataType>EpochTime</dataType>
-                                    <semantics>Optional (Default: not available). Estimated time of arrival. Not applicable to SAR aircraft. 
+                                    <semantics>Optional (Default: not available). Estimated time of arrival. Not applicable to SAR aircraft.
 If a zero value is provided then this shall be interpreted as not available.</semantics>
                                 </parameter>
                                 <parameter>
@@ -499,8 +516,8 @@ If a zero value is provided then this shall be interpreted as not available.</se
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 19: Extended Class B CS Position Report. 
- 
+                                <semantics>Message Type 19: Extended Class B CS Position Report.
+
 A slightly more detailed report than Message Type 18 for vessels using Class B transmitters. Omits navigational status and rate of turn. Fields are as in the common navigation block and the Message Type 5 message.</semantics>
                                 <parameter>
                                     <name>SpeedOverGround</name>
@@ -533,8 +550,8 @@ A slightly more detailed report than Message Type 18 for vessels using Class B t
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 24: Static Data Report. 
- 
+                                <semantics>Message Type 24: Static Data Report.
+
 The equivalent of Message Type 5 for ships using Class B equipment. Also used to associate an MMSI with a name on either class A or class B equipment. This message type may be in part A or part B format. According to the standard, parts A and B are expected to be broadcast in adjacent pairs.</semantics>
                                 <parameter>
                                     <name>PartNumber</name>
@@ -563,8 +580,8 @@ The equivalent of Message Type 5 for ships using Class B equipment. Also used to
                             <sharing>Subscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Binary Payload for Message Types 6 and 8. The interpretation of the binary payload is controlled by: 
-- The Designated Area Code (DAC), is a jurisdiction code: 366 for the United States. It uses the same encoding as the area designator in MMMSIs; see [ITU-MID]. 1 designates international (ITU) messages. 
+                            <semantics>Binary Payload for Message Types 6 and 8. The interpretation of the binary payload is controlled by:
+- The Designated Area Code (DAC), is a jurisdiction code: 366 for the United States. It uses the same encoding as the area designator in MMMSIs; see [ITU-MID]. 1 designates international (ITU) messages.
 - The FID is the Functional ID for a message subtype. In some sources, this is abbreviated FI.</semantics>
                             <parameter>
                                 <name>DesignatedAreaCode</name>
@@ -586,8 +603,8 @@ The equivalent of Message Type 5 for ships using Class B equipment. Also used to
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 6: Binary Addressed Message. 
- 
+                                <semantics>Message Type 6: Binary Addressed Message.
+
 This message type is an addressed point-to-point message with a binary payload.</semantics>
                                 <parameter>
                                     <name>Destination</name>
@@ -600,8 +617,8 @@ This message type is an addressed point-to-point message with a binary payload.<
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 8: Binary Broadcast Message. 
- 
+                                <semantics>Message Type 8: Binary Broadcast Message.
+
 This message type is a broadcast message with a binary payload.</semantics>
                             </interactionClass>
                         </interactionClass>
@@ -636,8 +653,8 @@ This message type is a broadcast message with a binary payload.</semantics>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 7: Binary Acknowledge. 
- 
+                                <semantics>Message Type 7: Binary Acknowledge.
+
 This message type is a receipt acknowledgement to the senders of a previous messages of Message Type 6. Up to 4 destination MMSIs can be acknowledged in one message.</semantics>
                             </interactionClass>
                             <interactionClass>
@@ -645,8 +662,8 @@ This message type is a receipt acknowledgement to the senders of a previous mess
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Message Type 13: Safety-Related Acknowledgement. 
- 
+                                <semantics>Message Type 13: Safety-Related Acknowledgement.
+
 This message type is a receipt acknowledgement to senders of previous messages of Message Type 12.</semantics>
                             </interactionClass>
                         </interactionClass>
@@ -655,8 +672,8 @@ This message type is a receipt acknowledgement to senders of previous messages o
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Message type 9: Standard SAR Aircraft Position Report. 
- 
+                            <semantics>Message type 9: Standard SAR Aircraft Position Report.
+
 Tracking information for search-and-rescue aircraft.</semantics>
                             <parameter>
                                 <name>Altitude</name>
@@ -689,8 +706,8 @@ Tracking information for search-and-rescue aircraft.</semantics>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Message Type 10: UTC/Date Inquiry. 
- 
+                            <semantics>Message Type 10: UTC/Date Inquiry.
+
 Request for UTC/Date information from an AIS base station.</semantics>
                             <parameter>
                                 <name>Destination</name>
@@ -703,8 +720,8 @@ Request for UTC/Date information from an AIS base station.</semantics>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Type 12: Addressed Safety-Related Message. 
- 
+                            <semantics>Type 12: Addressed Safety-Related Message.
+
 This is a point-to-point text message. The payload is interpreted as six-bit text.</semantics>
                             <parameter>
                                 <name>Destination</name>
@@ -722,8 +739,8 @@ This is a point-to-point text message. The payload is interpreted as six-bit tex
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Type 14: Safety-Related Broadcast Message. 
- 
+                            <semantics>Type 14: Safety-Related Broadcast Message.
+
 This is a broadcast text message. The payload is interpreted as six-bit text.</semantics>
                             <parameter>
                                 <name>Message</name>
@@ -736,8 +753,8 @@ This is a broadcast text message. The payload is interpreted as six-bit text.</s
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Message Type 17: DGNSS Broadcast Binary Message. 
- 
+                            <semantics>Message Type 17: DGNSS Broadcast Binary Message.
+
 This message type is used to broadcast differential corrections for GPS.</semantics>
                             <parameter>
                                 <name>Position</name>
@@ -750,8 +767,8 @@ This message type is used to broadcast differential corrections for GPS.</semant
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Message Type 18: Standard Class B CS Position Report. 
- 
+                            <semantics>Message Type 18: Standard Class B CS Position Report.
+
 A less detailed report than message types 1-3 for vessels using Class B transmitters. Omits navigational status and rate of turn.</semantics>
                             <parameter>
                                 <name>SpeedOverGround</name>
@@ -784,8 +801,8 @@ A less detailed report than message types 1-3 for vessels using Class B transmit
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Message Type 21: Aid-to-Navigation Report. 
- 
+                            <semantics>Message Type 21: Aid-to-Navigation Report.
+
 Identification and location message to be emitted by aids to navigation such as buoys and lighthouses.</semantics>
                             <parameter>
                                 <name>AidType</name>
@@ -843,8 +860,8 @@ Identification and location message to be emitted by aids to navigation such as 
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Message Type 27: Long Range AIS Broadcast message. 
- 
+                            <semantics>Message Type 27: Long Range AIS Broadcast message.
+
 This message type is primarily intended for long-range detection of vessels equipped with AIS Class A (typically by satellite). This message has similar content to Messages 1, 2 and 3, but the total number of bits has been compressed to allow for increased propagation delays associated with long-range detection.</semantics>
                             <parameter>
                                 <name>NavigationStatus</name>
@@ -879,8 +896,8 @@ This message type is primarily intended for long-range detection of vessels equi
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks entity (the source) to send a safety-related message (AIS message type 12) to another entity (the destination). 
- 
+                        <semantics>Tasks entity (the source) to send a safety-related message (AIS message type 12) to another entity (the destination).
+
 Both source and destination must represent an AIS station (vessel, SAR aircraft, etc).</semantics>
                         <parameter>
                             <name>TaskParameters</name>
@@ -893,8 +910,8 @@ Both source and destination must represent an AIS station (vessel, SAR aircraft,
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasks entity (the source) to send a safety-related broadcast message (AIS message type 14). 
- 
+                        <semantics>Tasks entity (the source) to send a safety-related broadcast message (AIS message type 14).
+
 The source must represent an AIS station (vessel, SAR aircraft, etc).</semantics>
                         <parameter>
                             <name>TaskParameters</name>
@@ -954,10 +971,10 @@ The source must represent an AIS station (vessel, SAR aircraft, etc).</semantics
                 <units>NA</units>
                 <resolution>NA</resolution>
                 <accuracy>NA</accuracy>
-                <semantics>A 30-bit value. The International Maritime Organization (IMO) number is a unique identifier for vessels. See https://www.itu.int/en/ITU-R. 
- 
-The IMO number is made of the three letters "IMO" followed by a seven-digit number. This number consists of a six-digit sequential unique number followed by a check digit. The integrity of an IMO number can be verified using its check digit. This is done by multiplying each of the first six digits by a factor of 2 to 7 corresponding to their position from right to left. The rightmost digit of this sum is the check digit. For example, for IMO 9074729: (9×7) + (0×6) + (7×5) + (4×4) + (7×3) + (2×2) = 139. 
- 
+                <semantics>A 30-bit value. The International Maritime Organization (IMO) number is a unique identifier for vessels. See https://www.itu.int/en/ITU-R.
+
+The IMO number is made of the three letters "IMO" followed by a seven-digit number. This number consists of a six-digit sequential unique number followed by a check digit. The integrity of an IMO number can be verified using its check digit. This is done by multiplying each of the first six digits by a factor of 2 to 7 corresponding to their position from right to left. The rightmost digit of this sum is the check digit. For example, for IMO 9074729: (9×7) + (0×6) + (7×5) + (4×4) + (7×3) + (2×2) = 139.
+
 This attribute represents the 7 digits value of the IMO number. The value shall be zero for not available (default). The value shall also be zero for inland vessels.</semantics>
             </simpleData>
             <simpleData>
@@ -1601,184 +1618,184 @@ This attribute represents the 7 digits value of the IMO number. The value shall 
     <notes>
         <note>
             <label>netn-ais_changelog_1</label>
-            <semantics>* Renamed `AisEquipmentItem` object class to `AIS_Equipment` as subclass of NETN-ORG object class `Equipment` 
-* Added `AIS_Equipment` object class attribute `Callsign` 
-* Added `Vessel` object class attribute `ShipType` 
-* Added `Vessel` object class attribute `DimensionToStern` 
-* Added `Vessel` object class attribute `DimensionToBow` 
-* Added `Vessel` object class attribute `DimensionToPort` 
-* Added `Vessel` object class attribute `DimensionToStarboard` 
-* Added `Vessel` object class attribute `Drought` 
-* Added `AidToNavigation` object class attribute `DimensionToStern` 
-* Added `AidToNavigation` object class attribute `DimensionToBow` 
-* Added `AidToNavigation` object class attribute `DimensionToPort` 
-* Added `AidToNavigation` object class attribute `DimensionToStarboard` 
- 
-* Added datatype `SendSafetyRelatedMessageTaskStruct` 
-* Added datatype `SendSafetyRelatedBroadcastMessageTaskStruct` 
-* Added datatype `TaskDefinitionVariantRecord` 
-* Added datatype `TaskProgressVariantRecord` 
+            <semantics>* Renamed `AisEquipmentItem` object class to `AIS_Equipment` as subclass of NETN-ORG object class `Equipment`
+* Added `AIS_Equipment` object class attribute `Callsign`
+* Added `Vessel` object class attribute `ShipType`
+* Added `Vessel` object class attribute `DimensionToStern`
+* Added `Vessel` object class attribute `DimensionToBow`
+* Added `Vessel` object class attribute `DimensionToPort`
+* Added `Vessel` object class attribute `DimensionToStarboard`
+* Added `Vessel` object class attribute `Drought`
+* Added `AidToNavigation` object class attribute `DimensionToStern`
+* Added `AidToNavigation` object class attribute `DimensionToBow`
+* Added `AidToNavigation` object class attribute `DimensionToPort`
+* Added `AidToNavigation` object class attribute `DimensionToStarboard`
+
+* Added datatype `SendSafetyRelatedMessageTaskStruct`
+* Added datatype `SendSafetyRelatedBroadcastMessageTaskStruct`
+* Added datatype `TaskDefinitionVariantRecord`
+* Added datatype `TaskProgressVariantRecord`
 * Added datatype `EntityControlActionEnum`</semantics>
         </note>
         <note>
             <label>netn-ais_overview</label>
-            <semantics>## Overview 
- 
-The NETN-AIS module defines most AIS message types defined in ITU-R M.1371-5 [3] except for rarely used message types and message types related to traffic analysis in an AIS network, i.e. 15, 16, 20, 22, 23, 25 and 26. 
- 
-The most common message types are: 
-* Position Report Class A (Message types 1,2, and 3) and 
-* Static and Voyage Related Data (Message type 5). 
- 
- 
- 
-```mermaid 
-classDiagram 
-direction LR 
-HLAinteractionRoot &lt;|-- RadioSignal 
- 
-RadioSignal &lt;|-- AIS_RadioSignal 
-AIS_RadioSignal &lt;|-- AisMessage 
-AIS_RadioSignal : HostRadioIndex 
-AisMessage &lt;|-- AisNavigationData 
-AisMessage &lt;|-- AisStaticAndVoyageData 
-AisMessage : MessageId 
-AisMessage : UserId 
- 
-AisNavigationData : CourseOverGround 
-AisNavigationData : NavigationalStatus 
-AisNavigationData : Position 
-AisNavigationData : RateOfTurn 
-AisNavigationData : SpecialManeuverIndicator 
-AisNavigationData : SpeedOverGround 
-AisNavigationData : TrueHeading 
-AisNavigationData : UTCtime 
- 
-AisStaticAndVoyageData : Callsign 
-AisStaticAndVoyageData : DimensionBow 
-AisStaticAndVoyageData : DimensionPort 
-AisStaticAndVoyageData : DimensionStarboard 
-AisStaticAndVoyageData : DimensionStern 
-AisStaticAndVoyageData : Name 
-AisStaticAndVoyageData : ShipType 
- 
-``` 
-The NETN-AIS interaction class structure is closely aligned with the message type specification in ITU-R M.1371-5, enabling easy translation to and from commonly used live protocols such as NMEA 0183. 
- 
-The `AIS_RadioSignal` interaction is a subclass of the RPR-FOM `RadioSignal` interaction and uses the `HostRadioIndex` parameter to reference an RPR-FOM `RadioTransmitter` object instance. 
- 
- 
- 
-### AIS messages 
- 
-The following AIS message types are included: 
- 
-| Message type | Description | 
-| --- | --- | 
-| 1 | **Position Report Class A**. This is the Message type for a scheduled position report; it is Class A shipborne mobile equipment. This message transmits information about a ship's navigation: longitude and latitude, time, heading, speed, and the ship's navigation status, e.g., under power, at anchor. It is transmitted every 2 to 10 seconds while underway and every 3 minutes while at anchor. | 
-| 2 | Same as 1.| 
-| 3 | Same as 1. | 
-| 4 | **Base Station Report**. Fixed-location base stations will use this message to report a position and time reference periodically. | 
-| 5 | **Static and Voyage-related Data**. This message type is transmitted every 6 minutes and should only be used by Class A shipborne and SAR aircraft AIS stations when reporting static or voyage-related data. | 
-| 6 | **Binary Addressed Message**. This message type is an addressed point-to-point message with an unspecified binary payload. | 
-| 7 | **Binary Acknowledge**. This message type is a receipt acknowledgement to the senders of a previous message of Message Type 6. Total length varies depending on the number of destination MMSIs included (1..4). | 
-| 8 | **Binary Broadcast Message**. This message type is a broadcast message with a binary payload. | 
-| 9 | **Standard SAR Aircraft Position Report**. Tracking information for search-and-rescue aircraft. | 
-| 10 | **UTC/Date Inquiry**. Request for UTC/Date information from an AIS base station. | 
-| 11 | **UTC/Date Response**. This message type is identical to Message Type 4 and has the semantics of a response to an inquiry. It is only transmitted from a mobile station as a result of a UTC request message (Message Type 10). | 
-| 12 | **Addressed Safety-Related Message**. This is a point-to-point text message. The payload is interpreted as a six-bit text. | 
-| 13 | **Safety-Related Acknowledgement**. This message type is a receipt acknowledgement to senders of previous messages of Message Type 12. | 
-| 14 | **Safety-Related Broadcast Message**. This is a broadcast text message. The payload is interpreted as a six-bit text. | 
-| 17 | **DGNSS Broadcast Binary Message**. This message type is used to broadcast differential corrections for GPS. The data in the payload is intended to be passed directly to GPS receivers capable of accepting such corrections. | 
-| 18 | **Standard Class B CS Position Report**. This is a less detailed report than message types 1-3 for vessels using Class B transmitters. The navigational status and rate of turn are not included in this message type. | 
-| 19 | **Extended Class B CS Position Report**. This is a slightly more detailed report than Message Type 18 for vessels using Class B transmitters. The navigational status and rate of turn are not included in this message type. The fields are defined in the common navigation block and the Message Type 5 message. | 
-| 21 | **Aid-to-Navigation Report**. Aids for navigation, such as buoys and lighthouses, emit an identification and location message. | 
-| 24 | **Static Data Report**. This is the equivalent of Message Type 5 for ships using Class B equipment. It is also used to associate an MMSI with a name on either class A or class B equipment. This message type may be in part A or part B format. According to the standard, parts A and B are expected to be broadcast in adjacent pairs.| 
-| 27 | **Long Range AIS Broadcast message**. This message type is primarily intended for long-range detection of AIS Class A equipped vessels (typically by satellite). It has similar content to Messages 1, 2 and 3, but the total number of bits is compressed to allow for increased propagation delays associated with long-range detection. | 
- 
- 
-Many `AisMessage` class parameters are optional with a default value. However, the following parameters should be provided if possible: 
- 
-* Position: Geodetic Location. 
-* UTCtime : Time of the report in UTC. 
- 
- 
-Note that the AIS position defined as a `GeodeticLocation` differs from ITU-R M.1371-5, where Longitude and Latitude are represented in 1/10 000 min and stored in a 28- and 27-bit field, respectively. 
- 
-#### Encoding of a six-bit character string 
- 
-Several parameters in AIS use six-bit character strings, e.g., vessel name and callsign. In NETN-AIS, the parameter data type of a six-bit character string is `HLAASCIIstring`. The following table shows the mapping of ASCII characters to the AIS six-bit character. 
- 
-| six-bit | dec | char | six-bit | dec | char | six-bit | dec | char | six-bit | dec | char | 
-| ------ | ---- | ---- | ------ | ---- | ---- | ------ | ---- | ---- | ------ | ---- | ---- | 
-| 000000 | 0 | "@" | 010000 | 16 | "P" | 100000 | 32 | " " | 110000 | 48 | "0" | 
-| 000001 | 1 | "A" | 010001 | 17 | "Q" | 100001 | 33 | "!" | 110001 | 49 | "1" | 
-| 000010 | 2 | "B" | 010010 | 18 | "R" | 100010 | 34 | """ | 110010 | 50 | "2" | 
-| 000011 | 3 | "C" | 010011 | 19 | "S" | 100011 | 35 | "\#" | 110011 | 51 | "3" | 
-| 000100 | 4 | "D" | 010100 | 20 | "T" | 100100 | 36 | "$" | 110100 | 52 | "4" | 
-| 000101 | 5 | "E" | 010101 | 21 | "U" | 100101 | 37 | "%" | 110101 | 53 | "5" | 
-| 000110 | 6 | "F" | 010110 | 22 | "V" | 100110 | 38 | "&amp;" | 110110 | 54 | "6" | 
-| 000111 | 7 | "G" | 010111 | 23 | "W" | 100111 | 39 | "\'" | 110111 | 55 | "7" | 
-| 001000 | 8 | "H" | 011000 | 24 | "X" | 101000 | 40 | "(" | 111000 | 56 | "8" | 
-| 001001 | 9 | "I" | 011001 | 25 | "Y" | 101001 | 41 | ")" | 111001 | 56 | "9" | 
-| 001010 | 10 | "J" | 011010 | 26 | "Z" | 101010 | 42 | "\*" | 111010 | 58 | ":" | 
-| 001011 | 11 | "K" | 011011 | 27 | "[" | 101011 | 43 | "\+" | 111011 | 59 | ";" | 
-| 001100 | 12 | "L" | 011100 | 28 | "\" | 101100 | 44 | "," | 111100 | 60 | "&lt;" | 
-| 001101 | 13 | "M" | 011101 | 29 | "]" | 101101 | 45 | "-" | 111101 | 61 | "=" | 
-| 001110 | 14 | "N" | 011110 | 30 | "\^" | 101110 | 46 | "." | 111110 | 62 | "&gt;" | 
-| 001111 | 15 | "O" | 011111 | 31 | "\_" | 101111 | 47 | "/" | 111111 | 63 | "?" | 
- 
-#### RadioTransmitter 
- 
-An `AIS_RadioSignal` can be associated with a `RadioTransmitter` object instance. The required attributes of the `RadioTransmitter` object instance can be assigned the following values: 
- 
-| Attribute | Semantics | Value | 
-| --- | --- | --- | 
-| Frequency | The center frequency of the radio transmissions is specified in Herz. | `162000000` Hz | 
-| FrequencyBandwidth | The bandwidth of the radio transmissions is specified in Hertz. | `25000` Hz | 
-| RadioIndex | Specifies the identification number for each radio on a given host. This value shall not change during simulation execution. | Per agreement. If the `RadioTransmitter` is the only radio for the vessel, the index `0` should be used. | 
-| RadioSystemType | Entity type of the radio transmitter: Kind, Domain, Country, Category. This value shall not change during simulation execution. Note that no further refinement of the type (subcategory etc.) is defined. The country value `0` should be replaced by the actual value. | `7.3.0.37` | 
-| TransmittedPower | The average power being transmitted in units of decibel-milliwatts. | `12.5` watts for class A (`41` dBm), `5` watts for class B/SO (`37` dBm), and `2` watts for class B/CS (`33` dBm). | 
-| TransmitterOperationalStatus | On/Off state of the transmitter as an enumeration. | `Off`, `OnButNotTransmitting` or `OnAndTransmitting` | 
-| WorldLocation | Location of the antenna in world coordinates. | The vessel position. | 
- 
-### NETN-ETR extensions 
- 
-The NETN-AIS FOM module covers the following: 
- 
-* AIS messages are represented as `AisMessage` interactions extending the RPR-Communication FOM Module `RadioSignal` interaction class. 
-* AIS-specific entity tasking interactions that extend the NETN-ETR FOM module `Task` interaction class. 
-* AIS stations are represented as `AisEquipmentItem` objects that extend `EquipmentItem` defined in the NETN-ORG FOM module. 
- 
- 
-The NETN-ETR `Task` extensions are summarized in the following table. 
- 
-| Name | Semantics | 
-| --- | --- | 
-| SendSafetyRelatedMessage | Task a simulated entity (the source) with sending a safety-related message (AIS message type 12) to another entity (the destination). Both the source and destination must represent an AIS station.| 
-| SendSafetyRelatedBroadcastMessage | Task a simulated entity (the source) with sending a safety-related broadcast message (AIS message type 14). The source must represent an AIS station. | 
- 
-### NETN-ORG extensions 
- 
-The NETN-ORG `Equipment` extensions are summarized in the following table. 
- 
-|Name|Semantics| 
-|---|---| 
-|AIS_Equipment|This class defines attributes for all AIS equipment.| 
-|Vessel|This class defines additional attributes for vessel equipment.| 
-|SARaircraft|This class defines additional attributes for SAR aircraft equipment.| 
-|Basestation|This class defines additional attributes for base station equipment.| 
-|AidToNavigation|This class defines additional attributes for aid-to-navigation (ATON) equipment.| 
- 
-The `AIS_Equipment` defines, amongst others, the `RadioSystemType` of the AIS station. The `RadioSystemType` should be used by the federate to initialize the `RadioTransmitter` object instance. Entity type values that may be used for the `RadioSystemType` are: 
- 
-- `7.3.0.37.0.0.0` for a default AIS transmitter related to the AIS station 
-- `7.3.0.37.1.0.0` for a class A transmitter 
-- `7.3.0.37.2.0.0` for a class B/SO (Self-Organizing) transmitter 
-- `7.3.0.37.3.0.0` for a class B/CS (Carrier-Sense) transmitter 
- 
-See Radio Kind in the SISO Enumerations for categories. Adding a subcategory makes it possible to identify the specific type of transmitter. These non-standard subcategory values should be defined as part of the federation agreements. The country code value 0 in this example should be replaced by the appropriate value. 
- 
+            <semantics>## Overview
+
+The NETN-AIS module defines most AIS message types defined in ITU-R M.1371-5 [3] except for rarely used message types and message types related to traffic analysis in an AIS network, i.e. 15, 16, 20, 22, 23, 25 and 26.
+
+The most common message types are:
+* Position Report Class A (Message types 1,2, and 3) and
+* Static and Voyage Related Data (Message type 5).
+
+
+
+```mermaid
+classDiagram
+direction LR
+HLAinteractionRoot &lt;|-- RadioSignal
+
+RadioSignal &lt;|-- AIS_RadioSignal
+AIS_RadioSignal &lt;|-- AisMessage
+AIS_RadioSignal : HostRadioIndex
+AisMessage &lt;|-- AisNavigationData
+AisMessage &lt;|-- AisStaticAndVoyageData
+AisMessage : MessageId
+AisMessage : UserId
+
+AisNavigationData : CourseOverGround
+AisNavigationData : NavigationalStatus
+AisNavigationData : Position
+AisNavigationData : RateOfTurn
+AisNavigationData : SpecialManeuverIndicator
+AisNavigationData : SpeedOverGround
+AisNavigationData : TrueHeading
+AisNavigationData : UTCtime
+
+AisStaticAndVoyageData : Callsign
+AisStaticAndVoyageData : DimensionBow
+AisStaticAndVoyageData : DimensionPort
+AisStaticAndVoyageData : DimensionStarboard
+AisStaticAndVoyageData : DimensionStern
+AisStaticAndVoyageData : Name
+AisStaticAndVoyageData : ShipType
+
+```
+The NETN-AIS interaction class structure is closely aligned with the message type specification in ITU-R M.1371-5, enabling easy translation to and from commonly used live protocols such as NMEA 0183.
+
+The `AIS_RadioSignal` interaction is a subclass of the RPR-FOM `RadioSignal` interaction and uses the `HostRadioIndex` parameter to reference an RPR-FOM `RadioTransmitter` object instance.
+
+
+
+### AIS messages
+
+The following AIS message types are included:
+
+| Message type | Description |
+| --- | --- |
+| 1 | **Position Report Class A**. This is the Message type for a scheduled position report; it is Class A shipborne mobile equipment. This message transmits information about a ship's navigation: longitude and latitude, time, heading, speed, and the ship's navigation status, e.g., under power, at anchor. It is transmitted every 2 to 10 seconds while underway and every 3 minutes while at anchor. |
+| 2 | Same as 1.|
+| 3 | Same as 1. |
+| 4 | **Base Station Report**. Fixed-location base stations will use this message to report a position and time reference periodically. |
+| 5 | **Static and Voyage-related Data**. This message type is transmitted every 6 minutes and should only be used by Class A shipborne and SAR aircraft AIS stations when reporting static or voyage-related data. |
+| 6 | **Binary Addressed Message**. This message type is an addressed point-to-point message with an unspecified binary payload. |
+| 7 | **Binary Acknowledge**. This message type is a receipt acknowledgement to the senders of a previous message of Message Type 6. Total length varies depending on the number of destination MMSIs included (1..4). |
+| 8 | **Binary Broadcast Message**. This message type is a broadcast message with a binary payload. |
+| 9 | **Standard SAR Aircraft Position Report**. Tracking information for search-and-rescue aircraft. |
+| 10 | **UTC/Date Inquiry**. Request for UTC/Date information from an AIS base station. |
+| 11 | **UTC/Date Response**. This message type is identical to Message Type 4 and has the semantics of a response to an inquiry. It is only transmitted from a mobile station as a result of a UTC request message (Message Type 10). |
+| 12 | **Addressed Safety-Related Message**. This is a point-to-point text message. The payload is interpreted as a six-bit text. |
+| 13 | **Safety-Related Acknowledgement**. This message type is a receipt acknowledgement to senders of previous messages of Message Type 12. |
+| 14 | **Safety-Related Broadcast Message**. This is a broadcast text message. The payload is interpreted as a six-bit text. |
+| 17 | **DGNSS Broadcast Binary Message**. This message type is used to broadcast differential corrections for GPS. The data in the payload is intended to be passed directly to GPS receivers capable of accepting such corrections. |
+| 18 | **Standard Class B CS Position Report**. This is a less detailed report than message types 1-3 for vessels using Class B transmitters. The navigational status and rate of turn are not included in this message type. |
+| 19 | **Extended Class B CS Position Report**. This is a slightly more detailed report than Message Type 18 for vessels using Class B transmitters. The navigational status and rate of turn are not included in this message type. The fields are defined in the common navigation block and the Message Type 5 message. |
+| 21 | **Aid-to-Navigation Report**. Aids for navigation, such as buoys and lighthouses, emit an identification and location message. |
+| 24 | **Static Data Report**. This is the equivalent of Message Type 5 for ships using Class B equipment. It is also used to associate an MMSI with a name on either class A or class B equipment. This message type may be in part A or part B format. According to the standard, parts A and B are expected to be broadcast in adjacent pairs.|
+| 27 | **Long Range AIS Broadcast message**. This message type is primarily intended for long-range detection of AIS Class A equipped vessels (typically by satellite). It has similar content to Messages 1, 2 and 3, but the total number of bits is compressed to allow for increased propagation delays associated with long-range detection. |
+
+
+Many `AisMessage` class parameters are optional with a default value. However, the following parameters should be provided if possible:
+
+* Position: Geodetic Location.
+* UTCtime : Time of the report in UTC.
+
+
+Note that the AIS position defined as a `GeodeticLocation` differs from ITU-R M.1371-5, where Longitude and Latitude are represented in 1/10 000 min and stored in a 28- and 27-bit field, respectively.
+
+#### Encoding of a six-bit character string
+
+Several parameters in AIS use six-bit character strings, e.g., vessel name and callsign. In NETN-AIS, the parameter data type of a six-bit character string is `HLAASCIIstring`. The following table shows the mapping of ASCII characters to the AIS six-bit character.
+
+| six-bit | dec | char | six-bit | dec | char | six-bit | dec | char | six-bit | dec | char |
+| ------ | ---- | ---- | ------ | ---- | ---- | ------ | ---- | ---- | ------ | ---- | ---- |
+| 000000 | 0 | "@" | 010000 | 16 | "P" | 100000 | 32 | " " | 110000 | 48 | "0" |
+| 000001 | 1 | "A" | 010001 | 17 | "Q" | 100001 | 33 | "!" | 110001 | 49 | "1" |
+| 000010 | 2 | "B" | 010010 | 18 | "R" | 100010 | 34 | """ | 110010 | 50 | "2" |
+| 000011 | 3 | "C" | 010011 | 19 | "S" | 100011 | 35 | "\#" | 110011 | 51 | "3" |
+| 000100 | 4 | "D" | 010100 | 20 | "T" | 100100 | 36 | "$" | 110100 | 52 | "4" |
+| 000101 | 5 | "E" | 010101 | 21 | "U" | 100101 | 37 | "%" | 110101 | 53 | "5" |
+| 000110 | 6 | "F" | 010110 | 22 | "V" | 100110 | 38 | "&amp;" | 110110 | 54 | "6" |
+| 000111 | 7 | "G" | 010111 | 23 | "W" | 100111 | 39 | "\'" | 110111 | 55 | "7" |
+| 001000 | 8 | "H" | 011000 | 24 | "X" | 101000 | 40 | "(" | 111000 | 56 | "8" |
+| 001001 | 9 | "I" | 011001 | 25 | "Y" | 101001 | 41 | ")" | 111001 | 56 | "9" |
+| 001010 | 10 | "J" | 011010 | 26 | "Z" | 101010 | 42 | "\*" | 111010 | 58 | ":" |
+| 001011 | 11 | "K" | 011011 | 27 | "[" | 101011 | 43 | "\+" | 111011 | 59 | ";" |
+| 001100 | 12 | "L" | 011100 | 28 | "\" | 101100 | 44 | "," | 111100 | 60 | "&lt;" |
+| 001101 | 13 | "M" | 011101 | 29 | "]" | 101101 | 45 | "-" | 111101 | 61 | "=" |
+| 001110 | 14 | "N" | 011110 | 30 | "\^" | 101110 | 46 | "." | 111110 | 62 | "&gt;" |
+| 001111 | 15 | "O" | 011111 | 31 | "\_" | 101111 | 47 | "/" | 111111 | 63 | "?" |
+
+#### RadioTransmitter
+
+An `AIS_RadioSignal` can be associated with a `RadioTransmitter` object instance. The required attributes of the `RadioTransmitter` object instance can be assigned the following values:
+
+| Attribute | Semantics | Value |
+| --- | --- | --- |
+| Frequency | The center frequency of the radio transmissions is specified in Herz. | `162000000` Hz |
+| FrequencyBandwidth | The bandwidth of the radio transmissions is specified in Hertz. | `25000` Hz |
+| RadioIndex | Specifies the identification number for each radio on a given host. This value shall not change during simulation execution. | Per agreement. If the `RadioTransmitter` is the only radio for the vessel, the index `0` should be used. |
+| RadioSystemType | Entity type of the radio transmitter: Kind, Domain, Country, Category. This value shall not change during simulation execution. Note that no further refinement of the type (subcategory etc.) is defined. The country value `0` should be replaced by the actual value. | `7.3.0.37` |
+| TransmittedPower | The average power being transmitted in units of decibel-milliwatts. | `12.5` watts for class A (`41` dBm), `5` watts for class B/SO (`37` dBm), and `2` watts for class B/CS (`33` dBm). |
+| TransmitterOperationalStatus | On/Off state of the transmitter as an enumeration. | `Off`, `OnButNotTransmitting` or `OnAndTransmitting` |
+| WorldLocation | Location of the antenna in world coordinates. | The vessel position. |
+
+### NETN-ETR extensions
+
+The NETN-AIS FOM module covers the following:
+
+* AIS messages are represented as `AisMessage` interactions extending the RPR-Communication FOM Module `RadioSignal` interaction class.
+* AIS-specific entity tasking interactions that extend the NETN-ETR FOM module `Task` interaction class.
+* AIS stations are represented as `AisEquipmentItem` objects that extend `EquipmentItem` defined in the NETN-ORG FOM module.
+
+
+The NETN-ETR `Task` extensions are summarized in the following table.
+
+| Name | Semantics |
+| --- | --- |
+| SendSafetyRelatedMessage | Task a simulated entity (the source) with sending a safety-related message (AIS message type 12) to another entity (the destination). Both the source and destination must represent an AIS station.|
+| SendSafetyRelatedBroadcastMessage | Task a simulated entity (the source) with sending a safety-related broadcast message (AIS message type 14). The source must represent an AIS station. |
+
+### NETN-ORG extensions
+
+The NETN-ORG `Equipment` extensions are summarized in the following table.
+
+|Name|Semantics|
+|---|---|
+|AIS_Equipment|This class defines attributes for all AIS equipment.|
+|Vessel|This class defines additional attributes for vessel equipment.|
+|SARaircraft|This class defines additional attributes for SAR aircraft equipment.|
+|Basestation|This class defines additional attributes for base station equipment.|
+|AidToNavigation|This class defines additional attributes for aid-to-navigation (ATON) equipment.|
+
+The `AIS_Equipment` defines, amongst others, the `RadioSystemType` of the AIS station. The `RadioSystemType` should be used by the federate to initialize the `RadioTransmitter` object instance. Entity type values that may be used for the `RadioSystemType` are:
+
+- `7.3.0.37.0.0.0` for a default AIS transmitter related to the AIS station
+- `7.3.0.37.1.0.0` for a class A transmitter
+- `7.3.0.37.2.0.0` for a class B/SO (Self-Organizing) transmitter
+- `7.3.0.37.3.0.0` for a class B/CS (Carrier-Sense) transmitter
+
+See Radio Kind in the SISO Enumerations for categories. Adding a subcategory makes it possible to identify the specific type of transmitter. These non-standard subcategory values should be defined as part of the federation agreements. The country code value 0 in this example should be replaced by the appropriate value.
+
 In addition, the NETN-ORG MSDL schema is extended with an AIS schema. This enables persistent storage of AIS-related ORBAT data in the same file as the rest of the ORBAT data.
 
 ## Patterns for initialization
@@ -1812,9 +1829,7 @@ If no NETN-ORG initialization data is available or used, the `Marking` is set to
 | NETN Physical Entity attribute | Initialized with |
 | --- | --- |
 | `Marking`| AIS MMSI value provided by the federate owning the `Marking` attribute. |
-| `Callsign` | (1) AIS Callsign value provided by the entity owner, or (2) not used/not published |
-
-</semantics>
+| `Callsign` | (1) AIS Callsign value provided by the entity owner, or (2) not used/not published |</semantics>
         </note>
     </notes>
 </objectModel>

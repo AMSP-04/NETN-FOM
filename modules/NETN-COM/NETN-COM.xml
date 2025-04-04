@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification notes="netn-com_overview">
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2025 http://standards.ieee.org/downloads/1516/1516.2-2025/IEEE1516-DIF-2025.xsd" xmlns="http://standards.ieee.org/IEEE1516-2025" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification noteReferences="netn-com_overview">
         <name>NETN-COM</name>
         <type>FOM</type>
         <version>2.0</version>
         <modificationDate>2024-03-18</modificationDate>
         <securityClassification>Not classified</securityClassification>
+        <copyright/>
         <purpose>The purpose of the NATO Education and Training Network Communication Network Module (NETN-COM) is to provide a standard way to exchange data related to the status of connections in a communication network and links in a physical network.</purpose>
         <applicationDomain></applicationDomain>
         <description>The communication networks can be modelled using radios, ethernet, satellite communication or laser-based links, transmitting from point to point or routing through the network. </description>
         <useLimitation></useLimitation>
         <useHistory>1.0 - Initial version developed by MSG-164 and MSG-163 for NETN FOM v3.0</useHistory>
-        <useHistory notes="netn-com_changelog">2.0 - Version developed by MSG-191 for NETN FOM v4.0</useHistory>
+        <useHistory noteReferences="netn-com_changelog">2.0 - Version developed by MSG-191 for NETN FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -53,7 +54,7 @@ Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
-        <glyph type="png" height="48" width="48" alt="">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</glyph>
+        <glyph href="data:/image/png;base64,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" alt=""/>
     </modelIdentification>
     <objects>
         <objectClass>
@@ -65,13 +66,14 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <objectClass>
                     <name>CommunicationNetwork</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>The `CommunicationNetwork` class specifies details about the type of service used by a logical communication network. This corresponds to the CommunicationNet-Elements of MSDL Units and Equipments. 
+                    <semantics>The `CommunicationNetwork` class specifies details about the type of service used by a logical communication network. This corresponds to the CommunicationNet-Elements of MSDL Units and Equipments.
 Instances of this object class should be considered optional. No federate should rely on this data to work with communication networks.</semantics>
                     <attribute>
                         <name>Name</name>
                         <dataType>HLAunicodeString</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>NoTransfer</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -83,6 +85,7 @@ Instances of this object class should be considered optional. No federate should
                         <dataType>CommunicationNetworkTypeEnum</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -94,6 +97,7 @@ Instances of this object class should be considered optional. No federate should
                         <dataType>CommunicationServiceTypeEnum</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -104,49 +108,50 @@ Instances of this object class should be considered optional. No federate should
                 <objectClass>
                     <name>CommunicationNode</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>A `CommunicationNode` is the representation of the interface of a simulated entity to logical communication networks. The location of the `CommunicationNode` is derived from the referenced entity or specified explicitly (if the referenced entity is not registered in the federation). 
- 
-Each potential connection is described in terms of requested connections (the equivalent to the information provided by MSDL). `Connection` objects represent the availability of a connection and its receivers. It is up to a communication simulation to create `Connection` objects for the requested connections based on the network devices of the `CommunicationNode`, the physical network and the link quality between network devices. Depending on the federation design and agreements, the explicit representation of the physical layer objects, `PhysicalNetwork` and `LinkStates`, is optional. 
- 
-A requested connection is used to describe the characteristics of a possible connection to a communication network. For the types of connections where data is intended to be transmitted, a connection identifier can be provided that can be used to create a `Connection` object instance. 
- 
-Unless a network device is explicitly specified, all suitable devices associated with the communication network of the requested connection shall be used. 
- 
-Depending on the type of the requested connection the use of the associated network device parameters differs: 
- 
-* **Broadcast Transceiver**: A combination of Broadcast Transmitter and Receiver 
-* **Broadcast Transmitter**: 
-* If TX is specified for a network device, connections are established to all receiving entities reachable depending on the physical network description (ranges, max hops, etc.). Data is sent to all (directly linked) receivers simultaneously. 
-* A Connection instance should be created. 
-* The DestinationEntityArray is ignored. 
-* **Broadcast Receiver**: 
-* If RX is specified for a network device, the connections listen to all incoming messages. 
-* The DestinationEntityArray is ignored. 
-* **Peer-To-Peer**: 
-* If TX is specified for a network device connections are established to all reachable specified destination entities. 
-* If RX is specified for a network device, the connections listen to all incoming messages which are sent to the entity. 
-* It is assumed that the communication is bidirectional and should use the same route in both directions. The connection must be defined at the receiver as well. 
-* If DestinationEntityArray is empty messages will be sent to all reachable participants of the communication network. It is strongly recommended to define a limited set of destinations wherever possible. 
-* It is assumed that messages are transmitted sequentially to all receivers defined as a destination. (Be aware: this does not include intercepting devices) 
-* Any max. hop count / TTL parameter of the physical network is ignored. 
-* **Unidirectional**: Like Peer-To-Peer but no connection back to the source with the same route is expected. 
-* **Multicast**: 
-* The connection logic is similar to unidirectional connections. 
-* Data is sent to all receivers simultaneously. 
-* The DestinationEntityArray is ignored. 
-* **Intercepting connections**: 
-* These are special connections not related to specific destination entities but intercept all types of connections that are reachable by the corresponding device. In the case of broadcasts, this corresponds to a broadcast receiver, otherwise, this means the connection is routed through the corresponding device. 
+                    <semantics>A `CommunicationNode` is the representation of the interface of a simulated entity to logical communication networks. The location of the `CommunicationNode` is derived from the referenced entity or specified explicitly (if the referenced entity is not registered in the federation).
+
+Each potential connection is described in terms of requested connections (the equivalent to the information provided by MSDL). `Connection` objects represent the availability of a connection and its receivers. It is up to a communication simulation to create `Connection` objects for the requested connections based on the network devices of the `CommunicationNode`, the physical network and the link quality between network devices. Depending on the federation design and agreements, the explicit representation of the physical layer objects, `PhysicalNetwork` and `LinkStates`, is optional.
+
+A requested connection is used to describe the characteristics of a possible connection to a communication network. For the types of connections where data is intended to be transmitted, a connection identifier can be provided that can be used to create a `Connection` object instance.
+
+Unless a network device is explicitly specified, all suitable devices associated with the communication network of the requested connection shall be used.
+
+Depending on the type of the requested connection the use of the associated network device parameters differs:
+
+* **Broadcast Transceiver**: A combination of Broadcast Transmitter and Receiver
+* **Broadcast Transmitter**:
+* If TX is specified for a network device, connections are established to all receiving entities reachable depending on the physical network description (ranges, max hops, etc.). Data is sent to all (directly linked) receivers simultaneously.
+* A Connection instance should be created.
+* The DestinationEntityArray is ignored.
+* **Broadcast Receiver**:
+* If RX is specified for a network device, the connections listen to all incoming messages.
+* The DestinationEntityArray is ignored.
+* **Peer-To-Peer**:
+* If TX is specified for a network device connections are established to all reachable specified destination entities.
+* If RX is specified for a network device, the connections listen to all incoming messages which are sent to the entity.
+* It is assumed that the communication is bidirectional and should use the same route in both directions. The connection must be defined at the receiver as well.
+* If DestinationEntityArray is empty messages will be sent to all reachable participants of the communication network. It is strongly recommended to define a limited set of destinations wherever possible.
+* It is assumed that messages are transmitted sequentially to all receivers defined as a destination. (Be aware: this does not include intercepting devices)
+* Any max. hop count / TTL parameter of the physical network is ignored.
+* **Unidirectional**: Like Peer-To-Peer but no connection back to the source with the same route is expected.
+* **Multicast**:
+* The connection logic is similar to unidirectional connections.
+* Data is sent to all receivers simultaneously.
+* The DestinationEntityArray is ignored.
+* **Intercepting connections**:
+* These are special connections not related to specific destination entities but intercept all types of connections that are reachable by the corresponding device. In the case of broadcasts, this corresponds to a broadcast receiver, otherwise, this means the connection is routed through the corresponding device.
 * The DestinationEntityArray is ignored.</semantics>
                     <attribute>
                         <name>HostEntity</name>
                         <dataType>UUID</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional. Reference to a simulation entity. If the referenced entity exists in the federation, the location of the node is derived from the location of the entity. 
+                        <semantics>Optional. Reference to a simulation entity. If the referenced entity exists in the federation, the location of the node is derived from the location of the entity.
 If the referenced entity does not exist in the federation, the location of the node is defined by the Location attribute.</semantics>
                     </attribute>
                     <attribute>
@@ -154,6 +159,7 @@ If the referenced entity does not exist in the federation, the location of the n
                         <dataType>LocationStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>OnChange</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -165,6 +171,7 @@ If the referenced entity does not exist in the federation, the location of the n
                         <dataType>RequestedConnectionArray</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>OnChange</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -176,6 +183,7 @@ If the referenced entity does not exist in the federation, the location of the n
                         <dataType>NetworkDeviceArray</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>OnChange</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -192,6 +200,7 @@ If the referenced entity does not exist in the federation, the location of the n
                         <dataType>UUID</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -203,6 +212,7 @@ If the referenced entity does not exist in the federation, the location of the n
                         <dataType>UUID</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -214,6 +224,7 @@ If the referenced entity does not exist in the federation, the location of the n
                         <dataType>ConnectionReceiverArray</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>OnChange</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -230,6 +241,7 @@ If the referenced entity does not exist in the federation, the location of the n
                         <dataType>HLAunicodeString</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -241,6 +253,7 @@ If the referenced entity does not exist in the federation, the location of the n
                         <dataType>PhysicalNetworkDescriptionVariant</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -251,20 +264,21 @@ If the referenced entity does not exist in the federation, the location of the n
                 <objectClass>
                     <name>LinkStates</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>A `LinkStates` object describes the presence and quality of a set of direct links between nodes on a physical level. Links are defined between a transmitting and receiving device. 
- 
-Bidirectional links assume identical link quality in both directions. Otherwise, two unidirectional links should be described. 
- 
-Each `LinkStates` instance is associated with one physical network. To support load balancing in link quality simulation, multiple `LinkStates` instances can be associated with the same physical network as long as they do not contain duplicated link-state information. 
- 
-A link should not be contained in more than one `LinkStates` object. If a link is not contained in any instance, it is not present, and it means it could not be established. 
- 
+                    <semantics>A `LinkStates` object describes the presence and quality of a set of direct links between nodes on a physical level. Links are defined between a transmitting and receiving device.
+
+Bidirectional links assume identical link quality in both directions. Otherwise, two unidirectional links should be described.
+
+Each `LinkStates` instance is associated with one physical network. To support load balancing in link quality simulation, multiple `LinkStates` instances can be associated with the same physical network as long as they do not contain duplicated link-state information.
+
+A link should not be contained in more than one `LinkStates` object. If a link is not contained in any instance, it is not present, and it means it could not be established.
+
 The `LinkStates` provides information that can be used to calculate connections.</semantics>
                     <attribute>
                         <name>PhysicalNetwork</name>
                         <dataType>UUID</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -276,6 +290,7 @@ The `LinkStates` provides information that can be used to calculate connections.
                         <dataType>LinkStatusArray</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>OnChange</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -292,6 +307,7 @@ The `LinkStates` provides information that can be used to calculate connections.
                         <dataType>ArrayOfUuid</dataType>
                         <updateType>NA</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -303,6 +319,7 @@ The `LinkStates` provides information that can be used to calculate connections.
                         <dataType>LocationStructArray</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -314,6 +331,7 @@ The `LinkStates` provides information that can be used to calculate connections.
                         <dataType>PercentFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -335,6 +353,7 @@ The `LinkStates` provides information that can be used to calculate connections.
                             <dataType>ArrayOfCommunicationNetworks</dataType>
                             <updateType>Static</updateType>
                             <updateCondition>NA</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -351,6 +370,7 @@ The `LinkStates` provides information that can be used to calculate connections.
                             <dataType>ArrayOfCommunicationNetworks</dataType>
                             <updateType>Static</updateType>
                             <updateCondition>NA</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -369,6 +389,7 @@ The `LinkStates` provides information that can be used to calculate connections.
                     <dataType>IncomingConnectionArray</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -503,19 +524,19 @@ The `LinkStates` provides information that can be used to calculate connections.
             <enumeratedData>
                 <name>CommunicationServiceTypeEnum</name>
                 <representation>HLAoctet</representation>
-                <semantics>The type of service used on a communication network. 
- 
-Service types as defined in MSDL. 
- 
-DATTRF: Data transfer 
-FAX: Facsimile 
-IFF: Identify Friend or Foe 
-IMAGE: Image 
-MCI: Multilateral Interoperability Programme (MIP) Common Interface Service 
-MHS: Message Handling Service 
-TDL: Tactical Data Link 
-VIDSVC: Video Service 
-VOCSVC: Voice Service 
+                <semantics>The type of service used on a communication network.
+
+Service types as defined in MSDL.
+
+DATTRF: Data transfer
+FAX: Facsimile
+IFF: Identify Friend or Foe
+IMAGE: Image
+MCI: Multilateral Interoperability Programme (MIP) Common Interface Service
+MHS: Message Handling Service
+TDL: Tactical Data Link
+VIDSVC: Video Service
+VOCSVC: Voice Service
 NOS: Not Otherwise Specified</semantics>
                 <enumerator>
                     <name>DATTRF</name>
@@ -1015,229 +1036,229 @@ NOS: Not Otherwise Specified</semantics>
     <notes>
         <note>
             <label>netn-com_changelog</label>
-            <semantics>* Replaced all `WorldLocationStruct` with `LocationStruct` 
-* Replaced all use of datatype `PercentFloat64` with `PercentFloat32` 
-* Replaced all `ArrayOfWorldLocationStruct` with `LocationStructArray` 
-* Moved attribute `UniqueId` of object class `METOC_Root` to object class `HLAobjectRoot` defined in `NETN-BASE` FOM module 
-* Renamed field `Bandwith`in Fixed Record `ConnectionReceiverStruct`to `Bandwidth` 
-* Added interaction class `DisruptCommunication` 
-* Change datatype `CommunicationNetworkArray` element to `UUID` 
-* Added `Task` parameter `CommunicationNetworks` 
-* Added datatype `EntityControlActionEnum` 
-* Added datatype `TaskDefinitionVariantRecord` 
-* Renamed Connection attribute CommunicationNetworkName to CommunicationNetwork 
-* Changed datatype of Connection attribute CommunicationNetwork to UUID 
-* Renamed Connection attribute SenderEntityId to SenderEntity 
-* Renamed CommunicationNode attribute EntityId to HostEntity 
-* Renamed DisruptionEffect attribute AffectedNetworks to Networks 
-* Renamed DisruptionEffect attribute AffectedArea to Area 
-* Changed datatype of DisruptionEffect attribute Networks to ArrayOfUuid 
-* Changed datatype of DisruptionEffect attribute Area to LocationStructArray 
-* Added `Unit` attribute `CommunicationNetworks` 
+            <semantics>* Replaced all `WorldLocationStruct` with `LocationStruct`
+* Replaced all use of datatype `PercentFloat64` with `PercentFloat32`
+* Replaced all `ArrayOfWorldLocationStruct` with `LocationStructArray`
+* Moved attribute `UniqueId` of object class `METOC_Root` to object class `HLAobjectRoot` defined in `NETN-BASE` FOM module
+* Renamed field `Bandwith`in Fixed Record `ConnectionReceiverStruct`to `Bandwidth`
+* Added interaction class `DisruptCommunication`
+* Change datatype `CommunicationNetworkArray` element to `UUID`
+* Added `Task` parameter `CommunicationNetworks`
+* Added datatype `EntityControlActionEnum`
+* Added datatype `TaskDefinitionVariantRecord`
+* Renamed Connection attribute CommunicationNetworkName to CommunicationNetwork
+* Changed datatype of Connection attribute CommunicationNetwork to UUID
+* Renamed Connection attribute SenderEntityId to SenderEntity
+* Renamed CommunicationNode attribute EntityId to HostEntity
+* Renamed DisruptionEffect attribute AffectedNetworks to Networks
+* Renamed DisruptionEffect attribute AffectedArea to Area
+* Changed datatype of DisruptionEffect attribute Networks to ArrayOfUuid
+* Changed datatype of DisruptionEffect attribute Area to LocationStructArray
+* Added `Unit` attribute `CommunicationNetworks`
 * Added `Equipment` attribute `CommunicationNetworks`</semantics>
         </note>
         <note>
             <label>netn-com_overview</label>
-            <semantics>## Overview 
- 
-The NETN-COM module distinguishes between three layers of networks. 
-* **Application Layer** - This is the topmost layer corresponding to OSI layers 5-7. It is represented in the NETN-COM object model by the `CommunicationNetwork` object and the `IncomingConnections` attribute, which extends the RPR-FOM `BaseEntity` object class. The NETN-COM also defines extensions to the NETN-ETR `Task` and `ETR_Report` interaction classes to associate communication networks with these messages. Receivers use the  `IncomingConnections` attribute to determine whether the message can be delivered. 
-* **Connection Layer** - This layer corresponds to OSI layers 3-4 and describes the connections associated with communication networks. `CommunicationNode` objects are associated with simulated entities and connected to form an information-sharing space. 
-* **Link Layer** - This layer corresponds to OSI layers 1-2 and defines the link quality parameters between nodes to form a physical network. 
- 
- 
-By separating the representation of the application, connection, and physical link layers, different simulations can model the system on different levels, e.g. radio signal propagation simulations for the link layer and an ad hoc network routing simulation for the connection layer. 
- 
-The model does not require all levels and networks to be represented in the federation. Which objects are needed depends on the federation design and allocation of modelling responsibilities. 
- 
- 
-## Application Layer 
- 
-A `CommunicationNetwork` is a logical network grouping simulated entities, independent of any physical network implementation. When messages are sent through a network, all entities belonging to it are potential receivers of the message. 
- 
-To determine whether a message is received, each simulated entity can use data related to its `IncomingConnections`. This attribute describes all connections for all communication networks associated with the simulated entity. Each connection specifies the `SenderEntity` and quality parameters, e.g., latency and bandwidth, that allow the receiver to calculate block, drop and degradation effects. 
- 
-The `IncomingConnections` attribute can be published by other simulations that model communication at the connection- and physical level. 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
- 
- 
-BaseEntity *-- "0..*" Incoming Connection 
-BaseEntity:IncomingConnection 
- 
-Incoming Connection:CommunicationNetwork 
-Incoming Connection:SenderEntity 
-Incoming Connection --&gt; "1" CommunicationNetwork : CommunicationNetwork 
-Incoming Connection:Latency 
-Incoming Connection:Bandwith 
-Incoming Connection:Reliability 
-Incoming Connection:HopCount 
-Incoming Connection --&gt; BaseEntity:SenderEntity 
- 
- 
-CommunicationNetwork:Name 
-CommunicationNetwork:ServiceType 
-CommunicationNetwork:NetworkType 
- 
- 
-BaseEntity:UniqueId(NETN-BASE) 
-CommunicationNetwork:UniqueId(NETN-BASE) 
-``` 
- 
- 
-The NETN-COM module currently supports sending messages with associated `CommunicationNetwork` information using NETN-ETR `Task` and `ETR_Report` interactions. 
- 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAinteractionRoot &lt;|-- SMC_EntityControl 
-SMC_EntityControl &lt;|-- Task 
-HLAinteractionRoot &lt;|-- ETR_Report 
- 
- 
-Task:CommunicationNetworks 
-SMC_EntityControl:Entity(NETN-SMC) 
-Task:TaskId(NETN-ETR) 
-ETR_Report:CommunicationNetworks 
-ETR_Report:ReportId(NETN-ETR) 
-ETR_Report:ReportingEntity(NETN-ETR) 
-ETR_Report:ReportingEntity(NETN-ETR) 
-ETR_Report:TimeStamp(NETN-ETR) 
-``` 
- 
- 
- 
-## Connection Layer 
- 
-The `CommunicationNode` represents a node in a logical communication network. Each node publishes `RequestedConnections` to describe all desired connectivity between nodes in the network. Each node is also associated with a simulated entity and available network devices. 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-CommunicationNode:HostEntity 
-CommunicationNode:Location 
-CommunicationNode:RequestedConnections 
-CommunicationNode: UniqueId(NETN-BASE) 
- 
- 
-CommunicationNode --&gt; "1" BaseEntity : HostEntity 
- 
- 
- 
- 
-BaseEntity:UniqueId 
- 
-NetworkDevice:Id 
- 
-CommunicationNode:NetworkDevices 
-CommunicationNode *--&gt; "0..*" NetworkDevice:NetworkDevice 
- 
- 
- 
-RequestedConnection:CommunicationNetwork 
-RequestedConnection:RequestedConnectionType 
-RequestedConnection:ConnectionId 
-RequestedConnection:DestinationEntities 
-RequestedConnection:NetworkDevice 
-RequestedConnection --&gt; "1" NetworkDevice : NetworkDevice 
-RequestedConnection --&gt; "1" BaseEntity : DestinationEntities 
-RequestedConnection --* "1..*" CommunicationNode 
- 
-``` 
- 
-A `Connection` may be established based on the `RequestedConnection` and available devices. Each `Connection` can be modelled as an individual object with details of the connection quality for each potential receiver. 
- 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
- 
- 
-Connection: CommunicationNetwork 
-Connection: SenderEntity 
-Connection: Receivers 
-Connection: UniqueId(NETN-BASE) 
- 
-CommunicationNetwork:Name 
-CommunicationNetwork:ServiceType 
-CommunicationNetwork:NetworkType 
-CommunicationNetwork:UniqueId(NETN-BASE) 
- 
- 
-Connection --&gt; "1" CommunicationNetwork : CommunicationNetwork 
-Connection --&gt; "1" BaseEntity : SenderEntity 
-Connection --* "1..*" Receiver 
- 
-Receiver:ReceiverEntity 
-Receiver:Latency 
-Receiver:Bandwith 
-Receiver:Reliability 
-Receiver:HopCount 
-Receiver --&gt; "1" BaseEntity:ReceiverEntity 
- 
-BaseEntity:UniqueId 
- 
-``` 
- 
- 
- 
-## Physical Layer 
- 
-The physical layer models the `PhysicalNetwork` that implements the `LinkStates` between Network Devices. This is required to establish the connectivity needed to create a `Connection` between `CommunicationNode`. 
- 
- 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
- 
- 
-PhysicalNetwork:Name 
-PhysicalNetwork:Description 
-PhysicalNetwork: UniqueId(NETN-BASE) 
- 
- 
-LinkStates: PhysicalNetwork 
-LinkStates: Links 
-LinkStates: UniqueId(NETN-BASE) 
- 
- 
- 
-LinkStates --&gt; "1" PhysicalNetwork : PhysicalNetwork 
-LinkStates --&gt; "1" LinkStatus : Link 
- 
- 
-LinkStatus:TransmitterDevice 
-LinkStatus:ReceiverDevice 
-LinkStatus:Bandwith 
-LinkStatus:Latency 
-LinkStatus:Reliability 
-LinkStatus:isBidirectional 
-LinkStatus *-- "1" NetworkDevice:TransmitterDevice 
-LinkStatus *--&gt; "1" NetworkDevice:ReceiverDevice 
-CommunicationNode *--&gt; "0..*" NetworkDevice:NetworkDevice 
- 
-NetworkDevice:Id 
- 
-CommunicationNode:NetworkDevices 
-CommunicationNode: UniqueId(NETN-BASE) 
- 
-``` 
- 
-A Network Device is a technical device, e.g., radio or ethernet, connecting a `CommunicationNode` to a physical network. The `LinkStates` provide all link status data related to a `PhysicalNetwork`. The link describes the relationship between a transmitting and a receiving network device. Network devices are not modelled as objects in NETN-COM. 
- 
-## Additional Object Classes 
- 
-In addition to representing the three layers of networks, the NETN-COM defines an object for representing areas of communication disruption. The object is intended to affect the quality of incoming connections of simulated entities. 
- 
+            <semantics>## Overview
+
+The NETN-COM module distinguishes between three layers of networks.
+* **Application Layer** - This is the topmost layer corresponding to OSI layers 5-7. It is represented in the NETN-COM object model by the `CommunicationNetwork` object and the `IncomingConnections` attribute, which extends the RPR-FOM `BaseEntity` object class. The NETN-COM also defines extensions to the NETN-ETR `Task` and `ETR_Report` interaction classes to associate communication networks with these messages. Receivers use the  `IncomingConnections` attribute to determine whether the message can be delivered.
+* **Connection Layer** - This layer corresponds to OSI layers 3-4 and describes the connections associated with communication networks. `CommunicationNode` objects are associated with simulated entities and connected to form an information-sharing space.
+* **Link Layer** - This layer corresponds to OSI layers 1-2 and defines the link quality parameters between nodes to form a physical network.
+
+
+By separating the representation of the application, connection, and physical link layers, different simulations can model the system on different levels, e.g. radio signal propagation simulations for the link layer and an ad hoc network routing simulation for the connection layer.
+
+The model does not require all levels and networks to be represented in the federation. Which objects are needed depends on the federation design and allocation of modelling responsibilities.
+
+
+## Application Layer
+
+A `CommunicationNetwork` is a logical network grouping simulated entities, independent of any physical network implementation. When messages are sent through a network, all entities belonging to it are potential receivers of the message.
+
+To determine whether a message is received, each simulated entity can use data related to its `IncomingConnections`. This attribute describes all connections for all communication networks associated with the simulated entity. Each connection specifies the `SenderEntity` and quality parameters, e.g., latency and bandwidth, that allow the receiver to calculate block, drop and degradation effects.
+
+The `IncomingConnections` attribute can be published by other simulations that model communication at the connection- and physical level.
+
+```mermaid
+classDiagram
+direction LR
+
+
+
+BaseEntity *-- "0..*" Incoming Connection
+BaseEntity:IncomingConnection
+
+Incoming Connection:CommunicationNetwork
+Incoming Connection:SenderEntity
+Incoming Connection --&gt; "1" CommunicationNetwork : CommunicationNetwork
+Incoming Connection:Latency
+Incoming Connection:Bandwith
+Incoming Connection:Reliability
+Incoming Connection:HopCount
+Incoming Connection --&gt; BaseEntity:SenderEntity
+
+
+CommunicationNetwork:Name
+CommunicationNetwork:ServiceType
+CommunicationNetwork:NetworkType
+
+
+BaseEntity:UniqueId(NETN-BASE)
+CommunicationNetwork:UniqueId(NETN-BASE)
+```
+
+
+The NETN-COM module currently supports sending messages with associated `CommunicationNetwork` information using NETN-ETR `Task` and `ETR_Report` interactions.
+
+
+```mermaid
+classDiagram
+direction LR
+
+HLAinteractionRoot &lt;|-- SMC_EntityControl
+SMC_EntityControl &lt;|-- Task
+HLAinteractionRoot &lt;|-- ETR_Report
+
+
+Task:CommunicationNetworks
+SMC_EntityControl:Entity(NETN-SMC)
+Task:TaskId(NETN-ETR)
+ETR_Report:CommunicationNetworks
+ETR_Report:ReportId(NETN-ETR)
+ETR_Report:ReportingEntity(NETN-ETR)
+ETR_Report:ReportingEntity(NETN-ETR)
+ETR_Report:TimeStamp(NETN-ETR)
+```
+
+
+
+## Connection Layer
+
+The `CommunicationNode` represents a node in a logical communication network. Each node publishes `RequestedConnections` to describe all desired connectivity between nodes in the network. Each node is also associated with a simulated entity and available network devices.
+
+```mermaid
+classDiagram
+direction LR
+
+CommunicationNode:HostEntity
+CommunicationNode:Location
+CommunicationNode:RequestedConnections
+CommunicationNode: UniqueId(NETN-BASE)
+
+
+CommunicationNode --&gt; "1" BaseEntity : HostEntity
+
+
+
+
+BaseEntity:UniqueId
+
+NetworkDevice:Id
+
+CommunicationNode:NetworkDevices
+CommunicationNode *--&gt; "0..*" NetworkDevice:NetworkDevice
+
+
+
+RequestedConnection:CommunicationNetwork
+RequestedConnection:RequestedConnectionType
+RequestedConnection:ConnectionId
+RequestedConnection:DestinationEntities
+RequestedConnection:NetworkDevice
+RequestedConnection --&gt; "1" NetworkDevice : NetworkDevice
+RequestedConnection --&gt; "1" BaseEntity : DestinationEntities
+RequestedConnection --* "1..*" CommunicationNode
+
+```
+
+A `Connection` may be established based on the `RequestedConnection` and available devices. Each `Connection` can be modelled as an individual object with details of the connection quality for each potential receiver.
+
+
+```mermaid
+classDiagram
+direction LR
+
+
+
+Connection: CommunicationNetwork
+Connection: SenderEntity
+Connection: Receivers
+Connection: UniqueId(NETN-BASE)
+
+CommunicationNetwork:Name
+CommunicationNetwork:ServiceType
+CommunicationNetwork:NetworkType
+CommunicationNetwork:UniqueId(NETN-BASE)
+
+
+Connection --&gt; "1" CommunicationNetwork : CommunicationNetwork
+Connection --&gt; "1" BaseEntity : SenderEntity
+Connection --* "1..*" Receiver
+
+Receiver:ReceiverEntity
+Receiver:Latency
+Receiver:Bandwith
+Receiver:Reliability
+Receiver:HopCount
+Receiver --&gt; "1" BaseEntity:ReceiverEntity
+
+BaseEntity:UniqueId
+
+```
+
+
+
+## Physical Layer
+
+The physical layer models the `PhysicalNetwork` that implements the `LinkStates` between Network Devices. This is required to establish the connectivity needed to create a `Connection` between `CommunicationNode`.
+
+
+
+```mermaid
+classDiagram
+direction LR
+
+
+
+PhysicalNetwork:Name
+PhysicalNetwork:Description
+PhysicalNetwork: UniqueId(NETN-BASE)
+
+
+LinkStates: PhysicalNetwork
+LinkStates: Links
+LinkStates: UniqueId(NETN-BASE)
+
+
+
+LinkStates --&gt; "1" PhysicalNetwork : PhysicalNetwork
+LinkStates --&gt; "1" LinkStatus : Link
+
+
+LinkStatus:TransmitterDevice
+LinkStatus:ReceiverDevice
+LinkStatus:Bandwith
+LinkStatus:Latency
+LinkStatus:Reliability
+LinkStatus:isBidirectional
+LinkStatus *-- "1" NetworkDevice:TransmitterDevice
+LinkStatus *--&gt; "1" NetworkDevice:ReceiverDevice
+CommunicationNode *--&gt; "0..*" NetworkDevice:NetworkDevice
+
+NetworkDevice:Id
+
+CommunicationNode:NetworkDevices
+CommunicationNode: UniqueId(NETN-BASE)
+
+```
+
+A Network Device is a technical device, e.g., radio or ethernet, connecting a `CommunicationNode` to a physical network. The `LinkStates` provide all link status data related to a `PhysicalNetwork`. The link describes the relationship between a transmitting and a receiving network device. Network devices are not modelled as objects in NETN-COM.
+
+## Additional Object Classes
+
+In addition to representing the three layers of networks, the NETN-COM defines an object for representing areas of communication disruption. The object is intended to affect the quality of incoming connections of simulated entities.
+
 The NETN-COM also provide attribute extensions for the NETN-ORG classes Unit and Equipment.</semantics>
         </note>
     </notes>

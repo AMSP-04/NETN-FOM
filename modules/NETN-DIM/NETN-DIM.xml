@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification notes="netn-dim_overview">
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2025 http://standards.ieee.org/downloads/1516/1516.2-2025/IEEE1516-DIF-2025.xsd" xmlns="http://standards.ieee.org/IEEE1516-2025" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification noteReferences="netn-dim_overview">
         <name>NETN-DIM</name>
         <type>FOM</type>
         <version>1.0</version>
         <modificationDate>2024-03-05</modificationDate>
         <securityClassification>Unclassified</securityClassification>
+        <copyright/>
         <purpose>The NATO Education and Training Network Disaster Module (NETN-DIM) provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.</purpose>
         <applicationDomain></applicationDomain>
         <description>Hazards such as wildfires, flooding, earthquakes, and landslides have different effects in a synthetic environment and on the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effects of hazards are important aspects of simulations where hazards are part of the scenario.</description>
         <useLimitation></useLimitation>
         <useHistory>v0.9 - Initial version developed by MSG-147 and used in LOE3 experiment.</useHistory>
-        <useHistory notes="netn-dim_changelog">v1.0 - Updated version developed by MSG-191. Release included in NETN FOM 4.0</useHistory>
+        <useHistory noteReferences="netn-dim_changelog">v1.0 - Updated version developed by MSG-191. Release included in NETN FOM 4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -47,7 +48,7 @@ Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
-        <glyph type="png" height="48" width="48" alt="">iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAIAAAC1w6d9AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAh2kABAAAAAEAAABaAAAAAAAAAEwAAAABAAAATAAAAAEAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAM6ADAAQAAAABAAAAMwAAAADKrMfOAAAACXBIWXMAAAuwAAALsAEaOBByAAACyGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43NjwvdGlmZjpZUmVzb2x1dGlvbj4KICAgICAgICAgPHRpZmY6UmVzb2x1dGlvblVuaXQ+MjwvdGlmZjpSZXNvbHV0aW9uVW5pdD4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+NzY8L3RpZmY6WFJlc29sdXRpb24+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgICAgIDxleGlmOlBpeGVsWERpbWVuc2lvbj41MTwvZXhpZjpQaXhlbFhEaW1lbnNpb24+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+MTwvZXhpZjpDb2xvclNwYWNlPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24+NTE8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KgM5rQAAAB25JREFUWAnNmFlI1F8Ux0dbsM3SNlqJKLdWogcreimprOhJexDpKTdUKoxKIiLCMqKFsCiIJLEgoWyVXoyIFsL2TaIelPagjWzf/p/xG6dfM6Mzv3GI/3243Dn33O/53nPOPffOL+rXr1+e/2WLjhQrdvjjx49IoYETGWZwioqK6tSpE4iR4hcBZlCB09evXx88eAAzxpEhRxQ60r59+8by+vr6ESNGQGvSpEmNjY1IJO8Isqcji/ETyx8+fNilSxdode3alX748OHv379H/v37946Ah8/s58+fRA3b8+bNg1BMTAx99+7d6QsLC5GLd9jkwmf25csXrJ46dQoqNJhNmzYtOtqbuKTajRs3OkguTGbyFrZJrFZinrS0NH4mJibq5/z58/mJX2kMwmhhMlOC79mzBx5KsrNnz2L+wIEDJjlx4gSSsI9COMzkhnfv3g0YMEAeWrRoESQ+f/5MP3PmTAlTUlL4SQvPbeEwU4atWLECBiQWGdbc3AwDya9evYpc53Tbtm0m93J001wz04m7f/8+QezcuTMk1q1bh0XJFbuCggKRjouLe/nyJbNhxNQdM+KiKpWZmYltGgW2paUF25Krf/bsGZykAEvjzSD05o6Z4nXmzBms6pasrKzEGHJOK7Ro0tm8eTM6xJr79Nq1a+i4LW8umFkiT506Vf5ITU3FJHKxYUzTGIrJyclSmzt3LnLUaK0qIXUumClXqqqqsKcEx3kY0ZF8+/btlStXnjx5gkSaR44cMc1jx46ZPCRevBpD1NN2P336NGzYMHmCVGOtYrR79+6BAwci79WrF2fWMGfNmiXlpKQkIYTutlCZKUZr167FEhlG480jBvv375d560tKSjR1/fp1hCrFW7ZsQeiMu20g4CAkZnJMU1MTFzacMLZq1SrgdEeNHz8eSbdu3VTbGPfo0UNhRaeoqAgJU3369Hnx4gWSECtIcGb4X1gUemzQBg8e/ObNG22U+I4ePRqhGMOAMbX33r17UoBNfHy8d5nHk5+fj5B9hhLT4MzksIsXLwItw7t27cIAnGR7+vTpTKnqit+gQYNevXrF7IcPH+iJo63lhkAiTC1vqw/CzDY3Y8YM0GkTJ04UVmvx8r4Ns7KykIuZ+gkTJkhHWUXQuUNbV3vmzJnDFLCGLE3/PggzxbGmpgZcVYq6ujpQZFJ9aWmpDzMVMGWhdI4ePWoIjEEImm3tMdO2gBg1apR2rFcX3tIWVcn0FlIc5TOfG0n6eEsgvOFEun23tcdM2y0vLzeX3LlzB07GTAqnT59GgVuIXvw2bdqEmnib/s2bNw2Huwu5ljMI2NpkJm9zN/fu3VuJv2TJEiCcUVAi3717V4QgJ81Dhw6hacwYazPFxcWQQ4cK8vz5cx80fjpbYGb4WVbz8vLAovXr10/VyBwGisYcQ2bRES0Gly5dYtbpEmmCIE10QEYHK23FNDAz0eKEmxsCVnADHTNmDMbkOcqsHpJO7xrRrVu32h64Z0WO3r8FYIY9meSIgULj1aCcdTpMWJLMnj0bNfu/+fHjR2a1xEzaWm0DfVZpVuZMU4MAzLRX/l+YscOHD6PtjI6hyLu5ubko6y+nPY1MxwZC4N1hyLxHmPXxrvQDMNOE7Ux/12zHZkYDMdP55erE5MKFC5kKaAy5cNLT09GkJSQkSOLvNl9m2taOHTtYpjeCsqF9ZgcPHkSfJxD98uXLYSDGYu/shXP79m00VfxUYvwD8hczbfT169d2gnJycmyjTgM2lqVbt25hSa26uprZtpgZGjUIfY4zVYnahNzHzX8xE9yyZctkIzY29tGjR/5rkDibAoGrWLVgwQKVMf/o2BJthv9U/fv3lyHSlFmYOVf9YSZalE2CqIK+fv16Fvj72WxoYHA28DmVPvqGuX37drmNvqGhAbnT07+ZASq4jIwM7WPkyJHafVsZZvZE6Pz582vWrKmtrZXcWJqac2CYY8eOlTne5T4LfzNTjPlAh54SX+nivGGc0DbWwuPHj8sAfVlZGbM+SWP6NlAo/GuTLfwTTdZMnjxZBvjexM/29y0b8vSUKVNYSF7S84LlkwezQWMqz+nzGwt5G0siu15mor93716mVccJDXKjLxIBe5nXP1DuJRD69u3ripmzglAXjY9HNPkCMGTIEHBp2dnZTAfdsYiK/cmTJ7WWXuih7AoEWV+6dCkLqSB4/enTp8g5Ch4dh9WrVwsan/E1hTkyjGVBGxsQiQsXLqxcuVInAGHQhVJQuHgR4WkRWLx4MdbB9EaTT8AKBHMbN25E8u/bvn37sK5qdfnyZQh4PzPxwuFPjpzJ100enzwWdHVoH0F7gPABuAx4C9lDLehCFHAwgeIJPnTo0MePHyPZsGGD938DiPo0wkvBFZtQrLrSoVqpYHH/QjGaLY4bNw4IJZYrrMgqk1ve9PJ4evbsyXPcG82dO3dyDs6dOwdlwhFZe67QqGQchYqKCvI+ijArLVSEXAFFXBm/6GMlA2/OwhQbrtI24pycgDiLHPMyk9QGTqV/P1bhwO4fZv+eRPsW/wPZZytKRGJnKgAAAABJRU5ErkJggg==</glyph>
+        <glyph href="data:/image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAIAAAC1w6d9AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAh2kABAAAAAEAAABaAAAAAAAAAEwAAAABAAAATAAAAAEAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAM6ADAAQAAAABAAAAMwAAAADKrMfOAAAACXBIWXMAAAuwAAALsAEaOBByAAACyGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43NjwvdGlmZjpZUmVzb2x1dGlvbj4KICAgICAgICAgPHRpZmY6UmVzb2x1dGlvblVuaXQ+MjwvdGlmZjpSZXNvbHV0aW9uVW5pdD4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+NzY8L3RpZmY6WFJlc29sdXRpb24+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgICAgIDxleGlmOlBpeGVsWERpbWVuc2lvbj41MTwvZXhpZjpQaXhlbFhEaW1lbnNpb24+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+MTwvZXhpZjpDb2xvclNwYWNlPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24+NTE8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KgM5rQAAAB25JREFUWAnNmFlI1F8Ux0dbsM3SNlqJKLdWogcreimprOhJexDpKTdUKoxKIiLCMqKFsCiIJLEgoWyVXoyIFsL2TaIelPagjWzf/p/xG6dfM6Mzv3GI/3243Dn33O/53nPOPffOL+rXr1+e/2WLjhQrdvjjx49IoYETGWZwioqK6tSpE4iR4hcBZlCB09evXx88eAAzxpEhRxQ60r59+8by+vr6ESNGQGvSpEmNjY1IJO8Isqcji/ETyx8+fNilSxdode3alX748OHv379H/v37946Ah8/s58+fRA3b8+bNg1BMTAx99+7d6QsLC5GLd9jkwmf25csXrJ46dQoqNJhNmzYtOtqbuKTajRs3OkguTGbyFrZJrFZinrS0NH4mJibq5/z58/mJX2kMwmhhMlOC79mzBx5KsrNnz2L+wIEDJjlx4gSSsI9COMzkhnfv3g0YMEAeWrRoESQ+f/5MP3PmTAlTUlL4SQvPbeEwU4atWLECBiQWGdbc3AwDya9evYpc53Tbtm0m93J001wz04m7f/8+QezcuTMk1q1bh0XJFbuCggKRjouLe/nyJbNhxNQdM+KiKpWZmYltGgW2paUF25Krf/bsGZykAEvjzSD05o6Z4nXmzBms6pasrKzEGHJOK7Ro0tm8eTM6xJr79Nq1a+i4LW8umFkiT506Vf5ITU3FJHKxYUzTGIrJyclSmzt3LnLUaK0qIXUumClXqqqqsKcEx3kY0ZF8+/btlStXnjx5gkSaR44cMc1jx46ZPCRevBpD1NN2P336NGzYMHmCVGOtYrR79+6BAwci79WrF2fWMGfNmiXlpKQkIYTutlCZKUZr167FEhlG480jBvv375d560tKSjR1/fp1hCrFW7ZsQeiMu20g4CAkZnJMU1MTFzacMLZq1SrgdEeNHz8eSbdu3VTbGPfo0UNhRaeoqAgJU3369Hnx4gWSECtIcGb4X1gUemzQBg8e/ObNG22U+I4ePRqhGMOAMbX33r17UoBNfHy8d5nHk5+fj5B9hhLT4MzksIsXLwItw7t27cIAnGR7+vTpTKnqit+gQYNevXrF7IcPH+iJo63lhkAiTC1vqw/CzDY3Y8YM0GkTJ04UVmvx8r4Ns7KykIuZ+gkTJkhHWUXQuUNbV3vmzJnDFLCGLE3/PggzxbGmpgZcVYq6ujpQZFJ9aWmpDzMVMGWhdI4ePWoIjEEImm3tMdO2gBg1apR2rFcX3tIWVcn0FlIc5TOfG0n6eEsgvOFEun23tcdM2y0vLzeX3LlzB07GTAqnT59GgVuIXvw2bdqEmnib/s2bNw2Huwu5ljMI2NpkJm9zN/fu3VuJv2TJEiCcUVAi3717V4QgJ81Dhw6hacwYazPFxcWQQ4cK8vz5cx80fjpbYGb4WVbz8vLAovXr10/VyBwGisYcQ2bRES0Gly5dYtbpEmmCIE10QEYHK23FNDAz0eKEmxsCVnADHTNmDMbkOcqsHpJO7xrRrVu32h64Z0WO3r8FYIY9meSIgULj1aCcdTpMWJLMnj0bNfu/+fHjR2a1xEzaWm0DfVZpVuZMU4MAzLRX/l+YscOHD6PtjI6hyLu5ubko6y+nPY1MxwZC4N1hyLxHmPXxrvQDMNOE7Ux/12zHZkYDMdP55erE5MKFC5kKaAy5cNLT09GkJSQkSOLvNl9m2taOHTtYpjeCsqF9ZgcPHkSfJxD98uXLYSDGYu/shXP79m00VfxUYvwD8hczbfT169d2gnJycmyjTgM2lqVbt25hSa26uprZtpgZGjUIfY4zVYnahNzHzX8xE9yyZctkIzY29tGjR/5rkDibAoGrWLVgwQKVMf/o2BJthv9U/fv3lyHSlFmYOVf9YSZalE2CqIK+fv16Fvj72WxoYHA28DmVPvqGuX37drmNvqGhAbnT07+ZASq4jIwM7WPkyJHafVsZZvZE6Pz582vWrKmtrZXcWJqac2CYY8eOlTne5T4LfzNTjPlAh54SX+nivGGc0DbWwuPHj8sAfVlZGbM+SWP6NlAo/GuTLfwTTdZMnjxZBvjexM/29y0b8vSUKVNYSF7S84LlkwezQWMqz+nzGwt5G0siu15mor93716mVccJDXKjLxIBe5nXP1DuJRD69u3ripmzglAXjY9HNPkCMGTIEHBp2dnZTAfdsYiK/cmTJ7WWXuih7AoEWV+6dCkLqSB4/enTp8g5Ch4dh9WrVwsan/E1hTkyjGVBGxsQiQsXLqxcuVInAGHQhVJQuHgR4WkRWLx4MdbB9EaTT8AKBHMbN25E8u/bvn37sK5qdfnyZQh4PzPxwuFPjpzJ100enzwWdHVoH0F7gPABuAx4C9lDLehCFHAwgeIJPnTo0MePHyPZsGGD938DiPo0wkvBFZtQrLrSoVqpYHH/QjGaLY4bNw4IJZYrrMgqk1ve9PJ4evbsyXPcG82dO3dyDs6dOwdlwhFZe67QqGQchYqKCvI+ijArLVSEXAFFXBm/6GMlA2/OwhQbrtI24pycgDiLHPMyk9QGTqV/P1bhwO4fZv+eRPsW/wPZZytKRGJnKgAAAABJRU5ErkJggg==" alt=""/>
     </modelIdentification>
     <objects>
         <objectClass>
@@ -61,6 +62,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>GeodeticPolygon</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -76,6 +78,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>MeterFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -87,6 +90,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>LevelChangeMeterPerSecondFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -103,6 +107,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>MeterFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -114,6 +119,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>VelocityMeterPerSecondFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -125,6 +131,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>TemperatureDegreeCelsiusFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -141,6 +148,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>RichterScale</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -157,6 +165,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>MeterFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -168,6 +177,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <dataType>LandslideTypeEnum</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -191,6 +201,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                 <dataType>MeterFloat32</dataType>
                                 <updateType>Static</updateType>
                                 <updateCondition>N/A</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -207,6 +218,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                 <dataType>MeterFloat32</dataType>
                                 <updateType>Conditional</updateType>
                                 <updateCondition>On change</updateCondition>
+                                <valueRequired>false</valueRequired>
                                 <ownership>DivestAcquire</ownership>
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
@@ -568,100 +580,100 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
         </note>
         <note>
             <label>netn-dim_overview</label>
-            <semantics>## Overview 
- 
-The NETN-DIM introduces the `DIM_HazardRegion` object class to represent areas affected by different types of disasters 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAobjectRoot &lt;|-- DIM_HazardRegion 
- 
-HLAobjectRoot : CreateTime(NETN-BASE) 
-HLAobjectRoot : UniqueId(NETN-BASE) 
-DIM_HazardRegion &lt;|-- Flooding 
-DIM_HazardRegion &lt;|-- Wildfire 
-DIM_HazardRegion &lt;|-- EarthquakeArea 
-DIM_HazardRegion &lt;|-- Landslide 
-DIM_HazardRegion : Area 
-Flooding : Level 
-Flooding : LevelChange 
-Wildfire : FrontVelocity 
-Wildfire : FrontWidth 
-Wildfire : Temperature 
-EarthquakeArea : Magnitude 
-Landslide : LandslideType 
-Landslide : Thickness 
- 
- 
-``` 
- 
-The module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for mitigation and the prevention of effects caused by `Flooding` and `Wildfire`, respectively. 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAobjectRoot &lt;|-- EnvironmentObject 
-HLAobjectRoot : UniqueId(NETN-BASE) 
- 
-EnvironmentObject &lt;|-- LinearObject 
-EnvironmentObject : ForceIdentifier(RPR-SE) 
-EnvironmentObject : ObjectIdentifier(RPR-SE) 
-EnvironmentObject : ObjectType(RPR-SE) 
-LinearObject &lt;|-- BreachableLinearObject 
-BreachableLinearObject &lt;|-- Levee 
-BreachableLinearObject &lt;|-- Firebreak 
-BreachableLinearObject : SegmentRecords(RPR-SE) 
-Levee : Height 
-Firebreak : Width 
- 
-``` 
- 
-## Tasking and Reporting 
- 
-The NETN-DIM module extends the NETN-ETR `Task` and `ETR_Report` interaction classes to provide task control actions for several disaster mitigation actions. 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAinteractionRoot &lt;|-- SMC_EntityControl 
-HLAinteractionRoot : SendTime(NETN-BASE) 
-HLAinteractionRoot : UniqueId(NETN-BASE) 
- 
-SMC_EntityControl &lt;|-- Task 
-SMC_EntityControl : Entity(NETN-SMC) 
-Task &lt;|-- Evacuate 
-Task &lt;|-- PumpFlooding 
-Task &lt;|-- ExtinguishWildfire 
-Task &lt;|-- CreateFireBreak 
-Task &lt;|-- CreateLevee 
-Task : TaskId(NETN-ETR) 
-Evacuate : TaskParameters 
-PumpFlooding : TaskParameters 
-ExtinguishWildfire : TaskParameters 
-CreateFireBreak : TaskParameters 
-CreateLevee : TaskParameters 
-``` 
- 
-A simulated entity observing a hazard uses the NETN-ETR `ETR_Report` subclass `HazardObservation` to send an observation report. 
- 
-```mermaid 
-classDiagram 
-direction LR 
-HLAinteractionRoot &lt;|-- ETR_Report 
-HLAinteractionRoot : SendTime(NETN-BASE) 
-HLAinteractionRoot : UniqueId(NETN-BASE) 
-ETR_Report &lt;|-- HazardObservation 
-ETR_Report : Receiver(NETN-ETR) 
-ETR_Report : ReportId(NETN-ETR) 
-ETR_Report : ReportingEntity(NETN-ETR) 
-ETR_Report : TimeStamp(NETN-ETR) 
-HazardObservation : Area 
-HazardObservation : HazardType 
- 
+            <semantics>## Overview
+
+The NETN-DIM introduces the `DIM_HazardRegion` object class to represent areas affected by different types of disasters
+
+```mermaid
+classDiagram
+direction LR
+
+HLAobjectRoot &lt;|-- DIM_HazardRegion
+
+HLAobjectRoot : CreateTime(NETN-BASE)
+HLAobjectRoot : UniqueId(NETN-BASE)
+DIM_HazardRegion &lt;|-- Flooding
+DIM_HazardRegion &lt;|-- Wildfire
+DIM_HazardRegion &lt;|-- EarthquakeArea
+DIM_HazardRegion &lt;|-- Landslide
+DIM_HazardRegion : Area
+Flooding : Level
+Flooding : LevelChange
+Wildfire : FrontVelocity
+Wildfire : FrontWidth
+Wildfire : Temperature
+EarthquakeArea : Magnitude
+Landslide : LandslideType
+Landslide : Thickness
+
+
+```
+
+The module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for mitigation and the prevention of effects caused by `Flooding` and `Wildfire`, respectively.
+
+```mermaid
+classDiagram
+direction LR
+
+HLAobjectRoot &lt;|-- EnvironmentObject
+HLAobjectRoot : UniqueId(NETN-BASE)
+
+EnvironmentObject &lt;|-- LinearObject
+EnvironmentObject : ForceIdentifier(RPR-SE)
+EnvironmentObject : ObjectIdentifier(RPR-SE)
+EnvironmentObject : ObjectType(RPR-SE)
+LinearObject &lt;|-- BreachableLinearObject
+BreachableLinearObject &lt;|-- Levee
+BreachableLinearObject &lt;|-- Firebreak
+BreachableLinearObject : SegmentRecords(RPR-SE)
+Levee : Height
+Firebreak : Width
+
+```
+
+## Tasking and Reporting
+
+The NETN-DIM module extends the NETN-ETR `Task` and `ETR_Report` interaction classes to provide task control actions for several disaster mitigation actions.
+
+```mermaid
+classDiagram
+direction LR
+
+HLAinteractionRoot &lt;|-- SMC_EntityControl
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+
+SMC_EntityControl &lt;|-- Task
+SMC_EntityControl : Entity(NETN-SMC)
+Task &lt;|-- Evacuate
+Task &lt;|-- PumpFlooding
+Task &lt;|-- ExtinguishWildfire
+Task &lt;|-- CreateFireBreak
+Task &lt;|-- CreateLevee
+Task : TaskId(NETN-ETR)
+Evacuate : TaskParameters
+PumpFlooding : TaskParameters
+ExtinguishWildfire : TaskParameters
+CreateFireBreak : TaskParameters
+CreateLevee : TaskParameters
+```
+
+A simulated entity observing a hazard uses the NETN-ETR `ETR_Report` subclass `HazardObservation` to send an observation report.
+
+```mermaid
+classDiagram
+direction LR
+HLAinteractionRoot &lt;|-- ETR_Report
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+ETR_Report &lt;|-- HazardObservation
+ETR_Report : Receiver(NETN-ETR)
+ETR_Report : ReportId(NETN-ETR)
+ETR_Report : ReportingEntity(NETN-ETR)
+ETR_Report : TimeStamp(NETN-ETR)
+HazardObservation : Area
+HazardObservation : HazardType
+
 ```</semantics>
         </note>
     </notes>

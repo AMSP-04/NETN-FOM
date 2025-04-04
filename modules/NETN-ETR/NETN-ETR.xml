@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification notes="netn-etr_overview">
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2025 http://standards.ieee.org/downloads/1516/1516.2-2025/IEEE1516-DIF-2025.xsd" xmlns="http://standards.ieee.org/IEEE1516-2025" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification noteReferences="netn-etr_overview">
         <name>NETN-ETR</name>
         <type>FOM</type>
         <version>3.0 </version>
         <modificationDate>2024-03-08</modificationDate>
         <securityClassification>Not Classified</securityClassification>
+        <copyright/>
         <purpose>The NATO Education and Training Network Entity Tasking and Reports Module (NETN-ETR) provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation. It defines interactions that can be interpreted and executed by simulators that model the behaviour of a tasked entity. The module also defines report interactions sent by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
         <description>Based on the SMC_EntityControl pattern, the module defines a core set of tasks for simulated entities. Other NETN-FOM modules define additional tasks. The task definitions provided in NETN reflect the capabilities commonly found in Commercial-off-the-Shelf (COTS) Computer-Generated Forces (CGF) applications but are independent of any specific CGF.</description>
         <useLimitation>A tasked entity can be either a physical entity (e.g., platform or lifeform) or an aggregate entity. A task definition does not specify in detail how a simulation models the execution of the task.</useLimitation>
-        <useHistory notes="netn-etr_changelog_1">v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.</useHistory>
-        <useHistory notes="netn-etr_changelog_2">v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0</useHistory>
-        <useHistory notes="netn-etr_changelog_3">v3.0 - Updated by MSG-191 for NETN FOM v4.0</useHistory>
+        <useHistory noteReferences="netn-etr_changelog_1">v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.</useHistory>
+        <useHistory noteReferences="netn-etr_changelog_2">v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0</useHistory>
+        <useHistory noteReferences="netn-etr_changelog_3">v3.0 - Updated by MSG-191 for NETN FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -56,7 +57,7 @@ Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
-        <glyph type="png" height="48" width="48" alt="">iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAABcSAAAXEgFnn9JSAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAAKkElEQVRoBeVYeWxWWRV/X0sLpYR9K4V2oCwBBFoKQ9hSwhoSkiLLHzNm/mEGRAwRMSgJu0gEUyRmIpGwRs1IoAFEdgkQYFpZZNGUxcI0QFlLoU2h0G9519/vfO+8ef369WsR0Jl4kt+795577rnnnLs/y/o/Jh98j/+2+k/D6QCJqeaF8U3/xHkMTPfkvxVOqPGdYPjvgBrgB44T3lEhS0dGU0fsf5fofJ8AE54CxoNZjlkJSIloo0FeEwcaCBT/e8TOSVMBGh8A/E6e5Y+BSGoKBhGNGBANSrT6OjxjTB3Ho0WqTkOHwcY20Ar4O5DhlG2fz9cEyunMspYtWyYmJSV92LRp0xS/35+MOishIeHl69ev79fU1BRVVlYWQO5LoAIgMTDUS9RLNB667JUrV8atWLHCIM+gxSQ6F+mxOrwTdVSgIxDq2LGj6dGjh4ED5EcF6yjTuXPnryDzK+ADQKne0dDII22mwsiLLWqQ8jUlXz3UqcMI0aEg8Aki8Hsosdu0aeNr27at7/bt26wXw9PS0qypU6f6MBJWXFycVVVVZe3fv9/cvXuX9dTn69mzp1VeXl7x/PnzPJR/CbA966jfJfSRgL4CSIe/ePHijy1atFiK8p9OnjzZZMyYMSFXMEqGTiRG8NWZ0eAbGEqDxPDRo0ebrVu3mitXrpinT5+aR48emTVr1pgNGzYYGCq8y5cvm+3bt9ujRo2ikVxDJj09nTpOAWkASfuwaDwZSLOLi4vL5s6day5cuEBnZpAPijoAqmABBL4Cfg3kAl0A0mCgJCMjgx2HOnToYPbs2WMQSej9mk6dOsV6AZ3yEmX37dtnkpOT6Ygfo0G5UmAgQOKaUuM/xOg+mzJlCmWq2d/FixepTp2QBvrReZgCRhngGoH8QyAfKFXjZ8+ebe7du+faZtu2CQQYIGOOHDnitj137pzwWBcKhSTPD6cUowqdNY7OB8j3BIQgkg3jyydPnkwZ/8iRI5m+BszDhw9rUN9dBJ0Ph0OH5AsKAa8ADnXIWfXG6SiwatUqU11dTTvEKBpGB9TAY8eOsb3g0qVLrpxk8AkGg5J99eqVWb58OeVquMD79u37D+Q5bbIwbSonTpzIOv+gQYOYcsQM5j/bLkK+FqnxZG4A2IDzW40Pdu/enbtOaMGCBQbbIpW4hkgBH3Xg6NGjbC9QByhz4sQJU1JSwqzBNispdS1cuNA1cMeOHXtKS0tvaeQHDhzo1p0+fZptfgbdUcnrxBpIqBGyTbI8YsQI8+TJE+lYoygF56MOeKfQ1atXpfbgwYOib9KkSQYGCk+d4MKn/iVLloSKioqMY3zAG/kzZ86wzU8cy33IR27zUuVl/pxKCewWsttwcZKiGU9+NAcwFUxBQYHoycrKknT8+PHmwYMHbOKuG8qdPXvWTJ8+nVMlFCPy9RovHuBDJ3Q0ftGtWzd2GpwzZ4477Jzv0UgdOHz4sBiKdoaG0djs7GzhDRkyRNIJEybU2gQ4Ktjbpc5rPJ0CNRh59CVGcyciksjANeD7jgMBLkySGimFiI/WeR24du2aSN25c0emINSaoUOHiqFjx46VM4M7kp7iAwYMYB0PKePM+Z8iT2ow8mExz7d9+/Z/RdF06dIloEOuRkbYLkWtO3TokBjIthwBpfv377tODB48WGTGjRtnhg0bJvl+/fox5XS1nd2mUZGHvEvpyH0X4F3ly9TUVDkx582bZ+uCq2/60Eh1wLuNRu46PDtwGovBmZmZkqIv06tXL80Hjx8/zh3rNvhy/4FqPaPAqk26aHlt2AtUA6rIYOtk3s7Ly9Mg1puqY9zbFy9e7OpYvXq1e2bo4udIaNT79+/PEXblMf1CvDuh3wrcanshJTXoQAsI6enr5wUK5UDv3r1l99m1a5cYrhGO5oXW6TWCVwTcPMUwZy7L7qVyHAneodCP6dOnj6Rse/78eemzdevWNhZ8FuqtmTNnRnVAo08ZKqhkBsQFxLomcER2o2bN3Jss62MSLm9Sj/VjEaQbN25IGh8ftgNOWF27drV27txpDR8+3Lp586aFdWPl5ORYcExkcUX34d4jNu7evVt40T7qRDIqHwMSCefqEMTVQaLBmyZJp0msEeCiVT1MO3XqJOWNGzcaXK2lKUdB7023bt0yusOxEn3JDoSzh2/u7wCkqCPACt3vmfK5+FvgHFAFuFfmZcuWRbO5Dk8d5NUZp6rhtYN6FDNmzDAYDbedrgllsP3SpUvlzoO70SO0SwVIGuhwqYEvhTOAj1JSUjieZtq0aSGNnhqpncZKKcvrNE9e6lHk5+e7I0An1BH2kZubKzsfzp8LkNfIa6DBqp/4FqjlaatWrfKaN2/Ojv28o5B0ETZkuLf+2bNnZu3ata4D0GcWLVrkXifUAR56qAvwiYpDlL9uSLSpUQ6IND7cUkmtgbPOVhrctGmT2NTYEaAc4XWYt1EExXWEr7rr16+7vm7evFkOMeeRwylN0kdWuNTAV4X596EQMHj3ypzEnsyHhHTmNcrtPUbGK88rxfz5810ntmzZIi15NiDy0hf6LEbf3FhItWZFmBX9q/OtA6r564S/L+TPg/OQMevXr3fNbOxIaAPvaPBU37t3r+grKysTkXXr1tEpvzPi+mDRgEa32MNVL/nb8J+AKGMKJ0LYv4M4lCQ6zh1FpsabOkFLvaOhzjmHnx9XF4M/GdfRLw9WktoVLsX4qmBnyPBtSgf4pBSjWcawksc92taHujeqakxjUi5adYQvNu0Hv2iYnwiQGh39sPjXDT4Bg4pcYBQ4pY5hW1WezUeKEo0hYo2IOquGs21hYSH1yWHp6F6BMkmnc7jUyK93q+LZfQb4ETAUkN8cSD93Ll5yWm7bts1UVFSoH5J6Da3PMfxiNFy80EeEHJ2/QV7Ja4vyGpVqQ91KazXC/YUPnWLccQz+0cj04huX793Hjx83OAJ8Tx84cEDfvKZdu3ZB6oLOq56OGh19NdbTVrLkUymJ85B5rhGekJmYToUIdbPExEQbiy6upKQEbCsE58ysWbPi8ByMg2EWXljkW4i2hYPMwuPexh8HG5c16o/HbmPhkRTCT9946CyHzmzw77AO4Ai/FbETQkkX1I/BoENy3CO1uXc7Bw/5hMxpJ1+HR1nd7x1ZmY7Ifw8gaV/hUoyv18AYYq4jNGYfkAtw+jBy/AlFPX+BUQm4duQgn8R9/uXLl6IfvxANRguivio8dgrw35S/KQegzL9bNJbB4BrbCnwGcLQZhHdGOifToPE5QEd4wOkobENeif8sDc4Ng5PbBoLMg3cT6O0IuQclyl49/0KZ1xeSbuvh0lt+1YG+0MMrLg1S/CFCNw+gu049R0md3OLIqS6+dIocOd77VV9mhJxTfPtEp1sqVH0OsMN8j1pOBY3an516RlfXw6eOLKeKbsnUdQ2grr8BkwDVgey7J3WCmocAetxrVHXx8d8ljdIfBEzdX+fIk9QJjuoPAW3LuvdKNNYbJW9ejciBDB1QcG6rwd4gqOOoFtL2Wm4wjVTQYAMIqFHalmUlzVeAwXnN6wfxBXAFoPEqg6zkGQDqIv+d7jzQ9x+RN8JeBfXxvTJvnH8vSmEF9Xqn1jcmum8coffd4N+JGjk80q6rSgAAAABJRU5ErkJggg==</glyph>
+        <glyph href="data:/image/png;base64,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" alt=""/>
     </modelIdentification>
     <objects>
         <objectClass>
@@ -70,6 +71,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>ArrayOfTaskDefinitions</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -81,6 +83,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>ArrayOfTaskProgress</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -92,6 +95,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>ArrayOfTaskDefinitions</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -103,6 +107,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>ArrayOfTaskDefinitions</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -119,6 +124,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>TaskDefinition</dataType>
                     <updateType>Static</updateType>
                     <updateCondition>NA</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -130,6 +136,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <dataType>TaskProgress</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -570,7 +577,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>Activity</name>
                         <dataType>AggregateMissionEnum16</dataType>
-                        <semantics>Optional: The current activity of the entity. (Fromm NETN-Base) 
+                        <semantics>Optional: The current activity of the entity. (Fromm NETN-Base)
 Default value: Moving (213)</semantics>
                     </parameter>
                     <parameter>
@@ -797,8 +804,8 @@ Default value: Moving (213)</semantics>
             <enumeratedData>
                 <name>MoveTypeEnum32</name>
                 <representation>HLAinteger32BE</representation>
-                <semantics>CrossCountry: move directly to the destination without considering the roads. 
-OnlyRoads: stay on the roads to get to the closest point to the destination that is still on the road; 
+                <semantics>CrossCountry: move directly to the destination without considering the roads.
+OnlyRoads: stay on the roads to get to the closest point to the destination that is still on the road;
 RoadsAndCrossCountry: move to the destination by considering the roads; it is allowed to go off the road.</semantics>
                 <enumerator>
                     <name>CrossCountry</name>
@@ -1061,7 +1068,7 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                 <field>
                     <name>Type</name>
                     <dataType>EntityTypeStruct</dataType>
-                    <semantics>Use entity types from Supply Types, Expendibles or Sensors/Emitters tables  (SISO-REF-010-2010, 4.3), 
+                    <semantics>Use entity types from Supply Types, Expendibles or Sensors/Emitters tables  (SISO-REF-010-2010, 4.3),
 for aggregate entities, also use entity types from platform tables to describe the equipment type.</semantics>
                 </field>
                 <field>
@@ -1073,7 +1080,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>TrackStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Descripton of the observed entity. 
+                <semantics>Descripton of the observed entity.
 The symbol contains information about the spotted entity's relation to the spotter and details about the type and echelon at the spotted entity.</semantics>
                 <field>
                     <name>Track</name>
@@ -1093,8 +1100,8 @@ The symbol contains information about the spotted entity's relation to the spott
                 <field>
                     <name>Equipment</name>
                     <dataType>ArrayOfDetectedEquipment</dataType>
-                    <semantics>Spotted equipment list, type and number. 
- 
+                    <semantics>Spotted equipment list, type and number.
+
 Default value: Empty array.</semantics>
                 </field>
                 <field>
@@ -1110,23 +1117,23 @@ Default value: Empty array.</semantics>
                 <field>
                     <name>Speed</name>
                     <dataType>VelocityMeterPerSecondFloat32</dataType>
-                    <semantics>The speed of the entity (m/s). 
- 
+                    <semantics>The speed of the entity (m/s).
+
 Default value: 0 m/s</semantics>
                 </field>
                 <field>
                     <name>Activity</name>
                     <dataType>AggregateMissionEnum16</dataType>
-                    <semantics>The current activity of the entity. (Fromm NETN-Base) 
+                    <semantics>The current activity of the entity. (Fromm NETN-Base)
 Default value: Moving (213)</semantics>
                 </field>
                 <field>
                     <name>Symbol</name>
                     <dataType>SymbolIdentifier</dataType>
-                    <semantics>Symbol identifier for the entity. The detailed level may vary and the publishing federate decides the level of details in the symbol description. E.g. 
-Default Ground value: app6b:SUGP------***** 
-Default Air value: app6b:SUAP------***** 
-Default Sea Surface value: app6b:SUSP------***** 
+                    <semantics>Symbol identifier for the entity. The detailed level may vary and the publishing federate decides the level of details in the symbol description. E.g.
+Default Ground value: app6b:SUGP------*****
+Default Air value: app6b:SUAP------*****
+Default Sea Surface value: app6b:SUSP------*****
 Default Subsurface value: app6b:SUUP------*****</semantics>
                 </field>
             </fixedRecordData>
@@ -1137,7 +1144,7 @@ Default Subsurface value: app6b:SUUP------*****</semantics>
                 <field>
                     <name>Type</name>
                     <dataType>EntityTypeStruct</dataType>
-                    <semantics>Use entity types from Supply Types, Expendibles or Sensors/Emitters tables  (SISO-REF-010-2010, 4.3), 
+                    <semantics>Use entity types from Supply Types, Expendibles or Sensors/Emitters tables  (SISO-REF-010-2010, 4.3),
 for aggregate entities, also use entity types from platform tables to describe the equipment type.</semantics>
                 </field>
                 <field>
@@ -1825,218 +1832,218 @@ for aggregate entities, also use entity types from platform tables to describe t
     <notes>
         <note>
             <label>netn-etr_overview</label>
-            <semantics>## Overview 
- 
-NETN-ETR depends on NETN-SMC and uses the `SMC_EntityControl` interaction class to direct tasks to specific entities. Available tasks are defined in the NETN-ETR module and published using the NETN-SMC `BaseEntity` attribute `SupportedActions`. 
- 
-```mermaid 
-classDiagram 
-direction LR 
-HLAinteractionRoot &lt;|-- SMC_EntityControl 
-HLAinteractionRoot : SendTime(NETN-BASE) 
-HLAinteractionRoot : UniqueId(NETN-BASE) 
-SMC_EntityControl : Entity(NETN-SMC) 
-HLAobjectRoot &lt;|-- BaseEntity 
-HLAobjectRoot : UniqueId(NETN-BASE) 
-BaseEntity : SupportedActions(NETN-SMC) 
-``` 
- 
-## Tasking 
- 
-To send a task, use the interaction `Task` a subclass of the NETN-SMC `SMC_EntityControl` interaction. 
+            <semantics>## Overview
 
-The `Task` interaction class is the base class for all tasks defined in NETN-ETR and other modules. 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAinteractionRoot &lt;|-- SMC_EntityControl 
-HLAinteractionRoot &lt;|-- ETR_TaskStatus 
- 
- 
- 
-HLAinteractionRoot : SendTime(NETN-BASE) 
-HLAinteractionRoot : UniqueId(NETN-BASE) 
-class AllTasks["&lt; task &gt;"] 
-SMC_EntityControl &lt;|-- Task 
-Task &lt;|-- "*" AllTasks 
-SMC_EntityControl &lt;|-- RequestTaskStatus 
-SMC_EntityControl &lt;|-- CancelTasks 
-SMC_EntityControl : Entity(NETN-SMC) 
- 
-Task : Activity 
-Task : Annotation 
-Task : MainTask 
-Task : NextTask 
-Task : PreviousTask 
-Task : StartTime 
-Task : TaskId 
-Task : TaskMode 
-Task : Tasker 
-AllTasks : TaskParameters 
- 
-RequestTaskStatus : Tasks 
-CancelTasks : Tasks 
-ETR_TaskStatus : Task 
-ETR_TaskStatus : TaskStatus 
- 
- 
-``` 
- 
-The following tasks are defined in NETN-ETR: 
- 
-|Task|Description| 
-|---|---| 
-|MagicMove|Instructs the simulation entity to change location to the specified position and heading immediately. If attached, the entity is detached immediately just before the move task starts.| 
-|MoveByRoute|Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. If attached, the entity is detached immediately just before the move task starts.| 
-|MoveInDirection|Tasking of an entity to move in a specified direction for a duration. If attached, the entity is detached immediately just before the move task starts.| 
-|MoveIntoFormation|Tasking a simulated entity to move into the given formation on the given location with the given heading. If attached, the entity is detached immediately just before the move task starts.| 
-|MoveToLocation|Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. If attached, the entity is detached immediately just before the move task starts.| 
-|FollowEntity|Tasking of an entity to follow another entity at a specified distance. If attached, the entity is detached immediately just before the move task starts.| 
-|Patrol|Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. If attached, the entity is detached immediately just before the move task starts.| 
-|ChangeHeading|Tasking of an entity to change heading.| 
-|ChangeSpeed|Tasking of an entity to change speed.| 
-|ChangeAltitude|Tasking of an entity to set move to a specified altitude.| 
-|StopAtSideOfRoad|Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). If attached, the entity is detached immediately just before the move task starts.| 
-|Attach|Requesting a simulated entity to attach to (mount) the specified entity.| 
-|Detach|Requesting a simulated entity to detach from a simulated entity.| 
-|DirectFire|Tasking an entity to fire directed at a specified target entity.| 
-|IndirectFire|Tasking an entity to fire directed at an area.| 
-|Observe|Tasking of an entity to observe an area.| 
-|OperateCheckpoint|Request an entity to operate a checkpoint. The tasked entity should be within the radius of the checkpoint object. If not, a separate move task should be issued first. The tasked entity activates an inactive checkpoint and operates the checkpoint for the specified duration.| 
-|OperateObservationPost|Requests an entity to operate an observation post. The tasked unit should be within a given radius of the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration.| 
-|EnterFacility|Requesting a simulated entity to enter the specified facility (cultural feature). The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the facility location.| 
-|ChangeRulesOfEngagement|Instructs the simulation entity to change its rules of engagement immediately.| 
-|OtherActivity|Tasking of an entity to wait for a duration of time.| 
- 
-When sending a task the minimum required set of parameters is the `TaskId` and any `TaskParameters` associated with the specific task. All other parameters are optional with defined default values. 
- 
-Task status is provided using the `ETR_TaskStatus` interaction to indicate a change in status. Use the `RequestTaskStatus` interaction to request a resend of `ETR_TaskStatus` for a specific task. 
- 
-The `ETR_TaskStatus` interaction provides the following notifications regarding the task: 
- 
-* Accepted: the task is received and scheduled for execution 
-* Refused: the task is not accepted for execution 
-* Waiting: the task is waiting for execution 
-* Executing: the task is running 
-* Completed: the task has been executed successfully 
+NETN-ETR depends on NETN-SMC and uses the `SMC_EntityControl` interaction class to direct tasks to specific entities. Available tasks are defined in the NETN-ETR module and published using the NETN-SMC `BaseEntity` attribute `SupportedActions`.
+
+```mermaid
+classDiagram
+direction LR
+HLAinteractionRoot &lt;|-- SMC_EntityControl
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_EntityControl : Entity(NETN-SMC)
+HLAobjectRoot &lt;|-- BaseEntity
+HLAobjectRoot : UniqueId(NETN-BASE)
+BaseEntity : SupportedActions(NETN-SMC)
+```
+
+## Tasking
+
+To send a task, use the interaction `Task` a subclass of the NETN-SMC `SMC_EntityControl` interaction.
+
+The `Task` interaction class is the base class for all tasks defined in NETN-ETR and other modules.
+
+```mermaid
+classDiagram
+direction LR
+
+HLAinteractionRoot &lt;|-- SMC_EntityControl
+HLAinteractionRoot &lt;|-- ETR_TaskStatus
+
+
+
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+class AllTasks["&lt; task &gt;"]
+SMC_EntityControl &lt;|-- Task
+Task &lt;|-- "*" AllTasks
+SMC_EntityControl &lt;|-- RequestTaskStatus
+SMC_EntityControl &lt;|-- CancelTasks
+SMC_EntityControl : Entity(NETN-SMC)
+
+Task : Activity
+Task : Annotation
+Task : MainTask
+Task : NextTask
+Task : PreviousTask
+Task : StartTime
+Task : TaskId
+Task : TaskMode
+Task : Tasker
+AllTasks : TaskParameters
+
+RequestTaskStatus : Tasks
+CancelTasks : Tasks
+ETR_TaskStatus : Task
+ETR_TaskStatus : TaskStatus
+
+
+```
+
+The following tasks are defined in NETN-ETR:
+
+|Task|Description|
+|---|---|
+|MagicMove|Instructs the simulation entity to change location to the specified position and heading immediately. If attached, the entity is detached immediately just before the move task starts.|
+|MoveByRoute|Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. If attached, the entity is detached immediately just before the move task starts.|
+|MoveInDirection|Tasking of an entity to move in a specified direction for a duration. If attached, the entity is detached immediately just before the move task starts.|
+|MoveIntoFormation|Tasking a simulated entity to move into the given formation on the given location with the given heading. If attached, the entity is detached immediately just before the move task starts.|
+|MoveToLocation|Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. If attached, the entity is detached immediately just before the move task starts.|
+|FollowEntity|Tasking of an entity to follow another entity at a specified distance. If attached, the entity is detached immediately just before the move task starts.|
+|Patrol|Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. If attached, the entity is detached immediately just before the move task starts.|
+|ChangeHeading|Tasking of an entity to change heading.|
+|ChangeSpeed|Tasking of an entity to change speed.|
+|ChangeAltitude|Tasking of an entity to set move to a specified altitude.|
+|StopAtSideOfRoad|Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). If attached, the entity is detached immediately just before the move task starts.|
+|Attach|Requesting a simulated entity to attach to (mount) the specified entity.|
+|Detach|Requesting a simulated entity to detach from a simulated entity.|
+|DirectFire|Tasking an entity to fire directed at a specified target entity.|
+|IndirectFire|Tasking an entity to fire directed at an area.|
+|Observe|Tasking of an entity to observe an area.|
+|OperateCheckpoint|Request an entity to operate a checkpoint. The tasked entity should be within the radius of the checkpoint object. If not, a separate move task should be issued first. The tasked entity activates an inactive checkpoint and operates the checkpoint for the specified duration.|
+|OperateObservationPost|Requests an entity to operate an observation post. The tasked unit should be within a given radius of the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration.|
+|EnterFacility|Requesting a simulated entity to enter the specified facility (cultural feature). The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the facility location.|
+|ChangeRulesOfEngagement|Instructs the simulation entity to change its rules of engagement immediately.|
+|OtherActivity|Tasking of an entity to wait for a duration of time.|
+
+When sending a task the minimum required set of parameters is the `TaskId` and any `TaskParameters` associated with the specific task. All other parameters are optional with defined default values.
+
+Task status is provided using the `ETR_TaskStatus` interaction to indicate a change in status. Use the `RequestTaskStatus` interaction to request a resend of `ETR_TaskStatus` for a specific task.
+
+The `ETR_TaskStatus` interaction provides the following notifications regarding the task:
+
+* Accepted: the task is received and scheduled for execution
+* Refused: the task is not accepted for execution
+* Waiting: the task is waiting for execution
+* Executing: the task is running
+* Completed: the task has been executed successfully
 * Cancelled: the execution of the task has been explicitly terminated
-* Error: the task execution has been terminated due to a modelling error 
- 
-Use the `CancelTasks` interaction to request an entity to terminate the execution of a scheduled or currently executing task. 
- 
-A task can be executed concurrently with other tasks or sequentially. The task parameters indicate the expected mode of task execution. Tasks are scheduled based on their start time and task execution mode. 
- 
-The execution of a task can start if: 
- 
-* For a non-concurrent task 
-* No other non-concurrent task is executing 
-* The task has the earliest `StartTime` parameter of all planned non-concurrent tasks 
-* The task parameter `StartTime` is less than or equal to the current Scenario Time. 
-* For a concurrent task 
-* The task parameter `StartTime` is less than or equal to the current Scenario Time. 
- 
-## Planned Tasks and Progress 
- 
-The NETN-ETR module extends the RPR-FOM object class `BaseEntity` with optional attributes related to tasking. 
-These include lists of planned, ongoing and completed tasks. In addition, the progress of ongoing tasks is provided as a separate attribute. 
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
-HLAobjectRoot &lt;|-- BaseEntity 
-HLAobjectRoot : UniqueId(NETN-BASE) 
-BaseEntity : CurrentTasks 
-BaseEntity : PlannedTasks 
-BaseEntity : PreviousTasks 
-BaseEntity : TaskProgress 
- 
-``` 
- 
-This information is published in order to provide means for monitoring, recording and initializing the current state of all accepted tasks in the federation. 
- 
-## Task Delegation 
- 
+* Error: the task execution has been terminated due to a modelling error
+
+Use the `CancelTasks` interaction to request an entity to terminate the execution of a scheduled or currently executing task.
+
+A task can be executed concurrently with other tasks or sequentially. The task parameters indicate the expected mode of task execution. Tasks are scheduled based on their start time and task execution mode.
+
+The execution of a task can start if:
+
+* For a non-concurrent task
+* No other non-concurrent task is executing
+* The task has the earliest `StartTime` parameter of all planned non-concurrent tasks
+* The task parameter `StartTime` is less than or equal to the current Scenario Time.
+* For a concurrent task
+* The task parameter `StartTime` is less than or equal to the current Scenario Time.
+
+## Planned Tasks and Progress
+
+The NETN-ETR module extends the RPR-FOM object class `BaseEntity` with optional attributes related to tasking.
+These include lists of planned, ongoing and completed tasks. In addition, the progress of ongoing tasks is provided as a separate attribute.
+
+```mermaid
+classDiagram
+direction LR
+
+HLAobjectRoot &lt;|-- BaseEntity
+HLAobjectRoot : UniqueId(NETN-BASE)
+BaseEntity : CurrentTasks
+BaseEntity : PlannedTasks
+BaseEntity : PreviousTasks
+BaseEntity : TaskProgress
+
+```
+
+This information is published in order to provide means for monitoring, recording and initializing the current state of all accepted tasks in the federation.
+
+## Task Delegation
+
 Normally, the federate with modelling responsibility performs the task simulation. A special mechanism allows temporary delegation of this responsibility to another federate.
- 
-Use the `TaskDelegation` interaction, based on the NETN-SMC `SMC_FederateControl` control action, to request a federate to perform a task on behalf of the requesting federate. 
- 
-```mermaid 
-classDiagram 
-direction LR 
-HLAinteractionRoot &lt;|-- SMC_FederateControl 
-HLAinteractionRoot : SendTime(NETN-BASE) 
-HLAinteractionRoot : UniqueId(NETN-BASE) 
-SMC_FederateControl &lt;|-- TaskDelegation 
-SMC_FederateControl:Federate(NETN-SMC) 
-TaskDelegation : Entity 
-TaskDelegation : TaskDefinition 
- 
-HLAobjectRoot &lt;|-- ETR_DelegatedTask 
-HLAobjectRoot : UniqueId(NETN-BASE) 
- 
-ETR_DelegatedTask : TaskDefinition 
-ETR_DelegatedTask : TaskProgress 
- 
-``` 
- 
-If the task delegation is accepted, an `ETR_DelegatedTask` object is created and used to transfer information regarding the state of task execution. The federate with primary modelling responsibility still has the responsibility to perform all `ETR_TaskStatus` updates and to publish `TaskProgress` information. 
- 
- 
-## Reporting 
- 
+
+Use the `TaskDelegation` interaction, based on the NETN-SMC `SMC_FederateControl` control action, to request a federate to perform a task on behalf of the requesting federate.
+
+```mermaid
+classDiagram
+direction LR
+HLAinteractionRoot &lt;|-- SMC_FederateControl
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_FederateControl &lt;|-- TaskDelegation
+SMC_FederateControl:Federate(NETN-SMC)
+TaskDelegation : Entity
+TaskDelegation : TaskDefinition
+
+HLAobjectRoot &lt;|-- ETR_DelegatedTask
+HLAobjectRoot : UniqueId(NETN-BASE)
+
+ETR_DelegatedTask : TaskDefinition
+ETR_DelegatedTask : TaskProgress
+
+```
+
+If the task delegation is accepted, an `ETR_DelegatedTask` object is created and used to transfer information regarding the state of task execution. The federate with primary modelling responsibility still has the responsibility to perform all `ETR_TaskStatus` updates and to publish `TaskProgress` information.
+
+
+## Reporting
+
 NETN-ETR provides a way for simulated entities to send reports with information related to their state or the observed state of other simulated entities. A report relays perceived-truth data and can be generated using different combinations of sensor and information fusion models. Reports can be used by other simulation models or, for example, as report stimulation of C2 systems.
- 
-```mermaid 
-classDiagram 
-direction LR 
- 
- 
-HLAinteractionRoot &lt;|-- ETR_Report 
- 
- 
-HLAinteractionRoot : SendTime(NETN-BASE) 
-HLAinteractionRoot : UniqueId(NETN-BASE) 
- 
-ETR_Report &lt;|-- ObservationReport 
-ETR_Report &lt;|-- PositionStatusReport 
-ETR_Report &lt;|-- DamageStatusReport 
-ETR_Report &lt;|-- ResourceStatusReport 
-ETR_Report &lt;|-- UnderAttackStatusReport 
-ETR_Report &lt;|-- InWeaponRangeReport 
-ETR_Report : Comments 
-ETR_Report : Receiver 
-ETR_Report : ReportId 
-ETR_Report : ReportingEntity 
+
+```mermaid
+classDiagram
+direction LR
+
+
+HLAinteractionRoot &lt;|-- ETR_Report
+
+
+HLAinteractionRoot : SendTime(NETN-BASE)
+HLAinteractionRoot : UniqueId(NETN-BASE)
+
+ETR_Report &lt;|-- ObservationReport
+ETR_Report &lt;|-- PositionStatusReport
+ETR_Report &lt;|-- DamageStatusReport
+ETR_Report &lt;|-- ResourceStatusReport
+ETR_Report &lt;|-- UnderAttackStatusReport
+ETR_Report &lt;|-- InWeaponRangeReport
+ETR_Report : Comments
+ETR_Report : Receiver
+ETR_Report : ReportId
+ETR_Report : ReportingEntity
 ETR_Report : TimeStamp
-ObservationReport : Activity 
-ObservationReport : ConfidenceLevel 
-ObservationReport : Equipment 
-ObservationReport : Heading 
-ObservationReport : Health 
-ObservationReport : HostilityStatus 
-ObservationReport : IdentificationLevel 
-ObservationReport : Location 
-ObservationReport : Marking 
-ObservationReport : Name 
-ObservationReport : ObservedEntity 
+ObservationReport : Activity
+ObservationReport : ConfidenceLevel
+ObservationReport : Equipment
+ObservationReport : Heading
+ObservationReport : Health
+ObservationReport : HostilityStatus
+ObservationReport : IdentificationLevel
+ObservationReport : Location
+ObservationReport : Marking
+ObservationReport : Name
+ObservationReport : ObservedEntity
 ObservationReport : ObservationTime
-ObservationReport : SensorType 
-ObservationReport : Side 
-ObservationReport : Speed 
-ObservationReport : Symbol 
-ObservationReport : UncertaintyInterval 
-PositionStatusReport : Heading 
-PositionStatusReport : Position 
-PositionStatusReport : Speed 
-DamageStatusReport : DamageType 
-ResourceStatusReport : Resource 
-UnderAttackStatusReport : FromDirection 
-UnderAttackStatusReport : Severeness 
-InWeaponRangeReport : EntitiesInWeaponRange 
-InWeaponRangeReport : WeaponType 
+ObservationReport : SensorType
+ObservationReport : Side
+ObservationReport : Speed
+ObservationReport : Symbol
+ObservationReport : UncertaintyInterval
+PositionStatusReport : Heading
+PositionStatusReport : Position
+PositionStatusReport : Speed
+DamageStatusReport : DamageType
+ResourceStatusReport : Resource
+UnderAttackStatusReport : FromDirection
+UnderAttackStatusReport : Severeness
+InWeaponRangeReport : EntitiesInWeaponRange
+InWeaponRangeReport : WeaponType
 ```
 
 In particular, the `ObservationReport` is designed to allow mapping to the SISO-STD-019 C2SIM standard ontology for representing corresponding reports.
@@ -2048,7 +2055,7 @@ Sensor models tracking entities can use NETN-ETR to send `EntitySensorUpdate` in
 The sensor track data is usually only sent if a change occurs, which may cause an issue for late-joining federates. The NETN-ETR includes a NETN-SMC Federation Control Action to `ResendSensorUpdates`. Use this request to trigger the resending of all current tracks for all entities.
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot &lt;|-- SMC_FederationControl
 HLAinteractionRoot &lt;|-- ETR_SensorEvent
@@ -2060,160 +2067,159 @@ ETR_SensorEvent : ProducingEntity
 EntitySensorUpdate : SensorType
 EntitySensorUpdate : Tracks
 ```
-Normally track data is only sent if a change occurs. This may cause an issue for late joining federates. The NETN-ETR includes a NETN-SMC Federation Control Action to `ResendSensorUpdates`. Use this request to trigger a re-sending of all current tracks for all entities.
-</semantics>
+Normally track data is only sent if a change occurs. This may cause an issue for late joining federates. The NETN-ETR includes a NETN-SMC Federation Control Action to `ResendSensorUpdates`. Use this request to trigger a re-sending of all current tracks for all entities.</semantics>
         </note>
         <note>
             <label>netn-etr_changelog_3</label>
-            <semantics>* Added `BaseEntity` attribute `SupportedTasks` 
-* Added `BaseEntity` attribute `TaskProgress` 
-* Added `BaseEntity` attribute `CurrentTasks` 
-* Added `BaseEntity` attribute `PlannedTasks` 
-* Added `BaseEntity` attribute `PreviousTasks` 
- 
- 
-* Added object Class `ETR_DelegatedTask` 
- 
-* Removed interaction class `ETR_Root` 
-* Removed interaction class `ETR_SimCon` 
-* Removed interaction class `ETR_TaskManagement` 
-* Moved interaction class `ETR_Task` as subclass of `SMC_EntityControl` and renamed to `Task` 
-* Moved interaction class `ETR_Report` as subclass of `HLAinteractionRoot` 
- 
-* Merged `CancelAllTasks` and `CancelSpecifiedTasks` to `RequestCancelTask` 
-* Moved and renamed interaction class `TaskStatusReport` as `ETR_Report` subclass `TaskStatusUpdate` 
-* Moved all `ETR_Task` subclasses to `Task` subclasses 
-* Replaced all task interaction parameters with `TaskParameters` with different datatypes for each task type. 
- 
-* Removed `QueryCapabilitiesSupported` interaction class 
-* Removed `CapabilitiesSupported` interaction class 
- 
-* Moved and renamed `MagicResource` interaction class to NETN-LOG `RequestTask` subclass `SetResourceStatus` 
-* Moved `MagicMove` interaction class as `RequestTask` subclass 
-* Changed `MagicMove` parameter `Heading` datatype to `DirectionDegreesFloat32` 
-* Changed `MagicMove` parameter `Location` datatype to `LocationStruct` 
-* Removed `MagicMove` parameter `LocationUuid` 
- 
-* Moved `AddPassage` interaction class to NETN-SE `CreateBreach` 
-* Moved `ClearObstacle` interaction class to NETN-SE `ClearEngineering` 
-* Moved `CreateObstacle` interaction class to NETN-SE `CreateObstacle` 
-* Moved `CreateMinefield` interaction class to NETN-SE `LayMinefield` 
-* Moved `EstablishCheckPoint` interaction class to NETN-SE `EstablishCheckpoint` 
-* Moved `RemoveCheckPoint` interaction class to NETN-SE `ClearEngineering` 
-* Moved `RemovePassage` interaction class to NETN-SE `ClearEngineering` 
-* Moved `DisruptCommunication` interaction class to NETN-COM `DisruptCommunication` 
-* Moved `SetTransmitterStatus` interaction class to NETN-COM `SetTransmitterStatus` 
-* Removed `TurnToOrientation` interaction class 
-* Merged `PatrolRepeating` and `Patrol` interaction classes to `Patrol` 
-* Merged `FireAtEntity` and `FireAtEntityWM` interaction classes to `DirectFire` 
-* Merged `FireAtLocation` and `FireAtLocationWM` interaction classes to `IndirectFire` 
-* Renamed `Move` interaction class to `MoveInDirection` 
-* Added `MoveByRoute` interaction class 
-* Added `OperateObservationPost` interaction class 
-* Renamed `OperateCheckPoint` interaction class to `OperateCheckpoint` 
-* Removed `MoveToEntity` interaction class 
-* Renamed `SetOrderedAltitude` interaction class to `ChangeAltitude` 
-* Renamed `SetOrderedSpeed` interaction class to `ChangeSpeed` 
-* Renamed `TurnToHeading` interaction class to `ChangeHeading` 
- 
-* Added `RequestTaskStatus` interaction class 
-* Added `RequestTaskDelegation` interaction class 
-* Added `RequestReport` interaction class 
-* Added `Response` interaction class 
- 
-* Added `ETR_Report` parameter `ReportingEntity` 
-* Changed `ETR_Report` parameter `ReportId` datatype to `UUID` 
-* Replaced `ETR_Report` parameter `When` with NETN-BASE `HLAinteractionRoot` parameter `Time` 
-* Moved `ETR_Report` parameter `CommunicationNetworkIds` to NETN-COM `ETR_Report 
-* Replaced `InWeaponRange` parameter `Observer` with `ETR_Report` parameter `ReportingEntity` 
-* Replaced `SpotReport` parameter `Observer` with `ETR_Report` parameter `ReportingEntity` 
-* Added `SpotReport` parameter `SensorType` 
-* Renamed `SensorReport` interaction class to `ETR_SensorEvent` and move as subclass to `HLAinteractionClass` 
-* Replaced `StatusReport` parameter `EntityId` with `ETR_Report` parameter `ReportingEntity` 
-* Added `EntitySensorUpdate` interaction class 
-* Removed `StatusReport` interaction class 
- 
-* Changed `PositionStatusReport` parameter `Position` datatype to `LocationStruct` 
-* Changed `PositionStatusReport` parameter `Heading` datatype to `DirectionDegreesFloat32` 
-* Changed `ResourceStatusReport` parameter `Resource` datatype to `SupplyStruct` 
-* Changed `UnderAttackStatusReport` parameter `FromDirection` datatype to `DirectionDegreesFloat32` 
- 
- 
-* Changed `TaskStatusReport` parameter `TaskId` datatype to `UUID` 
-* Renamed `TaskStatusReport` parameter `TaskId` to `Task` 
-* Replaced `TaskStatusReport` parameter `When` with NETN-BASE `HLAinteractionRoot` parameter `Time` 
- 
- 
-* Removed datatype `MineCountEnum32` 
-* Removed datatype `Datetime18` 
-* Removed datatype `ArrayOfTaskIds` 
-* Removed datatype `ArrayOfNames` 
-* Removed datatype `MineCountVariantStruct` 
- 
-* Added datatype `EntityControlActionEnum` 
-* Added datatype `CaptureStatusEnum` 
- 
-* Added datatype `ArrayOfTaskTypes` 
-* Added datatype `ArrayOfTaskDefinitions` 
-* Added datatype `ArrayOfTaskProgress` 
-* Added datatype `ArrayOfWaypoints` 
- 
-* Added struct datatypes for each task type with task parameters 
-* Added struct datatypes for task progress (various) 
- 
-* Added datatype `RoundStruct` 
-* Added datatype `TaskDefinition` 
-* Added datatype `TaskProgress` 
-* Added datatype `Waypoint` 
- 
-* Added datatype `TaskDefinitionVariantRecord` 
-* Added datatype `TaskProgressVariantRecord` 
- 
-* Changed datatype `SpottedEntity` field `Orientation` to `Heading` 
- 
-* Renamed `Mount` interaction class to `Attach` 
+            <semantics>* Added `BaseEntity` attribute `SupportedTasks`
+* Added `BaseEntity` attribute `TaskProgress`
+* Added `BaseEntity` attribute `CurrentTasks`
+* Added `BaseEntity` attribute `PlannedTasks`
+* Added `BaseEntity` attribute `PreviousTasks`
+
+
+* Added object Class `ETR_DelegatedTask`
+
+* Removed interaction class `ETR_Root`
+* Removed interaction class `ETR_SimCon`
+* Removed interaction class `ETR_TaskManagement`
+* Moved interaction class `ETR_Task` as subclass of `SMC_EntityControl` and renamed to `Task`
+* Moved interaction class `ETR_Report` as subclass of `HLAinteractionRoot`
+
+* Merged `CancelAllTasks` and `CancelSpecifiedTasks` to `RequestCancelTask`
+* Moved and renamed interaction class `TaskStatusReport` as `ETR_Report` subclass `TaskStatusUpdate`
+* Moved all `ETR_Task` subclasses to `Task` subclasses
+* Replaced all task interaction parameters with `TaskParameters` with different datatypes for each task type.
+
+* Removed `QueryCapabilitiesSupported` interaction class
+* Removed `CapabilitiesSupported` interaction class
+
+* Moved and renamed `MagicResource` interaction class to NETN-LOG `RequestTask` subclass `SetResourceStatus`
+* Moved `MagicMove` interaction class as `RequestTask` subclass
+* Changed `MagicMove` parameter `Heading` datatype to `DirectionDegreesFloat32`
+* Changed `MagicMove` parameter `Location` datatype to `LocationStruct`
+* Removed `MagicMove` parameter `LocationUuid`
+
+* Moved `AddPassage` interaction class to NETN-SE `CreateBreach`
+* Moved `ClearObstacle` interaction class to NETN-SE `ClearEngineering`
+* Moved `CreateObstacle` interaction class to NETN-SE `CreateObstacle`
+* Moved `CreateMinefield` interaction class to NETN-SE `LayMinefield`
+* Moved `EstablishCheckPoint` interaction class to NETN-SE `EstablishCheckpoint`
+* Moved `RemoveCheckPoint` interaction class to NETN-SE `ClearEngineering`
+* Moved `RemovePassage` interaction class to NETN-SE `ClearEngineering`
+* Moved `DisruptCommunication` interaction class to NETN-COM `DisruptCommunication`
+* Moved `SetTransmitterStatus` interaction class to NETN-COM `SetTransmitterStatus`
+* Removed `TurnToOrientation` interaction class
+* Merged `PatrolRepeating` and `Patrol` interaction classes to `Patrol`
+* Merged `FireAtEntity` and `FireAtEntityWM` interaction classes to `DirectFire`
+* Merged `FireAtLocation` and `FireAtLocationWM` interaction classes to `IndirectFire`
+* Renamed `Move` interaction class to `MoveInDirection`
+* Added `MoveByRoute` interaction class
+* Added `OperateObservationPost` interaction class
+* Renamed `OperateCheckPoint` interaction class to `OperateCheckpoint`
+* Removed `MoveToEntity` interaction class
+* Renamed `SetOrderedAltitude` interaction class to `ChangeAltitude`
+* Renamed `SetOrderedSpeed` interaction class to `ChangeSpeed`
+* Renamed `TurnToHeading` interaction class to `ChangeHeading`
+
+* Added `RequestTaskStatus` interaction class
+* Added `RequestTaskDelegation` interaction class
+* Added `RequestReport` interaction class
+* Added `Response` interaction class
+
+* Added `ETR_Report` parameter `ReportingEntity`
+* Changed `ETR_Report` parameter `ReportId` datatype to `UUID`
+* Replaced `ETR_Report` parameter `When` with NETN-BASE `HLAinteractionRoot` parameter `Time`
+* Moved `ETR_Report` parameter `CommunicationNetworkIds` to NETN-COM `ETR_Report
+* Replaced `InWeaponRange` parameter `Observer` with `ETR_Report` parameter `ReportingEntity`
+* Replaced `SpotReport` parameter `Observer` with `ETR_Report` parameter `ReportingEntity`
+* Added `SpotReport` parameter `SensorType`
+* Renamed `SensorReport` interaction class to `ETR_SensorEvent` and move as subclass to `HLAinteractionClass`
+* Replaced `StatusReport` parameter `EntityId` with `ETR_Report` parameter `ReportingEntity`
+* Added `EntitySensorUpdate` interaction class
+* Removed `StatusReport` interaction class
+
+* Changed `PositionStatusReport` parameter `Position` datatype to `LocationStruct`
+* Changed `PositionStatusReport` parameter `Heading` datatype to `DirectionDegreesFloat32`
+* Changed `ResourceStatusReport` parameter `Resource` datatype to `SupplyStruct`
+* Changed `UnderAttackStatusReport` parameter `FromDirection` datatype to `DirectionDegreesFloat32`
+
+
+* Changed `TaskStatusReport` parameter `TaskId` datatype to `UUID`
+* Renamed `TaskStatusReport` parameter `TaskId` to `Task`
+* Replaced `TaskStatusReport` parameter `When` with NETN-BASE `HLAinteractionRoot` parameter `Time`
+
+
+* Removed datatype `MineCountEnum32`
+* Removed datatype `Datetime18`
+* Removed datatype `ArrayOfTaskIds`
+* Removed datatype `ArrayOfNames`
+* Removed datatype `MineCountVariantStruct`
+
+* Added datatype `EntityControlActionEnum`
+* Added datatype `CaptureStatusEnum`
+
+* Added datatype `ArrayOfTaskTypes`
+* Added datatype `ArrayOfTaskDefinitions`
+* Added datatype `ArrayOfTaskProgress`
+* Added datatype `ArrayOfWaypoints`
+
+* Added struct datatypes for each task type with task parameters
+* Added struct datatypes for task progress (various)
+
+* Added datatype `RoundStruct`
+* Added datatype `TaskDefinition`
+* Added datatype `TaskProgress`
+* Added datatype `Waypoint`
+
+* Added datatype `TaskDefinitionVariantRecord`
+* Added datatype `TaskProgressVariantRecord`
+
+* Changed datatype `SpottedEntity` field `Orientation` to `Heading`
+
+* Renamed `Mount` interaction class to `Attach`
 * Renamed `Dismount` interaction class to `Detach`</semantics>
         </note>
         <note>
             <label>netn-etr_changelog_2</label>
-            <semantics>* Added a new attribute to ETR_Task: CommunicationNetworkIdentifiers 
-* Added new Task: DisruptCommunicaction 
-* Added new Task: Observe 
-* Added SetTransmitterStatus 
-* Added MagicMove 
-* Added MagicResource* Added QuerySupportedCapabilities interaction 
-* Added CapabilitiesSupported interaction 
-* Added EstablishCheckPoint 
-* Added OperateCheckPoint 
-* Added RemoveCheckPoint 
-* Added StopAtSideOfRoad 
-* Added CreateObstacle 
-* Added CreateMinefield 
-* Added ClearObstacle 
-* Added AddPassage 
-* Added RemovePassage 
-* Added Patrol 
-* Added PatrolRepeating 
- 
-* Removed FollowRoute 
- 
-* Renamed MoveToUnit to MoveToEntity 
-* Renamed FollowUnit to FollowEntity 
-* Renamed VehicleMount to Mount 
-* Renamed VehicleDismount to Dismount 
-* Renamed FireIndirectWM to FireAtLocationWM 
-* Renamed FireAtUnit to FireAtEntity 
-* Renamed FireDirectWM to FireAtEntityWM 
-* Renamed ChangeOrderedSpeed to SetOrderedSpeed 
-* Renamed ChangeOrderedAltitude to SetOrderedAltitude 
-* Renamed Parameter SensorReport.SpottedEnities to SpottedEntities. 
+            <semantics>* Added a new attribute to ETR_Task: CommunicationNetworkIdentifiers
+* Added new Task: DisruptCommunicaction
+* Added new Task: Observe
+* Added SetTransmitterStatus
+* Added MagicMove
+* Added MagicResource* Added QuerySupportedCapabilities interaction
+* Added CapabilitiesSupported interaction
+* Added EstablishCheckPoint
+* Added OperateCheckPoint
+* Added RemoveCheckPoint
+* Added StopAtSideOfRoad
+* Added CreateObstacle
+* Added CreateMinefield
+* Added ClearObstacle
+* Added AddPassage
+* Added RemovePassage
+* Added Patrol
+* Added PatrolRepeating
+
+* Removed FollowRoute
+
+* Renamed MoveToUnit to MoveToEntity
+* Renamed FollowUnit to FollowEntity
+* Renamed VehicleMount to Mount
+* Renamed VehicleDismount to Dismount
+* Renamed FireIndirectWM to FireAtLocationWM
+* Renamed FireAtUnit to FireAtEntity
+* Renamed FireDirectWM to FireAtEntityWM
+* Renamed ChangeOrderedSpeed to SetOrderedSpeed
+* Renamed ChangeOrderedAltitude to SetOrderedAltitude
+* Renamed Parameter SensorReport.SpottedEnities to SpottedEntities.
 * Renamed Parameter MOUNT.EntiityId to EntityId</semantics>
         </note>
         <note>
             <label>netn-etr_changelog_1</label>
-            <semantics>The NETN-ETR FOM Module is based on the previously released NETN-LLBML FOM module developed by MSG-068, updated by MSG-106 and prepared for release by MSG-134. 
- 
-The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) is: 
+            <semantics>The NETN-ETR FOM Module is based on the previously released NETN-LLBML FOM module developed by MSG-068, updated by MSG-106 and prepared for release by MSG-134.
+
+The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) is:
 * NETN-LBML_v1.1.0.xml</semantics>
         </note>
     </notes>

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification notes="netn-metoc_overview">
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2025 http://standards.ieee.org/downloads/1516/1516.2-2025/IEEE1516-DIF-2025.xsd" xmlns="http://standards.ieee.org/IEEE1516-2025" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification noteReferences="netn-metoc_overview">
         <name>NETN-METOC</name>
         <type>FOM</type>
         <version>2.0</version>
         <modificationDate>2024-03-10</modificationDate>
         <securityClassification>Not Classified</securityClassification>
+        <copyright/>
         <purpose>The purpose of the NATO Education and Training Network Meteorological and Oceanographic Module (NETN-METOC) is to provide a standard way to exchange data related to environmental conditions, including weather and the primary effects of weather on terrain and water surfaces in the atmosphere and subsurface water conditions.</purpose>
         <applicationDomain>Training</applicationDomain>
         <description>NETN-METOC provides a reference model that represents a common core subset of METOC-related aspects and allows the module's extension to incorporate additional detail if required.</description>
         <useLimitation></useLimitation>
         <useHistory>v1.0 - Initial version developed by MSG-163. Release included in NETN FOM v3.0</useHistory>
-        <useHistory notes="netn-metoc_changelog">v2.0 - Updates developed by MSG-191 and included in NETN FOM v4.0</useHistory>
+        <useHistory noteReferences="netn-metoc_changelog">v2.0 - Updates developed by MSG-191 and included in NETN FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -45,7 +46,7 @@ Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
-        <glyph type="png" height="48" width="48" alt="">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</glyph>
+        <glyph href="data:/image/png;base64,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" alt=""/>
     </modelIdentification>
     <objects>
         <objectClass>
@@ -53,22 +54,23 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             <objectClass>
                 <name>METOC_EnvironmentCondition</name>
                 <sharing>Neither</sharing>
-                <semantics>Root class for all types of environment condition objects. 
- 
-The `GeoReference` attribute defines the region where the EnvironmentCondition applies. 
- 
-If `GeoReference` is a geographical area, and the subclass in question has a surface (water/land), the environmental condition applies only within that area of the surface. 
- 
-If `GeoReference` is a geographical area, and the environmental condition defines a Layer attribute, it applies only within the volume bounded by the layer and the body described by projecting each point of the area along a line through the centre of the Earth. 
- 
-If `GeoReference` is an `RPREntityReference`, a NETNEntityReference or a GMLFeatureReference, the environment condition applies only to the immediate vicinity of the referenced entity/feature and any layer attribute is ignored. 
- 
+                <semantics>Root class for all types of environment condition objects.
+
+The `GeoReference` attribute defines the region where the EnvironmentCondition applies.
+
+If `GeoReference` is a geographical area, and the subclass in question has a surface (water/land), the environmental condition applies only within that area of the surface.
+
+If `GeoReference` is a geographical area, and the environmental condition defines a Layer attribute, it applies only within the volume bounded by the layer and the body described by projecting each point of the area along a line through the centre of the Earth.
+
+If `GeoReference` is an `RPREntityReference`, a NETNEntityReference or a GMLFeatureReference, the environment condition applies only to the immediate vicinity of the referenced entity/feature and any layer attribute is ignored.
+
 If not provided, the environment condition is considered global, only restricted by the semantics of its particular subclass.</semantics>
                 <attribute>
                     <name>GeoReference</name>
                     <dataType>GeoReferenceVariant</dataType>
                     <updateType>Static</updateType>
                     <updateCondition>NA</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -80,6 +82,7 @@ If not provided, the environment condition is considered global, only restricted
                     <dataType>FederateName</dataType>
                     <updateType>Static</updateType>
                     <updateCondition>NA</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -91,6 +94,7 @@ If not provided, the environment condition is considered global, only restricted
                     <dataType>UnsignedInteger16</dataType>
                     <updateType>Conditional</updateType>
                     <updateCondition>On change</updateCondition>
+                    <valueRequired>false</valueRequired>
                     <ownership>DivestAcquire</ownership>
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
@@ -106,6 +110,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>MeterFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On Change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -117,6 +122,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>TemperatureDegreeCelsiusFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>on change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -128,6 +134,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>AltitudeMeterFloat64</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -139,6 +146,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>AtmosphericPressureFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On Change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -150,6 +158,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>WindStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On Change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -161,6 +170,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>PrecipitationStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On Change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -172,6 +182,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>HazeStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>on change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -183,6 +194,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>PercentFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On Change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -194,6 +206,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>LightningTypeEnum8</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -205,6 +218,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>LightningIntensity32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -220,6 +234,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>SnowStruct</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -231,6 +246,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>SurfaceMoistureEnum16</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -242,6 +258,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>RoadIceConditionEnum16</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -253,6 +270,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>MeterFloat32</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>On change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -269,6 +287,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>SeaStateEnum16</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -280,6 +299,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>PercentFloat32</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -291,6 +311,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>MeterFloat32</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -302,6 +323,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>MeterFloat32</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>On change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -313,6 +335,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>IceStruct</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -324,6 +347,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>CurrentStruct</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -335,6 +359,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>WaveStruct</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>OnChange</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -346,6 +371,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>WaveStruct</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -357,6 +383,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>PercentFloat32</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>On change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -373,6 +400,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>LayerStruct</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -384,6 +412,7 @@ If not provided, the environment condition is considered global, only restricted
                             <dataType>CloudStruct</dataType>
                             <updateType>Conditional</updateType>
                             <updateCondition>on change</updateCondition>
+                            <valueRequired>false</valueRequired>
                             <ownership>DivestAcquire</ownership>
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
@@ -401,6 +430,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>LayerStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>on change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -412,6 +442,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>MeterFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On Change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -423,6 +454,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>TemperatureDegreeCelsiusFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>on change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -434,6 +466,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>CurrentStruct</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>on change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -445,6 +478,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>SalinityFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>on change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -456,6 +490,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>SedimentTypeEnum32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>OnChange</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -472,6 +507,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>GeodeticPath</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -483,6 +519,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>MeterFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -494,6 +531,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>MeterFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -505,6 +543,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>VelocityMeterPerSecondFloat32</dataType>
                         <updateType>Conditional</updateType>
                         <updateCondition>On change</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -524,6 +563,7 @@ If not provided, the environment condition is considered global, only restricted
                         <dataType>EnvironmentConditionModelTypeEnum32</dataType>
                         <updateType>Static</updateType>
                         <updateCondition>NA</updateCondition>
+                        <valueRequired>false</valueRequired>
                         <ownership>DivestAcquire</ownership>
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
@@ -1431,9 +1471,9 @@ If not provided, the environment condition is considered global, only restricted
                     <semantics>Reference to a GML feature by its GML Identifier.</semantics>
                 </alternative>
                 <encoding>HLAvariantRecord</encoding>
-                <semantics>The area affected by an environmental condition can be expressed as: 
-* a location on the Earth's surface represented by a Point, 
-* an area on the Earth's surface, represented by a Quadrangle, GeodeticPolygon, or GeodeticCircle, order 
+                <semantics>The area affected by an environmental condition can be expressed as:
+* a location on the Earth's surface represented by a Point,
+* an area on the Earth's surface, represented by a Quadrangle, GeodeticPolygon, or GeodeticCircle, order
 * a reference to some other object/data.</semantics>
             </variantRecordData>
         </variantRecordDataTypes>
@@ -1441,27 +1481,27 @@ If not provided, the environment condition is considered global, only restricted
     <notes>
         <note>
             <label>netn-metoc_overview</label>
-            <semantics>## Overview 
+            <semantics>## Overview
 
- Current environmental conditions impact simulations such as platforms and sensors on the ground, sea, underwater and in the air. A correlated representation of these conditions is vital to meeting interoperability and model requirements in a federated distributed simulation.
- 
- NETN-METOC represents environmental conditions for surfaces, layers, and corridors. 
+Current environmental conditions impact simulations such as platforms and sensors on the ground, sea, underwater and in the air. A correlated representation of these conditions is vital to meeting interoperability and model requirements in a federated distributed simulation.
 
-* Surface conditions do not have a volume and only represent the conditions directly related to the surface of a piece of terrain or water. 
-    * Land Surface Conditions
-    * Water Surface Conditions
-* Layer conditions represent a volume of water or air with height/depth from surface and layer thickness. 
-    * Tropospheric Layer Conditions
-    * Water Layer Conditions
-    * Subsurface Layer
+NETN-METOC represents environmental conditions for surfaces, layers, and corridors.
+
+* Surface conditions do not have a volume and only represent the conditions directly related to the surface of a piece of terrain or water.
+* Land Surface Conditions
+* Water Surface Conditions
+* Layer conditions represent a volume of water or air with height/depth from surface and layer thickness.
+* Tropospheric Layer Conditions
+* Water Layer Conditions
+* Subsurface Layer
 * Wind Corridor models wind speed conditions concerning a specified path.
- 
+
 
 Environment condition data are published as objects using the classes defined in the NETN-METOC FOM module. In addition, or as an alternative method, interactions can be used to request data from a METOC service.
 
- 
+
 ### Environment Condition
- 
+
 Environment Conditions can be modelled as objects related to global conditions, explicit locations, or other simulated entities and objects in the synthetic environment.
 
 Since multiple overlapping Environment Condition objects may exist, subscribing federates should apply the following merging rules to calculate the resulting environment conditions.
@@ -1472,11 +1512,11 @@ Since multiple overlapping Environment Condition objects may exist, subscribing 
 * Moisture is calculated as the highest enumerated value, making the resulting value the one with the most moisture.
 * The land surface ice condition is calculated as the highest enumerated value making the resulting value the one with the most severe ice condition.
 
- 
- 
-### Service 
 
-The NETN-METOC module also supports requesting environmental condition data from a server or service provider. 
+
+### Service
+
+The NETN-METOC module also supports requesting environmental condition data from a server or service provider.
 
 A METOC Service publishes its supported actions and the type of data provided using the METOC_Service object class. The type of data is one of the following:
 * Simulated
@@ -1488,31 +1528,30 @@ To request environment condition data from a METOC service, the NETN-METOC offer
 * Pull - uses a Request and Response pattern based on NETN-SMC.
 * Push - uses the same Request pattern as the pull method but with the feature that the information is provided as continuous updates of Environment Condition objects published by the METOC service provided.
 
-One or both methods may be suitable depending on federation design and agreements.
-</semantics>
+One or both methods may be suitable depending on federation design and agreements.</semantics>
         </note>
         <note>
             <label>netn-metoc_changelog</label>
-            <semantics>* Replaced `Service` object class with `METOC_Service` 
-* Replaced `EnvironmentCondition` object class with `METOC_EnvironmentCondition` 
-* Replaced `EnvironmentCondition` attribute `ServiceId` with `METOC_EnvironmentCondition` attribute `Service` 
-* Replaced `EnvironmentCondition` attribute `GeoReference` with `METOC_EnvironmentCondition` attribute `GeoReference` 
-* Replaced `METOC_Root` attribute `UniqueId` with HLA-BASE `HLAobjectRoot` attribute `UniqueId` 
-* Replaced `METOC_Root` attribute `Name` with `METOC_Service` attribute `Name` 
-* Removed object class `METOC_Root` 
- 
-* Replaced `METOC_Interaction` parameter `EventId` with NETN-BASE `HLAinteractionRoot` parameter `UniqueId` 
-* Removed interaction class `METOC_Interaction` 
- 
-* Replaced `Request` parameter `ServiceId` with `METOC_Request` parameter `Service` 
-* Replaced `Request` parameter `GeoReference` with `METOC_Request` parameter `GeoReference` 
-* Replaced `Request` parameter `UpdateAsObject` with `METOC_Request` parameter `UpdateAsObject` 
- 
-* Replaced `Response` parameter `EnvironmentObjectId` with `METOC_Response` parameter `EnvironmentObject` 
-* Replaced `Response` parameter `GeoReference` with `METOC_Response` parameter `GeoReference` 
-* Replaced `Response` parameter `Status` with `METOC_Response` parameter `Status` 
-* Added `Response` parameter `Request` 
-* Added `FederateControlActionEnum` Enumerated datatype. 
+            <semantics>* Replaced `Service` object class with `METOC_Service`
+* Replaced `EnvironmentCondition` object class with `METOC_EnvironmentCondition`
+* Replaced `EnvironmentCondition` attribute `ServiceId` with `METOC_EnvironmentCondition` attribute `Service`
+* Replaced `EnvironmentCondition` attribute `GeoReference` with `METOC_EnvironmentCondition` attribute `GeoReference`
+* Replaced `METOC_Root` attribute `UniqueId` with HLA-BASE `HLAobjectRoot` attribute `UniqueId`
+* Replaced `METOC_Root` attribute `Name` with `METOC_Service` attribute `Name`
+* Removed object class `METOC_Root`
+
+* Replaced `METOC_Interaction` parameter `EventId` with NETN-BASE `HLAinteractionRoot` parameter `UniqueId`
+* Removed interaction class `METOC_Interaction`
+
+* Replaced `Request` parameter `ServiceId` with `METOC_Request` parameter `Service`
+* Replaced `Request` parameter `GeoReference` with `METOC_Request` parameter `GeoReference`
+* Replaced `Request` parameter `UpdateAsObject` with `METOC_Request` parameter `UpdateAsObject`
+
+* Replaced `Response` parameter `EnvironmentObjectId` with `METOC_Response` parameter `EnvironmentObject`
+* Replaced `Response` parameter `GeoReference` with `METOC_Response` parameter `GeoReference`
+* Replaced `Response` parameter `Status` with `METOC_Response` parameter `Status`
+* Added `Response` parameter `Request`
+* Added `FederateControlActionEnum` Enumerated datatype.
 * Reamed `WeatherModelTypeEnum32` Enumerated datatype to `EnvironmentConditionModelTypeEnum32`</semantics>
         </note>
     </notes>

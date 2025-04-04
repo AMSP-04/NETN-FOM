@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2010 http://standards.ieee.org/downloads/1516/1516.2-2010/IEEE1516-DIF-2010.xsd" xmlns="http://standards.ieee.org/IEEE1516-2010" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelIdentification notes="netn-base_overview">
+<objectModel xsi:schemaLocation="http://standards.ieee.org/IEEE1516-2025 http://standards.ieee.org/downloads/1516/1516.2-2025/IEEE1516-DIF-2025.xsd" xmlns="http://standards.ieee.org/IEEE1516-2025" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelIdentification noteReferences="netn-base_overview">
         <name>NETN-BASE</name>
         <type>FOM</type>
         <version>3.0</version>
         <modificationDate>2024-03-10</modificationDate>
         <securityClassification>Not Classified</securityClassification>
+        <copyright/>
         <purpose></purpose>
         <applicationDomain>Training</applicationDomain>
         <description>The NATO Education and Training Network Base (NETN-BASE) Module provides standard definitions of datatypes used by NETN modules. It depends on the RPR-BASE Module.</description>
         <useLimitation></useLimitation>
-        <useHistory notes="netn-base_changelog_1">v1.0 - Initial version developed by MSG-106 and MSG-134. Release included in NETN FOM v2.0</useHistory>
-        <useHistory notes="netn-base_changelog_2">v2.0 - Updated version developed by MSG-163. Release included in NETN FOM v3.0</useHistory>
-        <useHistory notes="netn-base_changelog_3">v3.0 - Updated version developed by MSG-191. The release is included in NETN FOM v4.0</useHistory>
+        <useHistory noteReferences="netn-base_changelog_1">v1.0 - Initial version developed by MSG-106 and MSG-134. Release included in NETN FOM v2.0</useHistory>
+        <useHistory noteReferences="netn-base_changelog_2">v2.0 - Updated version developed by MSG-163. Release included in NETN FOM v3.0</useHistory>
+        <useHistory noteReferences="netn-base_changelog_3">v3.0 - Updated version developed by MSG-191. The release is included in NETN FOM v4.0</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -52,7 +53,7 @@ Copyright © 2020 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute this FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends this FOM module by reference. You are NOT allowed to modify this FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
-        <glyph type="png" height="48" width="48" alt="">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</glyph>
+        <glyph href="data:/image/png;base64,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" alt=""/>
     </modelIdentification>
     <objects>
         <objectClass>
@@ -64,6 +65,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <dataType>UUID</dataType>
                 <updateType>Static</updateType>
                 <updateCondition>NA</updateCondition>
+                <valueRequired>false</valueRequired>
                 <ownership>DivestAcquire</ownership>
                 <sharing>PublishSubscribe</sharing>
                 <transportation>HLAreliable</transportation>
@@ -75,6 +77,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <dataType>EpochTime</dataType>
                 <updateType>Static</updateType>
                 <updateCondition>NA</updateCondition>
+                <valueRequired>false</valueRequired>
                 <ownership>DivestAcquire</ownership>
                 <sharing>PublishSubscribe</sharing>
                 <transportation>HLAreliable</transportation>
@@ -1905,8 +1908,8 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <dataType>HLAbyte</dataType>
                 <cardinality>16</cardinality>
                 <encoding>HLAfixedArray</encoding>
-                <semantics>RFC 4122, section 4.1.2 using 16 bytes. Also referred to as Variant 1 or RFC 4122/DCE 1.1 UUIDs. 
- 
+                <semantics>RFC 4122, section 4.1.2 using 16 bytes. Also referred to as Variant 1 or RFC 4122/DCE 1.1 UUIDs.
+
 For example, 00112233-4455-8877-6699-aabbccddeeff is encoded as the bytes 00 11 22 33 44 55 88 77 66 99 aa bb cc dd ee ff.</semantics>
             </arrayData>
             <arrayData>
@@ -2056,23 +2059,23 @@ For example, 00112233-4455-8877-6699-aabbccddeeff is encoded as the bytes 00 11 
                 <field>
                     <name>EvaluationRating</name>
                     <dataType>HLAunicodeString</dataType>
-                    <semantics>A text amplifier for units, equipment and installations that consists of a one-letter reliability rating and a one-number credibility rating. Max length 2 characters. 
- 
- 
-Reliability Ratings: 
-A-completely reliable 
-B-usually reliable 
-C-fairly reliable 
-D-not usually reliable 
-E-unreliable 
-F-reliability cannot be judged 
- 
-Credibility Ratings: 
-1-confirmed by other sources 
-2-probably true 
-3-possibly true 
-4-doubtfully true 
-5-improbable 
+                    <semantics>A text amplifier for units, equipment and installations that consists of a one-letter reliability rating and a one-number credibility rating. Max length 2 characters.
+
+
+Reliability Ratings:
+A-completely reliable
+B-usually reliable
+C-fairly reliable
+D-not usually reliable
+E-unreliable
+F-reliability cannot be judged
+
+Credibility Ratings:
+1-confirmed by other sources
+2-probably true
+3-possibly true
+4-doubtfully true
+5-improbable
 6-truth cannot be judged.</semantics>
                 </field>
                 <field>
@@ -2128,23 +2131,23 @@ Credibility Ratings:
                 <field>
                     <name>EvaluationRating</name>
                     <dataType>HLAunicodeString</dataType>
-                    <semantics>A text amplifier for units, equipment and installations with a one-letter reliability rating and a one-number credibility rating. Max length 2 characters. 
- 
- 
-Reliability Ratings: 
-A-completely reliable 
-B-usually reliable 
-C-fairly reliable 
-D-not usually reliable 
-E-unreliable 
-F-reliability cannot be judged 
- 
-Credibility Ratings: 
-1-confirmed by other sources 
-2-probably true 
-3-possibly true 
-4-doubtfully true 
-5-improbable 
+                    <semantics>A text amplifier for units, equipment and installations with a one-letter reliability rating and a one-number credibility rating. Max length 2 characters.
+
+
+Reliability Ratings:
+A-completely reliable
+B-usually reliable
+C-fairly reliable
+D-not usually reliable
+E-unreliable
+F-reliability cannot be judged
+
+Credibility Ratings:
+1-confirmed by other sources
+2-probably true
+3-possibly true
+4-doubtfully true
+5-improbable
 6-truth cannot be judged.</semantics>
                 </field>
                 <field>
@@ -2195,23 +2198,23 @@ Credibility Ratings:
                 <field>
                     <name>EvaluationRating</name>
                     <dataType>HLAunicodeString</dataType>
-                    <semantics>A text amplifier for units, equipment and installations with a one-letter reliability rating and a one-number credibility rating. Max length 2 characters. 
- 
- 
-Reliability Ratings: 
-A-completely reliable 
-B-usually reliable 
-C-fairly reliable 
-D-not usually reliable 
-E-unreliable 
-F-reliability cannot be judged 
- 
-Credibility Ratings: 
-1-confirmed by other sources 
-2-probably true 
-3-possibly true 
-4-doubtfully true 
-5-improbable 
+                    <semantics>A text amplifier for units, equipment and installations with a one-letter reliability rating and a one-number credibility rating. Max length 2 characters.
+
+
+Reliability Ratings:
+A-completely reliable
+B-usually reliable
+C-fairly reliable
+D-not usually reliable
+E-unreliable
+F-reliability cannot be judged
+
+Credibility Ratings:
+1-confirmed by other sources
+2-probably true
+3-possibly true
+4-doubtfully true
+5-improbable
 6-truth cannot be judged.</semantics>
                 </field>
                 <field>
@@ -2322,125 +2325,124 @@ Credibility Ratings:
     <notes>
         <note>
             <label>netn-base_changelog_3</label>
-            <semantics>* Added `HLAobjectRoot` attribute `UniqueId` 
- 
-* Added `HLAobjectRoot` attribute `FederateApplication` 
- 
-* Added `HLAobjectRoot` attribute `CreateTime` 
-* Added `HLAinteractionRoot` attribute `UniqueId` 
-* Added `HLAinteractionRoot` attribute `FederateApplication` 
-* Added `HLAinteractionRoot` attribute `SendTime` 
- 
-* Removed datatype `AreaVariantStruct` 
-* Removed datatype `PathVariantStruct` 
-* Removed datatype `PointVariantStruct` 
-* Removed datatype `PointTypeEnum32` 
-* Removed datatype `PathTypeEnum32` 
- 
-* Removed datatype `QuantityFloat32` 
- 
-* Replaced datatype `NETN_SupplyStruct` with `SupplyStatusStruct` 
-* Replaced datatype `ArrayOfWorldLocationStruct` with `LocationStructArray` 
-* Replaced datatype `NETN_ArrayOfSupplyStruct` with `ArrayOfSupplyStatus` 
- 
-* Removed datatype `TransactionId` 
-* Removed datatype `UuidArrayOfHLAbyte16` 
-* Removed datatype `ArrayOfText64` 
-* Removed datatype `GeodeticPath` 
-* Removed datatype `TimeSecInt32` 
-* Removed datatype `GeoLocationTypeEnum32` 
-* Removed datatype `ArrayOfString` 
-* Removed datatype `Text64` 
-* Removed datatype `CancellationReasonEnum32` 
-* Replaced datatype `PercentFloat64` with `PercentFloat32` 
-* Replaced datatype `EpochTimeSecInt64`  with `EpochTime` 
-* Added datatype `EquipmentSymbolAmplificationStruct` 
-* Added datatype `UnitSymbolAmplificationStruct` 
-* Added datatype `InstallationSymbolAmplificationStruct` 
-* Added datatype `TimeMillisecondIn64` 
-* Added datatype `EpochTime` 
-* Added datatype `HostilityStatusCodeEnum32` moved from NETN-ORG 
-* Added datatype `DamageStatusEnum32` 
-* Added datatype `LocationStruct` 
-* Added datatype `SymbolAmplificationVariant` 
- 
-* Added datatype `SymbolStruct` 
- 
-* Added datatype `TransmitterOperationalStatusEnum8` 
-* Added datatype `ResourceStatusStruct` 
-* Added datatype `ArrayOfResourceStatus` 
- 
-* Changed representation of `QuantityInt32` to `HLAinteger32BE` 
- 
+            <semantics>* Added `HLAobjectRoot` attribute `UniqueId`
+
+* Added `HLAobjectRoot` attribute `FederateApplication`
+
+* Added `HLAobjectRoot` attribute `CreateTime`
+* Added `HLAinteractionRoot` attribute `UniqueId`
+* Added `HLAinteractionRoot` attribute `FederateApplication`
+* Added `HLAinteractionRoot` attribute `SendTime`
+
+* Removed datatype `AreaVariantStruct`
+* Removed datatype `PathVariantStruct`
+* Removed datatype `PointVariantStruct`
+* Removed datatype `PointTypeEnum32`
+* Removed datatype `PathTypeEnum32`
+
+* Removed datatype `QuantityFloat32`
+
+* Replaced datatype `NETN_SupplyStruct` with `SupplyStatusStruct`
+* Replaced datatype `ArrayOfWorldLocationStruct` with `LocationStructArray`
+* Replaced datatype `NETN_ArrayOfSupplyStruct` with `ArrayOfSupplyStatus`
+
+* Removed datatype `TransactionId`
+* Removed datatype `UuidArrayOfHLAbyte16`
+* Removed datatype `ArrayOfText64`
+* Removed datatype `GeodeticPath`
+* Removed datatype `TimeSecInt32`
+* Removed datatype `GeoLocationTypeEnum32`
+* Removed datatype `ArrayOfString`
+* Removed datatype `Text64`
+* Removed datatype `CancellationReasonEnum32`
+* Replaced datatype `PercentFloat64` with `PercentFloat32`
+* Replaced datatype `EpochTimeSecInt64`  with `EpochTime`
+* Added datatype `EquipmentSymbolAmplificationStruct`
+* Added datatype `UnitSymbolAmplificationStruct`
+* Added datatype `InstallationSymbolAmplificationStruct`
+* Added datatype `TimeMillisecondIn64`
+* Added datatype `EpochTime`
+* Added datatype `HostilityStatusCodeEnum32` moved from NETN-ORG
+* Added datatype `DamageStatusEnum32`
+* Added datatype `LocationStruct`
+* Added datatype `SymbolAmplificationVariant`
+
+* Added datatype `SymbolStruct`
+
+* Added datatype `TransmitterOperationalStatusEnum8`
+* Added datatype `ResourceStatusStruct`
+* Added datatype `ArrayOfResourceStatus`
+
+* Changed representation of `QuantityInt32` to `HLAinteger32BE`
+
 * Replaced datatype `LatLongDegreesFloat64` with `LatitudeFloat64` and `LongitudeFloat64`</semantics>
         </note>
         <note>
             <label>netn-base_changelog_2</label>
-            <semantics>* Changed `modelIdentification` `securityClassification` from `unclassified` to `Not Classified` 
-* Changed `modelIdentification` `other` to include license information 
-* Changed `modelIdentification` `useHistory` to only include formally released versions 
-* Added datatype `AltitudeMeterFloat64` 
-* Added datatype `DegreesPerSecondFloat32` 
-* Added datatype `DirectionDegreesFloat32` 
-* Added datatype `DraughtMeterFloat32` 
-* Modified datatype `TimeSecInt64` to `EpochTimeSecInt64` 
-* Added datatype `IMOType` 
-* Added datatype `LatLongDegreesFloat64` 
-* Added datatype `MassConcentrationFloat32` 
-* Added datatype `MassDensityFloat32` 
-* Added datatype `MIDType` 
-* Added datatype `PercentFloat64` 
-* Updated datatype `QuantityFloat32` 
-* Added datatype `QuantityFloat64` 
-* Added datatype `QuantityInt32` 
-* Added datatype `ShipTypeType` 
-* Added datatype `TimeSecInt32` 
-* Added datatype `CancellationReasonEnum32` 
-* Added datatype `EchelonEnum32` 
-* Added datatype `EchelonEnum32` 
-* Added datatype `SymbolStandardEnum32` 
-* Added datatype `GeoLocationTypeEnum32` 
-* Added datatype `ArrayOfStringType` 
-* Added datatype `ArrayOfText64` 
-* Added datatype `FederateName` 
-* Removed datatype `ArrayOfWorldLocationStruct2` 
-* Removed datatype `ArrayOfWorldLocationStruct3` 
-* Added datatype `GeodeticPath` 
-* Added datatype `GeodeticPolygon` 
-* Added datatype `SymbolIdentifier15` 
-* Added datatype `SymbolIdentifier30` 
-* Added datatype `Text64` 
-* Added datatype `TransactionId` 
-* Added datatype `UUID` 
-* Added datatype `GeocentricCircle` 
-* Added datatype `GeodeticCircle` 
-* Added datatype `GeodeticLocation` 
-* Added datatype `GeodeticQuadrangle` 
-* Added datatype `GeodeticPoint` 
-* Added datatype `AreaVariantStruct` 
-* Added datatype `PathVariantStruct` 
-* Added datatype `PointVariantStruct` 
+            <semantics>* Changed `modelIdentification` `securityClassification` from `unclassified` to `Not Classified`
+* Changed `modelIdentification` `other` to include license information
+* Changed `modelIdentification` `useHistory` to only include formally released versions
+* Added datatype `AltitudeMeterFloat64`
+* Added datatype `DegreesPerSecondFloat32`
+* Added datatype `DirectionDegreesFloat32`
+* Added datatype `DraughtMeterFloat32`
+* Modified datatype `TimeSecInt64` to `EpochTimeSecInt64`
+* Added datatype `IMOType`
+* Added datatype `LatLongDegreesFloat64`
+* Added datatype `MassConcentrationFloat32`
+* Added datatype `MassDensityFloat32`
+* Added datatype `MIDType`
+* Added datatype `PercentFloat64`
+* Updated datatype `QuantityFloat32`
+* Added datatype `QuantityFloat64`
+* Added datatype `QuantityInt32`
+* Added datatype `ShipTypeType`
+* Added datatype `TimeSecInt32`
+* Added datatype `CancellationReasonEnum32`
+* Added datatype `EchelonEnum32`
+* Added datatype `EchelonEnum32`
+* Added datatype `SymbolStandardEnum32`
+* Added datatype `GeoLocationTypeEnum32`
+* Added datatype `ArrayOfStringType`
+* Added datatype `ArrayOfText64`
+* Added datatype `FederateName`
+* Removed datatype `ArrayOfWorldLocationStruct2`
+* Removed datatype `ArrayOfWorldLocationStruct3`
+* Added datatype `GeodeticPath`
+* Added datatype `GeodeticPolygon`
+* Added datatype `SymbolIdentifier15`
+* Added datatype `SymbolIdentifier30`
+* Added datatype `Text64`
+* Added datatype `TransactionId`
+* Added datatype `UUID`
+* Added datatype `GeocentricCircle`
+* Added datatype `GeodeticCircle`
+* Added datatype `GeodeticLocation`
+* Added datatype `GeodeticQuadrangle`
+* Added datatype `GeodeticPoint`
+* Added datatype `AreaVariantStruct`
+* Added datatype `PathVariantStruct`
+* Added datatype `PointVariantStruct`
 * Added datatype `SymbolVariantStruct`</semantics>
         </note>
         <note>
             <label>netn-base_changelog_1</label>
-            <semantics>* v1.0.0 - First version in NETN FOM v2 
-* v1.0.1 - Added array data type: ArrayOfWorldLocation3 (moved from NETN_Aggregate FOM module) 
-* v1.0.2 - Renamed data type, new name: ArrayOfWorldLocationStruct3. Updated References, Dependency 
- 
- 
-Previous history 
+            <semantics>* v1.0.0 - First version in NETN FOM v2
+* v1.0.1 - Added array data type: ArrayOfWorldLocation3 (moved from NETN_Aggregate FOM module)
+* v1.0.2 - Renamed data type, new name: ArrayOfWorldLocationStruct3. Updated References, Dependency
+
+
+Previous history
 Common datatypes were defined in NETN FOM v1.0 modules NETN_AggDeagg_v1.07_2010, NETN_Service_Consumer_Provider_v1.0.3_2010 and NETN_Logistics_v1.1.2_2010.</semantics>
         </note>
         <note>
             <label>netn-base_overview</label>
-
             <semantics>## Overview
-               
+
 NETN-BASE defines attributes and parameters for the HLA object and interaction root classes. These attributes and parameters are available for all object and interaction classes in all NETN-FOM modules.
- 
+
 ```mermaid
-classDiagram 
+classDiagram
 direction TB
 
 HLAobjectRoot : CreateTime
@@ -2451,13 +2453,13 @@ HLAinteractionRoot : UniqueId
 ```
 
 
-                                
+
 
 ## Identifiers
-                
+
 The NETN-FOM uses Universally Unique Identifiers (UUID) as defined in ISO/IEC 9834-8:2014.
 
-An NETN-federate shall publish the `UniqueId` attribute for all objects it creates in the federation. The value of this attribute can either be predefined, e.g., based on scenario data or generated using standard methods for generating UUID. It is the responsibility of the federate to update the attributes to ensure uniqueness in the federation. 
+An NETN-federate shall publish the `UniqueId` attribute for all objects it creates in the federation. The value of this attribute can either be predefined, e.g., based on scenario data or generated using standard methods for generating UUID. It is the responsibility of the federate to update the attributes to ensure uniqueness in the federation.
 
 A non-NETN federate does not publish the `UniqueId` attribute. Therefore, it becomes unowned and available for acquisition for objects registered by non-NETN federates. In a NETN federation, the ownership of all unowned required attributes, such as `UniqueId`, shall be acquired and published by a NETN federate.
 
@@ -2465,10 +2467,10 @@ The NETN-FOM also uses UUID to reference objects and relies on federates to reso
 
 Other unique identifiers may be required for compatibility with RPR-FOM, e.g., the `EntityIdentifier` attribute for the RPR-FOM `BaseEntity` object class.
 
-The NETN-BASE also defines an optional `UniqueId` parameter for the `HLAinteractionRoot` interaction class. This parameter's primary purpose is to allow subsequent interactions, e.g., acknowledgements, to reference a previously sent interaction. 
-    
-## Time 
-    
+The NETN-BASE also defines an optional `UniqueId` parameter for the `HLAinteractionRoot` interaction class. This parameter's primary purpose is to allow subsequent interactions, e.g., acknowledgements, to reference a previously sent interaction.
+
+## Time
+
 Logical time (or Simulation Time) coordinates and synchronizes data exchange in a distributed simulation. HLA time management services can control the advancement of logical time. To pace logical time, use wall-clock time to manage a real-time or scaled real-time simulation. The RPR-FOM handles synchronization by timestamping each update and relying on synchronized system clocks to advance time. Logical time representation and the methods for synchronizing the advancing of time in a distributed simulation can vary between different federations. The NETN-FOM does not specify or require any specific method for synchronizing logical time. Use federation agreements to clarify the synchronization method.
 
 Scenario time is displayed to simulation operators working with the actual scenario. Scenario time can be linked to the pace of logical time advancement but is an independent representation. For example, during simulation, the logical time is strictly increasing (much like wall-clock time) and can never move backwards. However, scenario time may move forward or backwards.
@@ -2476,8 +2478,7 @@ Scenario time is displayed to simulation operators working with the actual scena
 In NETN, the scenario time is defined as seconds since Epoch, where Epoch is defined in federation agreements, e.g. January 1, 1970, 00:00:00 UTC.
 
 The NETN-BASE module defines the optional HLAobjectRoot attribute `CreateTime` for timestamping objects with the scenario time corresponding to the time the object was created in the federation. Similarly, the optional HLAinteractionRoot parameter `SendTime` represents the time in the scenario when the interaction was sent.
-                </semantics>
-
+</semantics>
         </note>
     </notes>
 </objectModel>
