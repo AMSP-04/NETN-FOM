@@ -54,8 +54,8 @@ Version numbering of the NETN FOM and associated documentation is based on the f
 
 
 ## Maintenance on GitHub
-* The master branch of the NETN FOM repository contains the official public releases of the module.
-* The develop branch of the NETN FOM repository contains the intermediate baseline releases of the module and the lasest build/merge of other feature branches/forks used by members of the maintenance team to update the module.
+* The master branch of the NETN FOM repository contains the official public releases of the FOM.
+* The develop branch of the NETN FOM repository contains the intermediate baseline releases of the FOM and the lasest build/merge of other feature branches/forks used by members of the maintenance team to update the FOM.
 
 [Work Flow](flow.md)
 
