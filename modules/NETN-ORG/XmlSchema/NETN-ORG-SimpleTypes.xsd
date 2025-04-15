@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?purpose description="Derivative work based on MsdlSimpleTypes_1.0.0 XML Schema. Reprinted with permission from SISO Inc. This schema defines simple types used in the Military Scenario Definition Language."?>
+<?version number="1.1" date="August 7, 2020"?>
+<!-- 	
+	This XML Schema is a derivative work and is "Reprinted with permission from SISO Inc."  
+
+	The Schema is based on MsdlSimpleTypes_1.0.0 XML Schema - Copyright (c) 2018 by the Simulation Interoperability Standards Organization, Inc
+	SISO grants a general, royalty-free license to copy, distribute, display, and make derivative works from the MsdlSimpleTypes_1.0.0 XML Schema, 
+	for all purposes, provided that any use of the material contains the following attribution: "Reprinted with permission from SISO Inc." 
+
+	This derivative work is maintained by NATO NMSG MS3 for use in AMSP-04.
+
+	## Changes made for AMSP-04 Ed A
+		* Added patternNSN
+		* Added patternEntityType
+		* Added patternForceSymbolAPP6B
+		* Added patternInstallationSymbolAPP6B
+		* Added patternMETOCSymbolAPP6B
+		* Added patternMOOTWSymbolAPP6B
+		* Added patternTacticalGraphicSymbolAPP6B
+
+	## Additional Changes made for AMSP-04 Ed B
+		* Renamed Schema file to NETN-ORG-SimpleTypes.xsd
+		* Removed simple type patternForceSymbolAPP6B
+		* Remove simple type patternForceSymbolID15
+		* Remove simple type patternInstallationSymbolAPP6B
+		* Remove simple type patternInstallationSymbolID15
+		* Remove simple type patternMETOCSymbolAPP6B
+		* Remove simple type patternMETOCSymbolID15
+		* Remove simple type patternMOOTWSymbolAPP6B
+		* Remove simple type patternMOOTWSymbolID15
+		* Remove simple type patternTacticalGraphicSymbolAPP6B
+		* Remove simple type patternTacticalGraphicSymbolID15
+		* Added simple type patternSymbolId (that replaces simple types related to pattern for symbols)
+		* Target namespece change to urn:nato:nmsg:ms3:netn:org:1
+		
+-->
+<xs:schema xmlns:msdl="urn:nato:nmsg:ms3:netn:org:1" 
+	xmlns:modelID="http://www.sisostds.org/schemas/modelID" 
+	xmlns:jc3iedm="urn:int:nato:standard:mip:jc3iedm:3.1:oo:2.0" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="urn:nato:nmsg:ms3:netn:org:1" 
+	elementFormDefault="qualified" version="1.0.0">
+
+	<xs:simpleType name="patternSymbolId">
+		<xs:annotation>
+			<xs:documentation>A symbol identifier is represented as a string. 
+The symbol standard used is indicated using an optional uri notation (uri:xxxxxxxxxx). 
+The following uri should be used for common symbology standards app6b, app6b, app6c, app6c, 2525b, 2525c, 2525d. 
+If not provided the default symbol standard used is the one specified in the ScenarioDataStandards element of the XML file.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="patternNSN">
+		<xs:annotation>
+			<xs:documentation>The 13 character NATO STOCK NUMBER. See http://www.nato.int/structur/ac/135/ncs_guide/english/e_1-6-5.htm </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="13"/>
+		</xs:restriction>
+
+	</xs:simpleType>
+	<xs:simpleType name="patternEntityType">
+		<xs:annotation>
+			<xs:documentation>For HLA</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="boolean">
+		<xs:annotation>
+			<xs:documentation>The MSDL base type for boolean values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="floatCartesianValue9_3">
+		<xs:annotation>
+			<xs:documentation>The double precision X component of the Geocentric coordinate.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:double"/>
+	</xs:simpleType>
+	<xs:simpleType name="floatCompassDegrees3_3">
+		<xs:annotation>
+			<xs:documentation>The unit is compass degrees measured relative to magnetic north 0 to 360 degrees clockwise.  For reference trigonometric degrees = (90 - compass degrees). </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="0.00"/>
+			<xs:maxInclusive value="360.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="floatElevationAGL6_2">
+		<xs:annotation>
+			<xs:documentation>Altitude or height relative to ground level in meters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="-999999.0"/>
+			<xs:maxInclusive value="999999.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="floatLatitudeLongitude3_3">
+		<xs:annotation>
+			<xs:documentation>Decimal degrees of longitude/latitude.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float">
+			<xs:maxInclusive value="180.0"/>
+			<xs:minInclusive value="-180.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="floatSpacing4_3">
+		<xs:annotation>
+			<xs:documentation>The default spacing in meters between subordinate elements one echelon below.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="1."/>
+			<xs:maxExclusive value="9999.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="floatSpeed6_2">
+		<xs:annotation>
+			<xs:documentation>The field for unit or equipment speed in meters per second.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="0.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="floatUTMEasting9_2">
+		<xs:annotation>
+			<xs:documentation>The easting component of the UTM coordinate.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="0.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="floatUTMNorthing9_2">
+		<xs:annotation>
+			<xs:documentation>The northing component of the UTM coordinate.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="0.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="integerMGRSEasting5">
+		<xs:annotation>
+			<xs:documentation>The easting component of the MGRS coordinate.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="integerMGRSNorthing5">
+		<xs:annotation>
+			<xs:documentation>The northing component of the MGRS coordinate.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="integerMGRSPrecision1">
+		<xs:annotation>
+			<xs:documentation>The precision, 2 (km) to 5 (meters), used for each MGRS coordinate.  For example a value of 2 defines kilometers as the unit of measure, a value of 3 defines 100 meters as the unit of measure, a value of 4 defines 10 meters as the unit of measure, and a value of 5 defines meters as the unit of measure.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="2"/>
+			<xs:maxInclusive value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="integerPriorityToSupport1">
+		<xs:annotation>
+			<xs:documentation> The Supporting Unit's priority to support another unit from 1 to 9 where 1 is the top priority.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="integerQuantity9">
+		<xs:annotation>
+			<xs:documentation>The text modifier of a symbol that identifies the number of items present.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="integerSequence6">
+		<xs:annotation>
+			<xs:documentation>The sequence or order of elements.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="patternMGRSGridSquare2">
+		<xs:annotation>
+			<xs:documentation>The MGRS one hundred thousand meter grid square designator, as defined by NIMA TM 8358.1.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+			<xs:pattern value="[ABCDEFGHJKLMNPQRSTUVWXYZ]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="patternTimeDTG20">
+		<xs:annotation>
+			<xs:documentation>The ISO 8601:2000 DateTime Group format yyyy-mm-ddThh:mm:ssZ e.g. 1998-05-12T14:15:00Z.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="20"/>
+			<xs:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}[T]{1}[0-9]{2}:[0-9]{2}:[0-9]{2}:[Z]{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="patternTimeDTGRelative20">
+		<xs:annotation>
+			<xs:documentation>The ISO 8601:2000 time interval by duration format PnYnMnDTnHnMnS e.g. P00Y00M00DT00H00M00S relative to ScenarioTime when 'n' is a two digit number padded with 0.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="20"/>
+			<xs:pattern value="[P]{1}[0-9]{2}[Y]{1}[M]{1}[0-9]{2}[D]{1}[0-9]{2}[H]{1}[0-9]{2}[M]{1}[0-9]{2}[S]{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="patternUTMGridZone3">
+		<xs:annotation>
+			<xs:documentation>The UTM Grid Zone designator, to include the number and letter as defined by NIMA TM 8358.1.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="3"/>
+			<xs:pattern value="[0-9]{2}[ABCDEFGHJKLMNPQRSTUVWXYZ]{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="patternUUID32">
+		<xs:annotation>
+			<xs:documentation>The Universal Unique Identifier (UUID) of an object as defined in ISO/IEC 11578:1996 Information technology - Open Systems Interconnection - Remote Procedure Call (RPC).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9a-z]{8}\-[0-9a-z]{4}\-[0-9a-z]{4}\-[0-9a-z]{4}\-[0-9a-z]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="patternUUIDRef32">
+		<xs:annotation>
+			<xs:documentation>Reference to a Universal Unique Identifier (UUID) of an object as defined in ISO/IEC 11578:1996 Information technology - Open Systems Interconnection - Remote Procedure Call (RPC).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9a-z]{8}\-[0-9a-z]{4}\-[0-9a-z]{4}\-[0-9a-z]{4}\-[0-9a-z]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="text20">
+		<xs:annotation>
+			<xs:documentation>General text of length 20 characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="20"/>
+			<xs:pattern value="([ -z]{1})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="text21">
+		<xs:annotation>
+			<xs:documentation>General text of length 21 characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="21"/>
+			<xs:pattern value="([ -z]{1})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="textDatum8">
+		<xs:annotation>
+			<xs:documentation>The Datum used to calculate coordinates.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="8"/>
+			<xs:pattern value="([ -z]{1})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="textEquipmentType24">
+		<xs:annotation>
+			<xs:documentation>The text modifier that indicates type of equipment.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="24"/>
+			<xs:pattern value="([ -z]{1})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="textIdentifier64">
+		<xs:annotation>
+			<xs:documentation>The general text identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="64"/>
+			<xs:pattern value="([ -z]{1})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="textIFF5">
+		<xs:annotation>
+			<xs:documentation>Text modifier for identification friend or foe (IFF).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+			<xs:minLength value="0"/>
+			<xs:pattern value="([ -z]{1})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="textName255">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">A character string (i.e. a finite set of characters) generally in the form of words of a language.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="255"/>
+			<xs:pattern value="([ -z]{1})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="textSpecialC2HQ9">
+		<xs:annotation>
+			<xs:documentation>The name of the special C2  headquarters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="9"/>
+			<xs:pattern value="([ -z]{1})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

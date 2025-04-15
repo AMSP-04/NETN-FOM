@@ -1,0 +1,2184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?purpose description="Derivative work based on MsdlComplexTypes_1.0.0 XML Schema. Reprinted with permission from SISO Inc. This schema defines complex types used in the Military Scenario Definition Language." ?>
+<?version number="1.0" date="August 7, 2020"?>
+<!-- 	
+	This XML Schema is a derivative work and is "Reprinted with permission from SISO Inc."  
+
+	The Schema is based on MsdlComplexTypes_1.0.0 XML Schema - Copyright (c) 2018 by the Simulation Interoperability Standards Organization, Inc
+	SISO grants a general, royalty-free license to copy, distribute, display, and make derivative works from the MsdlComplexTypes_1.0.0 XML Schema, 
+	for all purposes, provided that any use of the material contains the following attribution: "Reprinted with permission from SISO Inc." 
+
+	This derivative work is maintained by NATO NMSG MS3 for use in AMSP-04.
+
+	## Changes made for AMSP-04 Ed A
+		* Updated BoundarySymbolModifiersType
+			* Added StatusPresent
+		* Added HoldingsType
+		* Added UnitTypeType (jc3idem)
+		* Updated UnitModelType
+			* Added EntityType
+		* Updated EquipmentItemType
+			* Added NSN_Code
+			* Added NSN_Name
+			* Added Post_Type_Category
+			* Added Post_Type_Rank
+			* Added Holdings
+		* Updated EquipmentModelType
+			* Added EntityType
+		* Updated EquipmentRelationsType
+			* Added SupportRelations
+		* Renamed InstallationType element
+			* patternInstallationSymbolID15 to patternInstallationSymbolAPP6B
+		* Renamed METOCGraphicTypeelement
+			* patternMETOCSymbolID15 to patternMETOCSymbolAPP6B
+		* Renamed MOOTWGraphicType
+			* patternMOOTWSymbolID15 to patternMOOTWSymbolAPP6B
+		* Renamed TacticalGraphicType
+			* patternTacticalGraphicSymbolID15 to patternTacticalGraphicSymbolAPP6B
+		* Updated MilitaryScenarioType
+			* Added Deployment
+		* Updated UnitType
+			* Added Type
+			* Added Holdings
+			* Renamed patternForceSymbolID15 to patternForceSymbolAPP6B
+
+	## Additional Changes made for AMSP-04 Ed B
+		* Changed schema attribute elementFormDefault= from qualified to unqualified
+		* Updated MilitaryScenarioType.Deployment
+  			* Name – No Length restrictions
+  			* Units – minOccurs = 0
+  			* Unit – type
+		* Changed type of all SymbolIdentifier elements to patternSymbolId and updated documentation.
+		* Added  minOccurs="0" to datatypes for Unit and Equipment deployment elements.
+		* Changed complex type EquipmentItemType to allow additional elements. Changed from <all> to <choice maxOccurs="unbounded"> and added CustomData element.
+		* Changed complex type UnitType to allow additional elements. Changed from <all> to <choice maxOccurs="unbounded"> and added CustomData element.
+		* targetNamespace changed to urn:nato:nmsg:ms3:netn:org:1
+		
+-->
+<xs:schema xmlns:msdl="urn:nato:nmsg:ms3:netn:org:1" 
+	xmlns:modelID="http://www.sisostds.org/schemas/modelID"
+	xmlns:jc3iedm="urn:int:nato:standard:mip:jc3iedm:3.1:oo:2.0" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="urn:nato:nmsg:ms3:netn:org:1" 
+	elementFormDefault="unqualified" 
+	attributeFormDefault="unqualified" 
+	version="1.0.0">
+	
+	<xs:include schemaLocation="NETN-ORG-Codes.xsd"/>
+	<xs:include schemaLocation="NETN-ORG-SimpleTypes.xsd"/>
+	<xs:import namespace="http://www.sisostds.org/schemas/modelID" schemaLocation="extern/ModelID_v2006_FINAL.xsd"/>
+	<xs:import namespace="urn:int:nato:standard:mip:jc3iedm:3.1:oo:2.0" schemaLocation="extern/JC3IEDMMeteorological.xsd"/>
+	<xs:complexType name="AnchorPointType">
+		<xs:annotation>
+			<xs:documentation>Single anchor point description.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="AnchorChoice" type="msdl:enumAnchorPointType">
+				<xs:annotation>
+					<xs:documentation>The type of anchor as a coordinate/location or point graphic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Anchor" type="msdl:AnchorType">
+				<xs:annotation>
+					<xs:documentation>Specific anchor, as a point graphic or a location coordinate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="AnchorPointsType">
+		<xs:annotation>
+			<xs:documentation>Anchor points of the symbol as established.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="AnchorPoint" type="msdl:AnchorPointType">
+				<xs:annotation>
+					<xs:documentation>Single anchor point description.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnchorType">
+		<xs:annotation>
+			<xs:documentation>Specific anchor, as a point graphic or a location coordinate.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="Location" type="msdl:CoordinatesType">
+				<xs:annotation>
+					<xs:documentation>The coordinates of an object or anchor point.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PointSymbolHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>UUID of the Point Symbol whose location is to be used as an anchor point.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="AreaSymbolModifiersType">
+		<xs:annotation>
+			<xs:documentation>Modifiers of an Area Symbol.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Echelon" type="msdl:enumEchelon" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Graphic modifier that identifies Command level.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo1" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo2" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation" type="msdl:text21" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe start, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup1" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe end, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="AssociatedOverlaysType">
+		<xs:annotation>
+			<xs:documentation>The overlays for which this tactical graphic is to be displayed.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="OverlayHandles" type="msdl:OverlayHandlesType">
+				<xs:annotation>
+					<xs:documentation>References to all overlays on which this graphic is to be included.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SourceOverlayType" type="msdl:enumOverlayType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The overlay type of the original overlay on which the tactical graphic originated.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="AssociationsType">
+		<xs:annotation>
+			<xs:documentation>Associations between forces and sides.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Association" type="msdl:AssociationType">
+				<xs:annotation>
+					<xs:documentation>Association between this force/side and another force/side.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AssociationType">
+		<xs:annotation>
+			<xs:documentation>Association between this force/side and another force/side.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="AffiliateHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>Reference to another Force or Side which has some affiliation to this force.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Relationship" type="jc3iedm:ObjectItemHostilityStatusCode">
+				<xs:annotation>
+					<xs:documentation>A force or side's relationship with another force or side determines the level of threat posed by that force or side.  Units or entities inherit their affiliation to other units or entities based on the relationships between their containing forces and sides.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="BoundarySymbolModifiersType">
+		<xs:annotation>
+			<xs:documentation>Modifiers of a Boundary Symbol.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Echelon" type="msdl:enumEchelon" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Graphic modifier that identifies Command level.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusPresent" type="msdl:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identify if boundary status is 'Present', or Anticipated/Planned.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation" type="msdl:text21" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation1" type="msdl:text21" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Second designation used for lines and boundaries.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="CloudCoverItemsType">
+		<xs:annotation>
+			<xs:documentation>JC3IEDM cloud cover conditions of the environment.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="CloudCover" type="jc3iedm:CloudCover">
+				<xs:annotation>
+					<xs:documentation>Collection of JC3IEDM cloud cover conditions of the environment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CommandRelationType">
+		<xs:annotation>
+			<xs:documentation>The command relationship between this unit/equipment and its commanding unit.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="CommandingSuperiorHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of the unit commanding this unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommandRelationshipType" type="msdl:enumCommandRelationshipType">
+				<xs:annotation>
+					<xs:documentation>Type of command under which the unit has been task organized as taken from FM 100-7 'The Army In Theater Operations'.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="CommunicationNetInstancesType">
+		<xs:annotation>
+			<xs:documentation>The communication nets that the unit defines for communication with other units during a mission.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="CommunicationNetInstance" type="msdl:CommunicationNetInstanceType">
+				<xs:annotation>
+					<xs:documentation>An instance of a Communication net defined for a unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CommunicationNetInstanceType">
+		<xs:annotation>
+			<xs:documentation>An instance of a Communication net defined for a unit.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="CommunicationNetType" type="msdl:enumCommunicationNetType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The tactical use/purpose of the communication network.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommunicationNetId" type="msdl:textIdentifier64">
+				<xs:annotation>
+					<xs:documentation>The Name or ID of the Communication net.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommunicationService" type="msdl:enumCommunicationServiceType">
+				<xs:annotation>
+					<xs:documentation>The type of service being used for communication as defined in JC3IEDM.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="CommunicationNetReferencesType">
+		<xs:annotation>
+			<xs:documentation>The communication nets that equipment uses/subscribes to in order to communicate with other items of equipment.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="CommunicationNetReference" type="msdl:CommunicationNetReferenceType">
+				<xs:annotation>
+					<xs:documentation>The reference to a CommunicationNetInstance that equipment monitors or uses to communicate with a mission.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CommunicationNetReferenceType">
+		<xs:annotation>
+			<xs:documentation>The reference to a CommunicationNetInstance that equipment monitors or uses to communicate with a mission.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CommunicationNetId" type="msdl:textIdentifier64">
+				<xs:annotation>
+					<xs:documentation>The Name or ID of the Communication net.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnitOwnerHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>UUID reference to the Unit that owns a particular item of data as part of that unit's organization.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CoordinateDataStandardType">
+		<xs:annotation>
+			<xs:documentation>Denotes the coordinate system and datum used in the specification of the scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="CoordinateSystemType" type="msdl:enumCoordinateSystemType">
+				<xs:annotation>
+					<xs:documentation>Coordinate system used in this scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CoordinateSystemDatum" type="msdl:textDatum8">
+				<xs:annotation>
+					<xs:documentation>The Datum used to translate/calculate coordinates for the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="CoordinatesType">
+		<xs:annotation>
+			<xs:documentation>A data structure containing location coordinates.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="CoordinateChoice" type="msdl:enumCoordinateSystemType">
+				<xs:annotation>
+					<xs:documentation>The enumerated choice of the type of coordinate (point) used to represent the location.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CoordinateData" type="msdl:CoordinatePointType">
+				<xs:annotation>
+					<xs:documentation>The choice of coordinate data (point) used to represent the location.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="CoordinatePointType">
+		<xs:choice>
+			<xs:element name="MGRS" type="msdl:MGRSType">
+				<xs:annotation>
+					<xs:documentation>MGRS coordinate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UTM" type="msdl:UTMType">
+				<xs:annotation>
+					<xs:documentation>Universal Transverse Mercator Coordinate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GDC" type="msdl:GDCType">
+				<xs:annotation>
+					<xs:documentation>Geodetic coordinates in decimal degrees of latitude and longitude.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GCC" type="msdl:GCCType">
+				<xs:annotation>
+					<xs:documentation>Geocentric Coordinate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="EnvironmentType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The Environment for the Scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="ScenarioTime" type="msdl:patternTimeDTG20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The initial scenario date and time in the ISO 8601:2000 DateTime Group format yyyy-mm-ddThh:mm:ssZ e.g. 1998-05-12T14:15:00Z.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AreaOfInterest" type="msdl:RectangleAreaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The area of concern to all commanders in the scenario relative to the objectives of current or planned operations, including the areas of influence, operations and/or responsibility, and areas adjacent thereto.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ScenarioWeather" type="msdl:ScenarioWeatherType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Specification of the scenario weather conditions.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="METOC" type="msdl:METOCType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Tactical Symbols representing the Meteorological conditions for the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="EquipmentDispositionType">
+		<xs:annotation>
+			<xs:documentation>Disposition of the equipment.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Location" type="msdl:CoordinatesType">
+				<xs:annotation>
+					<xs:documentation>The coordinates of an object or anchor point.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DirectionOfMovement" type="msdl:floatCompassDegrees3_3" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Direction of Movement, in compass degrees, of a scenario element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Speed" type="msdl:floatSpeed6_2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The field speed in meters per second.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FormationPosition" type="msdl:FormationPositionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The position of this unit/equipment in the higher unit formation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="EquipmentItemType">
+		<xs:annotation>
+			<xs:documentation>Information about a single piece of equipment.</xs:documentation>
+		</xs:annotation>
+	
+		<xs:all>
+			<xs:element name="ObjectHandle" type="msdl:patternUUID32" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Universal Unique Identifier (UUID) of an object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SymbolIdentifier" type="msdl:patternSymbolId" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A symbol identifier is represented as a string. 
+The symbol standard used is indicated using an optional uri notation (uri:xxxxxxxxxx). 
+The following uri should be used for common symbology standards app6b, app6b, app6c, app6c, 2525b, 2525c, 2525d. 
+If not provided the default symbol standard used is the one specified in the ScenarioDataStandards element of the XML file.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSN_Code" type="msdl:patternNSN" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The 13 character of NATO Stock Number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSN_Name" type="msdl:textName255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The human readable name of the NNS code.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="msdl:textName255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unabbreviated designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EquipmentSymbolModifiers" type="msdl:EquipmentSymbolModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modifiers of an Equipment Symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommunicationNetReferences" type="msdl:CommunicationNetReferencesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The communication nets that equipment uses/subscribes to in order to communicate with other items of equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Disposition" type="msdl:EquipmentDispositionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Disposition consists of the location of units and the manner in which these units are tactically deployed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Relations" type="msdl:EquipmentRelationsType" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Relations identify the realtionship of equipment in terms of owner and organic relationships.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Model" type="msdl:EquipmentModelType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Model specifies any detail impacting on the simulation model of the equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Post_Type_Category" type="jc3iedm:MilitaryPostTypeCategoryCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The military category post type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Post_Type_Rank" type="jc3iedm:MilitaryPostTypeRankCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The military rank post type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="Holdings" type="msdl:HoldingsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The quantity of all specific Equipment/Consumable that is held by, installed in, or included with the unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomData" type="xs:anyType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Any additional information.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+		
+	</xs:complexType>
+	<xs:complexType name="EquipmentModelType">
+		<xs:annotation>
+			<xs:documentation>Model specifies any detail impacting on the simulation model of the equipment</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Resolution" type="msdl:enumModelResolutionType">
+				<xs:annotation>
+					<xs:documentation>Enumeration indicating the level of fidelity appropriate for instancing the unit or equipment in the simulation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EntityType" type="msdl:patternEntityType"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="EquipmentRelationsType">
+		<xs:annotation>
+			<xs:documentation>Relations identify owner and organic relationships for an item of equipment.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="OrganicSuperiorHandle" type="msdl:patternUUIDRef32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Reference to the unit's higher organic organization.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HoldingOrganization" type="msdl:OwnerType">
+				<xs:annotation>
+					<xs:documentation>Identifies the element (unit or force) to which the equipment is held.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupportRelations" type="msdl:SupportRelationsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identification of the Elements that are being supported and the priority of that support.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="EquipmentSymbolModifiersType">
+		<xs:annotation>
+			<xs:documentation>Modifiers of an Equipment Symbol.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Quantity" type="msdl:integerQuantity9" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifies the number of items present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StaffComments" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the staff comments field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CombatEffectiveness" type="msdl:enumCombatEffectivenessType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for units and  installations that indicates unit effectiveness or installation capability.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IFF" type="msdl:textIFF5" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier displaying IFF/SIF Identification modes and codes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation" type="msdl:text21">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EquipmentType" type="msdl:textEquipmentType24" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier that indicates type of equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TowedSonarArray" type="msdl:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The graphic modifier for equipment that denotes the presence of a towed sonar array.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="EquipmentType">
+		<xs:annotation>
+			<xs:documentation>Information on all items of equipment used in the scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="EquipmentItem" type="msdl:EquipmentItemType">
+				<xs:annotation>
+					<xs:documentation>Information about a single piece of equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ForceRelationDataType">
+		<xs:annotation>
+			<xs:documentation>The mission specific command relationship between this unit and its commanding (higher) unit.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="CommandRelation" type="msdl:CommandRelationType">
+				<xs:annotation>
+					<xs:documentation>The command relationship between this unit/equipment and its commanding unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ForceSideHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>A UUID reference to the Force or Side information.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="ForceRelationType">
+		<xs:annotation>
+			<xs:documentation>The mission specific type of command relationship between this unit and its commanding (higher) unit.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="ForceRelationChoice" type="msdl:enumForceOwnerType"/>
+			<xs:element name="ForceRelationData" type="msdl:ForceRelationDataType"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ForceSidesType">
+		<xs:annotation>
+			<xs:documentation>Forces and Sides for the scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="ForceSide" type="msdl:ForceSideType">
+				<xs:annotation>
+					<xs:documentation>Force or Side information.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ForceSideType">
+		<xs:annotation>
+			<xs:documentation>Force or Side description information.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="ObjectHandle" type="msdl:patternUUID32">
+				<xs:annotation>
+					<xs:documentation>The Universal Unique Identifier (UUID) of an object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ForceSideName" type="msdl:textName255">
+				<xs:annotation>
+					<xs:documentation>Name of the force or side.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AllegianceHandle" type="msdl:patternUUID32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The reference to the Force or Side to which this Force/Side shows Allegiance.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MilitaryService" type="jc3iedm:MilitaryOrganisationTypeServiceCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The service code for a military organization.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CountryCode" type="jc3iedm:AffiliationGeopoliticalCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Country code as defined in ISO 3166.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Associations" type="msdl:AssociationsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Associations between forces and sides.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="FormationDataType">
+		<xs:annotation>
+			<xs:documentation>The formation data specific to the specified formation type.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="GroundFormationType" type="msdl:enumGroundFormationType">
+				<xs:annotation>
+					<xs:documentation>Formation assigned to subordinate ground elements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AirFormationType" type="msdl:enumAirFormationType">
+				<xs:annotation>
+					<xs:documentation>Formation assigned to subordinate air elements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SurfaceFomationType" type="msdl:enumSurfaceFormationType">
+				<xs:annotation>
+					<xs:documentation>Formation assigned to subordinate surface elements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SubsurfaceFormationType" type="msdl:enumSubsurfaceFormationType">
+				<xs:annotation>
+					<xs:documentation>Formation assigned to subordinate subsurface elements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="FormationPositionType">
+		<xs:annotation>
+			<xs:documentation>The position of this unit/eqiupment in the higher unit formation.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="OutOfFormation" type="msdl:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifies if the element is maneuvering independent from the higher unit's formation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FormationOrder" type="msdl:integerSequence6" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The placement, 1 to N, of a subordinate in the superior unit formation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorOrientation" type="msdl:floatCompassDegrees3_3" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Orientation of the main sensor, sights, and weapon in compass degrees relative to orientation of the platform (equipment).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="GCCType">
+		<xs:annotation>
+			<xs:documentation>Geocentric Coordinate.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="X" type="msdl:floatCartesianValue9_3">
+				<xs:annotation>
+					<xs:documentation>The double precision X component of the Geocentric coordinate in meters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Y" type="msdl:floatCartesianValue9_3">
+				<xs:annotation>
+					<xs:documentation>The double precision Y component of the Geocentric coordinate in meters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Z" type="msdl:floatCartesianValue9_3">
+				<xs:annotation>
+					<xs:documentation>The double precision Z component of the Geocentric coordinate in meters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="GDCType">
+		<xs:annotation>
+			<xs:documentation>Geodetic coordinates in fractional degress of latitude and longitude.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Latitude" type="msdl:floatLatitudeLongitude3_3">
+				<xs:annotation>
+					<xs:documentation>Decimal degrees of latitude.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Longitude" type="msdl:floatLatitudeLongitude3_3">
+				<xs:annotation>
+					<xs:documentation>Decimal degrees of longitude.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ElevationAGL" type="msdl:floatElevationAGL6_2">
+				<xs:annotation>
+					<xs:documentation>The text modifier for units, equipment, and installations that displays the altitude portion of GPS; flight level for aircraft; depth for submerged objects; height for equipment or structures on the ground; specified in meters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="InstallationsType">
+		<xs:annotation>
+			<xs:documentation>List of Installations defined in the scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Installation" type="msdl:InstallationType">
+				<xs:annotation>
+					<xs:documentation>The Installation and Graphic for a Military Scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InstallationSymbolModifiersType">
+		<xs:annotation>
+			<xs:documentation>Modifiers of an Installation Symbol.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="FrameShapeModifier" type="msdl:enumFrameShapeModifierType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The modifier of the frame shape to support Affiliations (Hostile, Friend, Unknown, and Neutral).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StaffComments" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the staff comments field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CombatEffectiveness" type="msdl:enumCombatEffectivenessType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for units and installations that indicates unit effectiveness or installation capability.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IFF" type="msdl:textIFF5" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier displaying IFF/SIF Identification modes and codes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation" type="msdl:text21">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe start, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="InstallationType">
+		<xs:annotation>
+			<xs:documentation>Description of an individual Installation.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="ObjectHandle" type="msdl:patternUUID32">
+				<xs:annotation>
+					<xs:documentation>The Universal Unique Identifier (UUID) of an object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SymbolIdentifier" type="msdl:patternSymbolId">
+				<xs:annotation>
+					<xs:documentation>A symbol identifier is represented as a string. 
+The symbol standard used is indicated using an optional uri notation (uri:xxxxxxxxxx). 
+The following uri should be used for common symbology standards app6b, app6b, app6c, app6c, 2525b, 2525c, 2525d. 
+If not provided the default symbol standard used is the one specified in the ScenarioDataStandards element of the XML file.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Affiliation" type="msdl:enumBaseAffiliation">
+				<xs:annotation>
+					<xs:documentation>The threat posed by a warfighting element in context of the owner.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Owner" type="msdl:OwnerType">
+				<xs:annotation>
+					<xs:documentation>Identifies the owner of the graphic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Location" type="msdl:CoordinatesType">
+				<xs:annotation>
+					<xs:documentation>The coordinates of an object or anchor point.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Orientation" type="msdl:enumOrientationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Orientation of the graphic to the right or left as defined in the symbology standard.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="msdl:textName255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unabbreviated designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InstallationSymbolModifiers" type="msdl:InstallationSymbolModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modifiers of an Installation Symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AssociatedOverlays" type="msdl:AssociatedOverlaysType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The overlays for which this tactical graphic is to be displayed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="LightItemsType">
+		<xs:annotation>
+			<xs:documentation>JC3IEDM light conditions of the environment.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Light" type="jc3iedm:Light">
+				<xs:annotation>
+					<xs:documentation>The light entry as an environmental element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LineSymbolModifiersType">
+		<xs:annotation>
+			<xs:documentation>Modifiers of a Line Symbol.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="UniqueDesignation" type="msdl:text21" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation1" type="msdl:text21" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Second designation used for lines and boundaries.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe start, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup1" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe end, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="METOCDispositionType">
+		<xs:annotation>
+			<xs:documentation>Disposition of the METOC item.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="AnchorPoints" type="msdl:AnchorPointsType">
+				<xs:annotation>
+					<xs:documentation>Anchor points describing the location, size and shape (Point, Line or Area) of the METOC object.</xs:documentation>
+					<xs:documentation>Anchor points of the symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DirectionOfMovement" type="msdl:floatCompassDegrees3_3" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Direction of Movement, in compass degrees, of the METOC object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Speed" type="msdl:floatSpeed6_2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Speed in meters per second.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="METOCGraphicType">
+		<xs:annotation>
+			<xs:documentation>The METOC Graphic of a Military Scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="ObjectHandle" type="msdl:patternUUID32">
+				<xs:annotation>
+					<xs:documentation>The Universal Unique Identifier (UUID) of an object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SymbolIdentifier" type="msdl:patternSymbolId">
+				<xs:annotation>
+					<xs:documentation>A symbol identifier is represented as a string. 
+The symbol standard used is indicated using an optional uri notation (uri:xxxxxxxxxx). 
+The following uri should be used for common symbology standards app6b, app6b, app6c, app6c, 2525b, 2525c, 2525d. 
+If not provided the default symbol standard used is the one specified in the ScenarioDataStandards element of the XML file.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation" type="msdl:text21">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe start, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup1" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe end, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quantity" type="msdl:integerQuantity9" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifies the number of items present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Disposition" type="msdl:METOCDispositionType">
+				<xs:annotation>
+					<xs:documentation>Disposition consists of the location of METOC instances and the manner in which these METOC instances are moving.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="METOCType">
+		<xs:annotation>
+			<xs:documentation>The Tactical Symbols representing the Meterological conditions for the scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="METOCGraphic" type="msdl:METOCGraphicType">
+				<xs:annotation>
+					<xs:documentation>The METOC Graphic of a Military Scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MilitaryScenarioType">
+		<xs:annotation>
+			<xs:documentation>The complex content of a Military Scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ScenarioID" type="modelID:modelIdentificationType">
+				<xs:annotation>
+					<xs:documentation>Identifier of the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Options" type="msdl:OptionsType">
+				<xs:annotation>
+					<xs:documentation>Scenario Options.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Environment" type="msdl:EnvironmentType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The terrain area of interest, weather, METOC graphics, and scenario time.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ForceSides" type="msdl:ForceSidesType">
+				<xs:annotation>
+					<xs:documentation>Forces and Sides for the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Deployment" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="Federate">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="ObjectHandle" type="msdl:patternUUID32"/>
+									<xs:element name="Name" minOccurs="0" type="xs:string"/>
+									<xs:element name="Units" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence maxOccurs="unbounded"  minOccurs="0">
+												<xs:element name="Unit">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="ObjectHandle" type="msdl:patternUUID32"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="Equipment" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence maxOccurs="unbounded"  minOccurs="0">
+												<xs:element name="EquipmentItem">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="ObjectHandle" type="msdl:patternUUID32"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Organizations" type="msdl:OrganizationsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The mission/scenario specific organizations and equipment of the military scenario, to include all military services, governmental, and nongovernmental organizations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Overlays" type="msdl:OverlaysType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Overlays defined in the context of this scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Installations" type="msdl:InstallationsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>List of Installations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TacticalGraphics" type="msdl:TacticalGraphicsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Tactical graphics provide a graphical representation of the tactical situation of the scenario</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MOOTWGraphics" type="msdl:MOOTWGraphicsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The collection of MOOTW Graphics for the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MGRSType">
+		<xs:annotation>
+			<xs:documentation>MGRS coordinate</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="MGRSGridZone" type="msdl:patternMGRSGridSquare2">
+				<xs:annotation>
+					<xs:documentation>The MGRS Grid Zone designator, to include the number and letter as defined by NIMA TM 8358.1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MGRSGridSquare" type="msdl:patternMGRSGridSquare2">
+				<xs:annotation>
+					<xs:documentation>The MGRS one hundred thousand meter grid square designator, as defined by NIMA TM 8358.1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MGRSPrecision" type="msdl:integerMGRSPrecision1">
+				<xs:annotation>
+					<xs:documentation>The precision used for each MGRS coordinate.  The precision is defined by assigning a value of 2 to define a number using kilometers as its units of measure; a value of 3 to define a number using 100 meters as its units of measure, a value of 4 to define a number using 10 meters as its units of measure, or a value of 5 to define a number using meters as its units of measure. The precision determines how the MGRS value is encoded (padded with leading zeros) in a fixed length string.
+</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MGRSEasting" type="msdl:integerMGRSEasting5">
+				<xs:annotation>
+					<xs:documentation>The easting component of the MGRS coordinate to the precision value of the MGRS precision element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MGRSNorthing" type="msdl:integerMGRSNorthing5">
+				<xs:annotation>
+					<xs:documentation>The northing component of the MGRS coordinate to the precision value of the MGRS precision element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ElevationAGL" type="msdl:floatElevationAGL6_2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for units, equipment, and installations that displays the altitude portion of GPS; flight level for aircraft; depth for submerged objects; height for equipment or structures on the ground.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="MOOTWDispositionType">
+		<xs:annotation>
+			<xs:documentation>Disposition of the MOOTW item.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Location" type="msdl:CoordinatesType">
+				<xs:annotation>
+					<xs:documentation>The coordinates of an object or anchor point.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DirectionOfMovement" type="msdl:floatCompassDegrees3_3" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Direction of Movement, in compass degrees, of a scenario element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Speed" type="msdl:floatSpeed6_2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The field for speed in meters per second.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="MOOTWGraphicsType">
+		<xs:annotation>
+			<xs:documentation>The TacticalGraphics representing the control measures for the scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="MOOTWGraphic" type="msdl:MOOTWGraphicType">
+				<xs:annotation>
+					<xs:documentation>The MOOTW Graphic of a Military Scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MOOTWGraphicType">
+		<xs:annotation>
+			<xs:documentation>The MOOTW Graphic of a Military Scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="ObjectHandle" type="msdl:patternUUID32">
+				<xs:annotation>
+					<xs:documentation>The Universal Unique Identifier (UUID) of an object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SymbolIdentifier" type="msdl:patternSymbolId">
+				<xs:annotation>
+					<xs:documentation>A symbol identifier is represented as a string. 
+The symbol standard used is indicated using an optional uri notation (uri:xxxxxxxxxx). 
+The following uri should be used for common symbology standards app6b, app6b, app6c, app6c, 2525b, 2525c, 2525d. 
+If not provided the default symbol standard used is the one specified in the ScenarioDataStandards element of the XML file.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Affiliation" type="msdl:enumBaseAffiliation">
+				<xs:annotation>
+					<xs:documentation>The threat posed by a warfighting element in context of the owner.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Owner" type="msdl:OwnerType">
+				<xs:annotation>
+					<xs:documentation>Identifies the owner of the graphic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MOOTWSymbolModifiers" type="msdl:MOOTWSymbolModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modifiers of a MOOTW Symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AssociatedOverlays" type="msdl:AssociatedOverlaysType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The overlays for which this tactical graphic is to be displayed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Disposition" type="msdl:MOOTWDispositionType">
+				<xs:annotation>
+					<xs:documentation>Disposition consists of the location of MOOTW instances and the manner in which these MOOTW instances are tactically deployed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="MOOTWSymbolModifiersType">
+		<xs:annotation>
+			<xs:documentation>Modifiers of a MOOTW Symbol.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Echelon" type="msdl:enumEchelon" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Graphic modifier that identifies Command level.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReinforcedReduced" type="msdl:enumReinforcedReducedType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The graphic modifier in a unit symbol that displays (+) for reinforced, (-) for reduced, (+/-) for reinforced and reduced.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FrameShapeModifier" type="msdl:enumFrameShapeModifierType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The modifier of the frame shape to support Affiliations (Hostile, Friend, Unknown, and Neutral).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StaffComments" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the staff comments field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CombatEffectiveness" type="msdl:enumCombatEffectivenessType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for units and  installations that indicates unit effectiveness or installation capability.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IFF" type="msdl:textIFF5" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier displaying IFF/SIF Identification modes and codes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation" type="msdl:text21">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe start, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpecialC2HQ" type="msdl:textSpecialC2HQ9" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier indicating a unit is a special command and control headquarters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="NBCEventSymbolModifiersType">
+		<xs:annotation>
+			<xs:documentation>Modifiers of an NBC Event Symbol.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Quantity" type="msdl:integerQuantity9" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifies the number of items present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation" type="msdl:text21" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NBCType" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier that indicates type of nuclear weapon.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe start, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Speed" type="msdl:floatSpeed6_2">
+				<xs:annotation>
+					<xs:documentation>The field for unit or equipment speed (for display only). Kilometres per Hour for ground units; Nautical miles per Hour for Air.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DirectionOfMovement" type="msdl:floatCompassDegrees3_3">
+				<xs:annotation>
+					<xs:documentation>The Direction of Movement, in compass degrees, of a scenario element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="OptionsType">
+		<xs:annotation>
+			<xs:documentation>Scenario Options.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="MSDLVersion" type="msdl:textIdentifier64">
+				<xs:annotation>
+					<xs:documentation>Specifies MSDL schema version used by this military scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrganizationDetail" type="msdl:OrganizationDetailType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Task Organization detail of the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ScenarioDataStandards" type="msdl:ScenarioDataStandardsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Standards used for the data in the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="OrganicRelationDataType">
+		<xs:annotation>
+			<xs:documentation>The relationship of units and equipment to the organic (doctrinal) superior element (force or unit).</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="OrganicForceSideHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>Reference to the unit's Organic force/side which provides the definition of the higher organization's constructs (doctrine).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrganicSuperiorHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>Reference to the unit's higher organic organization.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="OrganicRelationType">
+		<xs:annotation>
+			<xs:documentation>The type of relationship of units and equipment to the organic (doctrinal) superior element (force or unit).</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="OrganicRelationData" type="msdl:OrganicRelationDataType">
+				<xs:annotation>
+					<xs:documentation>The organic relation provides an association to the doctrine and other behavior detail that is followed independent of the mission specific organization.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrganicRelationChoice" type="msdl:enumForceOwnerType">
+				<xs:annotation>
+					<xs:documentation>Type of organic relation being modeled (Unit, Force, or not speciifed).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="OrganizationDetailType">
+		<xs:annotation>
+			<xs:documentation>The Task Organization detail of the scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="AggregateBased" type="msdl:boolean">
+				<xs:annotation>
+					<xs:documentation>Flags scenario as an aggregate unit scenario that does not neccessarily include subordinate units or equipment.</xs:documentation>
+					<xs:documentation>Identifies unit models as being aggregate-based (in contrast to entity-based).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AggregateEchelon" type="msdl:enumEchelon" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifies the aggregate echelon level planned to in the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="OrganizationsType">
+		<xs:annotation>
+			<xs:documentation>The mission/scenario specific organizations and equipment of the Military Scenario, to include all military services, governmental, and nongovernmental organizations.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Units" type="msdl:UnitsType">
+				<xs:annotation>
+					<xs:documentation>The identification of Units of a Military Scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Equipment" type="msdl:EquipmentType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Information on all items of equipment used in the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="OverlayHandlesType">
+		<xs:annotation>
+			<xs:documentation>The overlay handles with which a tactical graphic is associated.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="OverlayHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>UUID of the overlay where the tactical graphic is to be included.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OverlaysType">
+		<xs:annotation>
+			<xs:documentation>The Overlays defined in the context of this scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Overlay" type="msdl:OverlayType">
+				<xs:annotation>
+					<xs:documentation>A specific overlay used in the scenario, that is then referenced by the control measures that are to be included on the overlay.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OverlayType">
+		<xs:annotation>
+			<xs:documentation>A specific overlay used in the scenario, that is then referenced by the control measures that are to be included on the overlay.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="ObjectHandle" type="msdl:patternUUID32">
+				<xs:annotation>
+					<xs:documentation>The Universal Unique Identifier (UUID) of an object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OverlayType" type="msdl:enumOverlayType">
+				<xs:annotation>
+					<xs:documentation>The type of the overlay. This field accepts an enumerated data type or a user defined name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OverlayName" type="msdl:textName255">
+				<xs:annotation>
+					<xs:documentation>The freetext Name of the overlay.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="OwnerType">
+		<xs:annotation>
+			<xs:documentation>Identifies the owning force or side of an MSDL object.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="OwnerChoice" type="msdl:enumForceOwnerType">
+				<xs:annotation>
+					<xs:documentation>The type of owning organization.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OwnerData" type="msdl:OwnerDataType">
+				<xs:annotation>
+					<xs:documentation>Reference to the owning organization.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="OwnerDataType">
+		<xs:annotation>
+			<xs:documentation>The reference to the owning organization.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="UnitOwnerHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>UUID reference to the Unit that owns a particular item of data as part of that unit's organization.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ForceOwnerHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>A UUID reference to the Force/Side that owns a particular item of data as part of that force's organization.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="OwnFormationType">
+		<xs:annotation>
+			<xs:documentation>The formation of this unit.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="FormationLocationType" type="msdl:enumFormationLocationType">
+				<xs:annotation>
+					<xs:documentation>The method used to correlate formation to location as center of mass or lead element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FormationSpacing" type="msdl:floatSpacing4_3" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The default spacing in metres between subordinate elements one echelon below.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FormationOrientation" type="msdl:floatCompassDegrees3_3" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Orientation in compass degrees for unit formations and equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FormationChoice" type="msdl:enumFormationType">
+				<xs:annotation>
+					<xs:documentation>The type of formation (Ground, Air, Surface or Subsurface).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FormationData" type="msdl:FormationDataType">
+				<xs:annotation>
+					<xs:documentation>The formation data specific to the specified formation type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="PointSymbolModifiersType">
+		<xs:annotation>
+			<xs:documentation>Modifiers of a Point Symbol</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="AdditionalInfo" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo1" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation" type="msdl:text21">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe start, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup1" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe end, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Orientation" type="msdl:enumOrientationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Orientation of the graphic to the right or left as defined in the symbology standard.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="RectangleAreaType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Description of an area that has a rectangular shape.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Name" type="msdl:textName255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The free text name of the rectangle area.</xs:documentation>
+					<xs:documentation>Unabbreviated designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UpperRight" type="msdl:CoordinatesType">
+				<xs:annotation>
+					<xs:documentation>The Upper Right Coordinate of the rectangle area.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LowerLeft" type="msdl:CoordinatesType">
+				<xs:annotation>
+					<xs:documentation>The Lower Left Coordinate of the rectangle area.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ScenarioDataStandardsType">
+		<xs:annotation>
+			<xs:documentation>Standards to be used throughout the exercise.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="SymbologyDataStandard" type="msdl:SymbologyDataStandardType">
+				<xs:annotation>
+					<xs:documentation>Denotes the symbology standard used in the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CoordinateDataStandard" type="msdl:CoordinateDataStandardType">
+				<xs:annotation>
+					<xs:documentation>Denotes the coordinate system and datum used in the specification of the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="ScenarioWeatherType">
+		<xs:annotation>
+			<xs:documentation>The specification of the scenario weather conditions.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Atmosphere" type="jc3iedm:Atmosphere" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>JC3IEDM atmospheric conditions of the environment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CloudCoverItems" type="msdl:CloudCoverItemsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>JC3IEDM cloud cover conditions of the environment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Icing" type="jc3iedm:Icing" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>JC3IEDM icing conditions of the environment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LightItems" type="msdl:LightItemsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>JC3IEDM light conditions of the environment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Precipitation" type="jc3iedm:Precipitation" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>JC3IEDM precipitation conditions of the environment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VisibilityItems" type="msdl:VisibilityItemsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Collection of JC3IEDM visibility conditions of the environment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WindItems" type="msdl:WindItemsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Collection of JC3IEDM wind conditions of the environment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="StatusType">
+		<xs:annotation>
+			<xs:documentation>Unit specific status information.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="MOPPLevel" type="msdl:enumMOPPLevelType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unit specific Mission Oriented Protective Posture (MOPP) status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WeaponControlStatus" type="msdl:enumWeaponControlStatusType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Degree of fire control (free, tight, and hold).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="SupportRelationsType">
+		<xs:annotation>
+			<xs:documentation>Identification of the Units that are being supported and the priority of that support.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="SupportRelation" type="msdl:SupportRelationType">
+				<xs:annotation>
+					<xs:documentation>The support relationship of this unit with respect to the unit being supported.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SupportRelationType">
+		<xs:annotation>
+			<xs:documentation>The support relationship of this unit with respect to the unit being supported.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="SupportedUnitHandle" type="msdl:patternUUIDRef32">
+				<xs:annotation>
+					<xs:documentation>Unique identifier of the unit or equipment to which this unit provides support.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PriorityToSupport" type="msdl:integerPriorityToSupport1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Supporting Unit's priority to Support another unit (from 1 to N where 1 is the top priority).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupportType" type="msdl:enumSupportRelationType">
+				<xs:annotation>
+					<xs:documentation>Type of support this unit provides the supported unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupportRoleType" type="msdl:enumSupportRoleType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The support role taken from classes of Priority of Effort (Chemical, Engineer, Fires, and Intelligence).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="SymbolClassModifiersType">
+		<xs:annotation>
+			<xs:documentation>Class of symbol as defined in selected symbology standard.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="PointSymbolModifiers" type="msdl:PointSymbolModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modifiers of a Point Symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LineSymbolModifiers" type="msdl:LineSymbolModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modifiers of a Line Symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AreaSymbolModifiers" type="msdl:AreaSymbolModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modifiers of an Area Symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BoundarySymbolModifiers" type="msdl:BoundarySymbolModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modifiers of a Boundary Symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NBCEventSymbolModifiers" type="msdl:NBCEventSymbolModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modifiers of an NBC Event Symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TaskSymbolModifiers" type="msdl:TaskSymbolModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modifiers of a Task Symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="SymbologyDataStandardType">
+		<xs:annotation>
+			<xs:documentation>Denotes the symbology data standard, major and minor version used in the specification.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="StandardName" type="msdl:enumSymbologyStandardType">
+				<xs:annotation>
+					<xs:documentation>The symbology data standard.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MajorVersion" type="msdl:textIdentifier64">
+				<xs:annotation>
+					<xs:documentation>The Major version of the symbology data standard.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinorVersion" type="msdl:textIdentifier64">
+				<xs:annotation>
+					<xs:documentation>The Minor version of the symbology data standard.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="TacticalGraphicsType">
+		<xs:annotation>
+			<xs:documentation>The TacticalGraphics representing the control measures for the scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="TacticalGraphic" type="msdl:TacticalGraphicType">
+				<xs:annotation>
+					<xs:documentation>A specific TacticalGraphic defined in the scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TacticalGraphicType">
+		<xs:annotation>
+			<xs:documentation>Individual Tactical Graphics.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="ObjectHandle" type="msdl:patternUUID32">
+				<xs:annotation>
+					<xs:documentation>The Universal Unique Identifier (UUID) of an object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SymbolIdentifier" type="msdl:patternSymbolId">
+				<xs:annotation>
+					<xs:documentation>A symbol identifier is represented as a string. 
+The symbol standard used is indicated using an optional uri notation (uri:xxxxxxxxxx). 
+The following uri should be used for common symbology standards app6b, app6b, app6c, app6c, 2525b, 2525c, 2525d. 
+If not provided the default symbol standard used is the one specified in the ScenarioDataStandards element of the XML file.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Affiliation" type="msdl:enumBaseAffiliation">
+				<xs:annotation>
+					<xs:documentation>The threat posed by a warfighting element in context of the owner.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Owner" type="msdl:OwnerType">
+				<xs:annotation>
+					<xs:documentation>Identifies the owner of the graphic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnchorPoints" type="msdl:AnchorPointsType">
+				<xs:annotation>
+					<xs:documentation>Anchor points of the symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AssociatedOverlays" type="msdl:AssociatedOverlaysType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The overlays for which this tactical graphic is to be displayed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SymbolClassData" type="msdl:SymbolClassModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Choice for the Class of symbol as defined in the identified symbology standard.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SymbolClassChoice" type="msdl:enumSymbolClassType">
+				<xs:annotation>
+					<xs:documentation>Class of symbol as defined in the identified symbology standard.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="TaskSymbolModifiersType">
+		<xs:annotation>
+			<xs:documentation>Modifiers of a Task Symbol.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="UniqueDesignation" type="msdl:text21" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateTimeGroup" type="msdl:patternTimeDTGRelative20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Date Time Group an Alphanumeric field for date/time which identifies the valid timeframe start, relative to ScenarioTime, for which the symbol is valid.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="UnitDispositionType">
+		<xs:annotation>
+			<xs:documentation>Disposition of a unit.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Location" type="msdl:CoordinatesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The coordinates of an object or anchor point.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DirectionOfMovement" type="msdl:floatCompassDegrees3_3" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Direction of Movement, in compass degrees, of a scenario element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Speed" type="msdl:floatSpeed6_2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The field speed in meters per second.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FormationPosition" type="msdl:FormationPositionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The position of this unit/equipment in the higher unit formation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OwnFormation" type="msdl:OwnFormationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The formation of this unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="UnitModelType">
+		<xs:annotation>
+			<xs:documentation>Model specifies any detail impacting on the simulation model of the unit.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Resolution" type="msdl:enumModelResolutionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Enumeration indicating the level of fidelity appropriate for instancing the unit or equipment in the simulation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AggregateBased" type="msdl:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifies unit models as being aggregate-based (in contrast to entity-based).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EntityType" type="msdl:patternEntityType" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="HoldingsType">
+		<xs:annotation>
+			<xs:documentation>The quantity of all specific Equipment/Consumable defined by a Nato Stock Number that is held by, installed in, or included with a unit.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Holding" type="msdl:HoldingType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HoldingType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The quantity of each specific Equipment/Consumable defined by a Nato Stock Number that is held by, installed in, or included with a unit.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NSN_Code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The 13 digits of NATO Stock Number of the equipment or consumable that the report deals with.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSN_Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The human readable name of the NSN code.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IsEquipment" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Optionnaly define the category of the item (equipment or consumbale). Maybe redundant with the first 4 digit of the NSN_Code, but this attribute is easier to interprate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OperationalCount" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The integer value representing the number of specific OBJECT-TYPEs a specific OBJECT-ITEM has available for operations. For simulation purpose, it's mapped to the quantity of available and operational Equipment/Consumable (without reserve) at the instant of the report in the unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalQuantity" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The numeric value representing the total quantity, to include reserves, of specific OBJECT-TYPEs physically held by a specific OBJECT-ITEM. The unit of measure is derived from the OBJECT-TYPE specification.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Post_Type_Category" type="jc3iedm:MilitaryPostTypeCategoryCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The military category post type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Post_Type_Rank" type="jc3iedm:MilitaryPostTypeRankCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The military rank post type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OnHandQuantity" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The numeric value representing the quantity of specific OBJECT-TYPEs physically held on-hand, not including reserves, by a specific OBJECT-ITEM. For simulation purpose, it's mapped to the quantity of available and [operational + damaged] Equipment (without reserve) at the instant of the report in the unit. If simulation doesn't provide this attribute, it means that it doesn't manage damaged equipments. It’s not used for consumables.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RequiredTotalQuantity" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The numeric value representing the total quantity of specific OBJECT-TYPEs required to be held on-hand and in reserve by a specific OBJECT-ITEM to meet the NATO assigned task in accordance with Force Standards or established mission requirements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RequiredOnHandQuantity" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The numeric value representing the quantity of specific OBJECT-TYPEs, not including reserves, required to be held on-hand by a specific OBJECT-ITEM in accordance with Force Standards or established mission requirements. For simulation purpose, it's mapped to the theorical quantity of Equipment/Consumable (without reserve) in the unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RequiredCalculationMethodCode" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">The specific value that represents the required stocks calculation method used for the count of OBJECT-TYPEs in a specific HOLDING.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="UnitRelationsType">
+		<xs:annotation>
+			<xs:documentation>Relationship of units in terms of command, support, and organic relationships.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="ForceRelation" type="msdl:ForceRelationType">
+				<xs:annotation>
+					<xs:documentation>The mission specific command relationship between this unit and its commanding (higher) unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupportRelations" type="msdl:SupportRelationsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identification of the Units that are being supported and the priority of that support.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrganicRelation" type="msdl:OrganicRelationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The relationship of units and equipment to the organic (doctrinal) superior element (force or unit).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="UnitsType">
+		<xs:annotation>
+			<xs:documentation>The identification of Units of a Military Scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Unit" type="msdl:UnitType">
+				<xs:annotation>
+					<xs:documentation>The identification of a Unit of a Military Scenario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnitSymbolModifiersType">
+		<xs:annotation>
+			<xs:documentation>Modifiers of a Unit Symbol.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="Echelon" type="msdl:enumEchelon" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Graphic modifier that identifies Command level.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReinforcedReduced" type="msdl:enumReinforcedReducedType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The graphic modifier in a unit symbol that displays (+) for R-reinforced, (-) for D-reduced, (+/-) for RD-reinforced and reduced.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StaffComments" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the staff comments field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalInfo" type="msdl:text20" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for an additional information field.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CombatEffectiveness" type="msdl:enumCombatEffectivenessType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for units and  installations that indicates unit effectiveness or installation capability.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HigherFormation" type="msdl:text21" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The  text modifier for units indicating the higher designation for the unit.  For boundaries this is the second designation used to identify the line.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IFF" type="msdl:textIFF5" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier displaying IFF/SIF Identification modes and codes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UniqueDesignation" type="msdl:text21">
+				<xs:annotation>
+					<xs:documentation>The text modifier for the symbol's unique designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SpecialC2HQ" type="msdl:textSpecialC2HQ9" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier indicating a unit is a special command and control headquarters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="UnitType">
+		<xs:annotation>
+			<xs:documentation>The description of a Unit of a Military Scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="ObjectHandle" type="msdl:patternUUID32" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Universal Unique Identifier (UUID) of an object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SymbolIdentifier" type="msdl:patternSymbolId" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A symbol identifier is represented as a string. 
+The symbol standard used is indicated using an optional uri notation (uri:xxxxxxxxxx). 
+The following uri should be used for common symbology standards app6b, app6b, app6c, app6c, 2525b, 2525c, 2525d. 
+If not provided the default symbol standard used is the one specified in the ScenarioDataStandards element of the XML file.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="msdl:textName255" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unabbreviated designation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Type" type="msdl:UnitTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The type of the unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnitSymbolModifiers" type="msdl:UnitSymbolModifiersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modifiers of a Unit Symbol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommunicationNetInstances" type="msdl:CommunicationNetInstancesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The communication nets that the unit uses to communicate with other units during a mission.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Status" type="msdl:StatusType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unit specific status information.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Disposition" type="msdl:UnitDispositionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Disposition consists of the location of units and the manner in which these units are tactically deployed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Relations" type="msdl:UnitRelationsType" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Realationship of units in terms of command, support, and organic relationships.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Model" type="msdl:UnitModelType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Model specifies any detail impacting on the simulation model of the unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Holdings" type="msdl:HoldingsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The quantity of all specific Equipment/Consumable that is held by, installed in, or included with the unit</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CustomData" type="xs:anyType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Any additional information.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="UnitTypeType">
+		<xs:annotation>
+			<xs:documentation>The description of a Unit Type of a Military Scenario.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="cmd_function_ind_code" type="jc3iedm:OrganisationTypeCommandFunctionIndicatorCode"/>
+			<xs:element name="service_code" type="jc3iedm:MilitaryOrganisationTypeServiceCode"/>
+			<xs:element name="unit_type_cat_code" type="jc3iedm:UnitTypeCategoryCode"/>
+			<xs:element name="arm_cat_code" type="jc3iedm:UnitTypeArmCategoryCode"/>
+			<xs:element name="size_code" type="jc3iedm:UnitTypeSizeCode"/>
+			<xs:element name="unit_type_arm_spclsn_code" type="jc3iedm:UnitTypeArmSpecialisationCode" minOccurs="0"/>
+			<xs:element name="unit_type_suppl_spclsn_code" type="jc3iedm:UnitTypeSupplementarySpecialisationCode" minOccurs="0"/>
+			<xs:element name="unit_type_gen_mob_code" type="jc3iedm:UnitTypeGeneralMobilityCode" minOccurs="0"/>
+			<xs:element name="unit_type_qual_code" type="jc3iedm:UnitTypeQualifierCode" minOccurs="0"/>
+			<xs:element name="mil_type_cat_code" type="jc3iedm:MilitaryPostTypeCategoryCode" minOccurs="0"/>
+			<xs:element name="mil_type_rank_code" type="jc3iedm:MilitaryPostTypeRankCode" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="UTMType">
+		<xs:annotation>
+			<xs:documentation>Universal Transverse Mercator Coordinate.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="UTMGridZone" type="msdl:patternUTMGridZone3">
+				<xs:annotation>
+					<xs:documentation>The UTM Grid Zone designator, to include the number and letter as defined by NIMA TM 8358.1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UTMEasting" type="msdl:floatUTMEasting9_2">
+				<xs:annotation>
+					<xs:documentation>The easting component of the UTM coordinate specified in meters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UTMNorthing" type="msdl:floatUTMNorthing9_2">
+				<xs:annotation>
+					<xs:documentation>The northing component of the UTM coordinate specified in meters</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ElevationAGL" type="msdl:floatElevationAGL6_2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The text modifier for units, equipment, and installations that displays the altitude portion of GPS; flight level for aircraft; depth for submerged objects; height for equipment or structures on the ground.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="VisibilityItemsType">
+		<xs:annotation>
+			<xs:documentation>Collection of JC3IEDM visibility conditions of the environment.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Visibility" type="jc3iedm:Visibility">
+				<xs:annotation>
+					<xs:documentation>JC3IEDM visibility conditions of the environment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WindItemsType">
+		<xs:annotation>
+			<xs:documentation>Collection of JC3IEDM wind conditions of the environment.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Wind" type="jc3iedm:Wind">
+				<xs:annotation>
+					<xs:documentation>JC3IEDM wind conditions of the environment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
