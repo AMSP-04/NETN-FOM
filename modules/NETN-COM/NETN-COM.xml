@@ -3,8 +3,8 @@
     <modelIdentification noteReferences="netn-com_overview">
         <name>NETN-COM</name>
         <type>FOM</type>
-        <version>2.0</version>
-        <modificationDate>2024-03-18</modificationDate>
+        <version>2.1</version>
+        <modificationDate>2025-05-11</modificationDate>
         <securityClassification>Not classified</securityClassification>
         <copyright/>
         <purpose>The purpose of the NATO Education and Training Network Communication Network Module (NETN-COM) is to provide a standard way to exchange data related to the status of connections in a communication network and links in a physical network.</purpose>
@@ -13,6 +13,8 @@
         <useLimitation></useLimitation>
         <useHistory>1.0 - Initial version developed by MSG-164 and MSG-163 for NETN FOM v3.0</useHistory>
         <useHistory noteReferences="netn-com_changelog">2.0 - Version developed by MSG-191 for NETN FOM v4.0</useHistory>
+        <useHistory noteReferences="netn-com_changelog5">2.0 - Version developed by MSG-223 for NETN FOM v5.0</useHistory>
+        
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -1035,6 +1037,11 @@ NOS: Not Otherwise Specified</semantics>
     </dataTypes>
     <notes>
         <note>
+            <label>netn-com_changelog5</label>
+            <semantics>* The cardinaltity between LinkStates and LinkStatus was changed from 1 to 0..*.
+            </semantics>
+        </note>
+        <note>
             <label>netn-com_changelog</label>
             <semantics>* Replaced all `WorldLocationStruct` with `LocationStruct`
 * Replaced all use of datatype `PercentFloat64` with `PercentFloat32`
@@ -1233,7 +1240,7 @@ LinkStates: UniqueId(NETN-BASE)
 
 
 LinkStates --&gt; "1" PhysicalNetwork : PhysicalNetwork
-LinkStates --&gt; "1" LinkStatus : Link
+LinkStates --&gt; "0..1" LinkStatus : Link
 
 
 LinkStatus:TransmitterDevice
