@@ -165,7 +165,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             </simpleData>
             <simpleData>
                 <name>EpochTime</name>
-                <representation>HLAinteger32BE</representation>
+                <representation>HLAinteger64BE</representation>
                 <units>seconds</units>
                 <resolution>1</resolution>
                 <accuracy>NA</accuracy>
