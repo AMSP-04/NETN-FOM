@@ -1,3 +1,9 @@
+# THIS IS A EXPERIMENTAL VERSION OF NETN 4.1
+This is the development branch of AMSP 04. 
+This version will contain fixes and changes to the fom module and rules.
+These updates might change in the future before its fully released. 
+The aim of this version is be backward compatible with NETN 4. 
+
 # NETN FOM
 NATO Education and Training Network (NETN) Federation Object Model (FOM)
 
