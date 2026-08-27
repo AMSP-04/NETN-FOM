@@ -34,7 +34,7 @@ Feedback on the use of this work, suggestions for improvements and identified is
 
 Version numbering of this FOM Module and associated documentation is based on the following principles:
 
-* A new official version number is in effect only when a new release is made in the Master branch.
+* A new official version number is in effect only when a new release is made in the `master` branch.
 * An update of the major version number is made if the change constitutes a major restructuring, merging, addition or redefinition of semantics that breaks backward compatibility or covers entirely new concepts.
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.

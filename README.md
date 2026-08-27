@@ -32,8 +32,8 @@ Feedback on the use of this work, suggestions for improvements and identified is
 
 Version numbering of the NETN FOM and associated documentation is based on the following principles:
 
-* New official version number is assigned and in effect only when a new release is made in the Master branch.
-* Updates in the Develop branch will not change the version number.
+* New official version number is assigned and in effect only when a new release is made in the `master` branch.
+* Updates in the `develop` branch will not change the version number.
 * Update of the major version number is made if the change constitutes a major restructuring, merging, addition or redefinition of semantics that breaks backward compatibility or cover entirely new concepts.
 * Update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
@@ -53,8 +53,8 @@ Version numbering of the NETN FOM and associated documentation is based on the f
 * [FomFiles_Merged_HLA_Evolved](FomFiles_Merged_HLA_Evolved/) contain a merged version of the entire NETN 4 and RPR modules in HLA Evolved format.
 
 ## Maintenance on GitHub
-* The master branch of the NETN FOM repository contains the official public releases of the FOM.
-* The develop branch of the NETN FOM repository contains the intermediate baseline releases of the FOM and the lasest build/merge of other feature branches/forks used by members of the maintenance team to update the FOM.
+* The `master` branch of the NETN FOM repository contains the official public releases of the FOM.
+* The `develop` branch of the NETN FOM repository contains the intermediate baseline releases of the FOM and the lasest build/merge of other feature branches/forks used by members of the maintenance team to update the FOM.
 
 [Work Flow](flow.md)
 
