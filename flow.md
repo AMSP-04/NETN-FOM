@@ -1,4 +1,4 @@
-# Work-flow
+# Workflow
 
 ## Repositories
 | Type | Description |
