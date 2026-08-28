@@ -56,7 +56,7 @@ The licence allows you to use and redistribute the NETN-FOM Modules (XML file an
 
 All updates and versioning of the NETN-FOM are coordinated by the NATO Modelling and Simulation Coordination Office (MSCO), managed by the NATO Modelling and Simulation Group (NMSG) and performed as NATO Science and Technology Organization (STO) technical activities in support of the NMSG Modelling and Simulation Standards Subgroup (MS3).
 
-Feedback on the use of this work, suggestions for improvements, and identified issues are welcome and can be provided using GitHub issue tracking. To engage in the development and update of this FOM Module, please contact your national NMSG representative.
+Feedback on the use of this work, suggestions for improvements, and identified issues are welcome and can be provided using GitHub Issue tracking. To engage in the development and update of this FOM Module, please contact your national NMSG representative.
 
 # NETN-FOM
 
