@@ -18,17 +18,17 @@ High-Level Architecture (HLA) is an international IEEE standard [1] for federate
 
 AMSP-04 defines the set of FOM modules that constitute the NETN-FOM. A NETN Federation is an HLA Federation that uses one or more NETN-FOM modules. A NETN Federate is an application or service connected to a NETN Federation that uses one or more NETN-FOM modules.
 
-The NETN-FOM focuses on technical interoperability aspects in federated distributed simulation and provides standard patterns of simulation interplay, including initialization, transfer of modelling responsibilities, simulation entity tasking and managing dynamic change of model resolution.
+The NETN-FOM focuses on technical interoperability aspects in federated distributed simulation and provides standard patterns of simulation interplay, including initialization, transfer of modelling responsibilities, simulation entity tasking, and managing dynamic change of model resolution.
 
 As a reference document, the NETN-FOM does not replace the need for detailed design specifications and agreement documents. However, it provides a standard approach and a solid foundation for addressing interoperability and reuse requirements when integrating heterogeneous services and applications in a federated distributed simulation system.
 
-The NETN-FOM modules have inter-dependencies, and their design maximizes reuse of- and interoperability with legacy systems. The NETN-FOM complements and extends the SISO RPR-FOM.
+The NETN-FOM modules have interdependencies, and their design maximizes both the reuse of and interoperability with legacy systems. The NETN-FOM complements and extends the SISO RPR-FOM.
 
 This AMSP-04 specification summarises all NETN-FOM modules, key design patterns and main concepts. Complete online documentation and all related data models and files are published and provided at http://www.github.org/AMSP-04.
 
 ## History
 
-In 2006, NATO Allied Command Transformation (ACT) requested the NATO Modelling and Simulation Group (NMSG) explore the concepts of a NATO Education and Training Network capability. An exploratory team (ET-025) analyzed the requirement and proposed a technical activity to develop NETN concepts. 
+In 2006, NATO Allied Command Transformation (ACT) requested that the NATO Modelling and Simulation Group (NMSG) explore the concepts of a NATO Education and Training Network (NETN) capability. An exploratory team (ET-025) analyzed the requirement and proposed a technical activity to develop NETN concepts. 
 
 In 2007, the NMSG technical activity MSG-068 NETN started, led by NATO Joint Warfare Center (JWC) and with participants from NATO HQ-SACT, NATO Joint Forces Training Center (JFTC), NATO Consultancy, Command and Control Agency (NC3A) and 13 Nations (Australia, Bulgaria, France, Germany, Hungary, Netherlands, Romania, Slovenia, Spain, Sweden, Turkey, UK, USA). MSG-068 assessed the distributed simulation and learning capabilities that could contribute to developing a NETN capability and drafted standards to enable better reuse and sharing of national Modelling and Simulation systems. The capabilities were demonstrated at I/ITSEC 2010, and the group ended its work in 2011. A NETN Federation Architecture and FOM Design specification (NETN FAFD) was produced, which included the NETN-FOM v1.0 published in February 2012. 
 
@@ -43,9 +43,9 @@ In March 2021, the NMSG technical activity MSG-191, “NATO Standards for Federa
 |Version|Main Change|
 |---|---|
 |NETN-FOM v4|Major restructuring using HLA4 FOM modelling principles and techniques, allowing simplified structure and class merging of attributes/parameters from multiple modules.</br></br>New FOM Module NETN-SMC for common service management and control interactions used in various other modules.</br></br>New FOM Module NETN-DIM for representing disaster objects, events and tasks.</br></br>Renaming of NETN-Physical to NETN-ENTITY to represent both platform and aggregate-level simulated entities.</br></br>Major simplification of NETN-TMR pattern.</br></br>Extension of NETN-ETR to include observation reports based on SISO C2SIM report ontology.|
-|NETN-FOM v3|New FOM Module NETN-ORG for the representation of Organizations.</br></br>New FOM Module NETN-SE to extend RPR-SE</br></br>New FOM Module NETN-METOC for the representation of weather</br></br>New FOM Module NETN-AIS for the representation of Vessel Traffic Information and Data</br></br>New FOM Module NETN-LOG that Merge and remove Logistics FOM Modules NETN-SCP-Base, NETN-Repair, NETN-Transport, NETN-Supply, and NETN-Storage</br></br>Renamed LBML module to NETN-ETR (Entity Tasking and Reporting)</br></br>Major update of NETN-MRM to simplify aggregation, disaggregation, divide and merge of units.</br></br>Exclude FOM Module NETN-HCBML for high-level C-BML Sim-C2 interactions (in anticipation of SISO C2SIM standard).|
-|NETN-FOM v2|New FOM Module NETN-Base for standard datatypes.</br></br>New FOM Module NETN-Physical extends RPR-Physical.</br></br>New FOM Module NETN-CBRN for the representation of CBRN events and effects.</br></br>New FOM Module NETN-MRM for aggregation and disaggregation of units.</br></br>New FOM Module NETN-TMR for transfer of modelling responsibilities.</br></br>New FOM Module NETN-HCBML for high-level C-BML Sim-C2 interactions.</br></br>New FOM Module NETN-LLBML for low-level entity tasking and reporting.</br></br>Renamed NETN Service Consumer-Provider FOM Module to NETN-SCP-Base.</br></br>Replaced NETN Logistics FOM Module with NETN-Repair, NETN-Storage, NETN-Supply and NETN-Transport|
-|NETN-FOM v1.0|NETN Service Consumer-Provider</br></br>NETN Logistics</br></br>NETN Aggregate|
+|NETN-FOM v3|New FOM Module NETN-ORG for the representation of Organizations.</br></br>New FOM Module NETN-SE to extend RPR-SE.</br></br>New FOM Module NETN-METOC for the representation of weather.</br></br>New FOM Module NETN-AIS for the representation of Vessel Traffic Information and Data.</br></br>New FOM Module NETN-LOG that merges and replaces Logistics FOM Modules NETN-SCP-Base, NETN-Repair, NETN-Transport, NETN-Supply, and NETN-Storage.</br></br>Renaming of LBML module to NETN-ETR (Entity Tasking and Reporting).</br></br>Major update of NETN-MRM to simplify aggregation, disaggregation, divide and merge of units.</br></br>Exclude FOM Module NETN-HCBML for high-level C-BML Sim-C2 interactions (in anticipation of SISO C2SIM standard).|
+|NETN-FOM v2|New FOM Module NETN-Base for standard datatypes.</br></br>New FOM Module NETN-Physical extends RPR-Physical.</br></br>New FOM Module NETN-CBRN for the representation of CBRN events and effects.</br></br>New FOM Module NETN-MRM for aggregation and disaggregation of units.</br></br>New FOM Module NETN-TMR for transfer of modelling responsibilities.</br></br>New FOM Module NETN-HCBML for high-level C-BML Sim-C2 interactions.</br></br>New FOM Module NETN-LLBML for low-level entity tasking and reporting.</br></br>Renaming of NETN Service Consumer-Provider FOM Module to NETN-SCP-Base.</br></br>Replaced NETN Logistics FOM Module with NETN-Repair, NETN-Storage, NETN-Supply and NETN-Transport.|
+|NETN-FOM v1.0|NETN Service Consumer-Provider.</br></br>NETN Logistics.</br></br>NETN Aggregate.|
 
 ## License
 Complete online documentation and all related data models and files are provided through http://www.github.org/AMSP-04.
@@ -60,7 +60,7 @@ Feedback on the use of this work, suggestions for improvements, and identified i
 
 # NETN-FOM
 
-The NETN-FOM modules capture different aspects of information that can be exchanged in a NETN federation. A federate should use only the modules it needs and depends on and can be unaware of any other modules used by other federates in a NETN federation.
+The NETN-FOM modules capture different aspects of information that can be exchanged in a NETN federation. A federate should use only the modules it needs and depends on and can be unaware of any other modules used by other federates in the NETN federation.
 
 ![image](images/dependencies.png)
 
@@ -89,11 +89,11 @@ The federation design and development process allocates, describes, and document
 
 During execution, the modelling responsibilities may change. HLA provides services for managing the transfer of ownership of individual object attributes between federates. 
 
-In the NETN-FOM, the concept of a **primary modelling responsibility** for an entire simulated entity is introduced. Only one federate has the primary modelling responsibility, but the responsibility can be transferred. The owner of the NETN-TMR `HLAobjectRoot` attribute `AllocatedFederate` is also the federate with primary modelling responsibility. 
+In the NETN-FOM, the concept of a **primary modelling responsibility** for an entire simulated entity is introduced. Only one federate has the primary modelling responsibility, but the responsibility can be transferred. The owner of the NETN-TMR `HLAobjectRoot` attribute `AllocatedFederate` is the federate with primary modelling responsibility. 
 
 Transfer of primary modelling responsibility is defined in the NETN-TMR module and used in NETN initialization patterns.
 
-## Initiallization
+## Initialization
 
 The NETN-FOM identifies three initialization methods and allocation of initial modelling responsibility in a NETN federation.
 
@@ -101,7 +101,7 @@ The NETN-FOM identifies three initialization methods and allocation of initial m
 2. Entities are allocated based on published NETN-ORG data and registered by a federate based on data in the federation.
 3. Entities are registered by a central federate and then reallocated and transferred using NETN-TMR patterns to trigger the transfer.
 
-All methods can be combined. However, the recommended pattern uses centrally managed federate (C) that registers objects (O) and updates the O.`AllocatedFederate` attribute with the name of a federate (F) to which the modelling responsibility is allocated.
+All methods can be combined. However, the recommended pattern uses a centrally managed federate (C) that registers objects (O) and updates the `O.AllocatedFederate` attribute with the name of a federate (F) to which the modelling responsibility is allocated.
  
 ``` mermaid 
  
@@ -115,7 +115,7 @@ Federation->>F:Reflect(O.AllocatedFederate=F)
 F->C:HLA Ownership Acquisition(O.AllocatedFederate)
 F->>Federation:Update(O)
 ``` 
-(F) receives the primary modelling responsibility of (O) only when (F) completes the HLA attribute ownership acquisition of the O.`AllocatedFederate` attribute.
+(F) receives the primary modelling responsibility of (O) only when (F) completes the HLA attribute ownership acquisition of the `O.AllocatedFederate` attribute.
 
 ## Entity Control Actions
 
