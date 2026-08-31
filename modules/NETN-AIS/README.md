@@ -24,7 +24,7 @@ Copyright (C) 2020 NATO/OTAN. This work is licensed under a [Creative Commons At
 
 The work includes the NETN-AIS.xml FOM Module and documentation.
 
-The licence gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop new FOM Modules (in separate XML files and separate documentation) that build on or extend the NETN module by referencing and including necessary scaffolding classes. You are NOT allowed to modify this FOM Module or its documentation without prior permission from the NATO Modelling and Simulation Group.
+The licence gives you the right to use and redistribute the NETN FOM Module (XML file and documentation) in its entirety without modification. You are also allowed to develop new FOM Modules (in separate XML files and with separate documentation) that build on or extend the NETN module by referencing and including necessary scaffolding classes. You are NOT allowed to modify this FOM Module or its documentation without prior permission from the NATO Modelling and Simulation Group.
 
 ## Versions, Updates and Extensions
 
