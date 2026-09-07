@@ -4,6 +4,9 @@
 |---|---|---|
 |2.0|2024-03-10|NETN-BASE, RPR-Communication, NETN-ETR, NETN-ORG, NETN-SMC|
 
+# THIS MODULE IS CURRENTLY WIP THIS README IS THE OLD MODULES README
+
+
 The purpose of the NATO Education and Training Network Automatic Identification System Module (NETN-AIS) is to:     
         
 * represent vessel traffic in a simulation using AIS messages to, for example, communicate position status reports of vessels.   
