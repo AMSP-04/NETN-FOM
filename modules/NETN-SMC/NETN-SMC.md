@@ -14,10 +14,10 @@ The NETN-SMC module provides methods to interact with services using control act
 The module defines three (3) basic control actions 
  
 * Use the `SMC_FederationControl` for actions intended for all federates in the federation. 
-* Use `SMC_FederateControl` for  actions intended for a known federate 
+* Use `SMC_FederateControl` for actions intended for a known federate.
 * Use `SMC_EntityControl` for actions related to a specific simulation entity. The interaction is expected to be processed by the federate with the modelling responsibility for the entity. 
  
-When sending a `SMC_FederateControl` or `SMC_EntityControl` action, the receiving federate shall respond to the action using a `SMC_Response` interaction to indicate success or failure to accept or achieve the action. 
+When sending an `SMC_FederateControl` or `SMC_EntityControl` action, the receiving federate shall respond to the action using an `SMC_Response` interaction to indicate success or failure to accept or achieve the action. 
 
 ```mermaid 
 sequenceDiagram 
@@ -30,9 +30,9 @@ EntityFederate->>TaskingFederate:SMC_Response(true/false)
 
 To send a control action to a specific federate, use the `SMC_FederateControl` interaction with a parameter identifying the federate by its name.
 
-If a federate control action is sent to a federate that is not compliant with NETN-SMC, there will be no response, and it will be hard to determine if or when the control action is successfully received. 
+If a federate control action is sent to a federate that is not compliant with NETN-SMC, there will be no response and thus it will be hard to determine if or when the control action is successfully received. 
 
-Federates publish support actions using the `SMC_Service` object attribute `SupportedActions`. If available, this information shall be used before sending a federate control action to check whether the action is supported.
+Federates publish a list of which actons they support using the `SMC_Service` object attribute `SupportedActions`. If available, this information shall be used before sending a federate control action to check whether the action is supported.
 
 All NETN-SMC-compliant federates must also respond to all federate control actions using the `SMC_Response` interaction, regardless of whether the action is supported.
 
@@ -40,7 +40,7 @@ All NETN-SMC-compliant federates must also respond to all federate control actio
 
 To send a control action to a specific simulation entity, use the `SMC_EntityControl` interaction with a parameter identifying the entity by its unique identifier. The federate with the referenced entity's primary modelling responsibility is the receiver and should perform the action.
 
-If the federate with the primary responsibility of the referenced entity is not compliant with NETN-SMC, there will be no response, and it will be hard to determine if or when the control action is successfully received. Therefore, supported actions are published using the `BaseEntity` object class attribute. Before sending a `SMC_EntityControl`, use the `BaseEntity` object attribute `SupportedActions` to determine if the referenced entity supports the action.
+If the federate with the primary responsibility of the referenced entity is not compliant with NETN-SMC, there will be no response and it will be hard to determine if or when the control action is successfully received. Therefore, supported actions are published using the `BaseEntity` object class attribute. Before sending a `SMC_EntityControl`, use the `BaseEntity` object attribute `SupportedActions` to determine if the referenced entity supports the action.
 
 
 ## Object Classes
@@ -69,7 +69,7 @@ Represents a service the referenced federate provides with additional informatio
 
 ### BaseEntity
 
-A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
+A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
@@ -121,13 +121,13 @@ The response indicates whether the related action was accepted or rejected/faile
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|Action|UUID|Required: Reference to the control action this is a response to. The reference corresponds to the NETN-BASE `UniqueId` parameter of the control action interaction.|
+|Action|UUID|Required: A reference to the control action that this is a response to. The reference corresponds to the NETN-BASE `UniqueId` parameter of the control action interaction.|
 |Status|HLAboolean|Required: Indicates success or failure of a corresponding control action.|
 |UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all SMC related interactions.| 
 
 ## Datatypes
 
-Note that only datatypes defined in this FOM Module are listed below. Please refer to FOM Modules on which this module depends for other referenced datatypes.
+Note that only datatypes defined in this FOM module are listed below. Please refer to FOM modules on which this module depends for other referenced datatypes.
 
 ### Overview
 |Name|Semantics|
