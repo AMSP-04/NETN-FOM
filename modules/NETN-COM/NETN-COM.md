@@ -467,7 +467,7 @@ A base interaction class for more specialized report interaction classes. The in
 
 ## Datatypes
 
-Note that only datatypes defined in this FOM Module are listed below. Please refer to FOM Modules on which this module depends for other referenced datatypes.
+Note that only datatypes defined in this FOM module are listed below. Please refer to FOM modules on which this module depends for other referenced datatypes.
 
 ### Overview
 |Name|Semantics|
