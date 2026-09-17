@@ -6,7 +6,7 @@
 
 
 
-The NETN-ENTITY FOM Module provides a standard interface for representing simulation entities in a federated distributed simulation. The module extends the RPR-FOM standard SISO-STD-001-2015 with additional attributes for simulated physical and aggregated entities.
+The NETN-ENTITY FOM module provides a standard interface for representing simulation entities in a federated distributed simulation. The module extends the RPR-FOM standard SISO-STD-001-2015 with additional attributes for simulated physical and aggregated entities.
 
 For backward compatibility, published objects should include all required RPR-FOM attributes.
 

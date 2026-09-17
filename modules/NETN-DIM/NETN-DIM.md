@@ -4,7 +4,7 @@
 |---|---|---|
 |1.0|2024-03-05|RPR-SE, NETN-ETR, NETN-BASE|
 
-The NATO Education and Training Network Disaster Module (NETN-DIM) provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.
+The NATO Education and Training Network Disaster (NETN-DIM) module provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.
 
 Hazards such as wildfires, flooding, earthquakes, and landslides have different effects in a synthetic environment and on the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effects of hazards are important aspects of simulations where hazards are part of the scenario.
 

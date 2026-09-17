@@ -4,7 +4,7 @@
 |---|---|---|
 |2.0|2024-03-18|NETN-BASE, NETN-ETR, NETN-ORG|
 
-The purpose of the NATO Education and Training Network Communication Network Module (NETN-COM) is to provide a standard way to exchange data related to the status of connections in a communication network and links in a physical network.
+The purpose of the NATO Education and Training Network Communication Network (NETN-COM) module is to provide a standard way to exchange data related to the status of connections in a communication network and links in a physical network.
 
 The communication networks can be modelled using radios, ethernet, satellite communication or laser-based links, transmitting from point to point or routing through the network. 
 
