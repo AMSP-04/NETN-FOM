@@ -4,9 +4,9 @@
 |---|---|---|
 |2.0|2024-03-07|NETN-BASE|
 
-The NATO Education and Training Network Organization (NETN-ORG) module provides a standard way to represent organizations in the simulation scenario and their relationships and structure. The relationships include unit command structure, relationships between organizations, unit equipment, and installations.
+The NATO Education and Training Network Organization (NETN-ORG) module provides a standard way to represent organizations in the simulation scenario, as well as their relationships and structure. The relationships include unit command structure, relationships between organizations, unit equipment, and installations.
 
-Simulating organizational elements requires knowledge of intra-organizational relationships, e.g., superior, subordinate, and inter-organizational relationships with other organizations, e.g., friendly or hostile. The NETN-ORG supports initialization and organizations' dynamic change of this information.
+Simulating organizational elements requires knowledge of intra-organizational relationships, e.g., superior and subordinate, as well as inter-organizational relationships, e.g., friendly or hostile. The NETN-ORG module supports initialization and organizations' dynamic change of this information.
 
 Use the NETN-ORG information to: 
 * initialize simulated entities 
@@ -69,7 +69,7 @@ Each `Organization` is defined by a structure of `OrganizationElement` objects. 
  
 1. `Unit` represents an element at a specified level in the organization. An organizational unit can contain subunits and can belong to a superior unit. A unit consists of equipment, personnel and supplies; these holdings can belong directly to the unit or indirectly as a holding of a subunit. 
 2. `Equipment` represents individual physical items explicitly defined and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensor objects. 
-3. `Installation` are facilities, e.g. harbours, airfields, or engineering objects, e.g. minefields.
+3. `Installation` are facilities, e.g., harbours and airfields, or engineering objects, e.g., minefields.
 
 To request a change of `SuperiorUnit`, use the NETN-SMC entity control action `ChangeSuperiorUnit`.
 
@@ -90,7 +90,7 @@ ChangeSuperiorUnit : SuperiorUnit
  
 ## Allocation to Federates 
  
-The NETN-ORG can also be used to provide the initial allocation of responsibility to a federate for what `Equipment` is represented as a `PhysicalEntity` and what `Unit` is represented as an `AggregateEntity`. The NETN-SMC object class `SMC_Service` is subclassed with the `EntitySimulation` class that for each instance can publish the allocation of initial modelling responsibility. 
+The NETN-ORG module can also be used to provide the initial allocation of responsibility to a federate for what `Equipment` is represented as a `PhysicalEntity` and what `Unit` is represented as an `AggregateEntity`. The NETN-SMC object class `SMC_Service` is subclassed with the `EntitySimulation` class that for each instance can publish the allocation of initial modelling responsibility. 
  
 ```mermaid 
 classDiagram 
@@ -146,7 +146,7 @@ EntitySimulation : PhysicalEntityAllocation
 
 ### ORG_Root
 
-The object class for all NETN-ORG object classes
+The root class for all NETN-ORG object classes.
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
@@ -154,7 +154,7 @@ The object class for all NETN-ORG object classes
 
 ### OrganizationElement
 
-An object class for all NETN-ORG organizational elements
+An object class for all NETN-ORG organizational elements.
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
@@ -163,8 +163,8 @@ An object class for all NETN-ORG organizational elements
 |Location|GeodeticPoint|Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation.|
 |Name|HLAunicodeString|Required. A unique name.|
 |Organization|UUID|Required: A reference to the organization the element is affiliated with.|
-|SuperiorUnit|UUID|Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation.  The default value is all zeros (no aggregate unit).|
-|Symbol|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.|
+|SuperiorUnit|UUID|Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).|
+|Symbol|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.|
 
 ### Equipment
 
@@ -177,7 +177,7 @@ An equipment represents individual physical items defined specifically and apart
 |Location|GeodeticPoint|Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation.|
 |Name|HLAunicodeString|Required. A unique name.|
 |Organization|UUID|Required: A reference to the organization the element is affiliated with.|
-|SuperiorUnit|UUID|Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation.  The default value is all zeros (no aggregate unit).|
+|SuperiorUnit|UUID|Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).|
 |Symbol|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.|
 
 ### Unit
@@ -196,12 +196,12 @@ A unit represents an element at a specified level in the organization. An organi
 |Location|GeodeticPoint|Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation.|
 |Name|HLAunicodeString|Required. A unique name.|
 |Organization|UUID|Required: A reference to the organization the element is affiliated with.|
-|SuperiorUnit|UUID|Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation.  The default value is all zeros (no aggregate unit).|
+|SuperiorUnit|UUID|Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).|
 |Symbol|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.|
 
 ### Installation
 
-Installations are facilities, e.g. harbours, airfields, or engineering objects, e.g. minefields.
+Installations are facilities, e.g. harbours and airfields, or engineering objects, e.g. minefields.
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
@@ -210,27 +210,27 @@ Installations are facilities, e.g. harbours, airfields, or engineering objects, 
 |Location|GeodeticPoint|Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation.|
 |Name|HLAunicodeString|Required. A unique name.|
 |Organization|UUID|Required: A reference to the organization the element is affiliated with.|
-|SuperiorUnit|UUID|Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation.  The default value is all zeros (no aggregate unit).|
+|SuperiorUnit|UUID|Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).|
 |Symbol|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.|
 
 ### Organization
 
-An organization have relationships with other organizations. Units belonging to different organizations have the same relationship as the organizations they belong to. However, the relationships between organizations can be asymmetrical, e.g. Side A can be hostile to B while B is neutral to A. Furthermore, the relation may change during a federation execution.
+An organization can have relationships with other organizations. Units belonging to different organizations have the same relationship as the organizations they belong to. However, the relationships between organizations can be asymmetrical, e.g. Side A can be hostile to B while Side B is neutral to A. Furthermore, the relation may change during a federation execution.
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
 |CountryCode|Integer32|Optional: Numerical country code based on ISO 3166-1 numeric. The numeric codes 900 to 999 can be user-assigned in the federation agreement.|
-|ForceIdentifier|ForceIdentifierEnum|Required: A force identifier indicate a special relationship with an organization in the scenario designated as the default perspective of the scenario. The force identifier applies to all simulated entities representing an organizational element belonging to the organization and is a required attribute for all `PhysicalEntity` and `AggregateEntity` objects in the federation.|
+|ForceIdentifier|ForceIdentifierEnum|Required: A force identifier indicates a special relationship with an organization in the scenario designated as the default perspective of the scenario. The force identifier applies to all simulated entities representing an organizational element belonging to the organization and is a required attribute for all `PhysicalEntity` and `AggregateEntity` objects in the federation.|
 |Name|HLAunicodeString|Required. A unique name.|
 |Relationships|ArrayOfRelationship|Optional. The relations with other organizations. The federation agreements specify default relationship.|
 
 ### BaseEntity
 
-A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
+A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
-|Organization|UUID|Optional: The organization in the scenario this entity belongs to.|
+|Organization|UUID|Optional: The organization in the scenario that this entity belongs to.|
 |UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
 
 ### EntitySimulation
@@ -239,8 +239,8 @@ A service providing modelling responsibility for aggregate and/or physical entit
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
-|AggregateEntityAllocation|ArrayOfUuid|Optional. The organization Unit elements for which the federate has the responsibility of modelling corresponding Aggregate Entities.  The default is an empty list.|
-|PhysicalEntityAllocation|ArrayOfUuid|Optional. The the organization Equipment or Installation elements for which the federate has the responsibility of simulating a Physical Entity.  The default is an empty list.|
+|AggregateEntityAllocation|ArrayOfUuid|Optional. The organization Unit elements for which the federate has the responsibility of modelling corresponding Aggregate Entities. The default is an empty list.|
+|PhysicalEntityAllocation|ArrayOfUuid|Optional. The the organization Equipment or Installation elements for which the federate has the responsibility of simulating a Physical Entity. The default is an empty list.|
 
 ## Interaction Classes
 
@@ -260,7 +260,7 @@ Request a change in the organizational structure. The federate with the primary 
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|SuperiorUnit|UUID|Required: Reference to a Unit for which the referenced entity (OrganizationElement) is requested to relate to as a subunit/equipment.|
+|SuperiorUnit|UUID|Required: Reference to a Unit for which the referenced entity (OrganizationElement) is requested to relate as a subunit/equipment.|
 
 ## Datatypes
 
@@ -269,20 +269,20 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 ### Overview
 |Name|Semantics|
 |---|---|
-|AirFormationTypeEnum32|Air formation|
+|AirFormationTypeEnum32|Air formation.|
 |ArrayOfHoldings|Sequence of holdings.|
 |ArrayOfRelationship|Sequence of relations.|
-|EntityControlActionEnum|Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.|
+|EntityControlActionEnum|Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions.|
 |ForceIdentifierEnum|RPR-FOM Force Identifier enumeration.|
 |FormationDataStruct|Struct for enumerated choice for the type of formation being Ground, Air, Surface or Subsurface.|
 |FormationLocationTypeEnum32|Enumerated choice for the method to correlate formation to location as the centre of mass or lead element.|
 |FormationStruct|The formation of this unit.|
 |FormationTypeEnum32|Enumerated choice for the type of formation being Ground, Air, Surface or Subsurface.|
 |GroundFormationTypeEnum32|Specifies the formations for ground units.|
-|Holding|Static and dynamic data about the holding. The `EntityType` determines if the holding is a platform, munition, lifeform, supplies etc.|
+|Holding|Static and dynamic data about the holding. The `EntityType` determines if the holding is a platform, munition, lifeform, supplies, etc.|
 |Relation|The specific value that represents the perceived hostility status.|
-|SubsurfaceFormationTypeEnum32|Subsurface formation|
-|SurfaceFormationTypeEnum32|Surface formation|
+|SubsurfaceFormationTypeEnum32|Subsurface formation.|
+|SurfaceFormationTypeEnum32|Surface formation.|
         
 ### Enumerated Datatypes
 |Name|Representation|Semantics|
@@ -306,7 +306,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 |Name|Fields|Semantics|
 |---|---|---|
 |FormationStruct|FormationLocationType, FormationSpacing, FormationOrientation, FormationData|The formation of this unit.|
-|Holding|Name, RequiredOnHandQuantity, OnHandQuantity, OperationalCount, EntityType|Static and dynamic data about the holding. The `EntityType` determines if the holding is a platform, munition, lifeform, supplies etc.|
+|Holding|Name, RequiredOnHandQuantity, OnHandQuantity, OperationalCount, EntityType|Static and dynamic data about the holding. The `EntityType` determines if the holding is a platform, munition, lifeform, supplies, etc.|
 |Relation|RelatedOrganization, Relationship|The specific value that represents the perceived hostility status.|
         
 ### Variant Record Datatypes
