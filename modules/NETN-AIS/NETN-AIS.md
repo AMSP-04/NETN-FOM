@@ -1,31 +1,30 @@
 
 # NETN-AIS
-|Version| Date| Dependencies|
+
+|Version|Date|Dependencies|
 |---|---|---|
 |2.0|2024-03-10|NETN-BASE, RPR-Communication, NETN-ETR, NETN-ORG, NETN-SMC|
 
-The purpose of the NATO Education and Training Network Automatic Identification System (NETN-AIS) module is to:     
-        
-* represent vessel traffic in a simulation using AIS messages to, for example, communicate position status reports of vessels.   
-* enable the exchange of AIS messages between HLA Federate Applications in real-time and non-real-time platform-level simulation.   
-* allow HLA Federate Applications to use regular HLA interaction classes and parameters to represent vessel information and leave any translations to physical message formats to dedicated gateways.
+The purpose of the NATO Education and Training Network Automatic Identification System (NETN-AIS) module is to:
 
+* represent vessel traffic in a simulation using AIS messages to, for example, communicate position status reports of vessels.
+* enable the exchange of AIS messages between HLA Federate Applications in real-time and non-real-time platform-level simulation.
+* allow HLA Federate Applications to use regular HLA interaction classes and parameters to represent vessel information and leave any translations to physical message formats to dedicated gateways.
 
 AIS is a worldwide automated tracking system used for sharing vessel identification and location information by propagating messages between nearby vessels and Vessel Traffic Services stations.
 
 The NETN-AIS module is a simulation-oriented representation of AIS messages. It does not focus on the physical message format defined by the AIS standard ITU-R M.1371-5. However, the module is aligned with this standard to enable easy mapping to and from live message formats.
 
-## Overview 
- 
-The NETN-AIS module defines most AIS message types defined in ITU-R M.1371-5 [3] except for rarely used message types and message types related to traffic analysis in an AIS network, i.e. 15, 16, 20, 22, 23, 25 and 26. 
- 
-The most common message types are: 
-* Position Report Class A (message types 1,2, and 3) and 
-* Static and Voyage Related Data (message type 5). 
- 
- 
- 
-```mermaid 
+## Overview
+
+The NETN-AIS module defines most AIS message types defined in ITU-R M.1371-5 [3] except for rarely used message types and message types related to traffic analysis in an AIS network, i.e. 15, 16, 20, 22, 23, 25 and 26.
+
+The most common message types are:
+
+* Position Report Class A (message types 1,2, and 3) and
+* Static and Voyage Related Data (message type 5).
+
+```mermaid
 classDiagram 
 direction LR 
 HLAinteractionRoot <|-- RadioSignal 
@@ -55,123 +54,119 @@ AisStaticAndVoyageData : DimensionStern
 AisStaticAndVoyageData : Name 
 AisStaticAndVoyageData : ShipType 
  
-``` 
-The NETN-AIS interaction class structure is closely aligned with the message type specification in ITU-R M.1371-5, enabling easy translation to and from commonly used live protocols such as NMEA 0183. 
- 
-The `AIS_RadioSignal` interaction is a subclass of the RPR-FOM `RadioSignal` interaction and uses the `HostRadioIndex` parameter to reference a RPR-FOM `RadioTransmitter` object instance. 
- 
- 
- 
-### AIS Messages 
- 
-The following AIS message types are included: 
- 
-| Message type | Description | 
-| --- | --- | 
-| 1 | **Position Report Class A**. This is the message type for a scheduled position report; Class A shipborne mobile equipment. This message transmits information about a ship's navigation: longitude and latitude, time, heading, speed, and the ship's navigation status, e.g., under power, at anchor. It is transmitted every 2 to 10 seconds while underway and every 3 minutes while at anchor. | 
-| 2 | Same as 1.| 
-| 3 | Same as 1. | 
-| 4 | **Base Station Report**. Fixed-location base stations will use this message to report a position and time reference periodically. | 
-| 5 | **Static and Voyage-Related Data**. This message type is transmitted every 6 minutes and should only be used by Class A shipborne and SAR aircraft AIS stations when reporting static or voyage-related data. | 
-| 6 | **Binary Addressed Message**. This message type is an addressed point-to-point message with an unspecified binary payload. | 
-| 7 | **Binary Acknowledge**. This message type is a receipt acknowledgement to the senders of a previous message of message type 6. Total length varies depending on the number of destination MMSIs included (1..4). | 
-| 8 | **Binary Broadcast Message**. This message type is a broadcast message with a binary payload. | 
-| 9 | **Standard SAR Aircraft Position Report**. Tracking information for search-and-rescue aircraft. | 
-| 10 | **UTC/Date Inquiry**. Request for UTC/Date information from an AIS base station. | 
-| 11 | **UTC/Date Response**. This message type is identical to message type 4 and has the semantics of a response to an inquiry. It is only transmitted from a mobile station as a result of a UTC request message (message type 10). | 
-| 12 | **Addressed Safety-Related Message**. This is a point-to-point text message. The payload is interpreted as a six-bit text. | 
-| 13 | **Safety-Related Acknowledgement**. This message type is a receipt acknowledgement to senders of previous messages of message type 12. | 
-| 14 | **Safety-Related Broadcast Message**. This is a broadcast text message. The payload is interpreted as a six-bit text. | 
-| 17 | **DGNSS Broadcast Binary Message**. This message type is used to broadcast differential corrections for GPS. The data in the payload is intended to be passed directly to GPS receivers capable of accepting such corrections. | 
-| 18 | **Standard Class B CS Position Report**. This is a less detailed report than message types 1-3 for vessels using Class B transmitters. The navigational status and rate of turn are not included in this message type. | 
-| 19 | **Extended Class B CS Position Report**. This is a slightly more detailed report than message type 18 for vessels using Class B transmitters. The navigational status and rate of turn are not included in this message type. The fields are defined in the common navigation block and the message type 5 message. | 
-| 21 | **Aid-to-Navigation Report**. Aids for navigation, such as buoys and lighthouses, emit an identification and location message. | 
-| 24 | **Static Data Report**. This is the equivalent of message type 5 for ships using Class B equipment. It is also used to associate an MMSI with a name on either class A or class B equipment. This message type may be in part A or part B format. According to the standard, parts A and B are expected to be broadcast in adjacent pairs.| 
-| 27 | **Long Range AIS Broadcast Message**. This message type is primarily intended for long-range detection of AIS Class A equipped vessels (typically by satellite). It has similar content to messages 1, 2 and 3, but the total number of bits is compressed to allow for increased propagation delays associated with long-range detection. | 
- 
- 
-Many `AisMessage` class parameters are optional with a default value. However, the following parameters should be provided if possible: 
- 
-* Position: Geodetic location. 
-* UTCtime: Time of the report in UTC. 
- 
- 
-Note that the AIS position defined as a `GeodeticLocation` differs from ITU-R M.1371-5, where longitude and latitude are represented in 1/10 000 min and stored in a 28- and 27-bit field, respectively. 
- 
-#### Encoding of a Six-Bit Character String 
- 
-Several parameters in AIS use six-bit character strings, e.g., vessel name and callsign. In NETN-AIS, the parameter data type of a six-bit character string is `HLAASCIIstring`. The following table shows the mapping of ASCII characters to the AIS six-bit character. 
- 
-| six-bit | dec | char | six-bit | dec | char | six-bit | dec | char | six-bit | dec | char | 
-| ------ | ---- | ---- | ------ | ---- | ---- | ------ | ---- | ---- | ------ | ---- | ---- | 
-| 000000 | 0 | "@" | 010000 | 16 | "P" | 100000 | 32 | " " | 110000 | 48 | "0" | 
-| 000001 | 1 | "A" | 010001 | 17 | "Q" | 100001 | 33 | "!" | 110001 | 49 | "1" | 
-| 000010 | 2 | "B" | 010010 | 18 | "R" | 100010 | 34 | """ | 110010 | 50 | "2" | 
-| 000011 | 3 | "C" | 010011 | 19 | "S" | 100011 | 35 | "\#" | 110011 | 51 | "3" | 
-| 000100 | 4 | "D" | 010100 | 20 | "T" | 100100 | 36 | "$" | 110100 | 52 | "4" | 
-| 000101 | 5 | "E" | 010101 | 21 | "U" | 100101 | 37 | "%" | 110101 | 53 | "5" | 
-| 000110 | 6 | "F" | 010110 | 22 | "V" | 100110 | 38 | "&" | 110110 | 54 | "6" | 
-| 000111 | 7 | "G" | 010111 | 23 | "W" | 100111 | 39 | "\'" | 110111 | 55 | "7" | 
-| 001000 | 8 | "H" | 011000 | 24 | "X" | 101000 | 40 | "(" | 111000 | 56 | "8" | 
-| 001001 | 9 | "I" | 011001 | 25 | "Y" | 101001 | 41 | ")" | 111001 | 56 | "9" | 
-| 001010 | 10 | "J" | 011010 | 26 | "Z" | 101010 | 42 | "\*" | 111010 | 58 | ":" | 
-| 001011 | 11 | "K" | 011011 | 27 | "[" | 101011 | 43 | "\+" | 111011 | 59 | ";" | 
-| 001100 | 12 | "L" | 011100 | 28 | "\" | 101100 | 44 | "," | 111100 | 60 | "<" | 
-| 001101 | 13 | "M" | 011101 | 29 | "]" | 101101 | 45 | "-" | 111101 | 61 | "=" | 
-| 001110 | 14 | "N" | 011110 | 30 | "\^" | 101110 | 46 | "." | 111110 | 62 | ">" | 
-| 001111 | 15 | "O" | 011111 | 31 | "\_" | 101111 | 47 | "/" | 111111 | 63 | "?" | 
- 
-#### RadioTransmitter 
- 
-An `AIS_RadioSignal` can be associated with a `RadioTransmitter` object instance. The required attributes of the `RadioTransmitter` object instance can be assigned the following values: 
- 
-| Attribute | Semantics | Value | 
-| --- | --- | --- | 
-| Frequency | The center frequency of the radio transmissions is specified in Herz. | `162000000` Hz | 
-| FrequencyBandwidth | The bandwidth of the radio transmissions is specified in Hertz. | `25000` Hz | 
-| RadioIndex | Specifies the identification number for each radio on a given host. This value shall not change during simulation execution. | Per agreement. If the `RadioTransmitter` is the only radio for the vessel, the index `0` should be used. | 
-| RadioSystemType | Entity type of the radio transmitter: Kind, Domain, Country, Category. This value shall not change during simulation execution. Note that no further refinement of the type (subcategory etc.) is defined. The Country value `0` should be replaced by the actual value. | `7.3.0.37` | 
-| TransmittedPower | The average power being transmitted in units of decibel-milliwatts. | `12.5` watts for class A (`41` dBm), `5` watts for class B/SO (`37` dBm), and `2` watts for class B/CS (`33` dBm). | 
-| TransmitterOperationalStatus | On/Off state of the transmitter as an enumeration. | `Off`, `OnButNotTransmitting` or `OnAndTransmitting` | 
-| WorldLocation | Location of the antenna in world coordinates. | The vessel position. | 
- 
-### NETN-ETR Extensions 
- 
-The NETN-AIS FOM module covers the following: 
- 
-* AIS messages are represented as `AisMessage` interactions extending the RPR-Communication FOM Module `RadioSignal` interaction class. 
-* AIS-specific entity tasking interactions that extend the NETN-ETR FOM module `Task` interaction class. 
-* AIS stations are represented as `AisEquipmentItem` objects that extend `EquipmentItem` defined in the NETN-ORG FOM module. 
- 
- 
-The NETN-ETR `Task` extensions are summarized in the following table. 
- 
-| Name | Semantics | 
-| --- | --- | 
-| SendSafetyRelatedMessage | Task a simulated entity (the source) with sending a safety-related message (AIS message type 12) to another entity (the destination). Both the source and destination must represent an AIS station.| 
-| SendSafetyRelatedBroadcastMessage | Task a simulated entity (the source) with sending a safety-related broadcast message (AIS message type 14). The source must represent an AIS station. | 
- 
-### NETN-ORG Extensions 
- 
-The NETN-ORG `Equipment` extensions are summarized in the following table. 
- 
-|Name|Semantics| 
-|---|---| 
-|AIS_Equipment|This class defines attributes for all AIS equipment.| 
-|Vessel|This class defines additional attributes for vessel equipment.| 
-|SARaircraft|This class defines additional attributes for SAR aircraft equipment.| 
-|Basestation|This class defines additional attributes for base station equipment.| 
-|AidToNavigation|This class defines additional attributes for aid-to-navigation (ATON) equipment.| 
- 
-The `AIS_Equipment` defines, amongst others, the `RadioSystemType` of the AIS station. The `RadioSystemType` should be used by the federate to initialize the `RadioTransmitter` object instance. Entity type values that may be used for the `RadioSystemType` are: 
- 
-- `7.3.0.37.0.0.0` for a default AIS transmitter related to the AIS station 
-- `7.3.0.37.1.0.0` for a class A transmitter 
-- `7.3.0.37.2.0.0` for a class B/SO (Self-Organizing) transmitter 
-- `7.3.0.37.3.0.0` for a class B/CS (Carrier-Sense) transmitter 
- 
-See Radio Kind in the SISO Enumerations for categories. Adding a subcategory makes it possible to identify the specific type of transmitter. These non-standard subcategory values should be defined as part of the federation agreements. The country code value 0 in this example should be replaced by the appropriate value. 
- 
+```
+
+The NETN-AIS interaction class structure is closely aligned with the message type specification in ITU-R M.1371-5, enabling easy translation to and from commonly used live protocols such as NMEA 0183.
+
+The `AIS_RadioSignal` interaction is a subclass of the RPR-FOM `RadioSignal` interaction and uses the `HostRadioIndex` parameter to reference a RPR-FOM `RadioTransmitter` object instance.
+
+### AIS Messages
+
+The following AIS message types are included:
+
+| Message type | Description |
+| --- | --- |
+| 1 | **Position Report Class A**. This is the message type for a scheduled position report; Class A shipborne mobile equipment. This message transmits information about a ship's navigation: longitude and latitude, time, heading, speed, and the ship's navigation status, e.g., under power, at anchor. It is transmitted every 2 to 10 seconds while underway and every 3 minutes while at anchor. |
+| 2 | Same as 1. |
+| 3 | Same as 1. |
+| 4 | **Base Station Report**. Fixed-location base stations will use this message to report a position and time reference periodically. |
+| 5 | **Static and Voyage-Related Data**. This message type is transmitted every 6 minutes and should only be used by Class A shipborne and SAR aircraft AIS stations when reporting static or voyage-related data. |
+| 6 | **Binary Addressed Message**. This message type is an addressed point-to-point message with an unspecified binary payload. |
+| 7 | **Binary Acknowledge**. This message type is a receipt acknowledgement to the senders of a previous message of message type 6. Total length varies depending on the number of destination MMSIs included (1..4). |
+| 8 | **Binary Broadcast Message**. This message type is a broadcast message with a binary payload. |
+| 9 | **Standard SAR Aircraft Position Report**. Tracking information for search-and-rescue aircraft. |
+| 10 | **UTC/Date Inquiry**. Request for UTC/Date information from an AIS base station. |
+| 11 | **UTC/Date Response**. This message type is identical to message type 4 and has the semantics of a response to an inquiry. It is only transmitted from a mobile station as a result of a UTC request message (message type 10). |
+| 12 | **Addressed Safety-Related Message**. This is a point-to-point text message. The payload is interpreted as a six-bit text. |
+| 13 | **Safety-Related Acknowledgement**. This message type is a receipt acknowledgement to senders of previous messages of message type 12. |
+| 14 | **Safety-Related Broadcast Message**. This is a broadcast text message. The payload is interpreted as a six-bit text. |
+| 17 | **DGNSS Broadcast Binary Message**. This message type is used to broadcast differential corrections for GPS. The data in the payload is intended to be passed directly to GPS receivers capable of accepting such corrections. |
+| 18 | **Standard Class B CS Position Report**. This is a less detailed report than message types 1-3 for vessels using Class B transmitters. The navigational status and rate of turn are not included in this message type. |
+| 19 | **Extended Class B CS Position Report**. This is a slightly more detailed report than message type 18 for vessels using Class B transmitters. The navigational status and rate of turn are not included in this message type. The fields are defined in the common navigation block and the message type 5 message. |
+| 21 | **Aid-to-Navigation Report**. Aids for navigation, such as buoys and lighthouses, emit an identification and location message. |
+| 24 | **Static Data Report**. This is the equivalent of message type 5 for ships using Class B equipment. It is also used to associate an MMSI with a name on either class A or class B equipment. This message type may be in part A or part B format. According to the standard, parts A and B are expected to be broadcast in adjacent pairs. |
+| 27 | **Long Range AIS Broadcast Message**. This message type is primarily intended for long-range detection of AIS Class A equipped vessels (typically by satellite). It has similar content to messages 1, 2 and 3, but the total number of bits is compressed to allow for increased propagation delays associated with long-range detection. |
+
+Many `AisMessage` class parameters are optional with a default value. However, the following parameters should be provided if possible:
+
+* Position: Geodetic location.
+* UTCtime: Time of the report in UTC.
+
+Note that the AIS position defined as a `GeodeticLocation` differs from ITU-R M.1371-5, where longitude and latitude are represented in 1/10 000 min and stored in a 28- and 27-bit field, respectively.
+
+#### Encoding of a Six-Bit Character String
+
+Several parameters in AIS use six-bit character strings, e.g., vessel name and callsign. In NETN-AIS, the parameter data type of a six-bit character string is `HLAASCIIstring`. The following table shows the mapping of ASCII characters to the AIS six-bit character.
+
+| six-bit | dec | char | six-bit | dec | char | six-bit | dec | char | six-bit | dec | char |
+| ------ | ---- | ---- | ------ | ---- | ---- | ------ | ---- | ---- | ------ | ---- | ---- |
+| 000000 | 0 | "@" | 010000 | 16 | "P" | 100000 | 32 | " " | 110000 | 48 | "0" |
+| 000001 | 1 | "A" | 010001 | 17 | "Q" | 100001 | 33 | "!" | 110001 | 49 | "1" |
+| 000010 | 2 | "B" | 010010 | 18 | "R" | 100010 | 34 | """ | 110010 | 50 | "2" |
+| 000011 | 3 | "C" | 010011 | 19 | "S" | 100011 | 35 | "\#" | 110011 | 51 | "3" |
+| 000100 | 4 | "D" | 010100 | 20 | "T" | 100100 | 36 | "$" | 110100 | 52 | "4" |
+| 000101 | 5 | "E" | 010101 | 21 | "U" | 100101 | 37 | "%" | 110101 | 53 | "5" |
+| 000110 | 6 | "F" | 010110 | 22 | "V" | 100110 | 38 | "&" | 110110 | 54 | "6" |
+| 000111 | 7 | "G" | 010111 | 23 | "W" | 100111 | 39 | "\'" | 110111 | 55 | "7" |
+| 001000 | 8 | "H" | 011000 | 24 | "X" | 101000 | 40 | "(" | 111000 | 56 | "8" |
+| 001001 | 9 | "I" | 011001 | 25 | "Y" | 101001 | 41 | ")" | 111001 | 56 | "9" |
+| 001010 | 10 | "J" | 011010 | 26 | "Z" | 101010 | 42 | "\*" | 111010 | 58 | ":" |
+| 001011 | 11 | "K" | 011011 | 27 | "[" | 101011 | 43 | "\+" | 111011 | 59 | ";" |
+| 001100 | 12 | "L" | 011100 | 28 | "\" | 101100 | 44 | "," | 111100 | 60 | "<" |
+| 001101 | 13 | "M" | 011101 | 29 | "]" | 101101 | 45 | "-" | 111101 | 61 | "=" |
+| 001110 | 14 | "N" | 011110 | 30 | "\^" | 101110 | 46 | "." | 111110 | 62 | ">" |
+| 001111 | 15 | "O" | 011111 | 31 | "\_" | 101111 | 47 | "/" | 111111 | 63 | "?" |
+
+#### RadioTransmitter
+
+An `AIS_RadioSignal` can be associated with a `RadioTransmitter` object instance. The required attributes of the `RadioTransmitter` object instance can be assigned the following values:
+
+| Attribute | Semantics | Value |
+| --- | --- | --- |
+| Frequency | The center frequency of the radio transmissions is specified in Herz. | `162000000` Hz |
+| FrequencyBandwidth | The bandwidth of the radio transmissions is specified in Hertz. | `25000` Hz |
+| RadioIndex | Specifies the identification number for each radio on a given host. This value shall not change during simulation execution. | Per agreement. If the `RadioTransmitter` is the only radio for the vessel, the index `0` should be used. |
+| RadioSystemType | Entity type of the radio transmitter: Kind, Domain, Country, Category. This value shall not change during simulation execution. Note that no further refinement of the type (subcategory etc.) is defined. The Country value `0` should be replaced by the actual value. | `7.3.0.37` |
+| TransmittedPower | The average power being transmitted in units of decibel-milliwatts. | `12.5` watts for class A (`41` dBm), `5` watts for class B/SO (`37` dBm), and `2` watts for class B/CS (`33` dBm). |
+| TransmitterOperationalStatus | On/Off state of the transmitter as an enumeration. | `Off`, `OnButNotTransmitting` or `OnAndTransmitting` |
+| WorldLocation | Location of the antenna in world coordinates. | The vessel position. |
+
+### NETN-ETR Extensions
+
+The NETN-AIS FOM module covers the following:
+
+* AIS messages are represented as `AisMessage` interactions extending the RPR-Communication FOM Module `RadioSignal` interaction class.
+* AIS-specific entity tasking interactions that extend the NETN-ETR FOM module `Task` interaction class.
+* AIS stations are represented as `AisEquipmentItem` objects that extend `EquipmentItem` defined in the NETN-ORG FOM module.
+
+The NETN-ETR `Task` extensions are summarized in the following table.
+
+| Name | Semantics |
+| --- | --- |
+| SendSafetyRelatedMessage | Task a simulated entity (the source) with sending a safety-related message (AIS message type 12) to another entity (the destination). Both the source and destination must represent an AIS station. |
+| SendSafetyRelatedBroadcastMessage | Task a simulated entity (the source) with sending a safety-related broadcast message (AIS message type 14). The source must represent an AIS station. |
+
+### NETN-ORG Extensions
+
+The NETN-ORG `Equipment` extensions are summarized in the following table.
+
+|Name|Semantics|
+|---|---|
+|AIS_Equipment|This class defines attributes for all AIS equipment.|
+|Vessel|This class defines additional attributes for vessel equipment.|
+|SARaircraft|This class defines additional attributes for SAR aircraft equipment.|
+|Basestation|This class defines additional attributes for base station equipment.|
+|AidToNavigation|This class defines additional attributes for aid-to-navigation (ATON) equipment.|
+
+The `AIS_Equipment` defines, amongst others, the `RadioSystemType` of the AIS station. The `RadioSystemType` should be used by the federate to initialize the `RadioTransmitter` object instance. Entity type values that may be used for the `RadioSystemType` are:
+
+* `7.3.0.37.0.0.0` for a default AIS transmitter related to the AIS station
+* `7.3.0.37.1.0.0` for a class A transmitter
+* `7.3.0.37.2.0.0` for a class B/SO (Self-Organizing) transmitter
+* `7.3.0.37.3.0.0` for a class B/CS (Carrier-Sense) transmitter
+
+See Radio Kind in the SISO Enumerations for categories. Adding a subcategory makes it possible to identify the specific type of transmitter. These non-standard subcategory values should be defined as part of the federation agreements. The country code value 0 in this example should be replaced by the appropriate value.
+
 In addition, the NETN-ORG MSDL schema is extended with an AIS schema. This enables persistent storage of AIS-related ORBAT data in the same file as the rest of the ORBAT data.
 
 ## Patterns for Initialization
@@ -184,18 +179,18 @@ Below are patterns for initializing the `PhysicalEntity` attributes `Marking` an
 
 When using the AIS NETN-ORG extension for initialization, the entity `Marking` and `Callsign` get initial values using the NETN-ORG initialization data.
 
-|  Physical Entity attribute | Initialized with|
+| Physical Entity attribute | Initialized with |
 | --- | --- |
-| `Marking` | NETN-ORG `Equipment.Name`|
-| `Callsign`| NETN-ORG `AIS_Equipment.Callsign`|
+| `Marking` | NETN-ORG `Equipment.Name` |
+| `Callsign` | NETN-ORG `AIS_Equipment.Callsign` |
 
 ### Using NETN-ORG
 
 If no NETN-ORG AIS initialization data is available, the NETN-ORG `Equipment.Name` is used as the entity `Callsign` value. The federate owning the `Marking` attribute provides its value.
 
-| NETN Physical Entity attribute | Initialized with|
+| NETN Physical Entity attribute | Initialized with |
 | --- | --- |
-| `Marking` | A marking value provided by the federate owning the `Marking` attribute|
+| `Marking` | A marking value provided by the federate owning the `Marking` attribute |
 | `Callsign` | NETN-ORG `Equipment.Name`, an AIS Callsign value |
 
 ### Not Using NETN-ORG
@@ -204,11 +199,8 @@ If no NETN-ORG initialization data is available or used, the `Marking` is set to
 
 | NETN Physical Entity attribute | Initialized with |
 | --- | --- |
-| `Marking`| AIS MMSI value provided by the federate owning the `Marking` attribute |
+| `Marking` | AIS MMSI value provided by the federate owning the `Marking` attribute |
 | `Callsign` | (1) AIS Callsign value provided by the entity owner, or (2) not used/not published |
-
-
-
 
 ## Object Classes
 
@@ -258,12 +250,12 @@ This class defines additional attributes for AIS equipment. Depending on the kin
 |MMSI|MMSIInteger32|Optional. The MMSI (Maritime Mobile Service Identity) number of the AIS station. If the value is not provided, the subscribing federate that is responsible for the modelling of the AIS station shall generate a value. Note that the value of each AIS station must be unique across all AIS stations in the simulation. Reuse of MMSI numbers is not advised since some systems may retain dead tracks for some time.|
 |RadioSystemType|EntityTypeStruct|Optional. The type of transmitter. If the value is not provided, the subscribing federate that is responsible for the modelling of the AIS station shall determine the type of transmitter.|
 |TransmitterStatus|TransmitterOperationalStatusEnum8|Optional. The initial status of the AIS Transmitter(s) of the AIS station. If the value is not provided, it shall be assumed to be ON.|
-|EntityType<br/>(NETN-ORG)|EntityTypeStruct|Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.| 
-|Name<br/>(NETN-ORG)|HLAunicodeString|Required. A unique name.| 
-|Organization<br/>(NETN-ORG)|UUID|Required. A reference to the organization that the element is affiliated with.| 
-|SuperiorUnit<br/>(NETN-ORG)|UUID|Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).| 
-|Symbol<br/>(NETN-ORG)|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.| 
-|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
+|EntityType<br/>(NETN-ORG)|EntityTypeStruct|Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.|
+|Name<br/>(NETN-ORG)|HLAunicodeString|Required. A unique name.|
+|Organization<br/>(NETN-ORG)|UUID|Required. A reference to the organization that the element is affiliated with.|
+|SuperiorUnit<br/>(NETN-ORG)|UUID|Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).|
+|Symbol<br/>(NETN-ORG)|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.|
+|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.|
 
 ### Vessel
 
@@ -282,12 +274,12 @@ This class defines additional attributes for vessel equipment.
 |RadioSystemType|EntityTypeStruct|Optional. The type of transmitter. If the value is not provided, the subscribing federate that is responsible for the modelling of the AIS station shall determine the type of transmitter.|
 |ShipType|ShipTypeEnum8|Optional. The type of vessel.|
 |TransmitterStatus|TransmitterOperationalStatusEnum8|Optional. The initial status of the AIS Transmitter(s) of the AIS station. If the value is not provided, it shall be assumed to be ON.|
-|EntityType<br/>(NETN-ORG)|EntityTypeStruct|Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.| 
-|Name<br/>(NETN-ORG)|HLAunicodeString|Required. A unique name.| 
-|Organization<br/>(NETN-ORG)|UUID|Required. A reference to the organization the element is affiliated with.| 
-|SuperiorUnit<br/>(NETN-ORG)|UUID|Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).| 
-|Symbol<br/>(NETN-ORG)|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.| 
-|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
+|EntityType<br/>(NETN-ORG)|EntityTypeStruct|Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.|
+|Name<br/>(NETN-ORG)|HLAunicodeString|Required. A unique name.|
+|Organization<br/>(NETN-ORG)|UUID|Required. A reference to the organization the element is affiliated with.|
+|SuperiorUnit<br/>(NETN-ORG)|UUID|Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).|
+|Symbol<br/>(NETN-ORG)|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.|
+|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.|
 
 ### SARaircraft
 
@@ -299,12 +291,12 @@ This class defines additional attributes for SAR aircraft equipment.
 |MMSI|MMSIInteger32|Optional. The MMSI (Maritime Mobile Service Identity) number of the AIS station. If the value is not provided, the subscribing federate that is responsible for the modelling of the AIS station shall generate a value. Note that the value of each AIS station must be unique across all AIS stations in the simulation. Reuse of MMSI numbers if not advised since some systems may retain dead tracks for some time.|
 |RadioSystemType|EntityTypeStruct|Optional. The type of transmitter. If the value is not provided, the subscribing federate that is responsible for the modelling of the AIS station shall determine the type of transmitter.|
 |TransmitterStatus|TransmitterOperationalStatusEnum8|Optional. The initial status of the AIS Transmitter(s) of the AIS station. If the value is not provided then the value shall be assumed to be ON.|
-|EntityType<br/>(NETN-ORG)|EntityTypeStruct|Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.| 
-|Name<br/>(NETN-ORG)|HLAunicodeString|Required. A unique name.| 
-|Organization<br/>(NETN-ORG)|UUID|Required. A reference to the organization the element is affiliated with.| 
-|SuperiorUnit<br/>(NETN-ORG)|UUID|Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).| 
-|Symbol<br/>(NETN-ORG)|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.| 
-|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
+|EntityType<br/>(NETN-ORG)|EntityTypeStruct|Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.|
+|Name<br/>(NETN-ORG)|HLAunicodeString|Required. A unique name.|
+|Organization<br/>(NETN-ORG)|UUID|Required. A reference to the organization the element is affiliated with.|
+|SuperiorUnit<br/>(NETN-ORG)|UUID|Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).|
+|Symbol<br/>(NETN-ORG)|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.|
+|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.|
 
 ### Basestation
 
@@ -316,12 +308,12 @@ This class defines additional attributes for base station equipment.
 |MMSI|MMSIInteger32|Optional. The MMSI (Maritime Mobile Service Identity) number of the AIS station. If the value is not provided, the subscribing federate that is responsible for the modelling of the AIS station shall generate a value. Note that the value of each AIS station must be unique across all AIS stations in the simulation. Reuse of MMSI numbers if not advised since some systems may retain dead tracks for some time.|
 |RadioSystemType|EntityTypeStruct|Optional. The type of transmitter. If the value is not provided, the subscribing federate that is responsible for the modelling of the AIS station shall determine the type of transmitter.|
 |TransmitterStatus|TransmitterOperationalStatusEnum8|Optional. The initial status of the AIS Transmitter(s) of the AIS station. If the value is not provided, it shall be assumed to be ON.|
-|EntityType<br/>(NETN-ORG)|EntityTypeStruct|Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.| 
-|Name<br/>(NETN-ORG)|HLAunicodeString|Required. A unique name.| 
-|Organization<br/>(NETN-ORG)|UUID|Required. A reference to the organization the element is affiliated with.| 
-|SuperiorUnit<br/>(NETN-ORG)|UUID|Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).| 
-|Symbol<br/>(NETN-ORG)|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.| 
-|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
+|EntityType<br/>(NETN-ORG)|EntityTypeStruct|Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.|
+|Name<br/>(NETN-ORG)|HLAunicodeString|Required. A unique name.|
+|Organization<br/>(NETN-ORG)|UUID|Required. A reference to the organization the element is affiliated with.|
+|SuperiorUnit<br/>(NETN-ORG)|UUID|Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).|
+|Symbol<br/>(NETN-ORG)|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.|
+|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.|
 
 ### AidToNavigation
 
@@ -338,12 +330,12 @@ This class defines additional attributes for aid to navigation (ATON) equipment.
 |MMSI|MMSIInteger32|Optional. The MMSI (Maritime Mobile Service Identity) number of the AIS station. If the value is not provided, the subscribing federate that is responsible for the modelling of the AIS station shall generate a value. Note that the value of each AIS station must be unique across all AIS stations in the simulation. Reuse of MMSI numbers if not advised since some systems may retain dead tracks for some time.|
 |RadioSystemType|EntityTypeStruct|Optional. The type of transmitter. If the value is not provided, the subscribing federate that is responsible for the modelling of the AIS station shall determine the type of transmitter.|
 |TransmitterStatus|TransmitterOperationalStatusEnum8|Optional. The initial status of the AIS Transmitter(s) of the AIS station. If the value is not provided, it shall be assumed to be ON.|
-|EntityType<br/>(NETN-ORG)|EntityTypeStruct|Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.| 
-|Name<br/>(NETN-ORG)|HLAunicodeString|Required. A unique name.| 
-|Organization<br/>(NETN-ORG)|UUID|Required. A reference to the organization the element is affiliated with.| 
-|SuperiorUnit<br/>(NETN-ORG)|UUID|Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).| 
-|Symbol<br/>(NETN-ORG)|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.| 
-|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
+|EntityType<br/>(NETN-ORG)|EntityTypeStruct|Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0.|
+|Name<br/>(NETN-ORG)|HLAunicodeString|Required. A unique name.|
+|Organization<br/>(NETN-ORG)|UUID|Required. A reference to the organization the element is affiliated with.|
+|SuperiorUnit<br/>(NETN-ORG)|UUID|Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit).|
+|Symbol<br/>(NETN-ORG)|SymbolStruct|Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code.|
+|UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.|
 
 ## Interaction Classes
 
@@ -496,8 +488,8 @@ Message types 1, 2 and 3 share a common reporting structure for navigational dat
 
 ### AisMessage1
 
-Message type 1: Position Report Class A. 
- 
+Message type 1: Position Report Class A.
+
 Message type for a scheduled position report: Class A shipborne mobile equipment. This message transmits information pertaining to a ship's navigation: longitude and latitude, time, heading, speed, the ship's navigation status (under power, at anchor...). This message is transmitted every 2 to 10 seconds while underway, and every 3 minutes while at anchor.
 
 |Parameter|Datatype|Semantics|
@@ -516,8 +508,8 @@ Message type for a scheduled position report: Class A shipborne mobile equipment
 
 ### AisMessage2
 
-Message type 2: Position Report Class A. 
- 
+Message type 2: Position Report Class A.
+
 Message type for an assigned scheduled position report: Class A shipborne mobile equipment. This message transmits information pertaining to a ship's navigation: longitude and latitude, time, heading, speed, the ship's navigation status (under power, at anchor...). This message is transmitted every 2 to 10 seconds while underway, and every 3 minutes while at anchor.
 
 |Parameter|Datatype|Semantics|
@@ -536,8 +528,8 @@ Message type for an assigned scheduled position report: Class A shipborne mobile
 
 ### AisMessage3
 
-Message type 3: Position Report Class A. 
- 
+Message type 3: Position Report Class A.
+
 Message type for a special position report, response to interrogation; Class A shipborne mobile equipment. This message transmits information pertaining to a ship's navigation: Longitude and latitude, time, heading, speed, the ship's navigation status (under power, at anchor...). This message is transmitted every 2 to 10 seconds while underway, and every 3 minutes while at anchor.
 
 |Parameter|Datatype|Semantics|
@@ -568,8 +560,8 @@ Common reporting structure for message types 4 and 11 for reporting UTC time and
 
 ### AisMessage4
 
-Message type 4: Base Station Report. 
- 
+Message type 4: Base Station Report.
+
 This message is to be used by fixed-location base stations to periodically report a position and time reference.
 
 |Parameter|Datatype|Semantics|
@@ -582,15 +574,15 @@ This message is to be used by fixed-location base stations to periodically repor
 
 ### AisMessage11
 
-Message type 11: UTC/Date Response. 
- 
+Message type 11: UTC/Date Response.
+
 Identical to message type 4, with the semantics of a response to inquiry. This message type is only transmitted from a mobile station as a result of a UTC request message (message type 10).
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
 |HostRadioIndex|RTIobjectId|Optional (Default: not available). The HostRadioIndex is a unique string that identifies the name of the RadioTransmitter object.|
 |MessageId|MsgIdEnum8|Required. Message type identifier.|
-|Position|GeodeticLocation|Optional (Default: not available). AIS ((latitude and longitude) position.|
+|Position|GeodeticLocation|Optional (Default: not available). AIS (latitude and longitude) position.|
 |UTCtime|EpochTime|Optional (Default: not available). Time of report.|
 |UserId|MMSIInteger32|Required. The message is from the vessel identified by this MMSI.|
 
@@ -613,8 +605,8 @@ Common Static and Voyage Data for message types 5, 19 and 24.
 
 ### AisMessage5
 
-Message type 5: Static and Voyage-Related Data. 
- 
+Message type 5: Static and Voyage-Related Data.
+
 This message type is transmitted every 6 minutes and should only be used by Class A shipborne and SAR aircraft AIS stations when reporting static or voyage-related data.
 
 |Parameter|Datatype|Semantics|
@@ -636,8 +628,8 @@ This message type is transmitted every 6 minutes and should only be used by Clas
 
 ### AisMessage19
 
-Message type 19: Extended Class B CS Position Report. 
- 
+Message type 19: Extended Class B CS Position Report.
+
 A slightly more detailed report than message type 18 for vessels using Class B transmitters. Omits navigational status and rate of turn. Fields are as in the common navigation block and the message type 5 message.
 
 |Parameter|Datatype|Semantics|
@@ -660,8 +652,8 @@ A slightly more detailed report than message type 18 for vessels using Class B t
 
 ### AisMessage24
 
-Message type 24: Static Data Report. 
- 
+Message type 24: Static Data Report.
+
 The equivalent of message type 5 for ships using Class B equipment. Also used to associate an MMSI with a name on either class A or class B equipment. This message type may be in part A or part B format. According to the standard, parts A and B are expected to be broadcast in adjacent pairs.
 
 |Parameter|Datatype|Semantics|
@@ -683,9 +675,10 @@ The equivalent of message type 5 for ships using Class B equipment. Also used to
 
 ### AisBinaryMessageData
 
-Binary payload for message types 6 and 8. The interpretation of the binary payload is controlled by: 
-- The Designated Area Code (DAC), a jurisdiction code. 366 for the United States. It uses the same encoding as the area designator in MMMSIs, see [ITU-MID]. 1 designates international (ITU) messages. 
-- The FID is the Functional ID for a message subtype. In some sources, this is abbreviated FI.
+Binary payload for message types 6 and 8. The interpretation of the binary payload is controlled by:
+
+* The Designated Area Code (DAC), a jurisdiction code. 366 for the United States. It uses the same encoding as the area designator in MMMSIs, see [ITU-MID]. 1 designates international (ITU) messages.
+* The FID is the Functional ID for a message subtype. In some sources, this is abbreviated FI.
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
@@ -698,8 +691,8 @@ Binary payload for message types 6 and 8. The interpretation of the binary paylo
 
 ### AisMessage6
 
-Message type 6: Binary Addressed Message. 
- 
+Message type 6: Binary Addressed Message.
+
 This message type is an addressed point-to-point message with a binary payload.
 
 |Parameter|Datatype|Semantics|
@@ -714,8 +707,8 @@ This message type is an addressed point-to-point message with a binary payload.
 
 ### AisMessage8
 
-Message type 8: Binary Broadcast Message. 
- 
+Message type 8: Binary Broadcast Message.
+
 This message type is a broadcast message with a binary payload.
 
 |Parameter|Datatype|Semantics|
@@ -743,8 +736,8 @@ Acknowledge data for message types 7 and 13.
 
 ### AisMessage7
 
-Message type 7: Binary Acknowledge. 
- 
+Message type 7: Binary Acknowledge.
+
 This message type is a receipt acknowledgement to the senders of a previous messages of message type 6. Up to 4 destination MMSIs can be acknowledged in one message.
 
 |Parameter|Datatype|Semantics|
@@ -759,8 +752,8 @@ This message type is a receipt acknowledgement to the senders of a previous mess
 
 ### AisMessage13
 
-Message type 13: Safety-Related Acknowledgement. 
- 
+Message type 13: Safety-Related Acknowledgement.
+
 This message type is a receipt acknowledgement to senders of previous messages of message type 12.
 
 |Parameter|Datatype|Semantics|
@@ -775,8 +768,8 @@ This message type is a receipt acknowledgement to senders of previous messages o
 
 ### AisMessage9
 
-Message type 9: Standard SAR Aircraft Position Report. 
- 
+Message type 9: Standard SAR Aircraft Position Report.
+
 Tracking information for search-and-rescue aircraft.
 
 |Parameter|Datatype|Semantics|
@@ -792,8 +785,8 @@ Tracking information for search-and-rescue aircraft.
 
 ### AisMessage10
 
-Message type 10: UTC/Date Inquiry. 
- 
+Message type 10: UTC/Date Inquiry.
+
 Request for UTC/Date information from an AIS base station.
 
 |Parameter|Datatype|Semantics|
@@ -805,8 +798,8 @@ Request for UTC/Date information from an AIS base station.
 
 ### AisMessage12
 
-Message type 12: Addressed Safety-Related Message. 
- 
+Message type 12: Addressed Safety-Related Message.
+
 This is a point-to-point text message. The payload is interpreted as six-bit text.
 
 |Parameter|Datatype|Semantics|
@@ -819,8 +812,8 @@ This is a point-to-point text message. The payload is interpreted as six-bit tex
 
 ### AisMessage14
 
-Message type 14: Safety-Related Broadcast Message. 
- 
+Message type 14: Safety-Related Broadcast Message.
+
 This is a broadcast text message. The payload is interpreted as six-bit text.
 
 |Parameter|Datatype|Semantics|
@@ -832,8 +825,8 @@ This is a broadcast text message. The payload is interpreted as six-bit text.
 
 ### AisMessage17
 
-Message type 17: DGNSS Broadcast Binary Message. 
- 
+Message type 17: DGNSS Broadcast Binary Message.
+
 This message type is used to broadcast differential corrections for GPS.
 
 |Parameter|Datatype|Semantics|
@@ -845,8 +838,8 @@ This message type is used to broadcast differential corrections for GPS.
 
 ### AisMessage18
 
-Message type 18: Standard Class B CS Position Report. 
- 
+Message type 18: Standard Class B CS Position Report.
+
 A less detailed report than message types 1-3 for vessels using Class B transmitters. Omits navigational status and rate of turn.
 
 |Parameter|Datatype|Semantics|
@@ -862,8 +855,8 @@ A less detailed report than message types 1-3 for vessels using Class B transmit
 
 ### AisMessage21
 
-Message type 21: Aid-to-Navigation Report. 
- 
+Message type 21: Aid-to-Navigation Report.
+
 Identification and location message to be emitted by aids to navigation such as buoys and lighthouses.
 
 |Parameter|Datatype|Semantics|
@@ -884,8 +877,8 @@ Identification and location message to be emitted by aids to navigation such as 
 
 ### AisMessage27
 
-Message type 27: Long Range AIS Broadcast message. 
- 
+Message type 27: Long Range AIS Broadcast message.
+
 This message type is primarily intended for long-range detection of vessels equipped with AIS Class A (typically by satellite). This message has similar content to messages 1, 2 and 3, but the total number of bits has been compressed to allow for increased propagation delays associated with long-range detection.
 
 |Parameter|Datatype|Semantics|
@@ -900,33 +893,34 @@ This message type is primarily intended for long-range detection of vessels equi
 
 ### SendSafetyRelatedMessage
 
-Tasks entity (the source) to send a safety-related message (AIS message type 12) to another entity (the destination). 
- 
+Tasks entity (the source) to send a safety-related message (AIS message type 12) to another entity (the destination).
+
 Both source and destination must represent an AIS station (vessel, SAR aircraft, etc).
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
 |TaskParameters|SendSafetyRelatedMessageTaskStruct|Required: Task parameters|
-|Entity<br/>(NETN-SMC)|UUID|Required: Reference to a simulation entity for which the control action is intended.| 
-|TaskId<br/>(NETN-ETR)|UUID|Required. Unique identifier for the task.| 
+|Entity<br/>(NETN-SMC)|UUID|Required: Reference to a simulation entity for which the control action is intended.|
+|TaskId<br/>(NETN-ETR)|UUID|Required. Unique identifier for the task.|
 
 ### SendSafetyRelatedBroadcastMessage
 
-Tasks entity (the source) to send a safety-related broadcast message (AIS message type 14). 
- 
+Tasks entity (the source) to send a safety-related broadcast message (AIS message type 14).
+
 The source must represent an AIS station (vessel, SAR aircraft, etc).
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
 |TaskParameters|SendSafetyRelatedBroadcastMessageTaskStruct|Required: Task parameters|
-|Entity<br/>(NETN-SMC)|UUID|Required: Reference to a simulation entity for which the control action is intended.| 
-|TaskId<br/>(NETN-ETR)|UUID|Required. Unique identifier for the task.| 
+|Entity<br/>(NETN-SMC)|UUID|Required: Reference to a simulation entity for which the control action is intended.|
+|TaskId<br/>(NETN-ETR)|UUID|Required. Unique identifier for the task.|
 
 ## Datatypes
 
 Note that only datatypes defined in this FOM module are listed below. Please refer to FOM modules on which this module depends for other referenced datatypes.
 
 ### Overview
+
 |Name|Semantics|
 |---|---|
 |AidTypeEnum8|Enumeration value for the aid type. According to [IALA], the aid type field has values 1-15 for fixed and 16-31 for floating aids to navigation.|
@@ -950,8 +944,9 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 |TaskDefinitionVariantRecord|Variant record for task definition data.|
 |TaskProgressVariantRecord|Variant record for task progress data.|
 |UnitModelInteger8|A 4-bit value. (Part B) Unit Model Code.|
-        
+
 ### Simple Datatypes
+
 |Name|Units|Semantics|
 |---|---|---|
 |DegreesPerSecondFloat32|Degrees/second|The turn rate in decimal degrees per second, where: (a) zero value: not turning; (b) positive value: turning right; (c) negative value: turning left.|
@@ -962,8 +957,9 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 |MMSIInteger32|NA|A 30-bit value. The MMSI (Maritime Mobile Service Identity) number is a unique nine-digit number for identifying an AIS station.|
 |SerialNumberInteger32|NA|A 2-bit value. (Part B) Serial Number.|
 |UnitModelInteger8|NA|A 4-bit value. (Part B) Unit Model Code.|
-        
+
 ### Enumerated Datatypes
+
 |Name|Representation|Semantics|
 |---|---|---|
 |AidTypeEnum8|HLAoctet|Enumeration value for the aid type. According to [IALA], the aid type field has values 1-15 for fixed and 16-31 for floating aids to navigation.|
@@ -973,22 +969,24 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 |NavigationStatusEnum8|HLAoctet|Enumeration value to indicate the navigational status.|
 |PartNumberEnum8|HLAoctet|Identifier for the message part number.|
 |ShipTypeEnum8|HLAoctet|ITU-R M.1371-5 (02/2014) Vessel types.|
-        
+
 ### Array Datatypes
+
 |Name|Element Datatype|Semantics|
 |---|---|---|
 |BinArray|HLAboolean|Binary data.|
 |ManufacturerIdArray3|HLAASCIIchar|The manufacturer's mnemonic code consists of three 6-bit ASCII characters.|
-        
+
 ### Fixed Record Datatypes
+
 |Name|Fields|Semantics|
 |---|---|---|
 |SendSafetyRelatedBroadcastMessageTaskStruct|Message|Task-specific data for the SendSafetyRelatedBroadcastMessage task.|
 |SendSafetyRelatedMessageTaskStruct|ReceivingEntity, Message|Task-specific data for the SendSafetyRelatedMessage task.|
-        
+
 ### Variant Record Datatypes
+
 |Name|Discriminant (Datatype)|Alternatives|Semantics|
 |---|---|---|---|
 |TaskDefinitionVariantRecord|TaskType (EntityControlActionEnum)|SendSafetyRelatedtMessage, SendSafetyRelatedBroadcastMessage|Variant record for task definition data.|
 |TaskProgressVariantRecord|TaskType (EntityControlActionEnum)||Variant record for task progress data.|
-    
