@@ -22,7 +22,7 @@ The NETN-SE module also provides extended NETN-ETR tasks related to engineering 
 ## Object Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
 HLAobjectRoot <|-- EnvironmentObject
@@ -178,7 +178,7 @@ Areal objects other than Minefield objects.
 ## Interaction Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot <|-- SMC_EntityControl
 HLAinteractionRoot : UniqueId(NETN-BASE)
