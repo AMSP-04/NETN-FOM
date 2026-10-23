@@ -28,13 +28,13 @@ The NETN-FOM uses Universally Unique Identifiers (UUID) as defined in ISO/IEC 98
 
 A NETN-federate shall publish the `UniqueId` attribute for all objects it creates in the federation. The value of this attribute can either be predefined, e.g. based on scenario data, or generated using standard methods for generating UUID. It is the responsibility of the federate to update the attributes to ensure uniqueness in the federation.
 
-A non-NETN federate does not publish the `UniqueId` attribute. Therefore, it becomes unowned and available for acquisition for objects registered by non-NETN federates. In a NETN federation, the ownership of all unowned required attributes, such as `UniqueId`, shall be acquired and published by a NETN federate.
-
 The NETN-FOM also uses UUID to reference objects and relies on federates to resolve references.
 
 Other unique identifiers may be required for compatibility with RPR-FOM, e.g. the `EntityIdentifier` attribute for the RPR-FOM `BaseEntity` object class.
 
 NETN-BASE also defines an optional `UniqueId` parameter for the `HLAinteractionRoot` interaction class. This parameter's primary purpose is to allow subsequent interactions, e.g. acknowledgements, to reference a previously sent interaction.
+
+A non-NETN federate is not required to publish the `UniqueId` attribute. Therefore, these required attributes can be used to distinguish between NETN and non-NETN federates.
 
 ## Time
 
