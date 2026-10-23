@@ -4,7 +4,7 @@
 
 An object class name should be a noun, i.e. a name of a thing that persists in time.
 
-An interaction class name should be a name that describes an event that is temporal in time.
+An interaction class name should be a name that describes an event.
 
 Class names start with a capital letter and typically capitalize the first letter of each internal word (Pascal Case). A class name shall not start with an underscore, but underscores may be used within a class name, for example to create a prefix for a class name, like `SMC_EntityControl`.
 
@@ -58,7 +58,6 @@ Common words may be abbreviated in the name. This currently includes:
 
 - `Identifier` => `Id`
 
-Examples:
+Example:
 
 - `UniqueId` (used in several NETN modules)
-- `RulesOfEngagement` (in `SetRulesOfEngagement` task in NETN-ETR)
