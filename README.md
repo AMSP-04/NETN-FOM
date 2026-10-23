@@ -50,7 +50,7 @@ Version numbering of the NETN FOM and associated documentation is based on the f
 ## Repository Structure
 * [Modules](modules/) contains each module in its subfolder. These subfolders contain the module's FOM file, documentation and any related files.
 * [FomFiles_HLA4](FomFiles_HLA4/) contains only the FOM files in HLA 4 format. Same FOM files as in the _Modules_ folder but no documentation, subfolders or extra files.
-* [FomFiles_Merged_HLA_Evolved](FomFiles_Merged_HLA_Evolved/) contains a merged version of the entire NETN 4 and all RPR modules in HLA Evolved format.
+* [FomFiles_Merged_HLA_Evolved](FomFiles_Merged_HLA_Evolved/) contains a merged version of the entire NETN 4 and all RPR_FOM-V2.0_1516-210 modules in HLA Evolved format.
 
 ## Maintenance on GitHub
 * The `master` branch of the NETN FOM repository contains the official public releases of the FOM.
