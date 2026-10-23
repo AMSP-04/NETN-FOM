@@ -899,8 +899,8 @@ Both source and destination must represent an AIS station (vessel, SAR aircraft,
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|TaskParameters|SendSafetyRelatedMessageTaskStruct|Required: Task parameters|
-|Entity<br/>(NETN-SMC)|UUID|Required: Reference to a simulation entity for which the control action is intended.|
+|TaskParameters|SendSafetyRelatedMessageTaskStruct|Required. Task parameters|
+|Entity<br/>(NETN-SMC)|UUID|Required. Reference to a simulation entity for which the control action is intended.|
 |TaskId<br/>(NETN-ETR)|UUID|Required. Unique identifier for the task.|
 
 ### SendSafetyRelatedBroadcastMessage
@@ -911,8 +911,8 @@ The source must represent an AIS station (vessel, SAR aircraft, etc).
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|TaskParameters|SendSafetyRelatedBroadcastMessageTaskStruct|Required: Task parameters|
-|Entity<br/>(NETN-SMC)|UUID|Required: Reference to a simulation entity for which the control action is intended.|
+|TaskParameters|SendSafetyRelatedBroadcastMessageTaskStruct|Required. Task parameters|
+|Entity<br/>(NETN-SMC)|UUID|Required. Reference to a simulation entity for which the control action is intended.|
 |TaskId<br/>(NETN-ETR)|UUID|Required. Unique identifier for the task.|
 
 ## Datatypes

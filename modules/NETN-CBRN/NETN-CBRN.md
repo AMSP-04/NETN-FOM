@@ -262,7 +262,7 @@ A human lifeform.
 | IPEType | IPETypeEnum8 | Type of IPE that the entity is using. Defaults to None. |
 | Treatments | ArrayOfTreatmentStruct | The types of treatment that this entity has used. Defaults to an empty array. |
 | TriageLevel | CBRNDamageEnum8 | Triage level of this entity. Defaults to Uninjured. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | EntityIdentifier<br/>(RPR-BASE) | EntityIdentifierStruct | The unique identifier for the entity instance. |
 | EntityType<br/>(RPR-BASE) | EntityTypeStruct | The category of the entity. |
 | Spatial<br/>(RPR-BASE) | SpatialVariantStruct | Spatial state. Stored in one variant record attribute. |
@@ -278,7 +278,7 @@ Represents a CBRN detector. This object is used to pass information to a CBRN fe
 | AveragingTime | TimeSecondInteger32 | Duration the detector will collect samples. |
 | DetectableAgents | ArrayOfAgentConcentrationStruct | Array of detectable agents and their thresholds. |
 | ProcessingTime | TimeSecondInteger32 | Duration between the detector being exposed to a concentration of agent above its threshold and the detector raising an alarm. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | EntityIdentifier<br/>(RPR-BASE) | EntityIdentifierStruct | The unique identifier for the entity instance. |
 | EntityType<br/>(RPR-BASE) | EntityTypeStruct | The category of the entity. |
 | Spatial<br/>(RPR-BASE) | SpatialVariantStruct | Spatial state. Stored in one variant record attribute. |
@@ -294,7 +294,7 @@ Represents a CBRN sensor. This object is used to pass information to a CBRN fede
 | DetectableAgents | ArrayOfAgentTypeEnum | Array of agents that this sensor wishes to detect. |
 | SensorReadings | ArrayOfCBRNSensorReadingStruct | Latest sensor readings. Defaults to no readings if this attribute is not set. |
 | UpdateFrequency | TimeSecondInteger32 | Duration that this sensor would like between updated readings. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | EntityIdentifier<br/>(RPR-BASE) | EntityIdentifierStruct | The unique identifier for the entity instance. |
 | EntityType<br/>(RPR-BASE) | EntityTypeStruct | The category of the entity. |
 | Spatial<br/>(RPR-BASE) | SpatialVariantStruct | Spatial state. Stored in one variant record attribute. |
@@ -307,7 +307,7 @@ A physical object under the control of armed forces upon which sensor, communica
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Contamination | ArrayOfAgentMassStruct | CBRN hazardous agent inside vehicle due to embedded units. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | EntityIdentifier<br/>(RPR-BASE) | EntityIdentifierStruct | The unique identifier for the entity instance. |
 | EntityType<br/>(RPR-BASE) | EntityTypeStruct | The category of the entity. |
 | Spatial<br/>(RPR-BASE) | SpatialVariantStruct | Spatial state. Stored in one variant record attribute. |
@@ -319,8 +319,8 @@ Engineering and natural effects such as craters, bridges, vehicle tracks, etc.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Capacity | QuantityInt32 | Required: The number of entities that this cultural feature can handle. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Capacity | QuantityInt32 | Required. The number of entities that this cultural feature can handle. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | EntityIdentifier<br/>(RPR-BASE) | EntityIdentifierStruct | The unique identifier for the entity instance. |
 | EntityType<br/>(RPR-BASE) | EntityTypeStruct | The category of the entity. |
 | Spatial<br/>(RPR-BASE) | SpatialVariantStruct | Spatial state. Stored in one variant record attribute. |
@@ -332,9 +332,9 @@ Represents a feature that provides Collective Protection (COLPRO) against a CBRN
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Capacity | QuantityInt32 | Required: The number of entities that this cultural feature can handle. |
+| Capacity | QuantityInt32 | Required. The number of entities that this cultural feature can handle. |
 | Protection | ArrayOfProtectionEffectivenessStruct | The effectiveness that this COLPRO offers for each agent. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | EntityIdentifier<br/>(RPR-BASE) | EntityIdentifierStruct | The unique identifier for the entity instance. |
 | EntityType<br/>(RPR-BASE) | EntityTypeStruct | The category of the entity. |
 | Spatial<br/>(RPR-BASE) | SpatialVariantStruct | Spatial state. Stored in one variant record attribute. |
@@ -346,10 +346,10 @@ Represents a feature that provides treatment for CBRN exposure.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Capacity | QuantityInt32 | Required: The number of entities that this cultural feature can handle. |
-| DecontaminationPeriod | TimeSecondInteger32 | Required: Duration it takes to decontaminate an entity. |
-| Treatments | ArrayOfTreatmentStruct | Required: The types of treatment that this decontamination station currently offers. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Capacity | QuantityInt32 | Required. The number of entities that this cultural feature can handle. |
+| DecontaminationPeriod | TimeSecondInteger32 | Required. Duration it takes to decontaminate an entity. |
+| Treatments | ArrayOfTreatmentStruct | Required. The types of treatment that this decontamination station currently offers. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | EntityIdentifier<br/>(RPR-BASE) | EntityIdentifierStruct | The unique identifier for the entity instance. |
 | EntityType<br/>(RPR-BASE) | EntityTypeStruct | The category of the entity. |
 | Spatial<br/>(RPR-BASE) | SpatialVariantStruct | Spatial state. Stored in one variant record attribute. |
@@ -361,12 +361,12 @@ A generic representation of a CBRN hazard.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| AgentType | AgentTypeEnum16 | Required: Agent reflected in this contour. |
-| Contours | ArrayOfContourStruct | Optional: Array of contours. These should be ordered in a sequence of ascending PercentProbabilityLevel. |
-| ExposureType | ExposureTypeEnum8 | Optional: The type of exposure. |
+| AgentType | AgentTypeEnum16 | Required. Agent reflected in this contour. |
+| Contours | ArrayOfContourStruct | Optional. Array of contours. These should be ordered in a sequence of ascending PercentProbabilityLevel. |
+| ExposureType | ExposureTypeEnum8 | Optional. The type of exposure. |
 | HazardType | HazardTypeEnum8 | Type of hazard. |
-| Area<br/>(NETN-DIM) | GeodeticPolygon | Required: Geographical boundary of the HazardRegion. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Area<br/>(NETN-DIM) | GeodeticPolygon | Required. Geographical boundary of the HazardRegion. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ### CBRN_Hazard_Prediction
@@ -378,8 +378,8 @@ Represents the footprint generated by a CBRN warning and reporting simulation. T
 | ATP45HazardAreaType | ATP45HazardAreaTypeEnum8 | This hazard area's type. |
 | AgentClass | AgentClassEnum8 | The agent class. |
 | Duration | TimeSecondInteger32 | The duration that this hazard prediction is valid. |
-| Area<br/>(NETN-DIM) | GeodeticPolygon | Required: Geographical boundary of the HazardRegion. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Area<br/>(NETN-DIM) | GeodeticPolygon | Required. Geographical boundary of the HazardRegion. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ## Interaction Classes
@@ -426,11 +426,11 @@ Represents a task for the specified entities to use individual protective equipm
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | ApplyIPETaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
+| TaskParameters | ApplyIPETaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all CBRN-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all CBRN-related interactions. |
 
 ### AdministerTreatment
 
@@ -438,11 +438,11 @@ Represents an order for the specified entities to receive the list of treatments
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | AdministerTreatmentTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
+| TaskParameters | AdministerTreatmentTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all CBRN-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all CBRN-related interactions. |
 
 ### SetPlatformContamination
 
@@ -451,9 +451,9 @@ Represents an update to the contaminating mass inside a vehicle due to embedded 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
 | Contamination | ArrayOfAgentMassStruct | New state of CBRN hazardous agent inside vehicle due to embedded units. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all CBRN-related interactions. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all CBRN-related interactions. |
 
 ### SetCasualtyEffect
 
@@ -461,11 +461,11 @@ Informs the federate representing the entity of the casualty effects of exposure
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| Exposures | ArrayOfCBRNExposureStruct | Optional: Array of agents to which this unit has been exposed. |
-| TriageLevel | CBRNDamageEnum8 | Required: Triage level of this entity. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all CBRN-related interactions. |
+| Exposures | ArrayOfCBRNExposureStruct | Optional. Array of agents to which this unit has been exposed. |
+| TriageLevel | CBRNDamageEnum8 | Required. Triage level of this entity. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all CBRN-related interactions. |
 
 ### CBRN_Release
 
@@ -480,8 +480,8 @@ Communicates information associated with the release of a hazardous agent.
 | ReleaseDynamics | ReleaseDynamicsStruct | Temperature difference and density ratio of released material relative to the atmosphere. |
 | ReleaseSize | ReleaseSizeStruct | The initial size of the release, including initial Gaussian sigmas of the released puff as well as the mean and variance of released particles. |
 | ReleaseVelocity | VelocityVectorStruct | Velocity of the source term. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all CBRN-related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all CBRN-related interactions. |
 
 ### CBRN_SensorUpdate
 
@@ -489,11 +489,11 @@ Sends information about the current state of a previously registered CBRN sensor
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| Agent | AgentTypeEnum16 | Required: Type of the agent. |
-| Concentration | MassConcentrationFloat32 | Required: Mean concentration in kg m-3. |
-| ProducingEntity<br/>(NETN-ETR) | UUID | Optional: Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all CBRN-related interactions. |
+| Agent | AgentTypeEnum16 | Required. Type of the agent. |
+| Concentration | MassConcentrationFloat32 | Required. Mean concentration in kg m-3. |
+| ProducingEntity<br/>(NETN-ETR) | UUID | Optional. Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all CBRN-related interactions. |
 
 ### CBRN_DetectorAlarm
 
@@ -502,10 +502,10 @@ Represents the alarm trigger of a previously registered CBRN detector.
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
 | Agent | AgentTypeEnum16 | Enumeration representation of the agent. |
-| Location | LocationStruct | Required: Location of the detection (location of the detector). |
-| ProducingEntity<br/>(NETN-ETR) | UUID | Optional: Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all CBRN-related interactions. |
+| Location | LocationStruct | Required. Location of the detection (location of the detector). |
+| ProducingEntity<br/>(NETN-ETR) | UUID | Optional. Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all CBRN-related interactions. |
 
 ## Datatypes
 

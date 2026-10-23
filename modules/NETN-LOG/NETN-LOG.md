@@ -246,10 +246,10 @@ Tasks a simulated entity (transporter entity) to transport another simulated ent
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | TransportTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| TaskParameters | TransportTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### Repair
 
@@ -257,10 +257,10 @@ Tasks a simulated entity to perform a repair activity on another simulated entit
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | RepairTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| TaskParameters | RepairTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### Resupply
 
@@ -268,10 +268,10 @@ Tasks a simulated entity (supplier) to resupply another simulated entity (receiv
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | ResupplyTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| TaskParameters | ResupplyTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### SetPersonnelStatus
 
@@ -279,7 +279,7 @@ Instructs the federate with primary responsibility for the specified simulated e
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| PersonnelStatus | ResourceStatusStruct | Required: Status of a specific type of personnel. |
+| PersonnelStatus | ResourceStatusStruct | Required. Status of a specific type of personnel. |
 
 ### SetSuppliesStatus
 
@@ -287,7 +287,7 @@ Instructs the federate with primary responsibility for the specified simulated e
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| SupplyStatus | SupplyStatusStruct | Required: New quantity of a specific supply. |
+| SupplyStatus | SupplyStatusStruct | Required. New quantity of a specific supply. |
 
 ### SetEquipmentStatus
 
@@ -295,7 +295,7 @@ Instructs the federate with primary responsibility for the specified simulated e
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| EquipmentStatus | ResourceStatusStruct | Required: Status of a specific type of equipment. |
+| EquipmentStatus | ResourceStatusStruct | Required. Status of a specific type of equipment. |
 
 ### Transport
 
@@ -303,11 +303,11 @@ Tasks a simulated entity (transporter entity) to transport another simulated ent
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | TransportTaskStruct | Required: Task parameters |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR related interactions. |
+| TaskParameters | TransportTaskStruct | Required. Task parameters |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR related interactions. |
 
 ### Repair
 
@@ -315,11 +315,11 @@ Tasks a simulated entity to perform a repair activity on another simulated entit
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | RepairTaskStruct | Required: Task parameters |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR related interactions. |
+| TaskParameters | RepairTaskStruct | Required. Task parameters |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR related interactions. |
 
 ### Resupply
 
@@ -327,11 +327,11 @@ Tasks a simulated entity (supplier) to resupply another simulated entity (receiv
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | ResupplyTaskStruct | Required: Task parameters |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR related interactions. |
+| TaskParameters | ResupplyTaskStruct | Required. Task parameters |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR related interactions. |
 
 ### SetResourceStatus
 
@@ -339,10 +339,10 @@ Instruct the federate with the primary responsibility of the specified simulated
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| ResourceStatus | ResourceStatusStruct | Required: Status of a specific type of resource. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR related interactions. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR related interactions. |
+| ResourceStatus | ResourceStatusStruct | Required. Status of a specific type of resource. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR related interactions. |
 
 ### SetSupplies
 
@@ -350,10 +350,10 @@ Instruct the federate with the primary responsibility of the specified simulated
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| SupplyStatus | SupplyStatusStruct | Required: New quantity of a specific supply. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR related interactions. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR related interactions. |
+| SupplyStatus | SupplyStatusStruct | Required. New quantity of a specific supply. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR related interactions. |
 
 ### Reset
 
@@ -361,11 +361,11 @@ Requests a reset of aspects of an entity's state to its last initialized value.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| ResetDamage | HLAboolean | Optional: Indicates if the damage state of the entity should be reset to the last initialized value. Default is False. |
-| ResetEquipment | HLAboolean | Optional: Indicates if the equipment state of the entity should be reset to the last initialized value. Default is False. |
-| ResetPersonnel | HLAboolean | Optional: Indicates if the personnel state of the entity should be reset to the last initialized value. Default is False. |
-| ResetSpatial | HLAboolean | Optional: Indicates if the spatial state of the entity should be reset to the last initialized value. Default is False. |
-| ResetSupplies | HLAboolean | Optional: Indicates if the supplies state of the entity should be reset to the last initialized value. Default is False. |
+| ResetDamage | HLAboolean | Optional. Indicates if the damage state of the entity should be reset to the last initialized value. Default is False. |
+| ResetEquipment | HLAboolean | Optional. Indicates if the equipment state of the entity should be reset to the last initialized value. Default is False. |
+| ResetPersonnel | HLAboolean | Optional. Indicates if the personnel state of the entity should be reset to the last initialized value. Default is False. |
+| ResetSpatial | HLAboolean | Optional. Indicates if the spatial state of the entity should be reset to the last initialized value. Default is False. |
+| ResetSupplies | HLAboolean | Optional. Indicates if the supplies state of the entity should be reset to the last initialized value. Default is False. |
 
 ## Datatypes
 

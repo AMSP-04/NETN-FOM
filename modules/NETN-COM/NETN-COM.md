@@ -363,11 +363,11 @@ A unit represents an element at a specified level in the organization. An organi
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| CommunicationNetworks | ArrayOfCommunicationNetworks | Optional: A list of communication networks available for the unit. |
+| CommunicationNetworks | ArrayOfCommunicationNetworks | Optional. A list of communication networks available for the unit. |
 | EntityType<br/>(NETN-ORG) | EntityTypeStruct | Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0. |
 | Name<br/>(NETN-ORG) | HLAunicodeString | Required. A unique name. |
-| Organization<br/>(NETN-ORG) | UUID | Required: A reference to the organization that the element is affiliated with. |
-| SuperiorUnit<br/>(NETN-ORG) | UUID | Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
+| Organization<br/>(NETN-ORG) | UUID | Required. A reference to the organization that the element is affiliated with. |
+| SuperiorUnit<br/>(NETN-ORG) | UUID | Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
 | Symbol<br/>(NETN-ORG) | SymbolStruct | Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
@@ -377,11 +377,11 @@ An `Equipment`object represents individual physical items defined specifically a
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| CommunicationNetworks | ArrayOfCommunicationNetworks | Optional: A list of communication networks available for the unit. |
+| CommunicationNetworks | ArrayOfCommunicationNetworks | Optional. A list of communication networks available for the unit. |
 | EntityType<br/>(NETN-ORG) | EntityTypeStruct | Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0. |
 | Name<br/>(NETN-ORG) | HLAunicodeString | Required. A unique name. |
-| Organization<br/>(NETN-ORG) | UUID | Required: A reference to the organization that the element is affiliated with. |
-| SuperiorUnit<br/>(NETN-ORG) | UUID | Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
+| Organization<br/>(NETN-ORG) | UUID | Required. A reference to the organization that the element is affiliated with. |
+| SuperiorUnit<br/>(NETN-ORG) | UUID | Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
 | Symbol<br/>(NETN-ORG) | SymbolStruct | Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
@@ -419,7 +419,7 @@ Requests a simulated entity to perform some task based on a task description. If
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
 | CommunicationNetworks | CommunicationNetworkArray | Optional. Reference to communication networks (NETN-COM) used to transfer tasking messages. If not provided, the task transmission should not be modelled and federates should receive and act on the task messages directly. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
 
 ### DisruptCommunication
@@ -429,8 +429,8 @@ Tasking of an entity to introduce a communication network disruption.
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
 | CommunicationNetworks | CommunicationNetworkArray | Optional. Reference to communication networks (NETN-COM) used to transfer tasking messages. If not provided, the task transmission should not be modelled and federates should receive and act on the task messages directly. |
-| TaskParameters | DisruptCommunicationTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. |
+| TaskParameters | DisruptCommunicationTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
 
 ### SetTransmitterStatus
@@ -440,8 +440,8 @@ Tasking of an entity to switch on/off all of its transmitters.
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
 | CommunicationNetworks | CommunicationNetworkArray | Optional. Reference to communication networks (NETN-COM) used to transfer tasking messages. If not provided, the task transmission should not be modelled and federates should receive and act on the task messages directly. |
-| TaskParameters | SetTransmitterStatusTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. |
+| TaskParameters | SetTransmitterStatusTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
 
 ### ETR_Report

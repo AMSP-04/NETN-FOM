@@ -60,7 +60,7 @@ HLAobjectRoot : UniqueId
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| CreateTime | EpochTime | Optional: The time in the scenario when the object is created. |
+| CreateTime | EpochTime | Optional. The time in the scenario when the object is created. |
 | UniqueId | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ## Interaction Classes
@@ -76,8 +76,8 @@ HLAinteractionRoot : UniqueId
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| SendTime | EpochTime | Optional: Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. |
-| UniqueId | UUID | Optional: A unique identifier for the interaction. |
+| SendTime | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. |
+| UniqueId | UUID | Optional. A unique identifier for the interaction. |
 
 ## Datatypes
 

@@ -63,8 +63,8 @@ Represents a service the referenced federate provides with additional informatio
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
-|Federate|FederateName|Required: The federate providing the service.|
-|SupportedActions|FederateControlActions|Required: Indicates which SMC control actions are supported by the referenced federate.|
+|Federate|FederateName|Required. The federate providing the service.|
+|SupportedActions|FederateControlActions|Required. Indicates which SMC control actions are supported by the referenced federate.|
 |UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
 
 ### BaseEntity
@@ -73,7 +73,7 @@ A base class of aggregate and discrete scenario domain participants. The BaseEnt
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
-|SupportedActions|EntityControlActions|Optional: Indicates what control actions are supported by an individual simulated entity.|
+|SupportedActions|EntityControlActions|Optional. Indicates what control actions are supported by an individual simulated entity.|
 |UniqueId<br/>(NETN-BASE)|UUID|Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined.| 
 
 ## Interaction Classes
@@ -103,8 +103,8 @@ Base class for all control actions directed to a specific federate. The inherite
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|Federate|FederateName|Required: The federate intended as the receiver of this control action.|
-|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all SMC related interactions.| 
+|Federate|FederateName|Required. The federate intended as the receiver of this control action.|
+|UniqueId<br/>(NETN-BASE)|UUID|Optional. A unique identifier for the interaction. Required for all SMC related interactions.| 
 
 ### SMC_EntityControl
 
@@ -112,8 +112,8 @@ Control action intended for a federate with primary modelling responsibility for
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|Entity|UUID|Required: Reference to a simulation entity for which the control action is intended.|
-|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all SMC related interactions.| 
+|Entity|UUID|Required. Reference to a simulation entity for which the control action is intended.|
+|UniqueId<br/>(NETN-BASE)|UUID|Optional. A unique identifier for the interaction. Required for all SMC related interactions.| 
 
 ### SMC_Response
 
@@ -121,9 +121,9 @@ The response indicates whether the related action was accepted or rejected/faile
 
 |Parameter|Datatype|Semantics|
 |---|---|---|
-|Action|UUID|Required: A reference to the control action that this is a response to. The reference corresponds to the NETN-BASE `UniqueId` parameter of the control action interaction.|
-|Status|HLAboolean|Required: Indicates success or failure of a corresponding control action.|
-|UniqueId<br/>(NETN-BASE)|UUID|Optional: A unique identifier for the interaction. Required for all SMC related interactions.| 
+|Action|UUID|Required. A reference to the control action that this is a response to. The reference corresponds to the NETN-BASE `UniqueId` parameter of the control action interaction.|
+|Status|HLAboolean|Required. Indicates success or failure of a corresponding control action.|
+|UniqueId<br/>(NETN-BASE)|UUID|Optional. A unique identifier for the interaction. Required for all SMC related interactions.| 
 
 ## Datatypes
 

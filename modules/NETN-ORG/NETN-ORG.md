@@ -159,8 +159,8 @@ An object class for all NETN-ORG organizational elements.
 | HostUnit | UUID | Optional. A reference to a unit or equipment controlling the movement or operating an installation. E.g. a unit embarked on a transport, or a helicopter on a ship. The default value is all zeros, indicating that the unit is not embarked in or mounted on any other unit or equipment. Not applicable to `Installation`. |
 | Location | GeodeticPoint | Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation. |
 | Name | HLAunicodeString | Required. A unique name. |
-| Organization | UUID | Required: A reference to the organization the element is affiliated with. |
-| SuperiorUnit | UUID | Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
+| Organization | UUID | Required. A reference to the organization the element is affiliated with. |
+| SuperiorUnit | UUID | Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
 | Symbol | SymbolStruct | Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code. |
 
 ### Equipment
@@ -173,8 +173,8 @@ An equipment represents individual physical items defined specifically and apart
 | HostUnit | UUID | Optional. A reference to a unit or equipment controlling the movement or operating an installation. E.g. a unit embarked on a transport, or a helicopter on a ship. The default value is all zeros, indicating that the unit is not embarked in or mounted on any other unit or equipment. Not applicable to `Installation`. |
 | Location | GeodeticPoint | Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation. |
 | Name | HLAunicodeString | Required. A unique name. |
-| Organization | UUID | Required: A reference to the organization the element is affiliated with. |
-| SuperiorUnit | UUID | Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
+| Organization | UUID | Required. A reference to the organization the element is affiliated with. |
+| SuperiorUnit | UUID | Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
 | Symbol | SymbolStruct | Required. Initial symbol identifier and amplification data for this element. In NETN-ORG the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code. |
 
 ### Unit
@@ -192,8 +192,8 @@ A unit represents an element at a specified level in the organization. An organi
 | IsHq | HLAboolean | Optional. Indicate whether the unit has a command function, e.g. if it is an HQ or not. The default is FALSE, no HQ. |
 | Location | GeodeticPoint | Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation. |
 | Name | HLAunicodeString | Required. A unique name. |
-| Organization | UUID | Required: A reference to the organization the element is affiliated with. |
-| SuperiorUnit | UUID | Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
+| Organization | UUID | Required. A reference to the organization the element is affiliated with. |
+| SuperiorUnit | UUID | Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
 | Symbol | SymbolStruct | Required. Initial symbol identifier and amplification data for this element. In NETN-ORG the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code. |
 
 ### Installation
@@ -206,8 +206,8 @@ Installations are facilities, e.g. harbours and airfields, or engineering object
 | HostUnit | UUID | Optional. A reference to a unit or equipment controlling the movement or operating an installation. E.g. a unit embarked on a transport, or a helicopter on a ship. The default value is all zeros, indicating that the unit is not embarked in or mounted on any other unit or equipment. Not applicable to `Installation`. |
 | Location | GeodeticPoint | Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation. |
 | Name | HLAunicodeString | Required. A unique name. |
-| Organization | UUID | Required: A reference to the organization the element is affiliated with. |
-| SuperiorUnit | UUID | Required: A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
+| Organization | UUID | Required. A reference to the organization the element is affiliated with. |
+| SuperiorUnit | UUID | Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
 | Symbol | SymbolStruct | Required. Initial symbol identifier and amplification data for this element. In NETN-ORG the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code. |
 
 ### Organization
@@ -216,8 +216,8 @@ An organization can have relationships with other organizations. Units belonging
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| CountryCode | Integer32 | Optional: Numerical country code based on ISO 3166-1 numeric. The numeric codes 900 to 999 can be user-assigned in the federation agreement. |
-| ForceIdentifier | ForceIdentifierEnum | Required: A force identifier indicates a special relationship with an organization in the scenario designated as the default perspective of the scenario. The force identifier applies to all simulated entities representing an organizational element belonging to the organization and is a required attribute for all `PhysicalEntity` and `AggregateEntity` objects in the federation. |
+| CountryCode | Integer32 | Optional. Numerical country code based on ISO 3166-1 numeric. The numeric codes 900 to 999 can be user-assigned in the federation agreement. |
+| ForceIdentifier | ForceIdentifierEnum | Required. A force identifier indicates a special relationship with an organization in the scenario designated as the default perspective of the scenario. The force identifier applies to all simulated entities representing an organizational element belonging to the organization and is a required attribute for all `PhysicalEntity` and `AggregateEntity` objects in the federation. |
 | Name | HLAunicodeString | Required. A unique name. |
 | Relationships | ArrayOfRelationship | Optional. The relations with other organizations. The federation agreements specify default relationship. |
 
@@ -227,7 +227,7 @@ A base class of aggregate and discrete scenario domain participants. The BaseEnt
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Organization | UUID | Optional: The organization in the scenario that this entity belongs to. |
+| Organization | UUID | Optional. The organization in the scenario that this entity belongs to. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ### EntitySimulation
@@ -257,7 +257,7 @@ Request a change in the organizational structure. The federate with the primary 
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| SuperiorUnit | UUID | Required: Reference to a Unit for which the referenced entity (OrganizationElement) is requested to relate as a subunit/equipment. |
+| SuperiorUnit | UUID | Required. Reference to a Unit for which the referenced entity (OrganizationElement) is requested to relate as a subunit/equipment. |
 
 ## Datatypes
 

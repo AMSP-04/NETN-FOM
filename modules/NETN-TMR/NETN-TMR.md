@@ -185,7 +185,7 @@ Triggers the specified federate to initiate a transfer of modelling responsibili
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| Entity | UUID | Required: Reference to the object that is to be transferred. |
+| Entity | UUID | Required. Reference to the object that is to be transferred. |
 
 ## Datatypes
 

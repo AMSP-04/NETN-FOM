@@ -150,8 +150,8 @@ Use the `DIM_HazardRegion` object to represent a hazard in a synthetic environme
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Area | GeodeticPolygon | Required: Geographical boundary of the HazardRegion. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Area | GeodeticPolygon | Required. Geographical boundary of the HazardRegion. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ### Flooding
@@ -160,10 +160,10 @@ Representation of a flooded area.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Area | GeodeticPolygon | Required: Geographical boundary of the HazardRegion. |
-| Level | MeterFloat32 | Required: FloodingLevel represents the water level of the flooding relative to the Mean Sea Level (MSL). |
-| LevelChange | LevelChangeMeterPerSecondFloat32 | Optional: The water level change over time. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Area | GeodeticPolygon | Required. Geographical boundary of the HazardRegion. |
+| Level | MeterFloat32 | Required. FloodingLevel represents the water level of the flooding relative to the Mean Sea Level (MSL). |
+| LevelChange | LevelChangeMeterPerSecondFloat32 | Optional. The water level change over time. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ### Wildfire
@@ -172,11 +172,11 @@ Use the `Wildfire` object to represent a wildfire that may spread.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Area | GeodeticPolygon | Required: Geographical boundary of the HazardRegion. |
-| FrontVelocity | VelocityMeterPerSecondFloat32 | Optional: The spread velocity of the front line. The default is 0. |
-| FrontWidth | MeterFloat32 | Required: Indicates the thickness of the actual fire ring surrounding a no longer burning region. The assumption is that a fire starts at one or more locations and then spreads in a circular shape with a fire front of a certain thickness and burnt land behind the front line. The Area attribute defines the outer boundary of the overall region, and the front of the flames is assumed to extend from the boundary into the region. |
-| Temperature | TemperatureDegreeCelsiusFloat32 | Optional: The temperature in the front line. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Area | GeodeticPolygon | Required. Geographical boundary of the HazardRegion. |
+| FrontVelocity | VelocityMeterPerSecondFloat32 | Optional. The spread velocity of the front line. The default is 0. |
+| FrontWidth | MeterFloat32 | Required. Indicates the thickness of the actual fire ring surrounding a no longer burning region. The assumption is that a fire starts at one or more locations and then spreads in a circular shape with a fire front of a certain thickness and burnt land behind the front line. The Area attribute defines the outer boundary of the overall region, and the front of the flames is assumed to extend from the boundary into the region. |
+| Temperature | TemperatureDegreeCelsiusFloat32 | Optional. The temperature in the front line. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ### EarthquakeArea
@@ -185,9 +185,9 @@ Use the `EarthquakeArea` object to represent an area affected by an earthquake.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Area | GeodeticPolygon | Required: Geographical boundary of the HazardRegion. |
-| Magnitude | RichterScale | Required: Magnitude on the Richter magnitude scale. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Area | GeodeticPolygon | Required. Geographical boundary of the HazardRegion. |
+| Magnitude | RichterScale | Required. Magnitude on the Richter magnitude scale. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ### Landslide
@@ -196,10 +196,10 @@ Use the `Landslide` object to represent a landslide area covered by mud, snow, g
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Area | GeodeticPolygon | Required: Geographical boundary of the HazardRegion. |
-| LandslideType | LandslideTypeEnum | Optional: The type of landslide material. The default is 0. |
-| Thickness | MeterFloat32 | Required: Thickness in meters. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Area | GeodeticPolygon | Required. Geographical boundary of the HazardRegion. |
+| LandslideType | LandslideTypeEnum | Optional. The type of landslide material. The default is 0. |
+| Thickness | MeterFloat32 | Required. Thickness in meters. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ### Levee
@@ -208,8 +208,8 @@ A levee is a wall or separator that protects an area from flooding.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Height | MeterFloat32 | Required: Maximum height over Mean Sea Level that this levee protects against flooding. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Height | MeterFloat32 | Required. Maximum height over Mean Sea Level that this levee protects against flooding. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | ForceIdentifier<br/>(RPR-SE) | ForceIdentifierEnum8 | Required. Identifies the force that created or modified this EnvironmentObject instance. |
 | ObjectIdentifier<br/>(RPR-SE) | EntityIdentifierStruct | Required. Identifies this EnvironmentObject instance (point, linear, or areal). |
 | ObjectType<br/>(RPR-SE) | EnvironmentObjectTypeStruct | Required. Identifies the type of this EnvironmentObject instance. |
@@ -222,8 +222,8 @@ A firebreak is a corridor cleared of combustible material. The firebreak separat
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Width | MeterFloat32 | Required: Width of the firebreak. |
-| CreateTime<br/>(NETN-BASE) | EpochTime | Optional: The time in the scenario when the object is created. |
+| Width | MeterFloat32 | Required. Width of the firebreak. |
+| CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | ForceIdentifier<br/>(RPR-SE) | ForceIdentifierEnum8 | Required. Identifies the force that created or modified this EnvironmentObject instance. |
 | ObjectIdentifier<br/>(RPR-SE) | EntityIdentifierStruct | Required. Identifies this EnvironmentObject instance (point, linear, or areal). |
 | ObjectType<br/>(RPR-SE) | EnvironmentObjectTypeStruct | Required. Identifies the type of this EnvironmentObject instance. |
@@ -267,14 +267,14 @@ Observation of a dangerous area.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| Area | LocationStructArray | Required: The estimated area affected by the hazard. |
-| HazardType | HazardTypeEnum | Required: The type of hazard observed. |
-| Receiver<br/>(NETN-ETR) | UUID | Optional: The intended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcast on the entity's default C2 or Battle Management System network. |
-| ReportId<br/>(NETN-ETR) | UUID | Required: Unique identifier for the report itself. |
-| ReportingEntity<br/>(NETN-ETR) | UUID | Required: The entity sending the report. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
-| TimeStamp<br/>(NETN-ETR) | EpochTime | Required: The time when the report was created. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| Area | LocationStructArray | Required. The estimated area affected by the hazard. |
+| HazardType | HazardTypeEnum | Required. The type of hazard observed. |
+| Receiver<br/>(NETN-ETR) | UUID | Optional. The intended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcast on the entity's default C2 or Battle Management System network. |
+| ReportId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the report itself. |
+| ReportingEntity<br/>(NETN-ETR) | UUID | Required. The entity sending the report. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
+| TimeStamp<br/>(NETN-ETR) | EpochTime | Required. The time when the report was created. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### Evacuate
 
@@ -282,11 +282,11 @@ A request for evacuation.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | EvacuateTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
+| TaskParameters | EvacuateTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### PumpFlooding
 
@@ -294,11 +294,11 @@ Task an entity to start pumping water out of an area.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | PumpFloodingTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
+| TaskParameters | PumpFloodingTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### ExtinguishWildfire
 
@@ -306,11 +306,11 @@ Task an entity to extinguish a wildfire.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | ExtinguishWildfireTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
+| TaskParameters | ExtinguishWildfireTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### CreateFireBreak
 
@@ -318,11 +318,11 @@ Use the `CreateFireBreak` task to request an entity to build a firebreak.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | CreateFireBreakTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
+| TaskParameters | CreateFireBreakTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### CreateLevee
 
@@ -330,11 +330,11 @@ Use the `CreateLevee` task to request an entity to construct a levee.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | CreateLeveeTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
-| SendTime<br/>(NETN-BASE) | EpochTime | Optional: Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
+| TaskParameters | CreateLeveeTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. The default is interpreted as the receiver's scenario time when the interaction is received. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ## Datatypes
 

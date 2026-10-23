@@ -205,10 +205,10 @@ Requests a simulated entity to create a breach or passage on a breachable engine
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | CreateBreachTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| TaskParameters | CreateBreachTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### EstablishCheckpoint
 
@@ -216,10 +216,10 @@ Requests a simulated entity to establish a checkpoint.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | EstablishCheckpointTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| TaskParameters | EstablishCheckpointTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### LayMinefield
 
@@ -227,10 +227,10 @@ Requests a simulated entity to lay a minefield within a specified area and numbe
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | LayMinefieldTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| TaskParameters | LayMinefieldTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### CreateObstacle
 
@@ -238,10 +238,10 @@ Requests a simulated entity to create an obstacle within the given area. The tas
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | CreateObstacleTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| TaskParameters | CreateObstacleTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### ClearEngineering
 
@@ -249,10 +249,10 @@ Requests a simulated entity to clear/remove an engineering object. The clearing 
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | ClearEngineeringTaskStruct | Required: Task parameters. |
-| Entity<br/>(NETN-SMC) | UUID | Required: Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
+| TaskParameters | ClearEngineeringTaskStruct | Required. Task parameters. |
+| Entity<br/>(NETN-SMC) | UUID | Required. Reference to a simulation entity for which the control action is intended. Required for all ETR-related interactions. |
 | TaskId<br/>(NETN-ETR) | UUID | Required. Unique identifier for the task. |
-| UniqueId<br/>(NETN-BASE) | UUID | Optional: A unique identifier for the interaction. Required for all ETR-related interactions. |
+| UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all ETR-related interactions. |
 
 ### EstablishObservationPost
 
@@ -260,7 +260,7 @@ Requests a simulated entity to establish an observation post.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| TaskParameters | EstablishObservationPostTaskStruct | Required: Task parameters. |
+| TaskParameters | EstablishObservationPostTaskStruct | Required. Task parameters. |
 
 ## Datatypes
 
