@@ -11,9 +11,9 @@ Military logistics is the discipline of planning and carrying out the movement a
 
 The NETN-LOG module covers the following tasks:
 
-* Resupply, e.g., refuelling aircraft at an airbase or in the air.
-* Repair, e.g., repair of damaged platforms in a facility.
-* Transport, e.g., transporting supplies from a specific pick-up point to an off-loading destination.
+* `Resupply`, e.g., refuelling aircraft at an airbase or in the air.
+* `Repair`, e.g., repair of damaged platforms in a facility.
+* `Transport`, e.g., transporting supplies from a specific pick-up point to an off-loading destination.
 
 ## Overview
 
@@ -377,12 +377,12 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | --- | --- |
 | AppointmentStruct | Date, Time and Location of an appointment. |
 | EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
-| RepairTaskStruct | Task-specific data for the Repair task. If the receiving entity is a PhysicalEntity, the ResourceType and QuantityToRepair fields are ignored. |
+| RepairTaskStruct | Task-specific data for the `Repair` task. If the receiving entity is a `PhysicalEntity`, the `ResourceType` and `QuantityToRepair` fields are ignored. |
 | RepairTypeEnum16 | System repaired. |
-| ResupplyTaskStruct | Task-specific data for the Resupply task. |
+| ResupplyTaskStruct | Task-specific data for the `Resupply` task. |
 | TaskDefinitionVariantRecord | Variant record for task definition data. |
 | TaskProgressVariantRecord | Variant record for task progress data. |
-| TransportTaskStruct | Task-specific data for the Transport task. |
+| TransportTaskStruct | Task-specific data for the `Transport` task. |
 
 ### Enumerated Datatypes
 
@@ -401,9 +401,9 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | Name | Fields | Semantics |
 | --- | --- | --- |
 | AppointmentStruct | DateTime, Location | Date, Time and Location of an appointment. |
-| RepairTaskStruct | ReceivingEntity, ResourceType, DamageState, QuatityToRepair, RepairType | Task-specific data for Repair task. If the receiving entity is a PhysicalEntity, the ResourceType and QuantityToRepair fields are ignored. |
-| ResupplyTaskStruct | ReceivingEntity, Supplies | Task-specific data for the Resupply task. |
-| TransportTaskStruct | TransportedEntities, PickUp, Route | Task-specific data for the Transport task. |
+| RepairTaskStruct | ReceivingEntity, ResourceType, DamageState, QuatityToRepair, RepairType | Task-specific data for `Repair` task. If the receiving entity is a `PhysicalEntity`, the `ResourceType` and `QuantityToRepair` fields are ignored. |
+| ResupplyTaskStruct | ReceivingEntity, Supplies | Task-specific data for the `Resupply` task. |
+| TransportTaskStruct | TransportedEntities, PickUp, Route | Task-specific data for the `Transport` task. |
 
 ### Variant Record Datatypes
 

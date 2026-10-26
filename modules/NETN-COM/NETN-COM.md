@@ -387,11 +387,11 @@ An `Equipment`object represents individual physical items defined specifically a
 
 ### BaseEntity
 
-A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g., viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
+A base class of aggregate and discrete scenario domain participants. The `BaseEntity` class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The `BaseEntity` class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g., viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| IncomingConnections | IncomingConnectionArray | Optional. All incoming communication connections to the receiving simulated entity. Any messages sent on a CommunicationNetwork with a Connection of sufficient quality should be received by this entity and processed if the entity is the intended recipient. |
+| IncomingConnections | IncomingConnectionArray | Optional. All incoming communication connections to the receiving simulated entity. Any messages sent on a `CommunicationNetwork` with a `Connection` of sufficient quality should be received by this entity and processed if the entity is the intended recipient. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ## Interaction Classes
@@ -468,7 +468,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | ConnectionReceiverArray | Connection characteristics for a number of receivers. |
 | ConnectionReceiverStruct | Characteristics of a connection to a receiver. |
 | ConnectionTypeEnum | The type of connection. |
-| DisruptCommunicationTaskStruct | Task-specific data for DisruptCommunication. |
+| DisruptCommunicationTaskStruct | Task-specific data for `DisruptCommunication`. |
 | EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
 | IncomingConnectionArray | A set of incoming connections. |
 | IncomingConnectionStruct | Characteristics of a specific incoming connection. |
@@ -486,7 +486,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | PhysicalUndefinedNetworkStruct | (Empty) Characteristics of an undefined physical network. |
 | RequestedConnection | Characterisation of a requested connection. |
 | RequestedConnectionArray | Characterisation of a set of requested connections. |
-| SetTransmitterStatusTaskStruct | Task-specific data for SetTransmitterStatus. |
+| SetTransmitterStatusTaskStruct | Task-specific data for `SetTransmitterStatus`. |
 | TaskDefinitionVariantRecord | Variant record for task definition data. |
 | TaskProgressVariantRecord | Variant record for task progress data. |
 
@@ -523,7 +523,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | Name | Fields | Semantics |
 | --- | --- | --- |
 | ConnectionReceiverStruct | ReceiverEntity, Latency, Bandwidth, Reliability, HopCount | Characteristics of a connection to a receiver. |
-| DisruptCommunicationTaskStruct | Network, Area, DisruptionEnabled | Task-specific data for DisruptCommunication. |
+| DisruptCommunicationTaskStruct | Network, Area, DisruptionEnabled | Task-specific data for `DisruptCommunication`. |
 | IncomingConnectionStruct | CommunicationNetwork, SendingEntity, Latency, Bandwidth, Reliability, HopCount | Characteristics of a specific incoming connection. |
 | LinkStatusStruct | TransmitterDevice, ReceiverDevice, Latency, Bandwidth, Reliability, IsBidirectional | Status of a physical network link. |
 | NetworkDeviceEmptyCharactersticsStruct | | Empty placeholder for future network device characteristics. |
@@ -532,7 +532,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | PhysicalGenericNetworkStruct | MaxHopCount, DefaultMaxLinkRange, Latency, Bandwidth, Reliability | Characteristics of a generic physical network. |
 | PhysicalUndefinedNetworkStruct | | (Empty) Characteristics of an undefined physical network. |
 | RequestedConnection | CommunicationNetwork, RequestedConnectionType, ConnectionId, DestinationEntities, NetworkDevice | Characterisation of a requested connection. |
-| SetTransmitterStatusTaskStruct | Status | Task-specific data for SetTransmitterStatus. |
+| SetTransmitterStatusTaskStruct | Status | Task-specific data for `SetTransmitterStatus`. |
 
 ### Variant Record Datatypes
 

@@ -121,17 +121,17 @@ SurfaceVessel : RunningLightsOn(RPR-Physical)
 
 ### BaseEntity
 
-A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
+A base class of aggregate and discrete scenario domain participants. The `BaseEntity` class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The `BaseEntity` class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM PhysicalEntity attribute Marking or the AggregateEntity attribute AggregateMarking as the default value. Max length 21 characters. |
+| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM `PhysicalEntity` attribute `Marking` or the `AggregateEntity` attribute `AggregateMarking` as the default value. Max length 21 characters. |
 | CaptureStatus | CaptureStatusEnum8 | Optional. The status of an entity's level of control or influence over its activities. Default is 0 = Other. |
 | HostEntity | UUID | Optional. Reference to the simulation entity this platform is mounted on or embedded in. Default is all zeros. |
-| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapons fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
+| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapon fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
 | Sensors | ArrayOfSensor | Optional. A set of sensors associated with the entity. Default is Empty = No sensors. |
 | Signatures | ArrayOfSignature | Optional. A set of signatures to characterize this entity's susceptibility to detection. Default is Empty = No Signatures. |
-| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on EntityType. |
+| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on `EntityType`. |
 | CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | EntityIdentifier<br/>(RPR-Base) | EntityIdentifierStruct | The unique identifier for the entity instance. |
 | EntityType<br/>(RPR-Base) | EntityTypeStruct | The category of the entity. |
@@ -144,16 +144,16 @@ A group of one or more separate objects that operate together as part of an orga
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM PhysicalEntity attribute Marking or the AggregateEntity attribute AggregateMarking as the default value. Max length 21 characters. |
+| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM `PhysicalEntity` attribute `Marking` or the `AggregateEntity` attribute `AggregateMarking` as the default value. Max length 21 characters. |
 | CaptureStatus | CaptureStatusEnum8 | Optional. The status of an entity's level of control or influence over its activities. Default is 0 = Other. |
 | CombatValue | PercentFloat32 | Optional. A summary value of the effectiveness (the level of training, leadership, morale, personnel and equipment operational status). Default is 100%. |
-| Echelon | EchelonEnum32 | Optional. Use the echelon symbol modifier to specify the size of the AggregateEntity (level of command). Derive default value based on EntityType. |
+| Echelon | EchelonEnum32 | Optional. Use the echelon symbol modifier to specify the size of the `AggregateEntity` (level of command). Derive default value based on `EntityType`. |
 | HostEntity | UUID | Optional. Reference to the simulation entity this platform is mounted on or embedded in. Default is all zeros. |
-| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapons fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
+| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapon fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
 | Sensors | ArrayOfSensor | Optional. A set of sensors associated with the entity. Default is Empty = No sensors. |
 | Signatures | ArrayOfSignature | Optional. A set of signatures to characterize this entity's susceptibility to detection. Default is Empty = No Signatures. |
-| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on EntityType. |
-| WeaponsControlOrder | WeaponControlOrderEnum8 | Optional. Describes the current Weapon Control Order as Free, Tight, or Hold. Default is 0 = Other. |
+| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on `EntityType`. |
+| WeaponsControlOrder | WeaponControlOrderEnum8 | Optional. Describes the current weapon control order as free, tight, or hold. Default is 0 = Other. |
 | AggregateState<br/>(RPR-Aggregate) | AggregateStateEnum8 | An indicator of the extent of association of objects to form an operating group. |
 | CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | Dimensions<br/>(RPR-Aggregate) | DimensionStruct | The size of the area covered by the units in the aggregate. |
@@ -170,13 +170,13 @@ A base class of all discrete platform scenario domain participants.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM PhysicalEntity attribute Marking or the AggregateEntity attribute AggregateMarking as the default value. Max length 21 characters. |
+| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM `PhysicalEntity` attribute `Marking` or the `AggregateEntity` attribute `AggregateMarking` as the default value. Max length 21 characters. |
 | CaptureStatus | CaptureStatusEnum8 | Optional. The status of an entity's level of control or influence over its activities. Default is 0 = Other. |
 | HostEntity | UUID | Optional. Reference to the simulation entity this platform is mounted on or embedded in. Default is all zeros. |
-| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapons fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
+| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapon fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
 | Sensors | ArrayOfSensor | Optional. A set of sensors associated with the entity. Default is Empty = No sensors. |
 | Signatures | ArrayOfSignature | Optional. A set of signatures to characterize this entity's susceptibility to detection. Default is Empty = No Signatures. |
-| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on EntityType. |
+| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on `EntityType`. |
 | ArticulatedParametersArray<br/>(RPR-Physical) | ArticulatedParameterStructLengthlessArray | Optional. Identification of the visible parts, and their states, of the entity which are capable of independent motion. Default = Other. |
 | CamouflageType<br/>(RPR-Physical) | CamouflageEnum32 | Optional. The type of camouflage in use (if any). Default = Other. |
 | CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
@@ -200,13 +200,13 @@ A physical object under the control of armed forces upon which sensor, communica
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM PhysicalEntity attribute Marking or the AggregateEntity attribute AggregateMarking as the default value. Max length 21 characters. |
+| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM `PhysicalEntity` attribute `Marking` or the `AggregateEntity` attribute `AggregateMarking` as the default value. Max length 21 characters. |
 | CaptureStatus | CaptureStatusEnum8 | Optional. The status of an entity's level of control or influence over its activities. Default is 0 = Other. |
 | HostEntity | UUID | Optional. Reference to the simulation entity this platform is mounted on or embedded in. Default is all zeros. |
-| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapons fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
+| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapon fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
 | Sensors | ArrayOfSensor | Optional. A set of sensors associated with the entity. Default is Empty = No sensors. |
 | Signatures | ArrayOfSignature | Optional. A set of signatures to characterize this entity's susceptibility to detection. Default is Empty = No Signatures. |
-| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on EntityType. |
+| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on `EntityType`. |
 | ArticulatedParametersArray<br/>(RPR-Physical) | ArticulatedParameterStructLengthlessArray | Optional. Identification of the visible parts, and their states, of the entity which are capable of independent motion. Default = Other. |
 | CamouflageType<br/>(RPR-Physical) | CamouflageEnum32 | Optional. The type of camouflage in use (if any). Default = Other. |
 | CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
@@ -234,7 +234,7 @@ A platform entity that operates mainly in the air, such as aircraft, balloons, e
 | --- | --- | --- |
 | AntiCollisionLightsDayNight | AppearanceAntiCollisionDayNightEnum8 | Optional. Describes the day/night status of the anti-collision lights. Default is 0 = Day. |
 | AntiCollisionLightsFlashing | AntiCollisionLightFlashingEnum8 | Optional. Anti-collision light flashing state. Default is 0 = Steady. |
-| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM PhysicalEntity attribute Marking or the AggregateEntity attribute AggregateMarking as the default value. Max length 21 characters. |
+| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM `PhysicalEntity` attribute `Marking` or the `AggregateEntity` attribute `AggregateMarking` as the default value. Max length 21 characters. |
 | CaptureStatus | CaptureStatusEnum8 | Optional. The status of an entity's level of control or influence over its activities. Default is 0 = Other. |
 | FormationLightsLuminance | UnsignedInteger8 | Optional. Formation lights luminance level. Default = 0. |
 | HDULightsOn | RPRboolean | Optional. Whether the HDU lights are on or not. Hose Drogue Unit (HDU) lights are used during air-to-air refueling. Default is 0 = False. |
@@ -243,10 +243,10 @@ A platform entity that operates mainly in the air, such as aircraft, balloons, e
 | MachNumber | MachNumber | Optional. The speed of the aircraft measured in Mach number. Default = 0.1. |
 | NVGMode | AppearanceNVGModeEnum8 | Optional. Describes whether air platform lighting is in covert or overt mode. Default is 0 = Overt_Lighting. |
 | NavigationLightsFlashing | NavigationLightFlashingEnum8 | Optional. Navigation lights flashing state. Default is 0 = Steady. |
-| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapons fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
+| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapon fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
 | Sensors | ArrayOfSensor | Optional. A set of sensors associated with the entity. Default is Empty = No sensors. |
 | Signatures | ArrayOfSignature | Optional. A set of signatures to characterize this entity's susceptibility to detection. Default is Empty = No Signatures. |
-| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on EntityType. |
+| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on `EntityType`. |
 | TaxiwayLightsOn | RPRboolean | Optional. Whether the entity's taxiway lights are on or not. Default is 0 = False. |
 | TrueAirspeed | VelocityMeterPerSecondFloat32 | Optional. The true airspeed of the aircraft. Default = 2.6 m/s. |
 | WeightOnWheels | RPRboolean | Optional. Describes whether the air platform has weight on its main landing gear. Default is 1 = True. |
@@ -282,7 +282,7 @@ A tanker aircraft.
 | --- | --- | --- |
 | AntiCollisionLightsDayNight | AppearanceAntiCollisionDayNightEnum8 | Optional. Describes the day/night status of the anti-collision lights. Default is 0 = Day. |
 | AntiCollisionLightsFlashing | AntiCollisionLightFlashingEnum8 | Optional. Anti-collision light flashing state. Default is 0 = Steady. |
-| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM PhysicalEntity attribute Marking or the AggregateEntity attribute AggregateMarking as the default value. Max length 21 characters. |
+| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM `PhysicalEntity` attribute `Marking` or the `AggregateEntity` attribute `AggregateMarking` as the default value. Max length 21 characters. |
 | CaptureStatus | CaptureStatusEnum8 | Optional. The status of an entity's level of control or influence over its activities. Default is 0 = Other. |
 | FormationLightsLuminance | UnsignedInteger8 | Optional. Formation lights luminance level. Default = 0. |
 | HDULightsOn | RPRboolean | Optional. Whether the HDU lights are on or not. Hose Drogue Unit (HDU) lights are used during air-to-air refueling. Default is 0 = False. |
@@ -291,7 +291,7 @@ A tanker aircraft.
 | MachNumber | MachNumber | Optional. The speed of the aircraft measured in Mach number. Default = 0.1. |
 | NVGMode | AppearanceNVGModeEnum8 | Optional. Describes whether air platform lighting is in covert or overt mode. Default is 0 = Overt_Lighting. |
 | NavigationLightsFlashing | NavigationLightFlashingEnum8 | Optional. Navigation lights flashing state. Default is 0 = Steady. |
-| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapons fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
+| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapon fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
 | RefuelingStation1DayNight | RefuelingStationLightDayNightEnum8 | Optional. Describes the day/night status of the refueling station lights. Default is 0 = Day. |
 | RefuelingStation1LightsColor | RefuelingStationLightColorEnum8 | Optional. Color of the refueling station lights. Default is 0 = Red. |
 | RefuelingStation1LightsFlashing | RPRboolean | Optional. Whether the refueling station lights are flashing. Default is False = Steady. |
@@ -306,7 +306,7 @@ A tanker aircraft.
 | RefuelingStation3LightsOn | RPRboolean | Optional. Whether the refueling station lights are on or not. Default is False = Off. |
 | Sensors | ArrayOfSensor | Optional. A set of sensors associated with the entity. Default is Empty = No sensors. |
 | Signatures | ArrayOfSignature | Optional. A set of signatures to characterize this entity's susceptibility to detection. Default is Empty = No Signatures. |
-| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on EntityType. |
+| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on `EntityType`. |
 | TaxiwayLightsOn | RPRboolean | Optional. Whether the entity's taxiway lights are on or not. Default is 0 = False. |
 | TrueAirspeed | VelocityMeterPerSecondFloat32 | Optional. The true airspeed of the aircraft. Default = 2.6 m/s. |
 | WeightOnWheels | RPRboolean | Optional. Describes whether the air platform has weight on its main landing gear. Default is 1 = True. |
@@ -340,16 +340,16 @@ A platform entity that operates wholly on the surface of the earth.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM PhysicalEntity attribute Marking or the AggregateEntity attribute AggregateMarking as the default value. Max length 21 characters. |
+| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM `PhysicalEntity` attribute `Marking` or the `AggregateEntity` attribute `AggregateMarking` as the default value. Max length 21 characters. |
 | CaptureStatus | CaptureStatusEnum8 | Optional. The status of an entity's level of control or influence over its activities. Default is 0 = Other. |
 | EmergencyLightsOn | RPRboolean | Optional. Whether the entity's emergency lights are on or not. A value of true, indicating that the lights are on, means that the lights begin flashing in accordance with the duty cycle of the model. Default is False = Off. |
 | HostEntity | UUID | Optional. Reference to the simulation entity this platform is mounted on or embedded in. Default is all zeros. |
 | LeftIndicatorLightsOn | RPRboolean | Optional. Whether the entity's left front and left rear indicator lights are on or not. A value of true, indicating that the lights are on, means that the lights begin flashing in accordance with the duty cycle of the model. Default is False = Off. |
-| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapons fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
+| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapon fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
 | RightIndicatorLightsOn | RPRboolean | Optional. Whether the entity's right front and right rear indicator lights are on or not. Default is False = Off. |
 | Sensors | ArrayOfSensor | Optional. A set of sensors associated with the entity. Default is Empty = No sensors. |
 | Signatures | ArrayOfSignature | Optional. A set of signatures to characterize this entity's susceptibility to detection. Default is Empty = No Signatures. |
-| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on EntityType. |
+| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on `EntityType`. |
 | ArticulatedParametersArray<br/>(RPR-Physical) | ArticulatedParameterStructLengthlessArray | Optional. Identification of the visible parts, and their states, of the entity which are capable of independent motion. Default = Other. |
 | BlackOutBrakeLightsOn<br/>(RPR-Physical) | RPRboolean | Optional. Whether the entity's black out brake lights are on or not. Default = False. |
 | BlackOutLightsOn<br/>(RPR-Physical) | RPRboolean | Optional. Whether the entity's black out lights are on or not. Default = False. |
@@ -384,7 +384,7 @@ A platform entity that operates wholly on the surface of the sea.
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | AnchorLightsOn | RPRboolean | Optional. Whether the entity's anchor lights are on or not. Default is False = Off. |
-| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM PhysicalEntity attribute Marking or the AggregateEntity attribute AggregateMarking as the default value. Max length 21 characters. |
+| Callsign | HLAunicodeString | Optional. The callsign is a unique designator. Use the RPR-FOM `PhysicalEntity` attribute `Marking` or the `AggregateEntity` attribute `AggregateMarking` as the default value. Max length 21 characters. |
 | CaptureStatus | CaptureStatusEnum8 | Optional. The status of an entity's level of control or influence over its activities. Default is 0 = Other. |
 | DistressBeaconOn | RPRboolean | Optional. Whether the entity's distress beacon is on or not. Default is False = Off. |
 | FishingWithLinesLightsOn | RPRboolean | Optional. Whether the entity's fishing lights with lines are on or not. Default is False = Off. |
@@ -395,11 +395,11 @@ A platform entity that operates wholly on the surface of the sea.
 | HostEntity | UUID | Optional. Reference to the simulation entity this platform is mounted on or embedded in. Default is all zeros. |
 | MineHuntingLightsOn | RPRboolean | Optional. Whether the entity's mine hunting lights are on or not. Default is False = Off. |
 | NotUnderCommandLightsOn | RPRboolean | Optional. Whether the entity's Not Under Command (NUC) lights are on or not. Default is False = Off. |
-| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapons fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
+| ProtectionLevel | PercentFloat32 | Optional. An entity's additional level of protection against the effects of weapon fire. E.g., cover, fortification, etc. Default is 0 = fully affected by weapon fire. |
 | RAMLightsOn | RPRboolean | Optional. Whether the entity's Restricted Ability to Maneuver (RAM) lights are on or not. Default is False = Off. |
 | Sensors | ArrayOfSensor | Optional. A set of sensors associated with the entity. Default is Empty = No sensors. |
 | Signatures | ArrayOfSignature | Optional. A set of signatures to characterize this entity's susceptibility to detection. Default is Empty = No Signatures. |
-| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on EntityType. |
+| Symbol | SymbolStruct | Optional. A symbol identifier and additional amplification. Derive default value based on `EntityType`. |
 | UpperDeckFloodLightsOn | RPRboolean | Optional. Whether the entity's upper deck flood lights are on or not. Default is False = Off. |
 | UpperDeckLightsOn | RPRboolean | Optional. Whether the entity's upper deck lights are on or not. Default is False = Off. |
 | WarningLightsOn | RPRboolean | Optional. Whether the entity's warning/safety lights are on or not. Default is False = Off. |

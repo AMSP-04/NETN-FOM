@@ -14,7 +14,7 @@ The NETN-SE module extends the RPR-SE module by defining:
 * Checkpoints
 * Observation posts
 * Minefields
-* Generic obstacles (OtherArealObject)
+* Generic obstacles (`OtherArealObject`)
 * Areal breaches
 
 The NETN-SE module also provides extended NETN-ETR tasks related to engineering activities.
@@ -61,14 +61,14 @@ A base class of environment point, linear, or areal object classes.
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Comment | HLAunicodeString | Optional. A descriptive text comment. |
-| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an EnvironmentObject. The default value is 0 (NoDamage). |
+| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an `EnvironmentObject`. The default value is 0 (NoDamage). |
 | HostObject | UUID | Optional. Reference to the host object. Required when using Breach/Burst objects. |
-| Name | HLAunicodeString | Optional. A name of the EnvironmentObject. |
-| Status | ActiveStatusEnum8 | Optional. Specifies if the EnvironmentObject is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
+| Name | HLAunicodeString | Optional. A name of the `EnvironmentObject`. |
+| Status | ActiveStatusEnum8 | Optional. Specifies if the `EnvironmentObject` is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
 | Symbol | SymbolStruct | Optional. A symbol identifier. |
-| ForceIdentifier<br/>(RPR-SE) | ForceIdentifierEnum8 | Identifies the force that created or modified this EnvironmentObject instance. |
-| ObjectIdentifier<br/>(RPR-SE) | EntityIdentifierStruct | Identifies this EnvironmentObject instance (point, linear, or areal). |
-| ObjectType<br/>(RPR-SE) | EnvironmentObjectTypeStruct | Identifies the type of this EnvironmentObject instance. |
+| ForceIdentifier<br/>(RPR-SE) | ForceIdentifierEnum8 | Identifies the force that created or modified this `EnvironmentObject` instance. |
+| ObjectIdentifier<br/>(RPR-SE) | EntityIdentifierStruct | Identifies this `EnvironmentObject` instance (point, linear, or areal). |
+| ObjectType<br/>(RPR-SE) | EnvironmentObjectTypeStruct | Identifies the type of this `EnvironmentObject` instance. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ### PointObject
@@ -78,48 +78,48 @@ A synthetic environment object that is geometrically anchored to the terrain wit
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Comment | HLAunicodeString | Optional. A descriptive text comment. |
-| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an EnvironmentObject. The default value is 0 (NoDamage). |
+| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an `EnvironmentObject`. The default value is 0 (NoDamage). |
 | HostObject | UUID | Optional. Reference to the host object. Required when using Breach/Burst objects. |
-| Name | HLAunicodeString | Optional. A name of the EnvironmentObject. |
+| Name | HLAunicodeString | Optional. A name of the `EnvironmentObject`. |
 | Radius | MeterFloat64 | Optional. The radius of the point object. |
-| Status | ActiveStatusEnum8 | Optional. Specifies if the EnvironmentObject is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
+| Status | ActiveStatusEnum8 | Optional. Specifies if the `EnvironmentObject` is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
 | Symbol | SymbolStruct | Optional. A symbol identifier. |
-| ForceIdentifier<br/>(RPR-SE) | ForceIdentifierEnum8 | Identifies the force that created or modified this EnvironmentObject instance. |
+| ForceIdentifier<br/>(RPR-SE) | ForceIdentifierEnum8 | Identifies the force that created or modified this `EnvironmentObject` instance. |
 | Location<br/>(RPR-SE) | WorldLocationStruct | Specifies the location of the object based on x, y, and z coordinates. |
-| ObjectIdentifier<br/>(RPR-SE) | EntityIdentifierStruct | Identifies this EnvironmentObject instance (point, linear, or areal). |
-| ObjectType<br/>(RPR-SE) | EnvironmentObjectTypeStruct | Identifies the type of this EnvironmentObject instance. |
+| ObjectIdentifier<br/>(RPR-SE) | EntityIdentifierStruct | Identifies this `EnvironmentObject` instance (point, linear, or areal). |
+| ObjectType<br/>(RPR-SE) | EnvironmentObjectTypeStruct | Identifies the type of this `EnvironmentObject` instance. |
 | Orientation<br/>(RPR-SE) | OrientationStruct | Specifies the angles of rotation around the coordinate axis between the object's attitude and the reference coordinate system axes; these are calculated as the Tait-Bryan Euler angles, specifying the successive rotations needed to transform from the world coordinate system to the object coordinate system. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ### Checkpoint
 
-A Checkpoint defines a location where simulated entities' ground movement should stop and wait for a specified time before continuing their route.
+A `Checkpoint` defines a location where simulated entities' ground movement should stop and wait for a specified time before continuing their route.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Comment | HLAunicodeString | Optional. A descriptive text comment. |
-| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an EnvironmentObject. The default value is 0 (NoDamage). |
+| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an `EnvironmentObject`. The default value is 0 (NoDamage). |
 | DelayTime | TimeMillisecondInt64 | Required. The time that an entity shall wait at the checkpoint before passing. The time is a nominal value; models can use this for modifying the delay time for different types of entities, e.g., add or subtract a value, or multiply by a factor dependent on the simulation entity type. |
 | HostObject | UUID | Optional. Reference to the host object. Required when using Breach/Burst objects. |
-| Name | HLAunicodeString | Optional. A name of the EnvironmentObject. |
+| Name | HLAunicodeString | Optional. A name of the `EnvironmentObject`. |
 | Radius | MeterFloat64 | Optional. The radius of the point object. |
-| Status | ActiveStatusEnum8 | Optional. Specifies if the EnvironmentObject is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
+| Status | ActiveStatusEnum8 | Optional. Specifies if the `EnvironmentObject` is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
 | Symbol | SymbolStruct | Optional. A symbol identifier. |
 
 ### ObservationPost
 
-An ObservationPost defines a location where a simulated entity can observe an area.
+An `ObservationPost` defines a location where a simulated entity can observe an area.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Comment | HLAunicodeString | Optional. A descriptive text comment. |
-| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an EnvironmentObject. The default value is 0 (NoDamage). |
+| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an `EnvironmentObject`. The default value is 0 (NoDamage). |
 | HostObject | UUID | Optional. Reference to the host object. Required when using Breach/Burst objects. |
-| Name | HLAunicodeString | Optional. A name of the EnvironmentObject. |
+| Name | HLAunicodeString | Optional. A name of the `EnvironmentObject`. |
 | ObservationArea | WorldLocationStructLengthlessArray | Optional. The area to be observed. |
 | Operator | UUID | Required. Reference to the unit operating this observation post. |
 | Radius | MeterFloat64 | Optional. The radius of the point object. |
-| Status | ActiveStatusEnum8 | Optional. Specifies if the EnvironmentObject is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
+| Status | ActiveStatusEnum8 | Optional. Specifies if the `EnvironmentObject` is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
 | Symbol | SymbolStruct | Optional. A symbol identifier. |
 
 ### LinearObject
@@ -129,11 +129,11 @@ A synthetic environment object that has a size and an orientation and is geometr
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Comment | HLAunicodeString | Optional. A descriptive text comment. |
-| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an EnvironmentObject. The default value is 0 (NoDamage). |
+| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an `EnvironmentObject`. The default value is 0 (NoDamage). |
 | HostObject | UUID | Optional. Reference to the host object. Required when using Breach/Burst objects. |
-| Name | HLAunicodeString | Optional. A name of the EnvironmentObject. |
+| Name | HLAunicodeString | Optional. A name of the `EnvironmentObject`. |
 | Points | LocationStructArray | Required. A path with at least two locations. |
-| Status | ActiveStatusEnum8 | Optional. Specifies if the EnvironmentObject is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
+| Status | ActiveStatusEnum8 | Optional. Specifies if the `EnvironmentObject` is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
 | Symbol | SymbolStruct | Optional. A symbol identifier. |
 
 ### ArealBreach
@@ -143,10 +143,10 @@ A cleared area within an obstacle allows simulated entities to move through the 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Comment | HLAunicodeString | Optional. A descriptive text comment. |
-| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an EnvironmentObject. The default value is 0 (NoDamage). |
+| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an `EnvironmentObject`. The default value is 0 (NoDamage). |
 | HostObject | UUID | Optional. Reference to the host object. Required when using Breach/Burst objects. |
-| Name | HLAunicodeString | Optional. A name of the EnvironmentObject. |
-| Status | ActiveStatusEnum8 | Optional. Specifies if the EnvironmentObject is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
+| Name | HLAunicodeString | Optional. A name of the `EnvironmentObject`. |
+| Status | ActiveStatusEnum8 | Optional. Specifies if the `EnvironmentObject` is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
 | Symbol | SymbolStruct | Optional. A symbol identifier. |
 
 ### MinefieldObject
@@ -156,10 +156,10 @@ A mine, mine weapon, mine row, mine strip, mine lane, mine marker, or minefield,
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Comment | HLAunicodeString | Optional. A descriptive text comment. |
-| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an EnvironmentObject. The default value is 0 (NoDamage). |
+| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an `EnvironmentObject`. The default value is 0 (NoDamage). |
 | HostObject | UUID | Optional. Reference to the host object. Required when using Breach/Burst objects. |
-| Name | HLAunicodeString | Optional. A name of the EnvironmentObject. |
-| Status | ActiveStatusEnum8 | Optional. Specifies if the EnvironmentObject is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
+| Name | HLAunicodeString | Optional. A name of the `EnvironmentObject`. |
+| Status | ActiveStatusEnum8 | Optional. Specifies if the `EnvironmentObject` is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
 | Symbol | SymbolStruct | Optional. A symbol identifier. |
 
 ### OtherArealObject
@@ -169,10 +169,10 @@ Areal objects other than minefield objects.
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Comment | HLAunicodeString | Optional. A descriptive text comment. |
-| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an EnvironmentObject. The default value is 0 (NoDamage). |
+| DamageState | DamageStatusEnhancedEnum32 | Optional. The damage state of an `EnvironmentObject`. The default value is 0 (NoDamage). |
 | HostObject | UUID | Optional. Reference to the host object. Required when using Breach/Burst objects. |
-| Name | HLAunicodeString | Optional. A name of the EnvironmentObject. |
-| Status | ActiveStatusEnum8 | Optional. Specifies if the EnvironmentObject is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
+| Name | HLAunicodeString | Optional. A name of the `EnvironmentObject`. |
+| Status | ActiveStatusEnum8 | Optional. Specifies if the `EnvironmentObject` is considered active in the simulation. An inactive object should not affect other simulation models. The default value is 1 (Active). |
 | Symbol | SymbolStruct | Optional. A symbol identifier. |
 
 ## Interaction Classes

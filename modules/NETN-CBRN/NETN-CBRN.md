@@ -333,7 +333,7 @@ Represents a feature that provides Collective Protection (COLPRO) against a CBRN
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Capacity | QuantityInt32 | Required. The number of entities that this cultural feature can handle. |
-| Protection | ArrayOfProtectionEffectivenessStruct | The effectiveness that this COLPRO offers for each agent. |
+| Protection | ArrayOfProtectionEffectivenessStruct | The effectiveness that this `COLPRO` offers for each agent. |
 | CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | EntityIdentifier<br/>(RPR-BASE) | EntityIdentifierStruct | The unique identifier for the entity instance. |
 | EntityType<br/>(RPR-BASE) | EntityTypeStruct | The category of the entity. |

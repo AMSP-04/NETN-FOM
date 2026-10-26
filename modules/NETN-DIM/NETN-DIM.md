@@ -174,7 +174,7 @@ Use the `Wildfire` object to represent a wildfire that may spread.
 | --- | --- | --- |
 | Area | GeodeticPolygon | Required. Geographical boundary of the HazardRegion. |
 | FrontVelocity | VelocityMeterPerSecondFloat32 | Optional. The spread velocity of the front line. The default is 0. |
-| FrontWidth | MeterFloat32 | Required. Indicates the thickness of the actual fire ring surrounding a no longer burning region. The assumption is that a fire starts at one or more locations and then spreads in a circular shape with a fire front of a certain thickness and burnt land behind the front line. The Area attribute defines the outer boundary of the overall region, and the front of the flames is assumed to extend from the boundary into the region. |
+| FrontWidth | MeterFloat32 | Required. Indicates the thickness of the actual fire ring surrounding a no longer burning region. The assumption is that a fire starts at one or more locations and then spreads in a circular shape with a fire front of a certain thickness and burnt land behind the front line. The `Area` attribute defines the outer boundary of the overall region, and the front of the flames is assumed to extend from the boundary into the region. |
 | Temperature | TemperatureDegreeCelsiusFloat32 | Optional. The temperature in the front line. |
 | CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
@@ -210,9 +210,9 @@ A levee is a wall or separator that protects an area from flooding.
 | --- | --- | --- |
 | Height | MeterFloat32 | Required. Maximum height over Mean Sea Level that this levee protects against flooding. |
 | CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
-| ForceIdentifier<br/>(RPR-SE) | ForceIdentifierEnum8 | Required. Identifies the force that created or modified this EnvironmentObject instance. |
-| ObjectIdentifier<br/>(RPR-SE) | EntityIdentifierStruct | Required. Identifies this EnvironmentObject instance (point, linear, or areal). |
-| ObjectType<br/>(RPR-SE) | EnvironmentObjectTypeStruct | Required. Identifies the type of this EnvironmentObject instance. |
+| ForceIdentifier<br/>(RPR-SE) | ForceIdentifierEnum8 | Required. Identifies the force that created or modified this `EnvironmentObject` instance. |
+| ObjectIdentifier<br/>(RPR-SE) | EntityIdentifierStruct | Required. Identifies this `EnvironmentObject` instance (point, linear, or areal). |
+| ObjectType<br/>(RPR-SE) | EnvironmentObjectTypeStruct | Required. Identifies the type of this `EnvironmentObject` instance. |
 | SegmentRecords<br/>(RPR-SE) | BreachableSegmentStructLengthlessArray | Required. Specifies a breachable linear object. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
@@ -224,9 +224,9 @@ A firebreak is a corridor cleared of combustible material. The firebreak separat
 | --- | --- | --- |
 | Width | MeterFloat32 | Required. Width of the firebreak. |
 | CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
-| ForceIdentifier<br/>(RPR-SE) | ForceIdentifierEnum8 | Required. Identifies the force that created or modified this EnvironmentObject instance. |
-| ObjectIdentifier<br/>(RPR-SE) | EntityIdentifierStruct | Required. Identifies this EnvironmentObject instance (point, linear, or areal). |
-| ObjectType<br/>(RPR-SE) | EnvironmentObjectTypeStruct | Required. Identifies the type of this EnvironmentObject instance. |
+| ForceIdentifier<br/>(RPR-SE) | ForceIdentifierEnum8 | Required. Identifies the force that created or modified this `EnvironmentObject` instance. |
+| ObjectIdentifier<br/>(RPR-SE) | EntityIdentifierStruct | Required. Identifies this `EnvironmentObject` instance (point, linear, or areal). |
+| ObjectType<br/>(RPR-SE) | EnvironmentObjectTypeStruct | Required. Identifies the type of this `EnvironmentObject` instance. |
 | SegmentRecords<br/>(RPR-SE) | BreachableSegmentStructLengthlessArray | Required. Specifies a breachable linear object. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 

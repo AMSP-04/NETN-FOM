@@ -44,7 +44,7 @@ Scenario time is displayed to simulation operators working with the actual scena
 
 In NETN, the scenario time is defined as seconds since Epoch, where Epoch is defined in federation agreements, e.g. January 1, 1970, 00:00:00 UTC.
 
-The NETN-BASE module defines the optional HLAobjectRoot attribute `CreateTime` for timestamping objects with the scenario time corresponding to the time the object was created in the federation. Similarly, the optional HLAinteractionRoot parameter `SendTime` represents the time in the scenario when the interaction was sent.
+The NETN-BASE module defines the optional `HLAobjectRoot` attribute `CreateTime` for timestamping objects with the scenario time corresponding to the time the object was created in the federation. Similarly, the optional `HLAinteractionRoot` parameter `SendTime` represents the time in the scenario when the interaction was sent.
 
 ## Object Classes
 

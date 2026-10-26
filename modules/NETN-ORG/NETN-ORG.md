@@ -223,7 +223,7 @@ An organization can have relationships with other organizations. Units belonging
 
 ### BaseEntity
 
-A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
+A base class of aggregate and discrete scenario domain participants. The `BaseEntity` class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The `BaseEntity` class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
@@ -236,8 +236,8 @@ A service providing modelling responsibility for aggregate and/or physical entit
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| AggregateEntityAllocation | ArrayOfUuid | Optional. The organization Unit elements for which the federate has the responsibility of modelling corresponding Aggregate Entities. The default is an empty list. |
-| PhysicalEntityAllocation | ArrayOfUuid | Optional. The the organization Equipment or Installation elements for which the federate has the responsibility of simulating a Physical Entity. The default is an empty list. |
+| AggregateEntityAllocation | ArrayOfUuid | Optional. The organization `Unit` elements for which the federate has the responsibility of modelling corresponding `AggregateEntities`. The default is an empty list. |
+| PhysicalEntityAllocation | ArrayOfUuid | Optional. The the organization `Equipment` or `Installation` elements for which the federate has the responsibility of simulating a `PhysicalEntity`. The default is an empty list. |
 
 ## Interaction Classes
 
@@ -253,11 +253,11 @@ ChangeSuperiorUnit : SuperiorUnit
 
 ### ChangeSuperiorUnit
 
-Request a change in the organizational structure. The federate with the primary responsibility of the referenced entity (OrganizationElement) should if possible update the `SuperiorUnit` relationship.
+Request a change in the organizational structure. The federate with the primary responsibility of the referenced entity (`OrganizationElement`) should if possible update the `SuperiorUnit` relationship.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| SuperiorUnit | UUID | Required. Reference to a Unit for which the referenced entity (OrganizationElement) is requested to relate as a subunit/equipment. |
+| SuperiorUnit | UUID | Required. Reference to a `Unit` for which the referenced entity (`OrganizationElement`) is requested to relate as a subunit/equipment. |
 
 ## Datatypes
 
@@ -271,7 +271,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | ArrayOfHoldings | Sequence of holdings. |
 | ArrayOfRelationship | Sequence of relations. |
 | EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
-| ForceIdentifierEnum | RPR-FOM Force Identifier enumeration. |
+| ForceIdentifierEnum | RPR-FOM `ForceIdentifier` enumeration. |
 | FormationDataStruct | Struct for enumerated choice for the type of formation being Ground, Air, Surface or Subsurface. |
 | FormationLocationTypeEnum32 | Enumerated choice for the method to correlate formation to location as the centre of mass or lead element. |
 | FormationStruct | The formation of this unit. |
@@ -288,7 +288,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | --- | --- | --- |
 | AirFormationTypeEnum32 | HLAinteger32BE | Air formation |
 | EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
-| ForceIdentifierEnum | RPRunsignedInteger8BE | RPR-FOM Force Identifier enumeration. |
+| ForceIdentifierEnum | RPRunsignedInteger8BE | RPR-FOM `ForceIdentifier` enumeration. |
 | FormationLocationTypeEnum32 | HLAinteger32BE | Enumerated choice for the method to correlate formation to location as the centre of mass or lead element. |
 | FormationTypeEnum32 | HLAinteger32BE | Enumerated choice for the type of formation being Ground, Air, Surface or Subsurface. |
 | GroundFormationTypeEnum32 | HLAinteger32BE | Specifies the formations for ground units. |

@@ -195,7 +195,7 @@ If no NETN-ORG AIS initialization data is available, the NETN-ORG `Equipment.Nam
 
 ### Not Using NETN-ORG
 
-If no NETN-ORG initialization data is available or used, the `Marking` is set to the AIS MMSI value, and the `Callsign` is set to the associated AIS callsign value. In this pattern, other applications can look up additional AIS Station information based on the received MMSI value (e.g. a configuration file with the additional data). In addition, RPR-FOM-based federates can provide the MMSI value to consumers using the marking attribute.
+If no NETN-ORG initialization data is available or used, the `Marking` is set to the AIS MMSI value, and the `Callsign` is set to the associated AIS callsign value. In this pattern, other applications can look up additional AIS Station information based on the received MMSI value (e.g. a configuration file with the additional data). In addition, RPR-FOM-based federates can provide the MMSI value to consumers using the `Marking` attribute.
 
 | NETN Physical Entity attribute | Initialized with |
 | --- | --- |
@@ -937,8 +937,8 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 |MsgIdEnum8|Enumeration value for the message type.|
 |NavigationStatusEnum8|Enumeration value to indicate the navigational status.|
 |PartNumberEnum8|Identifier for the message part number.|
-|SendSafetyRelatedBroadcastMessageTaskStruct|Task-specific data for SendSafetyRelatedBroadcastMessage task.|
-|SendSafetyRelatedMessageTaskStruct|Task-specific data for SendSafetyRelatedMessage task.|
+|SendSafetyRelatedBroadcastMessageTaskStruct|Task-specific data for `SendSafetyRelatedBroadcastMessage` task.|
+|SendSafetyRelatedMessageTaskStruct|Task-specific data for `SendSafetyRelatedMessage` task.|
 |SerialNumberInteger32|A 2-bit value. (Part B) Serial Number.|
 |ShipTypeEnum8|ITU-R M.1371-5 (02/2014) Vessel types.|
 |TaskDefinitionVariantRecord|Variant record for task definition data.|
@@ -981,8 +981,8 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 
 |Name|Fields|Semantics|
 |---|---|---|
-|SendSafetyRelatedBroadcastMessageTaskStruct|Message|Task-specific data for the SendSafetyRelatedBroadcastMessage task.|
-|SendSafetyRelatedMessageTaskStruct|ReceivingEntity, Message|Task-specific data for the SendSafetyRelatedMessage task.|
+|SendSafetyRelatedBroadcastMessageTaskStruct|Message|Task-specific data for the `SendSafetyRelatedBroadcastMessage` task.|
+|SendSafetyRelatedMessageTaskStruct|ReceivingEntity, Message|Task-specific data for the `SendSafetyRelatedMessage` task.|
 
 ### Variant Record Datatypes
 

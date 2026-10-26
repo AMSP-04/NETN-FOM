@@ -266,7 +266,7 @@ ETR_DelegatedTask : TaskProgress
 
 ### BaseEntity
 
-A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
+A base class of aggregate and discrete scenario domain participants. The `BaseEntity` class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The `BaseEntity` class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
@@ -1050,9 +1050,9 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | ArrayOfWaypoints | Array of waypoints with location and the speed to the waypoint. |
 | AttachTaskStruct | Task-specific data for tasks related to attach or associate one entity with another, e.g. mount a platform, embark on a ship, or to enter a facility. |
 | AttackTypeEnum32 | The kind of attack by the enemy. |
-| ChangeAltitudeTaskStruct | Task-specific data for ChangeAltitude. |
+| ChangeAltitudeTaskStruct | Task-specific data for `ChangeAltitude`. |
 | ChangeHeadingTaskStruct | Task-specific data to turn to the specified heading. |
-| ChangeRulesOfEngagementTaskStruct | Task-specific data for ChangeRulesOfEngagement. |
+| ChangeRulesOfEngagementTaskStruct | Task-specific data for `ChangeRulesOfEngagement`. |
 | ChangeSpeedTaskStruct | Task-specific data for ChangeSpeedTask task. |
 | DetectedEquipment | Equipment at the spotted entity. |
 | DirectFireTaskStruct | Task-specific data for direct fire. |
@@ -1061,24 +1061,24 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | EmptyTaskStruct | No task parameters. |
 | FederateControlActionEnum | Enumeration of Federate Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
 | FireTaskProgress | Task progress data for Fire tasks. |
-| FollowEntityTaskStruct | Task-specific data for FollowEntity. |
+| FollowEntityTaskStruct | Task-specific data for `FollowEntity`. |
 | IdentificationLevelEnum8 | The identification level of an object. |
-| IndirectFireTaskStruct | Task-specific data for IndirectFire task. |
-| MagicMoveTaskStruct | Task-specific data for MagicMove. |
-| MoveByRouteTaskStruct | Task-specific data for MoveByRoute. |
+| IndirectFireTaskStruct | Task-specific data for `IndirectFire` task. |
+| MagicMoveTaskStruct | Task-specific data for `MagicMove`. |
+| MoveByRouteTaskStruct | Task-specific data for `MoveByRoute`. |
 | MoveInDirectionTaskStruct | Tasking of an entity to move in a specified direction for a given duration. |
 | MoveIntoFormationTaskStruct | Initial movement speed. |
 | MoveTaskProgress | Task progress data for all move tasks with a path. If the next waypoint index < the last waypoint index, it indicates the reverse movement along a route. |
-| MoveToLocationTaskStruct | Task-specific data for MoveToLocation task. |
+| MoveToLocationTaskStruct | Task-specific data for `MoveToLocation` task. |
 | MoveTypeEnum32 | CrossCountry: move directly to the destination without considering the roads. OnlyRoads: stay on the roads to get to the point closest  to the destination that is still on the road; RoadsAndCrossCountry: move to the destination by considering the roads, but it is allowed to go off the road. |
-| ObserveTaskStruct | Task-specific data for Observe task. |
+| ObserveTaskStruct | Task-specific data for `Observe` task. |
 | ObservedEquipment | Equipment at the observed entity. |
-| OperateCheckpointTaskStruct | Task-specific data for OperateCheckpoint task. |
-| OperateObservationPostTaskStruct | Task-specific data for OperateObservationPost task. |
+| OperateCheckpointTaskStruct | Task-specific data for `OperateCheckpoint` task. |
+| OperateObservationPostTaskStruct | Task-specific data for `OperateObservationPost` task. |
 | OtherActivityTaskStruct | Task-specific data for this task. |
 | PatrolMoveTypeEnum32 | Defines the movement during the execution of the patrol. |
 | PatrolTaskProgress | Task progress data for PatrolRepeating tasks. |
-| PatrolTaskStruct | Task-specific data for a Patrol task. |
+| PatrolTaskStruct | Task-specific data for a `Patrol` task. |
 | PatrolTypeEnum32 | Other: The behaviour is federate application specific (e.g. wait for the next command). Circle: At the end of the route, move to the start point of the patrol route (the federate application determines the route). Reverse: Follow the patrol route in reverse order. |
 | RoundStruct | Details of munition fired. |
 | RulesOfEngagementEnum8 | Rules of engagement for a simulated entity. |
@@ -1122,30 +1122,30 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | Name | Fields | Semantics |
 | --- | --- | --- |
 | AttachTaskStruct | EntityId | Task-specific data for tasks related to attach or associate one entity with another, e.g. mount a platform, embark on a ship, or to enter a facility. |
-| ChangeAltitudeTaskStruct | Altitude | Task-specific data for ChangeAltitude. |
+| ChangeAltitudeTaskStruct | Altitude | Task-specific data for `ChangeAltitude`. |
 | ChangeHeadingTaskStruct | Heading | Task-specific data to turn to the specified heading. |
-| ChangeRulesOfEngagementTaskStruct | RulesOfEngagement | Task-specific data for ChangeRulesOfEngagement. |
+| ChangeRulesOfEngagementTaskStruct | RulesOfEngagement | Task-specific data for `ChangeRulesOfEngagement`. |
 | ChangeSpeedTaskStruct | Speed | Task-specific data for ChangeSpeedTask task. |
 | DetectedEquipment | Type, NumberOfEquipment | Equipment at the spotted entity. |
 | DirectFireTaskStruct | Target, Duration, Round | Task-specific data for direct fire. |
 | ElapsedTimeProgress | ElapsedTime | Progress definition for tasks only needing elapsed time. |
 | EmptyTaskStruct | | No task parameters. |
 | FireTaskProgress | ElapsedTime, MunitionUsed | Task progress data for Fire tasks. |
-| FollowEntityTaskStruct | FollowedEntity, Behind, Right, Above, Duration | Task-specific data for FollowEntity. |
-| IndirectFireTaskStruct | Area, Duration, Round | Task-specific data for IndirectFire task. |
-| MagicMoveTaskStruct | Location, Heading | Task-specific data for MagicMove. |
-| MoveByRouteTaskStruct | Route, MoveType | Task-specific data for MoveByRoute. |
+| FollowEntityTaskStruct | FollowedEntity, Behind, Right, Above, Duration | Task-specific data for `FollowEntity`. |
+| IndirectFireTaskStruct | Area, Duration, Round | Task-specific data for `IndirectFire` task. |
+| MagicMoveTaskStruct | Location, Heading | Task-specific data for `MagicMove`. |
+| MoveByRouteTaskStruct | Route, MoveType | Task-specific data for `MoveByRoute`. |
 | MoveInDirectionTaskStruct | Direction, Speed, Duration | Tasking of an entity to move in a specified direction for a given duration. |
 | MoveIntoFormationTaskStruct | Formation, Location, Distance, Heading, Speed | Initial movement speed. |
 | MoveTaskProgress | LastPassedWaypointIndex, NextWaypointIndex | Task progress data for all move tasks with a path. If the next waypoint index < the last waypoint index, it indicates the reverse movement along a route. |
-| MoveToLocationTaskStruct | Location, Path, MoveType, Speed | Task-specific data for MoveToLocation task. |
-| ObserveTaskStruct | ObservationArea | Task-specific data for Observe task. |
+| MoveToLocationTaskStruct | Location, Path, MoveType, Speed | Task-specific data for `MoveToLocation` task. |
+| ObserveTaskStruct | ObservationArea | Task-specific data for `Observe` task. |
 | ObservedEquipment | Type, NumberOfEquipment | Equipment at the observed entity. |
-| OperateCheckpointTaskStruct | CheckpointId, Duration, DelayTime | Task-specific data for OperateCheckpoint task. |
-| OperateObservationPostTaskStruct | ObserveTask, Duration, ObservationPostId | Task-specific data for OperateObservationPost task. |
+| OperateCheckpointTaskStruct | CheckpointId, Duration, DelayTime | Task-specific data for `OperateCheckpoint` task. |
+| OperateObservationPostTaskStruct | ObserveTask, Duration, ObservationPostId | Task-specific data for `OperateObservationPost` task. |
 | OtherActivityTaskStruct | Duration | Task-specific data for this task. |
 | PatrolTaskProgress | PathProgress, ElapsedTime, IntervalElapsedTime | Task progress data for PatrolRepeating tasks. |
-| PatrolTaskStruct | Path, PatrolType, MoveType, Duration, IntervalTime | Task-specific data for a Patrol task. |
+| PatrolTaskStruct | Path, PatrolType, MoveType, Duration, IntervalTime | Task-specific data for a `Patrol` task. |
 | RoundStruct | WeaponType, MunitionType, QuantityFired, RateOfFire | Details of munition fired. |
 | TaskDefinition | TaskId, TaskedEntity, Tasker, StartTime, Annotation, TaskMode, Activity, Status, TaskParameters, MainTask, PreviousTask, NextTask | Fixed record to describe the definition of a task. |
 | TaskProgress | TaskId, LastUpdated, ExecutingFederateId, ETC, ProgressData | Fixed record to describe the progress of an executing task. |

@@ -113,7 +113,7 @@ If not provided, the environment condition is considered global, restricted only
 | --- | --- | --- |
 | GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this environment condition. |
-| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., TroposphereLayer, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
+| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., `TroposphereLayer`, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
 
 #### Merging Rules for Environment Conditions
 
@@ -152,7 +152,7 @@ The `Weather` object class represents typical weather-related attributes such as
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Precipitation | PrecipitationStruct | Optional. Current precipitation type and intensity in the region/location. The default is NoPrecipitation. Use the average intensity of overlapping weather regions/locations. Resolve conflicting precipitation types according to the following precedence: Snow, Hail, Rain, and NoPrecipitation. E.g., if there is one overlapping environment condition with Snow, the result is always Snow. |
-| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., TroposphereLayer, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
+| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., `TroposphereLayer`, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
 | ReferenceAltitude | AltitudeMeterFloat64 | Optional. The altitude/depth at which pressure and temperature values are calculated. |
 | Temperature | TemperatureDegreeCelsiusFloat32 | Optional. The temperature in the region/location at the specified reference altitude. Temperature for specific altitudes is calculated using the International Standard Atmosphere (ISA) model. Default = 0. |
 | VisibilityRange | MeterFloat32 | Optional. The distance at which the human eye in the region/location can discern an object or light. If overlapping regions/locations exist, use the minimum distance. |
@@ -174,7 +174,7 @@ The environmental conditions related to a land surface include inherited attribu
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Moisture | SurfaceMoistureEnum16 | Optional. Surface moisture in the region/location. The default is 0 (Dry). If overlapping regions/locations exist, use the highest enumerated value (most moisture). |
 | Precipitation | PrecipitationStruct | Optional. Current precipitation type and intensity in the region/location. The default is NoPrecipitation. Use the average intensity of overlapping weather regions/locations. Resolve conflicting precipitation types according to the following precedence: Snow, Hail, Rain, and NoPrecipitation. E.g., if there is one overlapping environment condition with Snow, the result is always Snow. |
-| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., TroposphereLayer, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
+| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., `TroposphereLayer`, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
 | RainAccumulation | MeterFloat32 | Optional. Accumulated amount of rain on the land surface. |
 | ReferenceAltitude | AltitudeMeterFloat64 | Optional. The altitude/depth at which pressure and temperature values are calculated. |
 | Snow | SnowStruct | Optional. Current snow depth and density in the region/location. The default is no snow. If overlapping regions/locations exist, use the average snow depth and density. |
@@ -199,7 +199,7 @@ The `WaterSurface` object specifies the sea surface condition in the specified r
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Precipitation | PrecipitationStruct | Optional. Current precipitation type and intensity in the region/location. The default is NoPrecipitation. Use the average intensity of overlapping weather regions/locations. Resolve conflicting precipitation types according to the following precedence: Snow, Hail, Rain, and NoPrecipitation. E.g., if there is one overlapping environment condition with Snow, the result is always Snow. |
-| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., TroposphereLayer, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
+| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., `TroposphereLayer`, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
 | ReferenceAltitude | AltitudeMeterFloat64 | Optional. The altitude/depth at which pressure and temperature values are calculated. |
 | Salinity | PercentFloat32 | Optional. The salinity of seawater on the practical salinity scale 1978 (PSS-78). The default value is 35 (equivalent to 35 parts per thousand). If overlapping regions/locations exist, use the average salinity. |
 | SeaState | SeaStateEnum16 | Optional. State of the sea surface. The default is CalmGlassy. If overlapping regions/locations exist, use the latest updated value. |
@@ -227,7 +227,7 @@ The `TroposphereLayer` associates weather and cloud coverage with a specific lay
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Precipitation | PrecipitationStruct | Optional. Current precipitation type and intensity in the region/location. The default is NoPrecipitation. Use the average intensity of overlapping weather regions/locations. Resolve conflicting precipitation types according to the following precedence: Snow, Hail, Rain, and NoPrecipitation. E.g., if there is one overlapping environment condition with Snow, the result is always Snow. |
-| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., TroposphereLayer, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
+| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., `TroposphereLayer`, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
 | ReferenceAltitude | AltitudeMeterFloat64 | Optional. The altitude/depth at which pressure and temperature values are calculated. |
 | Temperature | TemperatureDegreeCelsiusFloat32 | Optional. The temperature in the region/location at the specified reference altitude. Temperature for specific altitudes is calculated using the International Standard Atmosphere (ISA) model. Default = 0. |
 | VisibilityRange | MeterFloat32 | Optional. The distance at which the human eye in the region/location can discern an object or light. If overlapping regions/locations exist, use the minimum distance. |
@@ -239,12 +239,12 @@ The environmental condition of a subsurface water layer.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| BottomType | SedimentTypeEnum32 | Optional. Type of sediment on the sea floor. The default is NoSediment. If overlapping layers exist, use the latest updated value. |
+| BottomType | SedimentTypeEnum32 | Optional. Type of sediment on the sea floor. The default is `NoSediment`. If overlapping layers exist, use the latest updated value. |
 | Current | CurrentStruct | Optional. Describes current in the water layer. The default is no current. If overlapping regions/locations exist, use the average current direction and speed. |
 | GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
 | Layer | LayerStruct | Optional. A body of water extends upwards from a (negative) base altitude (see LayerStruct). Ignore any portion of the layer extending above sea level. The default value is the volume between the sea floor and the surface. |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
-| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., TroposphereLayer, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
+| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., `TroposphereLayer`, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
 | Salinity | SalinityFloat32 | Optional. The salinity of seawater on the practical salinity scale 1978 (PSS-78). The default value is 35 (equivalent to 35 parts per thousand). If overlapping layers exist, use the average salinity. |
 | Temperature | TemperatureDegreeCelsiusFloat32 | Optional. The temperature at the base altitude of the subsurface layer. Default = 0. |
 | VisibilityRange | MeterFloat32 | Optional. The distance at which the human eye in the region/location can discern an object or light. If overlapping regions/locations exist, use the minimum distance. |
@@ -259,7 +259,7 @@ Represents a specific wind-related environment condition expressed as wind speed
 | Height | MeterFloat32 | Required. The height of the corridor centered on the geodetic path. |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Path | GeodeticPath | Required. The path of the corridor. |
-| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., TroposphereLayer, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
+| Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., `TroposphereLayer`, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
 | Width | MeterFloat32 | Required. The width of the corridor centered on the geodetic path. |
 | WindSpeed | VelocityMeterPerSecondFloat32 | Required. Wind speed in the direction of the wind corridor along a geodetic path. |
 
