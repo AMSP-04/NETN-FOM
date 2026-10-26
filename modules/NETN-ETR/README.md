@@ -1,9 +1,8 @@
 # NETN-ETR
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|3.0 |2024-03-08|NETN-BASE, NETN-SMC|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| 3.0 | 2024-03-08 | NETN-BASE, NETN-SMC |
 
 > [Full Documentation](NETN-ETR.md)
 
@@ -41,4 +40,3 @@ Version numbering of this FOM Module and associated documentation is based on th
 |v3.0 - Updated by MSG-191 for NETN FOM v4.0|
 
 > [Changelog](changelog.md)
-

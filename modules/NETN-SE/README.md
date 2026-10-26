@@ -1,17 +1,12 @@
 # NETN-SE
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|2.0|2024-03-10|RPR-SE, NETN-ETR, NETN-BASE|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| 2.0 | 2024-03-10 | RPR-SE, NETN-ETR, NETN-BASE |
 
 > [Full Documentation](NETN-SE.md)
 
-
-
 The NATO Education and Training Network Synthetic Environment module (NETN-SE) provides a standard way to exchange simulation data for objects in the synthetic environment other than simulated entities such as `Platform` or `AggregateEntity` objects.
-
-
 
 ## License
 
@@ -40,4 +35,3 @@ Version numbering of this FOM Module and associated documentation is based on th
 |v2.0 - Developed by MSG-191 for NETN FOM v4.0|
 
 > [Changelog](changelog.md)
-

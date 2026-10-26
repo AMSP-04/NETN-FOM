@@ -1,9 +1,8 @@
 # NETN-LOG
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|3.0|2024-03-10|NETN-BASE|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| 3.0 | 2024-03-10 | NETN-BASE |
 
 > [Full Documentation](NETN-LOG.md)
 
@@ -11,7 +10,8 @@ The NATO Education and Training Network Logistics Module (NETN-LOG) provides a s
 
 Military logistics is the discipline of planning and carrying out the movement and maintenance of military forces, including storage, distribution, maintenance and transportation of supplies, equipment and personnel.
 
-The NETN Logistics module covers the following tasks:    
+The NETN Logistics module covers the following tasks:
+
 * Resupply, e.g. refuelling aircraft at an airbase or in the air
 * Repair, e.g. repair of damaged platforms in a facility
 * Transport, e.g. transporting supplies from a specific pick-up point to an off-loading destination
@@ -37,11 +37,10 @@ Version numbering of this FOM Module and associated documentation is based on th
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-|Version|
-|---|
-|v1.1 - Initial version developed by MSG-068 for NETN FOM v1.0. |
-|v2.0 - Re-merged version of NETN-LOG FOM Module updated by MSG-163 for NETN FOM v3.0. Includes NETN-SCP, NETN-Supply, NETN-Storage, NETN-Repair and NETN-Transport.|
-|v3.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0|
+| Version |
+| --- |
+| v1.1 - Initial version developed by MSG-068 for NETN FOM v1.0. |
+| v2.0 - Re-merged version of NETN-LOG FOM Module updated by MSG-163 for NETN FOM v3.0. Includes NETN-SCP, NETN-Supply, NETN-Storage, NETN-Repair and NETN-Transport. |
+| v3.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0. |
 
 > [Changelog](changelog.md)
-

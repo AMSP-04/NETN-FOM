@@ -1,6 +1,6 @@
-## Changelog NETN-CBRN
+# Changelog NETN-CBRN
 
-### v1.1 - Initial version developed by MSG-106. Included in NETN FOM v2.0 and AMSP-04 Ed A.
+## v1.1 - Initial version developed by MSG-106. Included in NETN FOM v2.0 and AMSP-04 Ed A.
 
 Version 1.1.9 is the initial public release of the NETN-CBRN FOM Module developed by MSG-106 & MSG-134. This version is included in NETN-FOM v2.0 and AMSP-04 Ed A. Several internal development releases were also made available to the team and a summary of the changes are provided below
 
@@ -18,8 +18,7 @@ Version 1.1.9 is the initial public release of the NETN-CBRN FOM Module develope
 * v1.1.8 - Added TIC agents to AgentTypeEnum16.
 * v1.1.9 - Added POC information.
 
-
-### v1.2 - Minor update of the NETN-CBRN FOM Module developed by MSG-163 and included in AMSP-04 Ed B.
+## v1.2 - Minor update of the NETN-CBRN FOM Module developed by MSG-163 and included in AMSP-04 Ed B.
 
 Version 1.2 of the NETN-CBRN was updated by MSG-163 and included in NETN-FOM v3.0 and AMSP-04 Ed B.
 
@@ -39,11 +38,9 @@ Version 1.2 of the NETN-CBRN was updated by MSG-163 and included in NETN-FOM v3.
 * Changed use of data type TimeSecInt64 to EpochTimeSecInt64 (renamed in NETN-BASE)
 * Changed use of datatype ArrayOfWorldLocationStruct3 to GeocentricPolygon (renamed in NETN-BASE)
 
-
-### v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0
+## v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0.
 
 * Remodelled based on HLA4 modelling
 * Based on NETN-DIM
 * Simplified Hazard representation
 * Updated documentation
-

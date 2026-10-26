@@ -1,19 +1,16 @@
 # NETN-CBRN
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|v2.0|2024-03-10|RPR-Physical, NETN-DIM, NETN-BASE, NETN-ETR|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| v2.0 | 2024-03-10 | RPR-Physical, NETN-DIM, NETN-BASE, NETN-ETR |
 
 > [Full Documentation](NETN-CBRN.md)
 
 The NATO Education and Training Network Chemical, Biological, Radiological and Nuclear (NETN-CBRN) provides a standard interface for representing CBRN release, detection, effects, and protective measures in a federated distributed simulation. E.g., the exposure effect on individual humans in a CBRN-contaminated Hazard area where the human is represented in one simulation and the effect is modelled in another federate simulation.
 
-CBRN are Chemical, Biological, Radiological and Nuclear materials that can be delivered intentionally as a weapon using conventional bombs, explosive materials and enhanced blast weapons (e.g., dirty bombs) or unintentionally caused by human error or natural or technological reasons, such as spills, accidental releases or leakages. 
+CBRN are Chemical, Biological, Radiological and Nuclear materials that can be delivered intentionally as a weapon using conventional bombs, explosive materials and enhanced blast weapons (e.g., dirty bombs) or unintentionally caused by human error or natural or technological reasons, such as spills, accidental releases or leakages.
 
 The NETN-CBRN module specifies how to model CBRN-related events in a federated distributed simulation.
-
-
 
 ## License
 
@@ -36,11 +33,10 @@ Version numbering of this FOM Module and associated documentation is based on th
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-|Version|
-|---|
-|v1.1 - Initial version developed by MSG-106. Included in NETN FOM v2.0 and AMSP-04 Ed A.|
-|v1.2 - Minor update of the NETN-CBRN FOM Module developed by MSG-163 and included in AMSP-04 Ed B.|
-|v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0|
+| Version |
+| --- |
+| v1.1 - Initial version developed by MSG-106. Included in NETN FOM v2.0 and AMSP-04 Ed A. |
+| v1.2 - Minor update of the NETN-CBRN FOM Module developed by MSG-163 and included in AMSP-04 Ed B. |
+| v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0 |
 
 > [Changelog](changelog.md)
-

@@ -1,9 +1,8 @@
 # NETN-MRM
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|3.0|2024-03-10|NETN-BASE, NETN-SMC, NETN-ORG|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| 3.0 | 2024-03-10 | NETN-BASE, NETN-SMC, NETN-ORG |
 
 > [Full Documentation](NETN-MRM.md)
 
@@ -13,7 +12,8 @@ Models of real-world objects, processes and phenomena are used to create a synth
 
 The NETN-MRM module specifies aggregation, disaggregation, division and merging of aggregate entities.
 
-NETN-MRM covers the following cases: 
+NETN-MRM covers the following cases:
+
 * Aggregation of subunits into a representation of their parent unit
 * Disaggregation of a unit representation into subunits
 * Division of unit into subunits or physical entities
@@ -40,11 +40,10 @@ Version numbering of this FOM Module and associated documentation is based on th
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-|Version|
-|---|
-|v1.1 - Initial version of NETN-MRM FOM Module released as part of NETN FOM v2.0.|
-|v2.0 - Updated version by MSG-163 to be part of NETN FOM v3.0.|
-|v3.0 - Updated version by MSG-191 to be part of NETN FOM v4.0|
+| Version |
+| --- |
+| v1.1 - Initial version of NETN-MRM FOM Module released as part of NETN FOM v2.0. |
+| v2.0 - Updated version by MSG-163 to be part of NETN FOM v3.0. |
+| v3.0 - Updated version by MSG-191 to be part of NETN FOM v4.0. |
 
 > [Changelog](changelog.md)
-

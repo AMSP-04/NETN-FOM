@@ -1,17 +1,14 @@
 # NETN-METOC
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|2.0|2024-03-10|NETN-BASE|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| 2.0 | 2024-03-10 | NETN-BASE |
 
 > [Full Documentation](NETN-METOC.md)
 
 The purpose of the NATO Education and Training Network Meteorological and Oceanographic Module (NETN-METOC) is to provide a standard way to exchange data related to environmental conditions, including weather and the primary effects of weather on terrain and water surfaces in the atmosphere and subsurface water conditions.
 
 NETN-METOC provides a reference model that represents a common core subset of METOC-related aspects and allows the module's extension to incorporate additional detail if required.
-
-
 
 ## License
 
@@ -40,4 +37,3 @@ Version numbering of this FOM Module and associated documentation is based on th
 |v2.0 - Updates developed by MSG-191 and included in NETN FOM v4.0|
 
 > [Changelog](changelog.md)
-

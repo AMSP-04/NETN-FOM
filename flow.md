@@ -1,22 +1,24 @@
 # Workflow
 
 ## Repositories
+
 | Type | Description |
-| ---| ---|
-| NETN FOM  | Main repository for the entire FOM including all related FOM Modules.|
-| NETN-* | Repository for a specific FOM Module.|
+| --- | --- |
+| NETN FOM | Main repository for the entire FOM including all related FOM Modules. |
+| NETN-* | Repository for a specific FOM Module. |
 
 ## Branches
 
 | Type | Description |
-| ---| ---|
-| Master Branch |The latest officially released version. |
-| Develop Branch |The lastest development version with reviewed changes. |
-| Maintenance Branches |Opened to maintain a specific baseline or older version. |
-| Release Branches |Temporary branches used to prepare for a release.|
-| Edit Branches |Temporary branches used to develop proposed updates. Closed after Pull Request is reviewed and approved.|
+| --- | --- |
+| Master Branch | The latest officially released version. |
+| Develop Branch | The lastest development version with reviewed changes. |
+| Maintenance Branches | Opened to maintain a specific baseline or older version. |
+| Release Branches | Temporary branches used to prepare for a release. |
+| Edit Branches | Temporary branches used to develop proposed updates. Closed after Pull Request is reviewed and approved. |
 
 ## Making Changes
+
 All changes should be initiated by creating a GitHub Issue. Issues may also be created for the purpose of discussing possible future changes without suggesting a concrete plan of action.
 
 The `develop` branch should at all times contain only changes that have been reviewed and approved by at least one party that was not directly involved in making them. To this end, we adapt a workflow involving edit branches, Pull Requests (PRs) and Pull Request reviews.
@@ -24,6 +26,7 @@ The `develop` branch should at all times contain only changes that have been rev
 The workflow is closely based the commonly used “Gitflow” workflow, originally presented [here](https://nvie.com/posts/a-successful-git-branching-model/).
 
 ### Creating a Pull Request
+
 When ready to make a change, create a branch based on the `develop` branch. Name the branch on the form “edit/...”, and include in the branch name the number of the Issue where the change is discussed.
 
 An edit branch may refer to more than one Issue, in which case its name should preferably include the numbers of all of them. This is not mandatory, however.
@@ -33,9 +36,11 @@ Make the changes on the branch, and push the branch to GitHub.
 When you think the changes are ready, create a PR, pointing it to the `develop` branch. Add reviewers to the PR as appropriate. Link the PR to each Issue it addresses, if it has not been automatically linked already.
 
 ### Reviewing a Pull Request
+
 When reviewing a PR, comment on individual changes in the “Files changed” view. Then click the button marked “Review changes”, add any additional comments not related to individual changes, select Comment, Approve or Request changes, and submit the review.
 
 ### Merging a Pull Request
+
 Any edits that happen as a result of discussions and reviews of the PR should be committed and pushed to the same edit branch, which will automatically update the PR.
 
 The PR must be reviewed and approved by at least one party from a different organization than the creator of the PR before it can be merged to the `develop` branch.
@@ -43,7 +48,9 @@ The PR must be reviewed and approved by at least one party from a different orga
 If discussions of a PR raises questions that have not been addressed in a GitHub Issue, they should be added to a new or existing Issue and agreed upon before the PR is approved or merged.
 
 ## Releases
+
 ### Making a Release of a Single Module
+
 1. Create a `release` branch based on the `develop` branch, with a name on the form “release/...”, including the intended name of the release in the branch name.
 2. Make any final, pre-Release Candidate (RC) changes on the `release` branch, such as setting correct meta data, updating the changelog or adding documentation. Remember, this includes setting the version name to the upcoming release or RC version wherever it is mentioned inside the repository, such as the FOM module identification table.
 3. Create a tag at the commit intended as the RC. Name it <version-name>-rcN, where N is the sequential number of the RC for this version, starting at 1.
@@ -61,6 +68,7 @@ If, after step 5, the RC is to be promoted to a full release:
 8. Merge the `release` branch into the `develop` branch and the `master` branch, then delete the `release` branch.
 
 ### Making a Release of the Entire NETN FOM
+
 A release of the NETN FOM as a whole must include specific, released versions of every individual FOM module that makes up the FOM.
 
 1. Create a `release` branch based on the `develop` branch, with a name on the form “release/...”, including the intended name of the release in the branch name.
@@ -82,8 +90,9 @@ If, after step 6, the RC is to be promoted to a full release:
 10. Merge the `release` branch into the `develop` branch and the `master` branch, then delete the `release` branch.
 
 ## Maintenance Branches
-For practical purposes, it is sometimes necessary to maintain older versions of individual FOM modules or of the FOM as a whole. 
 
-In order to do maintenance work on an old version, create a new branch based on the tag for the released version in question. Name it <base-version-name>-maintenance. Maintenance branches are permanent, and will never be deleted. 
+For practical purposes, it is sometimes necessary to maintain older versions of individual FOM modules or of the FOM as a whole.
+
+In order to do maintenance work on an old version, create a new branch based on the tag for the released version in question. Name it <base-version-name>-maintenance. Maintenance branches are permanent, and will never be deleted.
 
 Maintenance branches may be merged to the `develop` branch if this is desired, but the opposite will never happen. Releases may be made on a maintenance branch according to the regular release procedures, as if the maintenance branch was the `develop` branch, except there is no equivalent to the `master` branch. Names of maintenance releases must never clash with names of regular releases.

@@ -1,9 +1,8 @@
 # NETN-ORG
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|2.0|2024-03-07|NETN-BASE|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| 2.0 | 2024-03-07 | NETN-BASE |
 
 > [Full Documentation](NETN-ORG.md)
 
@@ -11,10 +10,11 @@ The NATO Education and Training Organization (NETN-ORG) module provides a standa
 
 Simulating organizational elements requires knowledge of intra-organizational relationships, e.g., superior, subordinate, and inter-organizational relationships with other organizations, e.g., friendly or hostile. The NETN-ORG supports initialization and organizations' dynamic change of this information.
 
-Use the NETN-ORG information to: 
-* initialize simulated entities 
-* perform disaggregation, aggregation, divide and merge actions using NETN-MRM 
-* change organizational relationships 
+Use the NETN-ORG information to:
+
+* initialize simulated entities
+* perform disaggregation, aggregation, divide and merge actions using NETN-MRM
+* change organizational relationships
 * capture simulated unit and equipment state as snapshots
 
 ## License
@@ -44,4 +44,3 @@ Version numbering of this FOM Module and associated documentation is based on th
 |v2.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0|
 
 > [Changelog](changelog.md)
-

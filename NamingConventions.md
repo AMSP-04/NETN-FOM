@@ -50,7 +50,7 @@ Variant record datatypes should end with the word `VariantStruct`.
 
 ## Attribute and Parameter Names
 
-A class attribute or a parameter name starts with a capital letter (in contrast to common coding practices). A name may be in mixed case with the first letter of each internal word capitalized (Pascal Case). A name shall not start with an underscore, but underscores may be used within a name. 
+A class attribute or a parameter name starts with a capital letter (in contrast to common coding practices). A name may be in mixed case with the first letter of each internal word capitalized (Pascal Case). A name shall not start with an underscore, but underscores may be used within a name.
 
 A name should be short yet meaningful. The choice of a name should be mnemonic - that is, designed to indicate to the casual observer the intent of its use. One-character names should be avoided.
 

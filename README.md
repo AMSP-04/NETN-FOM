@@ -1,9 +1,8 @@
 # NETN FOM
+
 NATO Education and Training Network (NETN) Federation Object Model (FOM)
 
- 
 ## Executive Summary
-
 
 Efficient and effective use of NATO and national Modelling & Simulation (M&S) capabilities to support training requires standards for connecting and integrating M&S components across the training system enterprise.
 
@@ -13,16 +12,14 @@ The NETN-FOM focuses on technical interoperability issues in distributed simulat
 
 The AMSP-04 document provides a summary of all NETN-FOM modules, key design patterns and main concepts. Full online documentation and all related data models and files are provided through http://www.github.org/AMSP-04.
 
-
-
 ## Licence
 
 Copyright (C) 2020 NATO/OTAN.
-This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENCE.md). 
+This work is licensed under a [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENCE.md).
 
 The work includes all the NETN FOM Modules and related [documentation](NETN-FOM.md).
 
-The above licence gives you the right to use and redistribute the NETN FOM (XML files and Documentation) in its entirety without modification. You are also allowed to develop new FOM Modules (in separate XML files and separate documentation) that build on/extend the NETN FOM by reference, including necessary scaffolding classes. You are NOT allowed to modify the NETN FOM or its documentation without prior permission by the NATO Modelling and Simulation Group. 
+The above licence gives you the right to use and redistribute the NETN FOM (XML files and Documentation) in its entirety without modification. You are also allowed to develop new FOM Modules (in separate XML files and separate documentation) that build on/extend the NETN FOM by reference, including necessary scaffolding classes. You are NOT allowed to modify the NETN FOM or its documentation without prior permission by the NATO Modelling and Simulation Group.
 
 ## Versions, Updates and Extensions
 
@@ -48,11 +45,13 @@ Version numbering of the NETN FOM and associated documentation is based on the f
 [Changelog](changelog.md)
 
 ## Repository Structure
+
 * [Modules](modules/) contains each module in its subfolder. These subfolders contain the module's FOM file, documentation and any related files.
 * [FomFiles_HLA4](FomFiles_HLA4/) contains only the FOM files in HLA 4 format. Same FOM files as in the _Modules_ folder but no documentation, subfolders or extra files.
 * [FomFiles_Merged_HLA_Evolved](FomFiles_Merged_HLA_Evolved/) contains a merged version of the entire NETN 4 and all RPR_FOM-V2.0_1516-210 modules in HLA Evolved format.
 
 ## Maintenance on GitHub
+
 * The `master` branch of the NETN FOM repository contains the official public releases of the FOM.
 * The `develop` branch of the NETN FOM repository contains the intermediate baseline releases of the FOM and the lasest build/merge of other feature branches/forks used by members of the maintenance team to update the FOM.
 
@@ -63,4 +62,3 @@ Version numbering of the NETN FOM and associated documentation is based on the f
 ## Documentation
 
 [Full Documentation](NETN-FOM.md)
-

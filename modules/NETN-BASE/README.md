@@ -1,17 +1,12 @@
 # NETN-BASE
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|3.0|2024-03-10|RPR-Base|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| 3.0 | 2024-03-10 | RPR-Base |
 
 > [Full Documentation](NETN-BASE.md)
 
-
-
 The NATO Education and Training Network Base (NETN-BASE) Module provides standard definitions of datatypes used by NETN modules. It depends on the RPR-BASE Module.
-
-
 
 ## License
 
@@ -34,11 +29,10 @@ Version numbering of this FOM Module and associated documentation is based on th
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-|Version|
-|---|
-|v1.0 - Initial version developed by MSG-106 and MSG-134. Release included in NETN FOM v2.0|
-|v2.0 - Updated version developed by MSG-163. Release included in NETN FOM v3.0|
-|v3.0 - Updated version developed by MSG-191. The release is included in NETN FOM v4.0|
+| Version |
+| --- |
+| v1.0 - Initial version developed by MSG-106 and MSG-134. Release included in NETN FOM v2.0 |
+| v2.0 - Updated version developed by MSG-163. Release included in NETN FOM v3.0 |
+| v3.0 - Updated version developed by MSG-191. The release is included in NETN FOM v4.0 |
 
 > [Changelog](changelog.md)
-

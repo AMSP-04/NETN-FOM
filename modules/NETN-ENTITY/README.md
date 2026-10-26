@@ -1,13 +1,10 @@
 # NETN-ENTITY
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|v3.0|2024-03-09|NETN-BASE, RPR-Base, RPR-Physical, RPR-Aggregate, MIM|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| v3.0 | 2024-03-09 | NETN-BASE, RPR-Base, RPR-Physical, RPR-Aggregate, MIM |
 
 > [Full Documentation](NETN-ENTITY.md)
-
-
 
 The NETN-ENTITY FOM Module provides a standard interface for representing simulation entities in a federated distributed simulation. The module extends the RPR-FOM standard SISO-STD-001-2015 with additional attributes for simulated physical and aggregated entities.
 
@@ -41,4 +38,3 @@ Version numbering of this FOM Module and associated documentation is based on th
 |v3.0 - Updated version developed by MSG-191 for NETN FOM v4.0 renamed NETN-ENTITY|
 
 > [Changelog](changelog.md)
-

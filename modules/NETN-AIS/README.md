@@ -1,18 +1,16 @@
 # NETN-AIS
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|2.0|2024-03-10|NETN-BASE, RPR-Communication, NETN-ETR, NETN-ORG, NETN-SMC|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| 2.0 | 2024-03-10 | NETN-BASE, RPR-Communication, NETN-ETR, NETN-ORG, NETN-SMC |
 
 > [Full Documentation](NETN-AIS.md)
 
-The purpose of the NATO Education and Training Network Automatic Identification System Module (NETN-AIS) is to:     
-        
-* represent vessel traffic in a simulation using AIS messages to, for example, communicate position status reports of vessels.   
-* enable the exchange of AIS messages between HLA Federate Applications in real-time and non-real-time platform-level simulation.   
-* allow HLA Federate Applications to use regular HLA interaction classes and parameters to represent vessel information and leave any translations to physical message formats to dedicated gateways.
+The purpose of the NATO Education and Training Network Automatic Identification System Module (NETN-AIS) is to:
 
+* represent vessel traffic in a simulation using AIS messages to, for example, communicate position status reports of vessels.
+* enable the exchange of AIS messages between HLA Federate Applications in real-time and non-real-time platform-level simulation.
+* allow HLA Federate Applications to use regular HLA interaction classes and parameters to represent vessel information and leave any translations to physical message formats to dedicated gateways.
 
 AIS is a worldwide automated tracking system used for sharing vessel identification and location information by propagating messages between nearby vessels and Vessel Traffic Services stations.
 
@@ -39,10 +37,9 @@ Version numbering of this FOM Module and associated documentation is based on th
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-|Version|
-|---|
-|v1.0 - Developed by MSG-163 for NETN FOM v3.0|
-|v2.0 - Developed by MSG-191 for NETN FOM v4.0|
+| Version |
+| --- |
+| v1.0 - Developed by MSG-163 for NETN FOM v3.0 |
+| v2.0 - Developed by MSG-191 for NETN FOM v4.0 |
 
 > [Changelog](changelog.md)
-
