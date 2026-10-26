@@ -24,7 +24,7 @@ As a reference document, the NETN-FOM does not replace the need for detailed des
 
 The NETN-FOM modules have interdependencies, and their design maximizes both the reuse of and interoperability with legacy systems. The NETN-FOM complements and extends the SISO RPR-FOM.
 
-This AMSP-04 specification summarises all NETN-FOM modules, key design patterns and main concepts. Complete online documentation and all related data models and files are published and provided at http://www.github.org/AMSP-04.
+This AMSP-04 specification summarises all NETN-FOM modules, key design patterns and main concepts. Complete online documentation and all related data models and files are published and provided at http://www.github.com/AMSP-04.
 
 ## History
 
@@ -48,7 +48,7 @@ In March 2021, the NMSG technical activity MSG-191, “NATO Standards for Federa
 |NETN-FOM v1.0|NETN Service Consumer-Provider.</br></br>NETN Logistics.</br></br>NETN Aggregate.|
 
 ## License
-Complete online documentation and all related data models and files are provided through http://www.github.org/AMSP-04.
+Complete online documentation and all related data models and files are provided through http://www.github.com/AMSP-04.
 
 All NETN-FOM modules are licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License. The licensed work includes all NETN-FOM Modules defined in this document and as provided online through GitHub as HLA OMT XML files, XML Schemas, and all associated documentation.
 
@@ -68,18 +68,18 @@ The NETN-FOM modules capture different aspects of information that can be exchan
 |---|---|
 |NETN-BASE|Common definitions of datatypes.
 |NETN-SMC|Base interaction classes for service management and control, including federation, federate and entity control actions.
-|NETN-MRM|Multi-Resolution Modelling, including aggregation, disaggregation, division and merging of simulated aggregated entities.
-|NETN-COM|Representation of logical communication networks and physical network links.
-|NETN-METOC|Representation of environmental conditions, including weather and primary effects of weather on terrain, water surfaces, atmosphere, and subsurface water conditions.
-|NETN-CBRN|Representation of CBRN release, detection, effects, and protective measures.
-|NETN-LOG|Logistics services representation for modelling supply, repair, and transport across federates.
-|NETN-TMR|Transfer of attribute modelling responsibility between federates.
-|NETN-SE|Representation of persistent objects in the synthetic environment.
-|NETN-ETR|Base model for sending simulation control actions to entities represented in a federated distributed simulation.
 |NETN-ORG|Representation of the state of units, including command structure and the relationship between organizations.
-|NETN-AIS|Representation of vessel traffic in a simulation using AIS messages.
+|NETN-ETR|Base model for sending simulation control actions to entities represented in a federated distributed simulation.
 |NETN-ENTITY|Representation of simulated physical and aggregate entities.
+|NETN-TMR|Transfer of attribute modelling responsibility between federates.
+|NETN-METOC|Representation of environmental conditions, including weather and primary effects of weather on terrain, water surfaces, atmosphere, and subsurface water conditions.
+|NETN-MRM|Multi-Resolution Modelling, including aggregation, disaggregation, division and merging of simulated aggregated entities.
+|NETN-AIS|Representation of vessel traffic in a simulation using AIS messages.
+|NETN-COM|Representation of logical communication networks and physical network links.
+|NETN-LOG|Logistics services representation for modelling supply, repair, and transport across federates.
+|NETN-SE|Representation of persistent objects in the synthetic environment.
 |NETN-DIM|Representation of hazards, e.g. flooding and wildfire, in federated distributed simulation environments.
+|NETN-CBRN|Representation of CBRN release, detection, effects, and protective measures.
 
 ## Modelling Responsibility
 
@@ -95,7 +95,7 @@ Transfer of primary modelling responsibility is defined in the NETN-TMR module a
 
 ## Initialization
 
-The NETN-FOM identifies three initialization methods and allocation of initial modelling responsibility in a NETN federation.
+The NETN-FOM identifies three methods for initialization and allocation of initial modelling responsibility in a NETN federation.
 
 1. A federate registers entities based on a loaded Scenario Data File. The NETN-ORG module provides a proposed scenario data format based on the SISO-STD-007-2008 Military Scenario Definition Language (MSDL).
 2. Entities are allocated based on published NETN-ORG data and registered by a federate based on data in the federation.
@@ -112,7 +112,7 @@ C->>Federation:Update(O.attributes=initial values)
 Federation->>F:Reflect(O.attributes=initial values)
 C->>Federation:Update(O.AllocatedFederate=F)
 Federation->>F:Reflect(O.AllocatedFederate=F)
-F->C:HLA Ownership Acquisition(O.AllocatedFederate)
+F->>C:HLA Ownership Acquisition(O.AllocatedFederate)
 F->>Federation:Update(O)
 ``` 
 (F) receives the primary modelling responsibility of (O) only when (F) completes the HLA attribute ownership acquisition of the `O.AllocatedFederate` attribute.
@@ -121,7 +121,7 @@ F->>Federation:Update(O)
 
 Several modules in NETN-FOM use NETN-SMC Entity Control Actions, which are based on the concept of Primary Modelling Responsibility. A federate with the primary responsibility for an entity (E) shall respond to all NETN-SMC `SMC_EntityControl` actions directed to (E). 
 
-In NETN-FOM v4, the following Entity Control Actions are included.
+NETN-FOM v4 includes a set of Entity Control Actions. The table below lists each Entity Control Action along with its value in `EntityControlActionEnum` and the module in which the action is specified.
 
 |Name|Value|Module|
 |---|---|---|
@@ -187,7 +187,7 @@ In NETN-FOM v4, the following Entity Control Actions are included.
 |ATON|	Aid to Navigation
 |BML|	Battle Management Language
 |C2|Command and Control
-|C2SIM|	C2 System – Simulation System Interoperation
+|C2SIM|	C2 System and Simulation System Interoperation
 |CAX|	Computer Assisted eXercise
 |CBRN|	Chemical, Biological, Radiological and Nuclear
 |CGF|	Computer-Generated Forces
