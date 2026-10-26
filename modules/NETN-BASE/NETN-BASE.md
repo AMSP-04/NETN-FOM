@@ -61,7 +61,7 @@ HLAobjectRoot : UniqueId
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | CreateTime | EpochTime | Optional. The time in the scenario when the object is created. |
-| UniqueId | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
+| UniqueId | UUID | Required. A Universally Unique Identifier (UUID) for the object. UUID is generated or pre-defined. |
 
 ## Interaction Classes
 
@@ -126,7 +126,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | SymbolTypeEnum | Type of symbol. |
 | TimeMillisecondInt64 | A generic representation of milliseconds. |
 | TransmitterOperationalStatusEnum8 | The current operational state of a radio transmitter. |
-| UUID | RFC 4122, section 4.1.2 using 16 bytes. Also referred to as Variant 1 or RFC 4122/DCE 1.1 UUIDs. For example, 00112233-4455-8877-6699-aabbccddeeff is encoded as the bytes 00 11 22 33 44 55 88 77 66 99 aa bb cc dd ee ff. |
+| UUID | Universally Unique Identifier. RFC 4122, section 4.1.2 using 16 bytes. Also referred to as Variant 1 or RFC 4122/DCE 1.1 UUIDs. For example, 00112233-4455-8877-6699-aabbccddeeff is encoded as the bytes 00 11 22 33 44 55 88 77 66 99 aa bb cc dd ee ff. |
 | UnitSymbolAmplificationStruct | Text amplifiers for Unit symbols. |
 
 ### Simple Datatypes
