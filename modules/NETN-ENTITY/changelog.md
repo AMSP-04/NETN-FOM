@@ -1,28 +1,8 @@
 # Changelog NETN-ENTITY
 
-## v1.2 - First version developed by MSG-134 for NETN FOM v2.0. Object classes and datatypes derived from deprecated NETN FOM v 1.0 module AggDeagg.
+## v3.0
 
-## v2.0 - Updated version developed by MSG-163 for NETN FOM v3.0 renamed NETN-Physical.
-
-* Added attribute `SourceUnit` to all NETN-Physical platform and lifeform object classes.
-* Added attribute `Route` to all NETN-Physical platform, munition and lifeform object classes.
-* Added attribute `Destination` to all NETN-Physical platform, munition and lifeform object classes.
-* Renamed attribute `UniqueID` to `UniqueId` for compliance with naming convensions.
-* Added attribute `SymbolId` to all NETN-Physical platform, lifeform, cultural feature and munition object classes.
-* Renamed object class `SubmersibleVehicle` to `SubmersibleVessel`.
-
-## Changes for v1.2.0
-
-NETN-MRM FOM Module v1.2.0 was developed by MSG-106 and MSG-134 and released as part of NETN FOM v2.0 in AMSP-04 Ed A.
-
-* Added object classes and datatypes from FOM modules in NETN FOM v1
-* Added object class `NETN_CulturalFeature`
-* Added  object class `NETN_Munition`
-
-* Added attribute Symbol to all object classes
-* Changed from Reliable to BestEffort on some attributes to get a common transport type
-
-## v3.0 - Updated version developed by MSG-191 for NETN FOM v4.0 renamed NETN-ENTITY.
+Updated version developed by MSG-191 for NETN FOM v4.0 renamed NETN-ENTITY.
 
 * Renamed module NETN-ENTITY
 
@@ -162,3 +142,29 @@ NETN-MRM FOM Module v1.2.0 was developed by MSG-106 and MSG-134 and released as 
 * Removed datatype `ElectronicSignatureStruct`
 
 * Changed datatype of FixedRecord SensorStruct field SensorID to UUID
+
+## v2.0
+
+Updated version developed by MSG-163 for NETN FOM v3.0 renamed NETN-Physical.
+
+* Added attribute `SourceUnit` to all NETN-Physical platform and lifeform object classes.
+* Added attribute `Route` to all NETN-Physical platform, munition and lifeform object classes.
+* Added attribute `Destination` to all NETN-Physical platform, munition and lifeform object classes.
+* Renamed attribute `UniqueID` to `UniqueId` for compliance with naming convensions.
+* Added attribute `SymbolId` to all NETN-Physical platform, lifeform, cultural feature and munition object classes.
+* Renamed object class `SubmersibleVehicle` to `SubmersibleVessel`.
+
+## v1.2.0
+
+NETN-MRM FOM Module v1.2.0 was developed by MSG-106 and MSG-134 and released as part of NETN FOM v2.0 in AMSP-04 Ed A.
+
+* Added object classes and datatypes from FOM modules in NETN FOM v1
+* Added object class `NETN_CulturalFeature`
+* Added  object class `NETN_Munition`
+
+* Added attribute Symbol to all object classes
+* Changed from Reliable to BestEffort on some attributes to get a common transport type
+
+## v1.2
+
+First version developed by MSG-134 for NETN FOM v2.0. Object classes and datatypes derived from deprecated NETN FOM v 1.0 module AggDeagg.

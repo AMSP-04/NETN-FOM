@@ -1,21 +1,24 @@
 # Changelog NETN-TMR
 
-## v1.1 - Released version part of NETN FOM v2.0 in AMSP-04 Ed A.
+## v3.0
 
-v1.0.1 XML Schema Reference Changed
-v1.0.2 - Spelling correction at enumerations
-v1.0.3 - Adding AttributeValues
-v1.0.3r3 - Adding reason
-v1.0.3r4 - Added parameter Respondent at interaction TMR_OfferTransferModellingResponsibility and enumeration value NoofferReasonEnum32.OwnershipStateNotApplicableWithRequest
-v1.0.3r5 - Added enumeration value NoofferReasonEnum32.EntityNotKnown
-V1.0.3r6 - Change definition of data type TransactionId, a counter and the federate handle
-v1.1.0r1 - Added interactions TMR_CancelRequest and TMR_Status
-v1.1.0 - Removed "r1" from module name
-v1.1.1 - Update of Dependency table
-v1.1.2 - Rename of enumeration values (AttributeSetTooRestricted, AttributeSetTooExtensive).
-v1.1.3 - Rename of enumeration value (FederateTooBusy).
+Released version part of NETN FOM v4.0 in AMSP-04 Ed C.
 
-## v2.0 - Released version part of NETN FOM v3.0 in AMSP-04 Ed B.
+* Removed All Interaction Classes
+* Removed All Datatypes
+
+* Added Dependency on `NETN-ETR`
+* Added Dependency on `NETN-ORG`
+
+* Added Object Class `TMR_FederateApplication`
+* Added Interaction Class `RequestTransfer`
+
+* Added `HLAobjectRoot` attribute `FederateApplication`
+* Added `HLAinteractionRoot` parameter `FederateApplication`
+
+## v2.0
+
+Released version part of NETN FOM v3.0 in AMSP-04 Ed B.
 
 * Added `modelIdentification` `useLimitation` to reflect Scope of FOM Module
 * Added `modelIdentification` `glyph`
@@ -57,16 +60,19 @@ v1.1.3 - Rename of enumeration value (FederateTooBusy).
 * Removed FixedRecordDatatype `InstanceAttributeValuesStruct`
 * Removed FixedRecordDatatype `AttributeValueStruct`
 
-## v3.0 - Released version part of NETN FOM v4.0 in AMSP-04 Ed C.
+## v1.1
 
-* Removed All Interaction Classes
-* Removed All Datatypes
+Released version part of NETN FOM v2.0 in AMSP-04 Ed A.
 
-* Added Dependency on `NETN-ETR`
-* Added Dependency on `NETN-ORG`
-
-* Added Object Class `TMR_FederateApplication`
-* Added Interaction Class `RequestTransfer`
-
-* Added `HLAobjectRoot` attribute `FederateApplication`
-* Added `HLAinteractionRoot` parameter `FederateApplication`
+v1.0.1 XML Schema Reference Changed
+v1.0.2 - Spelling correction at enumerations
+v1.0.3 - Adding AttributeValues
+v1.0.3r3 - Adding reason
+v1.0.3r4 - Added parameter Respondent at interaction TMR_OfferTransferModellingResponsibility and enumeration value NoofferReasonEnum32.OwnershipStateNotApplicableWithRequest
+v1.0.3r5 - Added enumeration value NoofferReasonEnum32.EntityNotKnown
+V1.0.3r6 - Change definition of data type TransactionId, a counter and the federate handle
+v1.1.0r1 - Added interactions TMR_CancelRequest and TMR_Status
+v1.1.0 - Removed "r1" from module name
+v1.1.1 - Update of Dependency table
+v1.1.2 - Rename of enumeration values (AttributeSetTooRestricted, AttributeSetTooExtensive).
+v1.1.3 - Rename of enumeration value (FederateTooBusy).

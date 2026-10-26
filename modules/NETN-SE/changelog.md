@@ -1,8 +1,8 @@
 # Changelog NETN-SE
 
-## v1.0 - Developed by MSG-163 for NETN FOM v3.0
+## v2.0
 
-## v2.0 - Developed by MSG-191 for NETN FOM v4.0
+Developed by MSG-191 for NETN FOM v4.0
 
 * Replaced object class `SE_GeoObject` with `EnvironmentObject`
 * Replaced object class `Location` with `PointObject`
@@ -32,3 +32,7 @@
 * Added datatype `CreateObstacleTaskStruct`
 * Added datatype `TaskDefinitionVariantStruct`
 * Added datatype `TaskProgressVariantStruct`
+
+## v1.0
+
+Developed by MSG-163 for NETN FOM v3.0

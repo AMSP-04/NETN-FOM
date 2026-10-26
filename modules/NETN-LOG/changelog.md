@@ -1,20 +1,45 @@
 # Changelog NETN-LOG
 
-## v1.1 - Initial version developed by MSG-068 for NETN FOM v1.0.
+## v3.0
 
-In NETN FOM v 2.0 this module was replaced with several FOM modules to represent different services. A Base FOM Module was used to represent the basic Service-Consumer Provider (SCP) pattern.
+Updated version developed by MSG-191. Release included in NETN FOM v4.0.
 
-These modules were initially developed by MSG-106 and prepared for release by MSG-134.
+* MAJOR UPDATE TO USE NETN-ETR Patterns
+* Add dependency on NETN-ETR
+* Replaced all interaction classes
+* Removed datatype `OfferTypeEnum32`
+* Removed datatype `TransferDirectionEnum32`
+* Removed datatype `RepairStruct`
+* Removed datatype `ArrayOfRepairStruct`
+* Removed datatype `ArrayOfRepairTypeEnumStruct`
 
-Modules in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) were:
+* Updated datatype `AppointmentStruct`
 
-* NETN-SCP-BASE v1.1.3
-* NETN-Supply v1.1.2
-* NETN-Storage v1.2.2
-* NETN-Repair v 1.2.1
-* NETN-Transport v1.1.2
+* Extended`AggregateEntity` object class
+* Added `AggregateEntity` attribute `Supplies`
+* Added `AggregateEntity` attribute `Equipment`
+* Added `AggregateEntity` attribute `Personnel`
 
-## v2.0 - Re-merged version of NETN-LOG FOM Module updated by MSG-163 for NETN FOM v3.0. Includes NETN-SCP, NETN-Supply, NETN-Storage, NETN-Repair and NETN-Transport.
+* Extended NETN-ETR `RequestTask`
+* Added `RequestTask` interaction subclass `Resupply`
+* Added `RequestTask` interaction subclass `Repair`
+* Added `RequestTask` interaction subclass `Transport`
+
+* Added `SMC_EntityControl` interaction subclass `SetEquipmentStatus`
+* Added `SMC_EntityControl` interaction subclass `SetPersonnelStatus`
+* Added `SMC_EntityControl` interaction subclass `SetSuppliesStatus`
+
+* Added datatype `RepairTaskStruct`
+* Added datatype `ResupplyTaskStruct`
+* Added datatype `TransportTaskStruct`
+* Added datatype `RepairTypeEnum16`
+* Added enumerators to datatype `EntityControlActionEnum`
+* Added alternatives to NETN-ETR datatype `TaskDefinitionVariantRecord`
+* Added alternatives to NETN-ETR datatype `TaskProgressVariantRecord`
+
+## v2.0
+
+Re-merged version of NETN-LOG FOM Module updated by MSG-163 for NETN FOM v3.0. Includes NETN-SCP, NETN-Supply, NETN-Storage, NETN-Repair and NETN-Transport.
 
 * FOM Modules NETN-SCP-BASE v1.1.3, NETN-Supply v1.1.2, NETN-Storage v1.2.2, NETN-Repair v1.2.1 and NETN-Transport v1.1.2 merged into new module NETN-LOG
 * Prefix dropped from all interaction classes except interaction class LOG_Service
@@ -78,37 +103,18 @@ Modules in AMSP-04 Ed. A. NATO Education and Training Network Federation Archite
 * Renamed datatype field `RepairStruct.MaterialID` to `RepairStruct.MaterielId`
 * Changed datatype for `ArrayOfRepairTypeEnum` from `NETN_RepairTypeEnum16` to `RepairTypeEnum16`
 
-## v3.0 - Updated version developed by MSG-191. Release included in NETN FOM v4.0.
+## v1.1
 
-* MAJOR UPDATE TO USE NETN-ETR Patterns
-* Add dependency on NETN-ETR
-* Replaced all interaction classes
-* Removed datatype `OfferTypeEnum32`
-* Removed datatype `TransferDirectionEnum32`
-* Removed datatype `RepairStruct`
-* Removed datatype `ArrayOfRepairStruct`
-* Removed datatype `ArrayOfRepairTypeEnumStruct`
+Initial version developed by MSG-068 for NETN FOM v1.0.
 
-* Updated datatype `AppointmentStruct`
+In NETN FOM v 2.0 this module was replaced with several FOM modules to represent different services. A Base FOM Module was used to represent the basic Service-Consumer Provider (SCP) pattern.
 
-* Extended`AggregateEntity` object class
-* Added `AggregateEntity` attribute `Supplies`
-* Added `AggregateEntity` attribute `Equipment`
-* Added `AggregateEntity` attribute `Personnel`
+These modules were initially developed by MSG-106 and prepared for release by MSG-134.
 
-* Extended NETN-ETR `RequestTask`
-* Added `RequestTask` interaction subclass `Resupply`
-* Added `RequestTask` interaction subclass `Repair`
-* Added `RequestTask` interaction subclass `Transport`
+Modules in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) were:
 
-* Added `SMC_EntityControl` interaction subclass `SetEquipmentStatus`
-* Added `SMC_EntityControl` interaction subclass `SetPersonnelStatus`
-* Added `SMC_EntityControl` interaction subclass `SetSuppliesStatus`
-
-* Added datatype `RepairTaskStruct`
-* Added datatype `ResupplyTaskStruct`
-* Added datatype `TransportTaskStruct`
-* Added datatype `RepairTypeEnum16`
-* Added enumerators to datatype `EntityControlActionEnum`
-* Added alternatives to NETN-ETR datatype `TaskDefinitionVariantRecord`
-* Added alternatives to NETN-ETR datatype `TaskProgressVariantRecord`
+* NETN-SCP-BASE v1.1.3
+* NETN-Supply v1.1.2
+* NETN-Storage v1.2.2
+* NETN-Repair v 1.2.1
+* NETN-Transport v1.1.2

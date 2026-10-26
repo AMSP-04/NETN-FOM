@@ -1,6 +1,6 @@
 # Changelog NETN-FOM
 
-## Changes in v 4.0
+## v4.0
 
 Major restructuring using HLA4 FOM modelling principles and techniques, allowing simplified structure and class merging of attributes/parameters from multiple modules.
 
@@ -14,7 +14,7 @@ Major simplification of NETN-TMR pattern.
 
 Extension of NETN-ETR to include observation reports based on SISO C2SIM report ontology.
 
-## Changes in v 3.0
+## v3.0
 
 Version 3.0 of the NETN FOM is included in AMSP-04 Ed B v1.0 and is based on updates made by MSG-163.
 
@@ -31,7 +31,7 @@ Version 3.0 of the NETN FOM is included in AMSP-04 Ed B v1.0 and is based on upd
 * Added NETN-SE v1.0
 * Updated NETN-TMR v2.0
 
-## Changes in v 2.0
+## v2.0
 
 Version 2.0 of the NETN FOM is included in AMSP-04 Ed A v1.0 and is based on updates made by MSG-106 and MSG-134.
 
@@ -49,7 +49,7 @@ Version 2.0 of the NETN FOM is included in AMSP-04 Ed A v1.0 and is based on upd
 * Updated NETN-Supply (NETN-Supply_v1.1.2.xml) - from NETN Logistics FOM Module
 * Updated NETN-Transport (NETN-Transport_v1.1.2.xml) - from NETN Logistics FOM Module
 
-## Version 1.0
+## v1.0
 
 Version 1.0 of the NETN FOM was developed by MSG-068.
 

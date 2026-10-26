@@ -1,49 +1,8 @@
 # Changelog NETN-ETR
 
-## v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.
+## v3.0
 
-The NETN-ETR FOM Module is based on the previously released NETN-LLBML FOM module developed by MSG-068, updated by MSG-106 and prepared for release by MSG-134.
-
-The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) is:
-
-* NETN-LBML_v1.1.0.xml
-
-## v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0
-
-* Added a new attribute to ETR_Task: CommunicationNetworkIdentifiers
-* Added new Task: DisruptCommunicaction
-* Added new Task: Observe
-* Added SetTransmitterStatus
-* Added MagicMove
-* Added MagicResource* Added QuerySupportedCapabilities interaction
-* Added CapabilitiesSupported interaction
-* Added EstablishCheckPoint
-* Added OperateCheckPoint
-* Added RemoveCheckPoint
-* Added StopAtSideOfRoad
-* Added CreateObstacle
-* Added CreateMinefield
-* Added ClearObstacle
-* Added AddPassage
-* Added RemovePassage
-* Added Patrol
-* Added PatrolRepeating
-
-* Removed FollowRoute
-
-* Renamed MoveToUnit to MoveToEntity
-* Renamed FollowUnit to FollowEntity
-* Renamed VehicleMount to Mount
-* Renamed VehicleDismount to Dismount
-* Renamed FireIndirectWM to FireAtLocationWM
-* Renamed FireAtUnit to FireAtEntity
-* Renamed FireDirectWM to FireAtEntityWM
-* Renamed ChangeOrderedSpeed to SetOrderedSpeed
-* Renamed ChangeOrderedAltitude to SetOrderedAltitude
-* Renamed Parameter SensorReport.SpottedEnities to SpottedEntities.
-* Renamed Parameter MOUNT.EntiityId to EntityId
-
-## v3.0 - Updated by MSG-191 for NETN FOM v4.0
+Updated by MSG-191 for NETN FOM v4.0
 
 * Added `BaseEntity` attribute `SupportedTasks`
 * Added `BaseEntity` attribute `TaskProgress`
@@ -150,3 +109,50 @@ The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network 
 
 * Renamed `Mount` interaction class to `Attach`
 * Renamed `Dismount` interaction class to `Detach`
+
+## v2.0
+
+Renamed and updated by MSG-163 for NETN FOM v3.0
+
+* Added a new attribute to ETR_Task: CommunicationNetworkIdentifiers
+* Added new Task: DisruptCommunicaction
+* Added new Task: Observe
+* Added SetTransmitterStatus
+* Added MagicMove
+* Added MagicResource* Added QuerySupportedCapabilities interaction
+* Added CapabilitiesSupported interaction
+* Added EstablishCheckPoint
+* Added OperateCheckPoint
+* Added RemoveCheckPoint
+* Added StopAtSideOfRoad
+* Added CreateObstacle
+* Added CreateMinefield
+* Added ClearObstacle
+* Added AddPassage
+* Added RemovePassage
+* Added Patrol
+* Added PatrolRepeating
+
+* Removed FollowRoute
+
+* Renamed MoveToUnit to MoveToEntity
+* Renamed FollowUnit to FollowEntity
+* Renamed VehicleMount to Mount
+* Renamed VehicleDismount to Dismount
+* Renamed FireIndirectWM to FireAtLocationWM
+* Renamed FireAtUnit to FireAtEntity
+* Renamed FireDirectWM to FireAtEntityWM
+* Renamed ChangeOrderedSpeed to SetOrderedSpeed
+* Renamed ChangeOrderedAltitude to SetOrderedAltitude
+* Renamed Parameter SensorReport.SpottedEnities to SpottedEntities.
+* Renamed Parameter MOUNT.EntiityId to EntityId
+
+## v1.1
+
+NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.
+
+The NETN-ETR FOM Module is based on the previously released NETN-LLBML FOM module developed by MSG-068, updated by MSG-106 and prepared for release by MSG-134.
+
+The version of LLBML used in AMSP-04 Ed. A. NATO Education and Training Network Federation Architecture and FOM Design (NETN FAFD) is:
+
+* NETN-LBML_v1.1.0.xml
