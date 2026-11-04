@@ -13,7 +13,7 @@ For backward compatibility, published objects should include all required RPR-FO
 
 The NETN-ENTITY module extends the RPR-FOM `BaseEntity` object class with optional attributes available for all physical and aggregate entity objects. In addition, the RPR-FOM `AggregateEntity` object class is extended with additional attributes.
 
-The module extends the RPR-Physical `Platform` subclasses `Aircraft`, `GroundVehicle`, and `SurfaceVessel` with light-related attributes.
+The module also extends the RPR-Physical `Platform` subclasses `Aircraft`, `GroundVehicle`, and `SurfaceVessel` with light-related attributes.
 
 The `TankerAircraft` object class further extends the `Aircraft` object class.
 
@@ -140,7 +140,7 @@ A base class of aggregate and discrete scenario domain participants. The `BaseEn
 
 ### AggregateEntity
 
-A group of one or more separate objects that operate together as part of an organization. These objects may be discrete, may be other aggregate objects, or may be a mixture of both.
+A group of one or more separate objects that operate together as part of an organization. These objects may be discrete (individual, non-aggregated objects) or they may be aggregate objects themselves. They can also be a mixture of both.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
@@ -166,7 +166,7 @@ A group of one or more separate objects that operate together as part of an orga
 
 ### PhysicalEntity
 
-A base class of all discrete platform scenario domain participants.
+A base class of all discrete (non-aggregated) platform scenario domain participants.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
