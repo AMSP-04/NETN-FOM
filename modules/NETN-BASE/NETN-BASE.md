@@ -76,7 +76,7 @@ HLAinteractionRoot : UniqueId
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| SendTime | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receivers scenario time when the interaction is received. |
+| SendTime | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. |
 | UniqueId | UUID | Optional. A unique identifier for the interaction. |
 
 ## Datatypes
@@ -96,10 +96,10 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | ArrayOfUuid | An array of Unique Identifiers expressed as UUIDs. |
 | Callsign | An identifier for a simulated entity. Callsigns should be unique in the context in which they are used but are not required to be globally unique. |
 | DamageStatusEnhancedEnum32 | The damage status of an object. |
-| DamageStatusEnum32 | Damaged appearance. |
+| DamageStatusEnum32 | An enumeration to describe the state of an object, ranging from 0 = `NoDamage` to 3 = `Destroyed`." |
 | DirectionDegreesFloat32 | The direction is measured clockwise relative to the true north. Calculate values outside the range [0, 360) as modulo 360. |
 | EchelonEnum32 | The echelon level of a unit. |
-| EpochTime | Scenario time is seconds since Epoch, where Epoch, e.g. is January 1, 1970, 00:00:00 UTC or otherwise defined in federation agreements. |
+| EpochTime | Scenario time is seconds since Epoch. Epoch typically refers to the Unix Epoch (Jan 1, 1970, 00:00:00 UTC) or a scenario-specific baseline established in federation agreements. |
 | EquipmentSymbolAmplificationStruct | Text amplifiers for Equipment symbols. |
 | FederateName | The name of a federate participating in an HLA federation. The value of this attribute corresponds to the `HLAfederateName` attribute of the MIM object class `HLAfederate`. |
 | GeodeticCircle | A geodetic point and radius specifying a circle on the earth's surface (WGS84), where the radius is a great circle distance on the surface. |
@@ -118,7 +118,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | MassDensityFloat32 | The density of a substance. |
 | QuantityFloat64 | A generic floating-point quantity. |
 | QuantityInt32 | A generic discrete quantity. |
-| ResourceStatusStruct | The name of a resource and the number of instances of that resource by health status. |
+| ResourceStatusStruct | Name of a resource and a breakdown of the total available instances, categorized by their operational health state (e.g., `NumberSlightlyDamaged`or `NumberSignificantlyDamaged`). |
 | SupplyStatusStruct | Represents a single supply type and the quantity being offered or requested. |
 | SymbolAmplificationVariant | Different symbol amplification data for different types of symbols. |
 | SymbolIdentifier | A symbol identifier is represented as a string. The identifier uses a URI notation (uri:xxxxxxxxxx) where the URI moniker specifies the symbology standard, e.g. app6a, app6b, app6c, 2525b, 2525c, 2525d. If not provided, the federation agreement defines the default symbol standard. |
@@ -135,7 +135,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 |---|---|---|
 |AltitudeMeterFloat64|Meter|Represents altitude relative to Mean Sea Level (MSL).|
 |DirectionDegreesFloat32|Degree|The direction is measured clockwise relative to the true north. Calculate values outside the range [0, 360) as modulo 360.|
-|EpochTime|seconds|Scenario time is seconds since Epoch, where Epoch, e.g. is January 1, 1970, 00:00:00 UTC or otherwise defined in federation agreements.|
+|EpochTime|seconds|Scenario time is seconds since Epoch. Epoch typically refers to the Unix Epoch (Jan 1, 1970, 00:00:00 UTC) or a scenario-specific baseline established in federation agreements.|
 |LatitudeFloat64|Degree|An angular measurement that specifies the north–south position of a point on the surface. Latitude is an angle that ranges from –90 degrees at the south pole to 90 degrees at the north pole, with 0 at the Equator.|
 |LongitudeFloat64|Degree|An angular measurement that specifies the east–west position of a point on the surface. Longitude is an angle that ranges from –180 degrees to +180 degrees, with 0 at the prime meridian.|
 |MassConcentrationFloat32|kg/m3|The concentration of a substance.|
@@ -162,7 +162,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 
 |Name|Element Datatype|Semantics|
 |---|---|---|
-|ArrayOfResourceStatus|ResourceStatusStruct|The array of health states for a named resource.|
+|ArrayOfResourceStatus|ResourceStatusStruct|The array of health states for all instances of a named resource.|
 |ArrayOfSupplyStatus|SupplyStatusStruct|A list of supply types and their quantity.|
 |ArrayOfUuid|UUID|An array of Unique Identifiers expressed as UUIDs.|
 |Callsign|HLAunicodeChar|An identifier for a simulated entity. Callsigns should be unique in the context in which they are used but are not required to be globally unique.|
