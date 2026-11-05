@@ -3,8 +3,8 @@
     <modelIdentification noteReferences="netn-mrm_overview">
         <name>NETN-MRM</name>
         <type>FOM</type>
-        <version>3.0</version>
-        <modificationDate>2024-03-10</modificationDate>
+        <version>3.1</version>
+        <modificationDate>2026-11-03</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <copyright/>
         <purpose>The NATO Education and Training Network Multi-Resolution Modelling (NETN-MRM) module supports federations with entities represented at multiple resolution levels.</purpose>
@@ -17,9 +17,10 @@ The NETN-MRM module specifies aggregation, disaggregation, division and merging 
 * Disaggregation of a unit representation into subunits
 * Division of unit into subunits or physical entities
 * Merging of previously divided entities into a unit</useLimitation>
-        <useHistory noteReferences="netn-mrm_1_1">v1.1 - Initial version of NETN-MRM FOM Module released as part of NETN-FOM v2.0.</useHistory>
-        <useHistory noteReferences="netn-mrm_2_0">v2.0 - Updated version by MSG-163 to be part of NETN-FOM v3.0.</useHistory>
-        <useHistory noteReferences="netn-mrm_3_0">v3.0 - Updated version by MSG-191 to be part of NATO-FOM v4.0</useHistory>
+        <useHistory noteReferences="netn-mrm_1_1">v1.1 - Initial version of NETN-MRM FOM Module released as part of NETN FOM v2.0.</useHistory>
+        <useHistory noteReferences="netn-mrm_2_0">v2.0 - Updated version by MSG-163 to be part of NETN FOM v3.0.</useHistory>
+        <useHistory noteReferences="netn-mrm_3_0">v3.0 - Updated version by MSG-191 to be part of NETN FOM v4.0.</useHistory>
+        <useHistory noteReferences="netn-mrm_3_1">v3.1 - Updated version by MSG-223 to be part of NETN FOM v4.1.</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>
@@ -69,7 +70,7 @@ The NETN-MRM module specifies aggregation, disaggregation, division and merging 
             <identification>NETN-ORG</identification>
         </reference>
         <other>
-Copyright © 2023 by NATO/OTAN. All rights reserved.
+Copyright © 2026 by NATO/OTAN. All rights reserved.
 This work is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
 
 Above license gives you the right to use and redistribute the NETN FOM Module (XML file and Documentation) in its entirety without modification. You are also allowed to develop your own new FOM Modules (in separate XML files and separate documentation) that build-on/extends the NETN module by reference. You are NOT allowed to modify the NETN FOM Module or its documentation without prior permission by the NATO Modelling and Simulation Group.</other>
@@ -156,7 +157,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional. Reference to the disaggregated entities after disaggregation of this `AggregateEntity`. Each element should refer to an existing entity in the federation. The `Status` of this `AggregateEntity` shall be inactive if disaggregated entities exist.|</semantics>
+                        <semantics>Optional. Reference to the disaggregated entities after disaggregation of this `AggregateEntity`. Each element should refer to an existing entity in the federation.</semantics>
                     </attribute>
                 </objectClass>
             </objectClass>
@@ -401,6 +402,10 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
 * Replaced all use of `PercentFloat64` with `PercentFloat32`</semantics>
         </note>
         <note>
+            <label>netn-mrm_3_1</label>
+            <semantics>* Changed `BaseEntity` attribute `Status` semantics. It is not required to be set to `Inactive` on disaggregation.</semantics>
+        </note>
+        <note>
             <label>netn-mrm_overview</label>
             <semantics>## Overview
 
@@ -480,7 +485,6 @@ Use the `BaseEntity` attribute `SupportedActions` to check the simulation entity
 A federate application (F) can perform disaggregation of an `AggregateEntity` (A) under the following conditions:
 
 * (F) has the primary modelling responsibility of (A).
-* The `Status` attribute of (A) is `Active`.
 * (A) is not divided, i.e. the `DividedEntities` attribute of (A) is empty.
 * The  `OrganizationElement` attribute of (A) refers to an existing NETN-ORG `Unit` object (U).
 * (U) has one or more subunits.
@@ -492,11 +496,9 @@ sequenceDiagram
 autonumber
 
 R-&gt;&gt;F: Disaggregate(A)
-F-&gt;&gt;Federation: (A).Status = Inactive
 loop
 F-&gt;&gt;Federation: register(a+)
 F-&gt;&gt;Federation: (a+).ParentUnit = (A)
-F-&gt;&gt;Federation: (a+).Status = Active
 end
 F-&gt;&gt;Federation: (A).DisaggregatedEntities=(a+)
 F-&gt;&gt;R: SMC_Response
@@ -506,27 +508,22 @@ F-&gt;&gt;R: SMC_Response
 |Step|Description|
 |---|---|
 |1| Request federate (R) sends a `Disaggregate` action to (A). (F) has the primary modelling responsibility of (A) and processes the action.|
-|2| (F) updates the `Status` attribute of (A) to `Inactive`.|
-|3| If the `OrganizationElement` attribute of (A) references a NETN-ORG `Unit` (U), then instances of `AggregateEntity` (a+) are registered for each NETN-ORG `Unit` (u+) where the (u+) attribute `SuperiorUnit` refers to (U). |
-|4|(F) updates the initial attribute values for (a+), including the `ParentUnit` attribute set to refer to (A). |
-|5|(F) updates the `Status` attributes of (a+) to `Active`. |
-|6|(F) updates the `DisaggregatedEntities` attribute of (A) to reference (a+)|
-|7|(F) sends a `SMC_Response` to (R) with the `Status` parameter set to `Success`|
+|2| If the `OrganizationElement` attribute of (A) references a NETN-ORG `Unit` (U), then instances of `AggregateEntity` (a+) are registered for each NETN-ORG `Unit` (u+) where the (u+) attribute `SuperiorUnit` refers to (U). |
+|3|(F) updates the initial attribute values for (a+), including the `ParentUnit` attribute set to refer to (A). |
+|4|(F) updates the `DisaggregatedEntities` attribute of (A) to reference (a+)|
+|5|(F) sends a `SMC_Response` to (R) with the `Status` parameter set to `Success`|
 
 
 After performing disaggregation, the following is true:
 
-* (A).Status = Inactive
 * (a+) exists for all subunits of (U).
 * (a+).`OrganizationElement` refers to the corresponding (u+)
-* (a+).Status = Active
 * (a+).`ParentAggregate` = (A)
 * (A).`DisaggregsatedEntities` = (a+)
 
 If a (u+), i.e, subunit, has one or more associated NETN-ORG `Equipment` objects (e+), then these are represented in the federation as `PhysicalEntity` objects (p+). After disaggregation, the following is true:
 
 * (p+).`OrganizationElement` refers to the corresponding (e+)
-* (p+).`Status` = Active
 * (p+).`ParentAggregate` = (A)
 
 
@@ -542,7 +539,6 @@ Aggregation of a simulated `AggregateEntity` always constitutes a complete aggre
 A federate application (F) can perform aggregation of an `AggregateEntity` (A) under the following conditions:
 
 * (F) has the primary modelling responsibility of (A).
-* The Status attribute of (A) is `Inactive`.
 * The `DisaggregatedEntities` attribute of (A) references all disaggregated entities (a+).
 * (a+).`DisaggregatedEntities` is empty, i.e. none of the disaggregated entities is further disaggregated.
 * (a+).`DividedEntities` is empty, i.e. none of the disaggregated entities is divided.
@@ -558,7 +554,6 @@ loop a in (A).DisaggregatedEntities
 F-&gt;&gt;Federation: delete(a)
 end
 F-&gt;&gt;Federation: A.DisaggregatedEntities=Empty
-F-&gt;&gt;Federation: A.Status=Active
 
 F-&gt;&gt;R: SMC_Response
 
@@ -571,8 +566,7 @@ F-&gt;&gt;R: SMC_Response
 |1| Request federate (R) sends an `Aggregate` action to (A). (F) has the primary modelling responsibility of (A) and processes the action.|
 |2| (F) deletes all (A).`DisaggregatedEntities` |
 |3| (F) updates (A).`DisaggregatedEntities` = `Empty`. |
-|4| (F) updates (A).`Status` = `Active`. |
-|5| (F) sends a `SMC_Response` to (R) with the `Status` parameter set to `Success` |
+|4| (F) sends a `SMC_Response` to (R) with the `Status` parameter set to `Success` |
 
 
 
@@ -584,7 +578,6 @@ Division of an `AggregateEntity` temporarily allocates some specific resources t
 A federate application (F) can perform the division of an `AggregateEntity` (A) under the following conditions:
 
 * (F) has the primary modelling responsibility of (A).
-* The `Status` attribute of (A) is `Active`.
 * The `AggregateEntity` is not disaggregated, i.e. the (A).`DisaggregatedEntities` attribute must be empty.
 
 
@@ -627,7 +620,6 @@ After performing division, the following is true:
 A federate application (F) can perform merging of an `AggregateEntity` (A) with one of its divided entities under the following conditions:
 
 * (F) has the primary modelling responsibility of (A).
-* The `Status` attribute of (A) is `Active`.
 * The `AggregateEntity` has been divided, i.e. the (A).`DividedEntities` must contain at least one element.
 
 
