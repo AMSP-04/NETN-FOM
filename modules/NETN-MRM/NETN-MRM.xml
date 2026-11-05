@@ -17,10 +17,10 @@ The NETN-MRM module specifies aggregation, disaggregation, division and merging 
 * Disaggregation of a unit representation into subunits
 * Division of unit into subunits or physical entities
 * Merging of previously divided entities into a unit</useLimitation>
-        <useHistory noteReferences="netn-mrm_1_1">v1.1 - Initial version of NETN-MRM FOM Module released as part of NETN-FOM v2.0.</useHistory>
-        <useHistory noteReferences="netn-mrm_2_0">v2.0 - Updated version by MSG-163 to be part of NETN-FOM v3.0.</useHistory>
-        <useHistory noteReferences="netn-mrm_3_0">v3.0 - Updated version by MSG-191 to be part of NETN-FOM v4.0.</useHistory>
-        <useHistory noteReferences="netn-mrm_3_1">v3.1 - Updated version by MSG-223 to be part of NETN-FOM v4.1.</useHistory>
+        <useHistory noteReferences="netn-mrm_1_1">v1.1 - Initial version of NETN-MRM FOM Module released as part of NETN FOM v2.0.</useHistory>
+        <useHistory noteReferences="netn-mrm_2_0">v2.0 - Updated version by MSG-163 to be part of NETN FOM v3.0.</useHistory>
+        <useHistory noteReferences="netn-mrm_3_0">v3.0 - Updated version by MSG-191 to be part of NETN FOM v4.0.</useHistory>
+        <useHistory noteReferences="netn-mrm_3_1">v3.1 - Updated version by MSG-223 to be part of NETN FOM v4.1.</useHistory>
         <poc>
             <pocType>Release authority</pocType>
             <pocName>NATO Modelling and Simulation Group</pocName>

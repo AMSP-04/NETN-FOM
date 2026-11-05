@@ -1,11 +1,11 @@
 ## Changelog NETN-MRM
 
-### v1.1 - Initial version of NETN-MRM FOM Module released as part of NETN-FOM v2.0.
+### v1.1 - Initial version of NETN-MRM FOM Module released as part of NETN FOM v2.0.
 
 NETN-MRM FOM Module v1.1.1 was developed by MSG-106 and released 2014-05-15.
 
 
-### v2.0 - Updated version by MSG-163 to be part of NETN-FOM v3.0.
+### v2.0 - Updated version by MSG-163 to be part of NETN FOM v3.0.
 
 * Changed Filename to NETN-MRM.xml
 * Changed `modelIdentification` `securityClassification` from `unclassified` to `Not Classified`
@@ -78,7 +78,7 @@ NETN-MRM FOM Module v1.1.1 was developed by MSG-106 and released 2014-05-15.
 * Added field `UnitAllocation` to datatype `EntityStruct`
 
 
-### v3.0 - Updated version by MSG-191 to be part of NETN-FOM v4.0.
+### v3.0 - Updated version by MSG-191 to be part of NETN FOM v4.0.
 
 * Removed `NETN_Aggregate` object class
 * Replaced `NETN_Aggregate` attribute `UniqueId` with NETN-BASE `HLAobjectRoot` attribute `UniqueId`
@@ -137,7 +137,7 @@ NETN-MRM FOM Module v1.1.1 was developed by MSG-106 and released 2014-05-15.
 * Replaced all use of `PercentFloat64` with `PercentFloat32`
 
 
-### v3.1 - Updated version by MSG-223 to be part of NETN-FOM v4.1.
+### v3.1 - Updated version by MSG-223 to be part of NETN FOM v4.1.
 
 * Changed `BaseEntity` attribute `Status` semantics. It is not required to be set to `Inactive` on disaggregation.
 
