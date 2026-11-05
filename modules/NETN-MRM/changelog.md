@@ -136,3 +136,8 @@ NETN-MRM FOM Module v1.1.1 was developed by MSG-106 and released 2014-05-15.
 * Replaced all use of `PercentUnsignedInteger32` with `PercentFloat32`
 * Replaced all use of `PercentFloat64` with `PercentFloat32`
 
+
+### v3.1 - Updated version by MSG-223 to be part of NETN-FOM v4.1.
+
+* Changed `BaseEntity` attribute `Status` semantics. It is not required to be set to `Inactive` on disaggregation.
+

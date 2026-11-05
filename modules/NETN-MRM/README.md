@@ -4,7 +4,7 @@
 
 |Version| Date| Dependencies|
 |---|---|---|
-|3.0|2024-03-10|NETN-BASE, NETN-SMC, NETN-ORG|
+|3.1|2026-11-03|NETN-BASE, NETN-SMC, NETN-ORG|
 
 > [Full Documentation](NETN-MRM.md)
 
@@ -46,5 +46,6 @@ Version numbering of this FOM Module and associated documentation is based on th
 |v1.1 - Initial version of NETN-MRM FOM Module released as part of NETN-FOM v2.0.|
 |v2.0 - Updated version by MSG-163 to be part of NETN-FOM v3.0.|
 |v3.0 - Updated version by MSG-191 to be part of NETN-FOM v4.0.|
+|v3.1 - Updated version by MSG-223 to be part of NETN-FOM v4.1.|
 
 > [Changelog](changelog.md)

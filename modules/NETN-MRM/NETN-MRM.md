@@ -2,7 +2,7 @@
 # NETN-MRM
 |Version| Date| Dependencies|
 |---|---|---|
-|3.0|2024-03-10|NETN-BASE, NETN-SMC, NETN-ORG|
+|3.1|2026-11-03|NETN-BASE, NETN-SMC, NETN-ORG|
 
 The NATO Education and Training Network Multi-Resolution Modelling (NETN-MRM) module supports federations with entities represented at multiple resolution levels.
 
@@ -94,7 +94,6 @@ Use the `BaseEntity` attribute `SupportedActions` to check the simulation entity
 A federate application (F) can perform disaggregation of an `AggregateEntity` (A) under the following conditions:
 
 * (F) has the primary modelling responsibility of (A).
-* The `Status` attribute of (A) is `Active`.
 * (A) is not divided, i.e. the `DividedEntities` attribute of (A) is empty.
 * The  `OrganizationElement` attribute of (A) refers to an existing NETN-ORG `Unit` object (U).
 * (U) has one or more subunits.
@@ -106,11 +105,9 @@ sequenceDiagram
 autonumber
 
 R->>F: Disaggregate(A)
-F->>Federation: (A).Status = Inactive
 loop
 F->>Federation: register(a+)
 F->>Federation: (a+).ParentUnit = (A)
-F->>Federation: (a+).Status = Active
 end
 F->>Federation: (A).DisaggregatedEntities=(a+)
 F->>R: SMC_Response
@@ -120,27 +117,22 @@ F->>R: SMC_Response
 |Step|Description|
 |---|---|
 |1| Request federate (R) sends a `Disaggregate` action to (A). (F) has the primary modelling responsibility of (A) and processes the action.|
-|2| (F) updates the `Status` attribute of (A) to `Inactive`.|
-|3| If the `OrganizationElement` attribute of (A) references a NETN-ORG `Unit` (U), then instances of `AggregateEntity` (a+) are registered for each NETN-ORG `Unit` (u+) where the (u+) attribute `SuperiorUnit` refers to (U). |
-|4|(F) updates the initial attribute values for (a+), including the `ParentUnit` attribute set to refer to (A). |
-|5|(F) updates the `Status` attributes of (a+) to `Active`. |
-|6|(F) updates the `DisaggregatedEntities` attribute of (A) to reference (a+)|
-|7|(F) sends a `SMC_Response` to (R) with the `Status` parameter set to `Success`|
+|2| If the `OrganizationElement` attribute of (A) references a NETN-ORG `Unit` (U), then instances of `AggregateEntity` (a+) are registered for each NETN-ORG `Unit` (u+) where the (u+) attribute `SuperiorUnit` refers to (U). |
+|3|(F) updates the initial attribute values for (a+), including the `ParentUnit` attribute set to refer to (A). |
+|4|(F) updates the `DisaggregatedEntities` attribute of (A) to reference (a+)|
+|5|(F) sends a `SMC_Response` to (R) with the `Status` parameter set to `Success`|
 
 
 After performing disaggregation, the following is true:
 
-* (A).Status = Inactive
 * (a+) exists for all subunits of (U).
 * (a+).`OrganizationElement` refers to the corresponding (u+)
-* (a+).Status = Active
 * (a+).`ParentAggregate` = (A)
 * (A).`DisaggregsatedEntities` = (a+)
 
 If a (u+), i.e, subunit, has one or more associated NETN-ORG `Equipment` objects (e+), then these are represented in the federation as `PhysicalEntity` objects (p+). After disaggregation, the following is true:
 
 * (p+).`OrganizationElement` refers to the corresponding (e+)
-* (p+).`Status` = Active
 * (p+).`ParentAggregate` = (A)
 
 
@@ -156,7 +148,6 @@ Aggregation of a simulated `AggregateEntity` always constitutes a complete aggre
 A federate application (F) can perform aggregation of an `AggregateEntity` (A) under the following conditions:
 
 * (F) has the primary modelling responsibility of (A).
-* The Status attribute of (A) is `Inactive`.
 * The `DisaggregatedEntities` attribute of (A) references all disaggregated entities (a+).
 * (a+).`DisaggregatedEntities` is empty, i.e. none of the disaggregated entities is further disaggregated.
 * (a+).`DividedEntities` is empty, i.e. none of the disaggregated entities is divided.
@@ -172,7 +163,6 @@ loop a in (A).DisaggregatedEntities
 F->>Federation: delete(a)
 end
 F->>Federation: A.DisaggregatedEntities=Empty
-F->>Federation: A.Status=Active
 
 F->>R: SMC_Response
 
@@ -185,8 +175,7 @@ F->>R: SMC_Response
 |1| Request federate (R) sends an `Aggregate` action to (A). (F) has the primary modelling responsibility of (A) and processes the action.|
 |2| (F) deletes all (A).`DisaggregatedEntities` |
 |3| (F) updates (A).`DisaggregatedEntities` = `Empty`. |
-|4| (F) updates (A).`Status` = `Active`. |
-|5| (F) sends a `SMC_Response` to (R) with the `Status` parameter set to `Success` |
+|4| (F) sends a `SMC_Response` to (R) with the `Status` parameter set to `Success` |
 
 
 
@@ -198,7 +187,6 @@ Division of an `AggregateEntity` temporarily allocates some specific resources t
 A federate application (F) can perform the division of an `AggregateEntity` (A) under the following conditions:
 
 * (F) has the primary modelling responsibility of (A).
-* The `Status` attribute of (A) is `Active`.
 * The `AggregateEntity` is not disaggregated, i.e. the (A).`DisaggregatedEntities` attribute must be empty.
 
 
@@ -241,7 +229,6 @@ After performing division, the following is true:
 A federate application (F) can perform merging of an `AggregateEntity` (A) with one of its divided entities under the following conditions:
 
 * (F) has the primary modelling responsibility of (A).
-* The `Status` attribute of (A) is `Active`.
 * The `AggregateEntity` has been divided, i.e. the (A).`DividedEntities` must contain at least one element.
 
 
@@ -302,7 +289,7 @@ A group of one or more separate objects that operate together as part of an orga
 
 |Attribute|Datatype|Semantics|
 |---|---|---|
-|DisaggregatedEntities|ArrayOfUuid|Optional. Reference to the disaggregated entities after disaggregation of this `AggregateEntity`. Each element should refer to an existing entity in the federation. The `Status` of this `AggregateEntity` shall be inactive if disaggregated entities exist.||
+|DisaggregatedEntities|ArrayOfUuid|Optional. Reference to the disaggregated entities after disaggregation of this `AggregateEntity`. Each element should refer to an existing entity in the federation.|
 |DividedEntities|ArrayOfUuid|Optional. Reference to other aggregate or physical entities divided from the `AggregateEntity` to represent specific subsets of holdings.|
 |OrganizationElement|UUID|Optional: Reference to an existing NETN-ORG  organization element, e.g. a `Unit` or `Equipment` represented by this simulation entity. The default value is no related organization element, i.e. all zeros.|
 |ParentAggregate|UUID|Optional. If this simulation entity results from a disaggregation, this attribute refers to the disaggregated `AggregateEntity`. The default value is no reference, i.e. all zeros.|
