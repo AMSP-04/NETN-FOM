@@ -88,7 +88,7 @@ ChangeSuperiorUnit : SuperiorUnit
 
 ## Allocation to Federates
 
-The NETN-ORG module can also be used to provide the initial allocation of responsibility to a federate for what `Equipment` is represented as a `PhysicalEntity` and what `Unit` is represented as an `AggregateEntity`. The NETN-SMC object class `SMC_Service` is subclassed with the `EntitySimulation` class that for each instance can publish the allocation of initial modelling responsibility.
+NETN-ORG extends the NETN-SMC object class `SMC_Service` with the `EntitySimulation` class that for each instance can publish the allocation of initial modelling responsibility. The arrays `AggregateEntityAllocation` and `PhysicalEntityAllocation` within the `EntitySimulation` object provide the initial allocation of responsibility to a federate for what `Equipment` is represented as a `PhysicalEntity` and what `Unit` is represented as an `AggregateEntity`.
 
 ```mermaid
 classDiagram 
@@ -156,7 +156,7 @@ An object class for all NETN-ORG organizational elements.
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | EntityType | EntityTypeStruct | Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0. |
-| HostUnit | UUID | Optional. A reference to a unit or equipment controlling the movement or operating an installation. E.g. a unit embarked on a transport, or a helicopter on a ship. The default value is all zeros, indicating that the unit is not embarked in or mounted on any other unit or equipment. Not applicable to `Installation`. |
+| HostUnit | UUID | Optional. A reference to a unit or equipment controlling the movement or operating an installation. E.g. a unit embarked on a transport, or a helicopter on a ship. The default value is all zeros, indicating that the unit is not embarked in or mounted on any other unit or equipment. Not applicable to the `Installation`. |
 | Location | GeodeticPoint | Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation. |
 | Name | HLAunicodeString | Required. A unique name. |
 | Organization | UUID | Required. A reference to the organization the element is affiliated with. |
@@ -236,8 +236,8 @@ A service providing modelling responsibility for aggregate and/or physical entit
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| AggregateEntityAllocation | ArrayOfUuid | Optional. The organization `Unit` elements for which the federate has the responsibility of modelling corresponding `AggregateEntities`. The default is an empty list. |
-| PhysicalEntityAllocation | ArrayOfUuid | Optional. The the organization `Equipment` or `Installation` elements for which the federate has the responsibility of simulating a `PhysicalEntity`. The default is an empty list. |
+| AggregateEntityAllocation | ArrayOfUuid | Optional. The organization's `Unit` elements for which the federate has the responsibility of modelling corresponding `AggregateEntities`. The default is an empty list. |
+| PhysicalEntityAllocation | ArrayOfUuid | Optional. The the organization's `Equipment` and `Installation` elements for which the federate has the responsibility of simulating a `PhysicalEntity`. The default is an empty list. |
 
 ## Interaction Classes
 
