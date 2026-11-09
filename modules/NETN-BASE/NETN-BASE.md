@@ -12,7 +12,7 @@ The NATO Education and Training Network Base (NETN-BASE) module provides standar
 NETN-BASE defines attributes and parameters for the HLA object and interaction root classes. These attributes and parameters are available for all object and interaction classes in all NETN-FOM modules.
 
 ```mermaid
-classDiagram 
+classDiagram
 direction TB
 
 HLAobjectRoot : CreateTime
@@ -49,7 +49,7 @@ The NETN-BASE module defines the optional `HLAobjectRoot` attribute `CreateTime`
 ## Object Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
 HLAobjectRoot : CreateTime
@@ -66,7 +66,7 @@ HLAobjectRoot : UniqueId
 ## Interaction Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot : SendTime
 HLAinteractionRoot : UniqueId
@@ -131,66 +131,66 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 
 ### Simple Datatypes
 
-|Name|Units|Semantics|
-|---|---|---|
-|AltitudeMeterFloat64|Meter|Represents altitude relative to Mean Sea Level (MSL).|
-|DirectionDegreesFloat32|Degree|The direction is measured clockwise relative to the true north. Calculate values outside the range [0, 360) as modulo 360.|
-|EpochTime|seconds|Scenario time is seconds since Epoch. Epoch typically refers to the Unix Epoch (Jan 1, 1970, 00:00:00 UTC) or a scenario-specific baseline established in federation agreements.|
-|LatitudeFloat64|Degree|An angular measurement that specifies the north–south position of a point on the surface. Latitude is an angle that ranges from –90 degrees at the south pole to 90 degrees at the north pole, with 0 at the Equator.|
-|LongitudeFloat64|Degree|An angular measurement that specifies the east–west position of a point on the surface. Longitude is an angle that ranges from –180 degrees to +180 degrees, with 0 at the prime meridian.|
-|MassConcentrationFloat32|kg/m3|The concentration of a substance.|
-|MassDensityFloat32|kg/m3|The density of a substance.|
-|QuantityFloat64|NA|A generic floating-point quantity.|
-|QuantityInt32|NA|A generic discrete quantity.|
-|TimeMillisecondInt64|Millisecond (ms)|A generic representation of milliseconds.|
+| Name | Units | Semantics |
+| --- | --- | --- |
+| AltitudeMeterFloat64 | Meter | Represents altitude relative to Mean Sea Level (MSL). |
+| DirectionDegreesFloat32 | Degree | The direction is measured clockwise relative to the true north. Calculate values outside the range [0, 360) as modulo 360. |
+| EpochTime | seconds | Scenario time is seconds since Epoch. Epoch typically refers to the Unix Epoch (Jan 1, 1970, 00:00:00 UTC) or a scenario-specific baseline established in federation agreements. |
+| LatitudeFloat64 | Degree | An angular measurement that specifies the north–south position of a point on the surface. Latitude is an angle that ranges from –90 degrees at the south pole to 90 degrees at the north pole, with 0 at the Equator. |
+| LongitudeFloat64 | Degree | An angular measurement that specifies the east–west position of a point on the surface. Longitude is an angle that ranges from –180 degrees to +180 degrees, with 0 at the prime meridian. |
+| MassConcentrationFloat32 | kg/m3 | The concentration of a substance. |
+| MassDensityFloat32 | kg/m3 | The density of a substance. |
+| QuantityFloat64 | NA | A generic floating-point quantity. |
+| QuantityInt32 | NA | A generic discrete quantity. |
+| TimeMillisecondInt64 | Millisecond (ms) | A generic representation of milliseconds. |
 
 ### Enumerated Datatypes
 
-|Name|Representation|Semantics|
-|---|---|---|
-|ActiveStatusEnum8|HLAoctet|A state which indicates the status of an object concerning its participation in the simulation. An object in an inactive state is not simulated and does not interact with other objects.|
-|AggregateMissionEnum16|HLAinteger16BE|Represents the general class or nature of activity related to a simulated entity's mission.|
-|AggregateStateFormationEnum32|RPRunsignedInteger32BE|Aggregate State-Formation [UID 205].|
-|DamageStatusEnhancedEnum32|HLAinteger32BE|The damage status of an object.|
-|DamageStatusEnum32|RPRunsignedInteger32BE|Damaged appearance.|
-|EchelonEnum32|HLAinteger32BE|The echelon level of a unit.|
-|HostilityStatusCodeEnum32|HLAinteger32BE|The value represents the perceived hostility status.|
-|SymbolTypeEnum|HLAinteger32BE|Type of symbol.|
-|TransmitterOperationalStatusEnum8|HLAoctet|The current operational state of a radio transmitter.|
+| Name | Representation | Semantics |
+| --- | --- | --- |
+| ActiveStatusEnum8 | HLAoctet | A state which indicates the status of an object concerning its participation in the simulation. An object in an inactive state is not simulated and does not interact with other objects. |
+| AggregateMissionEnum16 | HLAinteger16BE | Represents the general class or nature of activity related to a simulated entity's mission. |
+| AggregateStateFormationEnum32 | RPRunsignedInteger32BE | Aggregate State-Formation [UID 205]. |
+| DamageStatusEnhancedEnum32 | HLAinteger32BE | The damage status of an object. |
+| DamageStatusEnum32 | RPRunsignedInteger32BE | Damaged appearance. |
+| EchelonEnum32 | HLAinteger32BE | The echelon level of a unit. |
+| HostilityStatusCodeEnum32 | HLAinteger32BE | The value represents the perceived hostility status. |
+| SymbolTypeEnum | HLAinteger32BE | Type of symbol. |
+| TransmitterOperationalStatusEnum8 | HLAoctet | The current operational state of a radio transmitter. |
 
 ### Array Datatypes
 
-|Name|Element Datatype|Semantics|
-|---|---|---|
-|ArrayOfResourceStatus|ResourceStatusStruct|The array of health states for all instances of a named resource.|
-|ArrayOfSupplyStatus|SupplyStatusStruct|A list of supply types and their quantity.|
-|ArrayOfUuid|UUID|An array of Unique Identifiers expressed as UUIDs.|
-|Callsign|HLAunicodeChar|An identifier for a simulated entity. Callsigns should be unique in the context in which they are used but are not required to be globally unique.|
-|FederateName|HLAunicodeChar|The name of a federate participating in an HLA federation. The value of this attribute corresponds to the `HLAfederateName` attribute of the MIM object class `HLAfederate`.|
-|GeodeticPath|GeodeticPoint|A sequence of geodetic points defining a path.|
-|GeodeticPolygon|GeodeticLocation|A sequence of geodetic locations defines a geographical area bounded by a closed path where the first and last locations in the sequence are connected. Each point is a geodetic coordinate in WGS84 on the earth's surface, and each segment is a great circle between locations.|
-|LocationStructArray|LocationStruct|Dynamic array of LocationStruct elements. May contain no elements.|
-|SymbolIdentifier|HLAunicodeChar|A symbol identifier is represented as a string. The identifier uses a URI notation (uri:xxxxxxxxxx) where the URI moniker specifies the symbology standard, e.g. app6a, app6b, app6c, 2525b, 2525c, 2525d. If not provided, the federation agreement defines the default symbol standard.|
-|UUID|HLAbyte|RFC 4122, section 4.1.2 using 16 bytes. Also referred to as Variant 1 or RFC 4122/DCE 1.1 UUIDs. For example, 00112233-4455-8877-6699-aabbccddeeff is encoded as the bytes 00 11 22 33 44 55 88 77 66 99 aa bb cc dd ee ff.|
+| Name | Element Datatype | Semantics |
+| --- | --- | --- |
+| ArrayOfResourceStatus | ResourceStatusStruct | The array of health states for all instances of a named resource. |
+| ArrayOfSupplyStatus | SupplyStatusStruct | A list of supply types and their quantity. |
+| ArrayOfUuid | UUID | An array of Unique Identifiers expressed as UUIDs. |
+| Callsign | HLAunicodeChar | An identifier for a simulated entity. Callsigns should be unique in the context in which they are used but are not required to be globally unique. |
+| FederateName | HLAunicodeChar | The name of a federate participating in an HLA federation. The value of this attribute corresponds to the `HLAfederateName` attribute of the MIM object class `HLAfederate`. |
+| GeodeticPath | GeodeticPoint | A sequence of geodetic points defining a path. |
+| GeodeticPolygon | GeodeticLocation | A sequence of geodetic locations defines a geographical area bounded by a closed path where the first and last locations in the sequence are connected. Each point is a geodetic coordinate in WGS84 on the earth's surface, and each segment is a great circle between locations. |
+| LocationStructArray | LocationStruct | Dynamic array of LocationStruct elements. May contain no elements. |
+| SymbolIdentifier | HLAunicodeChar | A symbol identifier is represented as a string. The identifier uses a URI notation (uri:xxxxxxxxxx) where the URI moniker specifies the symbology standard, e.g. app6a, app6b, app6c, 2525b, 2525c, 2525d. If not provided, the federation agreement defines the default symbol standard. |
+| UUID | HLAbyte | RFC 4122, section 4.1.2 using 16 bytes. Also referred to as Variant 1 or RFC 4122/DCE 1.1 UUIDs. For example, 00112233-4455-8877-6699-aabbccddeeff is encoded as the bytes 00 11 22 33 44 55 88 77 66 99 aa bb cc dd ee ff. |
 
 ### Fixed Record Datatypes
 
-|Name|Fields|Semantics|
-|---|---|---|
-|EquipmentSymbolAmplificationStruct|Quantity, StaffComments, AdditionalInformation, EvaluationRating, SignatureEquipment, Hostile, IFF_SIF_AIS, UniqueDesignation, EquipmentType, EngagementBarText|Text amplifiers for Equipment symbols.|
-|GeodeticCircle|CenterPoint, Radius|A geodetic point and radius specifying a circle on the earth's surface (WGS84), where the radius is a great circle distance on the surface.|
-|GeodeticLocation|Latitude, Longitude|A geodetic point, specified by latitude and longitude, with unspecified altitude. WGS84.|
-|GeodeticPoint|Latitude, Longitude, Altitude|A geodetic point is specified by latitude, longitude and altitude.|
-|GeodeticQuadrangle|Point1, Point2|A latitude-longitude quadrangle is a region bounded by two meridians and two parallels.|
-|InstallationSymbolAmplificationStruct|StaffComments, AdditionalInformation, EvaluationRating, CombatEffectiveness, IFF_SIF_AIS, UniqueDesignation, EngagementBarText|Text amplifiers for installation symbols.|
-|LocationStruct|X, Y, Z|The location of a point in space. Unless otherwise specified for the attribute, parameter, or datatype field using this datatype, the location is in the world coordinate system as specified in IEEE Std 1278.1-2012 section 1.6.3.|
-|ResourceStatusStruct|NumberHealthyOrIntact, NumberSlightlyDamaged, NumberModeratelyDamaged, NumberSignificantlyDamaged, NumberDestroyed, ResourceName, ResourceType|The name of a resource and the number of instances of that resource by health status.|
-|SupplyStatusStruct|SupplyType, Quantity|Represents a single supply type and the quantity being offered or requested.|
-|SymbolStruct|Id, Amplification|Symbol ID and additional symbol amplification data.|
-|UnitSymbolAmplificationStruct|StaffComments, AdditionalInformation, EvaluationRating, CombatEffectiveness, HigherFormation, IFF_SIF_AIS, UniqueDesignation, SpecialHeadquarters, EngagementBarText|Text amplifiers for Unit symbols.|
+| Name | Fields | Semantics |
+| --- | --- | --- |
+| EquipmentSymbolAmplificationStruct | Quantity, StaffComments, AdditionalInformation, EvaluationRating, SignatureEquipment, Hostile, IFF_SIF_AIS, UniqueDesignation, EquipmentType, EngagementBarText | Text amplifiers for Equipment symbols. |
+| GeodeticCircle | CenterPoint, Radius | A geodetic point and radius specifying a circle on the earth's surface (WGS84), where the radius is a great circle distance on the surface. |
+| GeodeticLocation | Latitude, Longitude | A geodetic point, specified by latitude and longitude, with unspecified altitude. WGS84. |
+| GeodeticPoint | Latitude, Longitude, Altitude | A geodetic point is specified by latitude, longitude and altitude. |
+| GeodeticQuadrangle | Point1, Point2 | A latitude-longitude quadrangle is a region bounded by two meridians and two parallels. |
+| InstallationSymbolAmplificationStruct | StaffComments, AdditionalInformation, EvaluationRating, CombatEffectiveness, IFF_SIF_AIS, UniqueDesignation, EngagementBarText | Text amplifiers for installation symbols. |
+| LocationStruct | X, Y, Z | The location of a point in space. Unless otherwise specified for the attribute, parameter, or datatype field using this datatype, the location is in the world coordinate system as specified in IEEE Std 1278.1-2012 section 1.6.3. |
+| ResourceStatusStruct | NumberHealthyOrIntact, NumberSlightlyDamaged, NumberModeratelyDamaged, NumberSignificantlyDamaged, NumberDestroyed, ResourceName, ResourceType | The name of a resource and the number of instances of that resource by health status. |
+| SupplyStatusStruct | SupplyType, Quantity | Represents a single supply type and the quantity being offered or requested. |
+| SymbolStruct | Id, Amplification | Symbol ID and additional symbol amplification data. |
+| UnitSymbolAmplificationStruct | StaffComments, AdditionalInformation, EvaluationRating, CombatEffectiveness, HigherFormation, IFF_SIF_AIS, UniqueDesignation, SpecialHeadquarters, EngagementBarText | Text amplifiers for Unit symbols. |
 
 ### Variant Record Datatypes
 
-|Name|Discriminant (Datatype)|Alternatives|Semantics|
-|---|---|---|---|
-|SymbolAmplificationVariant|SymbolType (SymbolTypeEnum)|UnitSymbol, EquipmentSymbol, InstallationSymbol|Different symbol amplification data for different types of symbols.|
+| Name | Discriminant (Datatype) | Alternatives | Semantics |
+| --- | --- | --- | --- |
+| SymbolAmplificationVariant | SymbolType (SymbolTypeEnum) | UnitSymbol, EquipmentSymbol, InstallationSymbol | Different symbol amplification data for different types of symbols. |
