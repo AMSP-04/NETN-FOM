@@ -18,7 +18,7 @@ In a federated distributed simulation, the participating systems (federates) pro
 The NETN-TMR module covers the following cases:
 
 * Initialization with assigned modelling responsibilities for objects.
-* Explicit request to acquire modelling responsibility.
+* Explicit requests to acquire modelling responsibility.
 * Triggering modelling responsibility transfer by updating the allocation of responsibility attribute.
 
 ## Overview
@@ -32,7 +32,7 @@ The federate with primary modelling responsibility for an entity shall respond t
 The NETN-TMR module extends the `HLAobjectRoot` object class with the attribute `AllocatedFederate`.
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
 HLAobjectRoot : AllocatedFederate
@@ -44,7 +44,7 @@ The owner (HLA ownership) of the `AllocatedFederate` attribute is the federate w
 Sending an `AcquireModellingResponsibility` interaction triggers the referenced federate to initiate a transfer. If successful, the acquiring federate owns (HLA ownership) the `AllocatedFederate` attribute and updates its value to the federate name.
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
 HLAinteractionRoot <|-- SMC_FederateControl
@@ -61,12 +61,12 @@ Transfer of primary modelling responsibility is impossible if no owner of the `A
 An update of the `AllocatedFederate` attribute triggers the referenced federate to acquire the primary modelling responsibility. E.g., during scenario initialization, a federate may register all objects and then update the `AllocatedFederate` attributes to trigger a change in modelling responsibility.
 
 ``` mermaid
- 
-sequenceDiagram 
+
+sequenceDiagram
 autonumber
-Federation->>Federate 1: Update entity.AllocatedFederate = federate 1 
-Federate 1->>Federation: Attribute Ownership Acquisition(entity.attributes) 
-Federation->>Federate 2: Request Attribute Ownership Release(entity.attributes) 
+Federation->>Federate 1: Update entity.AllocatedFederate = federate 1
+Federate 1->>Federation: Attribute Ownership Acquisition(entity.attributes)
+Federation->>Federate 2: Request Attribute Ownership Release(entity.attributes)
 
 alt Scenario 1: Divestiture Granted
     Federate 2->>Federation: Attribute Ownership Divestiture If Wanted(entity.attributes)
@@ -98,19 +98,19 @@ end
 Sending an `AcquireModellingResponsibility` interaction requests the referenced federate to start acquiring modelling responsibility.
 
 ``` mermaid
- 
-sequenceDiagram 
+
+sequenceDiagram
 autonumber
- 
-Federation ->>Federate 1:AcquireModellingResponsibility(requestId, entity, federate 1) 
-Federate 1->>Federation:HLA Attribute Ownership Acquisition(entity.attributes) 
-Federation->>Federate 2:HLA Request Attribute Ownership Release(entity.attributes) 
-Federate 2->>Federation:HLA Ownership Release(entity.attributes) 
-Federate 2->>Federation:HLA Attribute Ownership Divestiture If Wanted(entity.attributes) 
-Federation->>Federate 1:HLA Attribute Ownership Acquisition Notification(entity.attributes) 
-Federate 1->>Federation:Update entity.FederateApplication 
-Federate 1->>Federation:SMC_Response(requestId, TRUE) 
- 
+
+Federation ->>Federate 1:AcquireModellingResponsibility(requestId, entity, federate 1)
+Federate 1->>Federation:HLA Attribute Ownership Acquisition(entity.attributes)
+Federation->>Federate 2:HLA Request Attribute Ownership Release(entity.attributes)
+Federate 2->>Federation:HLA Ownership Release(entity.attributes)
+Federate 2->>Federation:HLA Attribute Ownership Divestiture If Wanted(entity.attributes)
+Federation->>Federate 1:HLA Attribute Ownership Acquisition Notification(entity.attributes)
+Federate 1->>Federation:Update entity.FederateApplication
+Federate 1->>Federation:SMC_Response(requestId, TRUE)
+
 ```
 
 1. The federation sends an `AcquireModellingResponsibility` interaction with references to the entity and the acquiring federate (Federate 1).
@@ -129,18 +129,18 @@ If an ownership release of a required attribute is denied, the transfer is cance
 sequenceDiagram
 autonumber
 
-participant Federation 
-participant Federate 1 
-participant Federate 2 
- 
-Federate 1->>Federation:HLA Attribute Ownership Acquisition(entity.attributes) 
-Federation->>Federate 2:HLA Request Attribute Ownership Release(entity.attributes) 
-Federate 2->>Federation:HLA Attribute Ownership Release Denied(entity.attributes) 
-Federation->>Federate 1:HLA Attribute Ownership Unavailable(entity.attributes) 
-Federate 1->>Federation:Update(entity.AllocatedFederate) 
-Federate 1->>Federation:SMC_Response(False) 
- 
- 
+participant Federation
+participant Federate 1
+participant Federate 2
+
+Federate 1->>Federation:HLA Attribute Ownership Acquisition(entity.attributes)
+Federation->>Federate 2:HLA Request Attribute Ownership Release(entity.attributes)
+Federate 2->>Federation:HLA Attribute Ownership Release Denied(entity.attributes)
+Federation->>Federate 1:HLA Attribute Ownership Unavailable(entity.attributes)
+Federate 1->>Federation:Update(entity.AllocatedFederate)
+Federate 1->>Federation:SMC_Response(False)
+
+
 ```
 
 1. The federation uses the HLA service `Attribute Ownership Acquisition` to request ownership of relevant attributes for the referenced entities.
@@ -153,7 +153,7 @@ Federate 1->>Federation:SMC_Response(False)
 ## Object Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
 HLAobjectRoot : AllocatedFederate
@@ -170,7 +170,7 @@ HLAobjectRoot : UniqueId(NETN-BASE)
 ## Interaction Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot <|-- SMC_FederateControl
 HLAinteractionRoot : UniqueId(NETN-BASE)

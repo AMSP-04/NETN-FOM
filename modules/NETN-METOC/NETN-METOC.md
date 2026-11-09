@@ -47,7 +47,7 @@ One or both methods may be suitable depending on federation design and agreement
 ## Object Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
 HLAobjectRoot <|-- METOC_EnvironmentCondition
@@ -277,7 +277,7 @@ The available METOC services are objects in the federation.
 ## Interaction Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot <|-- SMC_FederateControl
 HLAinteractionRoot <|-- SMC_Response
