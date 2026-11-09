@@ -1,9 +1,8 @@
 # NETN-SMC
 
-
-|Version| Date| Dependencies|
-|---|---|---|
-|1.0|2023-11-20|NETN-BASE|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| 1.0 | 2023-11-20 | NETN-BASE |
 
 > [Full Documentation](NETN-SMC.md)
 
@@ -34,9 +33,8 @@ Version numbering of this FOM Module and associated documentation is based on th
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-|Version|
-|---|
-|v1.0 - Version developed by MSG-191. Release included in NETN FOM v4.0|
+| Version |
+| --- |
+| v1.0 - Version developed by MSG-191. Release included in NETN FOM v4.0 |
 
 > [Changelog](changelog.md)
-

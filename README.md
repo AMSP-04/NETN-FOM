@@ -35,12 +35,12 @@ Version numbering of the NETN FOM and associated documentation is based on the f
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility, but that may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-|Version|Description|
-|---|---|
-|v1.0|Initial release of NETN FOM as developed by MSG-068 |
-|v2.0|Release of NETN FOM included in AMSP-04 Ed A|
-|v3.0|Release of NETN FOM included in AMSP-04 Ed B|
-|v4.0|Release of NETN FOM included in AMSP-04 Ed C|
+| Version | Description |
+| --- | --- |
+| v1.0 | Initial release of NETN FOM as developed by MSG-068 |
+| v2.0 | Release of NETN FOM included in AMSP-04 Ed A |
+| v3.0 | Release of NETN FOM included in AMSP-04 Ed B |
+| v4.0 | Release of NETN FOM included in AMSP-04 Ed C |
 
 [Changelog](changelog.md)
 

@@ -1,8 +1,8 @@
 # NETN-TMR
 
-|Version| Date| Dependencies|
-|---|---|---|
-|3.0|2024-03-10|NETN-BASE, NETN-ORG, NETN-SMC|
+| Version | Date | Dependencies |
+| --- | --- | --- |
+| 3.0 | 2024-03-10 | NETN-BASE, NETN-ORG, NETN-SMC |
 
 > [Full Documentation](NETN-TMR.md)
 
@@ -43,10 +43,10 @@ Version numbering of this FOM Module and associated documentation is based on th
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-|Version|
-|---|
-|v1.1 - Released version part of NETN FOM v2.0 in AMSP-04 Ed A.|
-|v2.0 - Released version part of NETN FOM v3.0 in AMSP-04 Ed B.|
-|v3.0 - Released version part of NETN FOM v4.0 in AMSP-04 Ed C.|
+| Version |
+| --- |
+| v1.1 - Released version part of NETN FOM v2.0 in AMSP-04 Ed A. |
+| v2.0 - Released version part of NETN FOM v3.0 in AMSP-04 Ed B. |
+| v3.0 - Released version part of NETN FOM v4.0 in AMSP-04 Ed C. |
 
 > [Changelog](changelog.md)

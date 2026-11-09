@@ -31,10 +31,10 @@ Version numbering of this FOM Module and associated documentation is based on th
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-|Version|
-|---|
-|v1.2 - First version developed by MSG-134 for NETN FOM v2.0. Object classes and datatypes derived from deprecated NETN FOM v 1.0 module AggDeagg.|
-|v2.0 - Updated version developed by MSG-163 for NETN FOM v3.0 renamed NETN-Physical|
-|v3.0 - Updated version developed by MSG-191 for NETN FOM v4.0 renamed NETN-ENTITY|
+| Version |
+| --- |
+| v1.2 - First version developed by MSG-134 for NETN FOM v2.0. Object classes and datatypes derived from deprecated NETN FOM v 1.0 module AggDeagg. |
+| v2.0 - Updated version developed by MSG-163 for NETN FOM v3.0 renamed NETN-Physical |
+| v3.0 - Updated version developed by MSG-191 for NETN FOM v4.0 renamed NETN-ENTITY |
 
 > [Changelog](changelog.md)

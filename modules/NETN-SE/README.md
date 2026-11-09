@@ -29,9 +29,9 @@ Version numbering of this FOM Module and associated documentation is based on th
 * An update of the minor version number is made if the change constitutes minor additions to existing concepts and editorial changes that do not break backward compatibility but may require updates of software to use new concepts.
 * Patches are released to fix minor issues that do not break backward compatibility.
 
-|Version|
-|---|
-|v1.0 - Developed by MSG-163 for NETN FOM v3.0|
-|v2.0 - Developed by MSG-191 for NETN FOM v4.0|
+| Version |
+| --- |
+| v1.0 - Developed by MSG-163 for NETN FOM v3.0 |
+| v2.0 - Developed by MSG-191 for NETN FOM v4.0 |
 
 > [Changelog](changelog.md)
