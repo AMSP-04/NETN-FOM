@@ -13,14 +13,14 @@ For backward compatibility, published objects should include all required RPR-FO
 
 The NETN-ENTITY module extends the RPR-FOM `BaseEntity` object class with optional attributes available for all physical and aggregate entity objects. In addition, the RPR-FOM `AggregateEntity` object class is extended with additional attributes.
 
-The module also extends the RPR-Physical `Platform` subclasses `Aircraft`, `GroundVehicle`, and `SurfaceVessel` with light-related attributes.
+The module also extends the RPR-Physical `Platform` subclasses `Aircraft`, `GroundVehicle`, and `SurfaceVessel` with vehicle lighting and signaling attributes.
 
 The `TankerAircraft` object class further extends the `Aircraft` object class.
 
 ## Object Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
 HLAobjectRoot <|-- BaseEntity
