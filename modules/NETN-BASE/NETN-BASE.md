@@ -61,7 +61,7 @@ HLAobjectRoot : UniqueId
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | CreateTime | EpochTime | Optional. The time in the scenario when the object is created. |
-| UniqueId | UUID | Required. A Universally Unique Identifier (UUID) for the object. UUID is generated or pre-defined. |
+| UniqueId | UUID | Required. A Universally Unique Identifier (UUID) for the object. UUID is generated during execution or pre-defined. |
 
 ## Interaction Classes
 
@@ -102,7 +102,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | EpochTime | Scenario time is seconds since Epoch. Epoch typically refers to the Unix Epoch (Jan 1, 1970, 00:00:00 UTC) or a scenario-specific baseline established in federation agreements. |
 | EquipmentSymbolAmplificationStruct | Text amplifiers for Equipment symbols. |
 | FederateName | The name of a federate participating in an HLA federation. The value of this attribute corresponds to the `HLAfederateName` attribute of the MIM object class `HLAfederate`. |
-| GeodeticCircle | A geodetic point and radius specifying a circle on the earth's surface (WGS84), where the radius is a great circle distance on the surface. |
+| GeodeticCircle | A geodetic point and radius specifying a circle on the earth's surface (WGS84). |
 | GeodeticLocation | A geodetic point, specified by latitude and longitude, with unspecified altitude. WGS84. |
 | GeodeticPath | A sequence of geodetic points defining a path. |
 | GeodeticPoint | A geodetic point is specified by latitude, longitude and altitude. |
