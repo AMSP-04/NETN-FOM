@@ -36,34 +36,34 @@ In NETN-ORG, an `Organization` is a representation used to:
 All `BaseEntity` objects are associated with a specific `Organization`.The required RPR-FOM attribute `ForceIdentifier` can be derived from the referenced organization and the corresponding `Organization` attribute `ForceIdentifier`.
 
 ```mermaid
-classDiagram 
-direction LR 
- 
-HLAobjectRoot <|-- ORG_Root 
-HLAobjectRoot <|-- BaseEntity 
- 
-HLAobjectRoot : UniqueId(NETN-BASE) 
-ORG_Root <|-- OrganizationElement 
-ORG_Root <|-- Organization 
-ORG_Root : Name 
-OrganizationElement <|-- Equipment 
-OrganizationElement <|-- Unit 
-OrganizationElement <|-- Installation 
-OrganizationElement : EntityType 
-OrganizationElement : HostUnit 
-OrganizationElement : Location 
-OrganizationElement : Organization 
-OrganizationElement : SuperiorUnit 
-OrganizationElement : Symbol 
-Unit : Echelon 
-Unit : Formation 
-Unit : HigherHeadquarters 
-Unit : Holdings 
-Unit : IsHq 
-Organization : CountryCode 
-Organization : ForceIdentifier 
-Organization : Relationships 
-BaseEntity : Organization 
+classDiagram
+direction LR
+
+HLAobjectRoot <|-- ORG_Root
+HLAobjectRoot <|-- BaseEntity
+
+HLAobjectRoot : UniqueId(NETN-BASE)
+ORG_Root <|-- OrganizationElement
+ORG_Root <|-- Organization
+ORG_Root : Name
+OrganizationElement <|-- Equipment
+OrganizationElement <|-- Unit
+OrganizationElement <|-- Installation
+OrganizationElement : EntityType
+OrganizationElement : HostUnit
+OrganizationElement : Location
+OrganizationElement : Organization
+OrganizationElement : SuperiorUnit
+OrganizationElement : Symbol
+Unit : Echelon
+Unit : Formation
+Unit : HigherHeadquarters
+Unit : Holdings
+Unit : IsHq
+Organization : CountryCode
+Organization : ForceIdentifier
+Organization : Relationships
+BaseEntity : Organization
 ```
 
 Each `Organization` is defined by a structure of `OrganizationElement` objects. Each `OrganizationElement` object is related to its `Organization` and its `SuperiorUnit`, if any. There are three (3) subtypes of `OrganizationElement`:
@@ -75,7 +75,7 @@ Each `Organization` is defined by a structure of `OrganizationElement` objects. 
 To request a change of `SuperiorUnit`, use the NETN-SMC entity control action `ChangeSuperiorUnit`.
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot <|-- SMC_EntityControl
 
@@ -91,23 +91,23 @@ ChangeSuperiorUnit : SuperiorUnit
 NETN-ORG extends the NETN-SMC object class `SMC_Service` with the `EntitySimulation` class that for each instance can publish the allocation of initial modelling responsibility. The arrays `AggregateEntityAllocation` and `PhysicalEntityAllocation` within the `EntitySimulation` object provide the initial allocation of responsibility to a federate for what `Equipment` is represented as a `PhysicalEntity` and what `Unit` is represented as an `AggregateEntity`.
 
 ```mermaid
-classDiagram 
-direction LR 
- 
- 
-HLAobjectRoot <|-- SMC_Service 
-HLAobjectRoot : UniqueId(NETN-BASE) 
- 
-SMC_Service <|-- EntitySimulation 
-SMC_Service : Federate(NETN-SMC) 
-EntitySimulation : AggregateEntityAllocation 
-EntitySimulation : PhysicalEntityAllocation 
+classDiagram
+direction LR
+
+
+HLAobjectRoot <|-- SMC_Service
+HLAobjectRoot : UniqueId(NETN-BASE)
+
+SMC_Service <|-- EntitySimulation
+SMC_Service : Federate(NETN-SMC)
+EntitySimulation : AggregateEntityAllocation
+EntitySimulation : PhysicalEntityAllocation
 ```
 
 ## Object Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
 HLAobjectRoot <|-- ORG_Root
@@ -145,9 +145,9 @@ EntitySimulation : PhysicalEntityAllocation
 
 The root class for all NETN-ORG object classes.
 
-|Attribute|Datatype|Semantics|
-|---|---|---|
-|Name|HLAunicodeString|Required. A unique name.|
+| Attribute | Datatype | Semantics |
+| --- | --- | --- |
+| Name | HLAunicodeString | Required. A unique name. |
 
 ### OrganizationElement
 
@@ -242,7 +242,7 @@ A service providing modelling responsibility for aggregate and/or physical entit
 ## Interaction Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot <|-- SMC_EntityControl
 HLAinteractionRoot : UniqueId(NETN-BASE)
