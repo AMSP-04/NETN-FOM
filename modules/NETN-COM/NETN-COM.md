@@ -446,7 +446,7 @@ Tasking of an entity to switch on/off all of its transmitters.
 
 ### ETR_Report
 
-A base interaction class for more specialized report interaction classes. The inherited parameter `Time` is required.
+A base interaction class for specialized entity reports (such as observation, position, or damage reports). The inherited NETN-BASE parameter `SendTime` is required to indicate the scenario time when the interaction was sent.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
