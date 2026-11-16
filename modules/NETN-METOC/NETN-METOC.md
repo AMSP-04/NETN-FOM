@@ -111,7 +111,7 @@ If not provided, the environment condition is considered global, restricted only
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the environment condition is considered global. |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this environment condition. |
 | Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., `TroposphereLayer`, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
 
@@ -145,7 +145,7 @@ The `Weather` object class represents typical weather-related attributes such as
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | BarometricPressure | AtmosphericPressureFloat32 | Optional. The barometric pressure in millibar or hectopascal (1 mbar = 1 hPa) in the region/location at the specified reference altitude. Barometric pressure for specific altitudes is calculated using the International Standard Atmosphere (ISA) model. Default is 1013.25 hPa (standard pressure at sea level). |
-| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the environment condition is considered global. |
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
 | Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning. Default = 0. |
@@ -165,7 +165,7 @@ The environmental conditions related to a land surface include inherited attribu
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | BarometricPressure | AtmosphericPressureFloat32 | Optional. The barometric pressure in millibar or hectopascal (1 mbar = 1 hPa) in the region/location at the specified reference altitude. Barometric pressure for specific altitudes is calculated using the International Standard Atmosphere (ISA) model. Default is 1013.25 hPa (standard pressure at sea level). |
-| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the environment condition is considered global. |
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
 | Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | IceCondition | RoadIceConditionEnum16 | Optional. Surface ice condition in the region/location. The default is no ice. If overlapping regions/locations exist, use the highest enumerated value (most severe ice condition). |
@@ -191,7 +191,7 @@ The `WaterSurface` object specifies the surface condition of the water in the sp
 | BarometricPressure | AtmosphericPressureFloat32 | Optional. The barometric pressure in millibar or hectopascal (1 mbar = 1 hPa) in the region/location at the specified reference altitude. Barometric pressure for specific altitudes is calculated using the International Standard Atmosphere (ISA) model. Default is 1013.25 hPa (standard pressure at sea level). |
 | Choppiness | PercentFloat32 | Optional. A degree of choppiness of the water surface ranging from 0% (no choppiness) to 100% (maximum choppiness). Default = 0%. |
 | Current | CurrentStruct | Optional. Current on the water surface. The default is no current. Ignored if the surface has 100% ice coverage. If overlapping regions/locations exist, use the average current direction and speed. |
-| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the environment condition is considered global. |
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
 | Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | Ice | IceStruct | Optional. Ice condition on the surface. The default is no ice. If overlapping regions/locations exist, use the latest updated value. |
@@ -219,7 +219,7 @@ The `TroposphereLayer` associates weather and cloud coverage with a specific lay
 | --- | --- | --- |
 | BarometricPressure | AtmosphericPressureFloat32 | Optional. The barometric pressure in millibar or hectopascal (1 mbar = 1 hPa) in the region/location at the specified reference altitude. Barometric pressure for specific altitudes is calculated using the International Standard Atmosphere (ISA) model. Default is 1013.25 hPa (standard pressure at sea level). |
 | Cloud | CloudStruct | Optional. Data about clouds in the atmospheric layer. The default is no clouds. If overlapping layers exist, use the latest updated value. |
-| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the environment condition is considered global. |
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
 | Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | Layer | LayerStruct | Optional. The volume of the atmosphere extends from a base altitude and upwards (see LayerStruct). Ignore any portion of the layer extending below sea level. The default is a mean sea level base and an infinite layer thickness. |
@@ -241,7 +241,7 @@ The environmental condition of a subsurface water layer.
 | --- | --- | --- |
 | BottomType | SedimentTypeEnum32 | Optional. Type of sediment on the sea floor. The default is `NoSediment`. If overlapping layers exist, use the latest updated value. |
 | Current | CurrentStruct | Optional. Describes current in the water layer. The default is no current. If overlapping regions/locations exist, use the average current direction and speed. |
-| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the environment condition is considered global. |
 | Layer | LayerStruct | Optional. A body of water extends upwards from a (negative) base altitude (see LayerStruct). Ignore any portion of the layer extending above sea level. The default value is the volume between the sea floor and the surface. |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Priority | UnsignedInteger16 | Optional. Indication of priority when calculating overlapping environment conditions of the same type. If overlapping environment conditions of the same type, e.g., `TroposphereLayer`, exist, then the environment condition with the highest priority takes precedence. If multiple environment conditions with the same highest priority exist, use the NETN-METOC merging rules. |
@@ -255,7 +255,7 @@ Represents a specific wind-related environment condition expressed as wind speed
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the environment condition is considered global. |
 | Height | MeterFloat32 | Required. The height of the corridor centered on the geodetic path. |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Path | GeodeticPath | Required. The path of the corridor. |
@@ -332,7 +332,7 @@ A request to a specified METOC service to provide METOC data for a specific geog
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. If not provided, the request is for a global environmental condition. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | UpdateAsObject | HLAboolean | Optional. Indicates if the service is requested to represent the environmental condition as an EnvironmentCondition object instance. The default is False. |
 
 ### RequestWeatherCondition
@@ -341,7 +341,7 @@ Request for general weather data.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. If not provided, the request is for a global environmental condition. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | UpdateAsObject | HLAboolean | Optional. Indicates if the service is requested to represent the environmental condition as an EnvironmentCondition object instance. The default is False. |
 
 ### RequestLandSurfaceCondition
@@ -350,7 +350,7 @@ Request for land surface condition data.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. If not provided, the request is for a global environmental condition. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | UpdateAsObject | HLAboolean | Optional. Indicates if the service is requested to represent the environmental condition as an EnvironmentCondition object instance. The default is False. |
 
 ### RequestTroposphereLayerCondition
@@ -359,7 +359,7 @@ Request for tropospheric environment condition data.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. If not provided, the request is for a global environmental condition. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | Layer | LayerStruct | Optional. A description of a layer for the request of layered troposphere environment conditions. Default is the entire volume of air in the identified layer. |
 | UpdateAsObject | HLAboolean | Optional. Indicates if the service is requested to represent the environmental condition as an EnvironmentCondition object instance. The default is False. |
 
@@ -369,7 +369,7 @@ Request for water surface condition data.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. If not provided, the request is for a global environmental condition. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | UpdateAsObject | HLAboolean | Optional. Indicates if the service is requested to represent the environmental condition as an EnvironmentCondition object instance. The default is False. |
 
 ### RequestSubsurfaceLayerCondition
@@ -378,7 +378,7 @@ Request for subsurface condition data.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. If not provided, the request is for a global environmental condition. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | Layer | LayerStruct | Optional. A description of a layer for the request of layered subsurface environment conditions. Default is the entire body of water in the identified layer. |
 | UpdateAsObject | HLAboolean | Optional. Indicates if the service is requested to represent the environmental condition as an EnvironmentCondition object instance. The default is False. |
 
@@ -389,7 +389,7 @@ A response to a request for METOC data.
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
 | EnvironmentObject | UUID | Optional. Reference to an existing environment condition if the corresponding request includes UpdateAsObject set to true. |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. The default is global. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 
 ### WeatherCondition
 
@@ -399,7 +399,7 @@ Response with the general weather condition data.
 | --- | --- | --- |
 | BarometricPressure | AtmosphericPressureFloat32 | Optional. The average barometric pressure in millibar or hectopascal (1 mbar = 1 hPa) in the region/location. |
 | EnvironmentObject | UUID | Optional. Reference to an existing environment condition if the corresponding request includes UpdateAsObject set to true. |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. The default is global. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | Haze | HazeStruct | Optional. The average haze density in the region/location. |
 | Humidity | PercentFloat32 | Optional. The average humidity in the region/location. |
 | Precipitation | PrecipitationStruct | Optional. The average precipitation intensity in the region/location. |
@@ -415,7 +415,7 @@ Response with the condition for the land surface.
 | --- | --- | --- |
 | BarometricPressure | AtmosphericPressureFloat32 | Optional. The average barometric pressure in millibar or hectopascal (1 mbar = 1 hPa) in the region/location. |
 | EnvironmentObject | UUID | Optional. Reference to an existing environment condition if the corresponding request includes UpdateAsObject set to true. |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. The default is global. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | Haze | HazeStruct | Optional. The average haze density in the region/location. |
 | Humidity | PercentFloat32 | Optional. The average humidity in the region/location. |
 | IceCondition | RoadIceConditionEnum16 | Optional. The most severe ice conditions in the region/location. |
@@ -435,7 +435,7 @@ Response specifying the environmental condition in a volume of air.
 | BarometricPressure | AtmosphericPressureFloat32 | Optional. The average barometric pressure in millibar or hectopascal (1 mbar = 1 hPa) in the region/location. |
 | Cloud | CloudStruct | Optional. Cloud cover. |
 | EnvironmentObject | UUID | Optional. Reference to an existing environment condition if the corresponding request includes UpdateAsObject set to true. |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. The default is global. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | Haze | HazeStruct | Optional. The average haze density in the region/location. |
 | Humidity | PercentFloat32 | Optional. The average humidity in the region/location. |
 | Precipitation | PrecipitationStruct | Optional. The average precipitation intensity in the region/location. |
@@ -452,7 +452,7 @@ Response specifying the environmental condition in a volume of air.
 | BarometricPressure | AtmosphericPressureFloat32 | Optional. The average barometric pressure in millibar or hectopascal (1 mbar = 1 hPa) in the region/location. |
 | Current | CurrentStruct | Optional. Surface water current direction and speed. N/A if ice. |
 | EnvironmentObject | UUID | Optional. Reference to an existing environment condition if the corresponding request includes UpdateAsObject set to true. |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. The default is global. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | Haze | HazeStruct | Optional. The average haze density in the region/location. |
 | Humidity | PercentFloat32 | Optional. The average humidity in the region/location. |
 | Ice | IceStruct | Optional. Ice conditions on the water surface. |
@@ -475,7 +475,7 @@ Response specifying the subsurface body of water condition data.
 | BottomType | SedimentTypeEnum32 | Optional. The type of sediment on the sea floor. The default is 0 (NoSediment). |
 | Current | CurrentStruct | Optional. The average current direction and speed in the body of water. |
 | EnvironmentObject | UUID | Optional. Reference to an existing environment condition if the corresponding request includes UpdateAsObject set to true. |
-| GeoReference | GeoReferenceVariant | Optional. Geographical reference. The default is global. |
+| GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
 | Salinity | SalinityFloat32 | Optional. The average salinity in the body of water. |
 | Temperature | TemperatureDegreeCelsiusFloat32 | Optional. The average temperature in the body of water. |
 
