@@ -239,7 +239,7 @@ The environmental condition of a subsurface water layer.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| BottomType | SedimentTypeEnum32 | Optional. Type of sediment on the sea floor. The default is `NoSediment`. If overlapping layers exist, use the latest updated value. |
+| BottomType | SedimentTypeEnum32 | Optional. Type of sediment on the bottom of the body of water. The default is `NoSediment`. If overlapping layers exist, use the latest updated value. |
 | Current | CurrentStruct | Optional. Describes current in the water layer. The default is no current. If overlapping regions/locations exist, use the average current direction and speed. |
 | GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the environment condition is considered global. |
 | Layer | LayerStruct | Optional. A body of water extends upwards from a (negative) base altitude (see LayerStruct). Ignore any portion of the layer extending above sea level. The default value is the volume between the sea floor and the surface. |
@@ -472,7 +472,7 @@ Response specifying the subsurface body of water condition data.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
-| BottomType | SedimentTypeEnum32 | Optional. The type of sediment on the sea floor. The default is 0 (NoSediment). |
+| BottomType | SedimentTypeEnum32 | Optional. The type of sediment on the bottom of the body of water. The default is 0 (NoSediment). |
 | Current | CurrentStruct | Optional. The average current direction and speed in the body of water. |
 | EnvironmentObject | UUID | Optional. Reference to an existing environment condition if the corresponding request includes UpdateAsObject set to true. |
 | GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the request is for a global environment condition. |
@@ -509,7 +509,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | RoadIceConditionEnum16 | Ice condition for roads. |
 | SalinityFloat32 | Practical Salinity Unit (PSU) measured in g/kg. |
 | SeaStateEnum16 | State of the sea measured on the Douglas Sea Scale. |
-| SedimentTypeEnum32 | The type of sediment on the sea floor. |
+| SedimentTypeEnum32 | The type of sediment on the bottom of the body of water. |
 | SnowStruct | Depth and density of snow cover. |
 | SurfaceMoistureEnum16 | Road surface wetness or soil moisture. |
 | WaveStruct | Water surface wave conditions and direction. |
@@ -538,7 +538,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | PrecipitationTypeEnum32 | HLAinteger32BE | Type of precipitation. |
 | RoadIceConditionEnum16 | HLAinteger16BE | Ice condition for roads. |
 | SeaStateEnum16 | HLAinteger16BE | State of the sea measured on the Douglas Sea Scale. |
-| SedimentTypeEnum32 | HLAinteger32BE | The type of sediment on the sea floor. |
+| SedimentTypeEnum32 | HLAinteger32BE | The type of sediment on the bottom of the body of water. |
 | SurfaceMoistureEnum16 | HLAinteger16BE | Road surface wetness or soil moisture. |
 
 ### Array Datatypes
