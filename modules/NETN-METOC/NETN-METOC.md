@@ -147,7 +147,7 @@ The `Weather` object class represents typical weather-related attributes such as
 | BarometricPressure | AtmosphericPressureFloat32 | Optional. The barometric pressure in millibar or hectopascal (1 mbar = 1 hPa) in the region/location at the specified reference altitude. Barometric pressure for specific altitudes is calculated using the International Standard Atmosphere (ISA) model. Default is 1013.25 hPa (standard pressure at sea level). |
 | GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
-| Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (normal value). If overlapping regions/locations exist, use the average humidity. |
+| Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning. Default = 0. |
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
@@ -167,7 +167,7 @@ The environmental conditions related to a land surface include inherited attribu
 | BarometricPressure | AtmosphericPressureFloat32 | Optional. The barometric pressure in millibar or hectopascal (1 mbar = 1 hPa) in the region/location at the specified reference altitude. Barometric pressure for specific altitudes is calculated using the International Standard Atmosphere (ISA) model. Default is 1013.25 hPa (standard pressure at sea level). |
 | GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
-| Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (normal value). If overlapping regions/locations exist, use the average humidity. |
+| Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | IceCondition | RoadIceConditionEnum16 | Optional. Surface ice condition in the region/location. The default is no ice. If overlapping regions/locations exist, use the highest enumerated value (most severe ice condition). |
 | LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning. Default = 0. |
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
@@ -184,7 +184,7 @@ The environmental conditions related to a land surface include inherited attribu
 
 ### WaterSurface
 
-The `WaterSurface` object specifies the sea surface condition in the specified region.
+The `WaterSurface` object specifies the surface condition of the water in the specified region.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
@@ -193,7 +193,7 @@ The `WaterSurface` object specifies the sea surface condition in the specified r
 | Current | CurrentStruct | Optional. Current on the water surface. The default is no current. Ignored if the surface has 100% ice coverage. If overlapping regions/locations exist, use the average current direction and speed. |
 | GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
-| Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (normal value). If overlapping regions/locations exist, use the average humidity. |
+| Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | Ice | IceStruct | Optional. Ice condition on the surface. The default is no ice. If overlapping regions/locations exist, use the latest updated value. |
 | LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning. Default = 0. |
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
@@ -221,7 +221,7 @@ The `TroposphereLayer` associates weather and cloud coverage with a specific lay
 | Cloud | CloudStruct | Optional. Data about clouds in the atmospheric layer. The default is no clouds. If overlapping layers exist, use the latest updated value. |
 | GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. |
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
-| Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (normal value). If overlapping regions/locations exist, use the average humidity. |
+| Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | Layer | LayerStruct | Optional. The volume of the atmosphere extends from a base altitude and upwards (see LayerStruct). Ignore any portion of the layer extending below sea level. The default is a mean sea level base and an infinite layer thickness. |
 | LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning. Default = 0. |
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
