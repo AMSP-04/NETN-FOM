@@ -23,24 +23,24 @@ NETN-MRM covers the following cases:
 The NETN-MRM module extends the RPR-FOM `BaseEntity` and `AggregateEntity` object classes and defines NETN-SMC entity control interactions to trigger aggregation, disaggregation, division, and merge actions for simulated aggregated entities.
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
-HLAinteractionRoot <|-- SMC_EntityControl 
-HLAinteractionRoot : UniqueId(NETN-BASE) 
-SMC_EntityControl <|-- Aggregate 
-SMC_EntityControl <|-- Disaggregate 
-SMC_EntityControl <|-- Divide 
-SMC_EntityControl <|-- Merge 
-HLAinteractionRoot <|-- SMC_Response 
-SMC_EntityControl : Entity(NETN-SMC) 
-Disaggregate : Formation 
-Divide : Equipment 
-Divide : Formation 
-Divide : Personnel 
-Divide : RegisterPhysicalEntities 
-Divide : Supplies 
-Merge : DividedEntities 
+HLAinteractionRoot <|-- SMC_EntityControl
+HLAinteractionRoot : UniqueId(NETN-BASE)
+SMC_EntityControl <|-- Aggregate
+SMC_EntityControl <|-- Disaggregate
+SMC_EntityControl <|-- Divide
+SMC_EntityControl <|-- Merge
+HLAinteractionRoot <|-- SMC_Response
+SMC_EntityControl : Entity(NETN-SMC)
+Disaggregate : Formation
+Divide : Equipment
+Divide : Formation
+Divide : Personnel
+Divide : RegisterPhysicalEntities
+Divide : Supplies
+Merge : DividedEntities
 SMC_Response : Action(NETN-SMC)
 SMC_Response : Status(NETN-SMC)
 ```
@@ -53,21 +53,21 @@ A NETN-ORG `Unit` can be represented in the federation as:
 * a collection of multiple `AggregateEntity` or `PhysicalEntity` objects.
 
 ```mermaid
-classDiagram 
-direction LR 
- 
-HLAobjectRoot <|-- BaseEntity 
-BaseEntity <|-- AggregateEntity 
- 
-HLAobjectRoot : UniqueId(NETN-BASE) 
- 
-BaseEntity : OrganizationElement 
-BaseEntity : ParentAggregate 
-BaseEntity : SourceAggregate 
-BaseEntity : Status 
-BaseEntity : SupportedActions(NETN-SMC) 
-AggregateEntity : DisaggregatedEntities 
-AggregateEntity : DividedEntities 
+classDiagram
+direction LR
+
+HLAobjectRoot <|-- BaseEntity
+BaseEntity <|-- AggregateEntity
+
+HLAobjectRoot : UniqueId(NETN-BASE)
+
+BaseEntity : OrganizationElement
+BaseEntity : ParentAggregate
+BaseEntity : SourceAggregate
+BaseEntity : Status
+BaseEntity : SupportedActions(NETN-SMC)
+AggregateEntity : DisaggregatedEntities
+AggregateEntity : DividedEntities
 ```
 
 The representation of units in the federation can change during runtime. Use the MRM control actions to request aggregation or disaggregation, or to split the entity by dividing holdings among multiple `AggregateEntity` and `PhysicalEntity` objects.
@@ -77,13 +77,13 @@ The representation of units in the federation can change during runtime. Use the
 All NETN-MRM entity control actions use the same pattern based on the NETN-SMC entity control pattern, where a federate (R) requests an `SMC_EntityControl` action for an `AggregateEntity` (A). The federate (F), which has the primary modelling responsibility for (A), executes the action and responds using an `SMC_Response` interaction to (R).
 
 ```mermaid
-sequenceDiagram 
+sequenceDiagram
 autonumber
- 
+
 R->>F: SMC_EntityControl(A)
 
-F->>Federation: execute action 
-F->>R: SMC_Response 
+F->>Federation: execute action
+F->>R: SMC_Response
 ```
 
 Use the `BaseEntity` attribute `SupportedActions` to check whether the simulation entity supports the action before sending a NETN-MRM entity control action.
@@ -99,19 +99,19 @@ A federate application (F) can perform disaggregation of an `AggregateEntity` (A
 * (U) has one or more subunits.
 
 ```mermaid
-sequenceDiagram 
+sequenceDiagram
 autonumber
- 
-R->>F: Disaggregate(A) 
+
+R->>F: Disaggregate(A)
 F->>Federation: (A).Status = Inactive
-loop 
+loop
 F->>Federation: register(a+)
 F->>Federation: (a+).ParentUnit = (A)
 F->>Federation: (a+).Status = Active
-end 
+end
 F->>Federation: (A).DisaggregatedEntities=(a+)
-F->>R: SMC_Response 
- 
+F->>R: SMC_Response
+
 ```
 
 | Step | Description |
@@ -154,18 +154,18 @@ A federate application (F) can perform aggregation of an `AggregateEntity` (A) u
 * (a+).`DividedEntities` is empty, i.e., none of the disaggregated entities is divided.
 
 ```mermaid
-sequenceDiagram 
+sequenceDiagram
 autonumber
- 
-R->>F: Aggregate(A) 
+
+R->>F: Aggregate(A)
 loop a in (A).DisaggregatedEntities
 F->>Federation: delete(a)
-end 
-F->>Federation: A.DisaggregatedEntities=Empty 
-F->>Federation: A.Status=Active 
+end
+F->>Federation: A.DisaggregatedEntities=Empty
+F->>Federation: A.Status=Active
 
-F->>R: SMC_Response 
- 
+F->>R: SMC_Response
+
 ```
 
 | Step | Description |
@@ -187,19 +187,19 @@ A federate application (F) can perform the division of an `AggregateEntity` (A) 
 * The `AggregateEntity` is not disaggregated, i.e., the (A).`DisaggregatedEntities` attribute is empty.
 
 ```mermaid
-sequenceDiagram 
+sequenceDiagram
 autonumber
- 
-R->>F: Divide(A, r+, physical?) 
- 
-F->>Federation: Register(A+ or P+) 
-F->>Federation: Update A with r- 
-F->>Federation: Update A+ or P+ with r+ 
+
+R->>F: Divide(A, r+, physical?)
+
+F->>Federation: Register(A+ or P+)
+F->>Federation: Update A with r-
+F->>Federation: Update A+ or P+ with r+
 F->>Federation: Update A.DividedEntities = A+ or P+
 F->>Federation: Update A+ or P+ attribute SourceAggregate = (A)
- 
-F->>R: SMC_Response 
- 
+
+F->>R: SMC_Response
+
 ```
 
 | Step | Description |
@@ -226,16 +226,16 @@ A federate application (F) can perform merging of an `AggregateEntity` (A) with 
 * The `AggregateEntity` has been divided, i.e., the (A).`DividedEntities` attribute contains at least one element.
 
 ```mermaid
-sequenceDiagram 
+sequenceDiagram
 autonumber
- 
-R->>F: Merge(A, d+) 
-F->>Federation: delete(d+) 
+
+R->>F: Merge(A, d+)
+F->>Federation: delete(d+)
 
 F->>Federation: update(A.DividedEntities)
 
-F->>R: SMC_Response 
- 
+F->>R: SMC_Response
+
 ```
 
 | Step | Description |
@@ -250,7 +250,7 @@ After merging, (A) represents all previously divided entities (d+).
 ## Object Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
 HLAobjectRoot <|-- BaseEntity
@@ -294,7 +294,7 @@ A group of one or more separate objects that operate together as part of an orga
 ## Interaction Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot <|-- SMC_EntityControl
 HLAinteractionRoot <|-- SMC_Response
