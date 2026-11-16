@@ -148,7 +148,7 @@ The `Weather` object class represents typical weather-related attributes such as
 | GeoReference | GeoReferenceVariant | Optional. A geographical location, region, feature, or simulated object. If not provided, the environment condition is considered global. |
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
 | Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
-| LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning. Default = 0. |
+| LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning measured in flashes per hour. Default = 0. |
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Precipitation | PrecipitationStruct | Optional. Current precipitation type and intensity in the region/location. The default is NoPrecipitation. Use the average intensity of overlapping weather regions/locations. Resolve conflicting precipitation types according to the following precedence: Snow, Hail, Rain, and NoPrecipitation. E.g., if there is one overlapping environment condition with Snow, the result is always Snow. |
@@ -169,7 +169,7 @@ The environmental conditions related to a land surface include inherited attribu
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
 | Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | IceCondition | RoadIceConditionEnum16 | Optional. Surface ice condition in the region/location. The default is no ice. If overlapping regions/locations exist, use the highest enumerated value (most severe ice condition). |
-| LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning. Default = 0. |
+| LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning measured in flashes per hour. Default = 0. |
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Moisture | SurfaceMoistureEnum16 | Optional. Surface moisture in the region/location. The default is 0 (Dry). If overlapping regions/locations exist, use the highest enumerated value (most moisture). |
@@ -195,7 +195,7 @@ The `WaterSurface` object specifies the surface condition of the water in the sp
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
 | Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | Ice | IceStruct | Optional. Ice condition on the surface. The default is no ice. If overlapping regions/locations exist, use the latest updated value. |
-| LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning. Default = 0. |
+| LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning measured in flashes per hour. Default = 0. |
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Precipitation | PrecipitationStruct | Optional. Current precipitation type and intensity in the region/location. The default is NoPrecipitation. Use the average intensity of overlapping weather regions/locations. Resolve conflicting precipitation types according to the following precedence: Snow, Hail, Rain, and NoPrecipitation. E.g., if there is one overlapping environment condition with Snow, the result is always Snow. |
@@ -223,7 +223,7 @@ The `TroposphereLayer` associates weather and cloud coverage with a specific lay
 | Haze | HazeStruct | Optional. Current haze type and density in the region/location specified by the Environment Condition. The default is no haze. For overlapping regions/locations with the same haze type, use the average density. |
 | Humidity | PercentFloat32 | Optional. The humidity in the region/location. The default is 75% (typical baseline ambient value). If overlapping regions/locations exist, use the average humidity. |
 | Layer | LayerStruct | Optional. The volume of the atmosphere extends from a base altitude and upwards (see LayerStruct). Ignore any portion of the layer extending below sea level. The default is a mean sea level base and an infinite layer thickness. |
-| LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning. Default = 0. |
+| LightningIntensity | LightningIntensity32 | Optional. The intensity of lightning measured in flashes per hour. Default = 0. |
 | LightningType | LightningTypeEnum8 | Optional. Level of lightning present. Default = 0 (no lightning). |
 | METOC_Service | FederateName | Optional. Reference to the METOC service that generated this Environment Condition. |
 | Precipitation | PrecipitationStruct | Optional. Current precipitation type and intensity in the region/location. The default is NoPrecipitation. Use the average intensity of overlapping weather regions/locations. Resolve conflicting precipitation types according to the following precedence: Snow, Hail, Rain, and NoPrecipitation. E.g., if there is one overlapping environment condition with Snow, the result is always Snow. |
@@ -445,7 +445,7 @@ Response specifying the environmental condition in a volume of air.
 
 ### WaterSurfaceCondition
 
-Response specifying the environmental condition in a volume of air.
+Response specifying the water surface condition data.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
@@ -495,7 +495,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | FederateControlActionEnum | Enumeration of Federate Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
 | GMLidentifier | GML Feature ID. |
 | GeoLocationTypeEnum32 | Specifies different ways to reference geographical locations. |
-| GeoReferenceVariant | The area affected by an environmental condition can be expressed as: * a location on the Earth's surface represented by a Point, * an area on the Earth's surface, represented by a Quadrangle, GeodeticPolygon, or GeodeticCircle, or * a reference to some other object/data. |
+| GeoReferenceVariant | The area affected by an environmental condition can be expressed as:<br/>• a location on the Earth's surface represented by a Point<br/>• an area on the Earth's surface represented by a Quadrangle, GeodeticPolygon, or GeodeticCircle<br/>• a reference to some other object/data |
 | HazeStruct | Type and density of haze material. |
 | HazeTypeEnum32 | Type of visibility obstruction. |
 | IceStruct | Ice type, thickness, and coverage on the water surface. |
@@ -565,4 +565,4 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 
 | Name | Discriminant (Datatype) | Alternatives | Semantics |
 | --- | --- | --- | --- |
-| GeoReferenceVariant | GeoReferenceType (GeoLocationTypeEnum32) | GeodeticLocation, GeodeticCircle, GeodeticQuadrangle, GeodeticPolygon, UUID, RPREntityReference, GMLFeatureReference | The area affected by an environmental condition can be expressed as: * a location on the Earth's surface represented by a Point, * an area on the Earth's surface, represented by a Quadrangle, GeodeticPolygon, or GeodeticCircle, or * a reference to some other object/data. |
+| GeoReferenceVariant | GeoReferenceType (GeoLocationTypeEnum32) | GeodeticLocation, GeodeticCircle, GeodeticQuadrangle, GeodeticPolygon, UUID, RPREntityReference, GMLFeatureReference | The area affected by an environmental condition can be expressed as:<br/>• a location on the Earth's surface represented by a Point<br/>• an area on the Earth's surface represented by a Quadrangle, GeodeticPolygon, or GeodeticCircle<br/>• a reference to some other object/data |
