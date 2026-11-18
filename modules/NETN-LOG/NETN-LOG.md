@@ -76,29 +76,29 @@ Finally, three control actions extend the NETN-ETR `Task` interaction and associ
 
 ### Resupply Task
 
-Use the `Resupply` interaction to transfer supplies from one simulated entity (Supplier Entity) to another (Receiving Entity). The `Resupply` interaction uses the NETN-ETR tasking pattern, and the NETN-LOG module extends task datatypes to include definitions for the resupply task.
+Use the `Resupply` interaction to transfer supplies from one simulated entity (Supplying Entity) to another (Receiving Entity). The `Resupply` interaction uses the NETN-ETR tasking pattern, and the NETN-LOG module extends task datatypes to include definitions for the resupply task.
 
-The transfer process is modelled by reducing the supplies of the supplier entity and attempting to set the increased supplies of the receiving entity using the `SetSuppliesStatus` entity control action. If both entities are modelled in the same federate, the `SetSuppliesStatus` interaction is not required, and the supplies status can be changed directly.
+The transfer process is modelled by reducing the supplies of the supplying entity and attempting to set the increased supplies of the receiving entity using the `SetSuppliesStatus` entity control action. If both entities are modelled in the same federate, the `SetSuppliesStatus` interaction is not required, and the supplies status can be changed directly.
 
 ```mermaid
 sequenceDiagram
 autonumber
-Tasking Federate->>Supplier Entity Federate: Resupply(Supplies, ReceivingEntity)
-Supplier Entity Federate->>Tasking Federate: ETR_TaskStatus(Started)
-Supplier Entity Federate->>Receiving Entity Federate: SetSuppliesStatus(ReceivingEntity)
-Supplier Entity Federate->>Tasking Federate: ETR_TaskStatus(Completed)
+Tasking Federate->>Supplying Entity Federate: Resupply(Supplies, ReceivingEntity)
+Supplying Entity Federate->>Tasking Federate: ETR_TaskStatus(Started)
+Supplying Entity Federate->>Receiving Entity Federate: SetSuppliesStatus(ReceivingEntity)
+Supplying Entity Federate->>Tasking Federate: ETR_TaskStatus(Completed)
 
 ```
 
-1. A Tasking Federate sends a `Resupply` task with references to the supplier and receiving entities.
+1. A Tasking Federate sends a `Resupply` task with references to the supplying and receiving entities.
 
-2. The Supplier Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transfer.
+2. The Supplying Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transfer.
 
-3. During the transfer, the Supplier Entity Federate updates the state of the supplier entity either continuously or once after the transfer. Use the `SetSuppliesStatus` interaction to request an update of supplies for the receiving entity.
+3. During the transfer, the Supplying Entity Federate updates the state of the supplying entity either continuously or once after the transfer. Use the `SetSuppliesStatus` interaction to request an update of supplies for the receiving entity.
 
-4. Upon completion, the Supplier Entity Federate sends an `ETR_TaskStatus` interaction to indicate task success or failure.
+4. Upon completion, the Supplying Entity Federate sends an `ETR_TaskStatus` interaction to indicate task success or failure.
 
-A final update to the `Supplies` attribute of both the supplier and the receiving `AggregateEntity` must be provided when the resupply is completed. If applicable, they also can be updated during the resupply task.
+A final update to the `Supplies` attribute of both the supplying and the receiving `AggregateEntity` must be provided when the resupply is completed. If applicable, they also can be updated during the resupply task.
 
 ### Repair Task
 
@@ -264,7 +264,7 @@ Tasks a simulated entity to perform a repair activity on another simulated entit
 
 ### Resupply
 
-Tasks a simulated entity (supplier) to resupply another simulated entity (receiving). Successful task completion means that supplies are reduced from the tasked entity and increased at the receiving entity.
+Tasks a simulated entity (supplying) to resupply another simulated entity (receiving). Successful task completion means that supplies are reduced from the tasked entity and increased at the receiving entity.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
@@ -323,7 +323,7 @@ Tasks a simulated entity to perform a repair activity on another simulated entit
 
 ### Resupply
 
-Tasks a simulated entity (supplier) to resupply another simulated entity (receiving). Successful task completion means that supplies are reduced from the tasked entity and increased at the receiving entity.
+Tasks a simulated entity (supplying) to resupply another simulated entity (receiving). Successful task completion means that supplies are reduced from the tasked entity and increased at the receiving entity.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
