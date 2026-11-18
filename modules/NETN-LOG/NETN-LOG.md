@@ -127,51 +127,51 @@ A final update to the `Equipment` or `Personnel` attributes of the repaired `Agg
 
 ### Transport Task
 
-Use the `Transport` task to instruct a simulated entity (Transport Entity) to transport other simulated entities (Transported Entity) from a pick-up location to a destination. The transport task combines the `Attach`, `MoveByRoute`, and `Detach` tasks defined in the NETN-ETR module.
+Use the `Transport` task to instruct a simulated entity (Transporting Entity) to transport other simulated entities (Transported Entity) from a pick-up location to a destination. The transport task combines the `Attach`, `MoveByRoute`, and `Detach` tasks defined in the NETN-ETR module.
 
 The transport task consists of the following phases:
 
 1. Move to the pick-up location.
-2. Embark/Mount/Load simulated entities by attaching them to the Transport Entity.
+2. Embark/Mount/Load simulated entities by attaching them to the Transporting Entity.
 3. Move according to a specified route to the destination.
-4. Disembark/Dismount/Unload simulated entities by detaching them from the Transport Entity.
+4. Disembark/Dismount/Unload simulated entities by detaching them from the Transporting Entity.
 
 ```mermaid
 sequenceDiagram
 autonumber
-Tasking Federate->>Transport Entity Federate: RequestTransport(TransportEntity, TransportedEntities)
-Transport Entity Federate->>Tasking Federate: ETR_TaskStatus(Started)
-Note over Transport Entity Federate: Move to Pick-up location
-Transport Entity Federate->>Transported Entity Federate: Attach(TransportedEntity, TransportEntity)
-Transported Entity Federate->>Transport Entity Federate: ETR_TaskStatus(Started)
-Transported Entity Federate->>Transport Entity Federate: ETR_TaskStatus(Completed)
-Note over Transport Entity Federate: Move by Route
-Transport Entity Federate->>Transported Entity Federate: Detach(TransportedEntity, TransportEntity)
-Transported Entity Federate->>Transport Entity Federate: ETR_TaskStatus(Started)
-Transported Entity Federate->>Transport Entity Federate: ETR_TaskStatus(Completed)
+Tasking Federate->>Transporting Entity Federate: RequestTransport(TransportEntity, TransportedEntities)
+Transporting Entity Federate->>Tasking Federate: ETR_TaskStatus(Started)
+Note over Transporting Entity Federate: Move to Pick-up location
+Transporting Entity Federate->>Transported Entity Federate: Attach(TransportedEntity, TransportEntity)
+Transported Entity Federate->>Transporting Entity Federate: ETR_TaskStatus(Started)
+Transported Entity Federate->>Transporting Entity Federate: ETR_TaskStatus(Completed)
+Note over Transporting Entity Federate: Move by Route
+Transporting Entity Federate->>Transported Entity Federate: Detach(TransportedEntity, TransportEntity)
+Transported Entity Federate->>Transporting Entity Federate: ETR_TaskStatus(Started)
+Transported Entity Federate->>Transporting Entity Federate: ETR_TaskStatus(Completed)
 
-Transport Entity Federate->>Tasking Federate: ETR_TaskStatus(Completed)
+Transporting Entity Federate->>Tasking Federate: ETR_TaskStatus(Completed)
 ```
 
 1. A Tasking Federate sends a `Transport` task referencing the transport and transported entities. It also provides a route for the transport and an optional appointment to describe the location and time for pick-up.
 
-2. The Transport Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transport task.
+2. The Transporting Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transport task.
 
-3. At the pick-up location, the Transport Entity Federate initiates a NETN-ETR `Mount` task for the transported entity to embark/mount on the transport.
+3. At the pick-up location, the Transporting Entity Federate initiates a NETN-ETR `Mount` task for the transported entity to embark/mount on the transport.
 
 4. The Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the embarkation/mounting process.
 
-5. When the embarkation/mounting is complete, the Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate successful completion. Then, the transport entity conducts its movement according to the transport route.
+5. When the embarkation/mounting is complete, the Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate successful completion. Then, the transporting entity conducts its movement according to the transport route.
 
-6. When at the final destination of the transport route, the Transport Entity Federate initiates a NETN-ETR `Dismount` task for the transported entity to disembark/dismount on the transport.
+6. When at the final destination of the transport route, the Transporting Entity Federate initiates a NETN-ETR `Dismount` task for the transported entity to disembark/dismount on the transport.
 
 7. The Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the disembarkation/dismounting process.
 
 8. When the disembarkation/dismounting is complete, the Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate successful completion.
 
-9. Finally, the Transport Entity Federate sends an `ETR_TaskStatus` interaction to indicate whether the transport task has succeeded or failed.
+9. Finally, the Transporting Entity Federate sends an `ETR_TaskStatus` interaction to indicate whether the transport task has succeeded or failed.
 
-The transport task is rejected if the transport entity is unable to transport all specified simulated entities. An `AggregateEntity` representation of a transported entity may require a NETN-MRM `Disaggregate` or `Divide` action to fit on the transport.
+The transport task is rejected if the transporting entity is unable to transport all specified simulated entities. An `AggregateEntity` representation of a transported entity may require a NETN-MRM `Disaggregate` or `Divide` action to fit on the transport.
 
 A scenario can start with some entities already embarked on a transport. Use the NETN-ENTITY `BaseEntity` attribute `HostEntity` to identify a potential transporting entity.
 
