@@ -72,54 +72,54 @@ Use the `SetPersonnelStatus`, `SetEquipmentStatus`, and `SetSuppliesStatus` inte
 
 Use the `Reset` control interaction to request an immediate reset of state to the last initialized value for the indicated aspects. The last initialized value is defined as the first value published by the current federate after applying one of the methods of initialization.
 
-4. Finally, three control actions extend the NETN-ETR `Task` interaction and associated pattern to provide `Transport`, `Repair`, and `Resupply` tasks.
+Finally, three control actions extend the NETN-ETR `Task` interaction and associated pattern to provide `Transport`, `Repair`, and `Resupply` tasks.
 
-### Transfer of Supplies
+### Resupply Task
 
-Use the `Resupply` interaction to transfer supplies from one simulated entity (Supplier Entity) to another (Receiving Entity). The `Resupply` interaction uses the NETN-ETR tasking pattern, and the NETN-LOG module extends task datatypes to include resupply task definitions.
+Use the `Resupply` interaction to transfer supplies from one simulated entity (Supplier Entity) to another (Receiving Entity). The `Resupply` interaction uses the NETN-ETR tasking pattern, and the NETN-LOG module extends task datatypes to include definitions for the resupply task.
 
-The transfer process is modelled by reducing the supplies of the supplier entity and attempting to set the increased supplies of the receiver entity using the `SetSuppliesStatus` entity control action. If both entities are modelled in the same federate, the `SetSuppliesStatus` interaction is not required, and the supplies status can be changed directly.
+The transfer process is modelled by reducing the supplies of the supplier entity and attempting to set the increased supplies of the receiving entity using the `SetSuppliesStatus` entity control action. If both entities are modelled in the same federate, the `SetSuppliesStatus` interaction is not required, and the supplies status can be changed directly.
 
 ```mermaid
 sequenceDiagram
 autonumber
-Tasking Federate->>Supplier Entity Federate: Resupply(SupplierEntity, ReceiverEntity)
+Tasking Federate->>Supplier Entity Federate: Resupply(Supplies, ReceivingEntity)
 Supplier Entity Federate->>Tasking Federate: ETR_TaskStatus(Started)
-Supplier Entity Federate->>Receiver Entity Federate: SetSuppliesStatus(ReceiverEntity)
-Supplier Entity Federate->>Tasking Federate: ETR_TaskStatus(Complete)
+Supplier Entity Federate->>Receiving Entity Federate: SetSuppliesStatus(ReceivingEntity)
+Supplier Entity Federate->>Tasking Federate: ETR_TaskStatus(Completed)
 
 ```
 
-1. A Tasking Federate sends a `Resupply` task with references to the supplier and receiver entities.
+1. A Tasking Federate sends a `Resupply` task with references to the supplier and receiving entities.
 
 2. The Supplier Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transfer.
 
-3. During the transfer, update the state of the supplier entity either continuously or once after the transfer. Use the `SetSuppliesStatus` interaction to request an update of supplies for the receiver entity.
+3. During the transfer, the Supplier Entity Federate updates the state of the supplier entity either continuously or once after the transfer. Use the `SetSuppliesStatus` interaction to request an update of supplies for the receiving entity.
 
 4. Upon completion, the Supplier Entity Federate sends an `ETR_TaskStatus` interaction to indicate task success or failure.
 
-The `Supplies` attribute of both the supplier and receiver `AggregateEntity` can be updated during the resupply task, and a final update must be provided when the resupply is completed.
+A final update to the `Supplies` attribute of both the supplier and the receiving `AggregateEntity` must be provided when the resupply is completed. If applicable, they also can be updated during the resupply task.
 
 ### Repair Task
 
-Use the `Repair` interaction to initiate a task for an entity to repair (Repairing Entity) another entity (Receiver Entity).
+Use the `Repair` interaction to initiate a task for an entity to repair (Repairing Entity) another entity (Receiving Entity).
 
-Use the `SetEquipmentStatus` or `SetPersonnelStatus` entity control interaction to model the repair process by attempting to set the receiver entity's resource status. If both entities are modelled in the same federate, the `SetEquipmentStatus` and `SetPersonnelStatus` interactions are not required, and the status can be changed directly.
+Use the `SetEquipmentStatus` or `SetPersonnelStatus` entity control interaction to model the repair process by attempting to set the receiving entity's resource status. If both entities are modelled in the same federate, the `SetEquipmentStatus` and `SetPersonnelStatus` interactions are not required, and the status can be changed directly.
 
 ```mermaid
 sequenceDiagram
 autonumber
-Tasking Federate->>Repairing Entity Federate: Repair(RepairingEntity, ReceiverEntity)
+Tasking Federate->>Repairing Entity Federate: Repair(RepairingEntity, ReceivingEntity)
 Repairing Entity Federate->>Tasking Federate: ETR_TaskStatus(Started)
-Repairing Entity Federate->>Receiver Federate: SetResourceStatus(UpdateState)
+Repairing Entity Federate->>Receiving Federate: SetResourceStatus(UpdateState)
 Repairing Entity Federate->>Tasking Federate: ETR_TaskStatus(Completed)
 ```
 
-1. A Tasking Federate sends a `Repair` task referencing the repairing and receiver entities.
+1. A Tasking Federate sends a `Repair` task referencing the repairing and receiving entities.
 
 2. The Repairing Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transfer.
 
-3. During the repair, use either the `SetEquipmentStatus` or `SetPersonnelStatus` interaction to request an update of a specific type of resource modelled for the receiver entity.
+3. During the repair, use either the `SetEquipmentStatus` or `SetPersonnelStatus` interaction to request an update of a specific type of resource modelled for the receiving entity.
 
 4. On completion, the Repairing Entity Federate sends an `ETR_TaskStatus` interaction to indicate task success or failure.
 
