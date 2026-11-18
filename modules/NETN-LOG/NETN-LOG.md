@@ -157,13 +157,13 @@ Transporting Entity Federate->>Tasking Federate: ETR_TaskStatus(Completed)
 
 2. The Transporting Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transport task.
 
-3. At the pick-up location, the Transporting Entity Federate initiates a NETN-ETR `Mount` task for the transported entity to embark/mount on the transport.
+3. At the pick-up location, the Transporting Entity Federate initiates a NETN-ETR `Attach` task for the transported entity to embark/mount on the transport.
 
 4. The Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the embarkation/mounting process.
 
 5. When the embarkation/mounting is complete, the Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate successful completion. Then, the transporting entity conducts its movement according to the transport route.
 
-6. When at the final destination of the transport route, the Transporting Entity Federate initiates a NETN-ETR `Dismount` task for the transported entity to disembark/dismount on the transport.
+6. When at the final destination of the transport route, the Transporting Entity Federate initiates a NETN-ETR `Detach` task for the transported entity to disembark/dismount on the transport.
 
 7. The Transported Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the disembarkation/dismounting process.
 
