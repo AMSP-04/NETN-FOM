@@ -111,19 +111,19 @@ sequenceDiagram
 autonumber
 Tasking Federate->>Repairing Entity Federate: Repair(RepairingEntity, ReceivingEntity)
 Repairing Entity Federate->>Tasking Federate: ETR_TaskStatus(Started)
-Repairing Entity Federate->>Receiving Federate: SetResourceStatus(UpdateState)
+Repairing Entity Federate->>Receiving Federate: SetEquipmentStatus(ResourceStatusStruct)<br/>or SetPersonnelStatus(ResourceStatusStruct)
 Repairing Entity Federate->>Tasking Federate: ETR_TaskStatus(Completed)
 ```
 
 1. A Tasking Federate sends a `Repair` task referencing the repairing and receiving entities.
 
-2. The Repairing Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the transfer.
+2. The Repairing Entity Federate sends an `ETR_TaskStatus` interaction to indicate the start of the repair.
 
 3. During the repair, use either the `SetEquipmentStatus` or `SetPersonnelStatus` interaction to request an update of a specific type of resource modelled for the receiving entity.
 
 4. On completion, the Repairing Entity Federate sends an `ETR_TaskStatus` interaction to indicate task success or failure.
 
-The `Equipment` or `Personnel` attributes of the repaired `AggregateEntity` can be updated during the repair task, and a final update must be provided when the repair is completed.
+A final update to the `Equipment` or `Personnel` attributes of the repaired `AggregateEntity` must be provided when the repair is completed. If applicable, they also can be updated during the repair task.
 
 ### Transport Task
 
