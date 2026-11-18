@@ -29,7 +29,7 @@ The workflow is closely based the commonly used “Gitflow” workflow, original
 
 When ready to make a change, create a branch based on the `develop` branch. Name the branch on the form “edit/...”, and include in the branch name the number of the Issue where the change is discussed.
 
-An edit branch may refer to more than one Issue, in which case its name should preferably include the numbers of all of them. This is not mandatory, however.
+An edit branch may refer to more than one Issue, in which case its name should preferably include the numbers of all of the relevant issues. This is not mandatory, however.
 
 Make the changes on the branch, and push the branch to GitHub.
 

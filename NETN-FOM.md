@@ -86,7 +86,7 @@ The NETN-FOM modules capture different aspects of information that can be exchan
 
 In a federated simulation, each federate is selected to participate in the federation because it has intrinsic capabilities to represent certain aspects of entities, events, and other phenomena in the simulated environment necessary to accomplish the purpose for which the federation exists.
 
-The federation design and development process allocates, describes, and documents the roles and responsibilities of all federates. Agreements on defining the initial and any dynamic transfer of modelling responsibilities are important for all NETN federation designs.
+The federation design and development process allocates, describes, and documents the roles and responsibilities of all federates. Agreements on defining the initial allocation and any dynamic transfer of modelling responsibilities are important for all NETN federation designs.
 
 During execution, the modelling responsibilities may change. HLA provides services for managing the transfer of ownership of individual object attributes between federates.
 
