@@ -74,7 +74,6 @@ Task:TaskId(NETN-ETR)
 ETR_Report:CommunicationNetworks
 ETR_Report:ReportId(NETN-ETR)
 ETR_Report:ReportingEntity(NETN-ETR)
-ETR_Report:ReportingEntity(NETN-ETR)
 ETR_Report:TimeStamp(NETN-ETR)
 ```
 
@@ -153,7 +152,7 @@ BaseEntity:UniqueId
 
 ## Physical Layer
 
-The physical layer models the `PhysicalNetwork` that implements the `LinkStates` between network devices. This is required to establish the connectivity needed to create a `Connection` between `CommunicationNode` objects.
+The physical layer models the `PhysicalNetwork` that implements the `LinkStates` between network devices. When physical layer modelling is used, this information provides the link-level connectivity needed by communication simulations to establish a `Connection` between `CommunicationNode` objects.
 
 ```mermaid
 classDiagram
@@ -193,7 +192,7 @@ CommunicationNode: UniqueId(NETN-BASE)
 
 ```
 
-A network device is a technical device, e.g., radio or Ethernet, connecting a `CommunicationNode` to a physical network. The `LinkStates` object provides all link status data related to a `PhysicalNetwork`. The link describes the relationship between a transmitting and a receiving network device. Network devices are not modelled as objects in NETN-COM.
+A network device is a technical device, e.g., radio or Ethernet, connecting a `CommunicationNode` to a physical network. The `LinkStates` object provides all link status data related to a `PhysicalNetwork`. The link describes the relationship between a transmitting and a receiving network device. Network devices are modelled as attributes in `CommunicationNode` objects rather than as separate object classes, and are referenced by ID in `RequestedConnection` and `LinkStates`.
 
 ## Additional Object Classes
 
@@ -259,7 +258,7 @@ Instances of this object class should be considered optional. No federate should
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Name | HLAunicodeString | Required. Communication network name. Unique in the context of communication networks. |
-| NetworkType | CommunicationNetworkTypeEnum | Optional. The communication network type of use. |
+| NetworkType | CommunicationNetworkTypeEnum | Optional. The communication network type used on the communication network. |
 | ServiceType | CommunicationServiceTypeEnum | Optional. The type of service used on the communication network. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
@@ -267,7 +266,7 @@ Instances of this object class should be considered optional. No federate should
 
 A `CommunicationNode` is the representation of the interface of a simulated entity to logical communication networks. The location of the `CommunicationNode` is derived from the referenced entity or specified explicitly (if the referenced entity is not registered in the federation).
 
-Each potential connection is described in terms of requested connections (the equivalent to the information provided by MSDL). `Connection` objects represent the availability of a connection and its receivers. It is up to a communication simulation to create `Connection` objects for the requested connections based on the network devices of the `CommunicationNode`, the physical network, and the link quality between network devices. Depending on the federation design and agreements, the explicit representation of the physical layer objects `PhysicalNetwork` and `LinkStates` is optional.
+Each potential connection is described in terms of requested connections (the equivalent to the information provided by MSDL). `Connection` objects represent the availability of a connection and its receivers. It is up to a communication simulation to create `Connection` objects for the requested connections based on the network devices of the `CommunicationNode`, the physical network, and the link quality between network devices. The explicit representation of the physical layer objects `PhysicalNetwork` and `LinkStates` is optional by default, but can be required through federation agreements and federation design.
 
 A requested connection is used to describe the characteristics of a possible connection to a communication network. For the types of connections where data is intended to be transmitted, a connection identifier can be provided that can be used to create a `Connection` object instance.
 
@@ -275,33 +274,42 @@ Unless a network device is explicitly specified, all suitable devices associated
 
 Depending on the type of the requested connection, the use of the associated network device parameters differs:
 
-* **Broadcast Transceiver**: A combination of Broadcast Transmitter and Receiver.
-* **Broadcast Transmitter**:
-  * If TX is specified for a network device, connections are established to all receiving entities reachable depending on the physical network description (ranges, max hops, etc.). Data is sent to all (directly linked) receivers simultaneously.
-  * A `Connection` instance should be created.
-  * The `DestinationEntities` array is ignored.
-* **Broadcast Receiver**:
-  * If RX is specified for a network device, the connections listen to all incoming messages.
-  * The `DestinationEntities` array is ignored.
-* **Peer-To-Peer**:
-  * If TX is specified for a network device, connections are established to all reachable specified destination entities.
-  * If RX is specified for a network device, the connections listen to all incoming messages that are sent to the entity.
-  * It is assumed that the communication is bidirectional and should use the same route in both directions. The connection must be defined at the receiver as well.
-  * If `DestinationEntities` is empty, messages will be sent to all reachable participants of the communication network. It is strongly recommended to define a limited set of destinations wherever possible.
-  * It is assumed that messages are transmitted sequentially to all receivers defined as a destination. (Be aware: this does not include intercepting devices.)
-  * Any max hop count / TTL parameter of the physical network is ignored.
-* **Unidirectional**: Like Peer-To-Peer, but no connection back to the source with the same route is expected.
-* **Multicast**:
-  * The connection logic is similar to unidirectional connections.
+* **Broadcast**
+  * **Broadcast Transmitter (TX)**
+    * If TX is specified for a network device, connections are established to all receiving entities reachable depending on the physical network description (ranges, max hops, etc.). Data is sent to all (directly linked) receivers simultaneously.
+    * A `Connection` instance should be created.
+    * The `DestinationEntities` array is ignored.
+  * **Broadcast Receiver (RX)**
+    * If RX is specified for a network device, the device listens to all incoming broadcast messages on the associated communication network.
+    * The `DestinationEntities` array is ignored.
+  * **Broadcast Transceiver**
+    * A combination of Broadcast Transmitter and Receiver.
+      * Connections are established to all receiving entities reachable depending on the physical network description (ranges, max hops, etc.). Data is sent to all (directly linked) receivers simultaneously.
+      * A `Connection` instance should be created.
+      * The device listens to all incoming broadcast messages on the associated communication network.
+    * The `DestinationEntities` array is ignored.
+* **Multicast**
+  * Data flows unidirectionally from the source, but delivery is controlled dynamically by receivers joining or leaving the group.
   * Data is sent to all receivers simultaneously.
   * The `DestinationEntities` array is ignored.
-* **Intercepting Connections**:
-  * These are special connections that are not related to specific destination entities, but intercept all types of connections that are reachable by the corresponding device. In the case of broadcasts, this corresponds to a broadcast receiver; otherwise, this means the connection is routed through the corresponding device.
+* **Peer-To-Peer**
+  * The `DestinationEntities` array specifies the intended receiving entity (or entities) for the connection. If `DestinationEntities` is empty, messages will be sent to all reachable participants of the communication network. It is strongly recommended to define a limited set of destinations wherever possible.
+  * If TX is specified for a network device, connections are established to all reachable entities specified in `DestinationEntities`.
+  * If RX is specified for a network device, the connections listen to all incoming messages that are sent to this entity.
+  * Communication is assumed to be bidirectional and to use the same route in both directions. Because each `Connection` object represents transmission from a single `SenderEntity`, a matching `RequestedConnection` must also be defined at the receiving node, resulting in a separate `Connection` instance for each direction.
+  * It is assumed that messages are transmitted sequentially to all receivers defined as a destination. (Be aware: this does not include intercepting devices.)
+  * Any max hop count / TTL parameter of the physical network is ignored.
+* **Unidirectional**
+  * Like Peer-To-Peer, the `DestinationEntities` array specifies the intended destination entities.
+  * Unlike Peer-To-Peer, communication is one-way from source to destinations, and no return path or matching receiver connection is expected.
+* **Intercepting Connections**
+  * For broadcast traffic, the device simply listens passively like a standard broadcast receiver.
+  * For targeted connections (such as unicast or peer-to-peer), the traffic is actively routed through the device (as an in-line proxy / bump-in-the-wire) before continuing to its destination.
   * The `DestinationEntities` array is ignored.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| HostEntity | UUID | Optional. Reference to a simulation entity. If the referenced entity exists in the federation, the location of the node is derived from the location of the entity. <br/>If the referenced entity does not exist in the federation, the location of the node is defined by the `Location` attribute. |
+| HostEntity | UUID | Optional. Reference to a simulation entity. If the referenced entity exists in the federation, the location of the node is derived from the location of the entity. If the referenced entity does not exist in the federation, the location of the node is defined by the `Location` attribute. |
 | Location | LocationStruct | Optional. Specifies the location of the `CommunicationNode` in case the entity referenced by `HostEntity` is not registered in the federation. If the referenced entity exists in the federation, the location of the communication node is derived from that entity and the value of the `Location` attribute shall be ignored. |
 | NetworkDevices | NetworkDeviceArray | Required. Available network devices define the association of a communication network (connection layer) with a physical network (link layer). Each network device can be associated with several communication networks but only one physical network. Each network device also describes the transmitter and receiver capabilities. |
 | RequestedConnections | RequestedConnectionArray | Required. Possible (requested) connections for the communication node. |
@@ -324,7 +332,7 @@ The `PhysicalNetwork` object class represents type-specific parameters/constrain
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Description | PhysicalNetworkDescriptionVariant | Required. Characteristics of the physical network. |
+| Description | PhysicalNetworkDescriptionVariant | Required. Characteristics of a physical network (generic parameters or undefined). |
 | Name | HLAunicodeString | Required. Unique physical network name. Uniqueness in the context of physical networks. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
@@ -334,9 +342,9 @@ A `LinkStates` object describes the presence and quality of a set of direct link
 
 Bidirectional links assume identical link quality in both directions. Otherwise, two unidirectional links should be described.
 
-Each `LinkStates` instance is associated with one physical network. To support load balancing in link quality simulation, multiple `LinkStates` instances can be associated with the same physical network as long as they do not contain duplicated link-state information.
+Each `LinkStates` instance is associated with one physical network. To support load balancing in link quality simulation, multiple `LinkStates` instances can be associated with the same physical network as long as they do not contain duplicated link state information.
 
-A link should not be contained in more than one `LinkStates` object. If a link is not contained in any instance, it is not present, and it means it could not be established.
+A link should not be contained in more than one `LinkStates` object. If a link is absent across all `LinkStates` instances, this indicates that it could not be established.
 
 The `LinkStates` object provides information that can be used to calculate connections.
 
@@ -367,13 +375,13 @@ A unit represents an element at a specified level in the organization. An organi
 | EntityType<br/>(NETN-ORG) | EntityTypeStruct | Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0. |
 | Name<br/>(NETN-ORG) | HLAunicodeString | Required. A unique name. |
 | Organization<br/>(NETN-ORG) | UUID | Required. A reference to the organization that the element is affiliated with. |
-| SuperiorUnit<br/>(NETN-ORG) | UUID | Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no aggregate unit). |
+| SuperiorUnit<br/>(NETN-ORG) | UUID | Required. A reference to a unit within the organization for which this element is a subunit/equipment or controlled installation. The default value is all zeros (no superior unit). |
 | Symbol<br/>(NETN-ORG) | SymbolStruct | Required. Initial symbol identifier and amplification data for this element. In NETN-ORG, the symbol identifier acts as a template and may contain wildcard characters '*' to indicate undefined elements of the symbol code. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
 ### Equipment
 
-An `Equipment`object represents individual physical items defined specifically and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensors object.
+An `Equipment` object represents individual physical items defined specifically and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensor objects.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
@@ -481,9 +489,9 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | NetworkDeviceStruct | Describes the type and capability of a network device. Each device must have at least a transmitter (TX) or receiver (RX). Transceivers should define both. |
 | NetworkDeviceTransmitterCharacteristicsVariant | Characteristics of network device transmitter. |
 | PhysicalGenericNetworkStruct | Characteristics of a generic physical network. |
-| PhysicalNetworkDescriptionVariant | Characteristics of physical networks depend on their type. |
+| PhysicalNetworkDescriptionVariant | Characteristics of a physical network (generic parameters or undefined). |
 | PhysicalNetworkTypeEnum | The type of a physical network. |
-| PhysicalUndefinedNetworkStruct | (Empty) Characteristics of an undefined physical network. |
+| PhysicalUndefinedNetworkStruct | Empty record used when no physical network characteristics or constraints are specified. |
 | RequestedConnection | Characterisation of a requested connection. |
 | RequestedConnectionArray | Characterisation of a set of requested connections. |
 | SetTransmitterStatusTaskStruct | Task-specific data for `SetTransmitterStatus`. |
@@ -530,7 +538,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | NetworkDeviceGenericTransmitterCharacteristicsStruct | MaxLinkRange | Generic description of network device transmitter. |
 | NetworkDeviceStruct | NetworkDeviceId, NetworkDeviceModel, CommunicationNetworks, PhysicalNetwork, TX, RX, IsRelay | Describes the type and capability of a network device. Each device must have at least a transmitter (TX) or receiver (RX). Transceivers should define both. |
 | PhysicalGenericNetworkStruct | MaxHopCount, DefaultMaxLinkRange, Latency, Bandwidth, Reliability | Characteristics of a generic physical network. |
-| PhysicalUndefinedNetworkStruct | | (Empty) Characteristics of an undefined physical network. |
+| PhysicalUndefinedNetworkStruct | | Empty record used when no physical network characteristics or constraints are specified. |
 | RequestedConnection | CommunicationNetwork, RequestedConnectionType, ConnectionId, DestinationEntities, NetworkDevice | Characterisation of a requested connection. |
 | SetTransmitterStatusTaskStruct | Status | Task-specific data for `SetTransmitterStatus`. |
 
