@@ -7,7 +7,7 @@
 
 The NATO Education and Training Network Organization (NETN-ORG) module provides a standard way to represent organizations in the simulation scenario, as well as their relationships and structure. The relationships include unit command structure, relationships between organizations, unit equipment, and installations.
 
-Simulating organizational elements requires knowledge of intra-organizational relationships, e.g., superior and subordinate, as well as inter-organizational relationships, e.g., friendly or hostile. The NETN-ORG module supports initialization and organizations' dynamic change of this information.
+Simulating organizational elements requires knowledge of intra-organizational relationships, e.g., superior and subordinate, as well as inter-organizational relationships, e.g., friendly or hostile. The NETN-ORG module supports initialization of organizations and the dynamic change of this information.
 
 Use the NETN-ORG information to:
 
@@ -36,34 +36,34 @@ In NETN-ORG, an `Organization` is a representation used to:
 All `BaseEntity` objects are associated with a specific `Organization`.The required RPR-FOM attribute `ForceIdentifier` can be derived from the referenced organization and the corresponding `Organization` attribute `ForceIdentifier`.
 
 ```mermaid
-classDiagram 
-direction LR 
- 
-HLAobjectRoot <|-- ORG_Root 
-HLAobjectRoot <|-- BaseEntity 
- 
-HLAobjectRoot : UniqueId(NETN-BASE) 
-ORG_Root <|-- OrganizationElement 
-ORG_Root <|-- Organization 
-ORG_Root : Name 
-OrganizationElement <|-- Equipment 
-OrganizationElement <|-- Unit 
-OrganizationElement <|-- Installation 
-OrganizationElement : EntityType 
-OrganizationElement : HostUnit 
-OrganizationElement : Location 
-OrganizationElement : Organization 
-OrganizationElement : SuperiorUnit 
-OrganizationElement : Symbol 
-Unit : Echelon 
-Unit : Formation 
-Unit : HigherHeadquarters 
-Unit : Holdings 
-Unit : IsHq 
-Organization : CountryCode 
-Organization : ForceIdentifier 
-Organization : Relationships 
-BaseEntity : Organization 
+classDiagram
+direction LR
+
+HLAobjectRoot <|-- ORG_Root
+HLAobjectRoot <|-- BaseEntity
+
+HLAobjectRoot : UniqueId(NETN-BASE)
+ORG_Root <|-- OrganizationElement
+ORG_Root <|-- Organization
+ORG_Root : Name
+OrganizationElement <|-- Equipment
+OrganizationElement <|-- Unit
+OrganizationElement <|-- Installation
+OrganizationElement : EntityType
+OrganizationElement : HostUnit
+OrganizationElement : Location
+OrganizationElement : Organization
+OrganizationElement : SuperiorUnit
+OrganizationElement : Symbol
+Unit : Echelon
+Unit : Formation
+Unit : HigherHeadquarters
+Unit : Holdings
+Unit : IsHq
+Organization : CountryCode
+Organization : ForceIdentifier
+Organization : Relationships
+BaseEntity : Organization
 ```
 
 Each `Organization` is defined by a structure of `OrganizationElement` objects. Each `OrganizationElement` object is related to its `Organization` and its `SuperiorUnit`, if any. There are three (3) subtypes of `OrganizationElement`:
@@ -72,10 +72,10 @@ Each `Organization` is defined by a structure of `OrganizationElement` objects. 
 2. `Equipment` represents individual physical items explicitly defined and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensor objects.
 3. `Installation` are facilities, e.g., harbours and airfields, or engineering objects, e.g., minefields.
 
-To request a change of `SuperiorUnit`, use the NETN-SMC entity control action `ChangeSuperiorUnit`.
+NETN-ORG extends NETN-SMC. To request a change of `SuperiorUnit`, use the NETN-SMC entity control action `ChangeSuperiorUnit`.
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot <|-- SMC_EntityControl
 
@@ -88,26 +88,26 @@ ChangeSuperiorUnit : SuperiorUnit
 
 ## Allocation to Federates
 
-The NETN-ORG module can also be used to provide the initial allocation of responsibility to a federate for what `Equipment` is represented as a `PhysicalEntity` and what `Unit` is represented as an `AggregateEntity`. The NETN-SMC object class `SMC_Service` is subclassed with the `EntitySimulation` class that for each instance can publish the allocation of initial modelling responsibility.
+NETN-ORG extends the NETN-SMC object class `SMC_Service` with the `EntitySimulation` class that for each instance can publish the allocation of initial modelling responsibility. The arrays `AggregateEntityAllocation` and `PhysicalEntityAllocation` within the `EntitySimulation` object provide the initial allocation of responsibility to a federate for what `Equipment` is represented as a `PhysicalEntity` and what `Unit` is represented as an `AggregateEntity`.
 
 ```mermaid
-classDiagram 
-direction LR 
- 
- 
-HLAobjectRoot <|-- SMC_Service 
-HLAobjectRoot : UniqueId(NETN-BASE) 
- 
-SMC_Service <|-- EntitySimulation 
-SMC_Service : Federate(NETN-SMC) 
-EntitySimulation : AggregateEntityAllocation 
-EntitySimulation : PhysicalEntityAllocation 
+classDiagram
+direction LR
+
+
+HLAobjectRoot <|-- SMC_Service
+HLAobjectRoot : UniqueId(NETN-BASE)
+
+SMC_Service <|-- EntitySimulation
+SMC_Service : Federate(NETN-SMC)
+EntitySimulation : AggregateEntityAllocation
+EntitySimulation : PhysicalEntityAllocation
 ```
 
 ## Object Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 
 HLAobjectRoot <|-- ORG_Root
@@ -145,9 +145,9 @@ EntitySimulation : PhysicalEntityAllocation
 
 The root class for all NETN-ORG object classes.
 
-|Attribute|Datatype|Semantics|
-|---|---|---|
-|Name|HLAunicodeString|Required. A unique name.|
+| Attribute | Datatype | Semantics |
+| --- | --- | --- |
+| Name | HLAunicodeString | Required. A unique name. |
 
 ### OrganizationElement
 
@@ -156,7 +156,7 @@ An object class for all NETN-ORG organizational elements.
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | EntityType | EntityTypeStruct | Required. SISO-REF-010 code for entity type definitions. If unknown, use 0.0.0.0.0.0.0. |
-| HostUnit | UUID | Optional. A reference to a unit or equipment controlling the movement or operating an installation. E.g. a unit embarked on a transport, or a helicopter on a ship. The default value is all zeros, indicating that the unit is not embarked in or mounted on any other unit or equipment. Not applicable to `Installation`. |
+| HostUnit | UUID | Optional. A reference to a unit or equipment controlling the movement or operating an installation. E.g. a unit embarked on a transport, or a helicopter on a ship. The default value is all zeros, indicating that the unit is not embarked in or mounted on any other unit or equipment. Not applicable if this is an `Installation` object. |
 | Location | GeodeticPoint | Optional. The geographic location of the element. Required if no `HostUnit` is provided. This represents the initial location in the scenario unless otherwise modelled in the simulation. |
 | Name | HLAunicodeString | Required. A unique name. |
 | Organization | UUID | Required. A reference to the organization the element is affiliated with. |
@@ -165,7 +165,7 @@ An object class for all NETN-ORG organizational elements.
 
 ### Equipment
 
-An equipment represents individual physical items defined specifically and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensors object.
+An equipment represents individual physical items defined specifically and apart from any holdings defined for the `HostUnit`. Equipment includes platforms, munition and sensor objects.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
@@ -236,13 +236,13 @@ A service providing modelling responsibility for aggregate and/or physical entit
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| AggregateEntityAllocation | ArrayOfUuid | Optional. The organization `Unit` elements for which the federate has the responsibility of modelling corresponding `AggregateEntities`. The default is an empty list. |
-| PhysicalEntityAllocation | ArrayOfUuid | Optional. The the organization `Equipment` or `Installation` elements for which the federate has the responsibility of simulating a `PhysicalEntity`. The default is an empty list. |
+| AggregateEntityAllocation | ArrayOfUuid | Optional. The organization's `Unit` elements for which the federate has the responsibility of modelling corresponding `AggregateEntities`. The default is an empty list. |
+| PhysicalEntityAllocation | ArrayOfUuid | Optional. The the organization's `Equipment` and `Installation` elements for which the federate has the responsibility of simulating a `PhysicalEntity`. The default is an empty list. |
 
 ## Interaction Classes
 
 ```mermaid
-classDiagram 
+classDiagram
 direction LR
 HLAinteractionRoot <|-- SMC_EntityControl
 HLAinteractionRoot : UniqueId(NETN-BASE)
@@ -270,12 +270,12 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | AirFormationTypeEnum32 | Air formation. |
 | ArrayOfHoldings | Sequence of holdings. |
 | ArrayOfRelationship | Sequence of relations. |
-| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
+| EntityControlActionEnum | Enumeration of Entity Control Actions. Additional actions are expected to be defined by extending this datatype in specific modules. |
 | ForceIdentifierEnum | RPR-FOM `ForceIdentifier` enumeration. |
-| FormationDataStruct | Struct for enumerated choice for the type of formation being Ground, Air, Surface or Subsurface. |
+| FormationDataStruct | Struct for enumerated choice for the type of formation (Ground, Air, Surface or Subsurface). |
 | FormationLocationTypeEnum32 | Enumerated choice for the method to correlate formation to location as the centre of mass or lead element. |
 | FormationStruct | The formation of this unit. |
-| FormationTypeEnum32 | Enumerated choice for the type of formation being Ground, Air, Surface or Subsurface. |
+| FormationTypeEnum32 | Enumerated choice for the type of formation (Ground, Air, Surface or Subsurface). |
 | GroundFormationTypeEnum32 | Specifies the formations for ground units. |
 | Holding | Static and dynamic data about the holding. The `EntityType` determines if the holding is a platform, munition, lifeform, supplies, etc. |
 | Relation | The specific value that represents the perceived hostility status. |
@@ -290,7 +290,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
 | ForceIdentifierEnum | RPRunsignedInteger8BE | RPR-FOM `ForceIdentifier` enumeration. |
 | FormationLocationTypeEnum32 | HLAinteger32BE | Enumerated choice for the method to correlate formation to location as the centre of mass or lead element. |
-| FormationTypeEnum32 | HLAinteger32BE | Enumerated choice for the type of formation being Ground, Air, Surface or Subsurface. |
+| FormationTypeEnum32 | HLAinteger32BE | Enumerated choice for the type of formation (Ground, Air, Surface or Subsurface). |
 | GroundFormationTypeEnum32 | HLAinteger32BE | Specifies the formations for ground units. |
 | SubsurfaceFormationTypeEnum32 | HLAinteger32BE | Subsurface formation |
 | SurfaceFormationTypeEnum32 | HLAinteger32BE | Surface formation |
@@ -314,4 +314,4 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 
 | Name | Discriminant (Datatype) | Alternatives | Semantics |
 | --- | --- | --- | --- |
-| FormationDataStruct | Domain (FormationTypeEnum32) | Ground, Air, Surface, Subsurface | Struct for enumerated choice for the type of formation being Ground, Air, Surface or Subsurface. |
+| FormationDataStruct | Domain (FormationTypeEnum32) | Ground, Air, Surface, Subsurface | Struct for enumerated choice for the type of formation (Ground, Air, Surface or Subsurface). |
