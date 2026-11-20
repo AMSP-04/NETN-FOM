@@ -173,9 +173,9 @@ Use the `Wildfire` object to represent a wildfire that may spread.
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | Area | GeodeticPolygon | Required. Geographical boundary of the HazardRegion. |
-| FrontVelocity | VelocityMeterPerSecondFloat32 | Optional. The spread velocity of the front line. The default is 0. |
-| FrontWidth | MeterFloat32 | Required. Indicates the thickness of the actual fire ring surrounding a no longer burning region. The assumption is that a fire starts at one or more locations and then spreads in a circular shape with a fire front of a certain thickness and burnt land behind the front line. The `Area` attribute defines the outer boundary of the overall region, and the front of the flames is assumed to extend from the boundary into the region. |
-| Temperature | TemperatureDegreeCelsiusFloat32 | Optional. The temperature in the front line. |
+| FrontVelocity | VelocityMeterPerSecondFloat32 | Optional. The spread velocity of the fire front. The default is 0. |
+| FrontWidth | MeterFloat32 | Required. Indicates the thickness of the actual fire ring surrounding a no longer burning region. The assumption is that a fire starts at one or more locations and then spreads in a circular shape with a fire front of a certain thickness and burnt land behind the fire front. The `Area` attribute defines the outer boundary of the overall region, and the front of the flames is assumed to extend from the boundary into the region. |
+| Temperature | TemperatureDegreeCelsiusFloat32 | Optional. The temperature at the fire front. |
 | CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | UniqueId<br/>(NETN-BASE) | UUID | Required. A unique identifier for the object. The Universally Unique Identifier (UUID) is generated or pre-defined. |
 
@@ -314,7 +314,7 @@ Task an entity to extinguish a wildfire.
 
 ### CreateFireBreak
 
-Use the `CreateFireBreak` task to request an entity to build a firebreak.
+Task an entity to build a firebreak.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
@@ -326,7 +326,7 @@ Use the `CreateFireBreak` task to request an entity to build a firebreak.
 
 ### CreateLevee
 
-Use the `CreateLevee` task to request an entity to construct a levee.
+Task an entity to construct a levee.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
