@@ -40,9 +40,9 @@ All NETN-SMC-compliant federates must also respond to all federate control actio
 
 ## Entity Control Action
 
-To send a control action to a specific simulation entity, use the `SMC_EntityControl` interaction with a parameter identifying the entity by its unique identifier. The federate with the referenced entity's primary modelling responsibility is the receiver and should perform the action.
+To send a control action to a specific simulation entity, use the `SMC_EntityControl` interaction with a parameter identifying the entity by its unique identifier. The federate with the referenced entity's primary modelling responsibility is the receiver and should either perform the action or respond with an `SMC_Response` indicating that it cannot be accepted or performed.
 
-If the federate with the primary responsibility of the referenced entity is not compliant with NETN-SMC, there will be no response and it will be hard to determine if or when the control action is successfully received. Therefore, supported actions are published using the `BaseEntity` object class attribute. Before sending a `SMC_EntityControl`, use the `BaseEntity` object attribute `SupportedActions` to determine if the referenced entity supports the action.
+However, if the federate with the primary responsibility of the referenced entity is not compliant with NETN-SMC, there will be no `SMC_Response` and it will be hard to determine if or when the control action is successfully received. Therefore, supported actions are published using the `BaseEntity` object class attribute. Before sending a `SMC_EntityControl` interaction, use the `BaseEntity` object attribute `SupportedActions` to determine if the referenced entity supports the action.
 
 ## Object Classes
 
