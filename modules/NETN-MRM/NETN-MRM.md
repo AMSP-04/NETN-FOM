@@ -359,10 +359,10 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 
 | Name | Semantics |
 | --- | --- |
-| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
+| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 
 ### Enumerated Datatypes
 
 | Name | Representation | Semantics |
 | --- | --- | --- |
-| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
+| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |

@@ -928,7 +928,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | DegreesPerSecondFloat32 | The turn rate in decimal degrees per second, where: (a) zero value: not turning; (b) positive value: turning right; (c) negative value: turning left. |
 | DesignatedAreaCodeInteger32 | A 10-bit value. Designated area code (DAC). |
 | DraughtMeterFloat32 | The vertical distance between the waterline and the bottom of the hull (keel) including the thickness of the hull. Draught determines the minimum depth of water a ship or boat can safely navigate. |
-| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
+| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | FunctionIdInteger32 | A 6-bit value. Functional ID (FID). |
 | IMOInteger32 | A 30-bit value. The International Maritime Organization (IMO) number is a unique identifier for vessels. See https://www.itu.int/en/ITU-R. The IMO number is made of the three letters "IMO" followed by a seven-digit number. This number consists of a six-digit sequential unique number followed by a check digit. The integrity of an IMO number can be verified using its check digit. This is done by multiplying each of the first six digits by a factor of 2 to 7 corresponding to their position from right to left. The rightmost digit of this sum is the check digit. For example, for IMO 9074729: (9×7) + (0×6) + (7×5) + (4×4) + (7×3) + (2×2) = 139. This attribute represents the 7 digits value of the IMO number. If not available, the value shall be zero (default). The value shall also be zero for inland vessels. |
 | MMSIInteger32 | A 30-bit value. The MMSI (Maritime Mobile Service Identity) number is a unique nine-digit number for identifying an AIS station. |
@@ -963,7 +963,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | Name | Representation | Semantics |
 | --- | --- | --- |
 | AidTypeEnum8 | HLAoctet | Enumeration value for the aid type. According to [IALA], the aid type field has values 1-15 for fixed and 16-31 for floating aids to navigation. |
-| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
+| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | ManeuverIndicatorEnum8 | HLAoctet | Enumeration value to indicate a maneuver. |
 | MsgIdEnum8 | HLAoctet | Enumeration value for the message type. |
 | NavigationStatusEnum8 | HLAoctet | Enumeration value to indicate the navigational status. |

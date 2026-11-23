@@ -133,7 +133,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 
 | Name | Semantics |
 | --- | --- |
-| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
+| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | EntityControlActions | A set of control actions relevant to individual entities in the simulation. |
 | FederateControlActionEnum | Enumeration of Federate Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
 | FederateControlActions | A set of control actions for the federate implementing the service. |
@@ -142,7 +142,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 
 | Name | Representation | Semantics |
 | --- | --- | --- |
-| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
+| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | FederateControlActionEnum | HLAinteger32BE | Enumeration of Federate Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
 
 ### Array Datatypes

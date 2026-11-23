@@ -469,7 +469,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | ConnectionReceiverStruct | Characteristics of a connection to a receiver. |
 | ConnectionTypeEnum | The type of connection. |
 | DisruptCommunicationTaskStruct | Task-specific data for `DisruptCommunication`. |
-| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
+| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | IncomingConnectionArray | A set of incoming connections. |
 | IncomingConnectionStruct | Characteristics of a specific incoming connection. |
 | LinkStatusArray | The status of physical network links. |
@@ -503,7 +503,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | CommunicationNetworkTypeEnum | HLAoctet | The type of communication network. |
 | CommunicationServiceTypeEnum | HLAoctet | The type of service used on a communication network. Service types as defined in MSDL. DATTRF: Data transfer, FAX: Facsimile, IFF: Identify Friend or Foe, IMAGE: Image, MCI: Multilateral Interoperability Programme (MIP) Common Interface Service, MHS: Message Handling Service, TDL: Tactical Data Link, VIDSVC: Video Service, VOCSVC: Voice Service, NOS: Not Otherwise Specified. |
 | ConnectionTypeEnum | HLAoctet | The type of connection. |
-| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
+| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | PhysicalNetworkTypeEnum | HLAoctet | The type of a physical network. |
 
 ### Array Datatypes

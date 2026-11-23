@@ -538,7 +538,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | ContourStruct | Contour description. |
 | DensityRatioFloat32 | Ratio of density of two materials in range [0, 1]. |
 | DosageKgSecondPerMeterCubedFloat32 | Dosage in SI units. |
-| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
+| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | ExposureFloat32 | Data type for exposure. |
 | ExposureTypeEnum8 | Type of exposure represented in a contour group. |
 | HazardTypeEnum8 | Type of dispersion output represented in a contour group. |
@@ -571,7 +571,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | AgentClassEnum8 | HLAoctet | Class of Agent for an ATP-45 Hazard Area. |
 | AgentTypeEnum16 | HLAinteger16BE | Type of CBRN hazardous agent. |
 | CBRNDamageEnum8 | HLAoctet | Level of damage due to CBRN exposure. |
-| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
+| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | ExposureTypeEnum8 | HLAoctet | Type of exposure represented in a contour group. |
 | HazardTypeEnum8 | HLAoctet | Type of dispersion output represented in a contour group. |
 | IPETypeEnum8 | HLAoctet | Types of Individual Protective Equipment. |

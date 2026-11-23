@@ -270,7 +270,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | AirFormationTypeEnum32 | Air formation. |
 | ArrayOfHoldings | Sequence of holdings. |
 | ArrayOfRelationship | Sequence of relations. |
-| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules, defining additional actions. |
+| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | ForceIdentifierEnum | RPR-FOM `ForceIdentifier` enumeration. |
 | FormationDataStruct | Struct for enumerated choice for the type of formation being Ground, Air, Surface or Subsurface. |
 | FormationLocationTypeEnum32 | Enumerated choice for the method to correlate formation to location as the centre of mass or lead element. |
@@ -287,7 +287,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | Name | Representation | Semantics |
 | --- | --- | --- |
 | AirFormationTypeEnum32 | HLAinteger32BE | Air formation |
-| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
+| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | ForceIdentifierEnum | RPRunsignedInteger8BE | RPR-FOM `ForceIdentifier` enumeration. |
 | FormationLocationTypeEnum32 | HLAinteger32BE | Enumerated choice for the method to correlate formation to location as the centre of mass or lead element. |
 | FormationTypeEnum32 | HLAinteger32BE | Enumerated choice for the type of formation being Ground, Air, Surface or Subsurface. |

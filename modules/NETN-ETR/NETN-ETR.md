@@ -1057,7 +1057,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | DetectedEquipment | Equipment at the spotted entity. |
 | DirectFireTaskStruct | Task-specific data for direct fire. |
 | ElapsedTimeProgress | Progress definition for tasks only needing elapsed time. |
-| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
+| EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | EmptyTaskStruct | No task parameters. |
 | FederateControlActionEnum | Enumeration of Federate Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
 | FireTaskProgress | Task progress data for Fire tasks. |
@@ -1096,7 +1096,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | Name | Representation | Semantics |
 | --- | --- | --- |
 | AttackTypeEnum32 | HLAinteger32BE | The kind of attack by the enemy. |
-| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
+| EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | FederateControlActionEnum | HLAinteger32BE | Enumeration of Federate Control Actions. The datatype is expected to be extended in specific modules defining additional actions. |
 | IdentificationLevelEnum8 | HLAoctet | The identification level of an object. |
 | MoveTypeEnum32 | HLAinteger32BE | CrossCountry: move directly to the destination without considering the roads. OnlyRoads: stay on the roads to get to the point closest to the destination that is still on the road; RoadsAndCrossCountry: move to the destination by considering the roads, but it is allowed to go off the road. |
