@@ -270,7 +270,7 @@ A human lifeform.
 
 ### CBRN_Detector
 
-Represents a CBRN detector. This object is used to pass information to a CBRN federate, which will model the detector internally and publish a `CBRN_DetectorAlarm` interaction.
+The `CBRN_Detector` object is used to pass information to a CBRN federate, which will model the detector internally and publish a `CBRN_DetectorAlarm` interaction.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
@@ -286,7 +286,7 @@ Represents a CBRN detector. This object is used to pass information to a CBRN fe
 
 ### CBRN_Sensor
 
-Represents a CBRN sensor. This object is used to pass information to a CBRN federate, which will return sensor readings by publishing `CBRN_SensorUpdate` interactions.
+This object defines a CBRN sensor's location and configuration. A CBRN federate uses this information to calculate the local agent concentrations that would be measured by a sensor with the sensor's location and configuration, and publishes these as `CBRN_SensorUpdate` interactions.
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
@@ -306,7 +306,7 @@ A physical object under the control of armed forces upon which sensor, communica
 
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
-| Contamination | ArrayOfAgentMassStruct | CBRN hazardous agent inside vehicle due to embedded units. |
+| Contamination | ArrayOfAgentMassStruct | Mass of CBRN hazardous agent(s) inside a vehicle due to embedded units. |
 | CreateTime<br/>(NETN-BASE) | EpochTime | Optional. The time in the scenario when the object is created. |
 | EntityIdentifier<br/>(RPR-BASE) | EntityIdentifierStruct | The unique identifier for the entity instance. |
 | EntityType<br/>(RPR-BASE) | EntityTypeStruct | The category of the entity. |
@@ -362,7 +362,7 @@ A generic representation of a CBRN hazard.
 | Attribute | Datatype | Semantics |
 | --- | --- | --- |
 | AgentType | AgentTypeEnum16 | Required. Agent reflected in this contour. |
-| Contours | ArrayOfContourStruct | Optional. Array of contours. These should be ordered in a sequence of ascending PercentProbabilityLevel. |
+| Contours | ArrayOfContourStruct | Optional. Array of geographic contour boundaries delineating zones of equal hazard intensity. These should be ordered in a sequence of ascending ProbabilityLevel. |
 | ExposureType | ExposureTypeEnum8 | Optional. The type of exposure. |
 | HazardType | HazardTypeEnum8 | Type of hazard. |
 | Area<br/>(NETN-DIM) | GeodeticPolygon | Required. Geographical boundary of the HazardRegion. |
@@ -479,18 +479,18 @@ Communicates information associated with the release of a hazardous agent.
 | Mass | MassKilogramFloat32 | Total released agent mass in kg. |
 | ReleaseDynamics | ReleaseDynamicsStruct | Temperature difference and density ratio of released material relative to the atmosphere. |
 | ReleaseSize | ReleaseSizeStruct | The initial size of the release, including initial Gaussian sigmas of the released puff as well as the mean and variance of released particles. |
-| ReleaseVelocity | VelocityVectorStruct | Velocity of the source term. |
+| ReleaseVelocity | VelocityVectorStruct | Initial velocity vector of the released material at the source point. |
 | SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
 | UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all CBRN-related interactions. |
 
 ### CBRN_SensorUpdate
 
-Sends information about the current state of a previously registered CBRN sensor.
+Sends information about the current sensor reading of a previously registered CBRN sensor.
 
 | Parameter | Datatype | Semantics |
 | --- | --- | --- |
 | Agent | AgentTypeEnum16 | Required. Type of the agent. |
-| Concentration | MassConcentrationFloat32 | Required. Mean concentration in kg m-3. |
+| Concentration | MassConcentrationFloat32 | Required. Mean concentration in of the measured agent in kg/m3. |
 | ProducingEntity<br/>(NETN-ETR) | UUID | Optional. Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced. |
 | SendTime<br/>(NETN-BASE) | EpochTime | Optional. Scenario time when the interaction was sent. Default is interpreted as the receiver's scenario time when the interaction is received. Required for all CBRN-related interactions. |
 | UniqueId<br/>(NETN-BASE) | UUID | Optional. A unique identifier for the interaction. Required for all CBRN-related interactions. |
@@ -525,7 +525,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | ArrayOfAgentConcentrationStruct | Array of agents and their concentrations. |
 | ArrayOfAgentMassStruct | Array of agents and their masses. |
 | ArrayOfAgentTypeEnum | Array of agents. |
-| ArrayOfCBRNExposureStruct | Array of agents and their dosages. |
+| ArrayOfCBRNExposureStruct | Array of exposure dosage values associated with specific CBRN agents. |
 | ArrayOfCBRNSensorReadingStruct | Array of sensor readings. |
 | ArrayOfContourStruct | A set of contour boundaries defining concentration levels in ascending order. |
 | ArrayOfProtectionEffectivenessStruct | Array of the protection's effectiveness. |
@@ -540,8 +540,8 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | DosageKgSecondPerMeterCubedFloat32 | Dosage in SI units. |
 | EntityControlActionEnum | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
 | ExposureFloat32 | Data type for exposure. |
-| ExposureTypeEnum8 | Type of exposure represented in a contour group. |
-| HazardTypeEnum8 | Type of dispersion output represented in a contour group. |
+| ExposureTypeEnum8 | Type of exposure represented by the hazard contour. |
+| HazardTypeEnum8 | Type of dispersion output represented by the hazard contour. |
 | IPETypeEnum8 | Types of Individual Protective Equipment. |
 | MeanMetersFloat32 | Mean of a Gaussian distribution, based on the SI unit meter, unit symbol m. |
 | ProtectionEffectivenessStruct | Protection effectiveness associated with a specific agent. |
@@ -572,8 +572,8 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | AgentTypeEnum16 | HLAinteger16BE | Type of CBRN hazardous agent. |
 | CBRNDamageEnum8 | HLAoctet | Level of damage due to CBRN exposure. |
 | EntityControlActionEnum | HLAinteger32BE | Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions. |
-| ExposureTypeEnum8 | HLAoctet | Type of exposure represented in a contour group. |
-| HazardTypeEnum8 | HLAoctet | Type of dispersion output represented in a contour group. |
+| ExposureTypeEnum8 | HLAoctet | Type of exposure represented by the hazard contour. |
+| HazardTypeEnum8 | HLAoctet | Type of dispersion output represented by the hazard contour. |
 | IPETypeEnum8 | HLAoctet | Types of Individual Protective Equipment. |
 
 ### Array Datatypes
@@ -583,7 +583,7 @@ Note that only datatypes defined in this FOM module are listed below. Please ref
 | ArrayOfAgentConcentrationStruct | AgentConcentrationStruct | Array of agents and their concentrations. |
 | ArrayOfAgentMassStruct | AgentMassStruct | Array of agents and their masses. |
 | ArrayOfAgentTypeEnum | AgentTypeEnum16 | Array of agents. |
-| ArrayOfCBRNExposureStruct | CBRNExposureStruct | Array of agents and their dosages. |
+| ArrayOfCBRNExposureStruct | CBRNExposureStruct | Array of exposure dosage values associated with specific CBRN agents. |
 | ArrayOfCBRNSensorReadingStruct | CBRNSensorReadingStruct | Array of sensor readings. |
 | ArrayOfContourStruct | ContourStruct | A set of contour boundaries defining concentration levels in ascending order. |
 | ArrayOfProtectionEffectivenessStruct | ProtectionEffectivenessStruct | Array of the protection's effectiveness. |
