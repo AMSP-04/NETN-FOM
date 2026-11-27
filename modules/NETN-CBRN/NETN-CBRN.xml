@@ -7,9 +7,9 @@
         <modificationDate>2024-03-10</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <copyright/>
-        <purpose>The NATO Education and Training Network Chemical, Biological, Radiological and Nuclear (NETN-CBRN) provides a standard interface for representing CBRN release, detection, effects, and protective measures in a federated distributed simulation. E.g., the exposure effect on individual humans in a CBRN-contaminated Hazard area where the human is represented in one simulation and the effect is modelled in another federate simulation.</purpose>
+        <purpose>The NATO Education and Training Network Chemical, Biological, Radiological and Nuclear (NETN-CBRN) module provides a standard interface for representing CBRN release, detection, effects, and protective measures in a federated distributed simulation. E.g., the exposure effect on individual humans in a CBRN-contaminated hazard area where the human is represented in one simulation and the effect is modelled in another federate simulation.</purpose>
         <applicationDomain>Training</applicationDomain>
-        <description>CBRN are Chemical, Biological, Radiological and Nuclear materials that can be delivered intentionally as a weapon using conventional bombs, explosive materials and enhanced blast weapons (e.g., dirty bombs) or unintentionally caused by human error or natural or technological reasons, such as spills, accidental releases or leakages. 
+        <description>CBRN are Chemical, Biological, Radiological and Nuclear materials that can be delivered intentionally as a weapon using conventional bombs, explosive materials, and enhanced blast weapons (e.g., dirty bombs) or unintentionally caused by human error or natural or technological reasons, such as spills, accidental releases, or leakages.
 
 The NETN-CBRN module specifies how to model CBRN-related events in a federated distributed simulation.</description>
         <useLimitation></useLimitation>
@@ -92,7 +92,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Array of agents to which this entity has been exposed to. Defaults to an empty array.</semantics>
+                                <semantics>Array of agents to which this entity has been exposed. Defaults to an empty array.</semantics>
                             </attribute>
                             <attribute>
                                 <name>Treatments</name>
@@ -137,7 +137,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <objectClass>
                             <name>CBRN_Detector</name>
                             <sharing>PublishSubscribe</sharing>
-                            <semantics>Represents a CBRN detector. This object is used to pass information to a CBRN federate, which will model the detector internally and publish a CBRN_DetectorAlarm.</semantics>
+                            <semantics>The `CBRN_Detector` object is used to pass information to a CBRN federate, which will model the detector internally and publish a `CBRN_DetectorAlarm` interaction.</semantics>
                             <attribute>
                                 <name>ProcessingTime</name>
                                 <dataType>TimeSecondInteger32</dataType>
@@ -190,7 +190,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <objectClass>
                             <name>CBRN_Sensor</name>
                             <sharing>PublishSubscribe</sharing>
-                            <semantics>Represents a CBRN sensor. This object is used to pass information to a CBRN federate, which will return sensor readings by publishing CBRN_SensorUpdate interactions.</semantics>
+                            <semantics>This object defines a CBRN sensor's location and configuration. A CBRN federate uses this information to calculate the local agent concentrations that would be measured by a sensor with the sensor's location and configuration, and publishes these as `CBRN_SensorUpdate` interactions.</semantics>
                             <attribute>
                                 <name>UpdateFrequency</name>
                                 <dataType>TimeSecondInteger32</dataType>
@@ -255,7 +255,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>CBRN hazardous agent inside vehicle due to embedded units.</semantics>
+                            <semantics>Mass of CBRN hazardous agent(s) inside a vehicle due to embedded units.</semantics>
                         </attribute>
                     </objectClass>
                     <objectClass>
@@ -272,7 +272,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                             <sharing>PublishSubscribe</sharing>
                             <transportation>HLAreliable</transportation>
                             <order>Receive</order>
-                            <semantics>Required: The number of entities that this cultural feature can handle.</semantics>
+                            <semantics>Required. The number of entities that this cultural feature can handle.</semantics>
                         </attribute>
                         <objectClass>
                             <name>COLPRO</name>
@@ -288,7 +288,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>The effectiveness that this COLPRO offers for each agent.</semantics>
+                                <semantics>The effectiveness that this `COLPRO` offers for each agent.</semantics>
                             </attribute>
                         </objectClass>
                         <objectClass>
@@ -305,7 +305,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Required: Duration it takes to decontaminate an entity.</semantics>
+                                <semantics>Required. Duration it takes to decontaminate an entity.</semantics>
                             </attribute>
                             <attribute>
                                 <name>Treatments</name>
@@ -317,7 +317,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Required: The types of treatment that this decontamination station currently offers.</semantics>
+                                <semantics>Required. The types of treatment that this decontamination station currently offers.</semantics>
                             </attribute>
                         </objectClass>
                     </objectClass>
@@ -328,7 +328,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 <objectClass>
                     <name>CBRN_Hazard</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>A generic representation of a CBRN Hazard.</semantics>
+                    <semantics>A generic representation of a CBRN hazard.</semantics>
                     <attribute>
                         <name>AgentType</name>
                         <dataType>AgentTypeEnum16</dataType>
@@ -339,7 +339,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Requierd: Agent reflected in this contour.</semantics>
+                        <semantics>Required. Agent reflected in this contour.</semantics>
                     </attribute>
                     <attribute>
                         <name>Contours</name>
@@ -351,7 +351,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional: Array of contours. These should be ordered in a sequence of ascending PercentProbabilityLevel.</semantics>
+                        <semantics>Optional. Array of geographic contour boundaries delineating zones of equal hazard intensity. These should be ordered in a sequence of ascending ProbabilityLevel.</semantics>
                     </attribute>
                     <attribute>
                         <name>ExposureType</name>
@@ -363,7 +363,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional: The type of exposure.</semantics>
+                        <semantics>Optional. The type of exposure.</semantics>
                     </attribute>
                     <attribute>
                         <name>HazardType</name>
@@ -392,7 +392,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
                         <order>Receive</order>
-                        <semantics>Duration  that this hazard prediction is valid.</semantics>
+                        <semantics>The duration that this hazard prediction is valid.</semantics>
                     </attribute>
                     <attribute>
                         <name>ATP45HazardAreaType</name>
@@ -404,7 +404,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAbestEffort</transportation>
                         <order>Receive</order>
-                        <semantics>This hazard area's type</semantics>
+                        <semantics>This hazard area's type.</semantics>
                     </attribute>
                     <attribute>
                         <name>AgentClass</name>
@@ -416,7 +416,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>The agent class</semantics>
+                        <semantics>The agent class.</semantics>
                     </attribute>
                 </objectClass>
             </objectClass>
@@ -434,11 +434,11 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Represents an task for the specified entities to use individual protective equipment.</semantics>
+                        <semantics>Represents a task for the specified entities to use individual protective equipment (IPE).</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>ApplyIPETaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -446,11 +446,11 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Represents an order for the specified entities to receive the list of treatments.</semantics>
+                        <semantics>Represents an order for the specified entities to receive the list of treatments in `AdministerTreatmentTaskStruct`.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>AdministerTreatmentTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -475,12 +475,12 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <parameter>
                         <name>TriageLevel</name>
                         <dataType>CBRNDamageEnum8</dataType>
-                        <semantics>Required: Triage level of this entity.</semantics>
+                        <semantics>Required. Triage level of this entity.</semantics>
                     </parameter>
                     <parameter>
                         <name>Exposures</name>
                         <dataType>ArrayOfCBRNExposureStruct</dataType>
-                        <semantics>Optional: Array of agents to which this unit has been exposed.</semantics>
+                        <semantics>Optional. Array of agents to which this unit has been exposed.</semantics>
                     </parameter>
                 </interactionClass>
             </interactionClass>
@@ -489,7 +489,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 <sharing>PublishSubscribe</sharing>
                 <transportation>HLAreliable</transportation>
                 <order>Receive</order>
-                <semantics>Communicates information associated with the release of hazardous agent.</semantics>
+                <semantics>Communicates information associated with the release of a hazardous agent.</semantics>
                 <parameter>
                     <name>Agent</name>
                     <dataType>AgentTypeEnum16</dataType>
@@ -508,22 +508,22 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 <parameter>
                     <name>Duration</name>
                     <dataType>TimeSecondInteger32</dataType>
-                    <semantics>Duration the release takes place.</semantics>
+                    <semantics>The duration the release.</semantics>
                 </parameter>
                 <parameter>
                     <name>ReleaseSize</name>
                     <dataType>ReleaseSizeStruct</dataType>
-                    <semantics>The initial size of the release including initial Gaussian sigmas of the released puff and mean &amp; variance of released particles.</semantics>
+                    <semantics>The initial size of the release, including initial Gaussian sigmas of the released puff as well as the mean and variance of released particles.</semantics>
                 </parameter>
                 <parameter>
                     <name>ReleaseDynamics</name>
                     <dataType>ReleaseDynamicsStruct</dataType>
-                    <semantics>Temperature differance and density ratio of released material relative to the atmosphere.</semantics>
+                    <semantics>Temperature difference and density ratio of released material relative to the atmosphere.</semantics>
                 </parameter>
                 <parameter>
                     <name>ReleaseVelocity</name>
                     <dataType>VelocityVectorStruct</dataType>
-                    <semantics>Velocity of the source term.</semantics>
+                    <semantics>Initial velocity vector of the released material at the source point.</semantics>
                 </parameter>
             </interactionClass>
             <interactionClass>
@@ -533,16 +533,16 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Sends information about the current state of a previously registered CBRN sensor.</semantics>
+                    <semantics>Sends information about the current sensor reading of a previously registered CBRN sensor.</semantics>
                     <parameter>
                         <name>Agent</name>
                         <dataType>AgentTypeEnum16</dataType>
-                        <semantics>Required: Type of the agent.</semantics>
+                        <semantics>Required. Type of the agent.</semantics>
                     </parameter>
                     <parameter>
                         <name>Concentration</name>
                         <dataType>MassConcentrationFloat32</dataType>
-                        <semantics>Required: Mean Concentration in kg m-3.</semantics>
+                        <semantics>Required. Mean concentration in of the measured agent in kg/m3.</semantics>
                     </parameter>
                 </interactionClass>
                 <interactionClass>
@@ -559,7 +559,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                     <parameter>
                         <name>Location</name>
                         <dataType>LocationStruct</dataType>
-                        <semantics>Required: Location of the detection (location of Detector)</semantics>
+                        <semantics>Required. Location of the detection (location of the detector).</semantics>
                     </parameter>
                 </interactionClass>
             </interactionClass>
@@ -597,7 +597,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 <units>meters</units>
                 <resolution>NA</resolution>
                 <accuracy>perfect</accuracy>
-                <semantics>Mean of a Gaussian distribution, based on SI unit meter, unit symbol m.</semantics>
+                <semantics>Mean of a Gaussian distribution, based on the SI unit meter, unit symbol m.</semantics>
             </simpleData>
             <simpleData>
                 <name>VarianceMetersSquaredFloat32</name>
@@ -605,7 +605,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 <units>meters squared</units>
                 <resolution>NA</resolution>
                 <accuracy>perfect</accuracy>
-                <semantics>Variance of a Gaussian distribution, based on SI unit meter squared, unit symbol m2.</semantics>
+                <semantics>Variance of a Gaussian distribution, based on the SI unit meter squared, unit symbol m2.</semantics>
             </simpleData>
         </simpleDataTypes>
         <enumeratedDataTypes>
@@ -804,7 +804,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
             <enumeratedData>
                 <name>ExposureTypeEnum8</name>
                 <representation>HLAoctet</representation>
-                <semantics>Type of exposure represented in a contour group.</semantics>
+                <semantics>Type of exposure represented by the hazard contour.</semantics>
                 <enumerator>
                     <name>Exposure</name>
                     <value>0</value>
@@ -821,7 +821,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
             <enumeratedData>
                 <name>HazardTypeEnum8</name>
                 <representation>HLAoctet</representation>
-                <semantics>Type of dispersion output represented in a contour group.</semantics>
+                <semantics>Type of dispersion output represented by the hazard contour.</semantics>
                 <enumerator>
                     <name>Concentration</name>
                     <value>0</value>
@@ -887,7 +887,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
             <enumeratedData>
                 <name>EntityControlActionEnum</name>
                 <representation>HLAinteger32BE</representation>
-                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
+                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions.</semantics>
                 <enumerator>
                     <name>ApplyIPE</name>
                     <value>500</value>
@@ -925,7 +925,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 <dataType>CBRNExposureStruct</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
-                <semantics>Array of agents and their dosages.</semantics>
+                <semantics>Array of exposure dosage values associated with specific CBRN agents.</semantics>
             </arrayData>
             <arrayData>
                 <name>ArrayOfCBRNSensorReadingStruct</name>
@@ -939,7 +939,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
                 <dataType>ProtectionEffectivenessStruct</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
-                <semantics>Array of the protection’s effectiveness.</semantics>
+                <semantics>Array of the protection's effectiveness.</semantics>
             </arrayData>
             <arrayData>
                 <name>ArrayOfSigmas6</name>
@@ -1127,7 +1127,7 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
             <fixedRecordData>
                 <name>ContourStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Countour description.</semantics>
+                <semantics>Contour description.</semantics>
                 <field>
                     <name>Boundary</name>
                     <dataType>GeodeticPolygon</dataType>
@@ -1216,13 +1216,14 @@ Above license gives you the right to use and redistribute the NETN FOM Module (X
             <semantics>## Overview
 
 The NETN-CBRN FOM module covers:
-1.	CBRN Source release modelling
-2.	CBRN Detector modelling
-3.	CBRN Effects modelling
-4.	CBRN Protective measures modelling
-5.	Hazard area modelling
 
-The NETN-METOC module can model weather conditions that may impact the dispersion of CBRN materials and cause dynamic change to hazard areas.
+1. CBRN source release modelling
+2. CBRN detector modelling
+3. CBRN effects modelling
+4. CBRN protective measures modelling
+5. Hazard area modelling
+
+The NETN-METOC module can model weather conditions that may impact the dispersion of CBRN materials and cause dynamic changes to hazard areas.
 
 ## Contamination
 
@@ -1277,10 +1278,11 @@ CBRN_Release : ReleaseSize
 CBRN_Release : ReleaseVelocity
 ```
 
-The platform contamination and lifeform exposure are usually simulated but can also be set explicitly using NETN-SMC entity control interactions. Use the `SetPlatformContamination` interaction to set the `Platform` contamination level. Use `SetCausaltyEffect` to set `Lifeform` exposure levels.
+The platform contamination and lifeform exposure are usually simulated but can also be set explicitly using NETN-SMC entity control interactions. Use the `SetPlatformContamination` interaction to set the `Platform` contamination level. Use the `SetCasualtyEffect` interaction to set `Lifeform` exposure levels.
 
 ## Protection and Treatment
-Individual `Lifeform` objects are extended with attributes related to CBRN exposure and treatments. Facilities providing protection and treatment are modelled using `DecontamiationStation` or CollectiveProtection `COLPRO` objects.
+
+Individual `Lifeform` objects are extended with attributes related to CBRN exposure and treatments. Facilities providing protection and treatment are modelled using `DecontaminationStation` or collective protection (`COLPRO`) objects.
 
 ```mermaid
 classDiagram
@@ -1314,7 +1316,7 @@ DecontaminationStation : Treatments
 
 ```
 
-Two NETN-ETR `Task` subclasses related to protection and treatment are defined in the NETN-CBRN module. Use the `ApplyIPE` task to request a `Lifeform` to apply individual protection equipment. Use the `AdministerTreatment` task to request an entity to initiate the treatment of a set of entities.
+Two NETN-ETR `Task` subclasses related to protection and treatment are defined in the NETN-CBRN module. Use the `ApplyIPE` task to request a `Lifeform` to apply individual protective equipment. Use the `AdministerTreatment` task to request an entity to initiate the treatment of a set of entities.
 
 ```mermaid
 classDiagram
@@ -1337,7 +1339,7 @@ AdministerTreatment : TaskParameters
 
 ## Detection and Alarm
 
-The NETN-CBRN can represent CBRN sensors and detectors as `Sensor` objects in the federation. These objects define, e.g., the type of `DetectableAgents` and are used to share aspects of the individual equipment to a CBRN simulation that can generate corresponding sensor events.
+The NETN-CBRN module can represent CBRN sensors and detectors as `Sensor` objects in the federation. These objects define, e.g., the type of `DetectableAgents` and are used to share aspects of the individual equipment with a CBRN simulation that can generate corresponding sensor events.
 
 ```mermaid
 classDiagram
@@ -1364,7 +1366,6 @@ CBRN_Sensor : UpdateFrequency
 
 A CBRN federate can generate a `CBRN_DetectorAlarm` event to indicate a detected agent at a specific location. A CBRN federate can also generate a `CBRN_SensorUpdate` event to indicate the concentration of a specific agent.
 
-
 ```mermaid
 classDiagram
 direction LR
@@ -1380,7 +1381,6 @@ CBRN_SensorUpdate : Concentration
 CBRN_DetectorAlarm : Agent
 CBRN_DetectorAlarm : Location
 ```
-
 
 ## Prediction
 
@@ -1400,7 +1400,8 @@ DIM_HazardRegion : Area(NETN-DIM)
 CBRN_Hazard_Prediction : ATP45HazardAreaType
 CBRN_Hazard_Prediction : AgentClass
 CBRN_Hazard_Prediction : Duration
-```</semantics>
+```
+</semantics>
         </note>
         <note>
             <label>netn-cbrn_changelog_1</label>
