@@ -7,10 +7,12 @@
         <modificationDate>2024-03-08</modificationDate>
         <securityClassification>Not Classified</securityClassification>
         <copyright/>
-        <purpose>The NATO Education and Training Network Entity Tasking and Reports Module (NETN-ETR) provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation. It defines interactions that can be interpreted and executed by simulators that model the behaviour of a tasked entity. The module also defines report interactions sent by simulated entities.</purpose>
+        <purpose>The NATO Education and Training Network Entity Tasking and Reports (NETN-ETR) module provides a standard interface for sending tasks to simulated entities represented in a federated distributed simulation. It defines interactions that can be interpreted and executed by simulators that model the behaviour of a tasked entity. The module also defines report interactions sent by simulated entities.</purpose>
         <applicationDomain>Training</applicationDomain>
-        <description>Based on the SMC_EntityControl pattern, the module defines a core set of tasks for simulated entities. Other NETN-FOM modules define additional tasks. The task definitions provided in NETN reflect the capabilities commonly found in Commercial-off-the-Shelf (COTS) Computer-Generated Forces (CGF) applications but are independent of any specific CGF.</description>
-        <useLimitation>A tasked entity can be either a physical entity (e.g., platform or lifeform) or an aggregate entity. A task definition does not specify in detail how a simulation models the execution of the task.</useLimitation>
+        <description>The NETN-SMC entity control pattern allows control actions to target a specific simulated entity via its unique identifier, to be processed by the federate responsible for modelling that entity. NETN-ETR extends this pattern by extending the NETN-SMC interaction class `SMC_EntityControl` with a base `Task` interaction and a core set of tasks for simulated entities.
+
+This is further built upon by other modules defining additional tasks. The task definitions provided in NETN-FOM reflect the capabilities commonly found in Commercial-off-the-Shelf (COTS) Computer-Generated Forces (CGF) applications but are independent of any specific CGF.</description>
+        <useLimitation>A tasked entity can be either a physical entity (e.g., platform or lifeform) or an aggregate entity. Task definitions do not specify in detail how a simulation should model the execution of the task.</useLimitation>
         <useHistory noteReferences="netn-etr_changelog_1">v1.1 - NETN-LBML. Developed by MSG-106 and MSG-134 for NETN FOM v2.0.</useHistory>
         <useHistory noteReferences="netn-etr_changelog_2">v2.0 - Renamed and updated by MSG-163 for NETN FOM v3.0</useHistory>
         <useHistory noteReferences="netn-etr_changelog_3">v3.0 - Updated by MSG-191 for NETN FOM v4.0</useHistory>
@@ -65,7 +67,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             <objectClass>
                 <name>BaseEntity</name>
                 <sharing>Subscribe</sharing>
-                <semantics>A base class of aggregate and discrete scenario domain participants. The BaseEntity class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The BaseEntity class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.</semantics>
+                <semantics>A base class of aggregate and discrete scenario domain participants. The `BaseEntity` class is characterized by being located at a particular location in space and independently movable, if capable of movement at all. It specifically excludes elements normally considered to be a component of another element. The `BaseEntity` class is intended to be a container for common attributes for entities of this type. Since it lacks sufficient class-specific attributes that are required for simulation purposes, federates cannot publish objects of this class. Certain simulation management federates, e.g. viewers, may subscribe to this class. Simulation federates will normally subscribe to one of the subclasses, to gain the extra information required to properly simulate the entity.</semantics>
                 <attribute>
                     <name>CurrentTasks</name>
                     <dataType>ArrayOfTaskDefinitions</dataType>
@@ -118,7 +120,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             <objectClass>
                 <name>ETR_DelegatedTask</name>
                 <sharing>PublishSubscribe</sharing>
-                <semantics>Object to represent a task and its execution progress when delegated to a federate application other than the one responsible for the tasked entity.</semantics>
+                <semantics>Object to represent a task and its execution progress when delegated from the initially tasked entity to a federate application other than the one responsible for the initially tasked entity.</semantics>
                 <attribute>
                     <name>TaskDefinition</name>
                     <dataType>TaskDefinition</dataType>
@@ -156,7 +158,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Request a specific federate application to execute a task. If the delegated task is accepted, a `DelegatedTask` object is created in the federation to track the progress of task execution.</semantics>
+                    <semantics>It is possible to delegate the execution of tasks to other federate applications. If the delegated task is accepted, an `ETR_DelegatedTask` object is created in the federation to track the progress of task execution.</semantics>
                     <parameter>
                         <name>TaskDefinition</name>
                         <dataType>TaskDefinition</dataType>
@@ -165,7 +167,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>Entity</name>
                         <dataType>UUID</dataType>
-                        <semantics>Required: The entity to perform the task.</semantics>
+                        <semantics>Required. The entity to perform the task.</semantics>
                     </parameter>
                 </interactionClass>
             </interactionClass>
@@ -176,7 +178,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <sharing>Neither</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Requests a simulated entity to perform some task based on a task description. If accepted, the federate application modelling the behaviour will execute the task per task parameters and scheduling. A request task is acknowledged using a `TaskStatusUpdate` response interaction. Resending a `RequestTask` with the same `TaskId` as a previously sent interaction is equivalent to cancelling and sending a new task.</semantics>
+                    <semantics>Requests a simulated entity to perform some task based on a task description. If accepted, the federate application modelling the behaviour will execute the task per the task and scheduling parameters. A task request is acknowledged using a `TaskStatusUpdate` response interaction. Resending a `RequestTask` with the same `TaskId` as a previously sent interaction is equivalent to cancelling and sending a new task.</semantics>
                     <parameter>
                         <name>TaskId</name>
                         <dataType>UUID</dataType>
@@ -190,12 +192,12 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>Activity</name>
                         <dataType>AggregateMissionEnum16</dataType>
-                        <semantics>Optional. Specifies the activity for the entity that will execute the task. The default value is zero (0).</semantics>
+                        <semantics>Optional. Specifies the activity (mission type) for the entity that will execute the task. The default value is zero (0).</semantics>
                     </parameter>
                     <parameter>
                         <name>Annotation</name>
                         <dataType>HLAunicodeString</dataType>
-                        <semantics>Optional. A general text describing information about this task. The annotation may, e.g. include the reason for the task and text describing the names of referenced entities.</semantics>
+                        <semantics>Optional. A general text describing information about this task. The annotation may include the reason for the task and a text describing the names of referenced entities.</semantics>
                     </parameter>
                     <parameter>
                         <name>MainTask</name>
@@ -205,12 +207,12 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>PreviousTask</name>
                         <dataType>UUID</dataType>
-                        <semantics>Optional. Provided to indicate that the task will execute after the referenced task.</semantics>
+                        <semantics>Optional. Provided to indicate that this task will execute after the referenced task.</semantics>
                     </parameter>
                     <parameter>
                         <name>NextTask</name>
                         <dataType>UUID</dataType>
-                        <semantics>Optional. Provided to indicate that the task will execute before the referenced task.</semantics>
+                        <semantics>Optional. Provided to indicate that this task will execute before the referenced task.</semantics>
                     </parameter>
                     <parameter>
                         <name>Tasker</name>
@@ -220,7 +222,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>TaskMode</name>
                         <dataType>TaskModeEnum8</dataType>
-                        <semantics>Optional. Determines the task mode. Default NonConcurrentMode</semantics>
+                        <semantics>Optional. Determines whether a task should be executed concurrent with others or not. The default is NonConcurrentMode.</semantics>
                     </parameter>
                     <interactionClass>
                         <name>OtherActivity</name>
@@ -231,7 +233,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>OtherActivityTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -243,7 +245,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>DirectFireTaskStruct</dataType>
-                            <semantics>Required: Task parameters</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -255,7 +257,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>IndirectFireTaskStruct</dataType>
-                            <semantics>Required: Task parameters</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -267,7 +269,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>OperateCheckpointTaskStruct</dataType>
-                            <semantics>Required: Task parameters</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -275,11 +277,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasking of an entity to observe an area.</semantics>
+                        <semantics>Tasking of an entity to observe the area defined in the `ObserveTaskStruct`.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>ObserveTaskStruct</dataType>
-                            <semantics>Required: Task parameters</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -287,11 +289,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. If attached, the entity is detached immediately just before the move task starts.</semantics>
+                        <semantics>Request a simulated entity to move to a specified destination location. The entity aligns the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at the position or waypoint on the path closest to the destination. If attached, the entity is detached immediately just before the move task starts.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>MoveToLocationTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -303,7 +305,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>MoveIntoFormationTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -311,11 +313,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasking of an entity to move in a specified direction for a duration. If attached, the entity is detached immediately just before the move task starts.</semantics>
+                        <semantics>Tasking of an entity to move in a specified direction, at a specified speed, for a specified duration. If attached, the entity is detached immediately just before the move task starts.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>MoveInDirectionTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -327,7 +329,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>FollowEntityTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -339,7 +341,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>AttachTaskStruct</dataType>
-                            <semantics>Required: Task parameters</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -354,11 +356,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. If attached, the entity is detached immediately just before the move task starts.</semantics>
+                        <semantics>Requesting a simulated entity to move given the specified route and speed for reaching each waypoint. The entity should align the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. If attached, the entity is detached immediately just before the move task starts.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>MoveByRouteTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -370,7 +372,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>ChangeSpeedTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -382,7 +384,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>ChangeAltitudeTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -390,11 +392,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Tasking of an entity to change heading.</semantics>
+                        <semantics>Tasking of an entity to turn to the specified heading.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>ChangeHeadingTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -406,7 +408,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>PatrolTaskStruct</dataType>
-                            <semantics>Required: Task parameters</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -421,11 +423,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Requests an entity to operate an observation post. The tasked unit should be within in a given radius from the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration.</semantics>
+                        <semantics>Requests an entity to operate an observation post. The tasked entity should be within in a given radius from the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>OperateObservationPostTaskStruct</dataType>
-                            <semantics>Required: Task parameters</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -437,7 +439,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>AttachTaskStruct</dataType>
-                            <semantics>Required: Task parameters</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -449,7 +451,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>MagicMoveTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -461,7 +463,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>ChangeRulesOfEngagementTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -474,7 +476,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>Tasks</name>
                         <dataType>ArrayOfUuid</dataType>
-                        <semantics>Optional. Tasks for which status reports are requested. The default, if not provided or if the list of tasks is empty, the request refers to all tasks for the tasked entity.</semantics>
+                        <semantics>Optional. Tasks for which status reports are requested. By default, if not provided or if the list of tasks is empty, the request refers to all tasks for the tasked entity.</semantics>
                     </parameter>
                 </interactionClass>
                 <interactionClass>
@@ -482,7 +484,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Request to cancel all one or more tasks.</semantics>
+                    <semantics>Request to cancel one or more tasks.</semantics>
                     <parameter>
                         <name>Tasks</name>
                         <dataType>ArrayOfUuid</dataType>
@@ -495,7 +497,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <sharing>PublishSubscribe</sharing>
                 <transportation>HLAreliable</transportation>
                 <order>Receive</order>
-                <semantics>A management task report regarding the status of a specific task assigned to an entity. The inherited parameter `Time is required.`</semantics>
+                <semantics>An interaction used to report changes in the execution status (e.g., Accepted, Executing, Completed, or Cancelled) of a specific task assigned to an entity. The inherited NETN-BASE parameter `SendTime` is required to indicate the scenario time when the status was sent.</semantics>
                 <parameter>
                     <name>Task</name>
                     <dataType>UUID</dataType>
@@ -512,26 +514,26 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                 <sharing>Neither</sharing>
                 <transportation>HLAreliable</transportation>
                 <order>Receive</order>
-                <semantics>A base interaction class for more specialized report interaction classes. The inherited parameter `Time is required.`</semantics>
+                <semantics>A base interaction class that can be extended for more specialized entity reports (such as observation, position, or damage reports). The inherited NETN-BASE parameter `SendTime` is required to indicate the scenario time when the interaction was sent.</semantics>
                 <parameter>
                     <name>ReportId</name>
                     <dataType>UUID</dataType>
-                    <semantics>Required: Unique identifier for the report itself.</semantics>
+                    <semantics>Required. Unique identifier for the report itself.</semantics>
                 </parameter>
                 <parameter>
                     <name>ReportingEntity</name>
                     <dataType>UUID</dataType>
-                    <semantics>Required: The entity sending the report.</semantics>
+                    <semantics>Required. The entity sending the report.</semantics>
                 </parameter>
                 <parameter>
                     <name>Receiver</name>
                     <dataType>UUID</dataType>
-                    <semantics>Optional: The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.</semantics>
+                    <semantics>Optional. The indended receiver of the message if directed to a specific unit or simulated entity. If not provided, the report is modeled as broadcasted on the entity's default C2 or Battle Management System network.</semantics>
                 </parameter>
                 <parameter>
                     <name>TimeStamp</name>
                     <dataType>EpochTime</dataType>
-                    <semantics>Required: The time when the report was created.</semantics>
+                    <semantics>Required. The time when the report was created.</semantics>
                 </parameter>
                 <parameter>
                     <name>Comments</name>
@@ -543,16 +545,16 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Report on a unit's observation of a simulated entity. Based on SISO C2SIM standard ontology for representation of Observation Reports.</semantics>
+                    <semantics>Report on a unit's observation of a simulated entity. Based on the SISO C2SIM (SISO-STD-019-2020) standard ontology for representation of Observation Reports.</semantics>
                     <parameter>
                         <name>ObservedEntity</name>
                         <dataType>UUID</dataType>
-                        <semantics>Required: The unique identifier of the observed entity</semantics>
+                        <semantics>Required. The unique identifier of the observed entity.</semantics>
                     </parameter>
                     <parameter>
                         <name>ObservationTime</name>
                         <dataType>EpochTime</dataType>
-                        <semantics>Required: The time when the observation was made.</semantics>
+                        <semantics>Required. The time when the observation was made.</semantics>
                     </parameter>
                     <parameter>
                         <name>IdentificationLevel</name>
@@ -562,53 +564,52 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>ConfidenceLevel</name>
                         <dataType>Float64</dataType>
-                        <semantics>Optional:</semantics>
+                        <semantics>Optional. Degree of confidence associated with the observation data (0.0 to 1.0).</semantics>
                     </parameter>
                     <parameter>
                         <name>SensorType</name>
                         <dataType>EntityTypeStruct</dataType>
-                        <semantics>Optional: The type of sensor that is the primary source of the report.</semantics>
+                        <semantics>Optional. The type of sensor that is the primary source of the report.</semantics>
                     </parameter>
                     <parameter>
                         <name>UncertaintyInterval</name>
                         <dataType>Float64</dataType>
-                        <semantics>Optional</semantics>
+                        <semantics>Optional. The margin of error or uncertainty range for the reported observation.</semantics>
                     </parameter>
                     <parameter>
                         <name>Activity</name>
                         <dataType>AggregateMissionEnum16</dataType>
-                        <semantics>Optional: The current activity of the entity. (Fromm NETN-Base)
-Default value: Moving (213)</semantics>
+                        <semantics>Optional. The current activity of the entity. Default value: Moving (213).</semantics>
                     </parameter>
                     <parameter>
                         <name>Health</name>
                         <dataType>PercentFloat32</dataType>
-                        <semantics>Optional: Observed strength of an entity expressed as a percentage of the perceived normal strength.</semantics>
+                        <semantics>Optional. Observed strength of an entity expressed as a percentage of the perceived normal strength.</semantics>
                     </parameter>
                     <parameter>
                         <name>Location</name>
                         <dataType>LocationStruct</dataType>
-                        <semantics>Optional: Observed location where the entity were spotted</semantics>
+                        <semantics>Optional. Observed location where the entity or entities were spotted.</semantics>
                     </parameter>
                     <parameter>
                         <name>Heading</name>
                         <dataType>DirectionDegreesFloat32</dataType>
-                        <semantics>Optional: Observed heading of spotted entity.</semantics>
+                        <semantics>Optional. Observed heading of spotted entity.</semantics>
                     </parameter>
                     <parameter>
                         <name>Speed</name>
                         <dataType>VelocityMeterPerSecondFloat32</dataType>
-                        <semantics>Optional: Observed speed of the entity (m/s).</semantics>
+                        <semantics>Optional. Observed speed of the entity (m/s).</semantics>
                     </parameter>
                     <parameter>
                         <name>HostilityStatus</name>
                         <dataType>HostilityStatusCodeEnum32</dataType>
-                        <semantics>Optional: Perceived hostility of the observed entity.</semantics>
+                        <semantics>Optional. Perceived hostility of the observed entity.</semantics>
                     </parameter>
                     <parameter>
                         <name>Marking</name>
                         <dataType>HLAunicodeString</dataType>
-                        <semantics>Optional: Observed marking on the entity.</semantics>
+                        <semantics>Optional. Observed marking on the entity.</semantics>
                     </parameter>
                     <parameter>
                         <name>Name</name>
@@ -618,17 +619,17 @@ Default value: Moving (213)</semantics>
                     <parameter>
                         <name>Side</name>
                         <dataType>UUID</dataType>
-                        <semantics>Optional: Perceived force identifier of the observed entity.</semantics>
+                        <semantics>Optional. Perceived force identifier of the observed entity.</semantics>
                     </parameter>
                     <parameter>
                         <name>Equipment</name>
                         <dataType>ArrayOfObservedEquipment</dataType>
-                        <semantics>Optional: Observed supplies and equipment.</semantics>
+                        <semantics>Optional. Observed supplies and equipment.</semantics>
                     </parameter>
                     <parameter>
                         <name>Symbol</name>
                         <dataType>SymbolIdentifier</dataType>
-                        <semantics>Optional: Symbol identifier for the entity.</semantics>
+                        <semantics>Optional. Symbol identifier for the entity.</semantics>
                     </parameter>
                 </interactionClass>
                 <interactionClass>
@@ -731,7 +732,7 @@ Default value: Moving (213)</semantics>
                 <parameter>
                     <name>ProducingEntity</name>
                     <dataType>UUID</dataType>
-                    <semantics>Optional: Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced.</semantics>
+                    <semantics>Optional. Reference to an entity with a sensor producing the sensor event. Default is no specific entity referenced.</semantics>
                 </parameter>
                 <interactionClass>
                     <name>EntitySensorUpdate</name>
@@ -742,7 +743,7 @@ Default value: Moving (213)</semantics>
                     <parameter>
                         <name>Tracks</name>
                         <dataType>ArrayOfTrack</dataType>
-                        <semantics>Required. Spotted entities at the time specified in the parameter 'When'.</semantics>
+                        <semantics>Required. Spotted entities at the time specified in the inherited NETN-BASE parameter `SendTime`.</semantics>
                     </parameter>
                     <parameter>
                         <name>SensorType</name>
@@ -804,9 +805,7 @@ Default value: Moving (213)</semantics>
             <enumeratedData>
                 <name>MoveTypeEnum32</name>
                 <representation>HLAinteger32BE</representation>
-                <semantics>CrossCountry: move directly to the destination without considering the roads.
-OnlyRoads: stay on the roads to get to the closest point to the destination that is still on the road;
-RoadsAndCrossCountry: move to the destination by considering the roads; it is allowed to go off the road.</semantics>
+                <semantics>CrossCountry: move directly to the destination without considering the roads. OnlyRoads: stay on the roads to get to the point closest to the destination that is still on the road; RoadsAndCrossCountry: move to the destination by considering the roads, but it is allowed to go off the road.</semantics>
                 <enumerator>
                     <name>CrossCountry</name>
                     <value>0</value>
@@ -823,7 +822,7 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
             <enumeratedData>
                 <name>AttackTypeEnum32</name>
                 <representation>HLAinteger32BE</representation>
-                <semantics>The kind of attack by the enemy.</semantics>
+                <semantics>The kind of attack being launched by the enemy.</semantics>
                 <enumerator>
                     <name>None</name>
                     <value>0</value>
@@ -857,7 +856,7 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
             <enumeratedData>
                 <name>PatrolTypeEnum32</name>
                 <representation>HLAinteger32BE</representation>
-                <semantics>Other - The behaviour is federate application specific (e.g. wait for the next command). Circle - At the end of the route, move to the start point of the patrol route (the federate application determines the route). Reverse - Follow the patrol route in reverse order.</semantics>
+                <semantics>Other: The behaviour is federate application specific (e.g. wait for the next command). Circle: At the end of the route, move to the start point of the patrol route (the federate application determines the route). Reverse: Follow the patrol route in reverse order.</semantics>
                 <enumerator>
                     <name>Other</name>
                     <value>0</value>
@@ -920,7 +919,7 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
             <enumeratedData>
                 <name>EntityControlActionEnum</name>
                 <representation>HLAinteger32BE</representation>
-                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
+                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions.</semantics>
                 <enumerator>
                     <name>MagicMove</name>
                     <value>10</value>
@@ -1022,7 +1021,7 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                 <dataType>DetectedEquipment</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
-                <semantics>An array with spotted equipment at the spotted entity.</semantics>
+                <semantics>An array of detected equipment associated with a sensor track.</semantics>
             </arrayData>
             <arrayData>
                 <name>ArrayOfTrack</name>
@@ -1036,7 +1035,7 @@ RoadsAndCrossCountry: move to the destination by considering the roads; it is al
                 <dataType>ObservedEquipment</dataType>
                 <cardinality>Dynamic</cardinality>
                 <encoding>HLAvariableArray</encoding>
-                <semantics>An array with spotted equipment at the spotted entity.</semantics>
+                <semantics>An array of observed equipment associated with an observed entity.</semantics>
             </arrayData>
             <arrayData>
                 <name>ArrayOfTaskDefinitions</name>
@@ -1080,8 +1079,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>TrackStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Descripton of the observed entity.
-The symbol contains information about the spotted entity's relation to the spotter and details about the type and echelon at the spotted entity.</semantics>
+                <semantics>Descripton of the observed entity. The symbol contains information about the spotted entity's relation to the spotter and details about the type and echelon at the spotted entity.</semantics>
                 <field>
                     <name>Track</name>
                     <dataType>UUID</dataType>
@@ -1156,7 +1154,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>FollowEntityTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for FollowEntity</semantics>
+                <semantics>Task-specific data for the `FollowEntity` task.</semantics>
                 <field>
                     <name>FollowedEntity</name>
                     <dataType>UUID</dataType>
@@ -1281,7 +1279,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>MoveToLocationTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for MoveToLocation task.</semantics>
+                <semantics>Task-specific data for the `MoveToLocation` task.</semantics>
                 <field>
                     <name>Location</name>
                     <dataType>LocationStruct</dataType>
@@ -1306,7 +1304,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>PatrolTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for a Patrol task.</semantics>
+                <semantics>Task-specific data for the `Patrol` task.</semantics>
                 <field>
                     <name>Path</name>
                     <dataType>ArrayOfWaypoints</dataType>
@@ -1336,7 +1334,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>DirectFireTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for direct fire.</semantics>
+                <semantics>Task-specific data for the `DirectFire` task.</semantics>
                 <field>
                     <name>Target</name>
                     <dataType>UUID</dataType>
@@ -1356,7 +1354,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>IndirectFireTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for IndirectFire task.</semantics>
+                <semantics>Task-specific data for the `IndirectFire` task.</semantics>
                 <field>
                     <name>Area</name>
                     <dataType>LocationStructArray</dataType>
@@ -1376,7 +1374,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>Waypoint</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>A location and the speed to reach that location.</semantics>
+                <semantics>A location and the speed that should be used to reach that location.</semantics>
                 <field>
                     <name>Location</name>
                     <dataType>LocationStruct</dataType>
@@ -1396,7 +1394,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>ChangeSpeedTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for ChangeSpeedTask task.</semantics>
+                <semantics>Task-specific data for the `ChangeSpeed` task.</semantics>
                 <field>
                     <name>Speed</name>
                     <dataType>VelocityMeterPerSecondFloat32</dataType>
@@ -1406,7 +1404,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>ChangeAltitudeTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for ChangeAltitude</semantics>
+                <semantics>Task-specific data for the `ChangeAltitude` task.</semantics>
                 <field>
                     <name>Altitude</name>
                     <dataType>AltitudeMeterFloat64</dataType>
@@ -1416,7 +1414,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>AttachTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for tasks related to attach or associate one entity with another, e.g. mount a platform, embark on a ship, or to enter a facility.</semantics>
+                <semantics>Task-specific data for the `Attach` task.</semantics>
                 <field>
                     <name>EntityId</name>
                     <dataType>UUID</dataType>
@@ -1426,7 +1424,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>OperateCheckpointTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for OperateCheckpoint task.</semantics>
+                <semantics>Task-specific data for the `OperateCheckpoint` task.</semantics>
                 <field>
                     <name>CheckpointId</name>
                     <dataType>UUID</dataType>
@@ -1446,7 +1444,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>OtherActivityTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for this task.</semantics>
+                <semantics>Task-specific data for the `OtherActivity` task.</semantics>
                 <field>
                     <name>Duration</name>
                     <dataType>TimeMillisecondInt64</dataType>
@@ -1456,7 +1454,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>MoveInDirectionTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Tasking of an entity to move in a specified direction for a given duration.</semantics>
+                <semantics>Task-specific data for the `MoveInDirection` task.</semantics>
                 <field>
                     <name>Direction</name>
                     <dataType>DirectionDegreesFloat32</dataType>
@@ -1476,7 +1474,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>MoveIntoFormationTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Initial movement speed.</semantics>
+                <semantics>Task-specific data for the `MoveIntoFormation` task.</semantics>
                 <field>
                     <name>Formation</name>
                     <dataType>AggregateStateFormationEnum32</dataType>
@@ -1506,7 +1504,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>MoveByRouteTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for MoveByRoute.</semantics>
+                <semantics>Task-specific data for the `MoveByRoute` task.</semantics>
                 <field>
                     <name>Route</name>
                     <dataType>ArrayOfWaypoints</dataType>
@@ -1521,7 +1519,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>ObserveTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for Observe task.</semantics>
+                <semantics>Task-specific data for the `Observe` task.</semantics>
                 <field>
                     <name>ObservationArea</name>
                     <dataType>LocationStructArray</dataType>
@@ -1531,7 +1529,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>ChangeHeadingTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data to turn to the specified heading.</semantics>
+                <semantics>Task-specific data for the `ChangeHeading` task.</semantics>
                 <field>
                     <name>Heading</name>
                     <dataType>DirectionDegreesFloat32</dataType>
@@ -1581,7 +1579,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>PatrolTaskProgress</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task progress data for PatrolRepeating tasks.</semantics>
+                <semantics>Task progress data for the `Patrol` task.</semantics>
                 <field>
                     <name>PathProgress</name>
                     <dataType>MoveTaskProgress</dataType>
@@ -1631,7 +1629,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>OperateObservationPostTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for OperateObservationPost task.</semantics>
+                <semantics>Task-specific data for the `OperateObservationPost` task.</semantics>
                 <field>
                     <name>ObserveTask</name>
                     <dataType>ObserveTaskStruct</dataType>
@@ -1651,7 +1649,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>ChangeRulesOfEngagementTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for ChangeRulesOfEngagement.</semantics>
+                <semantics>Task-specific data for the `ChangeRulesOfEngagement` task.</semantics>
                 <field>
                     <name>RulesOfEngagement</name>
                     <dataType>RulesOfEngagementEnum8</dataType>
@@ -1661,7 +1659,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <fixedRecordData>
                 <name>MagicMoveTaskStruct</name>
                 <encoding>HLAfixedRecord</encoding>
-                <semantics>Task-specific data for MagicMove.</semantics>
+                <semantics>Task-specific data for the `MagicMove` task.</semantics>
                 <field>
                     <name>Location</name>
                     <dataType>LocationStruct</dataType>
@@ -1834,7 +1832,7 @@ for aggregate entities, also use entity types from platform tables to describe t
             <label>netn-etr_overview</label>
             <semantics>## Overview
 
-NETN-ETR depends on NETN-SMC and uses the `SMC_EntityControl` interaction class to direct tasks to specific entities. Available tasks are defined in the NETN-ETR module and published using the NETN-SMC `BaseEntity` attribute `SupportedActions`.
+As described above, NETN-ETR depends on NETN-SMC and uses the `SMC_EntityControl` interaction class to direct tasks to specific entities. Available tasks are defined in the NETN-ETR module and published using the NETN-SMC `BaseEntity` attribute `SupportedActions`.
 
 ```mermaid
 classDiagram
@@ -1850,7 +1848,7 @@ BaseEntity : SupportedActions(NETN-SMC)
 
 ## Tasking
 
-To send a task, use the interaction `Task` a subclass of the NETN-SMC `SMC_EntityControl` interaction.
+To send a task, use the interaction `Task`, a subclass of the NETN-SMC `SMC_EntityControl` interaction.
 
 The `Task` interaction class is the base class for all tasks defined in NETN-ETR and other modules.
 
@@ -1893,31 +1891,31 @@ ETR_TaskStatus : TaskStatus
 
 The following tasks are defined in NETN-ETR:
 
-|Task|Description|
-|---|---|
-|MagicMove|Instructs the simulation entity to change location to the specified position and heading immediately. If attached, the entity is detached immediately just before the move task starts.|
-|MoveByRoute|Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align with the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. If attached, the entity is detached immediately just before the move task starts.|
-|MoveInDirection|Tasking of an entity to move in a specified direction for a duration. If attached, the entity is detached immediately just before the move task starts.|
-|MoveIntoFormation|Tasking a simulated entity to move into the given formation on the given location with the given heading. If attached, the entity is detached immediately just before the move task starts.|
-|MoveToLocation|Request a simulated entity to move to a specified destination location. The entity aligns with the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. If attached, the entity is detached immediately just before the move task starts.|
-|FollowEntity|Tasking of an entity to follow another entity at a specified distance. If attached, the entity is detached immediately just before the move task starts.|
-|Patrol|Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. If attached, the entity is detached immediately just before the move task starts.|
-|ChangeHeading|Tasking of an entity to change heading.|
-|ChangeSpeed|Tasking of an entity to change speed.|
-|ChangeAltitude|Tasking of an entity to set move to a specified altitude.|
-|StopAtSideOfRoad|Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). If attached, the entity is detached immediately just before the move task starts.|
-|Attach|Requesting a simulated entity to attach to (mount) the specified entity.|
-|Detach|Requesting a simulated entity to detach from a simulated entity.|
-|DirectFire|Tasking an entity to fire directed at a specified target entity.|
-|IndirectFire|Tasking an entity to fire directed at an area.|
-|Observe|Tasking of an entity to observe an area.|
-|OperateCheckpoint|Request an entity to operate a checkpoint. The tasked entity should be within the radius of the checkpoint object. If not, a separate move task should be issued first. The tasked entity activates an inactive checkpoint and operates the checkpoint for the specified duration.|
-|OperateObservationPost|Requests an entity to operate an observation post. The tasked unit should be within a given radius of the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration.|
-|EnterFacility|Requesting a simulated entity to enter the specified facility (cultural feature). The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the facility location.|
-|ChangeRulesOfEngagement|Instructs the simulation entity to change its rules of engagement immediately.|
-|OtherActivity|Tasking of an entity to wait for a duration of time.|
+| Task | Description |
+| --- | --- |
+| MagicMove | Instructs the simulation entity to change location to the specified position and heading immediately. If attached, the entity is detached immediately just before the move task starts. |
+| MoveByRoute | Requesting a simulated entity to move given the specified route with a given speed for reaching each waypoint. The entity should align the path from its current position to the first waypoint on the path using the speed set for the first waypoint in the route. When reaching the last waypoint, the speed is zero (0), and movement stops. If attached, the entity is detached immediately just before the move task starts. |
+| MoveInDirection | Tasking of an entity to move in a specified direction, at a specified speed, for a specified duration. If attached, the entity is detached immediately just before the move task starts. |
+| MoveIntoFormation | Tasking a simulated entity to move into the given formation on the given location with the given heading. If attached, the entity is detached immediately just before the move task starts. |
+| MoveToLocation | Request a simulated entity to move to a specified destination location. The entity aligns the path from its current position to the nearest position or waypoint on the path. The entity leaves the path at a position or waypoint on the path closest to the destination. If attached, the entity is detached immediately just before the move task starts. |
+| FollowEntity | Tasking of an entity to follow another entity at a specified distance. If attached, the entity is detached immediately just before the move task starts. |
+| Patrol | Requesting a simulated entity to perform a patrol task. The tasked entity moves from its current position to the start of the patrol route and then moves according to the patrol route from its start point in the path through all waypoints. If attached, the entity is detached immediately just before the move task starts. |
+| ChangeHeading | Tasking of an entity to turn to the specified heading. |
+| ChangeSpeed | Tasking of an entity to change speed. |
+| ChangeAltitude | Tasking of an entity change altitude. |
+| StopAtSideOfRoad | Requesting a simulated entity to stop at the side of the road. This task is only relevant for an entity moving along a road. The current move task is cancelled, and a new move task executes to a position at the side of the road (the simulator has to calculate this location). If attached, the entity is detached immediately just before the move task starts. |
+| Attach | Tasking an entity with tasks related to attach or associate one entity with another, e.g. mount a platform, embark on a ship, or to enter a facility. |
+| Detach | Requesting a simulated entity to detach from a simulated entity. |
+| DirectFire | Tasking an entity to fire directed at a specified target entity. |
+| IndirectFire | Tasking an entity to fire directed at an area. |
+| Observe | Tasking of an entity to observe an area. |
+| OperateCheckpoint | Request an entity to operate a checkpoint. The tasked entity should be within the radius of the checkpoint object. If not, a separate move task should be issued first. The tasked entity activates an inactive checkpoint and operates the checkpoint for the specified duration. |
+| OperateObservationPost | Requests an entity to operate an observation post. The tasked unit should be within a given radius of the observation post. If not, a separate move task should be issued first. The tasked unit activates an inactive observation post and operates it for the specified duration. |
+| EnterFacility | Requesting a simulated entity to enter the specified facility (cultural feature). The tasked entity should be within a certain distance (tolerance specified in the federation agreements) of the facility location. |
+| ChangeRulesOfEngagement | Instructs the simulation entity to change its rules of engagement immediately. |
+| OtherActivity | Tasking of an entity to wait for a duration of time. |
 
-When sending a task the minimum required set of parameters is the `TaskId` and any `TaskParameters` associated with the specific task. All other parameters are optional with defined default values.
+When sending a task, the minimum required set of parameters is the `TaskId` and any `TaskParameters` associated with the specific `Task` interaction. All other parameters are optional with defined default values.
 
 Task status is provided using the `ETR_TaskStatus` interaction to indicate a change in status. Use the `RequestTaskStatus` interaction to request a resend of `ETR_TaskStatus` for a specific task.
 
@@ -1926,23 +1924,23 @@ The `ETR_TaskStatus` interaction provides the following notifications regarding 
 * Accepted: the task is received and scheduled for execution
 * Refused: the task is not accepted for execution
 * Waiting: the task is waiting for execution
-* Executing: the task is running
+* Executing: the task is executing
 * Completed: the task has been executed successfully
 * Cancelled: the execution of the task has been explicitly terminated
 * Error: the task execution has been terminated due to a modelling error
 
 Use the `CancelTasks` interaction to request an entity to terminate the execution of a scheduled or currently executing task.
 
-A task can be executed concurrently with other tasks or sequentially. The task parameters indicate the expected mode of task execution. Tasks are scheduled based on their start time and task execution mode.
+Tasks can be executed either sequentially or concurrently with other tasks. The task parameters indicate the expected mode of task execution. Tasks are scheduled based on their start time and task execution mode.
 
 The execution of a task can start if:
 
 * For a non-concurrent task
-* No other non-concurrent task is executing
-* The task has the earliest `StartTime` parameter of all planned non-concurrent tasks
-* The task parameter `StartTime` is less than or equal to the current Scenario Time.
+  * No other non-concurrent task is executing
+  * The task has the earliest `StartTime` parameter of all planned non-concurrent tasks
+  * The task parameter `StartTime` is less than or equal to the current Scenario Time.
 * For a concurrent task
-* The task parameter `StartTime` is less than or equal to the current Scenario Time.
+  * The task parameter `StartTime` is less than or equal to the current Scenario Time.
 
 ## Planned Tasks and Progress
 
@@ -1962,7 +1960,7 @@ BaseEntity : TaskProgress
 
 ```
 
-This information is published in order to provide means for monitoring, recording and initializing the current state of all accepted tasks in the federation.
+This information is published in order to provide the means for monitoring, recording and initializing the current state of all accepted tasks in the federation.
 
 ## Task Delegation
 
@@ -1990,7 +1988,6 @@ ETR_DelegatedTask : TaskProgress
 ```
 
 If the task delegation is accepted, an `ETR_DelegatedTask` object is created and used to transfer information regarding the state of task execution. The federate with primary modelling responsibility still has the responsibility to perform all `ETR_TaskStatus` updates and to publish `TaskProgress` information.
-
 
 ## Reporting
 
@@ -2050,9 +2047,9 @@ In particular, the `ObservationReport` is designed to allow mapping to the SISO-
 
 ## Sensor Updates
 
-Sensor models tracking entities can use NETN-ETR to send `EntitySensorUpdate` interactions with information regarding all current tracks produced by an entity using a specific type of sensor, see Figure 10. This information can be used to collect data as input or trigger for generating observation reports.
+Sensor models tracking entities can use NETN-ETR to send `EntitySensorUpdate` interactions with information regarding all current tracks produced by an entity using a specific type of sensor. This information can be used to collect data as input or trigger for generating observation reports.
 
-The sensor track data is usually only sent if a change occurs, which may cause an issue for late-joining federates. The NETN-ETR includes a NETN-SMC Federation Control Action to `ResendSensorUpdates`. Use this request to trigger the resending of all current tracks for all entities.
+The sensor track data is usually only sent if a change occurs, which may cause an issue for late-joining federates as HLA interactions are transient and thus the old updates won't be available any more. Therefore, NETN-ETR includes a NETN-SMC Federation Control Action called `ResendSensorUpdates`. Use this request to trigger the resending of all current tracks for all entities.
 
 ```mermaid
 classDiagram
@@ -2067,7 +2064,7 @@ ETR_SensorEvent : ProducingEntity
 EntitySensorUpdate : SensorType
 EntitySensorUpdate : Tracks
 ```
-Normally track data is only sent if a change occurs. This may cause an issue for late joining federates. The NETN-ETR includes a NETN-SMC Federation Control Action to `ResendSensorUpdates`. Use this request to trigger a re-sending of all current tracks for all entities.</semantics>
+</semantics>
         </note>
         <note>
             <label>netn-etr_changelog_3</label>
