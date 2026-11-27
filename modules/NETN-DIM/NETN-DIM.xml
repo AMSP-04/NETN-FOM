@@ -7,7 +7,7 @@
         <modificationDate>2024-03-05</modificationDate>
         <securityClassification>Unclassified</securityClassification>
         <copyright/>
-        <purpose>The NATO Education and Training Network Disaster Module (NETN-DIM) provides a standard interface for representing hazards, e.g. flooding and wildfire, in federated distributed simulation environments.</purpose>
+        <purpose>The NATO Education and Training Network Disaster (NETN-DIM) module provides a standard interface for representing hazards in federated distributed simulation environments.</purpose>
         <applicationDomain></applicationDomain>
         <description>Hazards such as wildfires, flooding, earthquakes, and landslides have different effects in a synthetic environment and on the simulated entities. Furthermore, hazard observation reporting and activities to mitigate the effects of hazards are important aspects of simulations where hazards are part of the scenario.</description>
         <useLimitation></useLimitation>
@@ -67,7 +67,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <sharing>PublishSubscribe</sharing>
                     <transportation>HLAreliable</transportation>
                     <order>Receive</order>
-                    <semantics>Required: Geographical boundary of the HazardRegion.</semantics>
+                    <semantics>Required. Geographical boundary of the HazardRegion.</semantics>
                 </attribute>
                 <objectClass>
                     <name>Flooding</name>
@@ -83,7 +83,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Required: FloodingLevel represents the water level of the flooding relative to the Mean Sea Level (MSL).</semantics>
+                        <semantics>Required. FloodingLevel represents the water level of the flooding relative to the Mean Sea Level (MSL).</semantics>
                     </attribute>
                     <attribute>
                         <name>LevelChange</name>
@@ -95,7 +95,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional: The water level change over time.</semantics>
+                        <semantics>Optional. The water level change over time.</semantics>
                     </attribute>
                 </objectClass>
                 <objectClass>
@@ -112,7 +112,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Required: Indicates the thickness of the actual fire ring surrounding a no longer burning region. The assumption is that a fire starts at one or more locations and then spreads in a circular shape with a fire front of a certain thickness and burnt land behind the front line. The Area attribute defines the outer boundary of the overall region, and the front of the flames is assumed to extend from the boundary into the region.</semantics>
+                        <semantics>Required. Indicates the thickness of the actual fire ring surrounding a no longer burning region. The assumption is that a fire starts at one or more locations and then spreads in a circular shape with a fire front of a certain thickness and burnt land behind the fire front. The `Area` attribute defines the outer boundary of the overall region, and the front of the flames is assumed to extend from the boundary into the region.</semantics>
                     </attribute>
                     <attribute>
                         <name>FrontVelocity</name>
@@ -124,7 +124,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional: The spread velocity of the front line. The Default = 0.</semantics>
+                        <semantics>Optional. The spread velocity of the fire front. The default is 0.</semantics>
                     </attribute>
                     <attribute>
                         <name>Temperature</name>
@@ -136,13 +136,13 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional: The temperature in the front line.</semantics>
+                        <semantics>Optional. The temperature at the fire front.</semantics>
                     </attribute>
                 </objectClass>
                 <objectClass>
                     <name>EarthquakeArea</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>Use the `EarhquakeArea` object to represent an area affected by an earthquake.</semantics>
+                    <semantics>Use the `EarthquakeArea` object to represent an area affected by an earthquake.</semantics>
                     <attribute>
                         <name>Magnitude</name>
                         <dataType>RichterScale</dataType>
@@ -153,13 +153,13 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Required: Richter magnitude scale.</semantics>
+                        <semantics>Required. Magnitude on the Richter magnitude scale.</semantics>
                     </attribute>
                 </objectClass>
                 <objectClass>
                     <name>Landslide</name>
                     <sharing>PublishSubscribe</sharing>
-                    <semantics>Use the `Landslide` object to represent a landslide area covered by mud, snow or gravel.</semantics>
+                    <semantics>Use the `Landslide` object to represent a landslide area covered by mud, snow, gravel, or some other material.</semantics>
                     <attribute>
                         <name>Thickness</name>
                         <dataType>MeterFloat32</dataType>
@@ -170,7 +170,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Required: Thickness in meter.</semantics>
+                        <semantics>Required. Thickness in meters.</semantics>
                     </attribute>
                     <attribute>
                         <name>LandslideType</name>
@@ -182,7 +182,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Optional: The type of landslide material. Default = 0.</semantics>
+                        <semantics>Optional. The type of landslide material. The default is 0.</semantics>
                     </attribute>
                 </objectClass>
             </objectClass>
@@ -195,7 +195,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <objectClass>
                             <name>Levee</name>
                             <sharing>PublishSubscribe</sharing>
-                            <semantics>A levee is a wall/separator that protects an area from flooding.</semantics>
+                            <semantics>A levee is a wall or separator that protects an area from flooding.</semantics>
                             <attribute>
                                 <name>Height</name>
                                 <dataType>MeterFloat32</dataType>
@@ -206,13 +206,13 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Required: Max height over Mean-Sea Level that this levee protects against flooding.</semantics>
+                                <semantics>Required. Maximum height over Mean Sea Level that this levee protects against flooding.</semantics>
                             </attribute>
                         </objectClass>
                         <objectClass>
                             <name>Firebreak</name>
                             <sharing>PublishSubscribe</sharing>
-                            <semantics>A firebreak is a corridor without any burning things. The firebreak should separate the burning part from the not burning part.</semantics>
+                            <semantics>A firebreak is a corridor cleared of combustible material. The firebreak separates the burning area from the unburned area.</semantics>
                             <attribute>
                                 <name>Width</name>
                                 <dataType>MeterFloat32</dataType>
@@ -223,7 +223,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                                 <sharing>PublishSubscribe</sharing>
                                 <transportation>HLAreliable</transportation>
                                 <order>Receive</order>
-                                <semantics>Required: Width of the firebreak.</semantics>
+                                <semantics>Required. Width of the firebreak.</semantics>
                             </attribute>
                         </objectClass>
                     </objectClass>
@@ -245,12 +245,12 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                     <parameter>
                         <name>Area</name>
                         <dataType>LocationStructArray</dataType>
-                        <semantics>Required: The estimated area affected by the hazard.</semantics>
+                        <semantics>Required. The estimated area affected by the hazard.</semantics>
                     </parameter>
                     <parameter>
                         <name>HazardType</name>
                         <dataType>HazardTypeEnum</dataType>
-                        <semantics>Required: The type of hazard observed.</semantics>
+                        <semantics>Required. The type of hazard observed.</semantics>
                     </parameter>
                 </interactionClass>
             </interactionClass>
@@ -263,11 +263,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>A request for evacuation</semantics>
+                        <semantics>A request for evacuation.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>EvacuateTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -279,7 +279,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>PumpFloodingTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -291,7 +291,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>ExtinguishWildfireTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -299,11 +299,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Use the `CreateFireBreak` task to request an entity to build a firebreak.</semantics>
+                        <semantics>Task an entity to build a firebreak.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>CreateFireBreakTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                     <interactionClass>
@@ -311,11 +311,11 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
                         <sharing>PublishSubscribe</sharing>
                         <transportation>HLAreliable</transportation>
                         <order>Receive</order>
-                        <semantics>Use the `CreateLevee` task to request an entity to construct a levee.</semantics>
+                        <semantics>Task an entity to construct a levee.</semantics>
                         <parameter>
                             <name>TaskParameters</name>
                             <dataType>CreateLeveeTaskStruct</dataType>
-                            <semantics>Required: Task parameters.</semantics>
+                            <semantics>Required. Task parameters.</semantics>
                         </parameter>
                     </interactionClass>
                 </interactionClass>
@@ -399,7 +399,7 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             <enumeratedData>
                 <name>EntityControlActionEnum</name>
                 <representation>HLAinteger32BE</representation>
-                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules defining additional actions.</semantics>
+                <semantics>Enumeration of Entity Control Actions. The datatype is expected to be extended in specific modules to define additional actions.</semantics>
                 <enumerator>
                     <name>PumpFlooding</name>
                     <value>701</value>
@@ -582,7 +582,9 @@ Above license gives you the right to use and redistribute this FOM Module (XML f
             <label>netn-dim_overview</label>
             <semantics>## Overview
 
-The NETN-DIM introduces the `DIM_HazardRegion` object class to represent areas affected by different types of disasters
+### Hazard Regions
+
+The NETN-DIM module introduces the `DIM_HazardRegion` object class to represent areas affected by different types of disasters.
 
 ```mermaid
 classDiagram
@@ -609,7 +611,9 @@ Landslide : Thickness
 
 ```
 
-The module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for mitigation and the prevention of effects caused by `Flooding` and `Wildfire`, respectively.
+### Mitigation and Prevention of Disaster Effects
+
+The NETN-DIM module also extends the RPR-SE `BreachableLinearObject` class by defining `Levee` and `Firebreak` objects for the mitigation and prevention of effects caused by `Flooding` and `Wildfire`, respectively.
 
 ```mermaid
 classDiagram
@@ -631,7 +635,7 @@ Firebreak : Width
 
 ```
 
-## Tasking and Reporting
+### Tasking and Reporting
 
 The NETN-DIM module extends the NETN-ETR `Task` and `ETR_Report` interaction classes to provide task control actions for several disaster mitigation actions.
 
@@ -674,7 +678,8 @@ ETR_Report : TimeStamp(NETN-ETR)
 HazardObservation : Area
 HazardObservation : HazardType
 
-```</semantics>
+```
+</semantics>
         </note>
     </notes>
 </objectModel>
